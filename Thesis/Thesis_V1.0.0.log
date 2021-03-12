@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2) (preloaded format=pdflatex 2021.3.11)  11 MAR 2021 18:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2) (preloaded format=pdflatex 2021.3.11)  12 MAR 2021 18:46
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -656,7 +656,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 45.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 45.
-<logopolito.pdf, id=78, 526.79488pt x 523.45164pt>
+<logopolito.pdf, id=26, 526.79488pt x 523.45164pt>
 File: logopolito.pdf Graphic file (type pdf)
 <use logopolito.pdf>
 Package pdftex.def Info: logopolito.pdf  used on input line 85.
@@ -691,129 +691,53 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
 ]
 Chapter 1.
-(latex.tex
-LaTeX Font Info:    Trying to load font information for OMS+cmtt on input line 
-5.
-LaTeX Font Info:    No file OMScmtt.fd. on input line 5.
-
-
-LaTeX Font Warning: Font shape `OMS/cmtt/m/n' undefined
-(Font)              using `OMS/cmsy/m/n' instead
-(Font)              for symbol `textbackslash' on input line 5.
-
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <14.4> on input line 12.
 [7
 
 
 
 ]
-Overfull \hbox (3.16447pt too wide) in paragraph at lines 74--75
-\OT1/cmr/m/n/10 viene definire un'opportuna ab-bre-vi-azione nel pream-bolo del
- file, os-sia prima di \OMS/cmtt/m/n/10 n\OT1/cmtt/m/n/10 begin\OMS/cmtt/m/n/10
- f\OT1/cmtt/m/n/10 document\OMS/cmtt/m/n/10 g\OT1/cmr/m/n/10 .
- []
-
-[8]
-LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 104.
-
-
-LaTeX Font Warning: Font shape `OMS/cmtt/bx/n' undefined
-(Font)              using `OMS/cmtt/m/n' instead
-(Font)              for symbol `textbackslash' on input line 104.
-
-
-Overfull \hbox (5.41133pt too wide) in paragraph at lines 104--108
-\OT1/cmr/m/n/10 (sorgente) [][]\OT1/cmtt/m/n/10 Nel \href{http://www.polito.it/
-}{sito web} del Politecnico di Torino 
- []
-
-
-Overfull \hbox (0.16138pt too wide) in paragraph at lines 108--112
-\OT1/cmr/m/n/10 (sorgente) [][]\OT1/cmtt/m/n/10 Il sito web del Politecnico di 
-Torino e \url{http://www.polito.it/} 
- []
-
-[9] [10]
-<torino.png, id=188, 456.70625pt x 374.39874pt>
-File: torino.png Graphic file (type png)
-<use torino.png>
-Package pdftex.def Info: torino.png  used on input line 247.
-(pdftex.def)             Requested size: 380.2495pt x 311.72777pt.
- [11] [12 <./torino.png>]
-Overfull \hbox (1.93947pt too wide) in paragraph at lines 323--326
-[]\OT1/cmr/m/n/10 (sbagliato) [][]\OT1/cmtt/m/n/10 il protocollo TLS\cite{tls12
-} e usato per la sicurezza del web 
- []
-
-
-Overfull \hbox (14.6615pt too wide) in paragraph at lines 331--334
-[]\OT1/cmr/m/n/10 (sorgente) [][]\OT1/cmtt/m/n/10 Il record protocol di TLS \ci
-te[Sez.~5]{tls12} e usato per \ldots 
- []
-
-[13]) [14]
-Capitolo 2.
-(magistrale.tex) [15
+Chapter 2.
+[8
 
 ]
-Capitolo 3.
-[16
+Chapter 3.
+[9
 
 ]
-Capitolo 4.
-[17
+Chapter 4.
+[10
 
 ]
-Capitolo 5.
-(biblio.tex [18
+Chapter 5.
+(biblio.tex [11
 
-]) [19
+]) [12
 
 ] (Thesis_V1.0.0.aux)
 Package rerunfilecheck Info: File `Thesis_V1.0.0.out' has not changed.
-(rerunfilecheck)             Checksum: 616731F3E08F94AD803C8E6C245C7FE3;2928.
-
-
-LaTeX Font Warning: Some font shapes were not available, defaults substituted.
-
+(rerunfilecheck)             Checksum: 4243176461AF72202AEBFC2E253597D1;580.
  ) 
 Here is how much of TeX's memory you used:
- 15127 strings out of 481305
- 260252 string characters out of 2908600
- 599167 words of memory out of 3000000
- 31952 multiletter control sequences out of 15000+200000
- 415558 words of font info for 70 fonts, out of 3000000 for 9000
+ 14744 strings out of 481305
+ 256767 string characters out of 2908600
+ 577729 words of memory out of 3000000
+ 31633 multiletter control sequences out of 15000+200000
+ 412661 words of font info for 60 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 134i,13n,137p,801b,1185s stack positions out of 5000i,500n,10000p,200000b,50000s
- <C:\Users\michele\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tc
-rm1000.pk><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
-sfonts/cm/cmbx10.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type
-1/public/amsfonts/cm/cmbx12.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX
-/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/michele/AppData/Local/Pro
-grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/michele/AppDat
-a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/mic
-hele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:
-/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr
-10.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfo
-nts/cm/cmr12.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/pu
-blic/amsfonts/cm/cmr17.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/font
-s/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/michele/AppData/Local/Programs/Mi
-KTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/michele/AppData/Local/Pr
-ograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/michele/AppData
-/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/michel
-e/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsl8.pfb><C:/Us
-ers/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10
-.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfont
-s/cm/cmsy7.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/publ
-ic/amsfonts/cm/cmti10.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts
-/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/michele/AppData/Local/Programs/M
-iKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/michele/AppData/Local
-/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on Thesis_V1.0.0.pdf (19 pages, 325191 bytes).
+ 134i,13n,137p,397b,857s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/c
+m/cmbx10.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public
+/amsfonts/cm/cmbx12.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/t
+ype1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/michele/AppData/Local/Programs/Mi
+KTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/michele/AppData/Local/P
+rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/michele/AppDa
+ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/mic
+hele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C
+:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cm
+tt10.pfb>
+Output written on Thesis_V1.0.0.pdf (12 pages, 144136 bytes).
 PDF statistics:
- 352 PDF objects out of 1000 (max. 8388607)
- 74 named destinations out of 1000 (max. 500000)
- 163 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 140 PDF objects out of 1000 (max. 8388607)
+ 24 named destinations out of 1000 (max. 500000)
+ 54 words of extra memory for PDF output out of 10000 (max. 10000000)
 

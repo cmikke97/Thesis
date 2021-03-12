@@ -2,26 +2,9 @@
 \babel@toc {italian}{}
 \babel@toc {italian}{}
 \babel@toc {english}{}
-\contentsline {chapter}{\numberline {1}Scrivere testi complessi}{7}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Scrittura di un capitolo}{7}{section.1.1}%
-\contentsline {section}{\numberline {1.2}Installazione di un sistema \LaTeX \xspace }{7}{section.1.2}%
-\contentsline {section}{\numberline {1.3}Convenzioni sui nomi dei file}{7}{section.1.3}%
-\contentsline {section}{\numberline {1.4}Comporre testi con \LaTeX \xspace }{8}{section.1.4}%
-\contentsline {subsection}{\numberline {1.4.1}Testo normale}{8}{subsection.1.4.1}%
-\babel@toc {english}{}
-\babel@toc {italian}{}
-\contentsline {subsection}{\numberline {1.4.2}Liste}{9}{subsection.1.4.2}%
-\contentsline {subsection}{\numberline {1.4.3}Formule matematiche ed unit\`a di misura}{10}{subsection.1.4.3}%
-\contentsline {subsection}{\numberline {1.4.4}Tabelle e figure}{11}{subsection.1.4.4}%
-\contentsline {section}{\numberline {1.5}La bibliografia}{12}{section.1.5}%
-\contentsline {section}{\numberline {1.6}Nomi dei file}{14}{section.1.6}%
-\contentsline {section}{\numberline {1.7}Conclusioni}{14}{section.1.7}%
-\contentsline {chapter}{\numberline {2}La tesi di laurea magistrale}{15}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Struttura della tesi}{15}{section.2.1}%
-\babel@toc {english}{}
-\contentsline {section}{\numberline {2.2}Writing the thesis in English}{15}{section.2.2}%
-\babel@toc {italian}{}
-\contentsline {chapter}{\numberline {3}Progettazione}{16}{chapter.3}%
-\contentsline {chapter}{\numberline {4}Risultati}{17}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Conclusioni}{18}{chapter.5}%
-\contentsline {chapter}{Bibliografia}{19}{chapter.5}%
+\contentsline {chapter}{\numberline {1}Introduction}{7}{chapter.1}%
+\contentsline {chapter}{\numberline {2}Background}{8}{chapter.2}%
+\contentsline {chapter}{\numberline {3}Proposed Tool}{9}{chapter.3}%
+\contentsline {chapter}{\numberline {4}Results}{10}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Conclusioni}{11}{chapter.5}%
+\contentsline {chapter}{Bibliography}{12}{chapter.5}%
