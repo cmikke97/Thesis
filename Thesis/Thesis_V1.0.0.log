@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2) (preloaded format=pdflatex 2021.3.11)  12 MAR 2021 18:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2) (preloaded format=pdflatex 2021.3.11)  12 MAR 2021 18:51
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -711,17 +711,37 @@ Chapter 4.
 Chapter 5.
 (biblio.tex [11
 
-]) [12
+]
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+\GenericError  ...                                
+                                                  \endgroup 
+\endtrivlist ...false \fi \if@newlist \@noitemerr 
+                                                  \global \@newlistfalse \fi...
+
+\end  ...ook {env/#1/end}}\csname end#1\endcsname 
+                                                  \@checkend {#1}\expandafte...
+l.13 \end{thebibliography}
+                          
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+) [12
 
 ] (Thesis_V1.0.0.aux)
 Package rerunfilecheck Info: File `Thesis_V1.0.0.out' has not changed.
 (rerunfilecheck)             Checksum: 4243176461AF72202AEBFC2E253597D1;580.
  ) 
 Here is how much of TeX's memory you used:
- 14744 strings out of 481305
- 256767 string characters out of 2908600
+ 14736 strings out of 481305
+ 256682 string characters out of 2908600
  577729 words of memory out of 3000000
- 31633 multiletter control sequences out of 15000+200000
+ 31631 multiletter control sequences out of 15000+200000
  412661 words of font info for 60 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
  134i,13n,137p,397b,857s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -732,12 +752,10 @@ ype1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/michele/AppData/Local/Programs/Mi
 KTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/michele/AppData/Local/P
 rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/michele/AppDa
 ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/mic
-hele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C
-:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cm
-tt10.pfb>
-Output written on Thesis_V1.0.0.pdf (12 pages, 144136 bytes).
+hele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on Thesis_V1.0.0.pdf (12 pages, 123128 bytes).
 PDF statistics:
- 140 PDF objects out of 1000 (max. 8388607)
- 24 named destinations out of 1000 (max. 500000)
+ 124 PDF objects out of 1000 (max. 8388607)
+ 18 named destinations out of 1000 (max. 500000)
  54 words of extra memory for PDF output out of 10000 (max. 10000000)
 
