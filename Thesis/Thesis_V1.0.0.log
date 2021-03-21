@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2) (preloaded format=pdflatex 2021.3.11)  12 MAR 2021 18:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2) (preloaded format=pdflatex 2021.3.11)  21 MAR 2021 18:17
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -659,14 +659,14 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 <logopolito.pdf, id=26, 526.79488pt x 523.45164pt>
 File: logopolito.pdf Graphic file (type pdf)
 <use logopolito.pdf>
-Package pdftex.def Info: logopolito.pdf  used on input line 85.
+Package pdftex.def Info: logopolito.pdf  used on input line 86.
 (pdftex.def)             Requested size: 70.44707pt x 70.00249pt.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 113.
+(Font)              <12> on input line 114.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 113.
+(Font)              <8> on input line 114.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 113.
+(Font)              <6> on input line 114.
  [1{C:/Users/michele/AppData/Local/MiKTeX/pdftex/config/pdftex.map}
 
 
@@ -709,7 +709,7 @@ Chapter 4.
 
 ]
 Chapter 5.
-(biblio.tex [11
+(Thesis_V1.0.0.bbl [11
 
 ]
 
@@ -726,8 +726,8 @@ Type  H <return>  for immediate help.
 
 \end  ...ook {env/#1/end}}\csname end#1\endcsname 
                                                   \@checkend {#1}\expandafte...
-l.13 \end{thebibliography}
-                          
+l.3 \end{thebibliography}
+                         
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
@@ -735,16 +735,16 @@ If that doesn't work, type  X <return>  to quit.
 
 ] (Thesis_V1.0.0.aux)
 Package rerunfilecheck Info: File `Thesis_V1.0.0.out' has not changed.
-(rerunfilecheck)             Checksum: 4243176461AF72202AEBFC2E253597D1;580.
+(rerunfilecheck)             Checksum: 9D9093353E6C74F4E7535412879B0A68;580.
  ) 
 Here is how much of TeX's memory you used:
- 14736 strings out of 481305
- 256682 string characters out of 2908600
- 577729 words of memory out of 3000000
- 31631 multiletter control sequences out of 15000+200000
+ 14732 strings out of 481305
+ 256676 string characters out of 2908600
+ 577568 words of memory out of 3000000
+ 31627 multiletter control sequences out of 15000+200000
  412661 words of font info for 60 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 134i,13n,137p,397b,857s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 134i,13n,137p,397b,859s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/c
 m/cmbx10.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public
 /amsfonts/cm/cmbx12.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/t
@@ -753,7 +753,7 @@ KTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/michele/AppData/Local/P
 rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/michele/AppDa
 ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/mic
 hele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on Thesis_V1.0.0.pdf (12 pages, 123128 bytes).
+Output written on Thesis_V1.0.0.pdf (12 pages, 124670 bytes).
 PDF statistics:
  124 PDF objects out of 1000 (max. 8388607)
  18 named destinations out of 1000 (max. 500000)
