@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  24 APR 2021 15:12
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  24 APR 2021 16:04
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -707,17 +707,17 @@ Chapter 1.
 Chapter 2.
 [8
 
-] [9] [10] [11] [12] [13] [14] [15]
+] [9] [10] [11] [12] [13] [14] [15] [16]
 Chapter 3.
-[16
-
-]
-Chapter 4.
 [17
 
 ]
+Chapter 4.
+[18
+
+]
 Chapter 5.
-(Thesis_V1.0.0.bbl [18
+(Thesis_V1.0.0.bbl [19
 
 ]
 
@@ -739,20 +739,20 @@ l.3 \end{thebibliography}
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-) [19
+) [20
 
 ] (Thesis_V1.0.0.aux)
 Package rerunfilecheck Info: File `Thesis_V1.0.0.out' has not changed.
 (rerunfilecheck)             Checksum: 9824E4B73226D0456E3A2392B65C7ED9;1145.
  ) 
 Here is how much of TeX's memory you used:
- 14789 strings out of 481296
- 258002 string characters out of 2908369
- 586745 words of memory out of 3000000
+ 14790 strings out of 481296
+ 258009 string characters out of 2908369
+ 587745 words of memory out of 3000000
  31670 multiletter control sequences out of 15000+600000
  414360 words of font info for 65 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 134i,13n,137p,1377b,859s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 134i,13n,137p,1378b,859s stack positions out of 5000i,500n,10000p,200000b,80000s
  <C:\Users\michele\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tc
 rm1000.pk><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
 sfonts/cm/cmbx10.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type
@@ -766,9 +766,9 @@ r17.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsf
 onts/cm/cmsl8.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/p
 ublic/amsfonts/cm/cmti10.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fo
 nts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on Thesis_V1.0.0.pdf (19 pages, 217135 bytes).
+Output written on Thesis_V1.0.0.pdf (20 pages, 221051 bytes).
 PDF statistics:
- 195 PDF objects out of 1000 (max. 8388607)
- 30 named destinations out of 1000 (max. 500000)
+ 200 PDF objects out of 1000 (max. 8388607)
+ 31 named destinations out of 1000 (max. 500000)
  86 words of extra memory for PDF output out of 10000 (max. 10000000)
 
