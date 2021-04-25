@@ -11,7 +11,8 @@
 \contentsline {subsubsection}{By how they spread}{10}{section*.1}%
 \contentsline {subsubsection}{By what they do}{11}{section*.2}%
 \contentsline {subsubsection}{Other cyber-threats}{16}{section*.3}%
-\contentsline {subsubsection}{Real-world examples}{17}{section*.4}%
+\contentsline {subsubsection}{General considerations on malware types}{17}{section*.4}%
+\contentsline {subsubsection}{Real-world examples}{17}{section*.5}%
 \contentsline {chapter}{\numberline {3}Proposed Tool}{20}{chapter.3}%
 \contentsline {chapter}{\numberline {4}Results}{21}{chapter.4}%
 \contentsline {chapter}{\numberline {5}Conclusions}{22}{chapter.5}%
