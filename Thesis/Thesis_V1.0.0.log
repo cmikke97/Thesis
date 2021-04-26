@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  25 APR 2021 14:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  26 APR 2021 12:01
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -742,13 +742,19 @@ If that doesn't work, type  X <return>  to quit.
 ) [23
 
 ] (Thesis_V1.0.0.aux)
-Package rerunfilecheck Info: File `Thesis_V1.0.0.out' has not changed.
-(rerunfilecheck)             Checksum: 9824E4B73226D0456E3A2392B65C7ED9;1145.
+
+Package rerunfilecheck Warning: File `Thesis_V1.0.0.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `Thesis_V1.0.0.out':
+(rerunfilecheck)             Before: 9824E4B73226D0456E3A2392B65C7ED9;1145
+(rerunfilecheck)             After:  70A11438E9FEB3851C94D816F2A5FAC4;1284.
  ) 
 Here is how much of TeX's memory you used:
- 14797 strings out of 481296
- 258070 string characters out of 2908369
- 586745 words of memory out of 3000000
+ 14798 strings out of 481296
+ 258086 string characters out of 2908369
+ 587745 words of memory out of 3000000
  31670 multiletter control sequences out of 15000+600000
  414360 words of font info for 65 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
@@ -766,9 +772,9 @@ r17.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsf
 onts/cm/cmsl8.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/p
 ublic/amsfonts/cm/cmti10.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fo
 nts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on Thesis_V1.0.0.pdf (23 pages, 240949 bytes).
+Output written on Thesis_V1.0.0.pdf (23 pages, 241502 bytes).
 PDF statistics:
- 219 PDF objects out of 1000 (max. 8388607)
- 38 named destinations out of 1000 (max. 500000)
+ 220 PDF objects out of 1000 (max. 8388607)
+ 39 named destinations out of 1000 (max. 500000)
  86 words of extra memory for PDF output out of 10000 (max. 10000000)
 

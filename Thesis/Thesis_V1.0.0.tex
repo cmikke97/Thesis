@@ -219,7 +219,7 @@ There are a number of different ways of categorizing malware; the first is by \t
 	
 	One of the most common ways that \textit{spyware} is distributed is a Trojan horse, bundled with a piece of desirable software that the user downloads from the internet. When the user installs the software, the spyware is installed alongside. Spyware authors who attempt to act in a legal fashion may include an end-user licence agreement that states the behaviour of the spyware in loose terms, which the users are unlikely to read or understand.
 	
-	\item \textbf{\textit{Virus}}. The term "computer virus" is used for a self-replicating malicious program that has infected some executable software (and/or boot sectors) and, when run, causes the virus to spread to other executables. Depending on how complex the virus code is, it may be able to modify the replicated copies. Ultimately the virus is passive and needs to be transferred through files, media files or network files in order to infect other hosts.
+	\item \textbf{\textit{Virus}}. The term "computer virus" is used for a self-replicating malicious program that has infected some executable software (and/or boot sectors) and, when run, causes the virus to spread to other executables. By embedding copies of itself into files (a.k.a. infecting other executables), which by some means or another are transported to the target, the virus spreads from one computer to another. The medium of transport is often known as the \textit{vector} of the virus. Depending on how complex the virus code is, it may be able to modify the replicated copies. The transport of infected files may be initiated by the virus itself (for example, it may send the infected files as an e-mail attachment) or rely on an unsuspecting human user (who for example transports a USB drive containing the infected file). Ultimately the virus is passive and needs to be transferred through files, media files or network files in order to infect other hosts.
 	
 	Usually spread via infected websites, file sharing, or email attachment downloads, a virus will lie dormant until the infected host file or program is activated. Once that happens, the virus is able to replicate itself and spread through the system. Viruses can also spread through script files, documents, and cross-site vulnerabilities in web apps.
 	
@@ -423,6 +423,8 @@ Moreover, in recent years, also \textbf{\textit{mobile devices-targeted attacks}
 		
 		\item \textit{\textbf{Worm} example}: \textbf{\textit{Stuxnet}} was probably developed by the US and Israeli intelligence forces with the intent of setting back Iran's nuclear program. It was introduced into Iran's environment through a flash drive. Because the environment was air-gapped, its creators never thought Stuxnet would escape its target's network - but it did. Once in the wild, Stuxnet spread aggressively but did little damage, since its only function was to interfere with industrial controllers that managed the uranium enrichment process.
 	\end{itemize}
+
+\subsection{Malware History}
 
 \chapter{Proposed Tool}
 
