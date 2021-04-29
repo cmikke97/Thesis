@@ -16,7 +16,7 @@
 \contentsline {subsection}{\numberline {2.2.1}Anti-disassembly techniques}{22}{subsection.2.2.1}%
 \contentsline {subsubsection}{Linear Disassemblers}{23}{section*.5}%
 \contentsline {subsubsection}{Flow-Oriented Disassemblers}{23}{section*.6}%
-\contentsline {chapter}{\numberline {3}Proposed Tool}{24}{chapter.3}%
-\contentsline {chapter}{\numberline {4}Results}{25}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Conclusions}{26}{chapter.5}%
-\contentsline {chapter}{Bibliography}{27}{chapter.5}%
+\contentsline {chapter}{\numberline {3}Proposed Tool}{25}{chapter.3}%
+\contentsline {chapter}{\numberline {4}Results}{26}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Conclusions}{27}{chapter.5}%
+\contentsline {chapter}{Bibliography}{28}{chapter.5}%

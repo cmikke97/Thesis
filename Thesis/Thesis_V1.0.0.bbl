@@ -18,6 +18,31 @@ C.~Crane, ``What is malware? 10 types of malware and how they work.''
   \url{https://www.thesslstore.com/blog/what-is-malware-types-of-malware-how-they-work/},
   2020, Accessed: 2021-03-15
 
+\bibitem{SymantecDVWT}
+Symantec, ``Difference between viruses, worms, and trojans.''
+  \url{https://knowledge.broadcom.com/external/article?legacyId=TECH98539},
+  2019, Accessed: 2021-03-15
+
+\bibitem{FruhlingerME}
+J.~Fruhlinger, ``Malware explained: How to prevent, detect and recover from
+  it.''
+  \url{https://www.csoonline.com/article/3295877/what-is-malware-viruses-worms-trojans-and-beyond.html},
+  2019, Accessed: 2021-03-15
+
+\bibitem{MyraSecurityWIM}
+MyraSecurity, ``What is malware?.''
+  \url{https://www.myrasecurity.com/en/what-is-malware/}, Accessed: 2021-03-15
+
+\bibitem{McAfeeWIM}
+McAfee, ``What is malware?.''
+  \url{https://www.mcafee.com/en-us/antivirus/malware.html}, Accessed:
+  2021-03-15
+
+\bibitem{ReganWIM}
+J.~Regan, ``What is malware? how malware works and how to prevent it.''
+  \url{https://www.avg.com/en/signal/what-is-malware}, 2019, Accessed:
+  2021-03-15
+
 \bibitem{Szor_P}
 P.~Szor, ``The art of computer virus and defence'', Symantec press, 1st~ed.,
   2005, ISBN: 978-0-321-30454-4
