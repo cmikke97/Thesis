@@ -40,6 +40,9 @@
 %
 \usepackage[latin1]{inputenc}% IMPORTANTE! usare codifica ISO-8859-1 per le lettere accentate
 
+% temporaneo
+\usepackage[dvipsnames]{xcolor}
+
 \input{commands.tex}
 
 \begin{document}
@@ -153,6 +156,7 @@ Introduction...
 
 \section{Malware}
 \textbf{Malware}, short for \textbf{\textit{malicious software}}, is a general term for all types of programs designed to perform harmful or undesirable actions on a system. In fact in the context of IT security the term \textit{malicious software} commonly means \cite{SharpAIM}:
+
 \begin{quote}
 	\textit{Software which is used with the aim of attempting to breach a computer system's security policy with respect to Confidentiality, Integrity and/or Availability.}
 \end{quote}
@@ -161,6 +165,7 @@ Malware consists of programming artefacts (code, scripts, active content, and ot
 Malware is not (and should not be confused with) defective software - software that has a legitimate purpose but contains harmful bugs (programming errors).
 
 Different companies, organizations and people describe malware in various ways. For example \textbf{Microsoft} defines it in a generic way as:
+
 \begin{quote}
 	\textit{Malware is a catch-all term to refer to any software designed to cause damage to a single computer, server, or computer network} \cite{MoirDM}.
 \end{quote}
@@ -168,6 +173,7 @@ Different companies, organizations and people describe malware in various ways. 
 The \textbf{National Institute of Standards and Technology} (\textbf{NIST}), on the other hand, presents multiple definitions for malware, describing it as "hardware, firmware, or software that is intentionally included or inserted in a system for a harmful purpose" \cite{nistM}.
 
 In another more specific definition \textbf{NIST} affirms that Malware is:
+
 \begin{quote}
 	\textit{A program that is inserted into a system, usually covertly, with the intent of compromising the confidentiality, integrity, or availability of the victim's data, applications, or operating system or of otherwise annoying or disrupting the victim} \cite{nistM}.
 \end{quote}
@@ -209,161 +215,116 @@ Terms like \textit{trojan}, \textit{virus} and \textit{worm} are commonly used i
 	
 	Trojan horses cannot self-replicate. They rely on the system operators to activate. However, they can grant the attacker remote access permitting him to then perform any malicious activity that is in their interest. Trojan horse programs can affect the host in many different ways, depending on the payload attached to them \cite{NamanyaTWM}.
 	
-	\textit{
-		\textbf{Example}: \textbf{Emotet} is a sophisticated banking trojan that has been around since 2014. It is hard to fight Emotet because it evades signature-based detection, is persistent, and includes spreader modules that help it propagate. The trojan is so widespread that it is the subject of a US Department of Homeland Security alert, which notes that Emotet has costed US state, local, tribal and territorial governments up to \$1 million per incident to remediate. \\		
-		Other notable trojan strains include: \textbf{Trickbot}, \textbf{Ryuk}, \textbf{Sodinokibi}, \textbf{Mirai} and \textbf{SamSam}.
-	}
-	
-	\item \textbf{\textit{Virus}}. The term "computer virus" is used for describing a self-replicating malicious program. When run it spreads to other executables (and/or boot sectors) by embedding copies of itself into those files. A virus, in fact, in order to spread from one computer to another, relies on the infected files possibly ending up, by some means or another, in the target system. Viruses are therefore passive. The mean of transport (file, media file, network file, etc.) is often referred to as the virus \textit{vector}. Depending on how complex the virus code is, it may be able to modify its copies upon replication. For the transport of the infected files to the target system(s), the virus may rely on an unsuspecting human user (who for example uses a USB drive containing the infected file) or initiate itself the transfer (for example, it may send the infected files as an e-mail attachment) \cite{SharpAIM}.
-	
-	Usually spread via infected websites, file sharing, or email attachment downloads, a virus will lie dormant until the infected host file or program is activated. Once that happens, the virus is able to replicate itself and spread through the system.
+	\item \textbf{\textit{Virus}}. The term "computer virus" is used for describing a passive self-replicating malicious program. Usually spread via infected websites, file sharing, or email attachment downloads, it will lie dormant until the infected host file or program is activated. At that point it spreads to other executables (and/or boot sectors) by embedding copies of itself into those files. A virus, in fact, in order to spread from one computer to another, usually relies on the infected files possibly ending up, by some means or another, in the target system. Viruses are therefore passive. The mean of transport (file, media file, network file, etc.) is often referred to as the virus \textit{vector}. Depending on how complex the virus code is, it may be able to modify its copies upon replication. For the transport of the infected files to the target system(s), the virus may rely on an unsuspecting human user (who for example uses a USB drive containing the infected file) or initiate itself the transfer (for example, it may send the infected files as an e-mail attachment) \cite{SharpAIM}.
 	
 	Viruses may also perform other harmful actions other than just replicating, such as creating a backdoor for later use, damaging files, stealing information, creating botnets, render advertisements or even damaging equipment.
 	
 	\item \textbf{\textit{Worm}}. On the other hand, a worm is a self-replicating, active malicious program that exploits various system vulnerabilities to spread over the network. Particularly, it relies on vulnerabilities present in the target's operating system or installed software. Worms usually consume a lot of bandwidth and processing resources due to continuous scanning and may render the host unstable, sometimes causing the system to crash. Computer worms may also contain "payloads" to damage the target systems. Payloads are pieces of code written to perform various nefarious actions on the affected computers among which stealing data, deleting files or creating bots - which can lead the infected systems to become part of a botnet \cite{NamanyaTWM}.
 	
-	\textit{
-		\textbf{Example}: \textbf{Stuxnet} was probably developed by the US and Israeli intelligence forces with the intent of setting back Iran's nuclear program. It was introduced into Iran's environment through a flash drive. Because the environment was air-gapped, its creators never thought Stuxnet would escape its target's network - but it did. Once in the wild, Stuxnet spread aggressively but did little damage, since its only function was to interfere with industrial controllers that managed the uranium enrichment process.
-	}
-	
 \end{itemize}
 
-These definitions lead to the observation that both viruses and trojans require \textit{user intervention} to spread, whereas a worm spreads itself automatically. A virus, however, cannot execute or reproduce unless the app it has infected is running. This dependence on a host application makes viruses different from trojans, which require users to download them, and worms, which do not use applications to execute.
+These definitions lead to the observation that both viruses and trojans require \textit{user intervention} to spread, whereas a worm spreads itself automatically. A virus, however, cannot execute or reproduce unless the application it infected is running. This dependence on a host program makes viruses different from trojans, which require users to download them, and worms, which do not use applications to execute.
 
 Furthermore, attackers can also install malware "manually" on a computer, either by gaining physical access to the target system or by using privilege escalation methods to obtain remote administrator access \cite{FruhlingerME}.
 
 \subsubsection{By what they do}
 There are a wide range of potential attack techniques used by malware, here are some of them:
-	
+
 \begin{itemize}
 	\item \textbf{\textit{Adware}}. \textit{Adware}, or "Advertising supported software", is any software package which automatically plays, displays, or downloads advertisements to a computer. Some adware may also re-direct the user's browser to dubious websites. These advertisements can be in the form of a pop-up ads or ad banners that lure the user into making a purchase. The objective of the Adware is to generate revenue for its author. Adware, by itself, is harmless; however, some adware may come with integrated spyware, such as keyloggers, and other privacy-invasive software. This type of malware usually gets into users' computers from infected websites or unreliable download portals. It also may gain access by appearing to be an innocent ad or by attaching itself to another app, gaining access to the system when installing the apparently benevolent program.
 	
-	Moreover, advertising functions are often integrated into or bundled with other software, which is often designed to note what Internet sites the user visits and to present advertising pertinent to the types of goods or services featured there. For example, an advertiser might use cookies to track the webpages a user visits to better target advertising. Adware is usually seen by the developers as a way to recover development costs, and in some cases it may allow the software to be provided to the user free of charge or at a reduced price. The income derived from presenting advertisements to the user may allow to motivate the developer to continue to develop, maintain and upgrade the software product. Conversely the advertisements may be seen by the user as interruptions or annoyances, or as distractions from the task at hand. Users sometimes unknowingly infect themselves with adware installed by default when they download and install other applications.
+	Moreover, advertising functions are often integrated into or bundled with other software, which is often designed to note what Internet sites the user visits and to present advertising pertinent to the types of goods or services featured there. For example, an advertiser might use cookies to track the webpages a user visits to better target advertising. Adware is usually seen by the developers as a way to recover development costs, and in some cases it may allow the software to be provided to the user free of charge or at a reduced price. The income derived from presenting advertisements to the user may allow to motivate the developer to continue to develop, maintain and upgrade the software product. Conversely the advertisements may be seen by the user as interruptions or annoyances, or as distractions from the task at hand. However, users sometimes unknowingly get infected with adware, installed by default, when they download and install other applications.
 	
 	Some adware is also shareware, and so the word may be used as a term of distinction to differentiate between types of shareware software. What differentiates adware from other shareware is that it is primarily advertising-supported, like many free smartphone apps. Users may also be given the option to pay for a "registered" or "licensed" copy to do away with the advertisements.
 	
 	Finally, there is a group of software (Alexa toolbar, Google toolbar, Eclipse data usage collector, etc.) that send data to a central server about which pages have been visited or which features of the software have been used. However, differently from "classic" malware, these tools document activities and only send data with the user's approval. The user may opt in to share the data in exchange to the additional features and services, or (in the case of Eclipse) as the form of voluntary support for the project. Some security tools report such loggers as malware while others do not. The status of the group is questionable. Some tools like PDF Creator are more on the boundary than others because opting out has been made more complex than it could be. However, PDF Creator is only sometimes mentioned as malware and is still subject of discussion.
 	
-	\textit{
-		\textbf{Example}: While there are hundreds of adware versions, some ot the most common examples include \textbf{Fireball}, \textbf{Appearch}, \textbf{DollarRevenue}, \textbf{Gator} and \textbf{DeskAd}. These adware strains often present themselves as a video, banner, full screen, or otherwise pop-up nuisance.\\
-		The adware called \textbf{Fireball} infected 250 million computers and devices in 2017, hijacking browsers to change default search engines and track web activity. However, the malware had the potential to become more than a mere nuisance. Three-quarters of it was able to run code remotely and download malicious files.\\
-		Adware dominated the consumer threat detection category in 2019. Malwarebytes reports in its 2020 State of Malware Report that there were 54 million adware detections on Windows (24 million) and Apple (30 million) devices. Adware also captured the top business malware detection as well, increasing a incredible 463\% from its 2018 detections.
-	}
+	\item \textbf{\textit{Backdoor}}. A \textit{backdoor}, also called Remote Access Trojan (RAT), is a vulnerability deliberately buried into software's code that allows to bypass typical protection mechanisms, like credentials-based login authentication. In other words, it is a method of circumventing normal authentication procedures. Once a system has been compromised (by others types of malware or other methods), one or more backdoors may be installed in order to allow easier access in the future without alerting the user or the system's security programs. Backdoors may also be installed prior to malicious software, to allow attackers entry.
 	
-	\item \textbf{\textit{Backdoor}}. A \textit{backdoor}, also called Remote Access Trojan (RAT), is vulnerability deliberately buried in software's code that allows to bypass typical protection mechanisms, like credentials-based login authentication. In other words, it is a method of circumventing normal authentication procedures. Once a system has been compromised (by one of the mentioned methods, or in some other way), one or more backdoors may be installed in order to allow easier access in the future without alerting the user or the system's security programs. Backdoors may also be installed prior to malicious software, to allow attackers entry.
+	Many device or software manufacturers ship their products with intentionally hidden backdoors to allow company personnel or law enforcement to access the system when needed \cite{IngallsTOM}. Alternatively, backdoors are sometimes hidden in programs also by intelligence services. For example, Cisco network routers, which process large volumes of global internet traffic, in the past were equipped with backdoors intended for US Secret Service use \cite{MyraSecurityWIM}.
 	
-	Most device or software manufacturers place backdoors in their products intentionally and for a good reason. If needed, company personnel or law enforcement can use the backdoor to access the system when needed.
-	Moreover, backdoors are sometimes also hidden in programs by intelligence services. For example, Cisco network routers, which process large volumes of global internet traffic, in the past were equipped with backdoors intended for US Secret Service use \cite{MyraSecurityWIM}.
+	However, when used by malicious actors, backdoors grant access to attackers without the user knowledge, thus putting the system in real danger.
 	
-	\textit{
-		\textbf{Example}: Because backdoors are often intentionally built into products, the number of instances they've been used maliciously is numerous. in 2005, Sony BMG delivered millions of CDs with a rootkit that monitored listening habits and unintentionally left a backdoor to the device for cybercriminals. In 2017, more than 300,000 WordPress websites were affected by a malicious plug-in that allowed an attacker to place embedded hidden link on victim websites.
-	}
+	\item \textbf{\textit{Browser Hijacker}}. A \textit{Browser Hijacker}, also called "hijackware", is a type of malicious program which considerably modifies the behaviour of the victim's web browser. For example it can force the browser to send the user to a new search page, slow down the loading, change the victim's home page, install unwanted toolbars, redirect the user to specific sites, and display unwanted ads without the user consent.\\
+	It can be used to make money off ads, to steal information from users, or to infect the systems with other malware by redirecting users to malicious websites \cite{IngallsTOM}.
 	
-	\item \textbf{\textit{Browser Hijacker}}. A \textit{Browser Hijacker}, also called "hijackware", noticeably changes the behaviour of the victim's web browser. This change could be sending the user to a new search page, slow-loading, changing the victim's homepage, installing unwanted toolbars, redirecting the user to sites he did not intend to visit, and displaying unwanted ads. Attackers can make money off advertising fees, steal information from users, spy, or redirect users to websites or apps that download more malware.
-	
-	\textit{
-		\textbf{Example}: A handful of notable browser hijackers are \textbf{Ask Toolbar}, \textbf{Conduit}, \textbf{CoolWebSearch}, \textbf{Coupon Saver}, \textbf{GoSave}, and \textbf{RockTab}. These browser hijackers typically come in the form of an added toolbar, and because they are often included in other software downloads, users rarely recognize their potential harm.
-	}
-	
-	\item \textbf{\textit{Bots}/\textit{Botnet}}. In general, \textit{bots} (short for 'robots') are software programs designed to automatically perform specific operations. Bots were originally developed to automatically manage chat IRC channels - Internet Relay Chat: a text-based communication protocol appeared in 1989.\\
-	Some bots are still being used for legitimate and harmless purposes such as video programming, video gaming, internet auctions and online contest, among other functions. It is however becoming increasingly common to see bots being used maliciously. Malicious bots can be (and usually are) used to form botnets. A botnet is defined as a network of host computers (zombies/bots) that is controlled by an attacker - the \textit{bot-master} \cite{NamanyaTWM}. Botnets are frequently used for DDoS (Distributed Denial of Service) attacks, but there are other ways that botnets can be useful to cybercriminals:
+	\item \textbf{\textit{Bots}/\textit{Botnet}}. In general, \textit{bots} (short for 'robots') are software programs designed to automatically perform specific operations. Bots were originally developed to programmatically manage chat IRC channels - Internet Relay Chat: a text-based communication protocol appeared in 1989.\\
+	Some bots are still being used for legitimate and harmless purposes such as video programming, video gaming, internet auctions and online contest, among other functions. It is however becoming increasingly common to see bots being used maliciously. Malicious bots can be (and usually are) used to form botnets. A botnet is defined as a network of host computers (zombies/bots) that is controlled by an attacker - the \textit{bot-master} \cite{NamanyaTWM}. Botnets are frequently used for DDoS (Distributed Denial of Service) attacks, but there are other ways that botnets can be useful to cybercriminals: \cite{CraneWIM}
 	
 	\begin{itemize}
-		\item \textbf{Brute force \& credential stuffing attacks} - Bots can be used to carry out different types of brute force attacks on websites. They'll use a pre-configured list of usernames and passwords combinations on website login pages. The hope is that with enough tries, they'll get lucky and find a winning combination.
+		\item \textbf{Brute force \& credential stuffing} - Bots can be used to carry out different types of brute force attacks on websites. For example they can use a pre-configured list of usernames and passwords combinations on website login pages with the hope of finding a winning combination, after enough tries.
 		
-		\item \textbf{Data and content scraping} - Scraping uses botnets as web spiders to comb through websites and databases to cull useful information they can use to undercut their competition. This could be site content, pricing sheets, or other useful information.
+		\item \textbf{Data and content scraping} - Botnets can be used as web spiders to scour websites and databases to gather useful information - such as site content, pricing sheets, etc. - which can be used to obtain an unfair advantage against the competition.
 		
-		\item \textbf{Botnet-as-a-service opportunities} - Cybercriminals sometimes rent their botnets to all types of malicious users - including those who are less tech savvy. This service is also sometimes called malware-as-a-service, according to the International Botnet and IoT Security Guide 2020 by the Council to Secure the Digital Economy (CSDE). These bot armies essentially serve as mercenaries-for-hire to take down a target's servers and networks.
+		\item \textbf{Botnet-as-a-service opportunities} - Botnets are sometimes rented out by their creators to all kinds of malicious users - including less tech-savvy ones. Doing so, even inexperienced attackers can carry out attacks, such as taking down a target's servers and networks with a DDoS, using these mercenary bots. This service model is sometimes called malware-as-a-service.
 		
 		\item \textbf{Spambot} - A botnet can also be used to act as a spambot and render advertisements on websites.
 		
 		\item \textbf{Malware distributor} - Finally Botnets can even be used for distributing malware disguised as popular search items on download sites.
 	\end{itemize}
 	
-	Websites usually guard themselves from bots using CAPTCHA tests that verify users as humans.
-	
-	\textit{
-		\textbf{Example}: In 2008, the \textbf{Kraken} botnet with 495,000 bots infected 10\% of the Fortune 500 companies. This instance of a botnet attack was also the first where malware went undetected by anti-malware software. In 2016, one of the biggest (and worse) botnets in existence, \textbf{Mirai}, left most of the eastern U.S. with no internet. This massive botnet of compromised IoT devices, with over 600,000 of them, is responsible for some of the biggest DDoS attacks in recent years and exposed just how vulnerable IoT devices could be and led to the "IoT Cybersecurity Improvement Act" of 2020.
-	}
-	
 	\item \textbf{\textit{Crypto-miner}}. Crypto-miners are a relatively new family of malware. Cybercriminals employ this type of malicious tools to mine Bitcoin and/or other bitcoin-alike digital currencies on the target machine. The victim system's computing power is used for this, without the owner realising it. The mined coins end up in the attackers' digital crypto wallets.
+	
+	Recently, a more modern method of crypto-mining that works within browsers (also called crypto-jacking), has become quite popular.
 	
 	In some cases, the use of crypto-miners may be deemed legal. For example they could be used to monetize websites, granted that the site operator clearly informed visitors of the use of such tools \cite{MyraSecurityWIM}.
 	
-	Most crypto-mining apps are usually categorized as PUAs - potentially unwanted apps - or, in rarer cases, as trojans. However, there is a more modern method of crypto-mining - crypto-jacking - that also works in browsers.
+	Finally, according to ESET, most crypto-miners focus mostly on \textit{Monero} as target crypto-currency because it offers anonymous transactions and can be mined with regular CPUs and GPUs instead of expensive, specialized hardware \cite{CraneWIM}.
 	
-	Moreover, according to ESET, most crypto-miners focus mostly on \textit{Monero} as target crypto-currency because it offers anonymous transactions and can be mined with regular CPUs and GPUs instead of expensive, specialized hardware.
-	
-	\item \textbf{\textit{File-less malware}}. File-less malware is a type of memory-resident malware that uses legitimate code that already exists within the target computer or device to infect a computer. As the term suggests, it is malware that operates from a victim's computer memory, not from files on the hard drive, taking advantage of legitimate tools and software (known as "LOLBins") that exist within the system. File-less malware registry attacks leave no malware files to scan and no malicious processes to detect. Since there are no files to scan, it is harder to detect and remove than traditional malware; this makes them up to ten times more successful than traditional malware attacks. Furthermore, it also renders forensics more difficult because when the victim's computer is rebooted the malware disappears.
-	
-	\textit{
-		\textbf{Example}: \textbf{Astaroth} is a file-less malware campaign that spammed users with links to a .LNK shortcut file. When users downloaded the file, a WMIC tool was launched, along with a number of other legitimate Windows tools. These tools downloaded additional code that was executed only in memory, leaving no evidence that could be detected by vulnerability scanners. Then the attacker downloaded and ran a Trojan that stole credentials and uploaded them to a remote server.
-	}
+	\item \textbf{\textit{File-less malware}}. File-less malware is a type of memory-resident malware that uses legitimate code already existing within the target computer or device to carry out attacks. As the term suggests, it is malware that operates from a victim's computer memory, not from files on the hard drive, taking advantage of legitimate tools and software (known as "LOLBins" \cite{CraneWIM}) that already exist within the system. File-less malware attacks leave no malware files to scan and no malicious processes to detect. Since there are no files to scan, it is harder to detect and remove than traditional malware; this makes them up to ten times more successful than traditional malware attacks \cite{BakerMCTM}. Furthermore, it also renders forensics more difficult because when the victim's computer is rebooted the malware disappears.
 	
 	\item \textbf{\textit{Keylogger}}. Keystroke logging (often called \textit{keylogging}) is the action of tracking (or logging) the keys struck on a keyboard, typically in a covert manner so that the person using the keyboard is unaware that their actions are being monitored. The collected information is stored and then sent to the attacker who can then use the data to figure out passwords, usernames and payment details, for example. There are numerous keylogging methods, ranging from hardware and software-based approaches to electromagnetic and acoustic analysis. Key loggers can be inserted into a system through phishing, social engineering or malicious downloads.
 	
-	Key logging have also legitimate uses, in fact it is often used by law enforcement, parents, and jealous or suspicious spouses. The most common use, however, is in the workplace, where employers monitor the employees' use of the company computers.
+	To this extent keyloggers can be considered as a sub-category of spyware.
 	
-	\textit{
-		\textbf{Example}: a keylogger called \textbf{Olympic Vision} has been used to target US, Middle Eastern and Asian businessmen for business email compromise (BEC) attacks. Olympic Vision uses spear-phishing and social engineering techniques to infect its targets' systems in order to steal sensitive data and spy on business transactions. The keylogger is not sophisticated, but it is available on the black market for \$25 so it is highly accessible to malicious actors. \\		
-		A strain of keylogger malware dubbed \textbf{LokiBot} notably increased in 2020. CISA reported that LokiBot "employs Trojan malware to steal sensitive information such as usernames, passwords, cryptocurrency wallets, and other credentials".
-	}
+	Keylogging also has legitimate uses, in fact it is often used by law enforcement, parents, and jealous or suspicious spouses. The most common use, however, is in the workplace, where employers monitor employee use of company computers.
 	
-	\item \textbf{\textit{RAM Scraper}}. \textit{RAM scraper} malware, also known as \textit{Point-of-Sale (POS)} malware, harvests data temporarily stored in a system's memory, also known as Random Access Memory (RAM). This type of malware targets POS systems like cash registers or vendor portals where an attacker can access unencrypted credit card numbers. While this sensitive payment data is only available for milliseconds before passing the encrypted numbers to back-end systems, attackers can still access millions of records.
-	
-	\textit{
-		\textbf{Example}: Since 2008, RAM scraping has been a boon for retailers. A handful of years later, the now infamous spyware dubbed \textbf{BlackPOS} led to the compromise of 40 million Target customers and 56 million Home Depot customers. Heading into the 2020s, a few notable RAM scraping malware families are \textbf{FrameworkPOS}, \textbf{PoSeidon}/\textbf{FindStr}, \textbf{FighterPOS}, and \textbf{Canabak}/\textbf{Anunak}.
-	}
+	\item \textbf{\textit{RAM Scraper}}. \textit{RAM scraper} malware, also known as \textit{Point-of-Sale (POS)} malware, targets POS systems like cash registers or vendor portals, harvesting data temporarily stored in RAM (Random Access Memory). Doing so the attacker can access unencrypted credit card numbers \cite{IngallsTOM}.
 	
 	\item \textbf{\textit{Ransomware}}. \textit{Ransomware}, also known as "encryption" or "crypto" Trojan, is a malicious program that, after having infected a host or network, holds the system captive and requests a ransom from the host/network users. In particular it encrypts data on the infected system (or anyway locks down the system so that the users have no access) and only unblocks it when the correct password - decryption key - is entered. The latter is not given to the victims until after they have paid the ransom to the attacker. Messages informing the system user of the attack and demanding a ransom are usually displayed. Without the correct decryption key, it's mathematically impossible for victims to decrypt and regain access to their files.
 	
-	Digital currencies such as Bitcoin and Ether are the most common means of payment, making it difficult to track the cybercriminals. Moreover, there is no guarantee that payment will result in the necessary decryption key being handled back or that the decryption key provided will function properly. Additionally, some forms of ransomware threaten victims to publicize sensitive information within the encrypted data.
+	Digital currencies such as Bitcoin and Ether are the most common means of payment, making it difficult to track the cybercriminals. Moreover, paying the ransom does not guarantee the user to receive the necessary decryption key or that the one provided is correct and functions properly. Additionally, some forms of ransomware threaten victims to publicize sensitive information within the encrypted data.
 	
 	Ransomware is one of the most profitable, and therefore one of the most popular, and dangerous kinds of malware programs of the past few years: Verizon's 2020 Data Breach Investigation Report shares that 27\% if all malware-related incidents they tracked in 2019 involved ransomware. Companies, in particular, have recently received demands to pay millions to unblock critical services. The most well-known ransomware variants include WannaCry and Petya.
 	
-	The "Five Uneasy E's" of ransomware, according to Tim Femister - vice president of digital infrastructure at ConvergeOne - are:
+	The "Five Uneasy E's" of ransomware, according to Tim Femister \cite{FemisterEHL} - vice president of digital infrastructure at ConvergeOne - are:
+	
 	\begin{itemize}
 		\item \textbf{Exfiltrate}: Capture and send data to a remote attacker server for later leverage.
 		\item \textbf{Eliminate}: Identify and delete enterprise backups to improve odds of payment.
 		\item \textbf{Encrypt}: Use leading encryption protocols to fully encrypt data.
 		\item \textbf{Expose}: Provide proof of data and threaten public exposure and a data auction if payment is not made.
 		\item \textbf{Extort}: Demand an exorbitant payment paid via cryptocurrency.
-	\end{itemize} 
+	\end{itemize}
+
+	\item \textbf{\textit{Rogue Security Software}}. \textit{Rogue Security Software} can be considered as a from of scareware. This type of malware program presents itself as a security tool to remove risks from the user's system. In reality, this fake security software installs more malware onto their system \cite{IngallsTOM}.
 	
-	\textit{
-		\textbf{Example}: With vendors and organizations increasingly moving online, more data is at risk of exposure. Attackers know this and often take advantage of small to mid-sized oranizations with weaker network security, requesting an amount they know the organization can afford. Notable examples from the 2010s included \textbf{CryptoLocker}, \textbf{Locky}, \textbf{WannaCry}, \textbf{Hermes}, \textbf{GrandCrab} and \textbf{Ryuk}. \\		
-		In year 2019, the city of Baltimore was hit by a type of ransomware named \textbf{RobbinHood}, which halted all city activities, including tax collection, property transfers, and government email for weeks. This attack has cost the city more than \$18 million. The same type of malware was used against the city of Atlanta in 2018, resulting in costs of \$17 million. \\		
-		In year 2020, a new \textbf{CryCryptor} ransomware masquerading as COVID alert - the official COVID-19 contact-tracing app for Canada - was detected. Thankfully, ESET researchers were able to create a decryption tool to help those whose files were encrypted by the ransomware.
-	}
-	
-	\item \textbf{\textit{Rogue Security Software}}. Rogue Security Software is a from of ransomware or scareware. An attacker enabling this method tricks users into thinking their system or device is at risk. The malware program will present itself as a fake security tool to remove the problem at a cost. In actuality, the user pays up and the artificial security software installs more malware onto their system.
-	
-	\textit{
-		\textbf{Example}: Some of the most common rogue security software have come in spam campaigns and adware. however, a different infection vector for this malware is the technique known as \textbf{Black Hat SEO}. By following the most popular keywords on the internet through public records like Google Trends, attackers use malicious scripts to generate websites that appear legitimate.
-	}
-	
-	\item \textbf{\textit{Rootkit}}. A \textit{rootkit} is generally considered as a type of malicious software, or a collection of software tools, designed to remotely access or control a computer without being detected by users or security programs. Once a rootkit has been installed it is possible for the malicious party behind the rootkit to remotely execute files, record user activities, access/steal information, modify system configurations, alter software (especially any security software that could detect the rootkit), install concealed malware, mount attacks on other systems or control the computer as part of a botnet. Rootkit prevention, detection, and removal can be difficult due to their stealthy operation. Because a rootkit continually hides its presence, typical security products are not effective in detecting and removing rootkits. As a result, rootkit detection relies on manual methods such as monitoring computer behaviour for irregular activities, system file signature scanning, and storage dump analysis. Rootkits can be injected into applications, kernels, hypervisors, or firmware. They spread through phishing, malicious attachments, malicious downloads, and compromised shared drives.
+	\item \textbf{\textit{Rootkit}}. A \textit{rootkit} is generally considered as a type of malicious software, or a collection of software tools, designed to remotely access or control a computer without being detected by users or security programs. Once a rootkit has been installed it is possible for the malicious party behind the rootkit to remotely execute files, record user activities, access/steal information, modify system configurations, alter software (especially any security software that could detect the rootkit), install concealed malware, mount attacks on other systems or control the computer as part of a botnet. Rootkit prevention, detection, and removal can be difficult due to their stealthy operation. Because a rootkit continually hides its presence, typical security products are not effective in detecting and removing rootkits. As a result, rootkit detection relies on manual methods such as monitoring computer behaviour for irregular activities, system file signature scanning, and storage dump analysis.
 	
 	More recently, the term 'rootkit' has been frequently used also for denoting concealment routines in a malicious program. These routines are very advanced and complex and are written to hide the malware within the legitimate processes on the infected computer. In fact, once a malicious program is installed on a system, it is essential that it stays concealed, to avoid detection and disinfection. The same is true when a human attacker breaks into a computer directly. Techniques known as rootkits allow this concealment, by modifying the host's operating system so that the malware is hidden from the user. They can prevent a malicious process from being visible in the system's list of processes, or keep its files from being read.	 
 	
 	In an attempt to keep the user form stopping a malicious process, another is sometimes installed to monitor it. When the process is stopped (killed), another is immediately created. Modern malware starts a number of processes that monitor and restore one another as needed. In the event that a user running Microsoft Windows is infected with such malware (if they wish to manually stop it), they could use Task Manager's 'processes' tab to find the main process (the one that spawned the "resurrector" process(es)"), and use the 'end process tree' function, which would kill not only the main process, but the "resurrector(s)" as well, since they were started by the main process. Some malware programs use other techniques, such as naming the infected file similarly to a legitimate or trustworthy file to avoid detection in the process list.
 	
-	Traditionally, rootkits can install themselves in kernel level, although some sources state that they can install themselves all the way up to user level. This means that they can get as much (or as little) access as necessary.
+	Traditionally, rootkits can install themselves in kernel level (ring 0), although some sources state that they can install themselves all the way up to user level (ring 3). This means that they can get as much (or as little) access as necessary.
 	
-	There are different types of rootkits, which are typically categorized by the reach of the system they affect:
+	There are different types of rootkits, which are typically categorized by the reach of the system they affect: \cite{IngallsTOM}
+	
 	\begin{itemize}
-		\item User-level/application level rootkits - These rootkits can alter security settings, allowing the attacker to replace executables and system libraries and modify interface behaviour.
-		\item Kernel-level rootkits - These rootkits alter the very core of the system, the kernel. Resembling device drivers or loadable modules, they operate at the same security level as the OS, giving the appearance of credibility.
-		\item Hardware/firmware rootkits - Firmware is often use by organizations, however, their persistent presence in the router, network card, hard drive, or BIOS makes detecting it difficult if used maliciously.
-		\item Bootkit rootkits - A type of kernel-mode rootkit infecting boot functionality during computer start-up, subverting the kernel upon powering on.
-		\item Virtualization rootkits - Also known as a hypervisor, the rootkit hosts the target OS as a virtual machine (VM). It can forgo modifying the kernel and subvert the OS.
+		\item \textbf{\textit{User-level/application level rootkits}} - User-mode rootkits run in Ring 3, along with other applications as user. They can alter security settings, allowing the attacker to replace executables and system libraries.
+		
+		\item \textbf{\textit{Kernel-level rootkits}} - Kernel-mode rootkits run in ring 0, the highest operating system privileges (Ring 0). They manage to do so by modifying the core functionality of the operating system - the kernel. They usually add code or replace portions of the core operating system, including both the kernel and associated device drivers.
+		
+		\item \textbf{\textit{Bootkit rootkits}} - A Bootkit rootkit is a type of kernel-mode rootkit which infects startup code like the Master Boot Record (MBR), Volume Boot Record (VBR), or boot sector, subverting the kernel upon computer start up.
+		
+		\item \textbf{\textit{Virtualization rootkits}} - This type of rootkit, also called \textit{Hypervisor rootkit}, runs in Ring -1 (before the kernel) and hosts the target operating system as a virtual machine. It manages to do so by exploiting hardware virtualization features. This in turn enables the rootkit to intercept hardware calls made by the original OS.
+		
+		\item \textbf{\textit{Hardware/firmware rootkits}} - A firmware rootkit uses device or platform firmware to create a persistent malware image in hardware. The rootkit hides in firmware, because the latter is not usually inspected for code integrity.
 	\end{itemize}
 
-	\textit{
-		\textbf{Example}: \textbf{Zacinlo} infects systems when users download a fake VPN app. Once installed, Zacinlo conducts a security sweep for competing malware and tries to remove it. Then it opens invisible browsers and interacts with content like a human would - by scrolling, highlighting and clicking. This activity is meant to fool behavioural analysis software. Zacinlo's payload occurs when the malware clicks on ads in the invisible browsers. This advertising click fraud provides malicious actors with a cut of the commission.
-	}
-
-	\item \textbf{\textit{Scareware}}. Scareware is a generic term for malware that uses social engineering to frighten a user, inducing him into thinking their system is vulnerable or has been attacked. The objective is to convince the user to install a specific software. However, in reality no danger has actually been detected: it is a scam. The attack succeeds when the user purchases unwanted - and potentially dangerous - software in an attempt to eliminate the "threat". Generally, the suggested software is additional malware or allegedly protective software with no value whatsoever \cite{MyraSecurityWIM}.
+	\item \textbf{\textit{Scareware}}. Scareware is a generic term for malware that uses social engineering to frighten and manipulate a user, inducing him into thinking their system is vulnerable or has been attacked.
+	However, in reality no danger has actually been detected: it is a scam.	The attack succeeds when the user purchases unwanted - and potentially dangerous - software in an attempt to eliminate the "threat". Generally, the suggested software is additional malware or allegedly protective software with no value whatsoever \cite{MyraSecurityWIM}.
+	
+	Both Rogue Security Software and Ransomware can be considered as scareware, together with other scam software.
 
 	Some versions of scareware act as a sort of shadow version of ransomware; they claim to have taken control of the victim's system and demand a ransom. However they are actually just using tricks - such as browser redirect loops - to fool the victim into thinking they have done more damage than they really have \cite{FruhlingerME}.
 	
@@ -376,11 +337,6 @@ There are a wide range of potential attack techniques used by malware, here are 
 	Classification of code as spyware (or sometimes browser cookies as "tracking" cookies) can be controversial. Often the software is installed by the user knowing that some amount of monitoring will take place (Users generally agree to this activity to get free software and it is often associated with music and video sharing). Some such software allows the user to turn off the monitoring, assuming they are aware of it and can find instructions for disabling it. Anti-spyware is usually part of anti-virus programs.
 	
 	Law enforcement, government agencies and information security organizations often use spyware to monitor communications in a sensitive environment or during an investigation. Spyware is however also available to private consumers, allowing them to spy on their employees, spouse and children \cite{McAfeeWIM}.
-	
-	\textit{
-		\textbf{Example}: Spyware often comes in the form of adware, trojans, keyloggers, and rootkits. Some of the best-known spyware strains include \textbf{CoolWebSearch}, \textbf{Gator}, \textbf{Internet Optimizer}, \textbf{TIBS Dialer}, and \textbf{Zlob}. For example, \textbf{CoolWebSearch} used Internet Explorer vulnerabilities to direct traffic to advertisements, infect host files, and rewrite search engine results. \\		
-		One recent example of spyware is \textbf{DarkHotel}, which targeted business and government leaders using hotel Wi-Fi. It used several types of malware in order to gain access to the systems belonging to specific powerful people. Once that access was gained, the attackers installed keyloggers to capture their targets passwords and other sensitive information.
-	}
 \end{itemize}
 
 \subsubsection{Other cyber-threats}
@@ -391,35 +347,35 @@ Other cyber threats which are not strictly malware are, for example:
 	
 	\item \textbf{\textit{Malvertising}}. Malvertising is the use of legitimate ads or ad networks to covertly deliver malware to unsuspecting users' computers. For example, a cybercriminal might pay to place an ad on a legitimate website. When a user clicks on the ad, code in the ad either redirects them to a malicious website or installs malware on their computer. In some cases, the malware embedded in an ad might execute automatically without any action from the user, a technique referred to as a "drive-by-download".
 	
-	\item \textbf{\textit{Phishing}}. While not being really a malware type, Phishing is a type of social engineering attack commonly used to perform cyber attacks. Phishing, and social engineering in general, is a type of email attack that attempts to trick users into divulging passwords (or anyway personal and financial information), downloading a malicious attachment or visiting a website that installs malware on their system. Phishing is successful since the emails sent, text messages and web links created, look like the are from trusted sources.
+	\item \textbf{\textit{Phishing}}. Phishing is a type of social engineering attack commonly used to perform cyber attacks. Particularly in a phishing attack, the attacker attempts, through email messages, to trick users into divulging passwords (or anyway personal and financial information), downloading a malicious attachment or visiting a website that installs malware on their systems.
 	
-	Some are highly sophisticated and can fool even the most savvy users. Especially in cases where a known contact's email account has been compromised and it is then used to spread phishing attacks or malware such as worms. Others are less sophisticated and simply spam as many emails as they can with a message about 'checking your bank account details', for example.
+	Some phishing emails are highly sophisticated and can deceive even experienced users, especially if the attacker has successfully compromised a known contact's email account and uses it to spread phishing attacks or malware such as worms. Others are less sophisticated and simply spam as many emails as possible with messages such as "Check your bank account details" \cite{ComtactWDYM}.
 	
-	More targeted efforts at specific users or organizations are known as \textit{spear phishing}. Because the goal is to trick the user, attackers will research the victim to maximise trick potential.
-	
-	There are different types of Phishing. Here are mentioned some of them:
+	There are different types of Phishing. Here are mentioned some of them: \cite{IngallsTOM}
 	
 	\begin{itemize}
 		\item \textit{Deceptive Phishing} - The most common type. It uses an email headline with a sense of urgency from a know contact. This attack blends legitimate links with malicious code, modifies brand logos, and evades detection with minimal content.
 		
-		\item \textit{Spear Phishing} - As noted, spear phishing targets specific users or organizations by exploring social media, recording out-of-office notifications, compromising API tokens, and housing malicious data in the cloud.
+		\item \textit{Spear Phishing} - Spear phishing targets specific users or organizations by researching the victim to maximise trick potential. For example the attacker may explore social media, record out-of-office notifications, compromise API tokens etc. in order to better fool the target user.
 		
-		\item \textit{Whaling} - Even more targeted than spear phishing, whaling targets chief officers of an organization by infiltrating the network, exposing the supply chain, and following up the malicious email with a phone call to give legitimacy.
+		\item \textit{Whaling} - Whaling is similar to spear phishing, but even more targeted. In fact, it targets chief officers of organizations using various social engineering tricks such as impersonating employees or co-workers and using phone calls - to name a few - to give a sense of legitimacy to malicious emails.
 		
-		\item \textit{Vishing} - Targeting victims over the phone, vishing is the use of Voice over Internet Protocol (VoIP), technical jargon, and ID spoofing to trick a caller into revealing sensitive information.
+		\item \textit{Vishing} - Vishing targets phone users. It uses the Voice over Internet Protocol (VoIP), technical jargon, and ID spoofing to trick a caller into revealing sensitive information.
 		
-		\item \textit{Smishing} - Smishing also targets phone users, but this one comes in the form of malicious text messages. Smishing attacks often include triggering the download of a malicious app, link to data-stealing forms, and faux tech support.
+		\item \textit{Smishing} - Smishing also targets phone users. It uses, however malicious text messages (SMS).
 		
-		\item \textit{Pharming} - Moving away from trying to trick users, pharming leverages cache poisoning against the DNS, using malicious email code to target the server and compromise web users' URL requests.
+		\item \textit{Pharming} - Pharming leverages cache poisoning against the DNS with the objective of redirecting users to fake websites.
 	\end{itemize}
 
-	\item \textbf{\textit{Spam}}. In IT security, spam is unwanted email. Usually, it includes unsolicited advertisements, but it can also have attempted fraud or links or attachments that would install malware on the victim's system. Most spam emails contain one or more of the following: 
+	\item \textbf{\textit{Spam}}.
+	
+	In cybersecurity, unsolicited emails are generally referred to as \textit{spam}. Typically, spam includes emails carrying unsolicited advertisements, fraud attempts, links to malicious websites or malicious attachments. Most spam emails contain one or more of the following: \cite{IngallsTOM}
 	
 	\begin{itemize}
 		\item Poor spelling and grammar
-		\item An unusual sender address
+		\item Unusual sender address
 		\item Unrealistic claims
-		\item Links that look mighty risky
+		\item Suspicious links
 	\end{itemize}
 
 	Spam might be one of the most universally understood forms of malicious attacks. As billions of users enable email for their everyday lives, it makes sense that malicious actors try to sneak into their inbox. Some of the most common types of spam emails include fake responses, PayPal, returned mail, and social media. All of which are disguised as legitimate but contain malware.
@@ -430,11 +386,9 @@ Malware samples are usually categorised both by a means of infection and a behav
 Moreover, a particular piece of malware may have various forms with different attack vectors: e.g., the banking malware called \textit{Emotet} has been spotted in the wild as both a trojan and a worm \cite{FruhlingerME}.\\
 Finally, many instances of malware fit into multiple categories: for example Stuxnet is both a worm, a virus and a rootkit.
 
-Additionally, in recent years, also \textbf{\textit{mobile devices-targeted attacks}} have grown popularity more and more. In fact, among the huge amount of available apps, an increasing amount are not desirable; and the problem is even more acute with third-party app stores. While app store vendors try to prevent malicious apps from becoming available, some inevitably slip through. These mobile malware threats are as various as those targeting desktops and include Trojans, Ransomware, Advertising click fraud and more. They are mostly distributed through phishing and malicious downloads and are a particular problem for jail-broken phones, which tend to lack the default protections that were part of those devices' original operating systems.
-
-\textit{
-	\textbf{Mobile-malware example}: \textbf{Triada} is a rooting Trojan that was injected into the supply chain when millions of Android devices shipped with the malware pre-installed. Triada gains access to sensitive areas in the operating system and installs spam apps. The spam apps display ads, sometimes replacing legitimate ads. When a user clicks on one of the unauthorized ads, the revenue from that click goes to Triada's developers.
-}
+Furthermore, in recent years, targeted attacks on mobile devices have also become increasingly popular.
+In fact, among the huge amount of available apps, an increasing quantity is not desirable; the problem is even worse when considering third-party app stores. Even when app store providers impose filters and manual checks to prevent the malicious apps from being available, some inevitably slip through.
+These mobile malware threats are as various as those targeting desktops and include Trojans, Ransomware, Advertising click fraud and more. They are mostly distributed through phishing and malicious downloads and are a particular problem for jail-broken phones, which tend to lack the default protections that were part of those devices' original operating systems.
 
 \subsection{Malware History}
 Malware history began in the 1960s. Then, hackers used to design computer viruses mainly for fun, as an exciting prank/experiment; their creations would generally display harmless messages and then spread to other computers \cite{ReganWIM}.
@@ -449,6 +403,7 @@ The previously mentioned 1960s and 1970s malware were all kept within a laborato
 In the following decades malware has evolved both regarding its complexity and malware sample numbers.
 
 The growth in malware complexity can be divided 5 different malware generations \cite{NamanyaTWM}:
+
 \begin{itemize}
 	\item \textit{First generation}: (DOS Viruses) malware mainly replicate with the assistance of human activity
 	\item \textit{Second generation}: malware self-replicate without help and share the functionality characteristics of the first generation. They propagate through files and media.
@@ -462,7 +417,6 @@ Each jump in generation is linked to an increase in malware complexity and more 
 Here is an overview of the most famous malware or malware-related events in recent history:
 
 \begin{itemize}
-	
 	\item \textbf{\textit{Melissa}} (1999) - This was a mass-mailing macro virus released in 1999. As it was not a stand-alone program, it was not classified as a worm. It targeted Microsoft Word and Outlook-based systems, and created considerable network traffic. The virus would infect computers via Email, the email being titled "Important Message From", followed by the current username. Upon clicking the message, the body would read: "Here's that document you asked for. Don't show anyone else ;)." Attached was a Word document titled "list.doc" containing a list of pornographic sites and accompanying logins for each. It would then mass mail itself to the first 50 people in the user's contact list and then disable multiple safeguard features on Microsoft Word and Microsoft Outlook.
 	
 	\item \textbf{\textit{ILOVEYOU}} (2000) - Sometimes referred to as \textit{Love Bug} or \textit{Love Letter for you}, spread like wildfire in year 2000. It is a computer worm that infected over ten million Windows personal computers when it started spreading as an email message with the subject line "ILOVEYOU" and the attachment "LOVE-LETTER-FOR-YOU.txt.vbs". That file extension ('vbs') was most often hidden by default on Windows computers of the time, leading users to think it was a normal text file. Opening the attachment activated the Visual Basic script. The worm inflicted damage on the local machine, overwriting random types of files, and sent a copy of itself to all addresses in the Windows Address Book used by Microsoft Outlook. This made it spread much faster than any other previous email worm.
@@ -481,9 +435,13 @@ Here is an overview of the most famous malware or malware-related events in rece
 	
 	\item \textbf{\textit{Stuxnet Worm}} (2010) - It was an extremely sophisticated worm that infected computers worldwide. However, in reality, it mostly harmed Iranian nuclear facility at Natanz, where it damaged uranium-enrichment centrifuges. Supposedly it was built with that objective by U.S. and Israeli intelligence agencies \cite{FruhlingerME}.
 	
+	\textbf{Example}: The \textbf{Stuxnet} worm was allegedly developed by US and Israeli intelligence to obstruct the Iranian nuclear program. It was introduced into the target environment (Iran's nuclear power plant) via a flash drive. Stuxnet's escape from the target environment, which was air-gapped, was not expected. Once in the wild, Stuxnet spread aggressively but caused little damage outside of its intended target environment \cite{BakerMCTM}.
+	
 	\item \textbf{\textit{CryptoLocker}} (2013) - It is considered as the first widespread ransomware attack. It targeted computers running Microsoft Windows and it propagated via infected email attachments, and via an existing \textit{Gameover ZeuS} botnet. When activated, the malware encrypted certain types of files stored on local and mounted network drives using RSA public-key cryptography, with the private key stored only on the malware's control servers. The malware then displayed a message which offered to decrypt the data if a payment (through either bitcoin or a pre-paid cash voucher) was made by a stated deadline, and it threatened to delete the private key if the deadline passes. Its code now keeps getting repurposed in similar malware projects.
 	
 	\item \textbf{\textit{Mirai}} (2016) - First malware to scan the Internet of Things (IoT) - such as IP cameras and home routers - vulnerable devices and used them to perform DDoS attacks on various sites. The Mirai botnet was first found in August 2016 and has been used in some of the largest and most disruptive distributed denial of service (DDoS) attacks, including an attack on computer security journalist Brian Krebs' web site. The source code for Mirai was published on Hack Forums as open-source. Since the source code was published, the techniques have been adapted in other malware projects.
+	
+	In 2016, one of the biggest (and worse) botnets in existence, \textbf{Mirai}, left most of the eastern U.S. with no internet. This massive botnet of compromised IoT devices, with over 600,000 of them, is responsible for some of the biggest DDoS attacks in recent years and exposed just how vulnerable IoT devices could be and led to the "IoT Cybersecurity Improvement Act" of 2020.
 	
 	\item \textit{\textbf{Petya} and \textbf{NotPetya}} (2016-2017) - These malware attacks spread globally, however their damages particularly targeted Ukraine, where the national bank was hit. The Petya ransomware family caused an estimated \$10 billion in damages worldwide \cite{ReganWIM}. \textit{Petya} targeted Microsoft Windows-based systems, infecting the master boot record to execute a payload that encrypted a hard drive's file system table and prevented Windows from booting. It subsequently demanded that the user make a payment in Bitcoin in order to regain access to the system. Variants of Petya were first seen in March 2016, which propagated via infected e-mail attachments. In June 2017, a new variant of Petya was used for a global cyberattack, primarily targeting Ukraine. The new variant propagated via the EternalBlue exploit, which was generally believed to have been developed by the U.S. National Security Agency (NSA), and was used earlier in the year by the WannaCry ransomware. This new version was called \textit{NotPetya} to distinguish it from the 2016 variants, due to these differences in operation.
 	
@@ -492,6 +450,9 @@ Here is an overview of the most famous malware or malware-related events in rece
 	\item \textbf{\textit{Equifax data breach}} (2017) - In 2017, a very difficult year for cybersecurity, Hackers managed to crack Equifax - one of the four major credit reporting bureaus. This event is considered one of the most devastating data breaches in history. Hackers were able to access the personal data - such as credit card numbers, load and debt info, bank account details, birthdays, among others - of 143 million people \cite{ReganWIM}.
 	
 	\item \textbf{\textit{Emotet}} (2018) - This malware, also known as \textit{Heodo}, was first detected in 2014 and deemed one of the most prevalent threats of the decade. First versions of the Emotet malware functioned as a banking trojan aimed at stealing banking credentials from infected hosts. Throughout 2016 and 2017, Emotet operators, updated the trojan and reconfigured it to work primarily as a "loader," a type of malware that gains access to a system, and then allows its operators to download additional payloads. Second-stage payloads can be any type of executable code, from Emotet's own modules to malware developed by other cybercrime gangs. Initial infection of target systems often proceeds through a macro virus in an email attachment. The infected email is a legitimate-appearing reply to an earlier message that was sent by the victim. It has been widely documented that the Emotet authors have used the malware to create a botnet of infected computers to which they sell access in Malware-as-a-Service. Emotet is known for renting access to infected computers to ransomware operations, such as the Ryuk gang. In 2020, Emotet campaigns were detected globally, infecting its victims with TrickBot and Qbot, which are used to steal banking credentials and spread inside networks. In January 2021, international action coordinated by Europol and Eurojust allowed investigators to take control of and disrupt the Emotet infrastructure.
+	
+	\textbf{Emotet}, a sophisticated banking Trojan that has been around since 2014, is particularly difficult to combat because it evades signature-based detection, is persistent, and includes advanced spreader modules used to propagate effectively. This trojan is the subject of a warning from the US Department of Homeland Security, which notes that Emotet has caused to the US state up to \$ 1 million in damage per incident \cite{BakerMCTM}. \\
+	Other notable trojan strains include: \textbf{Trickbot}, \textbf{Ryuk}, \textbf{Sodinokibi}, \textbf{Mirai} and \textbf{SamSam}.
 	
 	\item \textbf{\textit{LockerGoga}} (2019) - This is a new ransomware family that has been detected attacking industrial companies, severely compromising their operations. It has the ability to spawn different processes in order to accelerate the file encryption in the system. The file-encrypting malware's entrance to the scene began when it was allegedly involved in attacking an engineering consulting firm based in France.
 	

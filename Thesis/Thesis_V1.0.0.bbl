@@ -23,20 +23,46 @@ Symantec, ``Difference between viruses, worms, and trojans.''
   \url{https://knowledge.broadcom.com/external/article?legacyId=TECH98539},
   2019, Accessed: 2021-03-15
 
+\bibitem{NamanyaTWM}
+A.~P. Namanya, A.~Cullen, I.~U. Awan, and J.~P. Disso, ``The world of malware:
+  An overview'', 2018 IEEE 6th International Conference on Future Internet of
+  Things and Cloud (FiCloud), 2018, pp.~420--427,
+  \doi{10.1109/FiCloud.2018.00067}
+
 \bibitem{FruhlingerME}
 J.~Fruhlinger, ``Malware explained: How to prevent, detect and recover from
   it.''
   \url{https://www.csoonline.com/article/3295877/what-is-malware-viruses-worms-trojans-and-beyond.html},
   2019, Accessed: 2021-03-15
 
+\bibitem{IngallsTOM}
+S.~Ingalls, ``Types of malware and best malware protection practices.''
+  \url{https://www.esecurityplanet.com/threats/malware-types/}, 2021, Accessed:
+  2021-03-15
+
 \bibitem{MyraSecurityWIM}
 MyraSecurity, ``What is malware?.''
   \url{https://www.myrasecurity.com/en/what-is-malware/}, Accessed: 2021-03-15
+
+\bibitem{BakerMCTM}
+K.~Baker, ``The 11 most common types of malware.''
+  \url{https://www.crowdstrike.com/cybersecurity-101/malware/types-of-malware/},
+  2021, Accessed: 2021-03-15
+
+\bibitem{FemisterEHL}
+T.~Femister, ``Encryption happens last: The ransomware revolution.''
+  \url{https://www.forbes.com/sites/forbestechcouncil/2020/08/18/encryption-happens-last-the-ransomware-revolution/?sh=4c267d34414b},
+  2020, Accessed: 2021-03-15
 
 \bibitem{McAfeeWIM}
 McAfee, ``What is malware?.''
   \url{https://www.mcafee.com/en-us/antivirus/malware.html}, Accessed:
   2021-03-15
+
+\bibitem{ComtactWDYM}
+Comtact, ``What are the different types of malware?.''
+  \url{https://comtact.co.uk/blog/what-are-the-different-types-of-malware},
+  2019, Accessed: 2021-03-15
 
 \bibitem{ReganWIM}
 J.~Regan, ``What is malware? how malware works and how to prevent it.''
@@ -74,12 +100,6 @@ I.~You and K.~Yim, ``Malware obfuscation techniques: A brief survey'', 2010
 \bibitem{SkoudisFMC}
 E.~Skoudis and L.~Zeltser, ``Malware: Fighting malicious code'', Prentice Hall
   Professional, 2004, ISBN: 978-0-131-01405-3
-
-\bibitem{NamanyaTWM}
-A.~P. Namanya, A.~Cullen, I.~U. Awan, and J.~P. Disso, ``The world of malware:
-  An overview'', 2018 IEEE 6th International Conference on Future Internet of
-  Things and Cloud (FiCloud), 2018, pp.~420--427,
-  \doi{10.1109/FiCloud.2018.00067}
 
 \bibitem{SikorskiPMA}
 M.~Sikorski and A.~Honig, ``Practical malware analysis: The hands-on guide to
