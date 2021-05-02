@@ -239,7 +239,7 @@ There are a wide range of potential attack techniques used by malware, here are 
 	
 	Finally, there is a group of software (Alexa toolbar, Google toolbar, Eclipse data usage collector, etc.) that send data to a central server about which pages have been visited or which features of the software have been used. However, differently from "classic" malware, these tools document activities and only send data with the user's approval. The user may opt in to share the data in exchange to the additional features and services, or (in the case of Eclipse) as the form of voluntary support for the project. Some security tools report such loggers as malware while others do not. The status of the group is questionable. Some tools like PDF Creator are more on the boundary than others because opting out has been made more complex than it could be. However, PDF Creator is only sometimes mentioned as malware and is still subject of discussion.
 	
-	\item \textbf{\textit{Backdoor}}. A \textit{backdoor}, also called Remote Access Trojan (RAT), is a vulnerability deliberately buried into software's code that allows to bypass typical protection mechanisms, like credentials-based login authentication. In other words, it is a method of circumventing normal authentication procedures. Once a system has been compromised (by others types of malware or other methods), one or more backdoors may be installed in order to allow easier access in the future without alerting the user or the system's security programs. Backdoors may also be installed prior to malicious software, to allow attackers entry.
+	\item \textbf{\textit{Backdoor}}. A \textit{backdoor}, also called Remote Access Trojan (RAT), is a vulnerability deliberately buried into software's code that allows to bypass typical protection mechanisms, like credentials-based login authentication. In other words, it is a method of circumventing normal authentication procedures. Once a system has been compromised (by others types of malware or other methods), one or more backdoors may be installed. This is done with the purpose of allowing the attacker easier access in the future without alerting the user or the system's security programs. Moreover, backdoors may also be installed before other malicious software, to allow attackers entry \cite{MullinsMT}.
 	
 	Many device or software manufacturers ship their products with intentionally hidden backdoors to allow company personnel or law enforcement to access the system when needed \cite{IngallsTOM}. Alternatively, backdoors are sometimes hidden in programs also by intelligence services. For example, Cisco network routers, which process large volumes of global internet traffic, in the past were equipped with backdoors intended for US Secret Service use \cite{MyraSecurityWIM}.
 	
@@ -273,7 +273,9 @@ There are a wide range of potential attack techniques used by malware, here are 
 	
 	\item \textbf{\textit{File-less malware}}. File-less malware is a type of memory-resident malware that uses legitimate code already existing within the target computer or device to carry out attacks. As the term suggests, it is malware that operates from a victim's computer memory, not from files on the hard drive, taking advantage of legitimate tools and software (known as "LOLBins" \cite{CraneWIM}) that already exist within the system. File-less malware attacks leave no malware files to scan and no malicious processes to detect. Since there are no files to scan, it is harder to detect and remove than traditional malware; this makes them up to ten times more successful than traditional malware attacks \cite{BakerMCTM}. Furthermore, it also renders forensics more difficult because when the victim's computer is rebooted the malware disappears.
 	
-	\item \textbf{\textit{Keylogger}}. Keystroke logging (often called \textit{keylogging}) is the action of tracking (or logging) the keys struck on a keyboard, typically in a covert manner so that the person using the keyboard is unaware that their actions are being monitored. The collected information is stored and then sent to the attacker who can then use the data to figure out passwords, usernames and payment details, for example. There are numerous keylogging methods, ranging from hardware and software-based approaches to electromagnetic and acoustic analysis. Key loggers can be inserted into a system through phishing, social engineering or malicious downloads.
+	\item \textbf{\textit{Keylogger}}. Keystroke logging (often called \textit{keylogging}) is the action of secretly tracking (or logging) keystrokes on a keyboard, without the person using the keyboard knowing that its actions are being monitored. The collected information is stored and then sent to the attacker who can then use the data to figure out passwords, usernames and payment details, for example. There are various methods used to perform keylogging, ranging from hardware and software-based approaches to the more sophisticated electromagnetic and acoustic analysis \cite{MullinsMT}. Key loggers can be inserted into a system through phishing, social engineering or malicious downloads.
+	
+	There are various methods used to perform keylogging, ranging from hardware and software based approaches to electromagnetic and acoustic analysis.
 	
 	To this extent keyloggers can be considered as a sub-category of spyware.
 	
@@ -343,14 +345,25 @@ There are a wide range of potential attack techniques used by malware, here are 
 Other cyber threats which are not strictly malware are, for example:
 
 \begin{itemize}
-	\item \textbf{\textit{Bug}}. In the context of software, a bug is a flaw in a segment of code which produces an undesired outcome. These flaws are usually the result of human error and typically exist in the source code or compilers of a program. Minor bugs only slightly affect a program's behaviour and as a result can go for long periods of time before being discovered. More significant bugs can cause crashing or freezing. All software has bugs, and most go unnoticed or are mildly impactful to the user. Security bugs, however, are the most severe type of bugs and can allow attackers to bypass user authentication, override access privileges, or steal data. Bugs can be prevented with developer education, quality control, and code analysis tools.
+	\item \textbf{\textit{Software Bug}}.
+	A software bug is an error, or flaw, in a computer program code or system that causes it to produce an incorrect or unexpected result, or to behave in unintended ways. Usually, most of these defects arise from human errors made in the program's source code. Some bugs may be caused by compilers or operating systems component used by the program.
 	
-	\item \textbf{\textit{Malvertising}}. Malvertising is the use of legitimate ads or ad networks to covertly deliver malware to unsuspecting users' computers. For example, a cybercriminal might pay to place an ad on a legitimate website. When a user clicks on the ad, code in the ad either redirects them to a malicious website or installs malware on their computer. In some cases, the malware embedded in an ad might execute automatically without any action from the user, a technique referred to as a "drive-by-download".
+	Minor bugs only slightly affect the behaviour of a program. Therefore it can be a long time before they are discovered. On the other hand, more significant bugs can cause crashes or freezes. It is safe to say that almost all software has bugs and most bugs go unnoticed or have a slight impact on the user.
+	
+	However, other bugs qualify as security bugs. These are the most serious type of bugs since they can allow attackers to bypass access controls such as user authentication, override access privileges, or steal data.
+	
+	The frequency of bugs can be reduced through developer training, quality control, and code analysis tools \cite{DuPaulCMT}.
+	
+	\item \textbf{\textit{Malvertising}}. Malvertising is the use of legitimate ads or ad networks to covertly deliver malware to unsuspecting users' computers.
+	
+	For example, a cybercriminal might pay to place an ad on a legitimate website. When a user clicks on the ad, code in the ad either redirects them to a malicious website or installs malware on their computer.
+	
+	In some cases, the malware embedded in an ad might execute automatically without any action from the user, a technique referred to as a "drive-by-download".
 	
 	\item \textbf{\textit{Phishing}}. Phishing is a type of social engineering attack commonly used to perform cyber attacks. Particularly in a phishing attack, the attacker attempts, through email messages, to trick users into divulging passwords (or anyway personal and financial information), downloading a malicious attachment or visiting a website that installs malware on their systems.
-	
+		
 	Some phishing emails are highly sophisticated and can deceive even experienced users, especially if the attacker has successfully compromised a known contact's email account and uses it to spread phishing attacks or malware such as worms. Others are less sophisticated and simply spam as many emails as possible with messages such as "Check your bank account details" \cite{ComtactWDYM}.
-	
+		
 	There are different types of Phishing. Here are mentioned some of them: \cite{IngallsTOM}
 	
 	\begin{itemize}

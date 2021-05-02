@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  30 APR 2021 23:23
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  2 MAY 2021 19:03
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -773,31 +773,43 @@ online . com / article / 3295877 /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 44--46
+Underfull \hbox (badness 10000) in paragraph at lines 39--42
+[]\OT1/cmr/m/n/10 P. Mullins, ``Mal-ware and its types.'' [][]$\OT1/cmtt/m/n/10
+ http : / / www . idc-[]online . com / technical _
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 39--42
+\OT1/cmtt/m/n/10 references / pdfs / information _ technology / Malware % 20and
+ % 20its % 20types . pdf$[][]\OT1/cmr/m/n/10 , Ac-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--51
 []\OT1/cmr/m/n/10 MyraSecurity, ``What is mal-ware?.'' [][]$\OT1/cmtt/m/n/10 ht
 tps : / / www . myrasecurity . com / en /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 53--56
+Underfull \hbox (badness 10000) in paragraph at lines 58--61
 []\OT1/cmr/m/n/10 T. Femis-ter, ``En-cryp-tion hap-pens last: The ran-somware r
 ev-o-lu-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 53--56
+Underfull \hbox (badness 10000) in paragraph at lines 58--61
 \OT1/cmr/m/n/10 tion.'' [][]$\OT1/cmtt/m/n/10 https : / / www . forbes . com / 
 sites / forbestechcouncil / 2020 / 08 / 18 /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 53--56
+Underfull \hbox (badness 10000) in paragraph at lines 58--61
 \OT1/cmtt/m/n/10 encryption-[]happens-[]last-[]the-[]ransomware-[]revolution / 
 ?sh = 4c267d34414b$[][]\OT1/cmr/m/n/10 , 2020,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 73--76
+Underfull \hbox (badness 10000) in paragraph at lines 83--86
 []\OT1/cmr/m/n/10 B. Lutke-vich, ``mal-ware.'' [][]$\OT1/cmtt/m/n/10 https : / 
 / searchsecurity . techtarget . com / definition /
  []
@@ -809,10 +821,10 @@ Package rerunfilecheck Info: File `Thesis_V1.0.0.out' has not changed.
 (rerunfilecheck)             Checksum: 50CDE668BB8F8CBBAEE8D3039A01EA3F;1526.
  ) 
 Here is how much of TeX's memory you used:
- 15320 strings out of 481296
- 264385 string characters out of 2908369
- 604760 words of memory out of 3000000
- 32159 multiletter control sequences out of 15000+600000
+ 15324 strings out of 481296
+ 264435 string characters out of 2908369
+ 604824 words of memory out of 3000000
+ 32161 multiletter control sequences out of 15000+600000
  414360 words of font info for 65 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  134i,13n,137p,1503b,909s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -830,9 +842,9 @@ onts/cm/cmsl8.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/p
 ublic/amsfonts/cm/cmti10.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fo
 nts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/michele/AppData/Local/Program
 s/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on Thesis_V1.0.0.pdf (27 pages, 305910 bytes).
+Output written on Thesis_V1.0.0.pdf (27 pages, 308601 bytes).
 PDF statistics:
- 365 PDF objects out of 1000 (max. 8388607)
- 67 named destinations out of 1000 (max. 500000)
+ 374 PDF objects out of 1000 (max. 8388607)
+ 69 named destinations out of 1000 (max. 500000)
  102 words of extra memory for PDF output out of 10000 (max. 10000000)
 

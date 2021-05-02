@@ -5,36 +5,36 @@ Reallocating 'name_of_file' (item size: 1) to 7 items.
 The style file: torsec.bst
 Reallocating 'name_of_file' (item size: 1) to 7 items.
 Database file #1: biblio.bib
-You've used 22 entries,
+You've used 24 entries,
             1924 wiz_defined-function locations,
-            629 strings with 7035 characters,
-and the built_in function-call counts, 3475 in all, are:
-= -- 286
-> -- 118
+            639 strings with 7348 characters,
+and the built_in function-call counts, 3731 in all, are:
+= -- 305
+> -- 126
 < -- 0
-+ -- 52
-- -- 30
-* -- 186
-:= -- 488
++ -- 56
+- -- 32
+* -- 197
+:= -- 523
 add.period$ -- 0
-call.type$ -- 22
-change.case$ -- 24
+call.type$ -- 24
+change.case$ -- 26
 chr.to.int$ -- 0
-cite$ -- 22
-duplicate$ -- 151
-empty$ -- 468
-format.name$ -- 30
-if$ -- 877
+cite$ -- 24
+duplicate$ -- 161
+empty$ -- 508
+format.name$ -- 32
+if$ -- 942
 int.to.chr$ -- 0
-int.to.str$ -- 22
+int.to.str$ -- 24
 missing$ -- 9
-newline$ -- 69
-num.names$ -- 22
-pop$ -- 137
+newline$ -- 75
+num.names$ -- 24
+pop$ -- 152
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 118
+skip$ -- 126
 stack$ -- 0
 substring$ -- 71
 swap$ -- 20
@@ -43,6 +43,6 @@ text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 28
-width$ -- 24
-write$ -- 200
+while$ -- 30
+width$ -- 26
+write$ -- 217
