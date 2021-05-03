@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  2 MAY 2021 19:03
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  3 MAY 2021 13:25
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -718,17 +718,17 @@ Chapter 1.
 Chapter 2.
 [8
 
-] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18] [19] [20] [21] [22]
+] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18] [19] [20] [21]
 Chapter 3.
-[23
+[22
 
 ]
 Chapter 4.
-[24
+[23
 
 ]
 Chapter 5.
-(Thesis_V1.0.0.bbl [25
+(Thesis_V1.0.0.bbl [24
 
 ]
 Underfull \hbox (badness 1242) in paragraph at lines 4--6
@@ -814,15 +814,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 83--86
 / searchsecurity . techtarget . com / definition /
  []
 
-[26
+[25
 
-]) [27] (Thesis_V1.0.0.aux)
+]) [26] (Thesis_V1.0.0.aux)
 Package rerunfilecheck Info: File `Thesis_V1.0.0.out' has not changed.
 (rerunfilecheck)             Checksum: 50CDE668BB8F8CBBAEE8D3039A01EA3F;1526.
  ) 
 Here is how much of TeX's memory you used:
- 15324 strings out of 481296
- 264435 string characters out of 2908369
+ 15323 strings out of 481296
+ 264428 string characters out of 2908369
  604824 words of memory out of 3000000
  32161 multiletter control sequences out of 15000+600000
  414360 words of font info for 65 fonts, out of 8000000 for 9000
@@ -842,9 +842,9 @@ onts/cm/cmsl8.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/p
 ublic/amsfonts/cm/cmti10.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fo
 nts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/michele/AppData/Local/Program
 s/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on Thesis_V1.0.0.pdf (27 pages, 308601 bytes).
+Output written on Thesis_V1.0.0.pdf (26 pages, 305597 bytes).
 PDF statistics:
  374 PDF objects out of 1000 (max. 8388607)
- 69 named destinations out of 1000 (max. 500000)
+ 68 named destinations out of 1000 (max. 500000)
  102 words of extra memory for PDF output out of 10000 (max. 10000000)
 
