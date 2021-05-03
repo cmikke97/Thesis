@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  3 MAY 2021 13:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  3 MAY 2021 14:00
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -718,7 +718,11 @@ Chapter 1.
 Chapter 2.
 [8
 
-] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18] [19] [20] [21]
+] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18]
+Underfull \vbox (badness 1231) has occurred while \output is active []
+
+ [19]
+[20] [21]
 Chapter 3.
 [22
 
@@ -842,9 +846,9 @@ onts/cm/cmsl8.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/p
 ublic/amsfonts/cm/cmti10.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fo
 nts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/michele/AppData/Local/Program
 s/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on Thesis_V1.0.0.pdf (26 pages, 305597 bytes).
+Output written on Thesis_V1.0.0.pdf (26 pages, 305289 bytes).
 PDF statistics:
- 374 PDF objects out of 1000 (max. 8388607)
+ 376 PDF objects out of 1000 (max. 8388607)
  68 named destinations out of 1000 (max. 500000)
  102 words of extra memory for PDF output out of 10000 (max. 10000000)
 
