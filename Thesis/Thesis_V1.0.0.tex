@@ -573,6 +573,28 @@ The 4-byte example code increments the \textbf{EAX} register, and then decrement
 
 However this was only a simple example sequence. More complex and ingenious sequences can be made to fool disassemblers while being harder to detect.
 
+\subsubsection{Obscuring Flow Control}
+Control-flow analysis (CFA) is a static-code-analysis technique for determining the control flow of a program. Modern disassemblers like IDA Pro are able to correlate function calls and extract high-level information about the program knowing how functions are related to each other.
+
+Control-flow analysis can however be easily defeated by malware authors.
+
+\paragraph{The Function Pointer Problem}
+Function pointers are a common programming idiom present in programming languages such as \textbf{C}, while being extensively used in the background in object oriented languages like \textbf{C++} and \textbf{Java}.
+
+As opposed to referencing a data value, a function pointer points to executable code within memory. Dereferencing the function pointer yields the referenced function, which can be invoked and passed arguments to as in a normal function call. Since, doing so, the function is being invoked indirectly through a variable instead of directly through a fixed identifier or address, such invocation is also known as an "indirect" call. In assembly code this corresponds to a \textit{call} instruction with a function pointer as argument.
+
+Function pointers, however, greatly reduce the information that can be automatically extracted by the disassembler about the program control flow. Moreover, if function pointers are used in specially crafted, or non-standard code, the resulting code can be difficult to reverse-engineer without the use of dynamic analysis techniques.
+
+As a result, function pointers, in combination with other anti-disassembly techniques, can greatly increase the complexity and difficulty of reverse-engineering.
+
+\paragraph{Return Pointer Abuse}
+Among the instructions capable of transferring control within a program we already mentioned the \textit{call} and \textit{jmp} instructions, however there are more.
+
+The counterpart to the \textit{call} instruction is \textit{retn}. When a call instruction is reached during program execution, a return pointer is pushed on the stack, before jumping to the call instruction target. This return pointer in the stack will point to the address of the instruction immediately following the end of the \textit{call} instruction itself.
+
+\paragraph{Misusing Structured Exception Handlers}
+
+
 \chapter{Proposed Tool}
 
 Description of the proposed tool..
