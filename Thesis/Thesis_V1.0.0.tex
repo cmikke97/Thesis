@@ -522,10 +522,11 @@ One of the most used anti-disassembly techniques consists of two consecutive con
 
 Here is an example:
 \begin{lstlisting}
-	00000000	jz loc
-	00000001	jnz loc
-	00000002	loc:
-	00000003	...
+	74 03		jz loc
+	75 01		jnz loc
+	
+		loc:
+	...
 \end{lstlisting}
 
 In this case, the conditional jump '\textbf{jz loc}' is immediately followed by a jump to the same target but with opposite condition: '\textbf{jnz loc}'. This implies that the location \textbf{loc} will always be jumped to.
@@ -536,16 +537,41 @@ Another common anti-disassembly technique is composed of a single conditional \t
 
 Example:
 \begin{lstlisting}
-	00000000	xor	eax, eax
-	00000001	jz loc
-	00000002	loc:
-	00000003	...
+	33 C0		xor	eax, eax
+	74 01		jz loc
+	
+		loc:
+	...
 \end{lstlisting}
 
 The first instruction in the example code, \textbf{xor eax, eax}, sets the \textbf{EAX} register to zero and, consequently, it sets the zero flag. The next instruction, \textbf{jz} (jump if zero flag is set), appears to be a conditional jump but in reality is not conditional at all. In fact the the zero flag will always be set at this point in the program execution. The disassembler, however, will process the false branch first, even if in reality it would never trigger.
 
 \paragraph{Impossible Disassembly}
+The simple anti-disassembly techniques mentioned above are frequently coupled with the use of a, so called, \textit{rogue byte}. A \textit{rogue byte} is a data byte strategically placed after a conditional \textit{jump} instruction in order to trick the disassembler. The byte inserted usually is the opcode for a multi-byte instruction, therefore disassembling it prevents the real following instruction from being properly disassembled. This byte is called \textit{rogue byte} because it is not part of the program logic flow and it is inserted in the code with the only purpose of fooling the disassembler.
 
+In all these cases, however, a reverse engineer is able to properly disassemble the code with the use of interactive disassemblers like IDA Pro, ignoring the \textit{rogue bytes}.
+
+However, there are some conditions in which no traditional assembly listing can accurately represent the instructions that are executed. Exploiting these conditions we obtain what are called \textit{impossible disassembly} techniques. The code produced using these techniques can however be disassembled, but only using a vastly different representation of the code than what is provided by currently available disassemblers.
+
+The core idea behind these techniques is to make the \textit{rogue byte} part of a legitimate instruction that is executed at runtime. This way the \textit{rogue byte} becomes not ignorable during disassembly. In this scenario any given byte may be a part of multiple instructions that are executed. This is done using \textit{jump} instructions. The processor, while running the code, will interpret and execute the bytes following the logical flow of the program, so there is no limitation on the number of instructions the same byte can be part of; a disassembler, however, has such limitations since it will usually represent a single byte as being part of a single instruction.
+
+Example:
+\begin{lstlisting}
+	EB 
+		JMP -1
+	FF
+		INC EAX
+	C0
+	48					DEC EAX
+\end{lstlisting}
+
+In this simple example the first instruction is a 2-byte \textit{jmp -1} instruction (\textbf{EB FF}). Its target is the its own second byte. At run time this causes no errors because the \textbf{FF} byte is the first byte of the next instruction \textit{inc eax} (\textbf{FF C0}).
+
+However, when disassembling, if the disassembler interprets the \textbf{FF} byte as part of the \textit{jmp} instruction, it won't be able to interpret it also as the beginning of the \textit{inc eax} instruction. While the \textbf{FF} byte is in reality part of both instructions that actually execute, the disassembler is not able to recognise this.
+
+The 4-byte example code increments the \textbf{EAX} register, and then decrements it, therefore it is essentially a complex \textbf{NOP} sequence. Being a simple, and small, sequence it could be inserted at any location in a program code in order to fool disassemblers. However this sequence it is also easily recognisable by reverse engineers and substituted with \textbf{NOP} instructions using IDA Pro or other instruments and/or scripts. Another alternative is to interpret this sequence as data bytes forcing the disassembler to skip it.
+
+However this was only a simple example sequence. More complex and ingenious sequences can be made to fool disassemblers while being harder to detect.
 
 \chapter{Proposed Tool}
 
