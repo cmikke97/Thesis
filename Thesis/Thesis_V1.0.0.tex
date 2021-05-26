@@ -591,8 +591,53 @@ As a result, function pointers, in combination with other anti-disassembly techn
 Among the instructions capable of transferring control within a program we already mentioned the \textit{call} and \textit{jmp} instructions, however there are more.
 
 The counterpart to the \textit{call} instruction is \textit{retn}. When a call instruction is reached during program execution, a return pointer is pushed on the stack, before jumping to the call instruction target. This return pointer in the stack will point to the address of the instruction immediately following the end of the \textit{call} instruction itself.
+Therefore a \textit{call} instruction can be seen as the combination of a \textit{jmp} and \textit{push}; a \textit{retn} instruction, on the other hand, is the combination of \textit{pop} and \textit{jmp}.
+
+The \textit{retn} instruction pops the last value pushed to the stack and jumps to it; it is therefore typically used to return from a function call, but it could also be used for other purposes. When used for such other reasons the disassembler is generally fooled, because it still will interpret it as a return from a function call. Therefore it won't show any code cross-reference to the target being jumped to. As added benefit the disassembler will also prematurely terminate the function being analysed.
 
 \paragraph{Misusing Structured Exception Handlers}
+Another powerful anti-disassembly technique exploits the Structured Exception Handling (\textbf{SEH}) mechanism. Performing program flow control using this mechanism is able to fool both disassemblers and debuggers.
+
+\textbf{SEH} provides programs a way to handle error conditions intelligently. \textit{C++} and other programming languages heavily rely on exception handling (and therefore on \textbf{SEH}) when compiled for x86 systems.
+
+Exceptions can be triggered for numerous reasons: for example when dividing by zero or accessing an invalid memory region. Moreover, software exception can also be raised by the code itself by calling the \textit{RaiseException} function.
+
+When an exception is raised it makes its way through the \textbf{SEH} chain, which is a list of functions specifically designed to handle exception, until it is caught by one exception handler in the chain. Each function in the list can either handle the exception (a.k.a. \textit{catch} it) or pass it to the next handler in the list. \textit{Unhandled exceptions} are the ones that make their way to the last handler. The last exception handler is the code responsible for triggering the 'unhandled exception' message to the user. 
+
+Exception handling is used in almost all programs and exceptions happen regularly in most processes (and are handled silently). A malicious actor could, however, exploit this mechanism to achieve covert flow control by adding his own specially crafted handler on top of the \textbf{SEH} chain.
+
+This can be done at runtime simply pushing some specific values on the stack, effectively adding a new entry in the Exception handling chain. This procedure, however, is subject to the constraints imposed by the Software Data Execution Prevention (\textbf{Software DEP}), which is a security feature that prevents the addition of third-party exception handlers at runtime. However various workarounds to this protection can be used in the case of handwritten assembly code.
+
+\subsection{Anti-debugging}
+
+\subsubsection{Windows Debugger Detection}
+
+\paragraph{Using the Windows API}
+
+\paragraph{Manually Checking Structures}
+
+\paragraph{Checking for System Residue}
+
+\subsubsection{Identifying Debugger Behaviour}
+
+\paragraph{INT Scanning}
+
+\paragraph{Performing Code Checksums}
+
+\paragraph{Timing Checks}
+
+\subsubsection{Interfering with Debugger Functionality}
+
+\paragraph{Using TLS Callbacks}
+
+\paragraph{Using Exceptions}
+
+\paragraph{Inserting Interrupts}
+
+\subsubsection{Debugger Vulnerabilities}
+
+\paragraph{PE Header Vulnerabilities}
+
 
 
 \chapter{Proposed Tool}

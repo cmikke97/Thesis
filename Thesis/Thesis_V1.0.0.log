@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  26 MAY 2021 15:42
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  26 MAY 2021 22:22
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -675,7 +675,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 48.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 48.
-<logopolito.pdf, id=50, 526.79488pt x 523.45164pt>
+<logopolito.pdf, id=54, 526.79488pt x 523.45164pt>
 File: logopolito.pdf Graphic file (type pdf)
 <use logopolito.pdf>
 Package pdftex.def Info: logopolito.pdf  used on input line 89.
@@ -719,17 +719,17 @@ Chapter 2.
 [8
 
 ] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18] [19] [20] [21] [22]
-[23]
+[23] [24]
 Chapter 3.
-[24
-
-]
-Chapter 4.
 [25
 
 ]
+Chapter 4.
+[26
+
+]
 Chapter 5.
-(Thesis_V1.0.0.bbl [26
+(Thesis_V1.0.0.bbl [27
 
 ]
 Underfull \hbox (badness 1242) in paragraph at lines 4--6
@@ -815,17 +815,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 83--86
 / searchsecurity . techtarget . com / definition /
  []
 
-[27
+[28
 
-]) [28] (Thesis_V1.0.0.aux)
+]) [29] (Thesis_V1.0.0.aux)
 Package rerunfilecheck Info: File `Thesis_V1.0.0.out' has not changed.
-(rerunfilecheck)             Checksum: EDA694BCDD54C75DADEAF872084E2A7A;1468.
+(rerunfilecheck)             Checksum: 0E80EA376AFBEED48392E39CB46B617C;1599.
  ) 
 Here is how much of TeX's memory you used:
- 15611 strings out of 481296
- 266736 string characters out of 2908369
+ 15628 strings out of 481296
+ 266931 string characters out of 2908369
  610824 words of memory out of 3000000
- 32420 multiletter control sequences out of 15000+600000
+ 32421 multiletter control sequences out of 15000+600000
  414360 words of font info for 65 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  134i,13n,137p,1159b,1031s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -843,9 +843,9 @@ onts/cm/cmsl8.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/p
 ublic/amsfonts/cm/cmti10.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fo
 nts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/michele/AppData/Local/Program
 s/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on Thesis_V1.0.0.pdf (28 pages, 314695 bytes).
+Output written on Thesis_V1.0.0.pdf (29 pages, 321303 bytes).
 PDF statistics:
- 414 PDF objects out of 1000 (max. 8388607)
- 97 named destinations out of 1000 (max. 500000)
- 102 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 440 PDF objects out of 1000 (max. 8388607)
+ 113 named destinations out of 1000 (max. 500000)
+ 110 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -24,7 +24,22 @@
 \contentsline {paragraph}{The Function Pointer Problem}{22}{section*.12}%
 \contentsline {paragraph}{Return Pointer Abuse}{23}{section*.13}%
 \contentsline {paragraph}{Misusing Structured Exception Handlers}{23}{section*.14}%
-\contentsline {chapter}{\numberline {3}Proposed Tool}{24}{chapter.3}%
-\contentsline {chapter}{\numberline {4}Results}{25}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Conclusions}{26}{chapter.5}%
-\contentsline {chapter}{Bibliography}{27}{chapter.5}%
+\contentsline {subsection}{\numberline {2.2.2}Anti-debugging}{23}{subsection.2.2.2}%
+\contentsline {subsubsection}{Windows Debugger Detection}{23}{section*.15}%
+\contentsline {paragraph}{Using the Windows API}{23}{section*.16}%
+\contentsline {paragraph}{Manually Checking Structures}{23}{section*.17}%
+\contentsline {paragraph}{Checking for System Residue}{23}{section*.18}%
+\contentsline {subsubsection}{Identifying Debugger Behaviour}{23}{section*.19}%
+\contentsline {paragraph}{INT Scanning}{23}{section*.20}%
+\contentsline {paragraph}{Performing Code Checksums}{24}{section*.21}%
+\contentsline {paragraph}{Timing Checks}{24}{section*.22}%
+\contentsline {subsubsection}{Interfering with Debugger Functionality}{24}{section*.23}%
+\contentsline {paragraph}{Using TLS Callbacks}{24}{section*.24}%
+\contentsline {paragraph}{Using Exceptions}{24}{section*.25}%
+\contentsline {paragraph}{Inserting Interrupts}{24}{section*.26}%
+\contentsline {subsubsection}{Debugger Vulnerabilities}{24}{section*.27}%
+\contentsline {paragraph}{PE Header Vulnerabilities}{24}{section*.28}%
+\contentsline {chapter}{\numberline {3}Proposed Tool}{25}{chapter.3}%
+\contentsline {chapter}{\numberline {4}Results}{26}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Conclusions}{27}{chapter.5}%
+\contentsline {chapter}{Bibliography}{28}{chapter.5}%
