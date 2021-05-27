@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  27 MAY 2021 16:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  27 MAY 2021 19:31
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -746,17 +746,17 @@ Overfull \hbox (25.00003pt too wide) in paragraph at lines 671--671
 [][] 
  []
 
-[25] [26]
+[25] [26] [27]
 Chapter 3.
-[27
-
-]
-Chapter 4.
 [28
 
 ]
+Chapter 4.
+[29
+
+]
 Chapter 5.
-(Thesis_V1.0.0.bbl [29
+(Thesis_V1.0.0.bbl [30
 
 ]
 Underfull \hbox (badness 1242) in paragraph at lines 4--6
@@ -842,15 +842,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 83--86
 / searchsecurity . techtarget . com / definition /
  []
 
-[30
+[31
 
-]) [31] (Thesis_V1.0.0.aux)
+]) [32] (Thesis_V1.0.0.aux)
 Package rerunfilecheck Info: File `Thesis_V1.0.0.out' has not changed.
 (rerunfilecheck)             Checksum: 887192E0251DE0E07060B60FDED392F5;2611.
  ) 
 Here is how much of TeX's memory you used:
- 16252 strings out of 481296
- 274084 string characters out of 2908369
+ 16251 strings out of 481296
+ 274059 string characters out of 2908369
  825523 words of memory out of 3000000
  33001 multiletter control sequences out of 15000+600000
  414659 words of font info for 66 fonts, out of 8000000 for 9000
@@ -871,9 +871,9 @@ blic/amsfonts/cm/cmsl8.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/font
 s/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/michele/AppData/Local/Programs/
 MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/michele/AppData/Loca
 l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on Thesis_V1.0.0.pdf (31 pages, 357550 bytes).
+Output written on Thesis_V1.0.0.pdf (32 pages, 362651 bytes).
 PDF statistics:
- 521 PDF objects out of 1000 (max. 8388607)
- 142 named destinations out of 1000 (max. 500000)
+ 527 PDF objects out of 1000 (max. 8388607)
+ 141 named destinations out of 1000 (max. 500000)
  158 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -697,21 +697,43 @@ Moreover, malware can also be designed to search the system for files and direct
 Furthermore, malware can also detect debugger residues in live memory, by viewing the current process listing or, more commonly, by performing a \textit{FindWindow} in search for a debugger.
 
 \subsubsection{Identifying Debugger Behaviour}
-Debuggers are very useful to malware analysts because they can be used to set breakpoints in the code or even to single-step through a process running code to ease the reverse-engineering process. These operations, however, modify the process code and are therefore easily detectable.
+Debuggers are very useful to malware analysts because they can be used to set breakpoints in the code or even to single-step through a process running code to ease the reverse-engineering process. These operations, however, modify the process code and are therefore easily detectable \cite{SikorskiPMA}.
 
 \paragraph{INT Scanning}
+A common anti-debugging technique used by malware authors consists in making the process scan its own code in search for an \textbf{INT 3} (opcode \textit{0xCC}). \textbf{INT 3} is, in fact, a software interrupt used by debuggers: when setting a breakpoint the debugger replaces the target instruction in the running program with the opcode \textit{0xCC} (INT 3) which causes the process to call the debug exception handler \cite{SikorskiPMA}.
+
+Malware analysts can counter this technique exploiting hardware breakpoints instead of software ones.
 
 \paragraph{Performing Code Checksums}
+Another anti-debugger technique consists in calculating the checksum of a section of the process' own code. This has the same net effects as scanning the code for software interrupts. However, instead of explicitly searching for a specific opcode (\textit{0xCC}) in the process code, this check performs a cyclic redundancy check (CRC) or a MD5 checksum of the malware code \cite{SikorskiPMA}.
+
+Again this technique can be countered by using hardware breakpoints instead of software ones, or by modifying the program's control flow at runtime with a debugger.
 
 \paragraph{Timing Checks}
+One of the most widespread techniques for debugger detection is to perform \textit{timing checks}. Processes, in fact, tend to run substantially slower when executed within a debugger context. Moreover analysts usually run programs in single steps in order to better understand the code behaviour, this in turn greatly increases execution time \cite{SikorskiPMA}.
 
-\subsubsection{Interfering with Debugger Functionality}
+Using timing checks it is possible to detect a debugger in different ways:
+\begin{enumerate}
+	\item Recording 2 timestamps before and after the execution of some operations and then comparing them. If the lag is greater than a specified threshold then a debugger is probably being used.
+	\item Recording 2 timestamps before and after raising an exception. If the current process is being debugged then the exception will be handled by the debugger itself more slowly than normal. Moreover, by default, debuggers ask for human intervention when an exception occurs, thus causing huge delays.
+\end{enumerate}
 
-\paragraph{Using TLS Callbacks}
+\begin{itemize}
+	\item \textbf{Using the \textit{rdtsc} Instruction}
+	The most common timing check method uses the \textit{rdtsc} instruction. This instruction returns the number of ticks since the last system reboot. Malware authors thus use it as described above: rdtsc is called twice, once before and once after some other operations, and then the difference between the results is calculated. If too much time has elapsed between the two calls it means that a debugger is probably being used.
+	
+	\item \textbf{Using \textit{QueryPerformanceCounter} and \textit{GetTickCount}}
+	These are two Windows API functions that can be used similarly to \textit{rdtsc} for debugger detection.
+	
+	More precisely \textit{QueryPerformanceCounter} can be called to query a high-resolution counter available to processors which stores counts of activities performed by the processor.
+	
+	The function \textit{GetTickCounter}, on the other hand, returns the number of milliseconds that have elapsed since the last reboot, very similarly to what the \textit{rdtsc} instruction does.
+	
+	Both of those functions, when used as described above, allow the malware to detect the presence of a debugger.
+\end{itemize}
 
-\paragraph{Using Exceptions}
-
-\paragraph{Inserting Interrupts}
+Anti-debugging though the use of timing checks can be discovered by malware analysts during debugging or static analysis by identifying specific sequences of instructions. Moreover, these checks usually detect debuggers only when the analyst is single-stepping though the code or setting a breakpoint between the two time related instruction calls.
+This implies that, to counter this technique, malware analysts could avoid setting breakpoints and single-stepping in those regions of code, or modify the result of the timestamps comparison as needed.
 
 
 
