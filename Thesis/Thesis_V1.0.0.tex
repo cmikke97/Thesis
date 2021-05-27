@@ -735,9 +735,33 @@ Using timing checks it is possible to detect a debugger in different ways:
 Anti-debugging though the use of timing checks can be discovered by malware analysts during debugging or static analysis by identifying specific sequences of instructions. Moreover, these checks usually detect debuggers only when the analyst is single-stepping though the code or setting a breakpoint between the two time related instruction calls.
 This implies that, to counter this technique, malware analysts could avoid setting breakpoints and single-stepping in those regions of code, or modify the result of the timestamps comparison as needed.
 
-
-
 \subsection{Anti-virtual machine}
+Malware analysts often use virtual machines (VMs) or other isolated environments like sandboxes, to analyse malware samples. With the purpose of evading analysis and bypassing security systems malware authors often design their code to detect isolated environments. The techniques used with such purpose are called \textit{Anti-virtual machine} techniques (Anti-VM). Once a virtual machine is detected the evasion mechanism may alter the malware?s behaviour, or it may even prevent the malicious code from running altogether \cite{SikorskiPMA}.
+
+\subsubsection{VMware Artefacts}
+Virtual machines are designed to emulate real hardware functionality. To achieve that, however, some artefacts inevitably remain on the system, which can reveal that a virtual machine is indeed being used. These kind of artefacts can be specific files, processes, registry keys, services, network device adapters etc. \cite{SikorskiPMA}.
+
+Here are some examples of anti-virtual machine techniques applied to detect VMware virtualization software:
+\begin{itemize}
+	\item \textbf{Checking for Processes Indicating a VM}.
+	When a VMware virtual machine is running and VMware tools is installed, three VMware-related processes can be found in the system process listing: \textit{VMwareService.exe}, \textit{VMwareTray.exe} and \textit{VMwareUser.exe}. A malicious software can therefore easily detect if VMware is being run searching through the process listing for the \textit{VMware} string.
+	
+	\item \textbf{Checking for Existence of Files Indicating a VM}.
+	The VMware default installation path usually also contains artefacts. Searching for the string \textit{VMware} in such location may reveal the use of a virtualized environment.
+	
+	\item \textbf{Checking for Registry Keys}.
+	VMware Tools may leave some artefacts also in the registry. More specifically the presence of specific registry entries may reveal the use of VMware.
+	
+	\item \textbf{Checking for Known Mac Addresses}.
+	In order to connect a virtual machine to a network it needs to have its own virtual network interface card (NIC). This implies that VMware needs to create a MAC address for the virtual machine, to associate to its NIC. However, depending on VMware configuration, this may lead to the network adapter being able to identify VMware usage. VMware utilises, in fact, addresses with a specific starting sequence which depends on its current version. Therefore a malicious software just needs to check the system MAC address against common VMware values.
+\end{itemize}
+
+In order to counter anti-virtual machine techniques, malware analysts need to apply a two step process: identify the check for VMware artefacts and then 'manually' patch it. For example, depending on the anti-VM technique used, they may patch the malware code while debugging to artificially make all checks pass, or modify the name of VMware processes in order to make them undetectable by the malicious software.
+
+\subsubsection{Vulnerable Instructions}
+The virtual machine monitor program, which monitors the virtual machine execution, has some security weaknesses that may allow malware to detect its usage. In particular, in order to avoid performance issues deriving from fully emulating all instructions, VMware allows certain instructions to execute without being properly virtualized. This in turn means that certain instruction sequences may return different results when running within a VMware virtualized environment than they do on native hardware. This discrepancy can be used by malware authors to detect VMware usage \cite{SikorskiPMA}.
+
+However, those instructions previously mentioned are not typically used within a malicious program unless it is specifically performing VMware detection, because they are useless if executed in user mode. Therefore avoiding this type of anti-VM technique can be as easy as patching the malicious code to prevent it calling these instructions.
 
 \subsection{Packers and unpacking}
 
