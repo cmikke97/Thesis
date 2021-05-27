@@ -480,6 +480,10 @@ Obfuscation is a technique that generally makes programs harder to understand \c
 
 The first time a malware has been recognised to exhibit detection avoidance behaviour was in 1986 with the \textit{Brain} virus \cite{SkoudisFMC}. In fact, such malware managed to conceal the infected disk section whenever the user attempted to read it, forcing the computer to display clean data instead of the infected part. From that moment on, the ever increasing popularity of detection evasion techniques among malware writers has shown that malware survival has become the number one priority: the longer the malware remains undetected, the more harm it can do and the more profitable it is to its writer \cite{NamanyaTWM}.
 
+\subsection{Reverse-Engineering}
+
+\subsection{Anti-reversing}
+
 \subsection{Anti-disassembly}
 \textit{Anti-disassembly} techniques use specially crafted code and/or data in a program to cause disassembly analysis tools to generate an incorrect program listing \cite{SikorskiPMA}. The attackers' usage of these techniques thus implies a time-consuming analysis for malware analysts, ultimately preventing the retrieval of the source code in a reasonable time.
 
@@ -518,36 +522,34 @@ Particularly, in the case of conditional branches, the disassembler needs to fol
 \subsubsection{Anti-Disassembly Techniques}
 
 \paragraph{Jump Instructions with the Same Target}
-One of the most used anti-disassembly techniques consists of two consecutive conditional \textit{jump} instructions both pointing to the same target.
+One of the most used anti-disassembly techniques consists of two consecutive conditional \textit{jump} instructions both pointing to the same target \cite{SikorskiPMA}.
 
 Here is an example:
-\begin{lstlisting}
-	74 03		jz loc
-	75 01		jnz loc
-	
+\begin{lstlisting}[caption={Jump Instructions with the Same Target}, label=JumpSameTarget, language={[x86masm]Assembler}, commentstyle=\color{ForestGreen}, keepspaces=true, keywordstyle=\color{blue}]
+74 03		jz 	loc
+75 01		jnz	loc
+
 		loc:
-	...
 \end{lstlisting}
 
 In this case, the conditional jump '\textbf{jz loc}' is immediately followed by a jump to the same target but with opposite condition: '\textbf{jnz loc}'. This implies that the location \textbf{loc} will always be jumped to.
 Consequently, the combination of \textbf{jz} with \textbf{jnz} acts, in this case, like an unconditional \textbf{jmp} instruction. A disassembler, however, since it disassembles just one instruction at a time, won't recognize this combination as being an unconditional branch. During the disassembly process, in fact, if a \textbf{jnz} instruction is encountered, the disassembler will take the false branch of the instruction and will continue disassembling, even though this branch will never be executed in practice.
 
 \paragraph{Jump Instructions with a Constant Condition}
-Another common anti-disassembly technique is composed of a single conditional \textit{jump} instruction with an always true (or false) condition.
+Another common anti-disassembly technique is composed of a single conditional \textit{jump} instruction with an always true (or false) condition \cite{SikorskiPMA}.
 
 Example:
-\begin{lstlisting}
-	33 C0		xor	eax, eax
-	74 01		jz loc
-	
+\begin{lstlisting}[caption={Jump Instructions with a Constant Condition example}, label=JumpConstant, language={[x86masm]Assembler}, commentstyle=\color{ForestGreen}, keepspaces=true, keywordstyle=\color{blue}]
+33 C0		xor	eax, eax
+74 01		jz 	loc
+
 		loc:
-	...
 \end{lstlisting}
 
 The first instruction in the example code, \textbf{xor eax, eax}, sets the \textbf{EAX} register to zero and, consequently, it sets the zero flag. The next instruction, \textbf{jz} (jump if zero flag is set), appears to be a conditional jump but in reality is not conditional at all. In fact the the zero flag will always be set at this point in the program execution. The disassembler, however, will process the false branch first, even if in reality it would never trigger.
 
 \paragraph{Impossible Disassembly}
-The simple anti-disassembly techniques mentioned above are frequently coupled with the use of a, so called, \textit{rogue byte}. A \textit{rogue byte} is a data byte strategically placed after a conditional \textit{jump} instruction in order to trick the disassembler. The byte inserted usually is the opcode for a multi-byte instruction, therefore disassembling it prevents the real following instruction from being properly disassembled. This byte is called \textit{rogue byte} because it is not part of the program logic flow and it is inserted in the code with the only purpose of fooling the disassembler.
+The simple anti-disassembly techniques mentioned above are frequently coupled with the use of a, so called, \textit{rogue byte}. A \textit{rogue byte} is a data byte strategically placed after a conditional \textit{jump} instruction in order to trick the disassembler. The byte inserted usually is the opcode for a multi-byte instruction, therefore disassembling it prevents the real following instruction from being properly disassembled. This byte is called \textit{rogue byte} because it is not part of the program logic flow and it is inserted in the code with the only purpose of fooling the disassembler \cite{SikorskiPMA}.
 
 In all these cases, however, a reverse engineer is able to properly disassemble the code with the use of interactive disassemblers like IDA Pro, ignoring the \textit{rogue bytes}.
 
@@ -556,13 +558,13 @@ However, there are some conditions in which no traditional assembly listing can 
 The core idea behind these techniques is to make the \textit{rogue byte} part of a legitimate instruction that is executed at runtime. This way the \textit{rogue byte} becomes not ignorable during disassembly. In this scenario any given byte may be a part of multiple instructions that are executed. This is done using \textit{jump} instructions. The processor, while running the code, will interpret and execute the bytes following the logical flow of the program, so there is no limitation on the number of instructions the same byte can be part of; a disassembler, however, has such limitations since it will usually represent a single byte as being part of a single instruction.
 
 Example:
-\begin{lstlisting}
-	EB 
-		JMP -1
-	FF
-		INC EAX
-	C0
-	48					DEC EAX
+\begin{lstlisting}[caption={Impossible Disassembly example}, label=ImpossibleDisassembly, language={[x86masm]Assembler}, commentstyle=\color{ForestGreen}, keepspaces=true, keywordstyle=\color{blue}]
+EB 
+	JMP -1
+FF
+	INC EAX
+C0
+48	DEC EAX
 \end{lstlisting}
 
 In this simple example the first instruction is a 2-byte \textit{jmp -1} instruction (\textbf{EB FF}). Its target is the its own second byte. At run time this causes no errors because the \textbf{FF} byte is the first byte of the next instruction \textit{inc eax} (\textbf{FF C0}).
@@ -574,12 +576,12 @@ The 4-byte example code increments the \textbf{EAX} register, and then decrement
 However this was only a simple example sequence. More complex and ingenious sequences can be made to fool disassemblers while being harder to detect.
 
 \subsubsection{Obscuring Flow Control}
-Control-flow analysis (CFA) is a static-code-analysis technique for determining the control flow of a program. Modern disassemblers like IDA Pro are able to correlate function calls and extract high-level information about the program knowing how functions are related to each other.
+Control-flow analysis (CFA) is a static-code-analysis technique for determining the control flow of a program. Modern disassemblers like IDA Pro are able to correlate function calls and extract high-level information about the program knowing how functions are related to each other \cite{SikorskiPMA}.
 
 Control-flow analysis can however be easily defeated by malware authors.
 
 \paragraph{The Function Pointer Problem}
-Function pointers are a common programming idiom present in programming languages such as \textbf{C}, while being extensively used in the background in object oriented languages like \textbf{C++} and \textbf{Java}.
+Function pointers are a common programming idiom present in programming languages such as \textbf{C}, while being extensively used in the background in object oriented languages like \textbf{C++} and \textbf{Java} \cite{SikorskiPMA}.
 
 As opposed to referencing a data value, a function pointer points to executable code within memory. Dereferencing the function pointer yields the referenced function, which can be invoked and passed arguments to as in a normal function call. Since, doing so, the function is being invoked indirectly through a variable instead of directly through a fixed identifier or address, such invocation is also known as an "indirect" call. In assembly code this corresponds to a \textit{call} instruction with a function pointer as argument.
 
@@ -588,7 +590,7 @@ Function pointers, however, greatly reduce the information that can be automatic
 As a result, function pointers, in combination with other anti-disassembly techniques, can greatly increase the complexity and difficulty of reverse-engineering.
 
 \paragraph{Return Pointer Abuse}
-Among the instructions capable of transferring control within a program we already mentioned the \textit{call} and \textit{jmp} instructions, however there are more.
+Among the instructions capable of transferring control within a program we already mentioned the \textit{call} and \textit{jmp} instructions, however there are more \cite{SikorskiPMA}.
 
 The counterpart to the \textit{call} instruction is \textit{retn}. When a call instruction is reached during program execution, a return pointer is pushed on the stack, before jumping to the call instruction target. This return pointer in the stack will point to the address of the instruction immediately following the end of the \textit{call} instruction itself.
 Therefore a \textit{call} instruction can be seen as the combination of a \textit{jmp} and \textit{push}; a \textit{retn} instruction, on the other hand, is the combination of \textit{pop} and \textit{jmp}.
@@ -596,7 +598,7 @@ Therefore a \textit{call} instruction can be seen as the combination of a \texti
 The \textit{retn} instruction pops the last value pushed to the stack and jumps to it; it is therefore typically used to return from a function call, but it could also be used for other purposes. When used for such other reasons the disassembler is generally fooled, because it still will interpret it as a return from a function call. Therefore it won't show any code cross-reference to the target being jumped to. As added benefit the disassembler will also prematurely terminate the function being analysed.
 
 \paragraph{Misusing Structured Exception Handlers}
-Another powerful anti-disassembly technique exploits the Structured Exception Handling (\textbf{SEH}) mechanism. Performing program flow control using this mechanism is able to fool both disassemblers and debuggers.
+Another powerful anti-disassembly technique exploits the Structured Exception Handling (\textbf{SEH}) mechanism. Performing program flow control using this mechanism is able to fool both disassemblers and debuggers \cite{SikorskiPMA}.
 
 \textbf{SEH} provides programs a way to handle error conditions intelligently. \textit{C++} and other programming languages heavily rely on exception handling (and therefore on \textbf{SEH}) when compiled for x86 systems.
 
@@ -609,14 +611,90 @@ Exception handling is used in almost all programs and exceptions happen regularl
 This can be done at runtime simply pushing some specific values on the stack, effectively adding a new entry in the Exception handling chain. This procedure, however, is subject to the constraints imposed by the Software Data Execution Prevention (\textbf{Software DEP}), which is a security feature that prevents the addition of third-party exception handlers at runtime. However various workarounds to this protection can be used in the case of handwritten assembly code.
 
 \subsection{Anti-debugging}
+Another popular anti-analysis technique, besides anti-disassembly, is \textit{anti-debugging}. Malware authors use anti-debugging techniques to recognise when their malicious program is under the control of a debugger or to interfere with the debugger behaviour. This is done in an attempt to slow down the malware analysts who use debuggers to understand how the malware operates. A malware using these techniques usually alter its normal control flow paths or causes crashes if it detects it is running in a debugger, thus interfering with analysis \cite{SikorskiPMA}.
 
 \subsubsection{Windows Debugger Detection}
+In Windows OS various techniques can be used to detect if a process is being run in a debugger: from exploiting the Windows API itself, to manually checking memory structures for debugging artefacts \cite{SikorskiPMA}.
+
 
 \paragraph{Using the Windows API}
+One of the most obvious, and simple, ways to know if a debugger is attached to a process is by using Windows API functions. Inside the Windows API there are, in fact, functions that were specifically designed to detect debuggers; moreover some functions that were originally created with other purposes can also be used for debugger detection \cite{SikorskiPMA}.
+
+Malware analysts can counter this technique by manually modifying the malware code during execution modifying the resulting flag after the call to make sure the desired path is taken, or by straight up removing/skipping the function call.
+
+Here are some examples of common Windows API functions used for \textit{anti-debugging}:
+\begin{itemize}
+	\item \textbf{IsDebuggerPresent}
+	This is the simplest API function that can be used for debugger detection. It determines whether the \textbf{current} process is being debugged by a user-mode debugger. It does so by getting the value of the field \textit{IsDebugged} from the Process Environment Block (\textbf{PEB}) structure. In particular this functions returns zero if the process is not running within a debugger context and a non-zero value otherwise.
+	
+	\item \textbf{CheckRemoteDebuggerPresent}
+	This API function is similar to the previously described one (\textit{IsDebuggerPresent}). This function checks for a 'remote' debugger on the specified process. The term 'remote' in the name CheckRemoteDebuggerPresent does not imply that the debugger necessarily resides on a different machine; instead, it indicates that the debugger resides in a separate and parallel process. This function takes a process handle as argument, and will check if that process has a debugger attached. It can however be used also to check the current process by passing its handle.
+	
+	\item \textbf{NtQueryInformationProcess}
+	This function can retrieve different kinds of information from a process. The first argument for this function is the process handle, the second one is the ProcessInformationClass parameter which specifies the information you want to get. When using the value \textit{ProcessDebugPort} for this parameter, for example, the function will return a zero if the process is not currently being debugged; a non-zero value representing the debugger port number will instead be returned otherwise.
+	
+	\item \textbf{OutputDebugString}
+	This function, originally designed to just send a string to a debugger for display, can be used to detect the presence of a debugger. In fact, in there is no debugger attached, the function will internally set the last-error code. In a few lines of code it is thus possible to know if a debugger is present or not:
+	
+	\begin{lstlisting}[caption={OutputDebugString debugger detection}, label=OutputDebugString, language=C, commentstyle=\color{ForestGreen}, keepspaces=true, keywordstyle=\color{blue}]
+DWORD errorValue = 12345;
+// set custom last error code
+SetLastError(errorValue);
+
+// try outputting string on debugger;
+// if no debugger is present, it will set
+// the last-error code to a new value
+OutputDebugString("Test for Debugger");
+
+if(GetLastError() == errorValue){
+	// a debugger is present
+	ExitProcess();
+}
+else{
+	// no debugger was detected
+	RunMaliciousPayload();
+}
+	\end{lstlisting}
+	
+\end{itemize}
 
 \paragraph{Manually Checking Structures}
+Malware authors usually don't exploit the Windows API functions for detecting the presence of a debugger, but they prefer checking the PEB structure (and others) by themselves. One of the reasons why they usually don't like using Windows API functions is that API calls can be easily hooked by a rootkit to return false information, thus thwarting this technique \cite{SikorskiPMA}.
+
+\begin{itemize}
+	\item \textbf{Checking the BeingDebugged Flag}
+	The Windows PEB structure contains all user-mode parameters associated with a process, including the process's environment data such as environment variables, addresses in memory and debugger status, among other things.
+	
+	Malware can 'manually' check the \textit{BeingDebugged} flag within the PEB structure to understand if a debugger is attached its process. More precisely if this flag is zero it means that no debugger is attached.
+	
+	Example of code listing performing 'manual' \textit{BeingDebugged} check:
+	\begin{lstlisting}[caption={BeingDebugged manual check}, label=BeingDebuggedManual, language={[x86masm]Assembler}, commentstyle=\color{ForestGreen}, keepspaces=true, keywordstyle=\color{blue}]
+mov eax, dword ptr fs:[30h]	; get PEB address
+mov ebx, byte ptr [eax+2]	; get BeingDebugged flag value
+test ebx, ebx			; test if the value is 0
+jz NoDebuggerDetected		; if 0, no debugger was detected
+	\end{lstlisting}
+	
+	Malware analysts can counter this technique detecting this code sequence in the code and then wither manually changing the \textit{BeingDebugged} flag to zero, or forcing the jump to be taken (or not) by manually modifying the zero flag before the jump instruction.
+	
+	\item \textbf{Checking the ProcessHeap Flag} 
+	The \textit{ProcessHeap}, which is an undocumented location within a reserved array inside the PEB structure, contains the location of the first heap of a process allocated by the loader. This heap can be used for debugger detection since it contains some information telling if it was created within a debugger or not. In particular malware usually check the values of the fields called \textit{ForceFlags} and \textit{Flags}.
+	
+	To overcome this technique, malware analysts can change the \textit{ProcessHeap} flags manually or use a hide-debug plug-in for their debugger.
+	
+	\item \textbf{Checking NTGlobalFlag}
+	Processes started within a debugger run slightly differently than others, therefore they create memory heaps differently. The information needed to determine how to create heap structures is stored at an undocumented location in the PEB. Practically, a value of \textit{0x70} at this location indicates that the process is running within a debugger.
+	
+	Again, in order to counter this technique, malware analysts can change the flags manually or use a hide-debug plug-in for their debugger.
+	
+\end{itemize}
 
 \paragraph{Checking for System Residue}
+Debugging tools typically leave traces of their presence on the system. Malicious programs can therefore be designed to search for these traces in the system in order to determine when it is being analysed. For example malware can search for references to debuggers in the registry keys \cite{SikorskiPMA}.
+
+Moreover, malware can also be designed to search the system for files and directories commonly related to debuggers, such as debugger program executables.
+
+Furthermore, malware can also detect debugger residues in live memory, by viewing the current process listing or, more commonly, by performing a \textit{FindWindow} in search for a debugger.
 
 \subsubsection{Identifying Debugger Behaviour}
 
@@ -634,11 +712,15 @@ This can be done at runtime simply pushing some specific values on the stack, ef
 
 \paragraph{Inserting Interrupts}
 
-\subsubsection{Debugger Vulnerabilities}
-
-\paragraph{PE Header Vulnerabilities}
 
 
+\subsection{Anti-virtual machine}
+
+\subsection{Packers and unpacking}
+
+\subsection{Code Obfuscation}
+
+\subsection{Polymorphic and Metamorphic Malware}
 
 \chapter{Proposed Tool}
 
