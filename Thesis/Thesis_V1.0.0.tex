@@ -697,6 +697,7 @@ Moreover, malware can also be designed to search the system for files and direct
 Furthermore, malware can also detect debugger residues in live memory, by viewing the current process listing or, more commonly, by performing a \textit{FindWindow} in search for a debugger.
 
 \subsubsection{Identifying Debugger Behaviour}
+Debuggers are very useful to malware analysts because they can be used to set breakpoints in the code or even to single-step through a process running code to ease the reverse-engineering process. These operations, however, modify the process code and are therefore easily detectable.
 
 \paragraph{INT Scanning}
 
