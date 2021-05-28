@@ -481,8 +481,14 @@ Obfuscation is a technique that generally makes programs harder to understand \c
 The first time a malware has been recognised to exhibit detection avoidance behaviour was in 1986 with the \textit{Brain} virus \cite{SkoudisFMC}. In fact, such malware managed to conceal the infected disk section whenever the user attempted to read it, forcing the computer to display clean data instead of the infected part. From that moment on, the ever increasing popularity of detection evasion techniques among malware writers has shown that malware survival has become the number one priority: the longer the malware remains undetected, the more harm it can do and the more profitable it is to its writer \cite{NamanyaTWM}.
 
 \subsection{Reverse-Engineering}
+Reverse engineering, in broad terms, indicates the process of extracting knowledge, ideas, design philosophy etc. from anything man-made \cite{EilamRSRE}.
+
+Software reverse engineering is, of course, the application of reversing methodologies and techniques to extract knowledge from a software product to better understand its inner workings.
+
+Reversing is used extensively by both malicious actors and investigators but with opposing purposes. Malware developers often use it to discover vulnerabilities in systems or programs, while analysts and antivirus software developers use it to analyse malicious programs to understand how they work, what damages they can cause, how they infect the system and reproduce, how they can be removed, detected and avoided.
 
 \subsection{Anti-reversing}
+
 
 \subsection{Anti-disassembly}
 \textit{Anti-disassembly} techniques use specially crafted code and/or data in a program to cause disassembly analysis tools to generate an incorrect program listing \cite{SikorskiPMA}. The attackers' usage of these techniques thus implies a time-consuming analysis for malware analysts, ultimately preventing the retrieval of the source code in a reasonable time.
@@ -764,6 +770,56 @@ The virtual machine monitor program, which monitors the virtual machine executio
 However, those instructions previously mentioned are not typically used within a malicious program unless it is specifically performing VMware detection, because they are useless if executed in user mode. Therefore avoiding this type of anti-VM technique can be as easy as patching the malicious code to prevent it calling these instructions.
 
 \subsection{Packers and unpacking}
+Packing programs, commonly known as \textit{packers}, are software programs that take an \textit{executable file} or \textit{dynamic link library (DLL)}, compresses and/or encrypts its contents and then packs it into a new executable file \cite{SikorskiPMA}.
+
+When packers are used on malicious programs, the malicious code appearance is changed as a consequence of the compression and/or encryption. The packed file will thus hinder basic static analysis and malware detection. Moreover, a packer specifically designed to make the file difficult to analyse may even employ anti-reverse-engineering techniques, such as anti-disassembly, anti-debugging or anti-VM on the resulting compressed version; on top of that some packers, using randomization, are also able to generate different variants of a single file every time it is packed \cite{LiPRTCMP}.
+
+Malware authors have thus increasingly been using these tools to hide their creations from anti-malware solutions and malware analysts. In order to analyse packed malware, in fact, it must be unpacked first. Properly unpacking a packed program generally is, however, not easy.
+
+A packed file usually contains two basic components:
+\begin{itemize}
+	\item A number of data blocks containing the compressed and/or encrypted original executable file.
+	
+	\item An unpacking stub able to dynamically recover the original executable file at runtime.
+\end{itemize}
+
+When the packed file is executed, the unpacking stub is loaded by the OS and begins unpacking the original executable code in memory. When the unpacking has been fully completed the control flow is transferred, with a \textit{jmp}, \textit{call} or the more stealthy \textit{retn} instruction (also referred to as the \textit{tail jump}), to the original file entry point (OEP). This implies that someone attempting to perform static analysis on the packed program, would actually analyse the unpacking stub and not the original code.
+
+\subsubsection{Packer types}
+Commercial and custom made packers can be divided in several levels of complexity depending on the packing techniques used and the additional features they have.
+The authors of \cite{PedreroDPI} identified 6 packer main types with increasing complexity.
+Packer types from 1 to 5 allow, sooner or later at runtime, to have a complete view over the original (unpacked) malicious code, meaning that the unpacker stub unpacks all the code at once. However, what makes them differ is the amount and complexity of the encryption (and obfuscation) methodologies used during packing. On the other hand, type 6 packers unpack only a slice of code at a time in memory, never revealing the whole original code altogether. This implies that malware analysts need to take several memory dumps, instead of only one, if they want to get the complete unpacked code.
+
+Another possible classification of packers can be made based on their purposes and behaviours. Following this idea packers can be broadly classified into four categories \cite{WeiRPM}:
+
+\begin{itemize}
+	\item \textbf{Compressors} utilise compression to shrink files while exploiting few or no anti-unpacking tricks. Popular compressors include the Ultimate PE Packer (UPack), Ultimate Packer for Executables (\href{https://upx.github.io/}{UPX}), and \href{http://www.aspack.com/}{ASPack}.
+	
+	\item \textbf{Crypters} encrypt and obfuscate the original file contents. No compression is usually done. Malware developers widely use crypters such as \href{https://sourceforge.net/projects/yodap/}{Yoda's Crypter} and PolyCrypt PE.
+	
+	\item \textbf{Protectors} combine features from both compressors and crypters. Some popular commercial protectors are Armadillo and \href{https://www.oreans.com/Themida.php}{Themida}.
+	
+	\item \textbf{Bundlers} are used to pack a software package of multiple executable files into a single bundled executable file. These files within the package can then be unpacked and accessed without extracting them to disk. Some common PE bundlers are \href{https://www.bitsum.com/pebundle.asp}{PEBundle} and \href{https://www.molebox.com}{MoleBox}.
+\end{itemize}
+
+\subsubsection{Packers detection}
+Packed executables can be detected through a heuristic approach known as \textit{Shannon Entropy Calculation}. Entropy is, generally speaking, a measure of uncertainty, disorder, in a system or program. The idea behind this approach is that compressed or encrypted executables tend to resemble random data, thus they have higher entropy than unencrypted/uncompressed programs. This approach, however, does not tell any information about the packer used to obtain the packed sample \cite{SikorskiPMA}.
+
+One common way to tackle this problem is through packer signatures checking. Tools like \href{https://www.aldeid.com/wiki/PEiD}{PEiD} and Sigbuster use such method. These tools are, however, not always successful due to the huge number of packer variations and evolutions present in the wild, and the fact that malware authors frequently modify commercially available packers code or create their own packers so that their packed malicious programs do not match any known signature.
+
+\subsubsection{Unpacking}
+Unpacking is the process of restoring the original contents from packed executables in order to allow AV programs and security researchers to analyse the original executable code. There are three different techniques to unpack a packed executable: \textit{automated static unpacking}, \textit{automated dynamic unpacking} and \textit{manual unpacking} (\cite{SikorskiPMA}, \cite{WeiRPM}).
+
+Automated static unpacking programs are dedicated routines designed to decompress and/or decrypt executables packed by specific packers, without actually executing the suspicious programs. This method, when it works, is the fastest and most secure method to unpack an executable. Automatic static unpackers are, however, specific to a single packer. Moreover, they are not able to unpack packed samples that were created with the intention to hinder analysis.
+
+Automated dynamic unpackers, instead, use programs to run or emulate the packed executable allowing the unpacking stub to unpack the original executable code in memory. Once the original executable is unpacked, the in-memory program's code is written on disk, and the automated unpacker reconstructs the original import table.
+
+Most often security researchers prefer to perform manual unpacking. The two most common approaches used  to manually unpack a program are:
+\begin{itemize}
+	\item Discover what packing algorithm has been used to pack a sample and then write a program/script to revert it. This process is however time consuming.
+	
+	\item Manually run the packed program to allow the unpacking stub to unpack the original code in memory, then dump the process on disk and finally manually modify the PE header so that the program is complete. This process is more efficient than the previous one. 
+\end{itemize}
 
 \subsection{Code Obfuscation}
 

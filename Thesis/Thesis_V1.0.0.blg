@@ -5,44 +5,46 @@ Reallocating 'name_of_file' (item size: 1) to 7 items.
 The style file: torsec.bst
 Reallocating 'name_of_file' (item size: 1) to 7 items.
 Database file #1: biblio.bib
-You've used 24 entries,
+Warning--empty booktitle in LiPRTCMP
+You've used 28 entries,
             1924 wiz_defined-function locations,
-            639 strings with 7348 characters,
-and the built_in function-call counts, 3731 in all, are:
-= -- 305
-> -- 126
+            670 strings with 8057 characters,
+and the built_in function-call counts, 4856 in all, are:
+= -- 414
+> -- 169
 < -- 0
-+ -- 56
-- -- 32
-* -- 197
-:= -- 523
++ -- 72
+- -- 44
+* -- 280
+:= -- 678
 add.period$ -- 0
-call.type$ -- 24
-change.case$ -- 26
+call.type$ -- 28
+change.case$ -- 30
 chr.to.int$ -- 0
-cite$ -- 24
-duplicate$ -- 161
-empty$ -- 508
-format.name$ -- 32
-if$ -- 942
+cite$ -- 29
+duplicate$ -- 217
+empty$ -- 616
+format.name$ -- 44
+if$ -- 1225
 int.to.chr$ -- 0
-int.to.str$ -- 24
-missing$ -- 9
-newline$ -- 75
-num.names$ -- 24
-pop$ -- 152
+int.to.str$ -- 28
+missing$ -- 14
+newline$ -- 87
+num.names$ -- 28
+pop$ -- 164
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 126
+skip$ -- 171
 stack$ -- 0
-substring$ -- 71
-swap$ -- 20
+substring$ -- 147
+swap$ -- 42
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 0
-while$ -- 30
-width$ -- 26
-write$ -- 217
+warning$ -- 1
+while$ -- 40
+width$ -- 30
+write$ -- 257
+(There was 1 warning)
