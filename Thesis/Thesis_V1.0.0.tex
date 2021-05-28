@@ -470,25 +470,27 @@ Here is an overview of the most famous malware or malware-related events in rece
 	Another COVID-19 attack was that of a malicious Android app called \textit{CovidLock}, which claimed to be a real-time coronavirus outbreak tracker but instead was a ransomware that attempted to trick the user into providing administrative access on their device and then locked it requesting a ransom.
 \end{itemize}
 
-\section{Obfuscation and detection evasion}
+\section{Detection evasion}
 From the creation of the first malware in 1970 \cite{Szor_P}, there has been a strong competition between attackers and defenders. To defend from malware attacks, anti-malware groups have been developing increasingly complex (and clever) new techniques. On the other hand, malware developers have conceived and adopted new tactics/methods to avoid the malware detectors.
 
 The first type of anti-malware tools were mostly based on the assumption that malware structures do not change appreciably during time. In fact, initially, the malware machine code was completely unprotected. This allowed analysts to exploit opcode sequences to recognise specific malware families. 
 Recently, however, a big advancement led to the so-called "second generation" malware \cite{Sharma_2014} which, to evade such opcode signatures, employs several obfuscation techniques and can create variants of itself. This posed a challenge to anti-malware developers.
 
-Obfuscation is a technique that generally makes programs harder to understand \cite{Balakrishnan2005CodeOL}, both for humans and automatic tools. To do so, it converts a software to a new, structurally different, version while retaining the same functionality as the original. Originally, this technology was conceived for legitimate purposes to protect the intellectual property of software developers; however it has been widely exploited by malware authors to evade detection \cite{KonstantinouMV}. Particularly, in order to elude anti-malware scanners, malware can, using obfuscation techniques, evolve their body into new generations \cite{YouMalwareOT}, which eventually can be even harder to disassemble and analyse.
-
 The first time a malware has been recognised to exhibit detection avoidance behaviour was in 1986 with the \textit{Brain} virus \cite{SkoudisFMC}. In fact, such malware managed to conceal the infected disk section whenever the user attempted to read it, forcing the computer to display clean data instead of the infected part. From that moment on, the ever increasing popularity of detection evasion techniques among malware writers has shown that malware survival has become the number one priority: the longer the malware remains undetected, the more harm it can do and the more profitable it is to its writer \cite{NamanyaTWM}.
 
 \subsection{Reverse-Engineering}
-Reverse engineering, in broad terms, indicates the process of extracting knowledge, ideas, design philosophy etc. from anything man-made \cite{EilamRSRE}.
+\textit{Reverse engineering}, in broad terms, indicates the process of extracting knowledge, ideas, design philosophy etc. from anything man-made \cite{EilamRSRE}.
 
 Software reverse engineering is, of course, the application of reversing methodologies and techniques to extract knowledge from a software product to better understand its inner workings.
 
 Reversing is used extensively by both malicious actors and investigators but with opposing purposes. Malware developers often use it to discover vulnerabilities in systems or programs, while analysts and antivirus software developers use it to analyse malicious programs to understand how they work, what damages they can cause, how they infect the system and reproduce, how they can be removed, detected and avoided.
 
 \subsection{Anti-reversing}
+\textit{Anti-reversing} techniques are techniques originally meant to make the reverse engineering process difficult for a hacker or any malicious user. The main objective of various anti-reverse engineering techniques is simply to complicate the process of reversing as much as possible. For example an attacker could use the disassembly of a binary in order to get an insight of the logic of the code as well as getting hidden information.
 
+Recently anti-reversing techniques are, however, extensively used also by malware authors in order to make their creations difficult to analyse in an attempt to postpone detection as much as possible.
+
+There exist several anti-reversing approaches, each with its own advantages and disadvantages. However it is common practice to use a combination of more than one of them. In the next sections some of the more common anti-reversing techniques are discussed.
 
 \subsection{Anti-disassembly}
 \textit{Anti-disassembly} techniques use specially crafted code and/or data in a program to cause disassembly analysis tools to generate an incorrect program listing \cite{SikorskiPMA}. The attackers' usage of these techniques thus implies a time-consuming analysis for malware analysts, ultimately preventing the retrieval of the source code in a reasonable time.
@@ -822,6 +824,7 @@ Most often security researchers prefer to perform manual unpacking. The two most
 \end{itemize}
 
 \subsection{Code Obfuscation}
+Obfuscation is a technique that generally makes programs harder to understand \cite{Balakrishnan2005CodeOL}, both for humans and automatic tools. To do so, it converts a software to a new, structurally different, version while retaining the same functionality as the original. Originally, this technology was conceived for legitimate purposes to protect the intellectual property of software developers; however it has been widely exploited by malware authors to evade detection \cite{KonstantinouMV}. Particularly, in order to elude anti-malware scanners, malware can, using obfuscation techniques, evolve their body into new generations \cite{YouMalwareOT}, which eventually can be even harder to disassemble and analyse.
 
 \subsection{Polymorphic and Metamorphic Malware}
 

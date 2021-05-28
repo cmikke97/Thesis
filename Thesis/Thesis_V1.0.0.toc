@@ -12,18 +12,18 @@
 \contentsline {subsubsection}{Other cyber-threats}{14}{section*.3}%
 \contentsline {subsubsection}{General considerations on malware types}{15}{section*.4}%
 \contentsline {subsection}{\numberline {2.1.3}Malware History}{16}{subsection.2.1.3}%
-\contentsline {section}{\numberline {2.2}Obfuscation and detection evasion}{19}{section.2.2}%
+\contentsline {section}{\numberline {2.2}Detection evasion}{19}{section.2.2}%
 \contentsline {subsection}{\numberline {2.2.1}Reverse-Engineering}{19}{subsection.2.2.1}%
-\contentsline {subsection}{\numberline {2.2.2}Anti-reversing}{20}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.2}Anti-reversing}{19}{subsection.2.2.2}%
 \contentsline {subsection}{\numberline {2.2.3}Anti-disassembly}{20}{subsection.2.2.3}%
 \contentsline {subsubsection}{Linear Disassemblers}{20}{section*.5}%
 \contentsline {subsubsection}{Flow-Oriented Disassemblers}{20}{section*.6}%
 \contentsline {subsubsection}{Anti-Disassembly Techniques}{21}{section*.7}%
 \contentsline {paragraph}{Jump Instructions with the Same Target}{21}{section*.8}%
 \contentsline {paragraph}{Jump Instructions with a Constant Condition}{21}{section*.9}%
-\contentsline {paragraph}{Impossible Disassembly}{21}{section*.10}%
+\contentsline {paragraph}{Impossible Disassembly}{22}{section*.10}%
 \contentsline {subsubsection}{Obscuring Flow Control}{22}{section*.11}%
-\contentsline {paragraph}{The Function Pointer Problem}{22}{section*.12}%
+\contentsline {paragraph}{The Function Pointer Problem}{23}{section*.12}%
 \contentsline {paragraph}{Return Pointer Abuse}{23}{section*.13}%
 \contentsline {paragraph}{Misusing Structured Exception Handlers}{23}{section*.14}%
 \contentsline {subsection}{\numberline {2.2.4}Anti-debugging}{24}{subsection.2.2.4}%
