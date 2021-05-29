@@ -14,37 +14,40 @@
 \contentsline {subsection}{\numberline {2.1.3}Malware History}{16}{subsection.2.1.3}%
 \contentsline {section}{\numberline {2.2}Detection evasion}{19}{section.2.2}%
 \contentsline {subsection}{\numberline {2.2.1}Reverse-Engineering}{19}{subsection.2.2.1}%
-\contentsline {subsection}{\numberline {2.2.2}Anti-reversing}{19}{subsection.2.2.2}%
-\contentsline {subsection}{\numberline {2.2.3}Anti-disassembly}{20}{subsection.2.2.3}%
-\contentsline {subsubsection}{Linear Disassemblers}{20}{section*.5}%
-\contentsline {subsubsection}{Flow-Oriented Disassemblers}{20}{section*.6}%
-\contentsline {subsubsection}{Anti-Disassembly Techniques}{21}{section*.7}%
-\contentsline {paragraph}{Jump Instructions with the Same Target}{21}{section*.8}%
-\contentsline {paragraph}{Jump Instructions with a Constant Condition}{21}{section*.9}%
-\contentsline {paragraph}{Impossible Disassembly}{22}{section*.10}%
-\contentsline {subsubsection}{Obscuring Flow Control}{22}{section*.11}%
-\contentsline {paragraph}{The Function Pointer Problem}{23}{section*.12}%
-\contentsline {paragraph}{Return Pointer Abuse}{23}{section*.13}%
-\contentsline {paragraph}{Misusing Structured Exception Handlers}{23}{section*.14}%
-\contentsline {subsection}{\numberline {2.2.4}Anti-debugging}{24}{subsection.2.2.4}%
-\contentsline {subsubsection}{Windows Debugger Detection}{24}{section*.15}%
-\contentsline {paragraph}{Using the Windows API}{24}{section*.16}%
-\contentsline {paragraph}{Manually Checking Structures}{25}{section*.17}%
-\contentsline {paragraph}{Checking for System Residue}{26}{section*.18}%
-\contentsline {subsubsection}{Identifying Debugger Behaviour}{26}{section*.19}%
-\contentsline {paragraph}{INT Scanning}{26}{section*.20}%
-\contentsline {paragraph}{Performing Code Checksums}{26}{section*.21}%
-\contentsline {paragraph}{Timing Checks}{26}{section*.22}%
-\contentsline {subsection}{\numberline {2.2.5}Anti-virtual machine}{27}{subsection.2.2.5}%
-\contentsline {subsubsection}{VMware Artefacts}{27}{section*.23}%
-\contentsline {subsubsection}{Vulnerable Instructions}{28}{section*.24}%
-\contentsline {subsection}{\numberline {2.2.6}Packers and unpacking}{28}{subsection.2.2.6}%
-\contentsline {subsubsection}{Packer types}{28}{section*.25}%
-\contentsline {subsubsection}{Packers detection}{29}{section*.26}%
-\contentsline {subsubsection}{Unpacking}{29}{section*.27}%
-\contentsline {subsection}{\numberline {2.2.7}Code Obfuscation}{30}{subsection.2.2.7}%
-\contentsline {subsection}{\numberline {2.2.8}Polymorphic and Metamorphic Malware}{30}{subsection.2.2.8}%
-\contentsline {chapter}{\numberline {3}Proposed Tool}{31}{chapter.3}%
-\contentsline {chapter}{\numberline {4}Results}{32}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Conclusions}{33}{chapter.5}%
-\contentsline {chapter}{Bibliography}{34}{chapter.5}%
+\contentsline {subsubsection}{Static analysis}{19}{section*.5}%
+\contentsline {subsubsection}{Dynamic analysis}{20}{section*.6}%
+\contentsline {subsubsection}{Hybrid analysis}{20}{section*.7}%
+\contentsline {subsection}{\numberline {2.2.2}Anti-reversing}{21}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}Anti-disassembly}{21}{subsection.2.2.3}%
+\contentsline {subsubsection}{Linear Disassemblers}{21}{section*.8}%
+\contentsline {subsubsection}{Flow-Oriented Disassemblers}{22}{section*.9}%
+\contentsline {subsubsection}{Anti-Disassembly Techniques}{22}{section*.10}%
+\contentsline {paragraph}{Jump Instructions with the Same Target}{22}{section*.11}%
+\contentsline {paragraph}{Jump Instructions with a Constant Condition}{22}{section*.12}%
+\contentsline {paragraph}{Impossible Disassembly}{23}{section*.13}%
+\contentsline {subsubsection}{Obscuring Flow Control}{24}{section*.14}%
+\contentsline {paragraph}{The Function Pointer Problem}{24}{section*.15}%
+\contentsline {paragraph}{Return Pointer Abuse}{24}{section*.16}%
+\contentsline {paragraph}{Misusing Structured Exception Handlers}{24}{section*.17}%
+\contentsline {subsection}{\numberline {2.2.4}Anti-debugging}{25}{subsection.2.2.4}%
+\contentsline {subsubsection}{Windows Debugger Detection}{25}{section*.18}%
+\contentsline {paragraph}{Using the Windows API}{25}{section*.19}%
+\contentsline {paragraph}{Manually Checking Structures}{26}{section*.20}%
+\contentsline {paragraph}{Checking for System Residue}{27}{section*.21}%
+\contentsline {subsubsection}{Identifying Debugger Behaviour}{27}{section*.22}%
+\contentsline {paragraph}{INT Scanning}{27}{section*.23}%
+\contentsline {paragraph}{Performing Code Checksums}{27}{section*.24}%
+\contentsline {paragraph}{Timing Checks}{27}{section*.25}%
+\contentsline {subsection}{\numberline {2.2.5}Anti-virtual machine}{28}{subsection.2.2.5}%
+\contentsline {subsubsection}{VMware Artefacts}{28}{section*.26}%
+\contentsline {subsubsection}{Vulnerable Instructions}{29}{section*.27}%
+\contentsline {subsection}{\numberline {2.2.6}Packers and unpacking}{29}{subsection.2.2.6}%
+\contentsline {subsubsection}{Packer types}{30}{section*.28}%
+\contentsline {subsubsection}{Packers detection}{30}{section*.29}%
+\contentsline {subsubsection}{Unpacking}{30}{section*.30}%
+\contentsline {subsection}{\numberline {2.2.7}Code Obfuscation}{31}{subsection.2.2.7}%
+\contentsline {subsection}{\numberline {2.2.8}Polymorphic and Metamorphic Malware}{31}{subsection.2.2.8}%
+\contentsline {chapter}{\numberline {3}Proposed Tool}{32}{chapter.3}%
+\contentsline {chapter}{\numberline {4}Results}{33}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Conclusions}{34}{chapter.5}%
+\contentsline {chapter}{Bibliography}{35}{chapter.5}%

@@ -93,20 +93,6 @@ A.~Sharma and S.~K.~Sahay, ``Evolution and detection of polymorphic and
   metamorphic malwares: A survey'', International Journal of Computer
   Applications, vol.~90, Mar 2014, pp.~7--11, \doi{10.5120/15544-4098}
 
-\bibitem{Balakrishnan2005CodeOL}
-A.~Balakrishnan and C.~Schulze, ``Code obfuscation literature survey.''
-  \url{http://pages.cs.wisc.edu/~arinib/writeup.pdf}, 2005
-
-\bibitem{KonstantinouMV}
-E.~Konstantinou, ``Metamorphic virus: Analysis and detection.''
-  \url{https://www.ma.rhul.ac.uk/static/techrep/2008/RHUL-MA-2008-02.pdf},
-  2008, Technical Report of University of London
-
-\bibitem{YouMalwareOT}
-I.~You and K.~Yim, ``Malware obfuscation techniques: A brief survey'', 2010
-  International Conference on Broadband, Wireless Computing, Communication and
-  Applications, 2010, pp.~297--300, \doi{10.1109/BWCCA.2010.85}
-
 \bibitem{SkoudisFMC}
 E.~Skoudis and L.~Zeltser, ``Malware: Fighting malicious code'', Prentice Hall
   Professional, 2004, ISBN: 978-0-131-01405-3
@@ -114,6 +100,11 @@ E.~Skoudis and L.~Zeltser, ``Malware: Fighting malicious code'', Prentice Hall
 \bibitem{EilamRSRE}
 E.~Eilam, ``Reversing: Secrets of reverse engineering'', John Wiley \&; Sons,
   Inc., 2005, ISBN: 9780764574818
+
+\bibitem{BayerDAMC}
+U.~Bayer, A.~Moser, C.~Kruegel, and E.~Kirda, ``Dynamic analysis of malicious
+  code'', Journal in Computer Virology, vol.~2, 08 2006, pp.~67--77,
+  \doi{10.1007/s11416-006-0012-2}
 
 \bibitem{SikorskiPMA}
 M.~Sikorski and A.~Honig, ``Practical malware analysis: The hands-on guide to
@@ -134,5 +125,19 @@ X.~Ugarte-Pedrero, D.~Balzarotti, I.~Santos, and P.~G. Bringas, ``Sok: Deep
 \bibitem{WeiRPM}
 W.~Yan, Z.~Zhang, and N.~Ansari, ``Revealing packed malware'', IEEE Security
   Privacy, vol.~6, no.~5, 2008, pp.~65--69, \doi{10.1109/MSP.2008.126}
+
+\bibitem{Balakrishnan2005CodeOL}
+A.~Balakrishnan and C.~Schulze, ``Code obfuscation literature survey.''
+  \url{http://pages.cs.wisc.edu/~arinib/writeup.pdf}, 2005
+
+\bibitem{KonstantinouMV}
+E.~Konstantinou, ``Metamorphic virus: Analysis and detection.''
+  \url{https://www.ma.rhul.ac.uk/static/techrep/2008/RHUL-MA-2008-02.pdf},
+  2008, Technical Report of University of London
+
+\bibitem{YouMalwareOT}
+I.~You and K.~Yim, ``Malware obfuscation techniques: A brief survey'', 2010
+  International Conference on Broadband, Wireless Computing, Communication and
+  Applications, 2010, pp.~297--300, \doi{10.1109/BWCCA.2010.85}
 
 \end{thebibliography}

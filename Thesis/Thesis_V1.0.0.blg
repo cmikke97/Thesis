@@ -6,45 +6,45 @@ The style file: torsec.bst
 Reallocating 'name_of_file' (item size: 1) to 7 items.
 Database file #1: biblio.bib
 Warning--empty booktitle in LiPRTCMP
-You've used 28 entries,
+You've used 29 entries,
             1924 wiz_defined-function locations,
-            670 strings with 8057 characters,
-and the built_in function-call counts, 4856 in all, are:
-= -- 414
-> -- 169
+            679 strings with 8247 characters,
+and the built_in function-call counts, 5164 in all, are:
+= -- 444
+> -- 183
 < -- 0
-+ -- 72
-- -- 44
-* -- 280
-:= -- 678
++ -- 77
+- -- 48
+* -- 306
+:= -- 723
 add.period$ -- 0
-call.type$ -- 28
-change.case$ -- 30
+call.type$ -- 29
+change.case$ -- 31
 chr.to.int$ -- 0
-cite$ -- 29
-duplicate$ -- 217
-empty$ -- 616
-format.name$ -- 44
-if$ -- 1225
+cite$ -- 30
+duplicate$ -- 231
+empty$ -- 642
+format.name$ -- 48
+if$ -- 1301
 int.to.chr$ -- 0
-int.to.str$ -- 28
-missing$ -- 14
-newline$ -- 87
-num.names$ -- 28
-pop$ -- 164
+int.to.str$ -- 29
+missing$ -- 15
+newline$ -- 90
+num.names$ -- 29
+pop$ -- 165
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 171
+skip$ -- 184
 stack$ -- 0
-substring$ -- 147
-swap$ -- 42
+substring$ -- 167
+swap$ -- 48
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 1
-while$ -- 40
-width$ -- 30
-write$ -- 257
+while$ -- 43
+width$ -- 31
+write$ -- 268
 (There was 1 warning)
