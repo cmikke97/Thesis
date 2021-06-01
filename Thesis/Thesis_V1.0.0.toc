@@ -46,8 +46,15 @@
 \contentsline {subsubsection}{Packers detection}{30}{section*.29}%
 \contentsline {subsubsection}{Unpacking}{30}{section*.30}%
 \contentsline {subsection}{\numberline {2.2.7}Code Obfuscation}{31}{subsection.2.2.7}%
-\contentsline {subsection}{\numberline {2.2.8}Polymorphic and Metamorphic Malware}{31}{subsection.2.2.8}%
-\contentsline {chapter}{\numberline {3}Proposed Tool}{32}{chapter.3}%
-\contentsline {chapter}{\numberline {4}Results}{33}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Conclusions}{34}{chapter.5}%
-\contentsline {chapter}{Bibliography}{35}{chapter.5}%
+\contentsline {subsubsection}{Data-Based Obfuscation}{31}{section*.31}%
+\contentsline {paragraph}{Constant Unfolding}{31}{section*.32}%
+\contentsline {paragraph}{Data-Encoding Schemes}{32}{section*.33}%
+\contentsline {paragraph}{Dead Code Insertion}{32}{section*.34}%
+\contentsline {paragraph}{Arithmetic Substitution via Identities}{32}{section*.35}%
+\contentsline {paragraph}{Pattern-Based Obfuscation}{33}{section*.36}%
+\contentsline {subsubsection}{Control-Based Obfuscation}{33}{section*.37}%
+\contentsline {subsection}{\numberline {2.2.8}Polymorphic and Metamorphic Malware}{33}{subsection.2.2.8}%
+\contentsline {chapter}{\numberline {3}Proposed Tool}{34}{chapter.3}%
+\contentsline {chapter}{\numberline {4}Results}{35}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Conclusions}{36}{chapter.5}%
+\contentsline {chapter}{Bibliography}{37}{chapter.5}%

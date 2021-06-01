@@ -843,7 +843,90 @@ Most often security researchers prefer to perform manual unpacking. The two most
 \end{itemize}
 
 \subsection{Code Obfuscation}
-Obfuscation is a technique that generally makes programs harder to understand \cite{Balakrishnan2005CodeOL}, both for humans and automatic tools. To do so, it converts a software to a new, structurally different, version while retaining the same functionality as the original. Originally, this technology was conceived for legitimate purposes to protect the intellectual property of software developers; however it has been widely exploited by malware authors to evade detection \cite{KonstantinouMV}. Particularly, in order to elude anti-malware scanners, malware can, using obfuscation techniques, evolve their body into new generations \cite{YouMalwareOT}, which eventually can be even harder to disassemble and analyse.
+Obfuscation is a technique that generally makes programs harder to understand \cite{Balakrishnan2005CodeOL}, both for humans and automatic tools. To do so, it transforms a program into a new (structurally different) and more difficult to analyse version while retaining the same functionality as the original (the new version of the program is said to be \textit{computationally equivalent} to the original one).
+
+Originally, this technology was conceived for legitimate purposes to protect the intellectual property of software developers; however it has been widely exploited by malware authors to evade detection \cite{KonstantinouMV}. Particularly, in order to elude anti-malware scanners, malware can, using obfuscation techniques, evolve their body into new generations \cite{YouMalwareOT}, which eventually can be even harder to disassemble and analyse.
+
+Obfuscation techniques can be broadly divided into 2 main sub-categories:
+\begin{itemize}
+	\item \textit{Data-based} obfuscation
+	\item \textit{Control-based} obfuscation
+\end{itemize}
+
+However, malware authors usually combine those 2 types of obfuscation techniques in complex and difficult ways to strengthen the resulting obfuscation.
+
+\subsubsection{Data-Based Obfuscation}
+Data-based obfuscation techniques focus on modifying data values and non-control computations.
+
+\paragraph{Constant Unfolding}
+\textit{Constant folding} is a technique commonly used by compilers to optimize a program's code. It does so by replacing expressions with results known at compile time with the results themselves.
+
+For example, a compiler usually transforms the following expression \ref{ConstantFoldingBefore}, into \ref{ConstantFoldingAfter}.
+\begin{lstlisting}[caption={Before constant folding}, label=ConstantFoldingBefore, language=C, commentstyle=\color{ForestGreen}, keepspaces=true, keywordstyle=\color{blue}]
+x = 4 * 5;
+\end{lstlisting}
+
+\begin{lstlisting}[caption={After constant folding}, label=ConstantFoldingAfter, language=C, commentstyle=\color{ForestGreen}, keepspaces=true, keywordstyle=\color{blue}]
+x = 20;
+\end{lstlisting}
+
+\textit{Constant unfolding} is, instead, an obfuscation technique that performs the exact inverse operation: it replaces the constants in the program's code with some expressions having the constant as a result.
+
+For example, the listing \ref{ConstantUnfoldingBefore}, after \textit{Constant unfolding} may become \ref{ConstantUnfoldingAfter}. The two listings are equivalent. Moreover, there is an infinite amount of listings equivalent to \ref{ConstantUnfoldingBefore} that can be generated following this principle.
+\begin{lstlisting}[caption={Before constant unfolding}, label=ConstantUnfoldingBefore, language={[x86masm]Assembler}, commentstyle=\color{ForestGreen}, keepspaces=true, keywordstyle=\color{blue}]
+push	0h
+\end{lstlisting}
+
+\begin{lstlisting}[caption={After constant unfolding}, label=ConstantUnfoldingAfter, language={[x86masm]Assembler}, commentstyle=\color{ForestGreen}, keepspaces=true, keywordstyle=\color{blue}]
+push	0F9CBE47Ah
+add	dword ptr [esp],	6341B86h
+\end{lstlisting}
+
+\paragraph{Data-Encoding Schemes}
+The previously described technique is, however, easily defeated by simply applying the standard compiler's constant folding optimization. This is possible because both the data encoding and decoding functions ($f(x)=x-6341B86h$ and $f_{-1}(x)=x+6341B86h$ respectively) were present in the code one after the other. The use of \textit{fully Homomorphic} mappings (operation-preserving mappings) allow us to perform some operations on the encoded data before decoding it back, thus overcoming the previous technique's flaw. \textit{Fully Homomorphic} mappings are however still not widely used because still too inefficient.
+
+\paragraph{Dead Code Insertion}
+\textit{Dead code elimination} is another common compiler optimization technique. Its objective is to remove program statements/expressions that nave no real effects on the program operation and final results.
+
+For example, the listing \ref{DeadCodeEliminationBefore}, using \textit{dead code elimination} would become \ref{DeadCodeEliminationAfter}.
+\begin{lstlisting}[caption={Before dead code elimination}, label=DeadCodeEliminationBefore, language=C, commentstyle=\color{ForestGreen}, keepspaces=true, keywordstyle=\color{blue}]
+int f(){
+	int x, y;
+	x = 1;		// this assignement is useless, here x is dead
+	y = 2;		// y is never used, it is thus dead.
+	x = 3;
+	return x;	// x is live
+}
+\end{lstlisting}
+
+\begin{lstlisting}[caption={After dead code elimination}, label=DeadCodeEliminationAfter, language=C, commentstyle=\color{ForestGreen}, keepspaces=true, keywordstyle=\color{blue}]
+int f(){
+	return 3;
+}
+\end{lstlisting}
+
+Obfuscators, on the other hand, use the so-called \textit{dead code insertion} technique in an attempt to make the code harder to follow. This technique performs the inverse operation with respect to \textit{dead code elimination}, adding dead code in the original program's code.
+
+However, when used alone, this techniques produces an obfuscated program that can be efficiently de-obfuscated by using the compiler's dead code elimination optimization, which is effectively the inverse operation.
+
+\paragraph{Arithmetic Substitution via Identities}
+This technique aims at replacing certain operators with combinations of other operators with equal net result. Exploiting the equivalence between different combinations of different operators the code can be changed arbitrarily without changing the effective program operation and final result. Here are some examples of operators equivalences:
+
+\begin{lstlisting}[caption={Operators equivalences}, label=OperatorEquivalences, language=C, commentstyle=\color{ForestGreen}, keepspaces=true, keywordstyle=\color{blue}]
+-x == ~x + 1
+
+x-1 == ~-x
+
+x+1 == -~x
+
+rotate_left(x,y) == (x << y) | (x >> (bits(x) - y))
+
+rotate_right(x,y) == (x >> y) | (x << (bits(x) - y))
+\end{lstlisting}
+
+\paragraph{Pattern-Based Obfuscation}
+
+\subsubsection{Control-Based Obfuscation}
 
 \subsection{Polymorphic and Metamorphic Malware}
 

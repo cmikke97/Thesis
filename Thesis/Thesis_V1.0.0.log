@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  29 MAY 2021 17:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  1 JUN 2021 18:25
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -746,17 +746,17 @@ Overfull \hbox (25.00003pt too wide) in paragraph at lines 698--698
 [][] 
  []
 
-[26] [27] [28] [29] [30] [31]
+[26] [27] [28] [29] [30] [31] [32] [33]
 Chapter 3.
-[32
+[34
 
 ]
 Chapter 4.
-[33
+[35
 
 ]
 Chapter 5.
-(Thesis_V1.0.0.bbl [34
+(Thesis_V1.0.0.bbl [36
 
 ]
 Underfull \hbox (badness 1242) in paragraph at lines 4--6
@@ -842,38 +842,43 @@ Underfull \hbox (badness 10000) in paragraph at lines 83--86
 / searchsecurity . techtarget . com / definition /
  []
 
-[35
+[37
 
-]) [36] (Thesis_V1.0.0.aux)
+]) [38] (Thesis_V1.0.0.aux)
 Package rerunfilecheck Info: File `Thesis_V1.0.0.out' has not changed.
 (rerunfilecheck)             Checksum: C7FE356A71D487D54F87E391F14DC8BB;2525.
  ) 
 Here is how much of TeX's memory you used:
- 16274 strings out of 481296
- 274312 string characters out of 2908369
- 843605 words of memory out of 3000000
- 33007 multiletter control sequences out of 15000+600000
+ 16343 strings out of 481296
+ 275280 string characters out of 2908369
+ 843999 words of memory out of 3000000
+ 33036 multiletter control sequences out of 15000+600000
  414659 words of font info for 66 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 134i,13n,137p,1159b,1615s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 134i,13n,137p,1159b,2352s stack positions out of 5000i,500n,10000p,200000b,80000s
  <C:\Users\michele\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tc
 rm1000.pk><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
 sfonts/cm/cmbx10.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type
 1/public/amsfonts/cm/cmbx12.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX
 /fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Users/michele/AppData/Local/Pr
 ograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/michele/AppD
-ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/mi
-chele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C
-:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cm
-r17.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsf
-onts/cm/cmr9.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/pu
-blic/amsfonts/cm/cmsl8.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/font
-s/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/michele/AppData/Local/Programs/
-MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/michele/AppData/Loca
-l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on Thesis_V1.0.0.pdf (36 pages, 388170 bytes).
+ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/m
+ichele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><
+C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
+mr12.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
+fonts/cm/cmr17.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/
+public/amsfonts/cm/cmr7.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fon
+ts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/michele/AppData/Local/Programs/M
+iKTeX/fonts/type1/public/amsfonts/cm/cmsl8.pfb><C:/Users/michele/AppData/Local/
+Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/michele/App
+Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/m
+ichele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+<C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
+cmti12.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
+msfonts/cm/cmtt10.pfb>
+Output written on Thesis_V1.0.0.pdf (38 pages, 433360 bytes).
 PDF statistics:
- 584 PDF objects out of 1000 (max. 8388607)
- 158 named destinations out of 1000 (max. 500000)
+ 663 PDF objects out of 1000 (max. 8388607)
+ 198 named destinations out of 1000 (max. 500000)
  158 words of extra memory for PDF output out of 10000 (max. 10000000)
 
