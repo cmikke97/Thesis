@@ -925,6 +925,45 @@ rotate_right(x,y) == (x >> y) | (x << (bits(x) - y))
 \end{lstlisting}
 
 \paragraph{Pattern-Based Obfuscation}
+\textit{Pattern-based} obfuscation, another commonly used technique, consists in constructing \textit{patterns} (transformations) that map single or multiple adjacent instructions into a more complex, computationally equivalent, sequence of instructions.
+
+For example, the sequence \ref{PatternObfuscationOriginalSequence} might be converted into \ref{PatternObfuscationPattern1}, as well as into \ref{PatternObfuscationPattern2} or even \ref{PatternObfuscationPattern3}.
+
+\begin{lstlisting}[caption={Original sequence}, label=PatternObfuscationOriginalSequence, language={[x86masm]Assembler}, commentstyle=\color{ForestGreen}, keepspaces=true, keywordstyle=\color{blue}]
+push	reg32
+\end{lstlisting}
+
+\begin{lstlisting}[caption={Obfuscation using pattern 1}, label=PatternObfuscationPattern1, language={[x86masm]Assembler}, commentstyle=\color{ForestGreen}, keepspaces=true, keywordstyle=\color{blue}]
+push	imm32
+mov	dword ptr [esp],	reg32
+\end{lstlisting}
+
+\begin{lstlisting}[caption={Obfuscation using pattern 2}, label=PatternObfuscationPattern2, language={[x86masm]Assembler}, commentstyle=\color{ForestGreen}, keepspaces=true, keywordstyle=\color{blue}]
+lea	esp,	[esp-4]
+mov	dword ptr [esp],	reg32
+\end{lstlisting}
+
+\begin{lstlisting}[caption={Obfuscation using pattern 3}, label=PatternObfuscationPattern3, language={[x86masm]Assembler}, commentstyle=\color{ForestGreen}, keepspaces=true, keywordstyle=\color{blue}]
+sub	esp,	4
+mov	dword ptr [esp],	reg32
+\end{lstlisting}
+
+Moreover, patterns can be arbitrarily complicated. For example a listing such as \ref{PatternObfuscationOriginalSequence2}, could be substituted by the more complex \ref{PatternObfuscation2Pattern}.
+
+\begin{lstlisting}[caption={Original sequence \#2}, label=PatternObfuscationOriginalSequence2, language={[x86masm]Assembler}, commentstyle=\color{ForestGreen}, keepspaces=true, keywordstyle=\color{blue}]
+sub	esp,	4
+\end{lstlisting}
+
+\begin{lstlisting}[caption={Obfuscation of sequence \#2}, label=PatternObfuscation2Pattern, language={[x86masm]Assembler}, commentstyle=\color{ForestGreen}, keepspaces=true, keywordstyle=\color{blue}]
+push	reg32
+mov	reg32,	esp
+xchg	[esp],	reg32
+pop	esp
+\end{lstlisting}
+
+Malware authors (and also software developers wishing to protect their intellectual property) can use hundreds of patterns in the same program. Moreover, most protections randomly apply patterns so that obfuscating the same program multiple times yields different results. On top of that, patterns can also be applied iteratively: after transforming the original code \textbf{C} into \textbf{C'} using pattern \textbf{P}, another pattern \textbf{P'} can be applied to \textbf{C'} in order to obtain \textbf{C''}, and so on.
+
+Some patterns preserve \textit{semantic equivalence}, meaning that the CPU state will be the same when executing them or the original code. Some other patterns, however, do not. Therefore, depending on the code logic, some substitutions are safe (meaning that the program behaviour and final results are preserved) while others are not. This makes the job of an obfuscator challenging.
 
 \subsubsection{Control-Based Obfuscation}
 
