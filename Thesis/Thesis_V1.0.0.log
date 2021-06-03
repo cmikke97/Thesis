@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  2 JUN 2021 00:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  3 JUN 2021 18:41
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -556,26 +556,26 @@ Package: listings 2020/03/24 1.8d (Carsten Heinz)
 ) (Thesis_V1.0.0.aux)
 \openout1 = `Thesis_V1.0.0.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Info: Redefining \it@ocap on input line 48.
-LaTeX Info: Redefining \it@ccap on input line 48.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Info: Redefining \it@ocap on input line 72.
+LaTeX Info: Redefining \it@ccap on input line 72.
 
 
 File italian.ldf warning: 
@@ -583,7 +583,7 @@ italian.ldf    With OT1 encoding guillemets are poorly faked
 italian.ldf    Use T1 encoding
 italian.ldf    or specify a font with command \CaporaliFrom
 italian.ldf    See the documentation concerning the babel-italian typesetting 
-italian.ldf    on input line 48.
+italian.ldf    on input line 72.
 
 
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.
@@ -611,13 +611,13 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 .cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-Package TOPtesi Info: Margin width recalculation on input line 48.
+Package TOPtesi Info: Margin width recalculation on input line 72.
 Package TOPtesi Info: Before:
 (TOPtesi)             oddsidemargin  15.23279pt
-(TOPtesi)             evensidemargin 15.23279pt on input line 48.
+(TOPtesi)             evensidemargin 15.23279pt on input line 72.
 Package TOPtesi Info: After:
 (TOPtesi)             oddsidemargin  35.1497pt
-(TOPtesi)             evensidemargin -4.68413pt on input line 48.
+(TOPtesi)             evensidemargin -4.68413pt on input line 72.
 \captionwidth=\dimen170
 \fullwidth=\dimen171
 
@@ -636,7 +636,7 @@ e
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/base\textcomp.sty
 Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
 ))
-Package hyperref Info: Link coloring ON on input line 48.
+Package hyperref Info: Link coloring ON on input line 72.
 
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
@@ -650,9 +650,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count310
 )
-LaTeX Info: Redefining \ref on input line 48.
-LaTeX Info: Redefining \pageref on input line 48.
-LaTeX Info: Redefining \nameref on input line 48.
+LaTeX Info: Redefining \ref on input line 72.
+LaTeX Info: Redefining \pageref on input line 72.
+LaTeX Info: Redefining \nameref on input line 72.
  (Thesis_V1.0.0.out) (Thesis_V1.0.0.out)
 \@outlinefile=\write4
 \openout4 = `Thesis_V1.0.0.out'.
@@ -672,20 +672,20 @@ Dictionary: translator-basic-dictionary, Language: English
 )
 \c@lstlisting=\count311
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 48.
+(Font)              <7> on input line 72.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 48.
+(Font)              <5> on input line 72.
 <logopolito.pdf, id=78, 526.79488pt x 523.45164pt>
 File: logopolito.pdf Graphic file (type pdf)
 <use logopolito.pdf>
-Package pdftex.def Info: logopolito.pdf  used on input line 89.
+Package pdftex.def Info: logopolito.pdf  used on input line 113.
 (pdftex.def)             Requested size: 70.44707pt x 70.00249pt.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 117.
+(Font)              <12> on input line 141.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 117.
+(Font)              <8> on input line 141.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 117.
+(Font)              <6> on input line 141.
  [1{C:/Users/michele/AppData/Local/MiKTeX/pdftex/config/pdftex.map}
 
 
@@ -729,34 +729,24 @@ File: lstlang2.sty 2020/03/24 1.8d listings language file
 File: lstlang3.sty 2020/03/24 1.8d listings language file
 )
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 555.
+nput line 579.
  [22] [23] [24] [25]
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 )
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
 File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
-)
-Overfull \hbox (25.00003pt too wide) in paragraph at lines 666--666
-[][] 
- []
-
-
-Overfull \hbox (25.00003pt too wide) in paragraph at lines 698--698
-[][] 
- []
-
-[26] [27] [28] [29] [30] [31] [32] [33]
+) [26] [27] [28] [29] [30] [31] [32] [33] [34] [35] [36]
 Chapter 3.
-[34
+[37
 
 ]
 Chapter 4.
-[35
+[38
 
 ]
 Chapter 5.
-(Thesis_V1.0.0.bbl [36
+(Thesis_V1.0.0.bbl [39
 
 ]
 Underfull \hbox (badness 1242) in paragraph at lines 4--6
@@ -842,20 +832,20 @@ Underfull \hbox (badness 10000) in paragraph at lines 83--86
 / searchsecurity . techtarget . com / definition /
  []
 
-[37
+[40
 
-]) [38] (Thesis_V1.0.0.aux)
+]) [41] (Thesis_V1.0.0.aux)
 Package rerunfilecheck Info: File `Thesis_V1.0.0.out' has not changed.
 (rerunfilecheck)             Checksum: C7FE356A71D487D54F87E391F14DC8BB;2525.
  ) 
 Here is how much of TeX's memory you used:
- 16375 strings out of 481296
- 275820 string characters out of 2908369
- 844341 words of memory out of 3000000
- 33050 multiletter control sequences out of 15000+600000
+ 16420 strings out of 481296
+ 276482 string characters out of 2908369
+ 909905 words of memory out of 3000000
+ 33067 multiletter control sequences out of 15000+600000
  414659 words of font info for 66 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 134i,13n,137p,1159b,2352s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 134i,13n,137p,1159b,1700s stack positions out of 5000i,500n,10000p,200000b,80000s
  <C:\Users\michele\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tc
 rm1000.pk><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
 sfonts/cm/cmbx10.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type
@@ -867,18 +857,20 @@ ichele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><
 C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
 mr12.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
 fonts/cm/cmr17.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/
-public/amsfonts/cm/cmr7.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fon
-ts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/michele/AppData/Local/Programs/M
-iKTeX/fonts/type1/public/amsfonts/cm/cmsl8.pfb><C:/Users/michele/AppData/Local/
-Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/michele/App
-Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/m
-ichele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-<C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
-cmti12.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
-msfonts/cm/cmtt10.pfb>
-Output written on Thesis_V1.0.0.pdf (38 pages, 439039 bytes).
+public/amsfonts/cm/cmr5.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fon
+ts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/michele/AppData/Local/Programs/M
+iKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/michele/AppData/Local/P
+rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmsl8.pfb><C:/Users/michele/AppDa
+ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/mi
+chele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C
+:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cm
+ti10.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
+fonts/cm/cmti12.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1
+/public/amsfonts/cm/cmtt10.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/
+fonts/type1/public/amsfonts/cm/cmtt8.pfb>
+Output written on Thesis_V1.0.0.pdf (41 pages, 480028 bytes).
 PDF statistics:
- 690 PDF objects out of 1000 (max. 8388607)
- 216 named destinations out of 1000 (max. 500000)
+ 762 PDF objects out of 1000 (max. 8388607)
+ 244 named destinations out of 1000 (max. 500000)
  158 words of extra memory for PDF output out of 10000 (max. 10000000)
 

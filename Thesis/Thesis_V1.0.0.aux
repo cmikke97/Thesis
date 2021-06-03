@@ -126,6 +126,7 @@
 \@writefile{toc}{\contentsline {subsubsection}{Obscuring Flow Control}{24}{section*.14}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{The Function Pointer Problem}{24}{section*.15}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Return Pointer Abuse}{24}{section*.16}\protected@file@percent }
+\newlabel{MisusingStructuredExceptionHandlers}{{2.2.3}{24}{Misusing Structured Exception Handlers}{section*.17}{}}
 \@writefile{toc}{\contentsline {paragraph}{Misusing Structured Exception Handlers}{24}{section*.17}\protected@file@percent }
 \citation{SikorskiPMA}
 \citation{SikorskiPMA}
@@ -156,9 +157,9 @@
 \citation{SikorskiPMA}
 \citation{SikorskiPMA}
 \citation{LiPRTCMP}
+\citation{PedreroDPI}
 \@writefile{toc}{\contentsline {subsubsection}{Vulnerable Instructions}{29}{section*.27}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2.6}Packers and unpacking}{29}{subsection.2.2.6}\protected@file@percent }
-\citation{PedreroDPI}
 \citation{WeiRPM}
 \citation{SikorskiPMA}
 \citation{SikorskiPMA}
@@ -169,6 +170,8 @@
 \citation{Balakrishnan2005CodeOL}
 \citation{KonstantinouMV}
 \citation{YouMalwareOT}
+\citation{DangPRE}
+\citation{DangPRE}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2.7}Code Obfuscation}{31}{subsection.2.2.7}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{Data-Based Obfuscation}{31}{section*.31}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Constant Unfolding}{31}{section*.32}\protected@file@percent }
@@ -176,6 +179,10 @@
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {2.6}Before constant folding}{31}{lstlisting.2.6}\protected@file@percent }
 \newlabel{ConstantFoldingAfter}{{2.7}{31}{After constant folding}{lstlisting.2.7}{}}
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {2.7}After constant folding}{31}{lstlisting.2.7}\protected@file@percent }
+\citation{DangPRE}
+\citation{DangPRE}
+\citation{DangPRE}
+\citation{DangPRE}
 \newlabel{ConstantUnfoldingBefore}{{2.8}{32}{Before constant unfolding}{lstlisting.2.8}{}}
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {2.8}Before constant unfolding}{32}{lstlisting.2.8}\protected@file@percent }
 \newlabel{ConstantUnfoldingAfter}{{2.9}{32}{After constant unfolding}{lstlisting.2.9}{}}
@@ -187,8 +194,9 @@
 \newlabel{DeadCodeEliminationAfter}{{2.11}{32}{After dead code elimination}{lstlisting.2.11}{}}
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {2.11}After dead code elimination}{32}{lstlisting.2.11}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Arithmetic Substitution via Identities}{32}{section*.35}\protected@file@percent }
-\newlabel{OperatorEquivalences}{{2.12}{33}{Operators equivalences}{lstlisting.2.12}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.12}Operators equivalences}{33}{lstlisting.2.12}\protected@file@percent }
+\newlabel{OperatorEquivalences}{{2.12}{32}{Operators equivalences}{lstlisting.2.12}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.12}Operators equivalences}{32}{lstlisting.2.12}\protected@file@percent }
+\citation{DangPRE}
 \@writefile{toc}{\contentsline {paragraph}{Pattern-Based Obfuscation}{33}{section*.36}\protected@file@percent }
 \newlabel{PatternObfuscationOriginalSequence}{{2.13}{33}{Original sequence}{lstlisting.2.13}{}}
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {2.13}Original sequence}{33}{lstlisting.2.13}\protected@file@percent }
@@ -203,16 +211,38 @@
 \newlabel{PatternObfuscation2Pattern}{{2.18}{33}{Obfuscation of sequence \#2}{lstlisting.2.18}{}}
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {2.18}Obfuscation of sequence \#2}{33}{lstlisting.2.18}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{Control-Based Obfuscation}{33}{section*.37}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.8}Polymorphic and Metamorphic Malware}{33}{subsection.2.2.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {chapter}{\numberline {3}Proposed Tool}{34}{chapter.3}\protected@file@percent }
+\citation{DangPRE}
+\citation{DangPRE}
+\citation{DangPRE}
+\citation{DangPRE}
+\@writefile{toc}{\contentsline {paragraph}{Functions In/Out-Lining}{34}{section*.38}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Destruction of Sequential and Temporal Locality}{34}{section*.39}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Processor-Based Control Indirection}{34}{section*.40}\protected@file@percent }
+\newlabel{ProcessorBasedControlIndirectionBefore}{{2.19}{34}{Processor-based control indirection before}{lstlisting.2.19}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.19}Processor-based control indirection before}{34}{lstlisting.2.19}\protected@file@percent }
+\newlabel{ProcessorBasedControlIndirectionAfter}{{2.20}{34}{Processor-based control indirection after}{lstlisting.2.20}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.20}Processor-based control indirection after}{34}{lstlisting.2.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Operating System-Based Control Indirection}{34}{section*.41}\protected@file@percent }
+\citation{DangPRE}
+\citation{DangPRE}
+\citation{DangPRE}
+\@writefile{toc}{\contentsline {paragraph}{Opaque Predicated}{35}{section*.42}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Simultaneous Control-Flow and Data-Flow Obfuscation}{35}{section*.43}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Inserting Junk Code}{35}{section*.44}\protected@file@percent }
+\newlabel{JunkCodeExample}{{2.21}{35}{Junk Code example}{lstlisting.2.21}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.21}Junk Code example}{35}{lstlisting.2.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Control-Flow Graph Flattening}{35}{section*.45}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Code Virtualization}{35}{section*.46}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.8}Polymorphic and Metamorphic Malware}{36}{subsection.2.2.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {3}Proposed Tool}{37}{chapter.3}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {chapter}{\numberline {4}Results}{35}{chapter.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Results}{38}{chapter.4}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \bibstyle{torsec}
 \bibdata{biblio}
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}Conclusions}{36}{chapter.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Conclusions}{39}{chapter.5}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \bibcite{SharpAIM}{1}
@@ -234,7 +264,7 @@
 \bibcite{LutkevichM}{17}
 \bibcite{Szor_P}{18}
 \bibcite{Sharma_2014}{19}
-\@writefile{toc}{\contentsline {chapter}{Bibliography}{37}{chapter.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{Bibliography}{40}{chapter.5}\protected@file@percent }
 \bibcite{SkoudisFMC}{20}
 \bibcite{EilamRSRE}{21}
 \bibcite{BayerDAMC}{22}
@@ -245,4 +275,5 @@
 \bibcite{Balakrishnan2005CodeOL}{27}
 \bibcite{KonstantinouMV}{28}
 \bibcite{YouMalwareOT}{29}
-\gdef \@abspage@last{38}
+\bibcite{DangPRE}{30}
+\gdef \@abspage@last{41}

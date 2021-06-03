@@ -45,6 +45,30 @@
 
 \input{commands.tex}
 
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{blue},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+
 \begin{document}
 	
 \selectlanguage{english}
@@ -552,11 +576,11 @@ Particularly, in the case of conditional branches, the disassembler needs to fol
 One of the most used anti-disassembly techniques consists of two consecutive conditional \textit{jump} instructions both pointing to the same target \cite{SikorskiPMA}.
 
 Here is an example:
-\begin{lstlisting}[caption={Jump Instructions with the Same Target}, label=JumpSameTarget, language={[x86masm]Assembler}, commentstyle=\color{ForestGreen}, keepspaces=true, keywordstyle=\color{blue}]
-74 03		jz 	loc
-75 01		jnz	loc
-
-		loc:
+\begin{lstlisting}[caption={Jump Instructions with the Same Target}, label=JumpSameTarget, language={[x86masm]Assembler}, style=mystyle]
+	74 03		jz 	loc
+	75 01		jnz	loc
+	
+	loc:
 \end{lstlisting}
 
 In this case, the conditional jump '\textbf{jz loc}' is immediately followed by a jump to the same target but with opposite condition: '\textbf{jnz loc}'. This implies that the location \textbf{loc} will always be jumped to.
@@ -566,11 +590,11 @@ Consequently, the combination of \textbf{jz} with \textbf{jnz} acts, in this cas
 Another common anti-disassembly technique is composed of a single conditional \textit{jump} instruction with an always true (or false) condition \cite{SikorskiPMA}.
 
 Example:
-\begin{lstlisting}[caption={Jump Instructions with a Constant Condition example}, label=JumpConstant, language={[x86masm]Assembler}, commentstyle=\color{ForestGreen}, keepspaces=true, keywordstyle=\color{blue}]
-33 C0		xor	eax, eax
-74 01		jz 	loc
-
-		loc:
+\begin{lstlisting}[caption={Jump Instructions with a Constant Condition example}, label=JumpConstant, language={[x86masm]Assembler}, style=mystyle]
+	33 C0		xor	eax, eax
+	74 01		jz 	loc
+	
+	loc:
 \end{lstlisting}
 
 The first instruction in the example code, \textbf{xor eax, eax}, sets the \textbf{EAX} register to zero and, consequently, it sets the zero flag. The next instruction, \textbf{jz} (jump if zero flag is set), appears to be a conditional jump but in reality is not conditional at all. In fact the the zero flag will always be set at this point in the program execution. The disassembler, however, will process the false branch first, even if in reality it would never trigger.
@@ -585,13 +609,13 @@ However, there are some conditions in which no traditional assembly listing can 
 The core idea behind these techniques is to make the \textit{rogue byte} part of a legitimate instruction that is executed at runtime. This way the \textit{rogue byte} becomes not ignorable during disassembly. In this scenario any given byte may be a part of multiple instructions that are executed. This is done using \textit{jump} instructions. The processor, while running the code, will interpret and execute the bytes following the logical flow of the program, so there is no limitation on the number of instructions the same byte can be part of; a disassembler, however, has such limitations since it will usually represent a single byte as being part of a single instruction.
 
 Example:
-\begin{lstlisting}[caption={Impossible Disassembly example}, label=ImpossibleDisassembly, language={[x86masm]Assembler}, commentstyle=\color{ForestGreen}, keepspaces=true, keywordstyle=\color{blue}]
-EB 
-	JMP -1
-FF
-	INC EAX
-C0
-48	DEC EAX
+\begin{lstlisting}[caption={Impossible Disassembly example}, label=ImpossibleDisassembly, language={[x86masm]Assembler}, style=mystyle]
+	EB 
+				JMP -1
+	FF
+				INC EAX
+	C0
+	48		DEC EAX
 \end{lstlisting}
 
 In this simple example the first instruction is a 2-byte \textit{jmp -1} instruction (\textbf{EB FF}). Its target is the its own second byte. At run time this causes no errors because the \textbf{FF} byte is the first byte of the next instruction \textit{inc eax} (\textbf{FF C0}).
@@ -624,7 +648,7 @@ Therefore a \textit{call} instruction can be seen as the combination of a \texti
 
 The \textit{retn} instruction pops the last value pushed to the stack and jumps to it; it is therefore typically used to return from a function call, but it could also be used for other purposes. When used for such other reasons the disassembler is generally fooled, because it still will interpret it as a return from a function call. Therefore it won't show any code cross-reference to the target being jumped to. As added benefit the disassembler will also prematurely terminate the function being analysed.
 
-\paragraph{Misusing Structured Exception Handlers}
+\paragraph{Misusing Structured Exception Handlers}\label{MisusingStructuredExceptionHandlers}
 Another powerful anti-disassembly technique exploits the Structured Exception Handling (\textbf{SEH}) mechanism. Performing program flow control using this mechanism is able to fool both disassemblers and debuggers \cite{SikorskiPMA}.
 
 \textbf{SEH} provides programs a way to handle error conditions intelligently. \textit{C++} and other programming languages heavily rely on exception handling (and therefore on \textbf{SEH}) when compiled for x86 systems.
@@ -663,24 +687,24 @@ Here are some examples of common Windows API functions used for \textit{anti-deb
 	\item \textbf{OutputDebugString}
 	This function, originally designed to just send a string to a debugger for display, can be used to detect the presence of a debugger. In fact, in there is no debugger attached, the function will internally set the last-error code. In a few lines of code it is thus possible to know if a debugger is present or not:
 	
-	\begin{lstlisting}[caption={OutputDebugString debugger detection}, label=OutputDebugString, language=C, commentstyle=\color{ForestGreen}, keepspaces=true, keywordstyle=\color{blue}]
-DWORD errorValue = 12345;
-// set custom last error code
-SetLastError(errorValue);
-
-// try outputting string on debugger;
-// if no debugger is present, it will set
-// the last-error code to a new value
-OutputDebugString("Test for Debugger");
-
-if(GetLastError() == errorValue){
-	// a debugger is present
-	ExitProcess();
-}
-else{
-	// no debugger was detected
-	RunMaliciousPayload();
-}
+	\begin{lstlisting}[caption={OutputDebugString debugger detection}, label=OutputDebugString, language=C, style=mystyle]
+	DWORD errorValue = 12345;
+	// set custom last error code
+	SetLastError(errorValue);
+	
+	// try outputting string on debugger;
+	// if no debugger is present, it will set
+	// the last-error code to a new value
+	OutputDebugString("Test for Debugger");
+	
+	if(GetLastError() == errorValue){
+		// a debugger is present
+		ExitProcess();
+	}
+	else{
+		// no debugger was detected
+		RunMaliciousPayload();
+	}
 	\end{lstlisting}
 	
 \end{itemize}
@@ -695,11 +719,11 @@ Malware authors usually don't exploit the Windows API functions for detecting th
 	Malware can 'manually' check the \textit{BeingDebugged} flag within the PEB structure to understand if a debugger is attached its process. More precisely if this flag is zero it means that no debugger is attached.
 	
 	Example of code listing performing 'manual' \textit{BeingDebugged} check:
-	\begin{lstlisting}[caption={BeingDebugged manual check}, label=BeingDebuggedManual, language={[x86masm]Assembler}, commentstyle=\color{ForestGreen}, keepspaces=true, keywordstyle=\color{blue}]
-mov eax, dword ptr fs:[30h]	; get PEB address
-mov ebx, byte ptr [eax+2]	; get BeingDebugged flag value
-test ebx, ebx			; test if the value is 0
-jz NoDebuggerDetected		; if 0, no debugger was detected
+	\begin{lstlisting}[caption={BeingDebugged manual check}, label=BeingDebuggedManual, language={[x86masm]Assembler}, style=mystyle]
+	mov		eax,	dword ptr fs:[30h]	; get PEB address
+	mov		ebx,	byte ptr [eax+2]		; get BeingDebugged flag value
+	test	ebx,	ebx									; test if the value is 0
+	jz		NoDebuggerDetected				; if 0, no debugger was detected
 	\end{lstlisting}
 	
 	Malware analysts can counter this technique detecting this code sequence in the code and then wither manually changing the \textit{BeingDebugged} flag to zero, or forcing the jump to be taken (or not) by manually modifying the zero flag before the jump instruction.
@@ -853,56 +877,56 @@ Obfuscation techniques can be broadly divided into 2 main sub-categories:
 	\item \textit{Control-based} obfuscation
 \end{itemize}
 
-However, malware authors usually combine those 2 types of obfuscation techniques in complex and difficult ways to strengthen the resulting obfuscation.
+However, malware authors usually combine those 2 types of obfuscation techniques in complex and difficult ways to strengthen the resulting obfuscation \cite{DangPRE}.
 
 \subsubsection{Data-Based Obfuscation}
-Data-based obfuscation techniques focus on modifying data values and non-control computations.
+Data-based obfuscation techniques focus on modifying data values and non-control computations. In the following paragraphs some common data-based obfuscation techniques will be discussed.
 
 \paragraph{Constant Unfolding}
-\textit{Constant folding} is a technique commonly used by compilers to optimize a program's code. It does so by replacing expressions with results known at compile time with the results themselves.
+\textit{Constant folding} is a technique commonly used by compilers to optimize a program's code. It does so by replacing expressions with results known at compile time with the results themselves \cite{DangPRE}.
 
 For example, a compiler usually transforms the following expression \ref{ConstantFoldingBefore}, into \ref{ConstantFoldingAfter}.
-\begin{lstlisting}[caption={Before constant folding}, label=ConstantFoldingBefore, language=C, commentstyle=\color{ForestGreen}, keepspaces=true, keywordstyle=\color{blue}]
-x = 4 * 5;
+\begin{lstlisting}[caption={Before constant folding}, label=ConstantFoldingBefore, language=C, style=mystyle]
+	x = 4 * 5;
 \end{lstlisting}
 
-\begin{lstlisting}[caption={After constant folding}, label=ConstantFoldingAfter, language=C, commentstyle=\color{ForestGreen}, keepspaces=true, keywordstyle=\color{blue}]
-x = 20;
+\begin{lstlisting}[caption={After constant folding}, label=ConstantFoldingAfter, language=C, style=mystyle]
+	x = 20;
 \end{lstlisting}
 
 \textit{Constant unfolding} is, instead, an obfuscation technique that performs the exact inverse operation: it replaces the constants in the program's code with some expressions having the constant as a result.
 
 For example, the listing \ref{ConstantUnfoldingBefore}, after \textit{Constant unfolding} may become \ref{ConstantUnfoldingAfter}. The two listings are equivalent. Moreover, there is an infinite amount of listings equivalent to \ref{ConstantUnfoldingBefore} that can be generated following this principle.
-\begin{lstlisting}[caption={Before constant unfolding}, label=ConstantUnfoldingBefore, language={[x86masm]Assembler}, commentstyle=\color{ForestGreen}, keepspaces=true, keywordstyle=\color{blue}]
-push	0h
+\begin{lstlisting}[caption={Before constant unfolding}, label=ConstantUnfoldingBefore, language={[x86masm]Assembler}, style=mystyle]
+	push	0h
 \end{lstlisting}
 
-\begin{lstlisting}[caption={After constant unfolding}, label=ConstantUnfoldingAfter, language={[x86masm]Assembler}, commentstyle=\color{ForestGreen}, keepspaces=true, keywordstyle=\color{blue}]
-push	0F9CBE47Ah
-add	dword ptr [esp],	6341B86h
+\begin{lstlisting}[caption={After constant unfolding}, label=ConstantUnfoldingAfter, language={[x86masm]Assembler}, style=mystyle]
+	push	0F9CBE47Ah
+	add		dword ptr [esp],	6341B86h
 \end{lstlisting}
 
 \paragraph{Data-Encoding Schemes}
-The previously described technique is, however, easily defeated by simply applying the standard compiler's constant folding optimization. This is possible because both the data encoding and decoding functions ($f(x)=x-6341B86h$ and $f_{-1}(x)=x+6341B86h$ respectively) were present in the code one after the other. The use of \textit{fully Homomorphic} mappings (operation-preserving mappings) allow us to perform some operations on the encoded data before decoding it back, thus overcoming the previous technique's flaw. \textit{Fully Homomorphic} mappings are however still not widely used because still too inefficient.
+The previously described technique is, however, easily defeated by simply applying the standard compiler's constant folding optimization. This is possible because both the data encoding and decoding functions ($f(x)=x-6341B86h$ and $f_{-1}(x)=x+6341B86h$ respectively) were present in the code one after the other. The use of \textit{fully Homomorphic} mappings (operation-preserving mappings) allow us to perform some operations on the encoded data before decoding it back, thus overcoming the previous technique's flaw. \textit{Fully Homomorphic} mappings are however still not widely used because still too inefficient \cite{DangPRE}.
 
 \paragraph{Dead Code Insertion}
-\textit{Dead code elimination} is another common compiler optimization technique. Its objective is to remove program statements/expressions that nave no real effects on the program operation and final results.
+\textit{Dead code elimination} is another common compiler optimization technique. Its objective is to remove program statements/expressions that nave no real effects on the program operation and final results \cite{DangPRE}.
 
 For example, the listing \ref{DeadCodeEliminationBefore}, using \textit{dead code elimination} would become \ref{DeadCodeEliminationAfter}.
-\begin{lstlisting}[caption={Before dead code elimination}, label=DeadCodeEliminationBefore, language=C, commentstyle=\color{ForestGreen}, keepspaces=true, keywordstyle=\color{blue}]
-int f(){
-	int x, y;
-	x = 1;		// this assignement is useless, here x is dead
-	y = 2;		// y is never used, it is thus dead.
-	x = 3;
-	return x;	// x is live
-}
+\begin{lstlisting}[caption={Before dead code elimination}, label=DeadCodeEliminationBefore, language=C, style=mystyle]
+	int f(){
+		int x, y;
+		x = 1;		// this assignement is useless, here x is dead
+		y = 2;		// y is never used, it is thus dead.
+		x = 3;
+		return x;	// x is live
+	}
 \end{lstlisting}
 
-\begin{lstlisting}[caption={After dead code elimination}, label=DeadCodeEliminationAfter, language=C, commentstyle=\color{ForestGreen}, keepspaces=true, keywordstyle=\color{blue}]
-int f(){
-	return 3;
-}
+\begin{lstlisting}[caption={After dead code elimination}, label=DeadCodeEliminationAfter, language=C, style=mystyle]
+	int f(){
+		return 3;
+	}
 \end{lstlisting}
 
 Obfuscators, on the other hand, use the so-called \textit{dead code insertion} technique in an attempt to make the code harder to follow. This technique performs the inverse operation with respect to \textit{dead code elimination}, adding dead code in the original program's code.
@@ -910,55 +934,55 @@ Obfuscators, on the other hand, use the so-called \textit{dead code insertion} t
 However, when used alone, this techniques produces an obfuscated program that can be efficiently de-obfuscated by using the compiler's dead code elimination optimization, which is effectively the inverse operation.
 
 \paragraph{Arithmetic Substitution via Identities}
-This technique aims at replacing certain operators with combinations of other operators with equal net result. Exploiting the equivalence between different combinations of different operators the code can be changed arbitrarily without changing the effective program operation and final result. Here are some examples of operators equivalences:
+This technique aims at replacing certain operators with combinations of other operators with equal net result. Exploiting the equivalence between different combinations of different operators the code can be changed arbitrarily without changing the effective program operation and final result \cite{DangPRE}. Here are some examples of operators equivalences:
 
-\begin{lstlisting}[caption={Operators equivalences}, label=OperatorEquivalences, language=C, commentstyle=\color{ForestGreen}, keepspaces=true, keywordstyle=\color{blue}]
--x == ~x + 1
-
-x-1 == ~-x
-
-x+1 == -~x
-
-rotate_left(x,y) == (x << y) | (x >> (bits(x) - y))
-
-rotate_right(x,y) == (x >> y) | (x << (bits(x) - y))
+\begin{lstlisting}[caption={Operators equivalences}, label=OperatorEquivalences, language=C, style=mystyle]
+	-x == ~x + 1
+	
+	x-1 == ~-x
+	
+	x+1 == -~x
+	
+	rotate_left(x,y) == (x << y) | (x >> (bits(x) - y))
+	
+	rotate_right(x,y) == (x >> y) | (x << (bits(x) - y))
 \end{lstlisting}
 
 \paragraph{Pattern-Based Obfuscation}
-\textit{Pattern-based} obfuscation, another commonly used technique, consists in constructing \textit{patterns} (transformations) that map single or multiple adjacent instructions into a more complex, computationally equivalent, sequence of instructions.
+\textit{Pattern-based} obfuscation, another commonly used technique, consists in constructing \textit{patterns} (transformations) that map single or multiple adjacent instructions into a more complex, computationally equivalent, sequence of instructions \cite{DangPRE}.
 
 For example, the sequence \ref{PatternObfuscationOriginalSequence} might be converted into \ref{PatternObfuscationPattern1}, as well as into \ref{PatternObfuscationPattern2} or even \ref{PatternObfuscationPattern3}.
 
-\begin{lstlisting}[caption={Original sequence}, label=PatternObfuscationOriginalSequence, language={[x86masm]Assembler}, commentstyle=\color{ForestGreen}, keepspaces=true, keywordstyle=\color{blue}]
-push	reg32
+\begin{lstlisting}[caption={Original sequence}, label=PatternObfuscationOriginalSequence, language={[x86masm]Assembler}, style=mystyle]
+	push	reg32
 \end{lstlisting}
 
-\begin{lstlisting}[caption={Obfuscation using pattern 1}, label=PatternObfuscationPattern1, language={[x86masm]Assembler}, commentstyle=\color{ForestGreen}, keepspaces=true, keywordstyle=\color{blue}]
-push	imm32
-mov	dword ptr [esp],	reg32
+\begin{lstlisting}[caption={Obfuscation using pattern 1}, label=PatternObfuscationPattern1, language={[x86masm]Assembler}, style=mystyle]
+	push	imm32
+	mov		dword ptr [esp],	reg32
 \end{lstlisting}
 
-\begin{lstlisting}[caption={Obfuscation using pattern 2}, label=PatternObfuscationPattern2, language={[x86masm]Assembler}, commentstyle=\color{ForestGreen}, keepspaces=true, keywordstyle=\color{blue}]
-lea	esp,	[esp-4]
-mov	dword ptr [esp],	reg32
+\begin{lstlisting}[caption={Obfuscation using pattern 2}, label=PatternObfuscationPattern2, language={[x86masm]Assembler}, style=mystyle]
+	lea		esp,	[esp-4]
+	mov		dword ptr [esp],	reg32
 \end{lstlisting}
 
-\begin{lstlisting}[caption={Obfuscation using pattern 3}, label=PatternObfuscationPattern3, language={[x86masm]Assembler}, commentstyle=\color{ForestGreen}, keepspaces=true, keywordstyle=\color{blue}]
-sub	esp,	4
-mov	dword ptr [esp],	reg32
+\begin{lstlisting}[caption={Obfuscation using pattern 3}, label=PatternObfuscationPattern3, language={[x86masm]Assembler}, style=mystyle]
+	sub		esp,	4
+	mov		dword ptr [esp],	reg32
 \end{lstlisting}
 
 Moreover, patterns can be arbitrarily complicated. For example a listing such as \ref{PatternObfuscationOriginalSequence2}, could be substituted by the more complex \ref{PatternObfuscation2Pattern}.
 
-\begin{lstlisting}[caption={Original sequence \#2}, label=PatternObfuscationOriginalSequence2, language={[x86masm]Assembler}, commentstyle=\color{ForestGreen}, keepspaces=true, keywordstyle=\color{blue}]
-sub	esp,	4
+\begin{lstlisting}[caption={Original sequence \#2}, label=PatternObfuscationOriginalSequence2, language={[x86masm]Assembler}, style=mystyle]
+	sub		esp,	4
 \end{lstlisting}
 
-\begin{lstlisting}[caption={Obfuscation of sequence \#2}, label=PatternObfuscation2Pattern, language={[x86masm]Assembler}, commentstyle=\color{ForestGreen}, keepspaces=true, keywordstyle=\color{blue}]
-push	reg32
-mov	reg32,	esp
-xchg	[esp],	reg32
-pop	esp
+\begin{lstlisting}[caption={Obfuscation of sequence \#2}, label=PatternObfuscation2Pattern, language={[x86masm]Assembler}, style=mystyle]
+	push	reg32
+	mov		reg32,	esp
+	xchg	[esp],	reg32
+	pop		esp
 \end{lstlisting}
 
 Malware authors (and also software developers wishing to protect their intellectual property) can use hundreds of patterns in the same program. Moreover, most protections randomly apply patterns so that obfuscating the same program multiple times yields different results. On top of that, patterns can also be applied iteratively: after transforming the original code \textbf{C} into \textbf{C'} using pattern \textbf{P}, another pattern \textbf{P'} can be applied to \textbf{C'} in order to obtain \textbf{C''}, and so on.
@@ -966,6 +990,96 @@ Malware authors (and also software developers wishing to protect their intellect
 Some patterns preserve \textit{semantic equivalence}, meaning that the CPU state will be the same when executing them or the original code. Some other patterns, however, do not. Therefore, depending on the code logic, some substitutions are safe (meaning that the program behaviour and final results are preserved) while others are not. This makes the job of an obfuscator challenging.
 
 \subsubsection{Control-Based Obfuscation}
+Standard static analysis tools generally make assumptions similar to the ones human reverse engineers make when analysing code. Compilers, in fact, predictably translate control flow constructs and data structures. As a result, reverse engineers (and static analysis tools) can easily recognise the original code high level control flow. \textit{Control-based obfuscation} transforms the code control flow structures in non standard ways in order to complicate both static and dynamic code analysis \cite{DangPRE}.
+
+Some examples of stanrard static analysis tools assumptions are:
+\begin{itemize}
+	\item The \textit{CALL} instruction is always used with the sole purpose of invoking functions.
+	
+	\item Both sides of a conditional branch may feasibly be taken at runtime.
+	
+	\item Function calls almost always return.
+	
+	\item All control transfers target code locations, not data locations.
+	
+	\item Exceptions are used in standard and predictable ways.
+	
+	\item etc..
+\end{itemize}
+
+By violating these assumptions, \textit{control-based obfuscation} techniques confuse disassemblers and other static analysis tools making the analysis more difficult.
+
+\paragraph{Functions In/Out-Lining}
+Reverse engineers frequently rely on control-flow and call graphs to better understand a program's high-level logic. In particular a call graph represents calling relationships between subroutines (functions) in a computer program. Each node of a call graph represents a procedure and each edge (\textbf{f}, \textbf{g}) indicates that procedure \textbf{f} calls procedure \textbf{g}. By making the call graph harder interpret, obfuscators can hinder the reverse engineers capability of understanding the program behaviour \cite{DangPRE}. To do so one could:
+
+\begin{itemize}
+	\item \textbf{Inline functions}.
+	The code belonging to a subfunction is merged into the code of its caller. If a subfunction is called multiple times, however, the code size can quickly grow.
+	
+	\item \textbf{Outline functions}.
+	A subpart of a function is extracted and transformed into an independent function and replaced by a call to the newly created function.
+\end{itemize}
+
+Using these two operations in combination on a program's code results in a degenerated call graph with no clear logic. Moreover, also the functions' prototypes can be modified adding extra fake arguments, reordering arguments and so on, to further hide the high-level logic.
+
+\paragraph{Destruction of Sequential and Temporal Locality}
+Usually, in non-obfuscated code, the instructions of a single basic block lie one after the other (\textit{sequential locality}), and basic blocks related to one another (such as successive blocks) are close to each other (\textit{sequential locality of temporally related code}). This is done in order to maximize the instruction cache locality and reduce the number of branches in the final code. Reverse engineers thus can usually rely on the fact that all the code responsible for a specific operation will reside in a single region \cite{DangPRE}.
+
+Violating this assumption introducing unconditional branches that break sequential locality and temporal locality of multiple basic blocks makes manual analysis more difficult. However, by constructing the control-flow graph and removing spurious unconditional branches the original control flow can be restored.
+
+\paragraph{Processor-Based Control Indirection}
+Instructions like \textit{JMP} (branch) and \textit{CALL} (save instruction pointer and branch) are, for most processors, the 2 essential control flow transfer primitives. In order to make analysis more difficult, one could obfuscate these primitives for example using dynamically computed branch addresses or by emulating them.
+
+For example the instruction \textit{JMP} instruction \ref{ProcessorBasedControlIndirectionBefore}, can be replaced by the (almost) semantically equivalent listing \ref{ProcessorBasedControlIndirectionAfter}.
+
+\begin{lstlisting}[caption={Processor-based control indirection before}, label=ProcessorBasedControlIndirectionBefore, language={[x86masm]Assembler}, style=mystyle]
+	jmp		target_addr
+\end{lstlisting}
+
+\begin{lstlisting}[caption={Processor-based control indirection after}, label=ProcessorBasedControlIndirectionAfter, language={[x86masm]Assembler}, style=mystyle]
+	push	target_addr
+	ret
+\end{lstlisting}
+
+\paragraph{Operating System-Based Control Indirection}
+As already seed when talking about anti-disassembler techniques, obfuscation can also exploit operating system primitives and structures. For example, the Structured Exception Handler (\textit{SEH}), Vectored Exception Handler (\textit{VEH}) and Unhandled Exception Handler are commonly used to obfuscate the control flow of Microsoft Windows executables (in Unix-like systems the signal handlers \textit{setjmp} and \textit{longjmp} are commonly used instead) \cite{DangPRE}.
+
+\paragraph{Opaque Predicated}
+An \textit{opaque predicate} is a non-trivial boolean expressions with a constant result (always true or always false) known only at compilation/obfuscation time. Combining it with a conditional \textit{jmp} instruction introduces an additional branch in the control flow graph (\textit{CFG}). We already briefly talked about this specific combination when talking about the \textit{Jump instruction with a constant condition} anti-disassembly technique. The added branch should look as real as possible in order to elude detection, and it can be used to insert junk code or to form cycles in the control-flow graph to better hide the original program's logic \cite{DangPRE}.
+
+\subsubsection{Simultaneous Control-Flow and Data-Flow Obfuscation}
+\textit{Data-flow obfuscation} and \textit{Control-flow obfuscation} techniques are commonly used together to complicate analysis.
+
+\paragraph{Inserting Junk Code}
+This technique consists in introducing a dead code block (meaning that it will never be executed at runtime) between two other code blocks. Typically used in conjunction with \textit{opaque predicates}, this technique is used to hinder a disassembler that is disassembling an invalid path. Moreover, the junk code typically contains partially invalid instructions, or branches to invalid addresses with the objective of over-complicating the CFG \cite{DangPRE}.
+
+\begin{lstlisting}[caption={Junk Code example}, label=JunkCodeExample, language={[x86masm]Assembler}, style=mystyle]
+	push	eax
+	xor		eax,	eax
+	jz		9
+	;<junk code start>
+	jg		4
+	inc		esp
+	ret
+	;<junk code end>
+	pop		eax
+\end{lstlisting}
+
+The listing \ref{JunkCodeExample} presents an example of this technique. More precisely the instruction at line 2 (\textit{xor eax, eax}) zeroes the \textit{EAX} register setting clearing the zero flag (it is set to 0); therefore the conditional jump (\textit{jz 9}) at line 3 is always taken at runtime. The immediately next instructions are therefore junk code.
+
+\paragraph{Control-Flow Graph Flattening}
+\textit{Control-flow graph flattening} consists in replacing all control structures within a sub-part of the control flow graph with a single switch statement commonly called \textit{dispatcher}. This is done to hide the true basic blocks relationships within the dispatcher. When using this technique, first a subpart of the program's control flow graph is selected to be substituted by the dispatcher. Some transformations may then be applied to the basic blocks inside the chosen sub-graph (they split or merged) to further complicate analysis and finally each basic block updates the dispatcher's context to reflect the relative basic block relationships. The final resulting graph offers no clues about the structure of the algorithm, but has the same logic \cite{DangPRE}.
+
+\textit{CFG flattening} is frequently used, together with \textit{opaque predicates}, to insert dead code paths in the CFG.
+
+\paragraph{Code Virtualization}
+\textit{Code virtualization} consists in transforming a program's binary code (compiled for a specific machine) into a different binary code that is understood by a virtual machine. More specifically, the instruction set from the source machine is converted into a new instruction set, understood by the target virtual machine. This can be done using multiple types of virtual machines with different instruction sets. This means that a specific block of, for example, Intel x86 instructions can be converted into a different instruction set for each machine, preventing an analyst/attacker from recognizing any generated virtual opcode after the transformation from x86 instructions \cite{DangPRE}. 
+
+Usually, some specific blocks of the program's code are virtualized (and not the whole program) and inserted back into the program alongside the associated interpreter. At run time, the interpreter assumes execution control and translates the virtualized code back to the original byte code.
+
+When an analyst/attacker tries to decompile a virtualized block of code, however, he will not find the original x86 instructions. Instead, he will find a completely new instruction set which is not recognized by him or any other special decompiler. This will force the attacker to identify how each opcode is executed and how the specific virtual machine works for each protected application. 
+
+Some examples of code virtualization tools include \href{https://vmpsoft.com/}{VMProtect} and \href{https://www.oreans.com/CodeVirtualizer.php}{CodeVirtualizer}.
 
 \subsection{Polymorphic and Metamorphic Malware}
 

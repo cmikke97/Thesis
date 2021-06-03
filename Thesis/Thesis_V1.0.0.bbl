@@ -140,4 +140,9 @@ I.~You and K.~Yim, ``Malware obfuscation techniques: A brief survey'', 2010
   International Conference on Broadband, Wireless Computing, Communication and
   Applications, 2010, pp.~297--300, \doi{10.1109/BWCCA.2010.85}
 
+\bibitem{DangPRE}
+B.~Dang, A.~Gazet, E.~Bachaalany, and S.~Josse, ``Practical reverse
+  engineering: X86, x64, arm, windows kernel, reversing tools, and
+  obfuscation'', Wiley Publishing, 1st~ed., 2014, ISBN: 1118787315
+
 \end{thebibliography}

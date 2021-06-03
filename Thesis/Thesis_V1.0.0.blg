@@ -6,36 +6,36 @@ The style file: torsec.bst
 Reallocating 'name_of_file' (item size: 1) to 7 items.
 Database file #1: biblio.bib
 Warning--empty booktitle in LiPRTCMP
-You've used 29 entries,
+You've used 30 entries,
             1924 wiz_defined-function locations,
-            679 strings with 8247 characters,
-and the built_in function-call counts, 5164 in all, are:
-= -- 444
-> -- 183
+            685 strings with 8455 characters,
+and the built_in function-call counts, 5354 in all, are:
+= -- 457
+> -- 197
 < -- 0
-+ -- 77
-- -- 48
-* -- 306
-:= -- 723
++ -- 82
+- -- 52
+* -- 322
+:= -- 752
 add.period$ -- 0
-call.type$ -- 29
-change.case$ -- 31
+call.type$ -- 30
+change.case$ -- 33
 chr.to.int$ -- 0
-cite$ -- 30
-duplicate$ -- 231
-empty$ -- 642
-format.name$ -- 48
-if$ -- 1301
+cite$ -- 31
+duplicate$ -- 240
+empty$ -- 663
+format.name$ -- 52
+if$ -- 1346
 int.to.chr$ -- 0
-int.to.str$ -- 29
-missing$ -- 15
-newline$ -- 90
-num.names$ -- 29
-pop$ -- 165
+int.to.str$ -- 30
+missing$ -- 17
+newline$ -- 93
+num.names$ -- 30
+pop$ -- 170
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 184
+skip$ -- 186
 stack$ -- 0
 substring$ -- 167
 swap$ -- 48
@@ -44,7 +44,7 @@ text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 1
-while$ -- 43
-width$ -- 31
-write$ -- 268
+while$ -- 44
+width$ -- 32
+write$ -- 278
 (There was 1 warning)
