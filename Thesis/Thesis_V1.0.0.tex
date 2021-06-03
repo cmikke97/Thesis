@@ -931,7 +931,7 @@ For example, the listing \ref{DeadCodeEliminationBefore}, using \textit{dead cod
 
 Obfuscators, on the other hand, use the so-called \textit{dead code insertion} technique in an attempt to make the code harder to follow. This technique performs the inverse operation with respect to \textit{dead code elimination}, adding dead code in the original program's code.
 
-However, when used alone, this techniques produces an obfuscated program that can be efficiently de-obfuscated by using the compiler's dead code elimination optimization, which is effectively the inverse operation.
+However, when used alone, this techniques produces an obfuscated program that can be efficiently de-obfuscated by using the compiler's dead code elimination optimization.
 
 \paragraph{Arithmetic Substitution via Identities}
 This technique aims at replacing certain operators with combinations of other operators with equal net result. Exploiting the equivalence between different combinations of different operators the code can be changed arbitrarily without changing the effective program operation and final result \cite{DangPRE}. Here are some examples of operators equivalences:
@@ -948,8 +948,16 @@ This technique aims at replacing certain operators with combinations of other op
 	rotate_right(x,y) == (x >> y) | (x << (bits(x) - y))
 \end{lstlisting}
 
+\paragraph{Register Reassignment}
+Another simple obfuscation technique is called \textit{register reassignment}. An obfuscator using this technique switches the registers used throughout the code at every application, while keeping the same program code and behaviour \cite{YouMalwareOT}.
+
+An analyst/attacker using wildcard searching, however, easily defeats this technique.
+
+\paragraph{Instruction Substitution}
+\textit{Instruction substitution} creates variants of a program's original code by replacing some instructions with other equivalent ones \cite{YouMalwareOT}.
+
 \paragraph{Pattern-Based Obfuscation}
-\textit{Pattern-based} obfuscation, another commonly used technique, consists in constructing \textit{patterns} (transformations) that map single or multiple adjacent instructions into a more complex, computationally equivalent, sequence of instructions \cite{DangPRE}.
+\textit{Pattern-based} obfuscation is another commonly used technique similar in principle to \textit{instruction substitution}, but more complex. It consists in constructing \textit{patterns} (transformations) that map single or multiple adjacent instructions into a more complex, computationally equivalent, sequence of instructions \cite{DangPRE}.
 
 For example, the sequence \ref{PatternObfuscationOriginalSequence} might be converted into \ref{PatternObfuscationPattern1}, as well as into \ref{PatternObfuscationPattern2} or even \ref{PatternObfuscationPattern3}.
 
@@ -1044,6 +1052,9 @@ For example the instruction \textit{JMP} instruction \ref{ProcessorBasedControlI
 \paragraph{Operating System-Based Control Indirection}
 As already seed when talking about anti-disassembler techniques, obfuscation can also exploit operating system primitives and structures. For example, the Structured Exception Handler (\textit{SEH}), Vectored Exception Handler (\textit{VEH}) and Unhandled Exception Handler are commonly used to obfuscate the control flow of Microsoft Windows executables (in Unix-like systems the signal handlers \textit{setjmp} and \textit{longjmp} are commonly used instead) \cite{DangPRE}.
 
+\paragraph{Subroutine Reordering}
+\textit{Subroutine reordering} in an obfuscation technique that randomly changes the order of a program's subroutines in the original code. This technique can thus generate $n!$ code variations, where $n$ is the number of subroutines \cite{YouMalwareOT}.
+
 \paragraph{Opaque Predicated}
 An \textit{opaque predicate} is a non-trivial boolean expressions with a constant result (always true or always false) known only at compilation/obfuscation time. Combining it with a conditional \textit{jmp} instruction introduces an additional branch in the control flow graph (\textit{CFG}). We already briefly talked about this specific combination when talking about the \textit{Jump instruction with a constant condition} anti-disassembly technique. The added branch should look as real as possible in order to elude detection, and it can be used to insert junk code or to form cycles in the control-flow graph to better hide the original program's logic \cite{DangPRE}.
 
@@ -1072,6 +1083,14 @@ The listing \ref{JunkCodeExample} presents an example of this technique. More pr
 
 \textit{CFG flattening} is frequently used, together with \textit{opaque predicates}, to insert dead code paths in the CFG.
 
+\paragraph{Code Transposition}
+An obfuscator using the technique called \textit{code transposition} effectively reorders the sequence of a program's original code instructions without changing its behaviour \cite{YouMalwareOT}. To achieve this two approaches are commonly followed:
+\begin{itemize}
+	\item Randomly shuffling the instruction and then recovering the original execution order by inserting unconditional branches. This is easily defeated restoring the original program by removing (and following) the unconditional branches.
+	
+	\item Choosing and reordering independent instructions that have no impact on the others. This approach is harder to implement given the complexity of finding independent instructions, but it is more effective.
+\end{itemize}
+
 \paragraph{Code Virtualization}
 \textit{Code virtualization} consists in transforming a program's binary code (compiled for a specific machine) into a different binary code that is understood by a virtual machine. More specifically, the instruction set from the source machine is converted into a new instruction set, understood by the target virtual machine. This can be done using multiple types of virtual machines with different instruction sets. This means that a specific block of, for example, Intel x86 instructions can be converted into a different instruction set for each machine, preventing an analyst/attacker from recognizing any generated virtual opcode after the transformation from x86 instructions \cite{DangPRE}. 
 
@@ -1080,6 +1099,9 @@ Usually, some specific blocks of the program's code are virtualized (and not the
 When an analyst/attacker tries to decompile a virtualized block of code, however, he will not find the original x86 instructions. Instead, he will find a completely new instruction set which is not recognized by him or any other special decompiler. This will force the attacker to identify how each opcode is executed and how the specific virtual machine works for each protected application. 
 
 Some examples of code virtualization tools include \href{https://vmpsoft.com/}{VMProtect} and \href{https://www.oreans.com/CodeVirtualizer.php}{CodeVirtualizer}.
+
+\paragraph{Code Integration}
+\textit{Code integration}, one of the most sophisticated obfuscation techniques, was first introduced by \textit{Win97/Zmist} malware. A malware using this technique first decompiles the target program into a set of manageable objects, it then inserts itself between them and finally it reassembles the code \cite{YouMalwareOT}.
 
 \subsection{Polymorphic and Metamorphic Malware}
 
