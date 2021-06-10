@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  4 JUN 2021 00:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  10 JUN 2021 14:53
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -556,26 +556,26 @@ Package: listings 2020/03/24 1.8d (Carsten Heinz)
 ) (Thesis_V1.0.0.aux)
 \openout1 = `Thesis_V1.0.0.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 72.
-LaTeX Font Info:    ... okay on input line 72.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 72.
-LaTeX Font Info:    ... okay on input line 72.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 72.
-LaTeX Font Info:    ... okay on input line 72.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 72.
-LaTeX Font Info:    ... okay on input line 72.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 72.
-LaTeX Font Info:    ... okay on input line 72.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 72.
-LaTeX Font Info:    ... okay on input line 72.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 72.
-LaTeX Font Info:    ... okay on input line 72.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 72.
-LaTeX Font Info:    ... okay on input line 72.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 72.
-LaTeX Font Info:    ... okay on input line 72.
-LaTeX Info: Redefining \it@ocap on input line 72.
-LaTeX Info: Redefining \it@ccap on input line 72.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+LaTeX Info: Redefining \it@ocap on input line 74.
+LaTeX Info: Redefining \it@ccap on input line 74.
 
 
 File italian.ldf warning: 
@@ -583,7 +583,7 @@ italian.ldf    With OT1 encoding guillemets are poorly faked
 italian.ldf    Use T1 encoding
 italian.ldf    or specify a font with command \CaporaliFrom
 italian.ldf    See the documentation concerning the babel-italian typesetting 
-italian.ldf    on input line 72.
+italian.ldf    on input line 74.
 
 
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.
@@ -611,13 +611,13 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 .cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-Package TOPtesi Info: Margin width recalculation on input line 72.
+Package TOPtesi Info: Margin width recalculation on input line 74.
 Package TOPtesi Info: Before:
 (TOPtesi)             oddsidemargin  15.23279pt
-(TOPtesi)             evensidemargin 15.23279pt on input line 72.
+(TOPtesi)             evensidemargin 15.23279pt on input line 74.
 Package TOPtesi Info: After:
 (TOPtesi)             oddsidemargin  35.1497pt
-(TOPtesi)             evensidemargin -4.68413pt on input line 72.
+(TOPtesi)             evensidemargin -4.68413pt on input line 74.
 \captionwidth=\dimen170
 \fullwidth=\dimen171
 
@@ -636,7 +636,7 @@ e
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/base\textcomp.sty
 Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
 ))
-Package hyperref Info: Link coloring ON on input line 72.
+Package hyperref Info: Link coloring ON on input line 74.
 
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
@@ -650,9 +650,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count310
 )
-LaTeX Info: Redefining \ref on input line 72.
-LaTeX Info: Redefining \pageref on input line 72.
-LaTeX Info: Redefining \nameref on input line 72.
+LaTeX Info: Redefining \ref on input line 74.
+LaTeX Info: Redefining \pageref on input line 74.
+LaTeX Info: Redefining \nameref on input line 74.
  (Thesis_V1.0.0.out) (Thesis_V1.0.0.out)
 \@outlinefile=\write4
 \openout4 = `Thesis_V1.0.0.out'.
@@ -672,20 +672,20 @@ Dictionary: translator-basic-dictionary, Language: English
 )
 \c@lstlisting=\count311
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 72.
+(Font)              <7> on input line 74.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 72.
-<logopolito.pdf, id=78, 526.79488pt x 523.45164pt>
+(Font)              <5> on input line 74.
+<logopolito.pdf, id=142, 526.79488pt x 523.45164pt>
 File: logopolito.pdf Graphic file (type pdf)
 <use logopolito.pdf>
-Package pdftex.def Info: logopolito.pdf  used on input line 113.
+Package pdftex.def Info: logopolito.pdf  used on input line 115.
 (pdftex.def)             Requested size: 70.44707pt x 70.00249pt.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 141.
+(Font)              <12> on input line 143.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 141.
+(Font)              <8> on input line 143.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 141.
+(Font)              <6> on input line 143.
  [1{C:/Users/michele/AppData/Local/MiKTeX/pdftex/config/pdftex.map}
 
 
@@ -701,24 +701,25 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
 ] [5
 
-] (Thesis_V1.0.0.toc)
+] (Thesis_V1.0.0.toc
+[6
+
+])
 \tf@toc=\write5
 \openout5 = `Thesis_V1.0.0.toc'.
 
-
-[6
-
-]
+ [7]
 Chapter 1.
-[7
+[8
 
 
 
 ]
 Chapter 2.
-[8
+[9
 
-] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18] [19] [20] [21]
+] [10] [11] [12] [13] [14] [15] [16] [17] [18] [19] [20] [21] [22] [23]
+[24]
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 )
@@ -729,148 +730,191 @@ File: lstlang2.sty 2020/03/24 1.8d listings language file
 File: lstlang3.sty 2020/03/24 1.8d listings language file
 )
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 579.
- [22] [23] [24] [25]
+nput line 615.
+ [25] [26] [27]
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 )
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
 File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
-) [26] [27] [28] [29] [30] [31] [32] [33] [34] [35] [36]
+) [28] [29] [30] [31] [32] [33] [34] [35] [36] [37] [38] [39] [40] [41]
 Chapter 3.
-[37
+[42
 
-]
+] [43]
+LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 
+1244.
+
+(C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/base\ts1cmtt.fd
+File: ts1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+[44] [45] [46] [47] [48] [49] [50] [51] [52]
 Chapter 4.
-[38
+[53
 
 ]
 Chapter 5.
-(Thesis_V1.0.0.bbl [39
+[54
 
 ]
-Underfull \hbox (badness 1242) in paragraph at lines 4--6
+Chapter 6.
+[55
+
+]
+Chapter 7.
+[56
+
+]
+Chapter 8.
+[57
+
+]
+Chapter 9.
+(Thesis_V1.0.0.bbl [58
+
+]
+Underfull \hbox (badness 1242) in paragraph at lines 10--12
 []\OT1/cmr/m/n/10 R. Sharp, ``An in-tro-duc-tion to mal-ware.'' [][]$\OT1/cmtt/
 m/n/10 https : / / orbit . dtu . dk / en / publications /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 8--11
+Underfull \hbox (badness 10000) in paragraph at lines 14--17
 []\OT1/cmr/m/n/10 R. Moir, ``Defin-ing mal-ware: Faq.'' [][]$\OT1/cmtt/m/n/10 h
 ttps : / / docs . microsoft . com / en-[]us /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 8--11
+Underfull \hbox (badness 10000) in paragraph at lines 14--17
 \OT1/cmtt/m/n/10 previous-[]versions / tn-[]archive / dd632948(v = technet . 10
  ) ?redirectedfrom = MSDN$[][]\OT1/cmr/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 17--20
+Underfull \hbox (badness 10000) in paragraph at lines 23--26
 \OT1/cmtt/m/n/10 / / www . thesslstore . com / blog / what-[]is-[]malware-[]typ
 es-[]of-[]malware-[]how-[]they-[]work/$[][]\OT1/cmr/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 2343) in paragraph at lines 22--25
+Underfull \hbox (badness 2343) in paragraph at lines 28--31
 []\OT1/cmr/m/n/10 Symantec, ``Dif-fer-ence be-tween viruses, worms, and tro-jan
 s.'' [][]$\OT1/cmtt/m/n/10 https : / / knowledge .
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 27--30
+Underfull \hbox (badness 10000) in paragraph at lines 33--36
 []\OT1/cmr/m/n/10 P. Mullins, ``Mal-ware and its types.'' [][]$\OT1/cmtt/m/n/10
  http : / / www . idc-[]online . com / technical _
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 27--30
+Underfull \hbox (badness 10000) in paragraph at lines 33--36
 \OT1/cmtt/m/n/10 references / pdfs / information _ technology / Malware % 20and
  % 20its % 20types . pdf$[][]\OT1/cmr/m/n/10 , Ac-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 38--42
+Underfull \hbox (badness 10000) in paragraph at lines 44--48
 []\OT1/cmr/m/n/10 J. Fruh-linger, ``Mal-ware ex-plained: How to pre-vent, de-te
 ct and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 38--42
+Underfull \hbox (badness 10000) in paragraph at lines 44--48
 \OT1/cmr/m/n/10 re-cover from it.'' [][]$\OT1/cmtt/m/n/10 https : / / www . cso
 online . com / article / 3295877 /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 54--56
+Underfull \hbox (badness 10000) in paragraph at lines 60--62
 []\OT1/cmr/m/n/10 MyraSecurity, ``What is mal-ware?.'' [][]$\OT1/cmtt/m/n/10 ht
 tps : / / www . myrasecurity . com / en /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 63--66
+Underfull \hbox (badness 10000) in paragraph at lines 69--72
 []\OT1/cmr/m/n/10 T. Femis-ter, ``En-cryp-tion hap-pens last: The ran-somware r
 ev-o-lu-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 63--66
+Underfull \hbox (badness 10000) in paragraph at lines 69--72
 \OT1/cmr/m/n/10 tion.'' [][]$\OT1/cmtt/m/n/10 https : / / www . forbes . com / 
 sites / forbestechcouncil / 2020 / 08 / 18 /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 63--66
+Underfull \hbox (badness 10000) in paragraph at lines 69--72
 \OT1/cmtt/m/n/10 encryption-[]happens-[]last-[]the-[]ransomware-[]revolution / 
 ?sh = 4c267d34414b$[][]\OT1/cmr/m/n/10 , 2020,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 83--86
+Underfull \hbox (badness 10000) in paragraph at lines 89--92
 []\OT1/cmr/m/n/10 B. Lutke-vich, ``mal-ware.'' [][]$\OT1/cmtt/m/n/10 https : / 
 / searchsecurity . techtarget . com / definition /
  []
 
-[40
+[59
 
-]) [41] (Thesis_V1.0.0.aux)
+]
+Underfull \hbox (badness 10000) in paragraph at lines 159--161
+[]\OT1/cmr/m/n/10 V. Nguyen, ``A study of poly-mor-phic virus de-tec-tion'', 11
+ 2018, DOI
+ []
+
+
+Underfull \hbox (badness 6927) in paragraph at lines 168--171
+\OT1/cmtt/m/n/10 binarydefense . com / what-[]is-[]yara-[]get-[]to-[]know-[]thi
+s-[]malware-[]research-[]tool/$[][]\OT1/cmr/m/n/10 , Ac-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 173--176
+\OT1/cmtt/m/n/10 technology / 2017 / 09 / explained-[]yara-[]rules / # : [] : t
+ext = YARA % 20is % 20a % 20tool %
+ []
+
+) [60] (Thesis_V1.0.0.aux)
 Package rerunfilecheck Info: File `Thesis_V1.0.0.out' has not changed.
-(rerunfilecheck)             Checksum: C7FE356A71D487D54F87E391F14DC8BB;2525.
+(rerunfilecheck)             Checksum: D85727C65B2E4C76837525DFCA7CFE61;6143.
  ) 
 Here is how much of TeX's memory you used:
- 16425 strings out of 481296
- 276537 string characters out of 2908369
- 909905 words of memory out of 3000000
- 33067 multiletter control sequences out of 15000+600000
- 414659 words of font info for 66 fonts, out of 8000000 for 9000
+ 16776 strings out of 481296
+ 281337 string characters out of 2908369
+ 1009160 words of memory out of 3000000
+ 33255 multiletter control sequences out of 15000+600000
+ 415333 words of font info for 68 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 134i,13n,137p,1159b,1700s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 134i,13n,137p,1436b,2411s stack positions out of 5000i,500n,10000p,200000b,80000s
  <C:\Users\michele\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tc
-rm1000.pk><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
-sfonts/cm/cmbx10.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type
-1/public/amsfonts/cm/cmbx12.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX
-/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Users/michele/AppData/Local/Pr
-ograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/michele/AppD
-ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/m
-ichele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><
-C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
-mr12.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
-fonts/cm/cmr17.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/
-public/amsfonts/cm/cmr5.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fon
-ts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/michele/AppData/Local/Programs/M
-iKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/michele/AppData/Local/P
-rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmsl8.pfb><C:/Users/michele/AppDa
-ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/mi
-chele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C
-:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cm
-ti10.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
-fonts/cm/cmti12.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1
-/public/amsfonts/cm/cmtt10.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/
-fonts/type1/public/amsfonts/cm/cmtt8.pfb>
-Output written on Thesis_V1.0.0.pdf (41 pages, 483790 bytes).
+ti1000.pk> <C:\Users\michele\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/d
+pi600\tctt0800.pk> <C:\Users\michele\AppData\Local\MiKTeX\fonts/pk/ljfour/jknap
+pen/ec/dpi600\tcrm1000.pk><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts
+/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/michele/AppData/Local/Programs/M
+iKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/michele/AppData/Local
+/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Users/michele/
+AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Us
+ers/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10
+.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfont
+s/cm/cmr10.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/publ
+ic/amsfonts/cm/cmr12.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/
+type1/public/amsfonts/cm/cmr17.pfb><C:/Users/michele/AppData/Local/Programs/MiK
+TeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/michele/AppData/Local/Pro
+grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/michele/AppData/
+Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/michele
+/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsl8.pfb><C:/Use
+rs/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.
+pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
+/cm/cmsy7.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/publi
+c/amsfonts/cm/cmti10.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/
+type1/public/amsfonts/cm/cmti12.pfb><C:/Users/michele/AppData/Local/Programs/Mi
+KTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/michele/AppData/Local/
+Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt8.pfb>
+Output written on Thesis_V1.0.0.pdf (60 pages, 601308 bytes).
 PDF statistics:
- 773 PDF objects out of 1000 (max. 8388607)
- 249 named destinations out of 1000 (max. 500000)
- 158 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1165 PDF objects out of 1200 (max. 8388607)
+ 407 named destinations out of 1000 (max. 500000)
+ 286 words of extra memory for PDF output out of 10000 (max. 10000000)
 

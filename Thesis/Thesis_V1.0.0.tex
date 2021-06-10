@@ -69,6 +69,8 @@
 	tabsize=2
 }
 
+\usepackage{xcolor}
+
 \begin{document}
 	
 \selectlanguage{english}
@@ -174,7 +176,9 @@ Aknowledgments...
 
 \chapter{Introduction}
 
-Introduction...
+\color{Red}
+The accelerating rate of malware incidents on daily basis indicates the magnitude of the problem in malware analysis. While malware analysts detect many malware attacks and incidents, keeping pace with the number and different types of attacks poses a significant challenge to malware analysts. There is no silver bullet with respect to malware, as there is no single malware analysis technique with the capability to treat all malware incidents, as a result analysts select the most suitable malware analysis technique for the specific security incident under consideration \cite{NaikEAGYRETE}.
+\color{Black}
 
 \chapter{Background}
 
@@ -502,12 +506,35 @@ Recently, however, a big advancement led to the so-called "second generation" ma
 
 The first time a malware has been recognised to exhibit detection avoidance behaviour was in 1986 with the \textit{Brain} virus \cite{SkoudisFMC}. In fact, such malware managed to conceal the infected disk section whenever the user attempted to read it, forcing the computer to display clean data instead of the infected part. From that moment on, the ever increasing popularity of detection evasion techniques among malware writers has shown that malware survival has become the number one priority: the longer the malware remains undetected, the more harm it can do and the more profitable it is to its writer \cite{NamanyaTWM}.
 
-\subsection{Reverse-Engineering}
+\subsection{Malware analysis}
+When a malicious sample gets discovered in the wild, it is usually in the form of a machine code executable (compiled executable). Malware analysis is the process of extracting as much information as possible from the discovered sample in order to determine its purpose and functionality (and threats associated). This process allows security teams to develop effective detection techniques against the analysed malicious code, contain its damage, reverse its effects on the system, develop removal tools that can delete it from infected machines (to cleanly remove a piece of malware from an infected machine it is usually not enough to delete the binary itself) and design methods to guard systems against future infections \cite{BayerDAMC}.
+
+Initially malware analysts/researchers had to manually analyse each malware sample. This process is however complex, requires high expertise, and is time-intensive. Moreover, the number of malware samples that need to be analysed on a daily basis is nowadays of the order of hundreds. This implies that the analysis of malware samples can no longer be done exclusively manually. Several analysis tools have been developed in recent years to facilitate analysts in analysing malware samples.
+
+Traditionally, there are two main types of analysis: \textit{static} and \textit{dynamic}. Moreover, these two types can be, and frequently are, combined together (\textit{hybrid} analysis) in various stages of malware analysis to optimize results \cite{NamanyaTWM}.
+
+\color{Red}
+
+\cite{BayerDAMC}
+
+Anti-malware solutions typically rely on a database of descriptions, also called \textit{signatures}, that characterize known malware instances. Whenever an unknown malware sample is found in the wild, it is usually necessary to update the signature database accordingly so that the novel malware piece can be detected by the scan engine. To this end, it is of paramount importance to be able to quickly analyse an unknown malware sample and understand its behaviour and effect on the system.
+
+The traditional approach to analyse the behaviour of an unknown program is to execute the binary in a restricted environment and observe its actions. The restricted environment is often a debugger, used by a human to step through the code in order to understand its functionality.
+
+One way to automate the analysis process is to execute the binary in a virtual machine or a simulated operating system environment. While the program is running, its interaction with the operating system (e.g. the native system calls or Windows API calls it invokes) can be recorded and later presented to an analyst. This approach relieves a human analyst from the tedious task of having to manually fo through each single malware sample that is received. Of course, it might still be the case that human analysis is desirable after the automatic process. However, the initial results at least provide details about the program's actions that then help to guide the analyst's search.
+Current approaches for automatic analysis suffer from a number of shortcomings. One problem is that malicious code is often equipped with detection routines that check for the presence of a virtual machine or a simulated OS environment. When such an environment is detected, the malware modifies its behaviour and the analysis delivers incorrect results. Malware also checks for software (and even hardware) breakpoints to detect if the program is run in a debugger. This requires that the analysis environment is \textit{invisible} to the malicious code. Another problem is when the analysis environment does not monitor the complete interaction with the system. When this happens, the malicious code could evade analysis. This might be possible because there exists thousands of Windows API calls, often with arguments that are composed of complex data structures. Furthermore, the malicious code could also interact directly with the operating system via native system calls. Thus, the analysis environment has to be \textit{comprehensive} and cover all aspects of the interaction of a program with its environment.
+
+\color{Black}
+\subsubsection{Reverse-Engineering}
 \textit{Reverse engineering}, in broad terms, indicates the process of extracting knowledge, ideas, design philosophy etc. from anything man-made \cite{EilamRSRE}.
 
 Software reverse engineering is, of course, the application of reversing methodologies and techniques to extract knowledge from a software product to better understand its inner workings.
 
 Reversing is used extensively by both malicious actors and investigators but with opposing purposes. Malware developers often use it to discover vulnerabilities in systems or programs, while analysts and antivirus software developers use it to analyse malicious programs to understand how they work, what damages they can cause, how they infect the system and reproduce, how they can be removed, detected and avoided.
+
+\color{Red}
+Reverse engineering, also called advanced static malware analysis, involves loading the executable into a disassembler to loop through its execution process and then examining the instructions to understand what the program does. Debugging tools like \textit{IDAPro}, \textit{OllyDbg} and \textit{WinDbg} are few of the tools that are normally used at this stage. In advanced static analysis/reverse engineering, analysis evasion techniques, like instruction replacement, can produce ambiguous results and malware that needs input information that cannot be statically determined, for example time and date can be hard to analyse \cite{NamanyaTWM}.
+\color{Black}
 
 \subsubsection{Static analysis}
 \textit{Static analysis} consists of examining an executable file's code without actually executing it. Static analysis techniques usually extract peculiar features from malicious samples in order to be able to recognise them and distinguish them from benign ones. The features usually extracted are, for example, string signatures, byte-sequence n-grams, library or API calls, opcode frequency distributions, peculiar attributes found in the executable header etc. However, this approach, being based on signatures/features extracted from already analysed samples, is not much effective on zero-day and evolutionary malware.
@@ -518,12 +545,21 @@ Static analysis advantages are, among others, that it takes into account the ent
 
 Additionally, another common problem to deal with when using static analysis is that, since malicious code is written directly by the adversary, it can be purposefully designed to be hard to analyse statically. For example, the malware authors can exploit anti-analysis techniques in order to hinder both the disassembly and code analysis steps typical of static analysis approaches.
 
+\color{Red}
+Static malware analysis is when the malware is examined without being executed, an example is string analysis. Many automated static analysis tools are available, like \textit{Peframe}, \textit{Pyew} and \textit{Mastiff}. The tools use known syntax or structural properties of the malware code to extract information from the file. Sometimes, an analyst uses the conventional command line based analysis to extract information. The information collected during this type of analysis is very simple and not always sufficient for a conclusive decision on the malicious intent of the file. It is however advised to start with this type as it can provide information to steer the direction for the next analysis phase for a specific malware. However, analysis evasion techniques like packing and encryption normally lead to this analysis step providing incorrect or useless information \cite{NamanyaTWM}.
+\color{Black}
+
 \subsubsection{Dynamic analysis}
 Contrary to static analysis, \textit{dynamic techniques} analyse the program's code while or after execution in a controlled environment. These techniques, while being non-exhaustive, they have the significant advantage that they analyse only those instructions that are actually executed by the running process. This implies that dynamic analysis is less susceptible to anti-analysis attempts like code obfuscation or anti-disassembly \cite{BayerDAMC}. Moreover, dynamic analysis is also more effective in terms of malicious behaviour detection, since it doesn't look at the disassembled code but, through the use of monitoring tools, it tracks the operations that the code performs on the file system, registry, network etc. It is however, computationally more expensive and time consuming.
 
 When using dynamic techniques, however, malware analysts don't simply run malware executables on their own computer, which most probably is even connected to Internet, as they could easily escape the analysis environment and infect other hosts/networks. It is, in fact, advised to deploy dynamic techniques on isolated environments such as dedicated stand-alone (and isolated) hosts, virtual machines or emulators.
 
 The use of clean dedicated hosts, reinstalled after each dynamic analysis run, is however not the most efficient solution due to the environment re-installation process overheads. On the other hand, using virtual machines (for example using VMware) to perform dynamic analysis is more efficient. In fact, in this case, since the malware only affects the virtual machine environment, it is enough, after a dynamic analysis run, to simply discard the infected hard disk image and replaced it with a clean one. Unfortunately, a significant drawback is that the malware being analysed may determine it is running in a virtualized environment and, as a result, modify its behaviour. To counter this last problem one could make use of emulators, which are theoretically undetectable by analysed malware. These tools, however, run the code under analysis significantly slower and are therefore sometimes detectable using specially crafted time-related code.
+
+\color{Red}
+Dynamic malware analysis involves analysing the program while it is running on a system. The malware is run in a "safe" and controlled environment to avoid transference of the malware to other systems or networks. Basic dynamic analysis involves observing collected sample interacting with a system. A snapshot of the original state of the virtual machine is taken, the malware is then introduced into the system and executed. The new state and the original state are compared for changes. The observed changes are then used to remove the infection from infected systems and/or modelling effective signatures. Like basic static malware analysis it is an important initial step of malware analysis though it does not provide exhaustive information on the malware.
+Advanced dynamic analysis involves using tools to examine the state of the executed malware as it is running. The internal state of the malicious code is examined and this technique provides information that would normally be impossible to gather when using other techniques. The analysis is always run in a controlled environment to ensure that all the inputs and outputs of the system are known and their effects can be accounted for. Various tools used at this stage will monitor the APIs, system function calls invoked, files created and/or deleted, registry changes and the data processed by the program under analysis as it interacts with the system. Analysis of the parameters used during the API and function calls allows for the functions used to be grouped semantically while analysis of the data processed and propagated within the system gives an understanding of the files used and produced by the malware. These lead to the identification of the tasks that the malware undertakes to fulfil its functionality. Advanced dynamic malware analysis is very helpful in identification of malware variants and obfuscated techniques \cite{NamanyaTWM}.
+\color{Black}
 
 \subsubsection{Hybrid analysis}
 Hybrid Analysis is the combination of static and dynamic analysis. It is a technique that integrates run-time information extracted through dynamic analysis with information extracted  through static analysis in order to have a complete view of the malware's behaviour while avoiding the problems posed by anti-analysis techniques as much as possible.
@@ -867,7 +903,7 @@ Most often security researchers prefer to perform manual unpacking. The two most
 \end{itemize}
 
 \subsection{Code Obfuscation}
-Obfuscation is a technique that generally makes programs harder to understand \cite{Balakrishnan2005CodeOL}, both for humans and automatic tools. To do so, it transforms a program into a new (structurally different) and more difficult to analyse version while retaining the same functionality as the original (the new version of the program is said to be \textit{computationally equivalent} to the original one).
+Obfuscation is a technique that generally makes programs harder to understand \cite{Balakrishnan2005CodeOL}, both for humans and automatic tools. To do so, it transforms a program into a new (structurally different) and more difficult to analyse version while retaining the same functionality as the original (the new version of the program is said to be \textit{computationally equivalent} to the original one) \cite{YouMOT}.
 
 Originally, this technology was conceived for legitimate purposes to protect the intellectual property of software developers; however it has been widely exploited by malware authors to evade detection \cite{KonstantinouMV}. Particularly, in order to elude anti-malware scanners, malware can, using obfuscation techniques, evolve their body into new generations \cite{YouMalwareOT}, which eventually can be even harder to disassemble and analyse.
 
@@ -1103,11 +1139,499 @@ Some examples of code virtualization tools include \href{https://vmpsoft.com/}{V
 \paragraph{Code Integration}
 \textit{Code integration}, one of the most sophisticated obfuscation techniques, was first introduced by \textit{Win97/Zmist} malware. A malware using this technique first decompiles the target program into a set of manageable objects, it then inserts itself between them and finally it reassembles the code \cite{YouMalwareOT}.
 
-\subsection{Polymorphic and Metamorphic Malware}
+\subsection{Obfuscated Malware}
+The huge amount of malwares released in the wild since the creation of the first virus in 1960s can be split into two generations. More specifically, the first generation malwares were static, their code and behaviour did not change. The more sophisticated second generation malwares, on the other hand, change their internal structure between one variant and the other maintaining the same malicious behaviour in order to avoid detection.
+
+\subsubsection{Encrypted Malwares}
+\color{Red}
+
+The first second generation malwares ever existed exploited encryption in order to evade detection by signature-based antivirus scanners.
+
+In this approach, an encrypted malware is typically composed of the decryptor and the encrypted main body \cite{YouMOT}. The decryptor recovers the main body whenever the infected file is run. For each infection, by using a different key, the malware makes the encrypted part unique, thus hiding its signature. However, the main problem of this approach is that the decryptor remains constant from generation to generation. That makes it possible for the antivirus scanners to detect this kind of malwares based on the decryptor's code pattern.
+
+It consists of two parts; the encrypted body and a decryption code \cite{Sharma_2014}. Usually the body is XORed with a key to make it difficult to detect. For each infection, encrypted malware makes the body unique by using a different key to hide the signature. However, the decryption routine remains the same, hence it can be detected by analysing the decryptor. In this method when the malware code executes, first the decryption part is executed to decrypt the body of the malware and then the code is executed for the action. The first encrypted malware was CASCADE. The main motivation to use the encrypted malware is to avoid static code analysis, delay the process of inspection, prevent tampering and avoid detection.
+
+Encryption of malware code is often used in conjunction with the use of packers.
+
+\color{Black}
+\subsubsection{Packed Malwares}
+\color{Red}
+
+Nowadays malware authors exploit packers (or even multiple packers) to produce different variants of the same malware code \cite{NamanyaTWM}. Perdisci, et al \cite{} states that more than 80\% of the new malware discovered are actually packed versions of already existing malware. Packers compress the file into a smaller size and sometimes encryption is applied to the compressed version of the file to make the unpacking process more difficult. Some packers are custom built by malware writers and these can be used to actually detect that the file is malicious without the need for further analysis while commercial packers that are readily available online are seen in many malware variants.
+
+\color{Black}
+\subsubsection{Oligomorphic Malwares}
+\color{Red}
+
+Also called 'Semipolymorphic' malware, they employ multiple decryption routines which are chosen randomly at infection as a way of avoiding signature based detection \cite{NamanyaTWM}. The Whale virus was the first malware to use this technique and it carried a few dozens of different decryptors and picked one randomly.
+
+The short comings of the encrypted malware led to the development of different concealment techniques \cite{Sharma_2014}. In Oligomorphic malwares decryptors are mutated from one variant to another. Initially this type of malware was capable of changing the decryptor just slightly. the simple method to create Oligomorphic malwares is to provide a set of different decryptors rather than just one. At most this malware can generate few hundreds different decryptors, e.g. Win95/Memorial had the ability to build 96 different decryptor patterns. For its detection, signature based techniques can be applied by making the signature of all the decryptors. However, in general to detect Oligomorphic malwares, signature based techniques are not a good approach.
+
+In order to address the shortcomings of the encrypted malwares, malware authors devised technologies, through which malwares can mutate their decryptor from one generation to the next \cite{YouMOT}. The first attempt was the oligomorphic malware capable of changing its decryptor slightly. However, this malware can generate at most a few hundreds of different decryptors, thus still being able to be detected with signatures.
+
+\color{Black}
+\subsubsection{Polymorphic Malwares}
+\color{Red}
+
+To overcome the oligomorphic malware limitations, malware authors developed the polimorphic malware \cite{YouMOT}. The polymorphic malware achieves to create countless numbers of distinct decryptors with the help of the obfuscation methods including dead-code insertion, register reassignment, and so forth. Especially, due to the powerful toolkits such as '\textit{The Mutation Engine (MtE)}', it was a critical problem. The toolkits help the malware writers to easily convert their non-obfuscated malware into the polymorphic version. Even though the polymorphic malwares can effectively thwart the signature matching, their constant body, which appears after decryption, can be used as an important source for detection. In order to exploit this vulnerability, antivirus tools adopt the emulation technique. Through this technique, the tools execute a malware in an emulator (called '\textit{Sandbox}') without resulting in any harm. Once the constant body is loaded into memory after being decrypted, the conventional detection, \textit{i.e.}, signature based, can be applied. In order to detect and prevent such emulation, the polymorphic malwares used the armoring technique. Howeverm as the antivirus scanners became matures, they were capable of addressing this technique, thus effectively defeating the polymorphic malwares.
+
+In Polymorphic malwares, millions of decryptors can be generated by changing instructions in the next variant of the malware to avoid signature based detection \cite{Sharma_2014}. It also consists of two parts; the first part is the code decryptor to decrypt the second part (body). During the execution of the malware, the mutation engine creates a new decryptor which is joined with the encrypted malware body to construct a new variant of the malware. Polymorphic malwares are created by using obfuscation techqnieus (dead-code insertion, register reassignment, subroutine reordering, instruction substitution, code transposition/integration etc.). The first known polymorphic malware was \textit{1260}, written in 1990. Although a large number of variants of decryptors can be created, still signature scanning techniques can be used to detect the malwares by identifying the original program with emulation techniques.
+
+Polymorphic malware, like oligomorphic malware, use decryption routines to change the look of the execution codes for every infection \cite{NamanyaTWM}. They have a wide range of decryption engines since they tend to use mutation engines. The mutation engines perform all the logic computations in rearranging the code to prevend detection by signature matching. The decryptor is run first once the malware is copied to the machine and it enables the execution of the malware. When the malware replicates itself, it encrypts the new malware with a different key and encloses the new decryption routine in the new code. It can however only generate up to a few hundred decryptors so it can be detected.
+
+\color{Black}
+\subsubsection{Metamorphic Malwares}
+\color{Red}
+
+The metamorphic malware was proposed as a novel approach beyond the oligomorphic and polimorphic ones \cite{YouMOT}. Note that this malware makes best use of obfuscation techniques to evolve its body into new generations, which look different but work essentially the same. For such an evolution, it should be able to recognize, parse and mutate its own body whenever it propagates. It is important that the metamorphic malware never reveals its constant body in memory due to not using encryption or packing. This makes it so difficult for the antivirus scanners to detect this malware.
+
+Metamorphic malwares are body-polymorphic, i.e. instead of generating new decryptors, a new instance (body) is created without changing its actions \cite{Sharma_2014}. Similarly to polymorphic malwares, obfuscation techniques can be used to create new instances. It is believed that in future it will harm both computers and PDAs in large scale as it is almost impossible to detect by signature based techniques. Creating a true metamorphic malware without arbitrarily increasing the code size is a challenging task. It has been shown that there are only few malwares that exhibit true metamorphic behaviour, e.g. Phalcon/Skism Mass-Produced Code Generator, Second Generation virus generator, Mass Code Generator and Virus Creation Lab for Win32 were claimed to be metamorphic but were not. The first true metamorphic virus was created in 1998 and was called Win95/Regswap. In 2000, Win32/Ghost virus was created with 3'628'800 different variants. One of the strongest metamorphic malware, W32/NGVCK, was created in 2001 with the help of Next Generation Virus Creation Kit (NGVCK).
+
+The malicious code body is changed instead of appearance by using a combination of various obfuscation techniques. By using dead-code insertion, register reassignment and code transposition, the body of the code is changed into a new generation but it works the same way \cite{NamanyaTWM}. This way, every generated variation of the malware looks different and therefore signature generation and signature based detection is very hard. Unlike most polymorphic malware which decrypt to a single constant code body in memory, metamorphic malware can have varying codes which makes their detection in memory rely on algorithmic scanning. Metamorphic malware can also insert and interweave their code into the host program which makes the malware harder to detect.
+
+\color{Black}
+\chapter{Detection Techniques}
+\color{Red}
+
+To combat the threat/attacks from malwares, softwares (anti-malware) are developed, which are mostly based on the assumption that the malware structure does not change appreciably. But the variant of second generation malwares are very much different to each other, hence threats/attacks from such malwares to Computers and PDAs are increasing day by day. Therefore, there is a need that both academia and anti-malware developers should continually work to prevent damage from the evolution of malwares \cite{Sharma_2014}.
+
+Malware detection is the process of identifying malicious code from benign code so that the system can be protected or recovered from any effects of the malicious code \cite{NamanyaTWM}.
+
+\color{Black}
+\section{Integrity Checker}
+\color{Red}
+
+Compromising a computer system or network requires some changes to be made within the target environment. Integrity checkers are used in intrusion detection on the premise that a file which exists within the uncompromised operating environment is used as a measure to counter any future changes. A hashing function like the \textit{md5} sum, \textit{Sha1} or \textit{Sha256} is used to calculate the digest of the program or file and stored in the database. Later, the figests of the program/file are re-calculated and then compared against the originally calculated hash to check if the file has been modified. The challenges that this method presents are:
+\begin{itemize}
+	\item The system initially used to calculate the stored hashes must be deemed clean which is hard to guarantee.
+	
+	\item System updates and patches do modify system files and programs which means that the database of hashes needs to be updated for every update or there will be very high false positives affecting the detection method.
+	
+	\item There is the need to ensure that the reference database of hashes is stored offline and safely otherwise it presents a single point of failure in the detection mechanism.
+\end{itemize}
+
+Integrity checking is considered quite important in detection of any system modifications. It is however more of an incident recovery process method rather than a malware infection prevention method \cite{NamanyaTWM}.
+
+\color{Black}
+\section{Signature-based Detection}
+\color{Red}
+
+Signature based detection is the simplest and an effective way of detecting known malwares \cite{Sharma_2014}. Once the malware is identified, unique sequences of bytes are extracted from it, which represents the signature of the malware. These signatures are selected long enough to characterize a specific malware with respect to any other benign program. This technique scans the files in the system to find the defined malware signature, if found an alert of the presence of malware is sent, e.g. Aho-Corasick \cite{} algorithm scans fo the exact matching, hence a slight mismatch will escape detection. Veldamna and Wu-Manber \cite{} proposed the use of wildcards for detecting slight variances in the malwares. Some metamorphic malwares could be detected using the wildcard method, e.g. W32/Regswap. It is easy to use, however requirement of scanning becomes costly as the database of malware signatures is increasing very fast. Also, it's a completely reactive technique, therefore unable to combat threats/attacks from the new malwares until it causes damage. Gartner \cite{} believes that eventually Signature-based techniques will be replaced by more robust approaches, because today the signature-based anti-malwares have marginal value as second generation malwares can easily escape detection.
+
+Most of the anti-virus software uses signature based detection which is inefficient in the present scenario due to the rapid increase in the number and variants of malware. The signature is a unique identification of a binary file, which is created by analysing the binary file typically using static analysis methods. Dynamic analysis uses the behaviour and actions while in execution to identify whether the executable is a malware or not. Both methods have their own advantages and disadvantages.
+
+Signature based detection uses specific byte code sequences that are identified to be unique to a sample of malware in a specific family or variant to detect the presence of similar coded files in a system. The unique byte of code sequences are saved in the anti-virus database as signatures and are developed by a group of malware experts after detailed analysis of a significant number of malwares. Any file being scanned by the antivirus that is found to contain the signature of the unique byte code sequence is deemed to be malicious. This implies that a database of signatures must be maintained by the antivirus and updated every time new signatures are generated in order to detect new malware. This creates one of the major challenges faced by system users as updating these signatures requires access to networking resources that might not be readily available all the time \cite{NamanyaTWM}.
+
+Signature detection is the simplest method and is the most widely used for traditional malware detection. This method constructs a database that contains signatures of all known malware. When analysing a new programming code, it compares the signature of the analysed virus with its database, if the matching is found, the analysed file is considered as virus. This approach is fast and has high positive rate, however the database needs to be updated with new signatures. Although this technique is old it was used in the early days of polymorphic detection when investigators/researchers analysed the virus manually, one by one, line by line to detect various sequences of programming codes. As the number of viruses has been increasing so fast, this technique quickly became time-consuming, expensive and impractical \cite{NguyenSPVD}.
+
+\color{Black}
+\subsection{Yara Rules}
+\color{Red}
+YARA is a popular open-source tool that provides a robust language, which is compatible with Perl-based Regular Expressions, and is used to examine the suspected files/directories and match strings as is defined in the YARA rules with the file \cite{NinjaYSEWDM}.
+Each rule has to start with the word "\textit{rule}", followed by the rule identifier (or RuleName). \textbf{RuleName} is the identifier of the rule. Identifiers must follow the same lexical conventions of the \textit{C} programming language: they can contain any alphanumeric character and the underscore character, but the first character cannot be a digit. Rule identifiers are case sensitive and cannot exceed 128 characters. Moreover there is a list of YARA keywords that are not allowed to be used as an identifier because they have a predefined meaning.
+The main body of YARA rules contains three sections:
+\begin{enumerate}
+	\item \textbf{Meta}: The meta section is found at the top of a rule and can contain anything the author want to convey about the rule. Meta tags like "author" and "description" are often found to five the author credit and let others know what the rule is meant to accomplish. When creating rules based on malware, authors will sometimes leave tags with file hashes or references to blogs with more information as well \cite{SimonWIY}.
+	
+	Metadata can be added to help identify the files that were picked up by a certain rule. The metadata identifiers are always followed by an equal sign and the set value. The assigned values can be strings, integers, or a Boolean value. Note that identifiers/value pairs defined in the metadata section can't be used in the condition section, their only purpose is to store additional information about the rule \cite{ArntzEYR}.
+	
+	\item \textbf{Strings}: This section contains the strings/patterns/signatures that we need to match against a file. The strings section is optional and can be left out if not necessary. In YARA there are 3 types of strings named as follows:
+	\begin{itemize}
+		\item \textit{Hexadecimal Strings}: Hexadecimal Strings will match hexadecimal characters in the output file. This allows three special instructions such as wildcards, jumps and alternatives.
+		\begin{itemize}
+			\item \textit{Wildcard}: This is represented by a '\textit{?}' and it indicates that some bytes in the pattern are unknown and should match anything. For example:
+			\begin{lstlisting}[caption={YARA Hexadecimal Wildcard}, label=YaraWildcard, language=C, style=mystyle]
+				$hex_example = {B1 B2 ? ? B8}
+			\end{lstlisting}
+			
+			\item \textit{Jumps}: In circumstances when we know the values of the pattern but their length varies then we can use jumps. For example:
+			\begin{lstlisting}[caption={YARA Hexadecimal Jump}, label=YaraJump, language=C, style=mystyle]
+				$jump_example = {F1 F2 [2-3] 24}
+			\end{lstlisting}
+			this indicates that any arbitrary sequence from 2 bytes to 3 bytes can occupy the sequence.
+			
+			\item \textit{Alternatives}:
+		\end{itemize}
+		
+		\item \textit{Text Strings}: Text strings are in form of ASCII text which is then matched up with the condition set. This section also contains further modifiers like "wide" or "nocase":
+		\begin{itemize}
+			\item \textit{Case Sensitive Strings}: Example:
+			\begin{lstlisting}[caption={YARA Case Sensitive Strings}, label=YaraCaseSensitive, language=C, style=mystyle]
+				$text_case_example="test"
+			\end{lstlisting}
+			
+			\item \textit{Case Insensitive Strings}: Example:
+			\begin{lstlisting}[caption={YARA Case Insensitive Strings}, label=YaraCaseInsensitive, language=C, style=mystyle]
+				$text_nocase_example="test" nocase
+			\end{lstlisting}
+			
+			\item \textit{Wide Character Strings}: Example:
+			\begin{lstlisting}[caption={YARA Wide Character Strings}, label=YaraWideCharacter, language=C, style=mystyle]
+				$text_wide_example="test" wide
+			\end{lstlisting}
+		\end{itemize}
+	
+		\item \textit{Regular Expressions}: Starting from version 2.0 YARA has its own regular expression engine, which mostly resembles PCRE. YARA regular expression can be followed by ant of the text strings mentioned above.
+	\end{itemize}
+
+	\item \textbf{Conditions}: Conditions sets evaluate Boolean expressions. For example, in the main example above, it evaluates either of \textit{\$testy\_string1} or \textit{\$test\_string2} to be true.
+	The \textit{condition} section is the only one that is required. This section specifies when the rule result is \textit{true} for the \textit{object} (file) that is under investigation. It contains a boolean expression that determines the result. Conditions are by design Boolean expressions and can contain all the usual logical and relational operators \cite{ArntzEYR}.
+	Under the Condition set, we can:
+	\begin{itemize}
+		\item Count the string presence:
+		\begin{lstlisting}[caption={YARA Count String Presence}, label=YaraCountPresence, language=C, style=mystyle]
+			#test_string1=2 and #test_string2<10
+		\end{lstlisting}
+		
+		\item String Offset: This is used to find out if a particular string is available at a specified offset of the running process. This is further achieved by following keywords:
+		\begin{itemize}
+			\item \textit{at}:
+			\begin{lstlisting}[caption={YARA String Offset At}, label=YaraStringOffsetAt, language=C, style=mystyle]
+				$test_string1 at 200 and $test_string2 at 500
+			\end{lstlisting}
+			this will find whether the test\_string1 is located at offset 200 of the running process and test\_string2 at offset 500 of the running process.
+			
+			\item \textit{in}: this is used when we want to define a range of memory locations where we need to search the string. For example:
+			\begin{lstlisting}[caption={YARA String Offset In}, label=YaraStringOffsetIn, language=C, style=mystyle]
+				$test_string1 in (100 .. 200)
+			\end{lstlisting}
+			will find the test\_string1 in the memory location between \textit{100} and \textit{200} of the running process.
+		\end{itemize}
+		
+		\item Check file size: Example:
+		\begin{lstlisting}[caption={YARA Check File Size}, label=YaraCheckFileSize, language=C, style=mystyle]
+			filesize>10000
+		\end{lstlisting}
+		
+		\item Set of strings: Example:
+		\begin{lstlisting}[caption={YARA Set of Strings}, label=YaraSetOfStrings, language=C, style=mystyle]
+			2 of ($test_string1, $test_string2, $test_string3)
+		\end{lstlisting}
+		this will say at least two of the strings enclosed must match with the file.
+	\end{itemize}
+\end{enumerate}
+Some interesting Yara use cases \cite{NinjaYSEWDM}:
+\begin{itemize}
+	\item \textbf{YARA with PE}
+	Starting with version 3.0, YARA can parse Portable Executable (PE) files. For example the following rule will parse the PE file and look for the import section of the PE file along with the strings:
+	\begin{lstlisting}[caption={YARA with PE}, label=YaraPE, language=C, style=mystyle]
+		Import "PE"
+		
+		Rule PE_Parse_Check
+		{
+			strings:
+				$string_pe="abc" nocase
+
+			condition:
+				pe.imports("Kernel32.dll", "CreateProcess") and
+				pe,imports("wininet.dll", "httpsendrequest") and
+				$ string_pe
+		}
+	\end{lstlisting}
+	This rule, \textit{PE\_Parse\_Check}, will check for the string "abc" and match it with PE import statements looking out for a "process creation" and "http send request".
+	
+	\item \textbf{YARA with PEiD}
+	YARA can also be integrated with \textit{PEiD} to check what packer was used to compile the malicious/suspected executable.
+\end{itemize}
+
+
+YARA can be described as a tool aimed at helping malware researchers to identify and classify malware samples. YARA allows anyone to create "descriptions" known as rules based on text or binary patterns. Although it can be used to detect patterns for any type of purpose, it is most often used for the detection of malware \cite{SimonWIY}.
+
+\textbf{Strings and Modifiers}
+YARA supports searching for multiple string types but will default to ASCII when the encoding is not specified. To specify how YARA should search for strings, we can add a modifier at the end of the string definition. For example, keywords like "\textbf{ascii}" or "\textbf{wide}" could be added to the end of a string definition. Many of these modifiers can even be used together to keep rules simple and readable.
+In addition to text encodings like ASCII or wide-character strings, YARA can also encode text for you before searching. Other modifiers like "\textbf{base64}" and "\textbf{XOR}" allow the author to write a plain-text string like "hello" and then base64 or XOR encode it before searching. Again, this makes rules more readable, as it is obvious what the author wants to fine without having to first decode what gibberish such as "\textbf{aGVsbG8=}" or "\textbf{*'..-}" means in the rule ("hello" base64 encoded and XOR encoded with a key of \textit{0x42}, respectively) \cite{SimonWIY}.
+
+\textbf{Rule Conditions}
+For YARA to be useful, the rule author must tell it exactly what they want to find. This is done in the "condition" section at the end of the rule. Conditions can be simple or more complicated expressions \cite{SimonWIY}.
+
+
+
+Yara is widely used to specify signatures and perform searches. Yara is a tool to combine content matching against simple regular expressions with logic rules, and these rules 'fire' if the predicates are satisfied. These predicates combined are often called 'Yara Rules', and may be used to identify specific malware families, the presence of CVEs, specific signatures of functionality, or generic indicators of maliciousness. Developing effective Yara rules can be very time intensive, especially for junior analysts who lack deeper expertise and intuition on what should be included in a Yara rule to achieve a goal. For example, a related task in performing reverse engineering (a task that may be necessary to build good signatures for difficult malware samples) can take several hours to weeks for a single file, even for expert users with over a decade of experience.
+We consider the problem of trying to develop a Yara rule to identify a specific malware family given only a limited number of example files from that family.
+A common workflow in developing Yara rules is to manually inspect multiple files to determine common contents, wrapped by trial-and-error refinement of the developed rules, where success is measured against coverage and false positive rates on a collection that includes benign or out-of-family files \cite{RaffAYRGUB}.
+
+Yara is an industry standard regular expression tool designed for malware analysis. Many malware analysis tools support Yara directly \cite{RaffAYRGUB}.
+
+
+Emerging as a widely accepted technique for malware analysis, YARA rules, due to its flexible and customisable nature, allows malware analysts to develop rules according to the requirements of a specific security domain. YARA rules can be automatically generated using tools, however, they may require post-processing for their optimisation, and may not be effective for the specific security domain \cite{NaikEAGYRETE}.
+
+In recent years, YARA rules technique has emerged as a widely accepted technique for malware analysis due to its flexible and customisable nature, allowing malware analysts to develop YARA rules according to their specific requirements in targeting specific types of threats. YARA rules are generated based on reverse engineering of malware samples to include the most common \textit{Indicator of Compromise} (\textit{IoC}) strings from those malware samples to find similar types of malware.
+The success of YARA rules is dependent on the effectiveness of generated YARA rules, which is determined by the types of IoC strings and the number of IoC strings utilised in its rules. Therefore, the generation of the most effective YARA rules is the biggest challenge in applying YARA rules for malware analysis.
+YARA rules can be generated either manually or automatically. Generating YARA rules manually requires a highly-specialised skill-set in a specific security area, whereas generating YARA rules automatically using a tool is a relatively easy task. However, there are several issues with automatically generating YARA rules such as these rules require post processing operations for their optimization, despite this they may not become very effective for certain types of threats \cite{NaikEAGYRETE}.
+
+YARA rules are developed to detect malware by matching its signatures/strings with the existing malware signatures/strings. These rules contain predetermined signatures/strings related to known malware used in attempting to match against the targeted files, folders, or processes. YARA rules consist of three sections: meta, strings and condition. Here, strings can be classified into three types: text strings, hexadecimal strings and regular expression strings. Text strings are generally a readable text complemented with some modifiers (e.g. nocase, ASCII, wide, and fullword), to manage the process more effectively. Hexadecimal strings are a sequence of raw bytes complemented with three flexible formats: wild-cards, jumps, and alternatives. Regular expression strings are similar to text strings as a readable text complemented with some modifiers; which are available since version 2.0 and increase the capability of YARA rules. Text strings and regular expressions which express a sequence of raw bytes through the use of escape sequences. The final part of YARA rules is a rule condition that specifies the target to declare the sample as malware. YARA conditions determine whether to trigger the rule or not, however, these conditions are Boolean expressions similar to those used in all other programming languages \cite{NaikEAGYRETE}.
+\begin{lstlisting}[caption={YARA Rules Syntax}, label=YaraSyntax, language=C, style=mystyle]
+	rule RuleName
+	{
+		meta:
+			description = "description of rule"
+			author = "name"
+			date = "dd/mm/yyyy"
+			reference = "url"
+		
+		strings:
+			$text_string1 = "text1 you wish to find in malware"
+			$text_string2 = "text2 you wish to find in malware"
+			
+			$hex_string1 = {hex1 you wish to find in malware}
+			$hex_string2 = {hex2 you wish to find in malware}
+			
+			$reg_exp_string1 = /regular expression1 you wish to find in malware/
+			$reg_exp_string2 = /regular expression2 you wish to find in malware/
+			
+		condition:
+			$text_string1 or $text_string2 or
+			$hex_string1 or $hex_string2 or
+			$reg_exp_string1 or $reg_exp_string2
+	}
+\end{lstlisting}
+
+\begin{lstlisting}[caption={YARA Rules Example}, label=YaraExample, language=C, style=mystyle]
+	rule WannaCry
+	{
+		meta:
+			description = "Generic Signature of WannaCry"
+			author = "Nitin Naik"
+			date = "01/06/2018"
+			reference = "www.mydomain.com"
+		
+		strings:
+			$text_string1 = "encrypt"
+			$text_string2 = "bitcoin"
+		
+			$hex_string1 = {B6 D3 56 A5 78 43}
+			$hex_string2 = {E8 27 F9 83 C4 82}
+			
+			$reg_exp_string1 = /md5:[0-9a-fA-F]{32}/
+			$reg_exp_string2 = /state:(on|off)/
+		
+		condition:
+			$text_string1 or $text_string2 or
+			$hex_string1 or $hex_string2 or
+			$reg_exp_string1 or $reg_exp_string2
+	}
+\end{lstlisting}
+
+\begin{enumerate}
+	\item \textit{Advantages} of YARA rules:
+	YARA rules offer several advantages over other malware analysis techniques, here are some of the most notable advantages \cite{NaikEAGYRETE}:
+	\begin{itemize}
+		\item YARA rules offer an easy and efficient way of writing flexible and custom rules according to the requirements of a specific security domain.
+		
+		\item YARA rules are an open standard and work on most of the major platforms such as Windows, Linux and Mac OS.
+		
+		\item YARA rules can be easily integrated into Python and C/C++ programming languages.
+		
+		\item YARA rules can be used for both static and dynamic malware analysis.
+		
+		\item Several tools are available to generate YARA rules easily and efficiently.
+		
+		\item Several public repositories of YARA rules offer readily available rules for malware analysis.
+	\end{itemize}
+	
+	\item \textit{Limitations} of YARA rules:
+	YARA rules are one of the most established malware analysis techniques, however, they have some limitations, here are some of the most notable \cite{NaikEAGYRETE}:
+	\begin{itemize}
+		\item YARA rules are commonly written based on \textit{IoC} strings, however, attackers can easily manipulate, replace or encrypt these \textit{IoC} strings to evade them, which could make these rules less effective.
+		
+		\item \textit{IoC} strings are extracted from existing malware and their families through a reverse engineering process, which requires a highly specialised skill-set in a specific security domain.
+		
+		\item The success of YARA rules is dependant on the types and number of \textit{IoC} strings included in rules, however, achieving the balance of both is a challenging task as an ineffective and inappropriate number of \textit{IoC} strings could affect the performance of YARA rules.
+		
+		\item YARA rules are effective in detecting malware which resembles similarity with the existing malware and their families, however, it may miss out new and unique malware variants.
+	\end{itemize}
+\end{enumerate}
+
+\color{Black}
+
+\subsubsection{YARA Rules Automatic Generators}
+\color{Red}
+Generating YARA rules automatically is the most popular method in employing YARA rules in malware analysis \cite{NaikEAGYRETE}.
+
+\color{Black}
+\paragraph{\textit{yarGen} Tool}
+\color{Red}
+\textit{yarGen} is a Python-based tool utilised to generate YARA rules, which is developed by Florian Roth \cite{}. It generates YARA rules utilising some intelligent techniques such as fuzzy regular expressions, Naive Bayes classifier and Gibberish Detector \cite{}. The generated YARA rules include those strings and opcodes from malware which do not match with the provided goodware databases. These YARA rules contain a predefined number of strings (generally up to 20 strings), based on their highest scores to maintain a reasonable operation speed. This tool generates two types of rules: basic rules and super rules, depending on the malware sample types, where basic rules can generally target specific malware and super rules can target a set of malware or malware family \cite{NaikEAGYRETE}.
+
+\textit{YarGen} uses a Naive Bayes model to score the potential utility of features that can be extracted from a binary, predominately strings. Then YarGen uses a number of heuristics to select the features to use, and combines them in a heuristic fashion. The authors of YarGen encourage its use as a starting point for rule construction, and to build rules by manually adjusting and refining YarGen's output \cite{RaffAYRGUB}.
+
+\begin{enumerate}
+	\item \textit{Advantages} of \textit{yarGen} tool:
+	\begin{itemize}
+		\item It allows generation of YARA rules based on both opcodes and strings.
+		
+		\item It supports the use of PE (portable executable) modules, which are used by the Windows operating system for executables such as \textit{DLL} and \textit{COM} files.
+		
+		\item It can be integrated with other anti-malware software for its more effective use.
+		
+		\item It reduces false positives by checking all strings against strings of goodware databases.
+		
+		\item The python script is simple and easy to used through a command line interface.
+	\end{itemize}
+	
+	\item \textit{Drawbacks} of \textit{yarGen} tool:
+	\begin{itemize}
+		\item It requires post-processing of rules for increasing their effectiveness.
+		
+		\item It requires significant resources for opcode-based rules and loading goodware files.
+		
+		\item The rule generation process is slow.
+		
+		\item The creation of super rules could cause duplication of rules and redundancy.
+		
+		\item It requires installation of all dependencies and built-in databases for working successfully.
+	\end{itemize}
+\end{enumerate}
+
+\color{Black}
+\paragraph{\textit{yaraGenerator} Tool}
+\color{Red}
+It is a python-based tool used for the generation of YARA rules, which is developed by Chris Clark \cite{}.It generates YARA rules with a completely different signature for different types of files such as \textit{EXE}s, \textit{PDF}s, and \textit{Email}s utilising string prioritization logic and code refactoring. The generated YARA rules consist of strings only, including those strings from malware which do not match with the provided blacklist of strings. It uses a database of 30,000 blacklisted strings divided based on different file formats. These YARA rules contain a large number of strings (depending on the types of samples) selected randomly as it does not compute a score or weighting for strings \cite{NaikEAGYRETE}.
+
+\begin{enumerate}
+	\item \textit{Advantages} of \textit{yaraGenerator} tool:
+	\begin{itemize}
+		\item It can generate specialised rules of a specific file format.
+		
+		\item It supports the use of \textit{PE} (portable executable) modules, which are used by Windows operating system for executables such as \textit{DLL} and \textit{COM} files.
+		
+		\item It reduces false positives by checking all strings against strings of blacklist files.
+		
+		\item The python script is simple and easy to use through a command line interface.
+	\end{itemize}
+	
+	\item \textit{Drawbacks} of \textit{yaraGenerator} tool:
+	\begin{itemize}
+		\item It requires post-processing of rules for increasing their effectiveness.
+		
+		\item It generates YARA rules based on random selection of strings which may not select the most appropriate strings in many cases.
+		
+		\item It does not support the inclusion of opcodes.
+		
+		\item The project was developed as a work in progress and has not been updated afterwords.
+	\end{itemize}
+\end{enumerate}
+
+\color{Black}
+\paragraph{\textit{yabin} Tool}
+\color{Red}
+
+It is another python-based tool used for generating YARA rules, which was developed by \textit{Alien Vault Open Threat Exchange} (\textit{OTX}) community. It generates YARA rules by finding rare functions in certain malware samples or families. It recognises functions by checking function prologues which define the start of functions, for example, \textit{55 8B EC} mostly specifies the start of a function in programs compiled by Microsoft Visual Studio. The generated YARA rules include those strings from malware which do not match with the provided whitelist of common library functions. It uses a whitelist obtained from 100 Gb of non-malicious software to omit common library functions. These YARA rules contain a list of hexadecimal strings to compare against suspected malware files for finding the similarity in their byte-sequences \cite{NaikEAGYRETE}.
+\begin{enumerate}
+	\item \textit{Advantages} of \textit{yabin} tool:
+	\begin{itemize}
+		\item It can be used to cluster malware samples based on the reuse of their code.
+		
+		\item The search patterns can be extended during the post-processing operation.
+		
+		\item It provides a large whitelist obtained from numerous non-malicious software to omit common library functions.
+		
+		\item The python script is simple and easy to use through a command line interface.
+	\end{itemize}
+	
+	\item \textit{Drawbacks} of \textit{yabin} tool:
+	\begin{itemize}
+		\item It requires post-processing of rules to make them more effective.
+		
+		\item It may not work on some specific file formats.
+		
+		\item It only uses functions and does not use other types of strings.
+		
+		\item It can only work with unpacked executables.
+		
+		\item It is not designed to work on \textit{.NET} executables, \textit{Java} files and \textit{Microsoft} documents.
+		
+		\item It is mainly developed for the testing purpose and not for production use.
+	\end{itemize}
+\end{enumerate}
+
+\color{Black}
+\paragraph{\textit{AutoYara} Tool}
+\color{Red}
+The previously mentioned tools like \textit{YarGen} rely on a number of heuristics and string features and have varying levels of effectiveness. \textit{AutoYara} tool makes larger rules, but uses the redundancy and conjunction of components to achieve the extremely low false-positive rates that analysts desire. (The two primary concerns are: 1. Yara rules that generate a lot of false positives could slow the investigation and 2. security workers often have fewer ($\leq 10$) samples when creating a Yara rule.) This task is done in two steps. First, AutoYara authors leverage recent work in finding frequent larger n-grams, for $n \leq 1024$, to find several candidate byte strings that could become features. Second, they extend the SpectraclCoClustering algorithm to work when the number of bi-clusters is not known \textit{a priori}. Bi-clustering allows AutoYara to easily produce complex logic rules that allow to build signatures with low false positive rates  \cite{RaffAYRGUB}.
+
+AutoYara is fast, allowing for deployment on low-resource equipment for teams that deploy to remote networks \cite{RaffAYRGUB}.
+
+Autoyara makes use of bi-clustering algorithms as the fundamental mechanism of rule construction. The goal of bi-cluster is to take an input matrix \textit{X}, and to simultaneously cluster the rows and columns of the matrix to reveal an underlying structure between columns and rows. AutoYara authors used bi-clustering because it provides a natural means to extract Yara rules. To build a good Yara rule, in fact, one needs to know 1. which features should be used at all, and 2. which features should be combined into an '\textit{and}' statement (would reduce FPs), and which should be placed into an '\textit{or}' statement (would increase TPs). Bi-clustering provides a simple approach to do this jointly over the features, rather than considering greedy approaches that select features one at a time. For every feature within a bi-cluster, they <and> them together since they co-occur, and they <or> the predicates built from bi-clusters. This results in a "disjunction of conjunctions" rule formulation. They used a bi-clustering method that can determine the number of bi-clusters automatically (most bi-clustering algorithms require specifying the number of vi-clusters in advance, and enforce no overlaps between bi-clusters), even if it is only one bi-cluster, that allows overlapping bi-clusters, and will discard rows and columns that do not fit in any bi-cluster \cite{RaffAYRGUB}.
+
+\begin{enumerate}
+	\item \textit{Advantages} of \textit{AutoYara} tool:
+	\begin{itemize}
+		\item It is fast, allowing for deployment on low-resource equipment for teams that deploy to remote networks.
+		
+		\item It was designed with the intent of producing yara rules with low false positive rates.
+		
+		\item It was designed to be able to generate yara rules having even $\leq10$ available samples.
+	\end{itemize}
+	
+	\item \textit{Drawbacks} of \textit{AutoYara} tool:
+	\begin{itemize}
+		\item It requires post-processing of rules to make them more effective.
+		
+		\item It a very recent tool mainly developed for the research purposes and not for production use.
+	\end{itemize}
+\end{enumerate}
+
+\color{Black}
+\section{Semantic Based Detection}
+\color{Red}
+
+Semantics-based malware detection looks to identify the malware by deducing the logic of the code and matching it to already known malicious logic patterns. It follows the semantics of the code instructions within the file instead of looking at the syntactic properties unlike signature based detection. This allows for the semantic based detection approaches to overcome obfuscation and detect unknown malware variants \cite{NamanyaTWM}. 
+
+\color{Black}
+\section{Behavioural Based Detection}
+\color{Red}
+
+Behavioural-based detection techniques focus on using specific system/application behaviours and activities that are observed during dynamic analysis of the sample to form patterns that can be used to identify software that invoke similar patterns. Although these techniques are largely immune to obfuscation, their applicability is limited by their performance as dynamic analysis requires time and determining the unsafe activities and behaviours within the environment is an evolving challenge \cite{NamanyaTWM}.
+
+\color{Black}
+\section{Heuristics-based Detection}
+\color{Red}
+
+In this method there are two approaches for the detection of malwares. Firstly in static approach suspicious programs are disassembled to find a matching of the known malware pattern, if any. If the analysis result crosses the preset threshold then the program is marked as infected. Secondly in dynamic approach, code emulation techniques are used by simulating the processor and operating system to detect suspicious operations (an attempt to open other executable files with the intention of modifying their content, changing the Master Boot Record, concealing themselves from the operating system, etc.) on a virtual machine. The Heuristic method is a promising technique for the detection of unknown malware, in particular to detect encrypted malwares. However, it requires entire virtual environments to be installed. Also it is prone to false alarms, which may make the system more vulnerable by taking the real malware as another false alarm. Researchers augment the results of detection techniques and combine it with another detection technique to reduce the false alarms \cite{Sharma_2014}.
+
+Heuristic is computing is defined as "Proceeding to a solution by trial and error or by rules that are only loosely defined". The main idea behind heuristic based detection is that there is no need to know so much about the inner structure or logic of the program being scanned and the main aim is to reach as close to a conclusive decision as possible using the best optimal path. Therefore, heuristic based detection approaches use algorithms and or rules that scan for known patterns. The first heuristic approaches are known to have been built in 1989 to detect \textit{DOS} viruses. Most antivirus programs today use a combination of heuristic engines and signature based scanners. Recent research in the use of data-mining for malware detection are considered heuristic based detection approaches \cite{NamanyaTWM}.
+
+\color{Black}
+\section{Machine Learning}
+\color{Red}
+
+In recent years, malware detection with machine learning techniques is gaining popularity. Tom Mitchell \cite{} defines machine learning as the study of computer algorithms that improve through experiments. Robert Moskovitch et. al. \cite{} proposed detection of malwares based on monitoring the computer behaviour (features). His evaluation results suggest that by using classification algorithms applied on only 20 features the mean detection accuracy exceeded 90\%. The advantage of machine learning techniques is that it will not only detect known malwares but also act as knowledge for the detection of new malware. The popular machine learning techniques among the researchers for the detection of second generation malwares are Naive Bayes, Decision Trees, Data Mining, Neural Networks and Hidden Markov Modes. This technique may not replace the standard detection methods, but it can act as an add-on feature. Generally, machine learning techniques are more computationally demanding than the standard anti-malware, hence it may not be suitable for end users. However, it can be implemented at enterprise gateaway level to act as a central anti-malware engine to supplement anti-malwares. Although infrastructure requirement is costly, it can help in protecting valuable enterprises data from the security threats and can prevent immense financial damages \cite{Sharma_2014}.
+
+In recent years, machine learning has gained its popularity in many fields including IT security. Robert Moskovitch et. al. \cite{} proposed a technique that monitors a small set of features that are sufficient for detecting malware without sacrificing accuracy. The result of the study showed that, using only 20 features, the mean detection accuracy was greater than 90\%, and for specific unknown worms, this accuracy got over 99\%, while maintaining a low level of false positives. The advantage of machine learning techniques is that it will not only detect a known malware but also act as a database for detecting new malware. Similar studies can also be found in another model such as Naive Bayes, Decision Trees, Neural Networks. Although this technique is practical, it may not replace the standard detection methods, rather than act as an add-on feature because machine learning techniques are computationally demanding and may not be suitable for end users \cite{NguyenSPVD}.
+
+\color{Black}
+\subsection{Simple malware detection network}
+\color{Red}
+
+\color{Black}
+\subsection{AlOHA: Auxiliary Loss Optimization for Hypothesis Augmentation}
+\color{Red}
+
+\color{Black}
+\subsection{Automatic Malware Description via Attribute Tagging and Similarity Embedding}
+\color{Red}
+
+\color{Black}
+\subsection{Learning from Context: Exploiting and Interpreting File Path Information for Better Malware Detection}
+\color{Red}
+
+\color{Black}
+\section{Malware Normalization}
+\color{Red}
+
+The malwares generated from advanced toolkits such as the packer UPX and Mitsfall are difficult to detect. For the detection of such malwares, normalization techniques can be used to improve the detection rate of an existing anti-malware. In this technique, a normalizer accepts the obfuscated version of the malware and eliminates the obfuscation carried on the program and produces the normalized executable. After normalization the signature of the malware is extracted and compared with the signature in canonical form. Chistodorescu et. al. \cite{} designed a malware normalizer that handles three common obfuscation viz. code reordering, packing and junk code insertion. Later on Armor et. al. \cite{}, proposed a generalized malware normalizer which can store obfuscation methods in the form of automata structures and use them for normalizing the metamorphic malwares. Recently a general malaware normalizer has been proposed that can store lots of obfuscation methods in the form of automata structures for normalizing metamorphic malwares, which as a detection rate up to 81\% \cite{Sharma_2014}.
+
+\color{Black}
+\chapter{Dataset Used}
+
+\chapter{Experimenting with ML based Malware Detection/Description methods}
 
 \chapter{Proposed Tool}
 
 Description of the proposed tool..
+
+\chapter{Experiments}
 
 \chapter{Results}
 
