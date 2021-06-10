@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  10 JUN 2021 15:10
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  10 JUN 2021 20:41
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -729,7 +729,7 @@ File: lstlang2.sty 2020/03/24 1.8d listings language file
 File: lstlang3.sty 2020/03/24 1.8d listings language file
 )
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 595.
+nput line 594.
  [24] [25] [26]
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
@@ -742,7 +742,7 @@ Chapter 3.
 
 ] [42]
 LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 
-1224.
+1226.
 
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/base\ts1cmtt.fd
 File: ts1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
@@ -858,19 +858,19 @@ Underfull \hbox (badness 10000) in paragraph at lines 89--92
 [58
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 159--161
+Underfull \hbox (badness 10000) in paragraph at lines 164--166
 []\OT1/cmr/m/n/10 V. Nguyen, ``A study of poly-mor-phic virus de-tec-tion'', 11
  2018, DOI
  []
 
 
-Underfull \hbox (badness 6927) in paragraph at lines 168--171
+Underfull \hbox (badness 6927) in paragraph at lines 173--176
 \OT1/cmtt/m/n/10 binarydefense . com / what-[]is-[]yara-[]get-[]to-[]know-[]thi
 s-[]malware-[]research-[]tool/$[][]\OT1/cmr/m/n/10 , Ac-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 173--176
+Underfull \hbox (badness 10000) in paragraph at lines 178--181
 \OT1/cmtt/m/n/10 technology / 2017 / 09 / explained-[]yara-[]rules / # : [] : t
 ext = YARA % 20is % 20a % 20tool %
  []
@@ -880,13 +880,13 @@ Package rerunfilecheck Info: File `Thesis_V1.0.0.out' has not changed.
 (rerunfilecheck)             Checksum: F154FB19BC85F1619317B18E801005B3;6299.
  ) 
 Here is how much of TeX's memory you used:
- 16776 strings out of 481296
- 281353 string characters out of 2908369
- 1009891 words of memory out of 3000000
- 33256 multiletter control sequences out of 15000+600000
+ 16778 strings out of 481296
+ 281390 string characters out of 2908369
+ 1009198 words of memory out of 3000000
+ 33257 multiletter control sequences out of 15000+600000
  415333 words of font info for 68 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 134i,13n,137p,1436b,2520s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 134i,13n,137p,1436b,2411s stack positions out of 5000i,500n,10000p,200000b,80000s
  <C:\Users\michele\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tc
 ti1000.pk> <C:\Users\michele\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/d
 pi600\tctt0800.pk> <C:\Users\michele\AppData\Local\MiKTeX\fonts/pk/ljfour/jknap
@@ -911,9 +911,9 @@ c/amsfonts/cm/cmti10.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/
 type1/public/amsfonts/cm/cmti12.pfb><C:/Users/michele/AppData/Local/Programs/Mi
 KTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/michele/AppData/Local/
 Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt8.pfb>
-Output written on Thesis_V1.0.0.pdf (59 pages, 597191 bytes).
+Output written on Thesis_V1.0.0.pdf (59 pages, 597088 bytes).
 PDF statistics:
- 1163 PDF objects out of 1200 (max. 8388607)
- 406 named destinations out of 1000 (max. 500000)
+ 1166 PDF objects out of 1200 (max. 8388607)
+ 407 named destinations out of 1000 (max. 500000)
  294 words of extra memory for PDF output out of 10000 (max. 10000000)
 

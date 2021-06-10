@@ -103,14 +103,14 @@ A.~Sharma and S.~K.~Sahay, ``Evolution and detection of polymorphic and
 E.~Skoudis and L.~Zeltser, ``Malware: Fighting malicious code'', Prentice Hall
   Professional, 2004, ISBN: 978-0-131-01405-3
 
+\bibitem{EilamRSRE}
+E.~Eilam, ``Reversing: Secrets of reverse engineering'', John Wiley \&; Sons,
+  Inc., 2005, ISBN: 9780764574818
+
 \bibitem{BayerDAMC}
 U.~Bayer, A.~Moser, C.~Kruegel, and E.~Kirda, ``Dynamic analysis of malicious
   code'', Journal in Computer Virology, vol.~2, 08 2006, pp.~67--77,
   \doi{10.1007/s11416-006-0012-2}
-
-\bibitem{EilamRSRE}
-E.~Eilam, ``Reversing: Secrets of reverse engineering'', John Wiley \&; Sons,
-  Inc., 2005, ISBN: 9780764574818
 
 \bibitem{SikorskiPMA}
 M.~Sikorski and A.~Honig, ``Practical malware analysis: The hands-on guide to
@@ -154,6 +154,11 @@ I.~You and K.~Yim, ``Malware obfuscation techniques: A brief survey'', 2010
 B.~Dang, A.~Gazet, E.~Bachaalany, and S.~Josse, ``Practical reverse
   engineering: X86, x64, arm, windows kernel, reversing tools, and
   obfuscation'', Wiley Publishing, 1st~ed., 2014, ISBN: 1118787315
+
+\bibitem{PerdisciCPEACVD}
+R.~Perdisci, A.~Lanzi, and W.~Lee, ``Classification of packed executables for
+  accurate computer virus detection'', Pattern Recognition Letters, vol.~29, 10
+  2008, pp.~1941--1946, \doi{10.1016/j.patrec.2008.06.016}
 
 \bibitem{NguyenSPVD}
 V.~Nguyen, ``A study of polymorphic virus detection'', 11 2018,

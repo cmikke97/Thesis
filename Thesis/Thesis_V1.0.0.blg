@@ -8,45 +8,45 @@ Database file #1: biblio.bib
 Warning--empty booktitle in LiPRTCMP
 Warning--empty booktitle in YouMOT
 Warning--empty booktitle in NguyenSPVD
-You've used 37 entries,
+You've used 38 entries,
             1924 wiz_defined-function locations,
-            725 strings with 9887 characters,
-and the built_in function-call counts, 6803 in all, are:
-= -- 580
-> -- 264
+            734 strings with 10109 characters,
+and the built_in function-call counts, 7174 in all, are:
+= -- 620
+> -- 275
 < -- 0
-+ -- 108
-- -- 71
-* -- 425
-:= -- 962
++ -- 112
+- -- 74
+* -- 453
+:= -- 1010
 add.period$ -- 0
-call.type$ -- 37
-change.case$ -- 40
+call.type$ -- 38
+change.case$ -- 41
 chr.to.int$ -- 0
-cite$ -- 40
-duplicate$ -- 305
-empty$ -- 817
-format.name$ -- 71
-if$ -- 1697
+cite$ -- 41
+duplicate$ -- 323
+empty$ -- 849
+format.name$ -- 74
+if$ -- 1791
 int.to.chr$ -- 0
-int.to.str$ -- 37
-missing$ -- 21
-newline$ -- 114
-num.names$ -- 37
-pop$ -- 206
+int.to.str$ -- 38
+missing$ -- 22
+newline$ -- 117
+num.names$ -- 38
+pop$ -- 207
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 238
+skip$ -- 257
 stack$ -- 0
-substring$ -- 231
-swap$ -- 66
+substring$ -- 267
+swap$ -- 76
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 3
-while$ -- 55
-width$ -- 39
-write$ -- 338
+while$ -- 58
+width$ -- 40
+write$ -- 349
 (There were 3 warnings)
