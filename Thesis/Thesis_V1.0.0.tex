@@ -1176,36 +1176,42 @@ Moreover, \textit{metamorphic} malware is also capable of interleaving its own c
 The first malware to exhibit metamorphic behaviour was called \textit{Win95/Regswap} and was developed in 1998.
 
 \chapter{Detection Techniques}
-\color{Red}
+Malware detection is the process of identifying malicious code from benign code. This is done in order to protect systems and being able to recover from the malicious code effects \cite{NamanyaTWM}.
 
-To combat the threat/attacks from malwares, softwares (anti-malware) are developed, which are mostly based on the assumption that the malware structure does not change appreciably. But the variant of second generation malwares are very much different to each other, hence threats/attacks from such malwares to Computers and PDAs are increasing day by day. Therefore, there is a need that both academia and anti-malware developers should continually work to prevent damage from the evolution of malwares \cite{Sharma_2014}.
+In order to counter malware attacks and threats, in recent years many anti-malware tools have been developed. Many of these are based on static features (such as signatures) with the assumption that most malware is static, it doesn't mutate/change significantly at infection/replication time \cite{Sharma_2014}.
 
-Malware detection is the process of identifying malicious code from benign code so that the system can be protected or recovered from any effects of the malicious code \cite{NamanyaTWM}.
+However, attackers are nowadays increasingly using the more sophisticated second generation malwares, which strongly mutate at each infection. Researchers and anti-malware software developers are thus focusing their attention on the creation of more advanced tools capable of detecting this type of evolving malware.
 
-\color{Black}
 \section{Integrity Checker}
-\color{Red}
+When compromising a computer system or network some changes are inevitably made within the target environment. This implies that systems, like \textit{integrity checkers}, that rely on actively monitoring changes made to existing files within the target operating system, can be used to perform intrusion detection \cite{NamanyaTWM}.
 
-Compromising a computer system or network requires some changes to be made within the target environment. Integrity checkers are used in intrusion detection on the premise that a file which exists within the uncompromised operating environment is used as a measure to counter any future changes. A hashing function like the \textit{md5} sum, \textit{Sha1} or \textit{Sha256} is used to calculate the digest of the program or file and stored in the database. Later, the figests of the program/file are re-calculated and then compared against the originally calculated hash to check if the file has been modified. The challenges that this method presents are:
+Generally, \textit{integrity checkers}, use hashing functions like the \textit{md5} sum, \textit{Sha1} or \textit{Sha256} to calculate the digest of files and/or executables which are then stored in a database of digests. Programs and files digests are then periodically re-calculated and compared against the ones in the database looking for modifications. If the digest of a file is different and no software updates nor patches were applied, then the file was probably tampered with.
+
+\textit{Integrity checkers} present a number of challenges:
 \begin{itemize}
-	\item The system initially used to calculate the stored hashes must be deemed clean which is hard to guarantee.
+	\item The system state in which the initial file digests are calculated has to be considered clean. However this is difficult to be guaranteed.
 	
-	\item System updates and patches do modify system files and programs which means that the database of hashes needs to be updated for every update or there will be very high false positives affecting the detection method.
+	\item The application of system (and software) updates and patches, which modify system files and programs, must be followed by an update of the digests database, otherwise there will be a very high false positive rate.
 	
-	\item There is the need to ensure that the reference database of hashes is stored offline and safely otherwise it presents a single point of failure in the detection mechanism.
+	\item The digests database needs to be stored securely and there has to be an offline (and safe) backup, otherwise there would be a single point of failure.
 \end{itemize}
 
-Integrity checking is considered quite important in detection of any system modifications. It is however more of an incident recovery process method rather than a malware infection prevention method \cite{NamanyaTWM}.
+\textit{Integrity checking} can be considered as an important tool for detecting any system modifications, but it is more an incident recovery method rather than a malware intrusion/infection prevention method.
 
-\color{Black}
 \section{Signature-based Detection}
 \color{Red}
 
 Signature based detection is the simplest and an effective way of detecting known malwares \cite{Sharma_2014}. Once the malware is identified, unique sequences of bytes are extracted from it, which represents the signature of the malware. These signatures are selected long enough to characterize a specific malware with respect to any other benign program. This technique scans the files in the system to find the defined malware signature, if found an alert of the presence of malware is sent, e.g. Aho-Corasick \cite{} algorithm scans fo the exact matching, hence a slight mismatch will escape detection. Veldamna and Wu-Manber \cite{} proposed the use of wildcards for detecting slight variances in the malwares. Some metamorphic malwares could be detected using the wildcard method, e.g. W32/Regswap. It is easy to use, however requirement of scanning becomes costly as the database of malware signatures is increasing very fast. Also, it's a completely reactive technique, therefore unable to combat threats/attacks from the new malwares until it causes damage. Gartner \cite{} believes that eventually Signature-based techniques will be replaced by more robust approaches, because today the signature-based anti-malwares have marginal value as second generation malwares can easily escape detection.
 
+---
+
 Most of the anti-virus software uses signature based detection which is inefficient in the present scenario due to the rapid increase in the number and variants of malware. The signature is a unique identification of a binary file, which is created by analysing the binary file typically using static analysis methods. Dynamic analysis uses the behaviour and actions while in execution to identify whether the executable is a malware or not. Both methods have their own advantages and disadvantages.
 
+---
+
 Signature based detection uses specific byte code sequences that are identified to be unique to a sample of malware in a specific family or variant to detect the presence of similar coded files in a system. The unique byte of code sequences are saved in the anti-virus database as signatures and are developed by a group of malware experts after detailed analysis of a significant number of malwares. Any file being scanned by the antivirus that is found to contain the signature of the unique byte code sequence is deemed to be malicious. This implies that a database of signatures must be maintained by the antivirus and updated every time new signatures are generated in order to detect new malware. This creates one of the major challenges faced by system users as updating these signatures requires access to networking resources that might not be readily available all the time \cite{NamanyaTWM}.
+
+---
 
 Signature detection is the simplest method and is the most widely used for traditional malware detection. This method constructs a database that contains signatures of all known malware. When analysing a new programming code, it compares the signature of the analysed virus with its database, if the matching is found, the analysed file is considered as virus. This approach is fast and has high positive rate, however the database needs to be updated with new signatures. Although this technique is old it was used in the early days of polymorphic detection when investigators/researchers analysed the virus manually, one by one, line by line to detect various sequences of programming codes. As the number of viruses has been increasing so fast, this technique quickly became time-consuming, expensive and impractical \cite{NguyenSPVD}.
 
@@ -1559,23 +1565,45 @@ Autoyara makes use of bi-clustering algorithms as the fundamental mechanism of r
 
 \color{Black}
 \section{Semantic Based Detection}
-\color{Red}
+\textit{Semantic-based} malware detection aims at identifying malware by deducing the analysed code logic and comparing it to a database of already known malicious logic patterns. This technique, differently from signature-based detection which looks at the code syntactic properties, tracks the semantics of the program code instructions. This implies that \textit{semantic-based} detection approaches are capable of overcoming obfuscation attempts and even detecting unknown malware variants \cite{NamanyaTWM}.
 
-Semantics-based malware detection looks to identify the malware by deducing the logic of the code and matching it to already known malicious logic patterns. It follows the semantics of the code instructions within the file instead of looking at the syntactic properties unlike signature based detection. This allows for the semantic based detection approaches to overcome obfuscation and detect unknown malware variants \cite{NamanyaTWM}. 
-
-\color{Black}
 \section{Behavioural Based Detection}
-\color{Red}
+\textit{Behavioural-based} malware detection is based on the use of behavioural patterns for the identification of malicious software. This is done by dynamically analysing malware samples and extracting specific system/application behaviours and activities in order to form a '\textit{behavioural signature}' of a malware strain. New samples are then analysed in the same way and identified as malware if their behavioural pattern is similar to the \textit{behavioural signature} of a known malware \cite{NamanyaTWM}.
 
-Behavioural-based detection techniques focus on using specific system/application behaviours and activities that are observed during dynamic analysis of the sample to form patterns that can be used to identify software that invoke similar patterns. Although these techniques are largely immune to obfuscation, their applicability is limited by their performance as dynamic analysis requires time and determining the unsafe activities and behaviours within the environment is an evolving challenge \cite{NamanyaTWM}.
+\textit{Behavioural-based} detection is for the most part immune to obfuscation attempt. However, being based on the time consuming dynamic analysis and on the challenging task of determining the unsafe activities and behaviours to consider within the environment, its applicability is limited.
 
-\color{Black}
 \section{Heuristics-based Detection}
 \color{Red}
 
-In this method there are two approaches for the detection of malwares. Firstly in static approach suspicious programs are disassembled to find a matching of the known malware pattern, if any. If the analysis result crosses the preset threshold then the program is marked as infected. Secondly in dynamic approach, code emulation techniques are used by simulating the processor and operating system to detect suspicious operations (an attempt to open other executable files with the intention of modifying their content, changing the Master Boot Record, concealing themselves from the operating system, etc.) on a virtual machine. The Heuristic method is a promising technique for the detection of unknown malware, in particular to detect encrypted malwares. However, it requires entire virtual environments to be installed. Also it is prone to false alarms, which may make the system more vulnerable by taking the real malware as another false alarm. Researchers augment the results of detection techniques and combine it with another detection technique to reduce the false alarms \cite{Sharma_2014}.
+In this method there are two approaches for the detection of malwares.
 
-Heuristic is computing is defined as "Proceeding to a solution by trial and error or by rules that are only loosely defined". The main idea behind heuristic based detection is that there is no need to know so much about the inner structure or logic of the program being scanned and the main aim is to reach as close to a conclusive decision as possible using the best optimal path. Therefore, heuristic based detection approaches use algorithms and or rules that scan for known patterns. The first heuristic approaches are known to have been built in 1989 to detect \textit{DOS} viruses. Most antivirus programs today use a combination of heuristic engines and signature based scanners. Recent research in the use of data-mining for malware detection are considered heuristic based detection approaches \cite{NamanyaTWM}.
+Firstly in static approach suspicious programs are disassembled to find a matching of the known malware pattern, if any.
+
+If the analysis result crosses the preset threshold then the program is marked as infected.
+
+Secondly in dynamic approach, code emulation techniques are used by simulating the processor and operating system to detect suspicious operations (an attempt to open other executable files with the intention of modifying their content, changing the Master Boot Record, concealing themselves from the operating system, etc.) on a virtual machine.
+
+The Heuristic method is a promising technique for the detection of unknown malware, in particular to detect encrypted malwares.
+
+However, it requires entire virtual environments to be installed.
+
+Also it is prone to false alarms, which may make the system more vulnerable by taking the real malware as another false alarm.
+
+Researchers augment the results of detection techniques and combine it with other detection techniques to reduce the false alarms \cite{Sharma_2014}.
+
+---
+
+Heuristic in computing is defined as "Proceeding to a solution by trial and error or by rules that are only loosely defined".
+
+The main idea behind heuristic based detection is that there is no need to know so much about the inner structure or logic of the program being scanned and the main aim is to reach as close to a conclusive decision as possible using the best optimal path.
+
+Therefore, heuristic based detection approaches use algorithms and or rules that scan for known patterns.
+
+The first heuristic approaches are known to have been built in 1989 to detect \textit{DOS} viruses.
+
+Most antivirus programs today use a combination of heuristic engines and signature based scanners.
+
+Recent research in the use of data-mining for malware detection are considered heuristic based detection approaches \cite{NamanyaTWM}.
 
 \color{Black}
 \section{Machine Learning}
@@ -1605,7 +1633,17 @@ In recent years, machine learning has gained its popularity in many fields inclu
 \section{Malware Normalization}
 \color{Red}
 
-The malwares generated from advanced toolkits such as the packer UPX and Mitsfall are difficult to detect. For the detection of such malwares, normalization techniques can be used to improve the detection rate of an existing anti-malware. In this technique, a normalizer accepts the obfuscated version of the malware and eliminates the obfuscation carried on the program and produces the normalized executable. After normalization the signature of the malware is extracted and compared with the signature in canonical form. Chistodorescu et. al. \cite{} designed a malware normalizer that handles three common obfuscation viz. code reordering, packing and junk code insertion. Later on Armor et. al. \cite{}, proposed a generalized malware normalizer which can store obfuscation methods in the form of automata structures and use them for normalizing the metamorphic malwares. Recently a general malaware normalizer has been proposed that can store lots of obfuscation methods in the form of automata structures for normalizing metamorphic malwares, which as a detection rate up to 81\% \cite{Sharma_2014}.
+The malwares generated from advanced toolkits such as the packer UPX and Mitsfall are difficult to detect.
+
+For the detection of such malwares, normalization techniques can be used to improve the detection rate of an existing anti-malware.
+
+In this technique, a normalizer accepts the obfuscated version of the malware and eliminates the obfuscation carried on the program and produces the normalized executable.
+
+After normalization the signature of the malware is extracted and compared with the signature in canonical form. Chistodorescu et. al. \cite{} designed a malware normalizer that handles three common obfuscation viz. code reordering, packing and junk code insertion.
+
+Later on Armor et. al. \cite{}, proposed a generalized malware normalizer which can store obfuscation methods in the form of automata structures and use them for normalizing the metamorphic malwares.
+
+Recently a general malaware normalizer has been proposed that can store lots of obfuscation methods in the form of automata structures for normalizing metamorphic malwares, which as a detection rate up to 81\% \cite{Sharma_2014}.
 
 \color{Black}
 \chapter{Dataset Used}

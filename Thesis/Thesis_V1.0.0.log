@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  11 JUN 2021 19:22
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  12 JUN 2021 14:44
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -742,34 +742,34 @@ Chapter 3.
 
 ] [42]
 LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 
-1229.
+1235.
 
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/base\ts1cmtt.fd
 File: ts1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-[43] [44] [45] [46] [47] [48] [49] [50] [51]
+[43] [44] [45] [46] [47] [48] [49] [50] [51] [52]
 Chapter 4.
-[52
-
-]
-Chapter 5.
 [53
 
 ]
-Chapter 6.
+Chapter 5.
 [54
 
 ]
-Chapter 7.
+Chapter 6.
 [55
 
 ]
-Chapter 8.
+Chapter 7.
 [56
 
 ]
+Chapter 8.
+[57
+
+]
 Chapter 9.
-(Thesis_V1.0.0.bbl [57
+(Thesis_V1.0.0.bbl [58
 
 ]
 Underfull \hbox (badness 1242) in paragraph at lines 10--12
@@ -855,7 +855,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 89--92
 / searchsecurity . techtarget . com / definition /
  []
 
-[58
+[59
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 164--166
@@ -875,18 +875,18 @@ Underfull \hbox (badness 10000) in paragraph at lines 178--181
 ext = YARA % 20is % 20a % 20tool %
  []
 
-) [59] (Thesis_V1.0.0.aux)
+) [60] (Thesis_V1.0.0.aux)
 Package rerunfilecheck Info: File `Thesis_V1.0.0.out' has not changed.
 (rerunfilecheck)             Checksum: F154FB19BC85F1619317B18E801005B3;6299.
  ) 
 Here is how much of TeX's memory you used:
- 16778 strings out of 481296
- 281390 string characters out of 2908369
+ 16779 strings out of 481296
+ 281397 string characters out of 2908369
  1009198 words of memory out of 3000000
  33257 multiletter control sequences out of 15000+600000
  415333 words of font info for 68 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 134i,13n,137p,1436b,2411s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 134i,13n,137p,1443b,2411s stack positions out of 5000i,500n,10000p,200000b,80000s
  <C:\Users\michele\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tc
 ti1000.pk> <C:\Users\michele\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/d
 pi600\tctt0800.pk> <C:\Users\michele\AppData\Local\MiKTeX\fonts/pk/ljfour/jknap
@@ -911,9 +911,9 @@ c/amsfonts/cm/cmti10.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/
 type1/public/amsfonts/cm/cmti12.pfb><C:/Users/michele/AppData/Local/Programs/Mi
 KTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/michele/AppData/Local/
 Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt8.pfb>
-Output written on Thesis_V1.0.0.pdf (59 pages, 596026 bytes).
+Output written on Thesis_V1.0.0.pdf (60 pages, 597184 bytes).
 PDF statistics:
- 1166 PDF objects out of 1200 (max. 8388607)
- 407 named destinations out of 1000 (max. 500000)
+ 1170 PDF objects out of 1200 (max. 8388607)
+ 408 named destinations out of 1000 (max. 500000)
  294 words of extra memory for PDF output out of 10000 (max. 10000000)
 
