@@ -185,4 +185,19 @@ E.~Raff, R.~Zak, G.~Lopez~Munoz, W.~Fleming, H.~S. Anderson, B.~Filar,
   biclustering'', Proceedings of the 13th ACM Workshop on Artificial
   Intelligence and Security, Nov 2020, \doi{10.1145/3411508.3421372}
 
+\bibitem{MiaoUHSS}
+Y.~Miao, ``Understanding heuristic-based scanning vs. sandboxing.''
+  \url{https://www.opswat.com/blog/understanding-heuristic-based-scanning-vs-sandboxing},
+  2015, Accessed: 2021-06-13
+
+\bibitem{KasperskyWHA}
+Kaspersky, ``What is heuristic analysis?.''
+  \url{https://usa.kaspersky.com/resource-center/definitions/heuristic-analysis},
+  Accessed: 2021-06-13
+
+\bibitem{ForcepointWHA}
+Forcepoint, ``What is heuristic analysis?.''
+  \url{https://www.forcepoint.com/cyber-edu/heuristic-analysis}, Accessed:
+  2021-06-13
+
 \end{thebibliography}

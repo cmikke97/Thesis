@@ -12,90 +12,92 @@
 \contentsline {subsubsection}{Other cyber-threats}{15}{section*.3}%
 \contentsline {subsubsection}{General considerations on malware types}{16}{section*.4}%
 \contentsline {subsection}{\numberline {2.1.3}Malware History}{17}{subsection.2.1.3}%
-\contentsline {section}{\numberline {2.2}Detection evasion}{20}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}Reverse-Engineering}{20}{subsection.2.2.1}%
-\contentsline {subsection}{\numberline {2.2.2}Malware analysis}{20}{subsection.2.2.2}%
-\contentsline {subsubsection}{Static analysis}{21}{section*.5}%
-\contentsline {subsubsection}{Dynamic analysis}{21}{section*.6}%
-\contentsline {subsubsection}{Hybrid analysis}{22}{section*.7}%
-\contentsline {subsection}{\numberline {2.2.3}Anti-reversing}{22}{subsection.2.2.3}%
-\contentsline {subsection}{\numberline {2.2.4}Anti-disassembly}{22}{subsection.2.2.4}%
-\contentsline {subsubsection}{Linear Disassemblers}{23}{section*.8}%
-\contentsline {subsubsection}{Flow-Oriented Disassemblers}{23}{section*.9}%
-\contentsline {subsubsection}{Anti-Disassembly Techniques}{24}{section*.10}%
-\contentsline {paragraph}{Jump Instructions with the Same Target}{24}{section*.11}%
-\contentsline {paragraph}{Jump Instructions with a Constant Condition}{24}{section*.12}%
-\contentsline {paragraph}{Impossible Disassembly}{24}{section*.13}%
-\contentsline {subsubsection}{Obscuring Flow Control}{25}{section*.14}%
-\contentsline {paragraph}{The Function Pointer Problem}{25}{section*.15}%
-\contentsline {paragraph}{Return Pointer Abuse}{26}{section*.16}%
-\contentsline {paragraph}{Misusing Structured Exception Handlers}{26}{section*.17}%
-\contentsline {subsection}{\numberline {2.2.5}Anti-debugging}{26}{subsection.2.2.5}%
-\contentsline {subsubsection}{Windows Debugger Detection}{26}{section*.18}%
-\contentsline {paragraph}{Using the Windows API}{27}{section*.19}%
-\contentsline {paragraph}{Manually Checking Structures}{27}{section*.20}%
-\contentsline {paragraph}{Checking for System Residue}{28}{section*.21}%
-\contentsline {subsubsection}{Identifying Debugger Behaviour}{28}{section*.22}%
-\contentsline {paragraph}{INT Scanning}{28}{section*.23}%
-\contentsline {paragraph}{Performing Code Checksums}{29}{section*.24}%
-\contentsline {paragraph}{Timing Checks}{29}{section*.25}%
-\contentsline {subsection}{\numberline {2.2.6}Anti-virtual machine}{29}{subsection.2.2.6}%
-\contentsline {subsubsection}{VMware Artefacts}{30}{section*.26}%
-\contentsline {subsubsection}{Vulnerable Instructions}{30}{section*.27}%
-\contentsline {subsection}{\numberline {2.2.7}Packers and unpacking}{30}{subsection.2.2.7}%
-\contentsline {subsubsection}{Packer types}{31}{section*.28}%
-\contentsline {subsubsection}{Packers detection}{31}{section*.29}%
-\contentsline {subsubsection}{Unpacking}{32}{section*.30}%
-\contentsline {subsection}{\numberline {2.2.8}Code Obfuscation}{32}{subsection.2.2.8}%
-\contentsline {subsubsection}{Data-Based Obfuscation}{33}{section*.31}%
-\contentsline {paragraph}{Constant Unfolding}{33}{section*.32}%
-\contentsline {paragraph}{Data-Encoding Schemes}{33}{section*.33}%
-\contentsline {paragraph}{Dead Code Insertion}{33}{section*.34}%
-\contentsline {paragraph}{Arithmetic Substitution via Identities}{34}{section*.35}%
-\contentsline {paragraph}{Register Reassignment}{34}{section*.36}%
-\contentsline {paragraph}{Instruction Substitution}{34}{section*.37}%
-\contentsline {paragraph}{Pattern-Based Obfuscation}{34}{section*.38}%
-\contentsline {subsubsection}{Control-Based Obfuscation}{35}{section*.39}%
-\contentsline {paragraph}{Functions In/Out-Lining}{35}{section*.40}%
-\contentsline {paragraph}{Destruction of Sequential and Temporal Locality}{36}{section*.41}%
-\contentsline {paragraph}{Processor-Based Control Indirection}{36}{section*.42}%
-\contentsline {paragraph}{Operating System-Based Control Indirection}{36}{section*.43}%
-\contentsline {paragraph}{Subroutine Reordering}{36}{section*.44}%
-\contentsline {paragraph}{Opaque Predicated}{36}{section*.45}%
-\contentsline {subsubsection}{Simultaneous Control-Flow and Data-Flow Obfuscation}{36}{section*.46}%
-\contentsline {paragraph}{Inserting Junk Code}{37}{section*.47}%
-\contentsline {paragraph}{Control-Flow Graph Flattening}{37}{section*.48}%
-\contentsline {paragraph}{Code Transposition}{37}{section*.49}%
-\contentsline {paragraph}{Code Virtualization}{37}{section*.50}%
-\contentsline {paragraph}{Code Integration}{38}{section*.51}%
-\contentsline {subsection}{\numberline {2.2.9}Obfuscated Malware}{38}{subsection.2.2.9}%
-\contentsline {subsubsection}{Encrypted Malwares}{38}{section*.52}%
-\contentsline {subsubsection}{Packed Malwares}{38}{section*.53}%
-\contentsline {subsubsection}{Oligomorphic Malwares}{39}{section*.54}%
-\contentsline {subsubsection}{Polymorphic Malwares}{39}{section*.55}%
-\contentsline {subsubsection}{Metamorphic Malwares}{39}{section*.56}%
-\contentsline {chapter}{\numberline {3}Detection Techniques}{41}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Integrity Checker}{41}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Signature-based Detection}{42}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Yara Rules}{42}{subsection.3.2.1}%
-\contentsline {subsubsection}{YARA Rules Automatic Generators}{47}{section*.57}%
-\contentsline {paragraph}{\textit {yarGen} Tool}{47}{section*.58}%
-\contentsline {paragraph}{\textit {yaraGenerator} Tool}{48}{section*.59}%
-\contentsline {paragraph}{\textit {yabin} Tool}{48}{section*.60}%
-\contentsline {paragraph}{\textit {AutoYara} Tool}{49}{section*.61}%
-\contentsline {section}{\numberline {3.3}Semantic Based Detection}{50}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Behavioural Based Detection}{50}{section.3.4}%
-\contentsline {section}{\numberline {3.5}Heuristics-based Detection}{50}{section.3.5}%
-\contentsline {section}{\numberline {3.6}Machine Learning}{51}{section.3.6}%
-\contentsline {subsection}{\numberline {3.6.1}Simple malware detection network}{51}{subsection.3.6.1}%
-\contentsline {subsection}{\numberline {3.6.2}AlOHA: Auxiliary Loss Optimization for Hypothesis Augmentation}{51}{subsection.3.6.2}%
-\contentsline {subsection}{\numberline {3.6.3}Automatic Malware Description via Attribute Tagging and Similarity Embedding}{51}{subsection.3.6.3}%
-\contentsline {subsection}{\numberline {3.6.4}Learning from Context: Exploiting and Interpreting File Path Information for Better Malware Detection}{51}{subsection.3.6.4}%
-\contentsline {section}{\numberline {3.7}Malware Normalization}{51}{section.3.7}%
-\contentsline {chapter}{\numberline {4}Dataset Used}{53}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Experimenting with ML based Malware Detection/Description methods}{54}{chapter.5}%
-\contentsline {chapter}{\numberline {6}Proposed Tool}{55}{chapter.6}%
-\contentsline {chapter}{\numberline {7}Experiments}{56}{chapter.7}%
-\contentsline {chapter}{\numberline {8}Results}{57}{chapter.8}%
-\contentsline {chapter}{\numberline {9}Conclusions}{58}{chapter.9}%
-\contentsline {chapter}{Bibliography}{59}{chapter.9}%
+\contentsline {section}{\numberline {2.2}Detection evasion}{18}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Reverse-Engineering}{18}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Malware analysis}{18}{subsection.2.2.2}%
+\contentsline {subsubsection}{Static analysis}{19}{section*.5}%
+\contentsline {subsubsection}{Dynamic analysis}{19}{section*.6}%
+\contentsline {subsubsection}{Hybrid analysis}{20}{section*.7}%
+\contentsline {subsection}{\numberline {2.2.3}Anti-reversing}{20}{subsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.4}Anti-disassembly}{20}{subsection.2.2.4}%
+\contentsline {subsubsection}{Linear Disassemblers}{21}{section*.8}%
+\contentsline {subsubsection}{Flow-Oriented Disassemblers}{21}{section*.9}%
+\contentsline {subsubsection}{Anti-Disassembly Techniques}{21}{section*.10}%
+\contentsline {paragraph}{Jump Instructions with the Same Target}{21}{section*.11}%
+\contentsline {paragraph}{Jump Instructions with a Constant Condition}{22}{section*.12}%
+\contentsline {paragraph}{Impossible Disassembly}{22}{section*.13}%
+\contentsline {subsubsection}{Obscuring Flow Control}{23}{section*.14}%
+\contentsline {paragraph}{The Function Pointer Problem}{23}{section*.15}%
+\contentsline {paragraph}{Return Pointer Abuse}{23}{section*.16}%
+\contentsline {paragraph}{Misusing Structured Exception Handlers}{24}{section*.17}%
+\contentsline {subsection}{\numberline {2.2.5}Anti-debugging}{24}{subsection.2.2.5}%
+\contentsline {subsubsection}{Windows Debugger Detection}{24}{section*.18}%
+\contentsline {paragraph}{Using the Windows API}{24}{section*.19}%
+\contentsline {paragraph}{Manually Checking Structures}{25}{section*.20}%
+\contentsline {paragraph}{Checking for System Residue}{26}{section*.21}%
+\contentsline {subsubsection}{Identifying Debugger Behaviour}{26}{section*.22}%
+\contentsline {paragraph}{INT Scanning}{26}{section*.23}%
+\contentsline {paragraph}{Performing Code Checksums}{27}{section*.24}%
+\contentsline {paragraph}{Timing Checks}{27}{section*.25}%
+\contentsline {subsection}{\numberline {2.2.6}Anti-virtual machine}{27}{subsection.2.2.6}%
+\contentsline {subsubsection}{VMware Artefacts}{28}{section*.26}%
+\contentsline {subsubsection}{Vulnerable Instructions}{28}{section*.27}%
+\contentsline {subsection}{\numberline {2.2.7}Packers and unpacking}{28}{subsection.2.2.7}%
+\contentsline {subsubsection}{Packer types}{29}{section*.28}%
+\contentsline {subsubsection}{Packers detection}{29}{section*.29}%
+\contentsline {subsubsection}{Unpacking}{30}{section*.30}%
+\contentsline {subsection}{\numberline {2.2.8}Code Obfuscation}{30}{subsection.2.2.8}%
+\contentsline {subsubsection}{Data-Based Obfuscation}{31}{section*.31}%
+\contentsline {paragraph}{Constant Unfolding}{31}{section*.32}%
+\contentsline {paragraph}{Data-Encoding Schemes}{31}{section*.33}%
+\contentsline {paragraph}{Dead Code Insertion}{31}{section*.34}%
+\contentsline {paragraph}{Arithmetic Substitution via Identities}{32}{section*.35}%
+\contentsline {paragraph}{Register Reassignment}{32}{section*.36}%
+\contentsline {paragraph}{Instruction Substitution}{32}{section*.37}%
+\contentsline {paragraph}{Pattern-Based Obfuscation}{32}{section*.38}%
+\contentsline {subsubsection}{Control-Based Obfuscation}{33}{section*.39}%
+\contentsline {paragraph}{Functions In/Out-Lining}{33}{section*.40}%
+\contentsline {paragraph}{Destruction of Sequential and Temporal Locality}{34}{section*.41}%
+\contentsline {paragraph}{Processor-Based Control Indirection}{34}{section*.42}%
+\contentsline {paragraph}{Operating System-Based Control Indirection}{34}{section*.43}%
+\contentsline {paragraph}{Subroutine Reordering}{34}{section*.44}%
+\contentsline {paragraph}{Opaque Predicated}{34}{section*.45}%
+\contentsline {subsubsection}{Simultaneous Control-Flow and Data-Flow Obfuscation}{34}{section*.46}%
+\contentsline {paragraph}{Inserting Junk Code}{35}{section*.47}%
+\contentsline {paragraph}{Control-Flow Graph Flattening}{35}{section*.48}%
+\contentsline {paragraph}{Code Transposition}{35}{section*.49}%
+\contentsline {paragraph}{Code Virtualization}{35}{section*.50}%
+\contentsline {paragraph}{Code Integration}{36}{section*.51}%
+\contentsline {subsection}{\numberline {2.2.9}Obfuscated Malware}{36}{subsection.2.2.9}%
+\contentsline {subsubsection}{Encrypted Malwares}{36}{section*.52}%
+\contentsline {subsubsection}{Packed Malwares}{36}{section*.53}%
+\contentsline {subsubsection}{Oligomorphic Malwares}{37}{section*.54}%
+\contentsline {subsubsection}{Polymorphic Malwares}{37}{section*.55}%
+\contentsline {subsubsection}{Metamorphic Malwares}{37}{section*.56}%
+\contentsline {chapter}{\numberline {3}Detection Techniques}{39}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Integrity Checker}{39}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Signature-based Detection}{40}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Yara Rules}{40}{subsection.3.2.1}%
+\contentsline {subsubsection}{YARA Rules Automatic Generators}{45}{section*.57}%
+\contentsline {paragraph}{\textit {yarGen} Tool}{45}{section*.58}%
+\contentsline {paragraph}{\textit {yaraGenerator} Tool}{46}{section*.59}%
+\contentsline {paragraph}{\textit {yabin} Tool}{46}{section*.60}%
+\contentsline {paragraph}{\textit {AutoYara} Tool}{47}{section*.61}%
+\contentsline {section}{\numberline {3.3}Semantic Based Detection}{47}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Behavioural Based Detection}{47}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Heuristics-based Detection}{48}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Machine Learning}{48}{section.3.6}%
+\contentsline {subsection}{\numberline {3.6.1}Simple malware detection network}{49}{subsection.3.6.1}%
+\contentsline {subsection}{\numberline {3.6.2}AlOHA: Auxiliary Loss Optimization for Hypothesis Augmentation}{49}{subsection.3.6.2}%
+\contentsline {subsection}{\numberline {3.6.3}Automatic Malware Description via Attribute Tagging and Similarity Embedding}{49}{subsection.3.6.3}%
+\contentsline {subsection}{\numberline {3.6.4}Learning from Context: Exploiting and Interpreting File Path Information for Better Malware Detection}{49}{subsection.3.6.4}%
+\contentsline {section}{\numberline {3.7}Malware Normalization}{49}{section.3.7}%
+\contentsline {chapter}{\numberline {4}Dataset Used}{50}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Experimenting with ML based Malware Detection/Description methods}{51}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Proposed Tool}{52}{chapter.6}%
+\contentsline {chapter}{\numberline {7}Experiments with the proposed tool}{53}{chapter.7}%
+\contentsline {chapter}{\numberline {8}Results}{54}{chapter.8}%
+\contentsline {chapter}{\numberline {9}Conclusions}{55}{chapter.9}%
+\contentsline {chapter}{\numberline {10}Appendix}{56}{chapter.10}%
+\contentsline {section}{\numberline {10.1}Notable Examples of Malware in Recent History}{56}{section.10.1}%
+\contentsline {chapter}{Bibliography}{59}{section.10.1}%
