@@ -78,26 +78,32 @@
 \contentsline {section}{\numberline {3.1}Integrity Checker}{39}{section.3.1}%
 \contentsline {section}{\numberline {3.2}Signature-based Detection}{40}{section.3.2}%
 \contentsline {subsection}{\numberline {3.2.1}Yara Rules}{40}{subsection.3.2.1}%
-\contentsline {subsubsection}{YARA Rules Automatic Generators}{45}{section*.57}%
-\contentsline {paragraph}{\textit {yarGen} Tool}{45}{section*.58}%
-\contentsline {paragraph}{\textit {yaraGenerator} Tool}{46}{section*.59}%
-\contentsline {paragraph}{\textit {yabin} Tool}{46}{section*.60}%
-\contentsline {paragraph}{\textit {AutoYara} Tool}{47}{section*.61}%
-\contentsline {section}{\numberline {3.3}Semantic Based Detection}{47}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Behavioural Based Detection}{47}{section.3.4}%
-\contentsline {section}{\numberline {3.5}Heuristics-based Detection}{48}{section.3.5}%
-\contentsline {section}{\numberline {3.6}Machine Learning}{48}{section.3.6}%
-\contentsline {subsection}{\numberline {3.6.1}Simple malware detection network}{49}{subsection.3.6.1}%
-\contentsline {subsection}{\numberline {3.6.2}AlOHA: Auxiliary Loss Optimization for Hypothesis Augmentation}{49}{subsection.3.6.2}%
-\contentsline {subsection}{\numberline {3.6.3}Automatic Malware Description via Attribute Tagging and Similarity Embedding}{49}{subsection.3.6.3}%
-\contentsline {subsection}{\numberline {3.6.4}Learning from Context: Exploiting and Interpreting File Path Information for Better Malware Detection}{49}{subsection.3.6.4}%
-\contentsline {section}{\numberline {3.7}Malware Normalization}{49}{section.3.7}%
-\contentsline {chapter}{\numberline {4}Dataset Used}{50}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Experimenting with ML based Malware Detection/Description methods}{51}{chapter.5}%
-\contentsline {chapter}{\numberline {6}Proposed Tool}{52}{chapter.6}%
-\contentsline {chapter}{\numberline {7}Experiments with the proposed tool}{53}{chapter.7}%
-\contentsline {chapter}{\numberline {8}Results}{54}{chapter.8}%
-\contentsline {chapter}{\numberline {9}Conclusions}{55}{chapter.9}%
-\contentsline {chapter}{\numberline {10}Appendix}{56}{chapter.10}%
-\contentsline {section}{\numberline {10.1}Notable Examples of Malware in Recent History}{56}{section.10.1}%
-\contentsline {chapter}{Bibliography}{59}{section.10.1}%
+\contentsline {subsubsection}{Yara Rules syntax}{40}{section*.57}%
+\contentsline {paragraph}{Meta section}{41}{section*.58}%
+\contentsline {paragraph}{Strings section}{41}{section*.59}%
+\contentsline {paragraph}{Conditions section}{44}{section*.60}%
+\contentsline {paragraph}{Additional modules}{45}{section*.61}%
+\contentsline {subsubsection}{Yara Rules Advantages and Disadvantages}{46}{section*.62}%
+\contentsline {subsubsection}{Yara Rules Automatic Generators}{46}{section*.63}%
+\contentsline {paragraph}{\textit {yarGen} Tool}{46}{section*.64}%
+\contentsline {paragraph}{\textit {yaraGenerator} Tool}{47}{section*.65}%
+\contentsline {paragraph}{\textit {yabin} Tool}{48}{section*.66}%
+\contentsline {paragraph}{\textit {AutoYara} Tool}{48}{section*.67}%
+\contentsline {section}{\numberline {3.3}Semantic Based Detection}{49}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Behavioural Based Detection}{49}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Heuristics-based Detection}{49}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Machine Learning}{50}{section.3.6}%
+\contentsline {subsection}{\numberline {3.6.1}Simple malware detection network}{50}{subsection.3.6.1}%
+\contentsline {subsection}{\numberline {3.6.2}AlOHA: Auxiliary Loss Optimization for Hypothesis Augmentation}{50}{subsection.3.6.2}%
+\contentsline {subsection}{\numberline {3.6.3}Automatic Malware Description via Attribute Tagging and Similarity Embedding}{50}{subsection.3.6.3}%
+\contentsline {subsection}{\numberline {3.6.4}Learning from Context: Exploiting and Interpreting File Path Information for Better Malware Detection}{50}{subsection.3.6.4}%
+\contentsline {section}{\numberline {3.7}Malware Normalization}{50}{section.3.7}%
+\contentsline {chapter}{\numberline {4}Dataset Used}{52}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Experimenting with ML based Malware Detection/Description methods}{53}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Proposed Tool}{54}{chapter.6}%
+\contentsline {chapter}{\numberline {7}Experiments with the proposed tool}{55}{chapter.7}%
+\contentsline {chapter}{\numberline {8}Results}{56}{chapter.8}%
+\contentsline {chapter}{\numberline {9}Conclusions}{57}{chapter.9}%
+\contentsline {chapter}{\numberline {10}Appendix}{58}{chapter.10}%
+\contentsline {section}{\numberline {10.1}Notable Examples of Malware in Recent History}{58}{section.10.1}%
+\contentsline {chapter}{Bibliography}{61}{section.10.1}%

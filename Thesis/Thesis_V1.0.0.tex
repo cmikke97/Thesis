@@ -69,6 +69,18 @@
 	tabsize=2
 }
 
+\lstdefinelanguage{YARA}{
+	morekeywords=[1]{rule, meta, strings, condition},
+	morekeywords=[2]{import, ascii, wide, nocase, and, or, all, at, in, of, fullword},
+	keywordstyle=[1]\color{Blue},
+	keywordstyle=[2]\color{Red},
+	sensitive=false,
+	morecomment=[l]{//},
+	morecomment=[s]{/*}{*/},
+	morestring=[b]",
+	morestring=[d]',
+}
+
 \usepackage{xcolor}
 
 \begin{document}
@@ -1169,191 +1181,312 @@ Some \textit{signature-based} algorithms require an exact match between the sign
 This approach is fast, easy to use and has a high positive rate, however, since the number of known malwares is increasing so fast, it is quickly becoming time-consuming, expensive and impractical. Moreover, this is a completely reactive technique which is unable to counter threats/attacks from new malwares families/variants until they cause damages. Additionally, most second-generation malwares are able to escape this type of detection \cite{Sharma_2014}.
 
 \subsection{Yara Rules}
-\color{Red}
-YARA is a popular open-source tool that provides a robust language, which is compatible with Perl-based Regular Expressions, and is used to examine the suspected files/directories and match strings as is defined in the YARA rules with the file \cite{NinjaYSEWDM}.
-Each rule has to start with the word "\textit{rule}", followed by the rule identifier (or RuleName). \textbf{RuleName} is the identifier of the rule. Identifiers must follow the same lexical conventions of the \textit{C} programming language: they can contain any alphanumeric character and the underscore character, but the first character cannot be a digit. Rule identifiers are case sensitive and cannot exceed 128 characters. Moreover there is a list of YARA keywords that are not allowed to be used as an identifier because they have a predefined meaning.
-The main body of YARA rules contains three sections:
-\begin{enumerate}
-	\item \textbf{Meta}: The meta section is found at the top of a rule and can contain anything the author want to convey about the rule. Meta tags like "author" and "description" are often found to five the author credit and let others know what the rule is meant to accomplish. When creating rules based on malware, authors will sometimes leave tags with file hashes or references to blogs with more information as well \cite{SimonWIY}.
-	
-	Metadata can be added to help identify the files that were picked up by a certain rule. The metadata identifiers are always followed by an equal sign and the set value. The assigned values can be strings, integers, or a Boolean value. Note that identifiers/value pairs defined in the metadata section can't be used in the condition section, their only purpose is to store additional information about the rule \cite{ArntzEYR}.
-	
-	\item \textbf{Strings}: This section contains the strings/patterns/signatures that we need to match against a file. The strings section is optional and can be left out if not necessary. In YARA there are 3 types of strings named as follows:
-	\begin{itemize}
-		\item \textit{Hexadecimal Strings}: Hexadecimal Strings will match hexadecimal characters in the output file. This allows three special instructions such as wildcards, jumps and alternatives.
-		\begin{itemize}
-			\item \textit{Wildcard}: This is represented by a '\textit{?}' and it indicates that some bytes in the pattern are unknown and should match anything. For example:
-			\begin{lstlisting}[caption={YARA Hexadecimal Wildcard}, label=YaraWildcard, language=C, style=mystyle]
-				$hex_example = {B1 B2 ? ? B8}
-			\end{lstlisting}
-			
-			\item \textit{Jumps}: In circumstances when we know the values of the pattern but their length varies then we can use jumps. For example:
-			\begin{lstlisting}[caption={YARA Hexadecimal Jump}, label=YaraJump, language=C, style=mystyle]
-				$jump_example = {F1 F2 [2-3] 24}
-			\end{lstlisting}
-			this indicates that any arbitrary sequence from 2 bytes to 3 bytes can occupy the sequence.
-			
-			\item \textit{Alternatives}:
-		\end{itemize}
-		
-		\item \textit{Text Strings}: Text strings are in form of ASCII text which is then matched up with the condition set. This section also contains further modifiers like "wide" or "nocase":
-		\begin{itemize}
-			\item \textit{Case Sensitive Strings}: Example:
-			\begin{lstlisting}[caption={YARA Case Sensitive Strings}, label=YaraCaseSensitive, language=C, style=mystyle]
-				$text_case_example="test"
-			\end{lstlisting}
-			
-			\item \textit{Case Insensitive Strings}: Example:
-			\begin{lstlisting}[caption={YARA Case Insensitive Strings}, label=YaraCaseInsensitive, language=C, style=mystyle]
-				$text_nocase_example="test" nocase
-			\end{lstlisting}
-			
-			\item \textit{Wide Character Strings}: Example:
-			\begin{lstlisting}[caption={YARA Wide Character Strings}, label=YaraWideCharacter, language=C, style=mystyle]
-				$text_wide_example="test" wide
-			\end{lstlisting}
-		\end{itemize}
-	
-		\item \textit{Regular Expressions}: Starting from version 2.0 YARA has its own regular expression engine, which mostly resembles PCRE. YARA regular expression can be followed by ant of the text strings mentioned above.
-	\end{itemize}
+\textit{YARA} is a widely accepted open-source \textit{signature-based} malware analysis tool which has emerged in recent years thanks to its flexible and customisable nature. It allows malware analysts/researchers to develop malware "descriptions" based on text or binary patterns, commonly referred to as \textit{Yara rules}. \textit{Yara rules}, which combine simple regular expressions matching with logic rules, can be used to identify specific malware families, the presence of \textit{CVE}s, specific functionality signatures or even generic maliciousness indicators. Given the success obtained by this technique, many commercial malware analysis tools nowadays support \textit{Yara rules} natively \cite{SimonWIY}.
 
-	\item \textbf{Conditions}: Conditions sets evaluate Boolean expressions. For example, in the main example above, it evaluates either of \textit{\$testy\_string1} or \textit{\$test\_string2} to be true.
-	The \textit{condition} section is the only one that is required. This section specifies when the rule result is \textit{true} for the \textit{object} (file) that is under investigation. It contains a boolean expression that determines the result. Conditions are by design Boolean expressions and can contain all the usual logical and relational operators \cite{ArntzEYR}.
-	Under the Condition set, we can:
-	\begin{itemize}
-		\item Count the string presence:
-		\begin{lstlisting}[caption={YARA Count String Presence}, label=YaraCountPresence, language=C, style=mystyle]
-			#test_string1=2 and #test_string2<10
-		\end{lstlisting}
-		
-		\item String Offset: This is used to find out if a particular string is available at a specified offset of the running process. This is further achieved by following keywords:
-		\begin{itemize}
-			\item \textit{at}:
-			\begin{lstlisting}[caption={YARA String Offset At}, label=YaraStringOffsetAt, language=C, style=mystyle]
-				$test_string1 at 200 and $test_string2 at 500
-			\end{lstlisting}
-			this will find whether the test\_string1 is located at offset 200 of the running process and test\_string2 at offset 500 of the running process.
-			
-			\item \textit{in}: this is used when we want to define a range of memory locations where we need to search the string. For example:
-			\begin{lstlisting}[caption={YARA String Offset In}, label=YaraStringOffsetIn, language=C, style=mystyle]
-				$test_string1 in (100 .. 200)
-			\end{lstlisting}
-			will find the test\_string1 in the memory location between \textit{100} and \textit{200} of the running process.
-		\end{itemize}
-		
-		\item Check file size: Example:
-		\begin{lstlisting}[caption={YARA Check File Size}, label=YaraCheckFileSize, language=C, style=mystyle]
-			filesize>10000
-		\end{lstlisting}
-		
-		\item Set of strings: Example:
-		\begin{lstlisting}[caption={YARA Set of Strings}, label=YaraSetOfStrings, language=C, style=mystyle]
-			2 of ($test_string1, $test_string2, $test_string3)
-		\end{lstlisting}
-		this will say at least two of the strings enclosed must match with the file.
-	\end{itemize}
-\end{enumerate}
-Some interesting Yara use cases \cite{NinjaYSEWDM}:
-\begin{itemize}
-	\item \textbf{YARA with PE}
-	Starting with version 3.0, YARA can parse Portable Executable (PE) files. For example the following rule will parse the PE file and look for the import section of the PE file along with the strings:
-	\begin{lstlisting}[caption={YARA with PE}, label=YaraPE, language=C, style=mystyle]
-		Import "PE"
-		
-		Rule PE_Parse_Check
-		{
-			strings:
-				$string_pe="abc" nocase
+\textit{Yara rules} can be generated either manually or automatically. Generating rules manually obviously requires high expertise, whereas generating them automatically using tools is a relatively easy task. However, automatically generated rules are not guaranteed to be effective and may require post-processing operations for their optimization \cite{NaikEAGYRETE}.
 
-			condition:
-				pe.imports("Kernel32.dll", "CreateProcess") and
-				pe,imports("wininet.dll", "httpsendrequest") and
-				$ string_pe
-		}
-	\end{lstlisting}
-	This rule, \textit{PE\_Parse\_Check}, will check for the string "abc" and match it with PE import statements looking out for a "process creation" and "http send request".
-	
-	\item \textbf{YARA with PEiD}
-	YARA can also be integrated with \textit{PEiD} to check what packer was used to compile the malicious/suspected executable.
-\end{itemize}
+Malware analysts typically create \textit{Yara rules} manually by reverse engineering malware samples looking for common \textit{Indicator of Compromise (IoC)} strings. This is followed by the development and iterative refinement of the rules which are considered effective based on their coverage and false positive rate on a dataset of malicious, benign and out-of-family samples. Developing effective \textit{Yara rules} can therefore be challenging and very time consuming, even for expert users with years of experience \cite{RaffAYRGUB}.
 
+\subsubsection{Yara Rules syntax}
+Listing \ref{YaraSyntax} presents an example of the syntax of a simple \textit{Yara rule}.
 
-YARA can be described as a tool aimed at helping malware researchers to identify and classify malware samples. YARA allows anyone to create "descriptions" known as rules based on text or binary patterns. Although it can be used to detect patterns for any type of purpose, it is most often used for the detection of malware \cite{SimonWIY}.
-
-\textbf{Strings and Modifiers}
-YARA supports searching for multiple string types but will default to ASCII when the encoding is not specified. To specify how YARA should search for strings, we can add a modifier at the end of the string definition. For example, keywords like "\textbf{ascii}" or "\textbf{wide}" could be added to the end of a string definition. Many of these modifiers can even be used together to keep rules simple and readable.
-In addition to text encodings like ASCII or wide-character strings, YARA can also encode text for you before searching. Other modifiers like "\textbf{base64}" and "\textbf{XOR}" allow the author to write a plain-text string like "hello" and then base64 or XOR encode it before searching. Again, this makes rules more readable, as it is obvious what the author wants to fine without having to first decode what gibberish such as "\textbf{aGVsbG8=}" or "\textbf{*'..-}" means in the rule ("hello" base64 encoded and XOR encoded with a key of \textit{0x42}, respectively) \cite{SimonWIY}.
-
-\textbf{Rule Conditions}
-For YARA to be useful, the rule author must tell it exactly what they want to find. This is done in the "condition" section at the end of the rule. Conditions can be simple or more complicated expressions \cite{SimonWIY}.
-
-
-
-Yara is widely used to specify signatures and perform searches. Yara is a tool to combine content matching against simple regular expressions with logic rules, and these rules 'fire' if the predicates are satisfied. These predicates combined are often called 'Yara Rules', and may be used to identify specific malware families, the presence of CVEs, specific signatures of functionality, or generic indicators of maliciousness. Developing effective Yara rules can be very time intensive, especially for junior analysts who lack deeper expertise and intuition on what should be included in a Yara rule to achieve a goal. For example, a related task in performing reverse engineering (a task that may be necessary to build good signatures for difficult malware samples) can take several hours to weeks for a single file, even for expert users with over a decade of experience.
-We consider the problem of trying to develop a Yara rule to identify a specific malware family given only a limited number of example files from that family.
-A common workflow in developing Yara rules is to manually inspect multiple files to determine common contents, wrapped by trial-and-error refinement of the developed rules, where success is measured against coverage and false positive rates on a collection that includes benign or out-of-family files \cite{RaffAYRGUB}.
-
-Yara is an industry standard regular expression tool designed for malware analysis. Many malware analysis tools support Yara directly \cite{RaffAYRGUB}.
-
-
-Emerging as a widely accepted technique for malware analysis, YARA rules, due to its flexible and customisable nature, allows malware analysts to develop rules according to the requirements of a specific security domain. YARA rules can be automatically generated using tools, however, they may require post-processing for their optimisation, and may not be effective for the specific security domain \cite{NaikEAGYRETE}.
-
-In recent years, YARA rules technique has emerged as a widely accepted technique for malware analysis due to its flexible and customisable nature, allowing malware analysts to develop YARA rules according to their specific requirements in targeting specific types of threats. YARA rules are generated based on reverse engineering of malware samples to include the most common \textit{Indicator of Compromise} (\textit{IoC}) strings from those malware samples to find similar types of malware.
-The success of YARA rules is dependent on the effectiveness of generated YARA rules, which is determined by the types of IoC strings and the number of IoC strings utilised in its rules. Therefore, the generation of the most effective YARA rules is the biggest challenge in applying YARA rules for malware analysis.
-YARA rules can be generated either manually or automatically. Generating YARA rules manually requires a highly-specialised skill-set in a specific security area, whereas generating YARA rules automatically using a tool is a relatively easy task. However, there are several issues with automatically generating YARA rules such as these rules require post processing operations for their optimization, despite this they may not become very effective for certain types of threats \cite{NaikEAGYRETE}.
-
-YARA rules are developed to detect malware by matching its signatures/strings with the existing malware signatures/strings. These rules contain predetermined signatures/strings related to known malware used in attempting to match against the targeted files, folders, or processes. YARA rules consist of three sections: meta, strings and condition. Here, strings can be classified into three types: text strings, hexadecimal strings and regular expression strings. Text strings are generally a readable text complemented with some modifiers (e.g. nocase, ASCII, wide, and fullword), to manage the process more effectively. Hexadecimal strings are a sequence of raw bytes complemented with three flexible formats: wild-cards, jumps, and alternatives. Regular expression strings are similar to text strings as a readable text complemented with some modifiers; which are available since version 2.0 and increase the capability of YARA rules. Text strings and regular expressions which express a sequence of raw bytes through the use of escape sequences. The final part of YARA rules is a rule condition that specifies the target to declare the sample as malware. YARA conditions determine whether to trigger the rule or not, however, these conditions are Boolean expressions similar to those used in all other programming languages \cite{NaikEAGYRETE}.
-\begin{lstlisting}[caption={YARA Rules Syntax}, label=YaraSyntax, language=C, style=mystyle]
+\begin{lstlisting}[caption={YARA Rules Syntax}, label=YaraSyntax, language=YARA, style=mystyle]
 	rule RuleName
 	{
 		meta:
-			description = "description of rule"
-			author = "name"
-			date = "dd/mm/yyyy"
-			reference = "url"
+		description = "description of rule"
+		author = "name"
+		date = "dd/mm/yyyy"
+		reference = "url"
 		
 		strings:
-			$text_string1 = "text1 you wish to find in malware"
-			$text_string2 = "text2 you wish to find in malware"
-			
-			$hex_string1 = {hex1 you wish to find in malware}
-			$hex_string2 = {hex2 you wish to find in malware}
-			
-			$reg_exp_string1 = /regular expression1 you wish to find in malware/
-			$reg_exp_string2 = /regular expression2 you wish to find in malware/
-			
+		$text_string1 = "text1 you wish to find in malware"
+		$text_string2 = "text2 you wish to find in malware"
+		
+		$hex_string1 = {hex1 you wish to find in malware}
+		$hex_string2 = {hex2 you wish to find in malware}
+		
+		$reg_exp_string1 = /regular expression1 you wish to find in malware/
+		$reg_exp_string2 = /regular expression2 you wish to find in malware/
+		
 		condition:
-			$text_string1 or $text_string2 or
-			$hex_string1 or $hex_string2 or
-			$reg_exp_string1 or $reg_exp_string2
+		$text_string1 or $text_string2 or
+		$hex_string1 or $hex_string2 or
+		$reg_exp_string1 or $reg_exp_string2
 	}
 \end{lstlisting}
 
-\begin{lstlisting}[caption={YARA Rules Example}, label=YaraExample, language=C, style=mystyle]
-	rule WannaCry
+As it can be seen in the above example, \textit{Yara rules} must start with the keywork '\textit{rule}', followed by the actual \textit{RuleName}, which is the rule identifier. The \textit{RuleName}s follow the same lexical conventions of the \textit{C} programming language. They are, in fact, case sensitive, they cannot exceed 128 characters and they can contain only alphanumeric characters (with the addition of the underscore character), with the exception of the first character which cannot be a digit. Furthermore there is a list of \textit{YARA} reserved keywords that cannot be used as identifiers \cite{NinjaYSEWDM}.
+
+\textit{Yara rules} main body contains three sections: \textit{meta}, \textit{strings} and \textit{condition}.
+
+\paragraph{Meta section}
+The rule author can include additional information about the rule as a list of attribute-value pairs, also called \textit{metadata}, in the \textit{meta} section, at the top of the rule. The values can be strings, integers or boolean values. The metadata, however, cannot be used in the condition section since that is not their purpose \cite{ArntzEYR}.
+
+Some commonly used meta tags are, for example, "author" and "description", which convey information about the author and purpose of the rule. Moreover, malware analysts sometimes also leave tags with the hashes of the malicious files used for the creation of the rule, or references to blog posts with similar information \cite{SimonWIY}.
+
+\paragraph{Strings section} 
+This section contains the strings/patterns/signatures that a file must contain to 'trigger' the rule. This section is optional and can be omitted if it is not necessary. \textit{YARA} supports searching for 3 string types: \textit{Hexadecimal Strings}, \textit{Text (ASCI) Strings} and \textit{Regular Expressions}.
+
+\begin{itemize}
+	\item \textit{Hexadecimal Strings}: \textit{Hexadecimal Strings} will match hexadecimal characters/sequences of raw bytes in the file being analysed.
+	Example:
+	\begin{lstlisting}[caption={YARA Hexadecimal}, label=YaraHex, language=YARA, style=mystyle]
+	rule ExampleRule
 	{
-		meta:
-			description = "Generic Signature of WannaCry"
-			author = "Nitin Naik"
-			date = "01/06/2018"
-			reference = "www.mydomain.com"
-		
 		strings:
-			$text_string1 = "encrypt"
-			$text_string2 = "bitcoin"
-		
-			$hex_string1 = {B6 D3 56 A5 78 43}
-			$hex_string2 = {E8 27 F9 83 C4 82}
-			
-			$reg_exp_string1 = /md5:[0-9a-fA-F]{32}/
-			$reg_exp_string2 = /state:(on|off)/
+		$my_text_string = "text here"
+		$my_hex_string = { E2 34 A1 C8 23 FB }
 		
 		condition:
-			$text_string1 or $text_string2 or
-			$hex_string1 or $hex_string2 or
-			$reg_exp_string1 or $reg_exp_string2
+		$my_text_string or $my_hex_string
 	}
-\end{lstlisting}
+	\end{lstlisting}
+	
+	
+	Three special flexible formats, namely \textit{wildcards}, \textit{jumps} and \textit{alternatives}, can be used to complement the search.
+	\begin{itemize}
+		\item \textit{\textbf{Wildcards}} are represented by the '\textbf{?}' symbol. They indicate that some bytes in the pattern are unknown and should match anything. For example:
+		\begin{lstlisting}[caption={YARA Hexadecimal Wildcard}, label=YaraWildcard, language=YARA, style=mystyle]
+	rule WildcardExample
+	{
+		strings:
+		$hex_string = { E2 34 ?? C8 A? FB }
+		
+		condition:
+		$hex_string
+	}
+		\end{lstlisting}
+		
+		\item \textit{\textbf{Jumps}} are used in circumstances when the values of the pattern are known but their length varies. For example:
+		\begin{lstlisting}[caption={YARA Hexadecimal Jump}, label=YaraJump, language=YARA, style=mystyle]
+	rule JumpExample
+	{
+		strings:
+		$hex_string = { F4 23 [4-6] 62 B4 }
+		
+		condition:
+		$hex_string
+	}
+		\end{lstlisting}
+		In particular, in listing \ref{YaraJump}, the value '\textit{[2-3]}' indicates that any arbitrary sequence from 2 bytes to 3 bytes long can occupy the sequence at that position.
+		
+		\item \textit{\textbf{Alternatives}}, whose syntax resembles regular expressions, are used in situations in which the author wants to provide different alternatives for a given fragment of the hex string. For example:
+		\begin{lstlisting}[caption={YARA Hexadecimal Alternatives}, label=YaraAlternatives, language=YARA, style=mystyle]
+	rule AlternativesExample
+	{
+		strings:
+		$hex_string = { F4 23 ( 62 B4 | 56 ) 45 }
+		
+		condition:
+		$hex_string
+	}
+		\end{lstlisting}
+	In particular, in listing \ref{YaraAlternatives}, the value '\textit{(62 B4 $\vert$ 56)}' indicates that one sequence between '\textit{62 B4}' and '\textit{56}' can occupy the sequence at that position.
+	\end{itemize}
+	
+	\item \textit{Text Strings}:		
+	Text strings are generally readable sequences of ASCII characters which are then matched in the condition section \cite{SimonWIY}.
+	
+	Example of an ASCII-encoded, case-sensitive string:
+	\begin{lstlisting}[caption={YARA Text Strings example}, label=YaraTextStrings, language=YARA, style=mystyle]
+		rule TextExample
+	{
+		strings:
+		$text_string = "foobar"
+		
+		condition:
+		$text_string
+	}
+	\end{lstlisting}
+	
+	Additionally, to specify how \textit{YARA} should search for strings, some modifiers can be added at the end of a string definition. Moreover, even more than one modifier can be used in combination to keep rule as simple and readable as possible. Here are described some of the available modifiers:
+	\begin{itemize}			
+		\item \textit{nocase}: Text strings in YARA are, by default, case-sensitive. However it is possible to search for strings in case-insensitive mode by appending the modifier '\textit{nocase}' at the end of the string definition, in the same line. Example:
+		\begin{lstlisting}[caption={YARA nocase example}, label=YaraNocase, language=YARA, style=mystyle]
+	rule CaseInsensitiveTextExample
+	{
+		strings:
+		$text_string = "foobar" nocase
+		
+		condition:
+		$text_string
+	}
+		\end{lstlisting}
+		
+		\item \textit{wide}: The '\textit{wide}' modifier can be used to search for strings encoded with two bytes per character (also known as \textit{wide character strings}), something which is typical in many executable binaries.
+		
+		For example, if the string "Borland" appears in the file encoded as two bytes per character, then the following rule will match:
+		\begin{lstlisting}[caption={YARA Wide Character Strings}, label=YaraWideCharacter, language=YARA, style=mystyle]
+	rule WideCharTextExample1
+	{
+		strings:
+		$wide_string = "Borland" wide
+		
+		condition:
+		$wide_string
+	}
+		\end{lstlisting}
+	
+		\item \textit{xor}: \textit{YARA} can also encode text before searching it in the analysed file. The '\textit{xor}' modifier, for example, can be used to search for strings with a single byte XOR applied to them.
+		
+		The following rule will search for every string resulting from a single-byte XOR applied to the string "This program cannot":
+		\begin{lstlisting}[caption={YARA XOR-ed Strings}, label=YaraXOR, language=YARA, style=mystyle]
+	rule XorExample1
+	{
+		strings:
+		$xor_string = "This program cannot" xor
+		
+		condition:
+		$xor_string
+	}
+		\end{lstlisting}
+	
+		\item \textit{base64}: The '\textit{base64}' modifier can be used to search for strings that have been base64 encoded.
+		
+		The following rule will search for all the possible base64 permutations of the string "This program cannot":
+		\begin{lstlisting}[caption={YARA Base64 encoded Strings}, label=YaraBase64, language=YARA, style=mystyle]
+	rule Base64Example1
+	{
+		strings:
+		$a = "This program cannot" base64
+		
+		condition:
+		$a
+	}
+		\end{lstlisting}
+	\end{itemize}
+
+	\item \textit{Regular Expressions}:
+	Starting from version 2.0 YARA has its own regular expression engine, which is one of its most powerful features. \textit{Regular expressions} are defined in the same way as text strings, but enclosed in forward slashes instead of double-quotes \cite{NaikEAGYRETE}.
+	
+	Example:		
+	\begin{lstlisting}[caption={YARA Regular Expression}, label=YaraRegex, language=YARA, style=mystyle]
+	rule RegExpExample
+	{
+		strings:
+		$re1 = /md5: [0-9a-fA-F]{32}/
+		$re2 = /state: (on|off)/
+		
+		condition:
+		$re1 and $re2
+	}
+	\end{lstlisting}	
+\end{itemize}
+
+\paragraph{Conditions section}
+The last section of \textit{YARA rules}, which is the only required one, contains the rule conditions that determine when the rule gets triggered. These conditions are Boolean expressions similar to those used in programming languages \cite{ArntzEYR}. Through the use of all the usual logical and relational operators, conditions can be made arbitrary complex in order to accommodate for the specific author needs \cite{SimonWIY}.	
+
+Inside the \textit{Conditions} section, among other things, it is possible to:
+\begin{itemize}
+	\item \textbf{Count strings}
+	Sometimes it is necessary to know how many times a string appears in the analysed file, not only if it is present or not. The number of occurrences of each string defined in the string section can be retrieved by using a variable whose name is the string identifier but with a \# character in place of the initial \$ character.
+	
+	For example:
+	\begin{lstlisting}[caption={YARA Count Example}, label=YaraCount, language=YARA, style=mystyle]
+	rule CountExample
+	{
+		strings:
+		$a = "dummy1"
+		$b = "dummy2"
+		
+		condition:
+		#a == 6 and #b > 10
+	}
+	\end{lstlisting}
+	
+	\item \textbf{Check String at specific offset/in offset range}: Sometimes we need to know if a particular string is available at some specific offset of the file or at some virtual address within the process address space. In such situations it is possible to use the '\textit{at}' operator.
+	
+	The '\textit{in}' operator, on the other hand, allows to search for a specific string within a range of offsets or addresses, rather than at an exact one.
+	
+	Examples:
+	\begin{itemize}
+		\item The rule in listing \ref{YaraAt} will find whether the '\textit{a}' string is located at offset 100 and '\textit{b}' at offset 200 of the running process.
+		
+		\begin{lstlisting}[caption={YARA At Example}, label=YaraAt, language=YARA, style=mystyle]
+	rule AtExample
+	{
+		strings:
+		$a = "dummy1"
+		$b = "dummy2"
+		
+		condition:
+		$a at 100 and $b at 200
+	}
+		\end{lstlisting}
+		
+		\item The rule in listing \ref{YaraIn} will find the '\textit{a}' in the memory location between \textit{0} and \textit{100} and '\textit{b}' between \textit{100} and \textit{filesize} of the running process.
+		
+		\begin{lstlisting}[caption={YARA In Example}, label=YaraIn, language=YARA, style=mystyle]
+	rule InExample
+	{
+		strings:
+		$a = "dummy1"
+		$b = "dummy2"
+		
+		condition:
+		$a in (0..100) and $b in (100..filesize)
+	}
+		\end{lstlisting}
+	\end{itemize}
+
+	\item \textbf{Check file size}: '\textit{filesize}' is a special variable that can be used in rules conditions, which holds the size of the file being scanned in bytes.
+	
+	Example:
+	\begin{lstlisting}[caption={YARA Filesize Example}, label=YaraFilesize, language=YARA, style=mystyle]
+	rule FileSizeExample
+	{
+		condition:
+		filesize > 200KB
+	}
+	\end{lstlisting}
+	
+	\item \textbf{Check a set of strings}: When it is necessary to know if a file contains a certain number of strings from a given set the '\textit{of}' operator can be used.
+	
+	Example:
+	\begin{lstlisting}[caption={YARA Of Example}, label=YaraOf, language=YARA, style=mystyle]
+	rule OfExample
+	{
+		strings:
+		$a = "dummy1"
+		$b = "dummy2"
+		$c = "dummy3"
+		
+		condition:
+		2 of ($a, $b, $c)
+	}
+	\end{lstlisting}
+\end{itemize}
+
+\paragraph{Additional modules}
+\textit{YARA}'s code functionality can be extended through the use of modules. Some modules like the \textit{PE module} and the \textit{Cuckoo module} are officially distributed with YARA, however additional ones can also be created.
+
+Here are mentioned some useful (in this document context) Yara modules:
+\begin{itemize}
+	\item \textbf{YARA with PE}
+	Starting with version 3.0, YARA can parse Portable Executable (PE) files \cite{NinjaYSEWDM}. For example, the rule in listing \ref{YaraPE} will check for the string "abc", will parse the PE file and look for "\textit{CreateProcess}" and "\textit{httpsendrequest}" function names in the import sections '\textit{Kernel32.dll}' and '\textit{wininet.dll}', respectively.
+	
+	\begin{lstlisting}[caption={YARA with PE}, label=YaraPE, language=YARA, style=mystyle]
+	Import "PE"
+	
+	rule PE_Parse_Check
+	{
+		strings:
+			$string_pe="abc" nocase
+
+		condition:
+			pe.imports("Kernel32.dll", "CreateProcess") and
+			pe,imports("wininet.dll", "httpsendrequest") and
+			$string_pe
+	}
+	\end{lstlisting}
+	
+	\item \textbf{YARA with PEiD}
+	\textit{YARA} can also be integrated with \textit{PEiD} to check what packer was used to compile the malicious/suspicious executable \cite{NinjaYSEWDM}.
+\end{itemize}
+
+\subsubsection{Yara Rules Advantages and Disadvantages}
+\color{Red}
 
 \begin{enumerate}
 	\item \textit{Advantages} of YARA rules:
@@ -1387,7 +1520,7 @@ YARA rules are developed to detect malware by matching its signatures/strings wi
 
 \color{Black}
 
-\subsubsection{YARA Rules Automatic Generators}
+\subsubsection{Yara Rules Automatic Generators}
 \color{Red}
 Generating YARA rules automatically is the most popular method in employing YARA rules in malware analysis \cite{NaikEAGYRETE}.
 
