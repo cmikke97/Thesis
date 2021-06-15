@@ -1544,7 +1544,7 @@ The \textit{yarGen} authors encourage its use as a starting point for rule const
 	
 	\item \textit{YarGen} tool \textit{disadvantages}:
 	\begin{itemize}
-		\item It requires post-processing of generated rules for increasing their effectiveness.
+		\item It requires post-processing of the generated rules for increasing their effectiveness.
 		
 		\item It requires significant resources for generating opcode-based rules and for loading goodware files.
 		
@@ -1577,7 +1577,7 @@ The produced \textit{Yara rules} contain a large number of strings which are sel
 	
 	\item \textit{YaraGenerator} tool \textit{disadvantages}:
 	\begin{itemize}
-		\item It requires post-processing of generated rules for increasing their effectiveness.
+		\item It requires post-processing of the generated rules for increasing their effectiveness.
 		
 		\item It generates rules based on a random selection of features (strings). This implies that the most appropriate strings may not be selected in many cases, thus making the produced rules less effective on average.
 		
@@ -1610,7 +1610,7 @@ The \textit{Yara rules} produced contain a list of hexadecimal strings to be com
 	
 	\item \textit{Yabin} tool \textit{disadvantages}:
 	\begin{itemize}
-		\item It requires post-processing of generated rules for increasing their effectiveness.
+		\item It requires post-processing of the generated rules for increasing their effectiveness.
 		
 		\item Some specific file types/formats may not be supported.
 		
@@ -1625,32 +1625,45 @@ The \textit{Yara rules} produced contain a list of hexadecimal strings to be com
 \end{enumerate}
 
 \paragraph{\textit{AutoYara} Tool}
-\color{Red}
-The previously mentioned tools like \textit{YarGen} rely on a number of heuristics and string features and have varying levels of effectiveness. \textit{AutoYara} tool makes larger rules, but uses the redundancy and conjunction of components to achieve the extremely low false-positive rates that analysts desire. (The two primary concerns are: 1. Yara rules that generate a lot of false positives could slow the investigation and 2. security workers often have fewer ($\leq 10$) samples when creating a Yara rule.) This task is done in two steps. First, AutoYara authors leverage recent work in finding frequent larger n-grams, for $n \leq 1024$, to find several candidate byte strings that could become features. Second, they extend the SpectraclCoClustering algorithm to work when the number of bi-clusters is not known \textit{a priori}. Bi-clustering allows AutoYara to easily produce complex logic rules that allow to build signatures with low false positive rates  \cite{RaffAYRGUB}.
+Compared to the previously mentioned tools like \textit{YarGen}, which rely on a number of heuristics and string features, \textit{AutoYara} tool makes larger rules using the redundancy and conjunction of components to achieve extremely low false-positive rates \cite{RaffAYRGUB}.
 
-AutoYara is fast, allowing for deployment on low-resource equipment for teams that deploy to remote networks \cite{RaffAYRGUB}.
+The two primary concerns of the \textit{AutoYara} authors while designing this tool were:
+\begin{enumerate}
+	\item Yara rules that generate a lot of false positives could slow the investigation
+	
+	\item Malware analysts often have few samples ($\leq 10$) when creating a Yara rule
+\end{enumerate}
 
-Autoyara makes use of bi-clustering algorithms as the fundamental mechanism of rule construction. The goal of bi-cluster is to take an input matrix \textit{X}, and to simultaneously cluster the rows and columns of the matrix to reveal an underlying structure between columns and rows. AutoYara authors used bi-clustering because it provides a natural means to extract Yara rules. To build a good Yara rule, in fact, one needs to know 1. which features should be used at all, and 2. which features should be combined into an '\textit{and}' statement (would reduce FPs), and which should be placed into an '\textit{or}' statement (would increase TPs). Bi-clustering provides a simple approach to do this jointly over the features, rather than considering greedy approaches that select features one at a time. For every feature within a bi-cluster, they <and> them together since they co-occur, and they <or> the predicates built from bi-clusters. This results in a "disjunction of conjunctions" rule formulation. They used a bi-clustering method that can determine the number of bi-clusters automatically (most bi-clustering algorithms require specifying the number of vi-clusters in advance, and enforce no overlaps between bi-clusters), even if it is only one bi-cluster, that allows overlapping bi-clusters, and will discard rows and columns that do not fit in any bi-cluster \cite{RaffAYRGUB}.
+\textit{AutoYara} authors thus developed a workflow composed of two steps: the first step leveraged recent works in finding frequent larger n-grams, for $n \leq 1024$, to find several candidate byte strings that could become features. In the second step a bi-clustering method, which consists of simultaneously clustering the rows and columns of an input data matrix, is used on those strings to construct the output rules. Most bi-clustering algorithms require the specific number of bi-clusters to be known in advance, and enforce no overlaps between bi-clusters. The \textit{AutoYara} authors exploited an already existing bi-clustering algorithm extending it to work when the number of bi-clusters is not known \textit{a priori} (the number of bi-clusters gets determined automatically) and to allow overlapping bi-clusters, discarding rows and columns that do not fit in any bi-cluster \cite{RaffAYRGUB}.
+
+\textit{AutoYara} uses \textit{bi-clustering} because it allows to easily produce complex and effective logic rules that enable the creation of signatures with low false positive rates.
+
+To build a good Yara rule, in fact, one needs to know:
+\begin{enumerate}
+	\item which features should be used at all
+	
+	\item which features should be combined into '\textit{and}' statements (which reduce the False Positive Rate), and which should be placed into '\textit{or}' statements (which increase the True Positive Rate)
+\end{enumerate}
+\textit{Bi-clustering} provides a simple approach to do this jointly over the features, rather than considering the features one at a time. In particular, the features within a bi-cluster are combined into an '\textit{and}' statement since they co-occur; moreover the '\textit{and}' statements from multiple bi-clusters are placed into an '\textit{or}' statement resulting in a "disjunction of conjunctions" rule formulation.
 
 \begin{enumerate}
 	\item \textit{AutoYara} tool \textit{advantages}:
 	\begin{itemize}
-		\item It is fast, allowing for deployment on low-resource equipment for teams that deploy to remote networks.
+		\item It is fast, allowing it to be deployed even on low-resource equipment (like remote networks).
 		
-		\item It was designed with the intent of producing yara rules with low false positive rates.
+		\item It was designed with the intent of producing \textit{Yara rules} with low false positive rates.
 		
-		\item It was designed to be able to generate yara rules having even $\leq10$ available samples.
+		\item It was designed to be able to generate \textit{Yara rules} from as few as $\leq10$ available samples.
 	\end{itemize}
 	
 	\item \textit{AutoYara} tool \textit{disadvantages}:
 	\begin{itemize}
-		\item It requires post-processing of rules to make them more effective.
+		\item It requires post-processing of the generated rules for increasing their effectiveness.
 		
-		\item It a very recent tool mainly developed for the research purposes and not for production use.
+		\item It a very recent tool, mainly developed for research purposes and not for production use.
 	\end{itemize}
 \end{enumerate}
 
-\color{Black}
 \section{Semantic Based Detection}
 \textit{Semantic-based} malware detection aims at identifying malware by deducing the analysed code logic and comparing it to a database of already known malicious logic patterns. This technique, differently from signature-based detection which looks at the code syntactic properties, tracks the semantics of the program code instructions. This implies that \textit{semantic-based} detection approaches are capable of overcoming obfuscation attempts and even detecting unknown malware variants \cite{NamanyaTWM}.
 

@@ -96,7 +96,7 @@
 \contentsline {subsection}{\numberline {3.6.1}Simple malware detection network}{50}{subsection.3.6.1}%
 \contentsline {subsection}{\numberline {3.6.2}AlOHA: Auxiliary Loss Optimization for Hypothesis Augmentation}{50}{subsection.3.6.2}%
 \contentsline {subsection}{\numberline {3.6.3}Automatic Malware Description via Attribute Tagging and Similarity Embedding}{50}{subsection.3.6.3}%
-\contentsline {subsection}{\numberline {3.6.4}Learning from Context: Exploiting and Interpreting File Path Information for Better Malware Detection}{50}{subsection.3.6.4}%
+\contentsline {subsection}{\numberline {3.6.4}Learning from Context: Exploiting and Interpreting File Path Information for Better Malware Detection}{51}{subsection.3.6.4}%
 \contentsline {section}{\numberline {3.7}Malware Normalization}{51}{section.3.7}%
 \contentsline {chapter}{\numberline {4}Dataset Used}{52}{chapter.4}%
 \contentsline {chapter}{\numberline {5}Experimenting with ML based Malware Detection/Description methods}{53}{chapter.5}%
