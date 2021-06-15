@@ -1486,142 +1486,144 @@ Here are mentioned some useful (in this document context) Yara modules:
 \end{itemize}
 
 \subsubsection{Yara Rules Advantages and Disadvantages}
-\color{Red}
-
 \begin{enumerate}
-	\item \textit{Advantages} of YARA rules:
-	YARA rules offer several advantages over other malware analysis techniques, here are some of the most notable advantages \cite{NaikEAGYRETE}:
+	\item \textbf{\textit{Advantages}} of \textit{Yara rules}:
+	\textit{Yara rules} offer several advantages over other malware analysis techniques. Here are some of the most notable ones \cite{NaikEAGYRETE}:
 	\begin{itemize}
-		\item YARA rules offer an easy and efficient way of writing flexible and custom rules according to the requirements of a specific security domain.
+		\item \textit{Yara rules} allow malware analysts to write flexible and custom rules in an easy and efficient way.
 		
-		\item YARA rules are an open standard and work on most of the major platforms such as Windows, Linux and Mac OS.
+		\item \textit{Yara rules} are an open standard which work on most of the major operating systems such as Windows, Linux and Mac OS.
 		
-		\item YARA rules can be easily integrated into Python and C/C++ programming languages.
+		\item \textit{Yara rules} can be easily integrated into Python and C/C++ programming languages.
 		
-		\item YARA rules can be used for both static and dynamic malware analysis.
+		\item \textit{Yara rules} can be used both for static and dynamic malware analysis.
 		
-		\item Several tools are available to generate YARA rules easily and efficiently.
+		\item Several automatic tools have been developed, and are readily available, to generate \textit{Yara rules} easily and efficiently.
 		
-		\item Several public repositories of YARA rules offer readily available rules for malware analysis.
+		\item There are various public repositories of \textit{Yara rules} which offer readily available rules for malware analysis.
 	\end{itemize}
 	
-	\item \textit{Limitations} of YARA rules:
-	YARA rules are one of the most established malware analysis techniques, however, they have some limitations, here are some of the most notable \cite{NaikEAGYRETE}:
+	\item \textbf{\textit{Limitations}} of \textit{Yara rules}:
+	\textit{Yara rules}, however, have also some limitations. Here are some of the most notable ones \cite{NaikEAGYRETE}:
 	\begin{itemize}
-		\item YARA rules are commonly written based on \textit{IoC} strings, however, attackers can easily manipulate, replace or encrypt these \textit{IoC} strings to evade them, which could make these rules less effective.
+		\item \textit{Yara rules} are commonly written based on \textit{IoC} (\textit{Indicator of Compromise}) strings, however, malware authors can easily obfuscate, replace or encrypt these \textit{IoC} strings in their creations in order to evade detection. This could make these rules less effective.
 		
-		\item \textit{IoC} strings are extracted from existing malware and their families through a reverse engineering process, which requires a highly specialised skill-set in a specific security domain.
+		\item \textit{IoC} strings are usually extracted from existing malware samples/families through the use of reverse engineering techniques. The use of these techniques in manually creating effective rules, however, requires a highly specialised skill-set and years of experience.
 		
-		\item The success of YARA rules is dependant on the types and number of \textit{IoC} strings included in rules, however, achieving the balance of both is a challenging task as an ineffective and inappropriate number of \textit{IoC} strings could affect the performance of YARA rules.
+		\item The effectiveness of \textit{Yara rules} is generally influenced by the types and number of \textit{IoC} strings included in the rules. However, achieving the right balance of both is a challenging task.
 		
-		\item YARA rules are effective in detecting malware which resembles similarity with the existing malware and their families, however, it may miss out new and unique malware variants.
+		\item \textit{Yara rules} are effective in detecting malware which matches known malware signature. It may, however, completely miss new and unique malware variants.
 	\end{itemize}
 \end{enumerate}
 
-\color{Black}
-
 \subsubsection{Yara Rules Automatic Generators}
-\color{Red}
-Generating YARA rules automatically is the most popular method in employing YARA rules in malware analysis \cite{NaikEAGYRETE}.
+There are various automatic \textit{Yara rules} generator tools available. In the following the most notable ones will be briefly described:
 
-\color{Black}
-\paragraph{\textit{yarGen} Tool}
-\color{Red}
-\textit{yarGen} is a Python-based tool utilised to generate YARA rules, which is developed by Florian Roth \cite{}. It generates YARA rules utilising some intelligent techniques such as fuzzy regular expressions, Naive Bayes classifier and Gibberish Detector \cite{}. The generated YARA rules include those strings and opcodes from malware which do not match with the provided goodware databases. These YARA rules contain a predefined number of strings (generally up to 20 strings), based on their highest scores to maintain a reasonable operation speed. This tool generates two types of rules: basic rules and super rules, depending on the malware sample types, where basic rules can generally target specific malware and super rules can target a set of malware or malware family \cite{NaikEAGYRETE}.
+\paragraph{\textit{YarGen} Tool}
+\textit{YarGen} \textit{python-based} tool exploits some smart techniques, namely fuzzy regular expressions, Naive Bayes classifier and Gibberish Detector, to generate \textit{Yara rules}. 
 
-\textit{YarGen} uses a Naive Bayes model to score the potential utility of features that can be extracted from a binary, predominately strings. Then YarGen uses a number of heuristics to select the features to use, and combines them in a heuristic fashion. The authors of YarGen encourage its use as a starting point for rule construction, and to build rules by manually adjusting and refining YarGen's output \cite{RaffAYRGUB}.
+The produced rules include features (strings and opcodes) common to malware samples that don't match with the provided goodware databases. A predefined number of features (generally up to 20 strings) are selected, based on their potential utility and a number of heuristics, to be combined and used by the rule in order to maintain a reasonable operation speed.
+
+This tool is able to generate two types of rules: \textit{basic rules} and \textit{super rules}. \textit{Basic rules} can generally target specific malware samples, where \textit{super rules} are able to target a set of malware samples or a whole malware family \cite{NaikEAGYRETE}.
+
+The \textit{yarGen} authors encourage its use as a starting point for rule construction, followed by manual adjustments and to refine \textit{yarGen}'s output \cite{RaffAYRGUB}.
 
 \begin{enumerate}
-	\item \textit{Advantages} of \textit{yarGen} tool:
+	\item \textit{YarGen} tool \textit{advantages}:
 	\begin{itemize}
-		\item It allows generation of YARA rules based on both opcodes and strings.
+		\item It allows generation of \textit{Yara rules} based on both opcodes and strings.
 		
-		\item It supports the use of PE (portable executable) modules, which are used by the Windows operating system for executables such as \textit{DLL} and \textit{COM} files.
+		\item It supports the use of PE (portable executable) modules, with are used to interpret Windows operating system executables such as \textit{DLL} and \textit{COM} files.
 		
-		\item It can be integrated with other anti-malware software for its more effective use.
+		\item It can be integrated with other anti-malware software in order to improve its effectiveness.
 		
-		\item It reduces false positives by checking all strings against strings of goodware databases.
+		\item It reduces the false positive rate by checking all strings against databases of goodware samples.
 		
-		\item The python script is simple and easy to used through a command line interface.
+		\item It is deployed as a simple and easy-to-use python script that can be run through a command-line interface.
 	\end{itemize}
 	
-	\item \textit{Drawbacks} of \textit{yarGen} tool:
+	\item \textit{YarGen} tool \textit{disadvantages}:
 	\begin{itemize}
-		\item It requires post-processing of rules for increasing their effectiveness.
+		\item It requires post-processing of generated rules for increasing their effectiveness.
 		
-		\item It requires significant resources for opcode-based rules and loading goodware files.
+		\item It requires significant resources for generating opcode-based rules and for loading goodware files.
 		
 		\item The rule generation process is slow.
 		
-		\item The creation of super rules could cause duplication of rules and redundancy.
+		\item The creation of super rules may cause redundancy and duplication of rules.
 		
-		\item It requires installation of all dependencies and built-in databases for working successfully.
+		\item All dependencies and built-in databases have to be installed in order for the tool to work successfully.
 	\end{itemize}
 \end{enumerate}
 
-\color{Black}
-\paragraph{\textit{yaraGenerator} Tool}
-\color{Red}
-It is a python-based tool used for the generation of YARA rules, which is developed by Chris Clark \cite{}.It generates YARA rules with a completely different signature for different types of files such as \textit{EXE}s, \textit{PDF}s, and \textit{Email}s utilising string prioritization logic and code refactoring. The generated YARA rules consist of strings only, including those strings from malware which do not match with the provided blacklist of strings. It uses a database of 30,000 blacklisted strings divided based on different file formats. These YARA rules contain a large number of strings (depending on the types of samples) selected randomly as it does not compute a score or weighting for strings \cite{NaikEAGYRETE}.
+\paragraph{\textit{YaraGenerator} Tool}
+This \textit{python-based} tool uses string prioritization logic and code refactoring to generate \textit{Yara rules} with a completely different signature for different file types, such as \textit{EXE}s, \textit{PDF}s, and \textit{Email}s.
+
+The generated \textit{Yara rules} contain only strings (opcodes are not supported) extracted from malware samples that do not match with the provided database of strings from blacklisted files. In particular 30,000 blacklisted strings are contained in such database, arranged based on the different file formats.
+
+The produced \textit{Yara rules} contain a large number of strings which are selected randomly. In fact, no score computation takes place in order to weight the different strings \cite{NaikEAGYRETE}.
 
 \begin{enumerate}
-	\item \textit{Advantages} of \textit{yaraGenerator} tool:
+	\item \textit{YaraGenerator} tool \textit{advantages} :
 	\begin{itemize}
-		\item It can generate specialised rules of a specific file format.
+		\item It can generate specialised rules for specific file formats.
 		
-		\item It supports the use of \textit{PE} (portable executable) modules, which are used by Windows operating system for executables such as \textit{DLL} and \textit{COM} files.
+		\item It supports the use of PE (portable executable) modules, with are used to interpret Windows operating system executables such as \textit{DLL} and \textit{COM} files.
 		
-		\item It reduces false positives by checking all strings against strings of blacklist files.
+		\item It reduces the false positive rate by checking all strings against databases of blacklisted files.
 		
-		\item The python script is simple and easy to use through a command line interface.
+		\item It is deployed as a simple and easy-to-use python script that can be run through a command-line interface.
 	\end{itemize}
 	
-	\item \textit{Drawbacks} of \textit{yaraGenerator} tool:
+	\item \textit{YaraGenerator} tool \textit{disadvantages}:
 	\begin{itemize}
-		\item It requires post-processing of rules for increasing their effectiveness.
+		\item It requires post-processing of generated rules for increasing their effectiveness.
 		
-		\item It generates YARA rules based on random selection of strings which may not select the most appropriate strings in many cases.
+		\item It generates rules based on a random selection of features (strings). This implies that the most appropriate strings may not be selected in many cases, thus making the produced rules less effective on average.
 		
-		\item It does not support the inclusion of opcodes.
+		\item It does not support the use of opcodes.
 		
-		\item The project was developed as a work in progress and has not been updated afterwords.
+		\item It was developed as a work-in-progress project and has not been updated for a while now.
 	\end{itemize}
 \end{enumerate}
 
-\color{Black}
-\paragraph{\textit{yabin} Tool}
-\color{Red}
+\paragraph{\textit{Yabin} Tool}
+This is another \textit{python-based} tool, developed by the \textit{Alien Vault Open Threat Exchange} (\textit{OTX}) community, for the automatic generation of \textit{Yara rules}.
 
-It is another python-based tool used for generating YARA rules, which was developed by \textit{Alien Vault Open Threat Exchange} (\textit{OTX}) community. It generates YARA rules by finding rare functions in certain malware samples or families. It recognises functions by checking function prologues which define the start of functions, for example, \textit{55 8B EC} mostly specifies the start of a function in programs compiled by Microsoft Visual Studio. The generated YARA rules include those strings from malware which do not match with the provided whitelist of common library functions. It uses a whitelist obtained from 100 Gb of non-malicious software to omit common library functions. These YARA rules contain a list of hexadecimal strings to compare against suspected malware files for finding the similarity in their byte-sequences \cite{NaikEAGYRETE}.
+In this case \textit{Yara rules} are created by finding rare functions in specific malware samples or families. Functions are recognised by checking specific bytes sequences called \textit{function prologues}, which define the start of the code of a function. For example, the byte sequence '\textit{55 8B EC}' usually specifies the start of a function in programs compiled by Microsoft Visual Studio.
+
+The generated \textit{Yara rules} include those strings common to malware samples that don't match with the provided whitelist of commonly used library functions. Such whitelist was obtained from 100 Gb of non-malicious software in order to exclude common library functions.
+
+The \textit{Yara rules} produced contain a list of hexadecimal strings to be compared against suspicious files looking for similarities in their byte-sequences \cite{NaikEAGYRETE}.
+
 \begin{enumerate}
-	\item \textit{Advantages} of \textit{yabin} tool:
+	\item \textit{Yabin} tool \textit{advantages}:
 	\begin{itemize}
 		\item It can be used to cluster malware samples based on the reuse of their code.
 		
-		\item The search patterns can be extended during the post-processing operation.
+		\item The list of patterns to search for can be extended during the rule post-processing phase.
 		
-		\item It provides a large whitelist obtained from numerous non-malicious software to omit common library functions.
+		\item With the purpose of excluding commonly used library functions in the produced rules, a large whitelist obtained from numerous non-malicious executable files is provided with the tool.
 		
-		\item The python script is simple and easy to use through a command line interface.
+		\item It is deployed as a simple and easy-to-use python script that can be run through a command-line interface.
 	\end{itemize}
 	
-	\item \textit{Drawbacks} of \textit{yabin} tool:
+	\item \textit{Yabin} tool \textit{disadvantages}:
 	\begin{itemize}
-		\item It requires post-processing of rules to make them more effective.
+		\item It requires post-processing of generated rules for increasing their effectiveness.
 		
-		\item It may not work on some specific file formats.
+		\item Some specific file types/formats may not be supported.
 		
-		\item It only uses functions and does not use other types of strings.
+		\item The created rules contain only function prologues. No other string types are used.
 		
-		\item It can only work with unpacked executables.
+		\item Since it relies on function prologues, it works only with unpacked executables.
 		
 		\item It is not designed to work on \textit{.NET} executables, \textit{Java} files and \textit{Microsoft} documents.
 		
-		\item It is mainly developed for the testing purpose and not for production use.
+		\item It was mainly developed for research and testing purpose, not for production use.
 	\end{itemize}
 \end{enumerate}
 
-\color{Black}
 \paragraph{\textit{AutoYara} Tool}
 \color{Red}
 The previously mentioned tools like \textit{YarGen} rely on a number of heuristics and string features and have varying levels of effectiveness. \textit{AutoYara} tool makes larger rules, but uses the redundancy and conjunction of components to achieve the extremely low false-positive rates that analysts desire. (The two primary concerns are: 1. Yara rules that generate a lot of false positives could slow the investigation and 2. security workers often have fewer ($\leq 10$) samples when creating a Yara rule.) This task is done in two steps. First, AutoYara authors leverage recent work in finding frequent larger n-grams, for $n \leq 1024$, to find several candidate byte strings that could become features. Second, they extend the SpectraclCoClustering algorithm to work when the number of bi-clusters is not known \textit{a priori}. Bi-clustering allows AutoYara to easily produce complex logic rules that allow to build signatures with low false positive rates  \cite{RaffAYRGUB}.
@@ -1631,7 +1633,7 @@ AutoYara is fast, allowing for deployment on low-resource equipment for teams th
 Autoyara makes use of bi-clustering algorithms as the fundamental mechanism of rule construction. The goal of bi-cluster is to take an input matrix \textit{X}, and to simultaneously cluster the rows and columns of the matrix to reveal an underlying structure between columns and rows. AutoYara authors used bi-clustering because it provides a natural means to extract Yara rules. To build a good Yara rule, in fact, one needs to know 1. which features should be used at all, and 2. which features should be combined into an '\textit{and}' statement (would reduce FPs), and which should be placed into an '\textit{or}' statement (would increase TPs). Bi-clustering provides a simple approach to do this jointly over the features, rather than considering greedy approaches that select features one at a time. For every feature within a bi-cluster, they <and> them together since they co-occur, and they <or> the predicates built from bi-clusters. This results in a "disjunction of conjunctions" rule formulation. They used a bi-clustering method that can determine the number of bi-clusters automatically (most bi-clustering algorithms require specifying the number of vi-clusters in advance, and enforce no overlaps between bi-clusters), even if it is only one bi-cluster, that allows overlapping bi-clusters, and will discard rows and columns that do not fit in any bi-cluster \cite{RaffAYRGUB}.
 
 \begin{enumerate}
-	\item \textit{Advantages} of \textit{AutoYara} tool:
+	\item \textit{AutoYara} tool \textit{advantages}:
 	\begin{itemize}
 		\item It is fast, allowing for deployment on low-resource equipment for teams that deploy to remote networks.
 		
@@ -1640,7 +1642,7 @@ Autoyara makes use of bi-clustering algorithms as the fundamental mechanism of r
 		\item It was designed to be able to generate yara rules having even $\leq10$ available samples.
 	\end{itemize}
 	
-	\item \textit{Drawbacks} of \textit{AutoYara} tool:
+	\item \textit{AutoYara} tool \textit{disadvantages}:
 	\begin{itemize}
 		\item It requires post-processing of rules to make them more effective.
 		
