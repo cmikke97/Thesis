@@ -164,19 +164,9 @@ R.~Perdisci, A.~Lanzi, and W.~Lee, ``Classification of packed executables for
 V.~Nguyen, ``A study of polymorphic virus detection'', 11 2018,
   \doi{10.13140/RG.2.2.19853.79842}
 
-\bibitem{NinjaYSEWDM}
-S.~Ninja, ``Yara: Simple and effective way of dissecting malware.''
-  \url{https://resources.infosecinstitute.com/topic/yara-simple-effective-way-dissecting-malware/},
-  Accessed: 2021-03-15
-
 \bibitem{SimonWIY}
 S.~Simon, ``What is yara? get to know this malware research tool.''
   \url{https://www.binarydefense.com/what-is-yara-get-to-know-this-malware-research-tool/},
-  Accessed: 2021-03-15
-
-\bibitem{ArntzEYR}
-P.~Arntz, ``Explained: Yara rules.''
-  \url{https://blog.malwarebytes.com/security-world/technology/2017/09/explained-yara-rules/#:~:text=YARA%20is%20a%20tool%20that,that%20look%20for%20certain%20characteristics.},
   Accessed: 2021-03-15
 
 \bibitem{RaffAYRGUB}
@@ -184,6 +174,16 @@ E.~Raff, R.~Zak, G.~Lopez~Munoz, W.~Fleming, H.~S. Anderson, B.~Filar,
   C.~Nicholas, and J.~Holt, ``Automatic yara rule generation using
   biclustering'', Proceedings of the 13th ACM Workshop on Artificial
   Intelligence and Security, Nov 2020, \doi{10.1145/3411508.3421372}
+
+\bibitem{NinjaYSEWDM}
+S.~Ninja, ``Yara: Simple and effective way of dissecting malware.''
+  \url{https://resources.infosecinstitute.com/topic/yara-simple-effective-way-dissecting-malware/},
+  Accessed: 2021-03-15
+
+\bibitem{ArntzEYR}
+P.~Arntz, ``Explained: Yara rules.''
+  \url{https://blog.malwarebytes.com/security-world/technology/2017/09/explained-yara-rules/#:~:text=YARA%20is%20a%20tool%20that,that%20look%20for%20certain%20characteristics.},
+  Accessed: 2021-03-15
 
 \bibitem{MiaoUHSS}
 Y.~Miao, ``Understanding heuristic-based scanning vs. sandboxing.''
@@ -199,5 +199,13 @@ Kaspersky, ``What is heuristic analysis?.''
 Forcepoint, ``What is heuristic analysis?.''
   \url{https://www.forcepoint.com/cyber-edu/heuristic-analysis}, Accessed:
   2021-06-13
+
+\bibitem{KyadigeLFCEIFPIBMD}
+A.~Kyadige, E.~M. Rudd, and K.~Berlin, ``Learning from context: Exploiting and
+  interpreting file path information for better malware detection'', 2019
+
+\bibitem{saxeDNNBMDUTDBPF}
+J.~Saxe and K.~Berlin, ``Deep neural network based malware detection using two
+  dimensional binary program features'', 2015
 
 \end{thebibliography}

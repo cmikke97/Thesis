@@ -81,6 +81,10 @@
 	morestring=[d]',
 }
 
+\usepackage{amsmath}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
 \usepackage{xcolor}
 
 \begin{document}
@@ -1153,6 +1157,12 @@ In order to counter malware attacks and threats, in recent years many anti-malwa
 
 However, attackers are nowadays increasingly using the more sophisticated second generation malwares, which strongly mutate at each infection. Researchers and anti-malware software developers are thus focusing their attention on the creation of more advanced tools capable of detecting this type of evolving malware.
 
+\color{Red}
+Commercial Portable Executable (PE) malware detectors consist of a hybrid of static and dynamic analysis engines. Static detection - which is fast and effective at detecting a large fraction of malware - is usually first employed to flag suspicious samples. Static detection involves analysing the raw PE image on disk and can be performed very quickly, but it is vulnerable to code obfuscation techniques.
+
+Dynamic detection, by contrast, requires running the PE in an emulator and analysing behaviour at run time. When dynamic analysis works, it is less susceptible to code obfuscation, but takes substantially greater computational capacity and time to execute than static methods. Moreover, some files are difficult to execute in an emulated environment, but can still be statically analysed. Consequently, static detection methods are typically the most critical part of an endpoint's malware prevention pipeline.
+\color{Black}
+
 \section{Integrity Checker}
 When compromising a computer system or network some changes are inevitably made within the target environment. This implies that systems, like \textit{integrity checkers}, that rely on actively monitoring changes made to existing files within the target operating system, can be used to perform intrusion detection \cite{NamanyaTWM}.
 
@@ -1697,7 +1707,19 @@ Nowadays \textit{heuristic} analysis can be found in most mainstream antivirus s
 
 In recent years, malware detection with machine learning techniques is gaining popularity. Tom Mitchell \cite{} defines machine learning as the study of computer algorithms that improve through experiments. Robert Moskovitch et. al. \cite{} proposed detection of malwares based on monitoring the computer behaviour (features). His evaluation results suggest that by using classification algorithms applied on only 20 features the mean detection accuracy exceeded 90\%. The advantage of machine learning techniques is that it will not only detect known malwares but also act as knowledge for the detection of new malware. The popular machine learning techniques among the researchers for the detection of second generation malwares are Naive Bayes, Decision Trees, Data Mining, Neural Networks and Hidden Markov Modes. This technique may not replace the standard detection methods, but it can act as an add-on feature. Generally, machine learning techniques are more computationally demanding than the standard anti-malware, hence it may not be suitable for end users. However, it can be implemented at enterprise gateaway level to act as a central anti-malware engine to supplement anti-malwares. Although infrastructure requirement is costly, it can help in protecting valuable enterprises data from the security threats and can prevent immense financial damages \cite{Sharma_2014}.
 
+---
+
 In recent years, machine learning has gained its popularity in many fields including IT security. Robert Moskovitch et. al. \cite{} proposed a technique that monitors a small set of features that are sufficient for detecting malware without sacrificing accuracy. The result of the study showed that, using only 20 features, the mean detection accuracy was greater than 90\%, and for specific unknown worms, this accuracy got over 99\%, while maintaining a low level of false positives. The advantage of machine learning techniques is that it will not only detect a known malware but also act as a database for detecting new malware. Similar studies can also be found in another model such as Naive Bayes, Decision Trees, Neural Networks. Although this technique is practical, it may not replace the standard detection methods, rather than act as an add-on feature because machine learning techniques are computationally demanding and may not be suitable for end users \cite{NguyenSPVD}.
+
+---
+
+Commercial models typically rely on deep neural networks, or boosted decision tree ensembles and have been extended to other static file types as well, including web content, office documents, and archives. While methods for dealing with these different input types have their own intricacies, they typically use single inputs derived from file content as a feature vector or text embedding.
+
+Static ML detectors use highly parametric classifiers trained on many malicious and benign samples. The goal is to tune the parameters of these classifiers to best match the outputs from the classifiers for all input samples to their actual ground truth labels. Provided that the malware/benignware samples in the training set are similar enough in content to those seen at deployment and that the samples are well labelled, the learned detection function should work well.
+
+In practice, labels are often collected from vendor aggregation feeds, which submit samples to malware detectors from a variety of vendors. The results can be aggregated into labels that are usually correct, e.g. by using a 1-/5+ criterion or treating the label as a hidden variable and using statistical estimation methods. Often a time lag is introduced to let vendors update their models, blacklists, and whitelists accordingly. Generally, the longer the time lag, the more accurate the labels, but the less the data resembles that of the deployment distribution. In actual deployment contexts, classifiers are retrained on new data/labels periodically and the updated parameters are sent to the endpoints on which the detectors are running.
+
+Most static ML for information security (ML-Sec) classifiers operate on learned embeddings over portions of files (e.g. headers), learned embeddings over the full file, or most commonly, on pre-engineered numerical \textit{feature vectors} designed to summarize the content from each file. Learned embeddings, which generally presume some sort of convolutional architecture, have the advantage that they do not presume a fixed structure and are derived directly during training. However, this process is significantly more expensive, and does not scale as gracefully, e.g., to tens to hundreds of millions of large PE files. Moreover generic bytes are inherently less constrained than inputs like images, video, audio, and text, where convolutions can take advantage of structural localities/hierarchies. Thus, for generic malicious/benign files there is less performance benefit from learning to embed features directly from inputs. Pre-engineered feature vector representations, by contrast quickly distil content from each file that is informative in a classification sense. There are a number of ways to craft feature vectors, including tracking per-byte statistics over sliding windows, byte histograms, n-gram histograms, treating bytes as pixel values in an image (a visualisation of the file content), opcode and function call graph statistics, symbol statistics, hashed/numerical metadata values - e.g. entry point as a fraction of the file, or hashed imports and exports, - and hashes of delimited tokens. In practical applications, several different types of feature vectors extracted from file content are often concatenated together to achieve superior performance \cite{KyadigeLFCEIFPIBMD}.
 
 \color{Black}
 \subsection{Simple malware detection network}
@@ -1707,6 +1729,8 @@ In recent years, machine learning has gained its popularity in many fields inclu
 \subsection{AlOHA: Auxiliary Loss Optimization for Hypothesis Augmentation}
 \color{Red}
 
+Rudd et al. introduced several loss functions, including a multi-target binary cross entropy loss over multiple malicious/benign detection sources, a Poisson loss over total detection counts from all malicious/benign sources, and a multi-target binary cross entropy loss over semantic malware attribute tags. The auxiliary labels provide some contextual information to guide the training process \cite{KyadigeLFCEIFPIBMD}.
+
 \color{Black}
 \subsection{Automatic Malware Description via Attribute Tagging and Similarity Embedding}
 \color{Red}
@@ -1714,6 +1738,100 @@ In recent years, machine learning has gained its popularity in many fields inclu
 \color{Black}
 \subsection{Learning from Context: Exploiting and Interpreting File Path Information for Better Malware Detection}
 \color{Red}
+
+(Abstract)
+Machine learning (ML) classifiers used for static portable executable (PE) malware detection typically employ single numerical feature vector representations of each file as input with one or more target labels per file during training. However, there is much orthogonal information that can be gleaned from the \textit{context} in which the file was seen.
+
+The authors propose utilizing a static source of contextual information - namely the path of the PE file - as an auxiliary input to the classifier. While file paths are not malicious or benign in and of themselves, they provide valuable context for a malicious/benign determination.
+
+Unlike dynamic contextual information, which requires high CPU and runtime overhead, file paths are available with little overhead and can seamlessly be integrated into a multi-view static ML detector, potentially yielding higher detection rates at very high throughput with minimal infrastructural changes.
+
+The authors proposed a multi-view neural network, which takes feature vectors from the PE file content as well as corresponding file paths as inputs and outputs a detection score. They used a commercial-scale dataset of approximately 10 million samples - files and file paths from user endpoints of an actual security vendor network. They found that their model learned useful aspects of the file paths for classification \cite{KyadigeLFCEIFPIBMD}.
+
+---
+
+(Introduction)
+Static detection methods have seen performance advancements recently, thanks to the adoption of machine learning, where highly expressive classifiers, e.g. deep neural networks, are fit on labelled data sets of millions of files. When these classifiers are trained, they use \textit{feature vectors} - numerical descriptions of the static file content - as input but no auxiliary data. Dynamic analysis, however, works well precisely because of \textit{auxiliary data} - e.g. network traffic, system calls, etc. - information that cannot be gleaned directly from the static content of the file.
+
+The authors used file paths as orthogonal input information to augment static ML detectors. File paths are available statically, without any additional instrumentation of the OS, and are already used internally by malware analysts to correct and investigate mischaracterised detections.
+
+Using file paths to augment detections on the surface seems potentially problematic, as file paths are not inherently malicious or benign. However, malware droppers often use file paths with certain characteristics for a variety of reasons. For example, a file path may be chosen to increase the likelihood that a user will execute a malicious PE masquerading as another application, to avoid disk scans, or to hide the files from a user's view. This results in a prevalence of certain types of directory hierarchies, and detectable naming characteristics, which can provide useful hints about the malicious/benign nature of a file, even when this is not immediately obvious from its content.
+
+By including the file path as an auxiliary input, the authors are able to combine information about the file, via feature vectors, with information about how likely it is to see such a file in that specific location.
+
+They focused their analysis on thee models:
+\begin{itemize}
+	\item The baseline file content only PE model, which takes only the PE features as input and outputs a malware confidence score.
+	
+	\item Another baseline file path content only FP model, which takes only the file's file paths as input and outputs a malware confidence score.
+	
+	\item Their proposed multi-view PE file content + contextual file path PE + FP model, which takes in both the PE file content features and file paths, and also outputs a malware confidence score.
+\end{itemize}
+
+The authors collected a commercial dataset of actual files and file paths scans on customer endpoints from a large anti-malware vendor, and used them to perform a time split validation ot their model.
+
+Their multi-view classifier trained on both file content and the contextual file paths yielded statistically better results across the ROC curve and particularly in low false positive rate (FPR) regions \cite{KyadigeLFCEIFPIBMD}.
+
+---
+
+(Static ML Malware Detection)
+The authors used in their work a concatenation of features derived from the content of a PE file as an input to a neural network, adding a second input which includes contextual information - namely the PE File path. The PE content input is passed though a series of hidden layers while the file path is passed through a convolutional embedding. Both inputs are ultimately concatenated together into a common 'stem' of hidden layers. The final malicious/benign output score is obtained by passing the final dense layer output (a 1-D scalar) through a sigmoid activation function \cite{KyadigeLFCEIFPIBMD}.
+
+---
+
+(Learning from Multiple Sources)
+This approach utilizes \textit{multiple} input types/modalities - one which describes the content of the malicious sample, in the form of a PE feature vector, and another which feeds the path of the file to an embedding which provides information on where that sample was seen. This technique is a type of \textit{multi-view} learning. The majority of applications of multi-view learning are in computer vision, where the multiple views literally consist of views from different input cameras/sensors or different views from the same camera/sensor at different times \cite{KyadigeLFCEIFPIBMD}.
+
+---
+
+(Dataset)
+The authors collected training, validation and testing datasets from a prominent anti-malware vendor's telemetry. This telemetry contained the filepaths and SHA256 digests of portable executable (PE) files seen on their customer endpoints, along with time stamps and other metadata. The telemetry did not contain the raw files due to bandwidth and customer privacy considerations, and instead they used the SHA256 digests to look up and download available files from vendor aggregation services. Malicious/benign labels for these files were computed using a criterion similar to \cite{saxeDNNBMDUTDBPF}, but combined with additional propriety information to generate more accurate labelling. The filepaths were lower-cased for consistency. The data was split into training and test datasets based on the time samples were first seen in their telemetry \cite{KyadigeLFCEIFPIBMD}.
+
+---
+
+(Feature Engineering)
+In order to use file paths in feed-forward neural network, the authors first needed to convert the variable length strings into numeric vectors of fixed length. They did that using a vectorization scheme, by creating a lookup table keyed on each character with a numeric value (between 0 and the character set size) representing each character. This transformation required their file paths to be trimmed to a fixed size, so they trimmed them to the last 100 characters.
+
+As features for the content of the PE files, they used floating point 1024-dimensional feature vectors consisting of four distinct feature types, similar to \cite{saxeDNNBMDUTDBPF}:
+\begin{enumerate}
+	\item A 256-dimensional (16x16) 2D histogram of windowed entropy values per byte. A window size of 1024 was selected.
+	
+	\item A 256-dimensional (16x16) 2D logarithmically scaled string length/hash histogram.
+	
+	\item A 256-dimensional bin of hashes of metadata from the PE header, including PE metadata, including imports, exports, etc.
+	
+	\item A 256-dimensional (16x16) byte standard deviation/entropy histogram.
+\end{enumerate}
+In total, they presented each sample as two feature vectors: A PE content feature vector of 1024 dimensions and a contextual file path feature vector of 100 dimensions \cite{KyadigeLFCEIFPIBMD}.
+
+---
+
+(Network Architectures)
+The model has two inputs, the 1024 element PE content feature vector, $\textbf{x}_{PE}$, and the $100$ element file path integer vector, $\textbf{x}_{FP}$. Each distinct input is passed through a series of layers with their own parameters, $\theta_{PE}$ and $\theta_{FP}$, for PE features and FP for filepath features respectively, and are jointly optimized during training. The outputs of the se layers are then joined (concatenated) and passed through a series of final hidden layers - a joint output path with parameters $\theta_{O}$. The final output of the network consists of a dense layer followed by a sigmoid activation. The labelling convention uses $0$ as a benign label and $1$ as a malicious label, so sigmoid outputs close to $1$ are more likely to be malicious than outputs close to $0$, which are more likely to be benign. However, the threshold for malicious/benign determination can be set anywhere along the $(0.0, 1.0)$ range according to false positive rate (FPR) and detection rate (TPR) tradeoffs for the application at hand - a reasonable threshold is typically at or below $10^{-3}$ FPR.
+
+The PE input arm $\theta_{PE}$ passes $\textbf{x}_{PE}$ through a series of blocks consisting of four layers each: a Fully Connected layer, a Layer Normalization layer, a Dropout layer with a dropout probability of $0.05$, and a Rectified Linear Unit (ReLU) activation. Five of these blocks are connected in sequence with dense layer sizes $1024$, $768$, $512$, $512$, and $512$ nodes respectively in order.
+
+The file path input arm $\theta_{FP}$, passes $\textbf{x}_{FP}$ - a vector of length 100 - into an Embedding layer that converts the integer vector into a $(100, 32)$ embedding. This embedding is then fed into $4$ separate convolution blocks, that contain a 1D convolution layer with $128$ filters, a Layer Normalization layer and a 1D sum layer to flatten the output to a vector. The $4$ convolution blocks contain convolution layers with filters of size $2$, $3$, $4$ and $5$ respectively that process $2$, $3$, $4$ and $5$-grams of the input file path. The flattened outputs of these convolution blocks are then concatenated and serve as input to two dense blocks (same form as in the PE input arm).
+
+The outputs from the fully connected blocks from the PE arm and the file path arm are then concatenated and passed into the joint output path, parametrized by $\theta_{O}$. This path consists of dense connected blocks (same form as in the PE input arm) of layer sizes $512$, $256$ and $128$. The $128D$ output of these blocks is then fed to a dense layer which projects the output to $1D$, followed by a sigmoid activation that provides the final output of the model.
+
+The PE only model is just the P+ FP model but without the FP arm, taking input $\textbf{x}_{PE}$ and fitting $\theta_{PE}$ and $\theta_{O}$ parameters. Similarly, the FP model is the PE+FP model but without the PE arm, taking input $\textbf{x}_{FP}$ fitting $\theta_{FP}$ and $\theta_{O}$ parameters. The first layer of the output subnetwork is adjusted appropriately to match the output from the previous layer.
+
+All models are fit using a binary cross entropy loss function. Given the output of the deep learning model $f(\textbf{x}; \theta)$ for input $\textbf{x}$ with label $y \in \{0,1\}$ and model parameters $\theta$ the loss is:
+\begin{equation}
+	L(\textbf{x}, y; \theta) = -y\log{(f(\textbf{x}; \theta))} + (1-y)\log{(1-f(\textbf{x}; \theta))}.
+\end{equation}
+
+Via an optimizer, the equation is solved for $\hat{\theta}$ the optimal set of parameters that minimize the combined loss over the dataset:
+\begin{equation}
+	\hat{\theta} =  \argmax_{\theta} \sum_{i=1}^{M}{L(\textbf{x}^{(i)}, y_i; \theta)},
+\end{equation}
+where $M$ is the number of samples in our dataset, and $y_i$ and $\textbf{x}^{(i)}$ are the label and the feature vector of the \textit{i}th training sample respectively \cite{KyadigeLFCEIFPIBMD}.
+
+---
+
+(Conclusion)
+Deep neural network malware detectors can benefit from contextual information from file paths, even when this information is not inherently malicious or benign. Adding file paths to the detection model did not require any additional endpoint instrumentation, and provided a statistically significant improvement in the overall ROC curve, throughout relevant FPR regions \cite{KyadigeLFCEIFPIBMD}.
 
 \color{Black}
 \section{Malware Normalization}
