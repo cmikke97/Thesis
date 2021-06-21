@@ -204,6 +204,10 @@ Forcepoint, ``What is heuristic analysis?.''
 A.~Kyadige, E.~M. Rudd, and K.~Berlin, ``Learning from context: Exploiting and
   interpreting file path information for better malware detection'', 2019
 
+\bibitem{ruddALOHA}
+E.~M. Rudd, F.~N. Ducau, C.~Wild, K.~Berlin, and R.~Harang, ``Aloha: Auxiliary
+  loss optimization for hypothesis augmentation'', 2019
+
 \bibitem{saxeDNNBMDUTDBPF}
 J.~Saxe and K.~Berlin, ``Deep neural network based malware detection using two
   dimensional binary program features'', 2015

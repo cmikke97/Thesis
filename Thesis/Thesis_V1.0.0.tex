@@ -1711,29 +1711,168 @@ In recent years, malware detection with machine learning techniques is gaining p
 
 In recent years, machine learning has gained its popularity in many fields including IT security. Robert Moskovitch et. al. \cite{} proposed a technique that monitors a small set of features that are sufficient for detecting malware without sacrificing accuracy. The result of the study showed that, using only 20 features, the mean detection accuracy was greater than 90\%, and for specific unknown worms, this accuracy got over 99\%, while maintaining a low level of false positives. The advantage of machine learning techniques is that it will not only detect a known malware but also act as a database for detecting new malware. Similar studies can also be found in another model such as Naive Bayes, Decision Trees, Neural Networks. Although this technique is practical, it may not replace the standard detection methods, rather than act as an add-on feature because machine learning techniques are computationally demanding and may not be suitable for end users \cite{NguyenSPVD}.
 
----
-
-Commercial models typically rely on deep neural networks, or boosted decision tree ensembles and have been extended to other static file types as well, including web content, office documents, and archives. While methods for dealing with these different input types have their own intricacies, they typically use single inputs derived from file content as a feature vector or text embedding.
-
-Static ML detectors use highly parametric classifiers trained on many malicious and benign samples. The goal is to tune the parameters of these classifiers to best match the outputs from the classifiers for all input samples to their actual ground truth labels. Provided that the malware/benignware samples in the training set are similar enough in content to those seen at deployment and that the samples are well labelled, the learned detection function should work well.
-
-In practice, labels are often collected from vendor aggregation feeds, which submit samples to malware detectors from a variety of vendors. The results can be aggregated into labels that are usually correct, e.g. by using a 1-/5+ criterion or treating the label as a hidden variable and using statistical estimation methods. Often a time lag is introduced to let vendors update their models, blacklists, and whitelists accordingly. Generally, the longer the time lag, the more accurate the labels, but the less the data resembles that of the deployment distribution. In actual deployment contexts, classifiers are retrained on new data/labels periodically and the updated parameters are sent to the endpoints on which the detectors are running.
-
-Most static ML for information security (ML-Sec) classifiers operate on learned embeddings over portions of files (e.g. headers), learned embeddings over the full file, or most commonly, on pre-engineered numerical \textit{feature vectors} designed to summarize the content from each file. Learned embeddings, which generally presume some sort of convolutional architecture, have the advantage that they do not presume a fixed structure and are derived directly during training. However, this process is significantly more expensive, and does not scale as gracefully, e.g., to tens to hundreds of millions of large PE files. Moreover generic bytes are inherently less constrained than inputs like images, video, audio, and text, where convolutions can take advantage of structural localities/hierarchies. Thus, for generic malicious/benign files there is less performance benefit from learning to embed features directly from inputs. Pre-engineered feature vector representations, by contrast quickly distil content from each file that is informative in a classification sense. There are a number of ways to craft feature vectors, including tracking per-byte statistics over sliding windows, byte histograms, n-gram histograms, treating bytes as pixel values in an image (a visualisation of the file content), opcode and function call graph statistics, symbol statistics, hashed/numerical metadata values - e.g. entry point as a fraction of the file, or hashed imports and exports, - and hashes of delimited tokens. In practical applications, several different types of feature vectors extracted from file content are often concatenated together to achieve superior performance \cite{KyadigeLFCEIFPIBMD}.
-
-\color{Black}
-\subsection{Simple malware detection network}
-\color{Red}
-
 \color{Black}
 \subsection{AlOHA: Auxiliary Loss Optimization for Hypothesis Augmentation}
 \color{Red}
 
 Rudd et al. introduced several loss functions, including a multi-target binary cross entropy loss over multiple malicious/benign detection sources, a Poisson loss over total detection counts from all malicious/benign sources, and a multi-target binary cross entropy loss over semantic malware attribute tags. The auxiliary labels provide some contextual information to guide the training process \cite{KyadigeLFCEIFPIBMD}.
 
+---
+
+(Abstract)
+Malware detection is a popular application of Machine Learning for Information Security (ML-Sec), in which a ML classifier is trained to predict whether a given file is malware of benignware. Parameters of this classifier are typically optimized such that outputs from the model over a set of input samples most closely match the samples true malicious/benign (1/0) target labels. However, there are often a number of other sources of contextual metadata for each malware sample, beyond an aggregate malicious/benign label, including multiple labelling sources and malware type information (e.g. \textit{ransomware}, \textit{trojan}, etc.), which we can feed to the classifier as auxiliary prediction targets. The authors fit deep neural networks to multiple additional targets derived from metadata in a threat intelligence feed for Portable Executable (PE) malware and benignware, including a multi-source malicious/benign loss, a count loss on multi-source detections, and a semantic malware attribute tag loss. They found that incorporating multiple auxiliary loss terms yielded a marked improvement in performance on the main detection task. Those gains likely stem from a more informed neural network representation and are not due to a regularization artefact of multi-target learning \cite{ruddALOHA}.
+
+---
+
+(Introduction)
+Machine learning (ML) for computer security (ML-Sec) has proven to be a powerful tool for malware detection. ML models are now integral parts of commercial anti-malware engines and multiple vendors in the industry have dedicated ML-Sec teams. For the malware detection problem, these models are typically tuned to predict a binary label (malicious or benign) using features extracted from sample files. Unlike signature engines, where the aim is to reactively blacklist/whitelist samples that hard-match manually-defined patterns (signatures), ML engines employ numerical optimization on parameters of highly parametrized models that aim to learn more general concepts of \textit{malware} and \textit{benignware}. This allows some degree of proactive detection of previously unseen malware samples that is not typically provided by signature-only engines.
+
+Frequently, malware classification is framed as a binary classification task using a simple binary cross-entropy or two-class softmax loss function. However, there often exist substantial metadata available at training time that contain more information about each input sample than just aggregate label of whether it is malicious or benign. Such metadata might include malicious/benign labels from multiple sources (e.g. from various security vendors), malware family information, file attributes, temporal information, geographical location information, counts of affected endpoints, and associated tags. In many cases this metadata will not be available when the model is deployed, and so in general it is difficult to include this data as features in the model.
+
+It is popular practice in the domain of malware analysis to derive binary malicious/benign labels based on a heuristic combination of multiple detection sources for a given file, and then use these noisy labels for training ML models. However, there is nothing that precludes training a classifier to predict each of these source labels simultaneously optimizing classifier parameters over these predictions + labels. In fact, guiding a model to develop representations capable of predicting multiple targets simultaneously may have a smoothing or regularizing effect conductinve to generalization, particularly if the auxiliary targets are related to the main target of interest. These auxiliary targets can be ignored during test time if they are ancillary to the task at hand (and in many cases the extra weights required to produce them can be removed from the model prior to deployment), but nevertheless, there is much reason to believe that forcing the model to fit multiple targets simultaneously can improve performance on the key output of interest. The authors took advantage of multi-target learning by exploring the use of metadata from threat intelligence feeds as auxiliary targets for model training.
+
+The authors studied both the addition of multiple label sources for the same task and multiple label sources for multiple separate tasks. They did not presume the presence of all labels from all sources, and introduced a per-sample weighting scheme on each loss term to accommodate missing labels in the metadata. They further explored the use of multi-objective training as a way to expand the number of trainable samples in cases where the aggregate malicious/benign label is unclear, and where those samples would otherwise be excluded from purely binary training \cite{ruddALOHA}.
+
+---
+
+(ML-Sec Detection Pipelines: From Single Objective to Multi-Objective)
+The authors described a simplified ML-Sec pipeline for training a malicious file classifier, and proposed a simple extension that allowed the use of metadata available during training (but not at test time) and improves performance on the classification task.
+
+ML-Sec detection pipelines use powerful machine learning models that require many labelled malicious and benign samples to train. The exact nature of the metadata varies, but typically, malicious and benign scores are provided for each of \textit{M} individual samples on a per-vendor basis, such that, given \textit{V} vendors, between 0 and \textit{V} of them will designate a sample malicious. For a given sample, some vendors may choose not to answer, resulting in a missing label for that vendor. Furthermore, many vendors also provide a detection name (or malware family name) when they issue a detection for a given file. Additional information may also be available, but crucially, the following metadata are presumed present for the models presented by the authors:
+\begin{enumerate}
+	\item per-vendor labels for each sample, either malicious/benign (mapped to binary I/O, respectively) or \textit{NULL}
+	
+	\item textual per-vendor labels on the sample describing the family and variant of the malware (an empty string if benign or \textit{NULL})
+	
+	\item time at which the sample was first seen
+\end{enumerate}
+
+Using the individual vendor detections, an aggregate label can be derived either by a voting mechanism or by thresholding the net number of vendors that identify a given sample as malicious.
+
+Each malware/benignware sample must also be converted to a numerical vector to be able to train a classifier, a process called \textit{feature extraction}. The authors focused on static malware detection, meaning that they assume only access to the binary file, as opposed to dynamic detection, in which the features used predominantly come from the execution of the file. The feature extraction mechanism consists of some numerical transformation that preserves aggregate and fine-grained information throughout each sample, for example, the feature extraction proposed by Saxe et al. \cite{} uses windowed byte statistics, 2D histograms of delimited string hash vs. length, and histograms of hashes of PE-format specific metadata - e.g. imports from the import address table (IAT).
+
+Given extracted features and derived labels, a classifier is then trained, tuning parameters to minimize misclassification as measured by some loss criterion, which under the constraints of a statistical noise model measures the deviation of predictions from their ground truth. For both neural networks and ensemble methods a logistic sigmoid is commonly used to constrain predictions to a $[0,1]$ range, and a cross-entropy loss between predictions and labels is used as the minimization criterion under a Bernoulli noise model per-label.
+
+Note that much information in the metadata, which is often not used to determine the sample label but \textit{is} correlated to the aggregate classification, is not used in training, e.g., the individual vendor classifications, the combined number of detections across al vendors, and information related to malware type that could be derived from the detection names. The authors augment a deep neural network malicious/benign classifier with additional output predictions of vendor counts, individual vendor labels, and/or attribute tags. These separate prediction arms were given their own loss functions which they jointly minimized through back-propagation \cite{ruddALOHA}.
+
+---
+
+\paragraph{Implementation Details}
+The model uses various loss functions - denoted by $L_{loss~type}(X, Y)$ for some input features $X$ and targets $Y$ - associated with the various outputs of the model, as well as how the labels $Y$ representing the targets of these outputs are constructed.
+
+The base for our model is a feedforward neural network incorporating multiple blocks composed of Dropout, a dense layer, batch normalization, and an exponential linear unit (ELU) activation. The core of the model contains five such blocks with $1024$, $768$, $512$, $512$, and $512$ hidden units, respectively. This base topology applies the function $f(\dot)$ to the input vector to produce an intermediate $512$ dimensional representation of the input file $\textbf{h} = f(\textbf{x})$. They then append to this model an additional block, consisting of one or more dense layers and activation functions, for each output of the model. They denote the composition of their base topology and their target-specific final dense layers and activations applied to features $\textbf{x}$ by $f_{target}(\textbf{x})$. The output for the main malware/benign prediction task - $f_{mal}(\textbf{x})$ - is always present and consists of a single dense layer followed by a sigmoid activation on top of the base shared network that aims to estimate the probability of the input sample being malicious. A network architecture with only this malware/benign output serves as the baseline for our evaluations. To this baseline model they add auxiliary outputs with similar structure as described above: one fully connected layer (two for the \textit{tag} prediction task) which produces some task-specific number of outputs (a single output, with the exception of the restricted generalized Poisson distribution output, which uses two) and some task-specific activation. Except where noted otherwise, all multi-task losses were produced by computing the sum, across all tasks, of the per-task loss multiplied by a task-specific weight (1.0 for the malware/benign task and 0.1 for all other tasks). Training was standardized to 10 epochs \cite{ruddALOHA}.
+
+---
+
+\paragraph{Malware Loss}
+For the task of predicting if a given binary file, represented by its features $\textbf{x}^{i}$, is malicious or benign we used a binary cross-entropy loss between the malware/benign output of the network $\hat{y}^{i} = f_{mal}(\textbf{x}^{i})$ and the malicious label $y^{i}$. This results in the following loss for a dataset with \textit{M} samples:
+\begin{equation} \label{alohaMalwareLoss}
+	\begin{split}
+		L_{mal}(X,Y) & = \frac{1}{M}\sum_{i=1}^{M}{l_{mal}(f_{mal}(\textbf{x}^{(i)}), y^{(i)})} \\ & = -\frac{1}{M}\sum_{i=1}^{M}{y^{(i)}\log{\hat{y}^{(i)}} + (1-y^{(i)})\log{(1-\hat{y}^{(i)})}}.
+	\end{split}
+\end{equation}
+The authors used a "1-/5+" criterion for labelling a given file as malicious or benign: if a file has one or fewer vendors reporting it as malicious, they label the file as 'benign' and use a weight of 1.0 for the malware loss for that sample. Similarly, if a sample has five or more vendors reporting it as malicious, they label the file as 'malicious' and use a weight of 1.0 for the malware loss for that sample \cite{ruddALOHA}.
+
+---
+
+\paragraph{Vendor Count Loss}
+The authors investigated the use of the total number of 'malicious' reports for a given sample from the vendor aggregation service as an additional target; the rationale being that a sample with a higher number of malicious vendor reports should be more likely to be malicious. In order to properly model this target, they require a suitable noise model for count data. A popular candidate is a Poisson noise model, parametrized by a single parameter $\mu$, which assumes that counts follow a Poisson process, where $\mu$ is the mean and variance of the Poisson distribution. The probability of an observation of $y$ counts conditional on $\mu$ is
+\begin{equation} \label{alohaPoisson}
+	P(y|\mu) = \mu^{y}e^{-\mu}/y!.
+\end{equation}
+
+In their problem they expected the mean number of positive results for a given sample to be related to the file itself, they attempted to learn to \textit{estimate} $\mu$ conditional on each sample $\textbf{x}^{(i)}$ in such a way that the likelihood of $y^{(i)}|\mu^{(i)}$ is maximized (or, equivalently, the negative log-likelihood is minimized). Denote the output of the neural network with which we are attempting to estimate the mean count of vendor positives for sample \textit{i} as $f_{cnt}(\textbf{x}^{(i)})$. Note that under a non-distributional loss, this would be denoted by $\hat{y}^{(i)}$, however since they are fitting a parameter of a distribution, and not the sample label $y$ directly, they used different notation. By taking some appropriate activation function $a(\dot)$ that map $f_{cnt}(\textbf{x}^{(i)})$ to the non-negative real numbers, they can write $\mu^{(i)} = a(f_{cnt}(\textbf{x}^{(i)}))$. The authors use an exponential activation for $a$, though one could equally well employ some other transformation with the correct output range, for instance the ReLU function.
+
+Letting $y^{(i)}$ here denote the actual number of vendors that recognized sample $\textbf{x}^{(i)}$ as malicious, the corresponding negative log-likelihood loss over the dataset is
+\begin{equation} \label{alohaVendorCountLoss}
+	\begin{split}
+		L_{p}(X,Y) & = \frac{1}{M}\sum_{i=1}^{M}{l_{p}(a(f_{cnt}(\textbf{x}^{(i)})), y^{(i)})} \\ & = \frac{1}{M}\sum_{i=1}^{M}{\mu^{(i)} - y^{(i)}\log(\mu^{(i)}) + \log(y^{(i)}!)},
+	\end{split}
+\end{equation}
+which they refer to as the \textit{Poisson} or \textit{vendor count} loss. In practice, they ignore the $\log(y^{(i)}!)$ term when minimizing this loss since it does not depend on the parameters of the network.
+
+A Poisson loss is more intuitive for dealing with count data than other common loss functions, even for count data not generated by a Poisson process.
+
+The authors also implemented a Restricted Generalized Poisson distribution - a slightly more intricate noise model that accomodates dispersion in the variance of vendor counts.
+\begin{equation} \label{alohaGeneralizedPoisson}
+	P(y|\alpha, \mu) = (\frac{\mu}{1+\alpha\mu})^{y}(1+\alpha y)^{y-1}\exp{(\frac{-\mu(1+\alpha y)}{1+\alpha\mu})}/y!.
+\end{equation}
+
+When $\alpha = 0$ this reduces to \ref{alohaPoisson}. $\alpha > 0$ accounts for over-dispersion, while $\alpha < 0$ accounts for under-dispersion. Note that in our case $\alpha$, like $\mu$, is estimated by the neural network and conditioned on the feature vector, allowing varying dispersion per-sample. The new loss function becomes:
+\begin{equation} \label{alohaGeneralizedVendorCountLoss}
+	\begin{split}
+		L_{gp}(X,Y) = \frac{1}{M}\sum_{i=1}^{M}[&y^{(i)}(\log{\mu^{(i)}} - \log{(1 + \alpha^{(i)}\mu^{(i)})}) + \\ &(y^{(i)} -1)\log{(1 + \alpha^{(i)}y^{(i)})} \\ &- \frac{\mu^{(i)}(1 + \alpha^{(i)}y^{(i)})}{1 + \alpha^{(i)}\mu^{(i)}} + \log{(y^{(i)}!)}],
+	\end{split}
+\end{equation}
+where $\alpha^{(i)}$ and $\mu^{(i)}$ are obtained as transformed outputs of the neural network in a similar fashion as $\mu^{(i)}$ is obtained for the Poisson loss. In practice, as for the Poisson loss, the term related to $y!$ is dropped since it does not affect the optimization of the network parameters \cite{ruddALOHA}.
+
+---
+
+\paragraph{Per-Vendor Malware Loss}
+The authors identified a subset $\mathcal{V}=\{v_1, ..., v_V\}$ of $9$ vendors that each produced a result for (nearly) every sample in their data. Each vendor result was added as a target in addition to the malware target by adding an extra fully connected layer per vendor followed by a sigmoid activation function to the end of the shared architecture. They employed a binary cross-entropy loss per vendor during training. This differs from the vendor count loss presented above in that each high-coverage vendor is used as an individual binary target, rather than being aggregated into a count. The aggregate \textit{vendors} loss $L_{vdr}$ for the $V=9$ selected vendors is simply the sum of the individual vendor losses:
+\begin{equation} \label{alohaPerVendorMalwareLoss}
+	\begin{split}
+		L_{vdr}(X,Y) & = \frac{1}{M}\sum_{i=1}^{M}{\sum_{j=1}^{V}{l_{vdr}(f_{vdr_{j}}(\textbf{x}^{(i)}), y_{v_{j}^{(i)}})}} \\ & = -\frac{1}{M}\sum_{i=0}^{M}{\sum_{j=1}^{V}{y_{v_{j}}^{(i)}\log(\hat{y}_{v_{y}}^{(i)}) + (1-y_{v_{j}}^{(i)})\log{(1-\hat{y}_{v_{j}}^{(i)})}}},
+	\end{split}
+\end{equation}
+where $l_{vdr}$ is the per-sample binary cross-entropy function and $f_{vdr_{j}}(\textbf{x}^{(i)}) = \hat{y}_{v_{j}}^{(i)}$ is the output of the network that is trained to predict the label $y_{v_{j}}^{(i)}$ assigned by vendor $j$ to input sample $\textbf{x}^{(i)}$ \cite{ruddALOHA}.
+
+---
+
+\paragraph{Malicious Tags Loss}
+The authors exploit information contained in family detection names provided by different vendors in the form of malicious tags. They defined each tag as a high level description of the purpose of a given malicious sample. The tags used as auxiliary targets in their experiments are: \textit{flooder}, \textit{downloader}, \textit{dropper}, \textit{ransomware}, \textit{crypto-miner}, \textit{worm}, \textit{adware}, \textit{spyware}, \textit{packed}, \textit{file-infector} and \textit{installer}.
+
+They created these tags from a parse of individual vendor detection names, using a set of 10 vendors which provided high quality detection names. Once they have extracted the most common tokens, they filtered them to keep only tokens related to well-known malware family names or tokens that could easily be associated with one or more of these tags, for example, the token \textit{xmrig} - even though it is not a malware family - can be recognised as referring to a crypto-currency mining software and therefore can be associated with the \textit{crypto-miner} tag. The authors then created a mapping from tokens to tags based on prior knowledge. They labelled a sample as associated with tag $t_{i}$ if any of the tokens associated with $t_{i}$ are present in any of the detection names assigned to the sample by the set of trusted vendors.
+
+Annotating the dataset with these tags, allowed the authors to define the tag prediction task as multi-label binary classification, since zero or more tags from the set of possible tags $\mathcal{T}=\{t_1, ..., t_T\}$ can be present at the same time for a given sample. They introduced this prediction task in order to have targets in their loss function that are not directly related to the number of vendors that recognize the sample as malicious. The vendor counts and the individual vendor labels are closely related with the definition of their main target, i.e. the malicious label, which classifies a sample as malicious if 5 or more vendors identify the sample as malware. In the case of tag targets, this information is not present. For instance, if all the vendors recognize a given sample as coming from the \textit{WannaCry} family in their detection names, the sample will be associated only once with the \textit{ransomware} tag. ON the converse, because of their tagging mechanism, if only one vendor considers that a given sample is malicious and classifies it as coming from the \textit{WannaCry} family, the \textit{ransomware} tag will be present (although the malicious label will be 0).
+
+In order to predict these tags, they used a \textit{multi-headed} architecture in which they added two additional layers per tag to the end of the shared base architecture, a fully connected layer of size 512-to-256, followed by a sigmoid activation function. Each tag $t_j$ out of the possible $T=11$ tags has its own loss term computed with binary cross-entropy. Like the per-vendor malware loss, the aggregate tag loss is the sum of the individual tag losses. For the dataset with $M$ samples it becomes:
+\begin{equation} \label{alohaMalwareTagLoss}
+	\begin{split}
+		L_{tag}(X,Y) & = \frac{1}{M}\sum_{i=1}^{M}\sum_{j=1}^{T}l_{tag}(f_{tag}(\textbf{x}^{(i)}), y_{t_{j}}^{(i)}) \\ & = - \frac{1}{M}\sum_{i=1}^{M}\sum_{j=1}^{T}y_{t_j}^{(i)}\log(\hat{y}_{t_j}^{(i)}) + (1-y_{t_j}^{(i)})\log(1-\hat{y}_{t_j}^{(i)}),
+	\end{split}
+\end{equation}
+where $y_{t_j}^{(i)}$ indicates if sample $i$ is annotated with tag $j$, and $\hat{y}_{t_j}^{(i)} = f_{tag_j}(\textbf{x}^{(i)})$ is the prediction issued by the network for that value.
+
+\paragraph{Sample Weights}
+While the multi-objective network has the advantage that multiple labels and loss functions serve as additional sources of information, this introduces an additional complexity: given many (potentially missing) labels for each sample, we cannot rely on having all labels for a large quantity of the samples. To address this, the authors incorporated per-sample weights, depending on the presence and absence of each label. For labels that are missing, they assigned them a default value and then set the associated weights to zero in the loss computation so a sample with a missing target label will not add to the loss computation for that target. This allows to train the network, even in the presence of partially labelled samples.
+
+\paragraph{Dataset used}
+
+\paragraph{Final Loss + Experiment Evaluation}
+
+\paragraph{Related Work}
+
 \color{Black}
 \subsection{Automatic Malware Description via Attribute Tagging and Similarity Embedding}
 \color{Red}
+
+(Abstract)
+
+---
+
+(Introduction)
+
+---
+
+\paragraph{Background and Related Work}
+\subparagraph{Malware Family Categorization}
+
+\subparagraph{Semantic Attribute Tagging}
+
+\subparagraph{Multi-Label Classification}
+
+\subparagraph{Malware Analysis with Neural Networks}
+
+\paragraph{Semantic Malware Attribute Tags}
+\subparagraph{Tag Distillation from Detection Names}
+
+\paragraph{Tags Prediction - Implementation Details}
+\subparagraph{Evaluation of Tagging Algorithms}
+
+\paragraph{Dataset and Training details}
+
+\paragraph{Latent Space (Joint Embedding) Analysis}
 
 \color{Black}
 \subsection{Learning from Context: Exploiting and Interpreting File Path Information for Better Malware Detection}
@@ -1774,7 +1913,15 @@ Their multi-view classifier trained on both file content and the contextual file
 
 ---
 
-(Static ML Malware Detection)
+\paragraph{Background and Related work (Static ML Malware Detection)}
+Commercial models typically rely on deep neural networks, or boosted decision tree ensembles and have been extended to other static file types as well, including web content, office documents, and archives. While methods for dealing with these different input types have their own intricacies, they typically use single inputs derived from file content as a feature vector or text embedding.
+
+Static ML detectors use highly parametric classifiers trained on many malicious and benign samples. The goal is to tune the parameters of these classifiers to best match the outputs from the classifiers for all input samples to their actual ground truth labels. Provided that the malware/benignware samples in the training set are similar enough in content to those seen at deployment and that the samples are well labelled, the learned detection function should work well.
+
+In practice, labels are often collected from vendor aggregation feeds, which submit samples to malware detectors from a variety of vendors. The results can be aggregated into labels that are usually correct, e.g. by using a 1-/5+ criterion or treating the label as a hidden variable and using statistical estimation methods. Often a time lag is introduced to let vendors update their models, blacklists, and whitelists accordingly. Generally, the longer the time lag, the more accurate the labels, but the less the data resembles that of the deployment distribution. In actual deployment contexts, classifiers are retrained on new data/labels periodically and the updated parameters are sent to the endpoints on which the detectors are running.
+
+Most static ML for information security (ML-Sec) classifiers operate on learned embeddings over portions of files (e.g. headers), learned embeddings over the full file, or most commonly, on pre-engineered numerical \textit{feature vectors} designed to summarize the content from each file. Learned embeddings, which generally presume some sort of convolutional architecture, have the advantage that they do not presume a fixed structure and are derived directly during training. However, this process is significantly more expensive, and does not scale as gracefully, e.g., to tens to hundreds of millions of large PE files. Moreover generic bytes are inherently less constrained than inputs like images, video, audio, and text, where convolutions can take advantage of structural localities/hierarchies. Thus, for generic malicious/benign files there is less performance benefit from learning to embed features directly from inputs. Pre-engineered feature vector representations, by contrast quickly distil content from each file that is informative in a classification sense. There are a number of ways to craft feature vectors, including tracking per-byte statistics over sliding windows, byte histograms, n-gram histograms, treating bytes as pixel values in an image (a visualisation of the file content), opcode and function call graph statistics, symbol statistics, hashed/numerical metadata values - e.g. entry point as a fraction of the file, or hashed imports and exports, - and hashes of delimited tokens. In practical applications, several different types of feature vectors extracted from file content are often concatenated together to achieve superior performance \cite{KyadigeLFCEIFPIBMD}.
+
 The authors used in their work a concatenation of features derived from the content of a PE file as an input to a neural network, adding a second input which includes contextual information - namely the PE File path. The PE content input is passed though a series of hidden layers while the file path is passed through a convolutional embedding. Both inputs are ultimately concatenated together into a common 'stem' of hidden layers. The final malicious/benign output score is obtained by passing the final dense layer output (a 1-D scalar) through a sigmoid activation function \cite{KyadigeLFCEIFPIBMD}.
 
 ---
@@ -1784,12 +1931,12 @@ This approach utilizes \textit{multiple} input types/modalities - one which desc
 
 ---
 
-(Dataset)
+\paragraph{Dataset used}
 The authors collected training, validation and testing datasets from a prominent anti-malware vendor's telemetry. This telemetry contained the filepaths and SHA256 digests of portable executable (PE) files seen on their customer endpoints, along with time stamps and other metadata. The telemetry did not contain the raw files due to bandwidth and customer privacy considerations, and instead they used the SHA256 digests to look up and download available files from vendor aggregation services. Malicious/benign labels for these files were computed using a criterion similar to \cite{saxeDNNBMDUTDBPF}, but combined with additional propriety information to generate more accurate labelling. The filepaths were lower-cased for consistency. The data was split into training and test datasets based on the time samples were first seen in their telemetry \cite{KyadigeLFCEIFPIBMD}.
 
 ---
 
-(Feature Engineering)
+\paragraph{Feature Engineering}
 In order to use file paths in feed-forward neural network, the authors first needed to convert the variable length strings into numeric vectors of fixed length. They did that using a vectorization scheme, by creating a lookup table keyed on each character with a numeric value (between 0 and the character set size) representing each character. This transformation required their file paths to be trimmed to a fixed size, so they trimmed them to the last 100 characters.
 
 As features for the content of the PE files, they used floating point 1024-dimensional feature vectors consisting of four distinct feature types, similar to \cite{saxeDNNBMDUTDBPF}:
@@ -1806,7 +1953,7 @@ In total, they presented each sample as two feature vectors: A PE content featur
 
 ---
 
-(Network Architectures)
+\paragraph{Implementation details}
 The model has two inputs, the 1024 element PE content feature vector, $\textbf{x}_{PE}$, and the $100$ element file path integer vector, $\textbf{x}_{FP}$. Each distinct input is passed through a series of layers with their own parameters, $\theta_{PE}$ and $\theta_{FP}$, for PE features and FP for filepath features respectively, and are jointly optimized during training. The outputs of the se layers are then joined (concatenated) and passed through a series of final hidden layers - a joint output path with parameters $\theta_{O}$. The final output of the network consists of a dense layer followed by a sigmoid activation. The labelling convention uses $0$ as a benign label and $1$ as a malicious label, so sigmoid outputs close to $1$ are more likely to be malicious than outputs close to $0$, which are more likely to be benign. However, the threshold for malicious/benign determination can be set anywhere along the $(0.0, 1.0)$ range according to false positive rate (FPR) and detection rate (TPR) tradeoffs for the application at hand - a reasonable threshold is typically at or below $10^{-3}$ FPR.
 
 The PE input arm $\theta_{PE}$ passes $\textbf{x}_{PE}$ through a series of blocks consisting of four layers each: a Fully Connected layer, a Layer Normalization layer, a Dropout layer with a dropout probability of $0.05$, and a Rectified Linear Unit (ReLU) activation. Five of these blocks are connected in sequence with dense layer sizes $1024$, $768$, $512$, $512$, and $512$ nodes respectively in order.
@@ -1818,12 +1965,12 @@ The outputs from the fully connected blocks from the PE arm and the file path ar
 The PE only model is just the P+ FP model but without the FP arm, taking input $\textbf{x}_{PE}$ and fitting $\theta_{PE}$ and $\theta_{O}$ parameters. Similarly, the FP model is the PE+FP model but without the PE arm, taking input $\textbf{x}_{FP}$ fitting $\theta_{FP}$ and $\theta_{O}$ parameters. The first layer of the output subnetwork is adjusted appropriately to match the output from the previous layer.
 
 All models are fit using a binary cross entropy loss function. Given the output of the deep learning model $f(\textbf{x}; \theta)$ for input $\textbf{x}$ with label $y \in \{0,1\}$ and model parameters $\theta$ the loss is:
-\begin{equation}
+\begin{equation} \label{LearningFromContextLoss}
 	L(\textbf{x}, y; \theta) = -y\log{(f(\textbf{x}; \theta))} + (1-y)\log{(1-f(\textbf{x}; \theta))}.
 \end{equation}
 
 Via an optimizer, the equation is solved for $\hat{\theta}$ the optimal set of parameters that minimize the combined loss over the dataset:
-\begin{equation}
+\begin{equation} \label{LearningFromContextParameters}
 	\hat{\theta} =  \argmax_{\theta} \sum_{i=1}^{M}{L(\textbf{x}^{(i)}, y_i; \theta)},
 \end{equation}
 where $M$ is the number of samples in our dataset, and $y_i$ and $\textbf{x}^{(i)}$ are the label and the feature vector of the \textit{i}th training sample respectively \cite{KyadigeLFCEIFPIBMD}.

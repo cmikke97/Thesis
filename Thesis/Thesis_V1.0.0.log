@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  19 JUN 2021 18:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  21 JUN 2021 16:58
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -730,7 +730,7 @@ File: siunitx-binary.cfg 2021-04-09 v2.8d siunitx: Binary units
 Dictionary: translator-basic-dictionary, Language: English 
 )
 \c@lstlisting=\count323
-<logopolito.pdf, id=154, 526.79488pt x 523.45164pt>
+<logopolito.pdf, id=150, 526.79488pt x 523.45164pt>
 File: logopolito.pdf Graphic file (type pdf)
 <use logopolito.pdf>
 Package pdftex.def Info: logopolito.pdf  used on input line 131.
@@ -796,35 +796,39 @@ LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/base\ts1cmtt.fd
 File: ts1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-[41] [42] [43] [44] [45] [46] [47] [48] [49] [50] [51] [52] [53] [54] [55]
+[41] [42] [43] [44] [45] [46] [47] [48] [49] [50] [51] [52] [53] [54]
+Underfull \vbox (badness 1097) has occurred while \output is active []
+
+ [55]
+[56] [57] [58] [59] [60] [61]
 Chapter 4.
-[56
+[62
 
 ]
 Chapter 5.
-[57
+[63
 
 ]
 Chapter 6.
-[58
+[64
 
 ]
 Chapter 7.
-[59
+[65
 
 ]
 Chapter 8.
-[60
+[66
 
 ]
 Chapter 9.
-[61
+[67
 
 ]
 Chapter 10.
-[62
+[68
 
-] [63] (Thesis_V1.0.0.bbl [64]
+] [69] (Thesis_V1.0.0.bbl [70]
 Underfull \hbox (badness 1242) in paragraph at lines 10--12
 []\OT1/cmr/m/n/10 R. Sharp, ``An in-tro-duc-tion to mal-ware.'' [][]$\OT1/cmtt/
 m/n/10 https : / / orbit . dtu . dk / en / publications /
@@ -908,7 +912,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 89--92
 / searchsecurity . techtarget . com / definition /
  []
 
-[65
+[71
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 164--166
@@ -934,18 +938,18 @@ Underfull \hbox (badness 1371) in paragraph at lines 199--202
 t/m/n/10 https : / / www . forcepoint . com / cyber-[]edu /
  []
 
-[66]) [67] (Thesis_V1.0.0.aux)
+[72]) [73] (Thesis_V1.0.0.aux)
 Package rerunfilecheck Info: File `Thesis_V1.0.0.out' has not changed.
-(rerunfilecheck)             Checksum: 6CA122E3AB4F612B2AF8ADD378834AF1;6812.
+(rerunfilecheck)             Checksum: 197FD281A4A04F14CE7CB29B864917FB;6582.
  ) 
 Here is how much of TeX's memory you used:
- 17535 strings out of 481296
- 290837 string characters out of 2908369
- 946635 words of memory out of 3000000
- 33870 multiletter control sequences out of 15000+600000
+ 17584 strings out of 481296
+ 291469 string characters out of 2908369
+ 947112 words of memory out of 3000000
+ 33879 multiletter control sequences out of 15000+600000
  416703 words of font info for 74 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 134i,13n,137p,1747b,2869s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 134i,19n,137p,1886b,2869s stack positions out of 5000i,500n,10000p,200000b,80000s
  <C:\Users\michele\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tc
 tt0800.pk> <C:\Users\michele\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/d
 pi600\tcrm1000.pk><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/p
@@ -956,24 +960,26 @@ Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/mich
 ele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:
 /Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmm
 i10.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsf
-onts/cm/cmmi7.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/p
-ublic/amsfonts/cm/cmr10.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fon
-ts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/michele/AppData/Local/Programs/
-MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/michele/AppData/Local
-/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/michele/AppD
-ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/mic
-hele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/
-Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsl
-8.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
-ts/cm/cmsy10.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/pu
-blic/amsfonts/cm/cmsy7.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/font
-s/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/michele/AppData/Local/Programs/
-MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/michele/AppData/Loca
-l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/michele/A
-ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt8.pfb>
-Output written on Thesis_V1.0.0.pdf (67 pages, 662971 bytes).
+onts/cm/cmmi5.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/p
+ublic/amsfonts/cm/cmmi7.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fon
+ts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/michele/AppData/Local/Programs/
+MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/michele/AppData/Local
+/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/michele/App
+Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/mi
+chele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:
+/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr
+9.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
+ts/cm/cmsl8.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/pub
+lic/amsfonts/cm/cmsy10.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/font
+s/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/michele/AppData/Local/Programs/M
+iKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/michele/AppData/Local
+/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/michele/Ap
+pData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users
+/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt8.pfb
+>
+Output written on Thesis_V1.0.0.pdf (73 pages, 710352 bytes).
 PDF statistics:
- 1382 PDF objects out of 1440 (max. 8388607)
- 535 named destinations out of 1000 (max. 500000)
- 310 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1457 PDF objects out of 1728 (max. 8388607)
+ 575 named destinations out of 1000 (max. 500000)
+ 302 words of extra memory for PDF output out of 10000 (max. 10000000)
 
