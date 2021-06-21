@@ -102,31 +102,31 @@
 \contentsline {paragraph}{Sample Weights}{56}{section*.73}%
 \contentsline {paragraph}{Dataset used}{56}{section*.74}%
 \contentsline {paragraph}{Final Loss + Experiment Evaluation}{56}{section*.75}%
-\contentsline {paragraph}{Related Work}{56}{section*.76}%
-\contentsline {subsection}{\numberline {3.6.2}Automatic Malware Description via Attribute Tagging and Similarity Embedding}{56}{subsection.3.6.2}%
-\contentsline {paragraph}{Background and Related Work}{56}{section*.77}%
-\contentsline {subparagraph}{Malware Family Categorization}{56}{section*.78}%
-\contentsline {subparagraph}{Semantic Attribute Tagging}{56}{section*.79}%
-\contentsline {subparagraph}{Multi-Label Classification}{56}{section*.80}%
-\contentsline {subparagraph}{Malware Analysis with Neural Networks}{56}{section*.81}%
-\contentsline {paragraph}{Semantic Malware Attribute Tags}{56}{section*.82}%
-\contentsline {subparagraph}{Tag Distillation from Detection Names}{56}{section*.83}%
-\contentsline {paragraph}{Tags Prediction - Implementation Details}{57}{section*.84}%
-\contentsline {subparagraph}{Evaluation of Tagging Algorithms}{57}{section*.85}%
-\contentsline {paragraph}{Dataset and Training details}{57}{section*.86}%
-\contentsline {paragraph}{Latent Space (Joint Embedding) Analysis}{57}{section*.87}%
-\contentsline {subsection}{\numberline {3.6.3}Learning from Context: Exploiting and Interpreting File Path Information for Better Malware Detection}{57}{subsection.3.6.3}%
-\contentsline {paragraph}{Background and Related work (Static ML Malware Detection)}{58}{section*.88}%
-\contentsline {paragraph}{Dataset used}{59}{section*.89}%
-\contentsline {paragraph}{Feature Engineering}{59}{section*.90}%
-\contentsline {paragraph}{Implementation details}{60}{section*.91}%
-\contentsline {section}{\numberline {3.7}Malware Normalization}{61}{section.3.7}%
-\contentsline {chapter}{\numberline {4}Dataset Used}{62}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Experimenting with ML based Malware Detection/Description methods}{63}{chapter.5}%
-\contentsline {chapter}{\numberline {6}Proposed Tool}{64}{chapter.6}%
-\contentsline {chapter}{\numberline {7}Experiments with the proposed tool}{65}{chapter.7}%
-\contentsline {chapter}{\numberline {8}Results}{66}{chapter.8}%
-\contentsline {chapter}{\numberline {9}Conclusions}{67}{chapter.9}%
-\contentsline {chapter}{\numberline {10}Appendix}{68}{chapter.10}%
-\contentsline {section}{\numberline {10.1}Notable Examples of Malware in Recent History}{68}{section.10.1}%
-\contentsline {chapter}{Bibliography}{71}{section.10.1}%
+\contentsline {paragraph}{Related Work}{57}{section*.76}%
+\contentsline {subsection}{\numberline {3.6.2}Automatic Malware Description via Attribute Tagging and Similarity Embedding}{57}{subsection.3.6.2}%
+\contentsline {paragraph}{Background and Related Work}{59}{section*.77}%
+\contentsline {subparagraph}{Malware Family Categorization}{59}{section*.78}%
+\contentsline {subparagraph}{Semantic Attribute Tagging}{59}{section*.79}%
+\contentsline {subparagraph}{Multi-Label Classification}{59}{section*.80}%
+\contentsline {subparagraph}{Malware Analysis with Neural Networks}{59}{section*.81}%
+\contentsline {paragraph}{Semantic Malware Attribute Tags}{59}{section*.82}%
+\contentsline {subparagraph}{Tag Distillation from Detection Names}{59}{section*.83}%
+\contentsline {paragraph}{Tags Prediction - Implementation Details}{59}{section*.84}%
+\contentsline {subparagraph}{Evaluation of Tagging Algorithms}{59}{section*.85}%
+\contentsline {paragraph}{Dataset and Training details}{59}{section*.86}%
+\contentsline {paragraph}{Latent Space (Joint Embedding) Analysis}{59}{section*.87}%
+\contentsline {subsection}{\numberline {3.6.3}Learning from Context: Exploiting and Interpreting File Path Information for Better Malware Detection}{59}{subsection.3.6.3}%
+\contentsline {paragraph}{Background and Related work (Static ML Malware Detection)}{60}{section*.88}%
+\contentsline {paragraph}{Dataset used}{61}{section*.89}%
+\contentsline {paragraph}{Feature Engineering}{62}{section*.90}%
+\contentsline {paragraph}{Implementation details}{62}{section*.91}%
+\contentsline {section}{\numberline {3.7}Malware Normalization}{63}{section.3.7}%
+\contentsline {chapter}{\numberline {4}Dataset Used}{64}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Experimenting with ML based Malware Detection/Description methods}{65}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Proposed Tool}{66}{chapter.6}%
+\contentsline {chapter}{\numberline {7}Experiments with the proposed tool}{67}{chapter.7}%
+\contentsline {chapter}{\numberline {8}Results}{68}{chapter.8}%
+\contentsline {chapter}{\numberline {9}Conclusions}{69}{chapter.9}%
+\contentsline {chapter}{\numberline {10}Appendix}{70}{chapter.10}%
+\contentsline {section}{\numberline {10.1}Notable Examples of Malware in Recent History}{70}{section.10.1}%
+\contentsline {chapter}{Bibliography}{73}{section.10.1}%
