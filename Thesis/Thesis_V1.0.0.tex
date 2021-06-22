@@ -81,6 +81,7 @@
 	morestring=[d]',
 }
 
+\usepackage{amssymb}
 \usepackage{amsmath}
 \DeclareMathOperator*{\argmax}{arg\,max}
 \DeclareMathOperator*{\argmin}{arg\,min}
@@ -1760,7 +1761,7 @@ Note that much information in the metadata, which is often not used to determine
 \paragraph{Implementation Details}
 The model uses various loss functions - denoted by $L_{loss~type}(X, Y)$ for some input features $X$ and targets $Y$ - associated with the various outputs of the model, as well as how the labels $Y$ representing the targets of these outputs are constructed.
 
-The base for our model is a feedforward neural network incorporating multiple blocks composed of Dropout, a dense layer, batch normalization, and an exponential linear unit (ELU) activation. The core of the model contains five such blocks with $1024$, $768$, $512$, $512$, and $512$ hidden units, respectively. This base topology applies the function $f(\dot)$ to the input vector to produce an intermediate $512$ dimensional representation of the input file $\textbf{h} = f(\textbf{x})$. They then append to this model an additional block, consisting of one or more dense layers and activation functions, for each output of the model. They denote the composition of their base topology and their target-specific final dense layers and activations applied to features $\textbf{x}$ by $f_{target}(\textbf{x})$. The output for the main malware/benign prediction task - $f_{mal}(\textbf{x})$ - is always present and consists of a single dense layer followed by a sigmoid activation on top of the base shared network that aims to estimate the probability of the input sample being malicious. A network architecture with only this malware/benign output serves as the baseline for our evaluations. To this baseline model they add auxiliary outputs with similar structure as described above: one fully connected layer (two for the \textit{tag} prediction task) which produces some task-specific number of outputs (a single output, with the exception of the restricted generalized Poisson distribution output, which uses two) and some task-specific activation. Except where noted otherwise, all multi-task losses were produced by computing the sum, across all tasks, of the per-task loss multiplied by a task-specific weight (1.0 for the malware/benign task and 0.1 for all other tasks). Training was standardized to 10 epochs \cite{ruddALOHA}.
+The base for our model is a feedforward neural network incorporating multiple blocks composed of Dropout, a dense layer, batch normalization, and an exponential linear unit (ELU) activation. The core of the model contains five such blocks with $1024$, $768$, $512$, $512$, and $512$ hidden units, respectively. This base topology applies the function $f(\cdot)$ to the input vector to produce an intermediate $512$ dimensional representation of the input file $\textbf{h} = f(\textbf{x})$. They then append to this model an additional block, consisting of one or more dense layers and activation functions, for each output of the model. They denote the composition of their base topology and their target-specific final dense layers and activations applied to features $\textbf{x}$ by $f_{target}(\textbf{x})$. The output for the main malware/benign prediction task - $f_{mal}(\textbf{x})$ - is always present and consists of a single dense layer followed by a sigmoid activation on top of the base shared network that aims to estimate the probability of the input sample being malicious. A network architecture with only this malware/benign output serves as the baseline for our evaluations. To this baseline model they add auxiliary outputs with similar structure as described above: one fully connected layer (two for the \textit{tag} prediction task) which produces some task-specific number of outputs (a single output, with the exception of the restricted generalized Poisson distribution output, which uses two) and some task-specific activation. Except where noted otherwise, all multi-task losses were produced by computing the sum, across all tasks, of the per-task loss multiplied by a task-specific weight (1.0 for the malware/benign task and 0.1 for all other tasks). Training was standardized to 10 epochs \cite{ruddALOHA}.
 
 ---
 
@@ -1781,7 +1782,7 @@ The authors investigated the use of the total number of 'malicious' reports for 
 	P(y|\mu) = \mu^{y}e^{-\mu}/y!.
 \end{equation}
 
-In their problem they expected the mean number of positive results for a given sample to be related to the file itself, they attempted to learn to \textit{estimate} $\mu$ conditional on each sample $\textbf{x}^{(i)}$ in such a way that the likelihood of $y^{(i)}|\mu^{(i)}$ is maximized (or, equivalently, the negative log-likelihood is minimized). Denote the output of the neural network with which we are attempting to estimate the mean count of vendor positives for sample \textit{i} as $f_{cnt}(\textbf{x}^{(i)})$. Note that under a non-distributional loss, this would be denoted by $\hat{y}^{(i)}$, however since they are fitting a parameter of a distribution, and not the sample label $y$ directly, they used different notation. By taking some appropriate activation function $a(\dot)$ that map $f_{cnt}(\textbf{x}^{(i)})$ to the non-negative real numbers, they can write $\mu^{(i)} = a(f_{cnt}(\textbf{x}^{(i)}))$. The authors use an exponential activation for $a$, though one could equally well employ some other transformation with the correct output range, for instance the ReLU function.
+In their problem they expected the mean number of positive results for a given sample to be related to the file itself, they attempted to learn to \textit{estimate} $\mu$ conditional on each sample $\textbf{x}^{(i)}$ in such a way that the likelihood of $y^{(i)}|\mu^{(i)}$ is maximized (or, equivalently, the negative log-likelihood is minimized). Denote the output of the neural network with which we are attempting to estimate the mean count of vendor positives for sample \textit{i} as $f_{cnt}(\textbf{x}^{(i)})$. Note that under a non-distributional loss, this would be denoted by $\hat{y}^{(i)}$, however since they are fitting a parameter of a distribution, and not the sample label $y$ directly, they used different notation. By taking some appropriate activation function $a(\cdot)$ that map $f_{cnt}(\textbf{x}^{(i)})$ to the non-negative real numbers, they can write $\mu^{(i)} = a(f_{cnt}(\textbf{x}^{(i)}))$. The authors use an exponential activation for $a$, though one could equally well employ some other transformation with the correct output range, for instance the ReLU function.
 
 Letting $y^{(i)}$ here denote the actual number of vendors that recognized sample $\textbf{x}^{(i)}$ as malicious, the corresponding negative log-likelihood loss over the dataset is
 \begin{equation} \label{alohaVendorCountLoss}
@@ -1904,22 +1905,187 @@ They proposed a novel file-file similarity index based on the representation spa
 
 \paragraph{Background and Related Work}
 \subparagraph{Malware Family Categorization}
+Identifying the family and variant of a particular malicious sample can provide important intelligence to the end user, administrator or security operator of a system about what type of attack might be underway. This extra contextual information can help define a remediation procedure, identify possible root causes, and evaluate the severity and potential consequences of the attack. In fact, numerous vendors provide in their websites detailed information about popular family/variant information, with associated description of what that variant does, and suggest how a particular piece of malware can be removed. Without such identifying information, we are left only with the offending file itself as its own description. Unlike some reverse engineering effort is taken it is difficult to discern much about the internals of the file.
+
+The idea to identify all malware under a consistent family naming scheme across multiple vendors has been around for decades.
+
+The quantity of new malware samples that security vendors' labs receive has increased dramatically, to millions per month. Some of these samples are variations of previously known malware, while others take code from older campaigns and re-purpose it for new tasks. Yet still others, are entirely novel types of malware. In this scenario it becomes practically unfeasible to manually and consistently group each malicious file into a well defined hierarchy of families. Even the arguably simpler task of assigning a malware file into an existing family has also become much harder, as malware became more resistant to signature-focused detection, thanks to advanced obfuscation measures such as polymorphism and metamorphism, packing and obfuscation, recompilation, and self-updating.
+
+The increasing quantities of malware samples and the resilience to signature methods caused the security community to start using more flexible analytic tools than signatures designed only to identify a single malware variant, and increasingly rely on dynamic analysis and more generic signatures when possible. While generic signatures offer an advantage for malware conviction, the nature of this approach makes it more difficult to organize malware names into families. Moreover, the quantities of malicious files to be analysed has led to less structured categorizations and greater inconsistencies between vendors. In particular, modern security vendor detection names typically fall into one of four categories, containing varying amounts of information about the threat family to which a malware sample belongs.
+
+\begin{itemize}
+	\item \textit{Traditional family based}: Names are associated with unique and distinctive attributes of the malware and its variants. Malware classified under these names usually have a larger amount of original source code or a novel exploit mechanism and often come from the same origins. This not only fives them a distinctive attribute that can aid in the classification, but also requires researchers to put forth more effort to analyse their inner-workings. These types of detection names are often of high-quality and have more consistency across vendors.
+	
+	Today, these detection names are most often seen in parasitic file-infectors and specific botnet campaigns with distinctive attributes, e.g. \textit{Virut}, \textit{Sality}, \textit{Conficker}, etc. These types of names usually use a suffix to identify specific variants, which often denotes a revision to the malware or change in the configuration data for use in a different campaign.
+	
+	\item \textit{Technique based}: These types of detection names group together malware that may come from different origins and/or have multiple authors but share a common method or technique. For example, many executable \textit{autorun} worms have been written in the past using languages like Visual Basic 6 that change explorer's file and folder view settings to hide filename extensions and employ an icon resource similar to that of a popular document format. Due to the relatively low complexity of the infection method many amateurs copied this technique resulting in a large amount of similar malware that was not necessarily of the same origin, neither tries to perform the same action in the host machine.
+	
+	Some anti-malware solutions would generically detect and classify many of these malware samples under the same generic family name, where other vendors may have defined different more specific criteria for each family classification based on other attributes of the payload. When a generic family name provided by the AV vendor, they often times replace the detection name suffix with a partial hash of the file data in order to identify a specific sample. The difference in detection methods employed often results in less consistency in detection names across vendors.
+	
+	\item \textit{Method based}: This type of detection name simply denotes the detection technology used to detect the malware sample. Some detection names can simply be that of a patented technology, project, or internal code name specific to the AV vendor, indicating the use of heuristics, ML, or real-time detection technologies like cloud look-ups. In these cases the detection name is not that of a malware family, but that of the method that was utilized to detect the sample.
+	
+	\item \textit{Kit based}: AV vendors will often use more generic family names for detecting malware that has been generated by a known kit. These kits are often referred to as grey hat tools, as they can be used both offensively by penetration testing teams and by malware authors. Many of these kits obfuscate their payloads in an attempt to circumvent detection by AV software. Detection names in this category tend to not describe the origins or functionality of the specific malicious payload, but instead identify methods used by the kit or tool to obfuscate or hide their payload.
+	
+	In \cite{}, Marcos et al. proposed AVClass: a malware labelling tool that uses data-mining techniques to distill family names for malware samples by combining detection names from multiple anti-malware solutions. Complementary to AVClass, Perdisci ey. al. proposed an automated technique in \cite{} which relies on individual detection names from multiple vendors, for evaluating the quality of a given malware clustering. The authors followed the idea of combining detection names from multiple vendors to better understand the nature of malware samples, but instead of trying to fit each new sample to a naming scheme with mutually exclusive hierarchical categories such as families, they proposed an alternate approach to describing the functionality and the relationship between malicious samples by using attribute tags. A set of attribute tags describes a piece of malware though easy to interpret properties, and can be thought of as a soft-family classification, since it describes the sample and relates it with other samples described with the same (or an overlapping) set of tags. The advantage of the tagging approach is that it does not presume a partition on the malware space by genealogy, while providing potentially more actionable information about a malware sample.
+\end{itemize}
 
 \subparagraph{Semantic Attribute Tagging}
+Semantic attribute tagging refers to the association of samples with key-words that convey various types of high-level information about their content. These tags can later be used to interpret or summarize the content of the sample, for information retrieval in a large database of samples or for clustering, among others.
+
+Semantic attribute tagging has two important characteristics worth considering:
+\begin{enumerate}
+	\item it can convey a lot of identifying information about a sample, even if the sample is novel.
+	
+	\item semantic tags can be stored, structured, and retrieved in a human interpretable manner.
+\end{enumerate}
+Both of these characteristics are appealing in a commercial computer security use case where the type of the threat can be roughly identified by a description that makes sense to security researchers and end users.
 
 \subparagraph{Multi-Label Classification}
+Semantic attribute tagging relies on multi-label classification, wherein the authors aim to predict multiple labels simultaneously. There are several ways to do this, the most trivial of which is to learn one classifier per label. This naive approach is not efficient in the sense that one classifier does not benefit from what the other classifiers have learned about a given sample. Furthermore, it can be unfeasible from a deployment perspective, particularly as the number of labels grow. For correlated labels, a popular approach is to use a single classifier with multiple outputs, on per output label. The total loss for the classifier is obtained by adding together the loss terms across the model's outputs during training and optimizing over a multi-objective loss. Not only does this yield a more compact representation but it also improves classification performance over using independent classifiers. The authors used as baseline architecture a multi-label deep neural network architecture which exploits a shared representation of the input samples, and has multiple binary cross entropy loss functions atop stacks of hidden layers, or heads, with final sigmoid outputs - one per tag.
+
+An alternative approach to multi-label classification, first introduced in the image tagging and retrieval literature, is to learn a compact shared vector space representation to which map both input samples and labels - a joint embedding - where similar content across modalities are projected into similar vectors in the same low dimensional space. At query time, a similarity comparison between vectors in this learned latent space is performed, e.g. via inner product, to determine likely labels. A variety of models could be employed to form a joint embedding, but crucially, the embedding is optimized across input modalities/labels. The authors used a joint embedding model that maps malware tags and executable files into the same low dimensional Euclidean space for the malware description problem.
 
 \subparagraph{Malware Analysis with Neural Networks}
+In recent years, multiple advances in machine learning for information security (ML-Sec) have take place. This can be attributed to several factors including an explosion in labelled data available from vendor aggregation services and threat intelligence feeds, and more powerful hardware and software frameworks for fitting highly expressive classifiers, along with a need of the cybersecurity industry to incorporate more flexible methods to improve their detection pipelines. The authors focused on analysis over Windows Portable Executable (PE) files based on static features, i.e. information that can be extracted from the binary files without having to execute them.
+
+In contrast to the authors' work which focuses on malware description and representation, most modern applications of deep learning have focused on malware detection. Saxe et al. \cite{} applied deep neural network detection to feature vectors derived from 2-dimensional histogram statistics of PE files along with hashed delimited strings and hashed elements from the file header, including metadata and import tables. Further applications of deep learning exploiting similar feature sets have been used to categorize web content, office documents, and archive formats. Other types of features and classifiers have also been used for the task of PE malware detection. For instance, Raff et al. demonstrated in \cite{} a way to effectively identify malware using solely an embedding of the first 300 bytes from the PE header. Later, Raff et al. proposed an embedding strategy which takes in the entire PE file for the same problem. In \cite{}, Bugra and Erdogan use a disassembler to retrieve the opcodes of the executable files and then a shallow network based on \textit{WORD2VEC} \cite{} to embed them into a continuous vector space. Afterwards, they train a gradient search algorithm based on Gradient Boosting Machines for the malware classification task.
 
 \paragraph{Semantic Malware Attribute Tags}
+The authors defined SMART tags (which they also refer to as \textit{malicious} or \textit{malware} tags) as potentially informative, high-level attributes of malicious or potentially unwanted software. These tags are loosely related to malware families, in the sense that they attempt to describe how a piece of malicious software executes and the intent behind it, but they do so in a more general and flexible way. One malware campaign (or family) can be associated with more than one tag, and a given tag is associated with multiple families. The authors defined a set of malicious tags $\mathcal{T}$, with $|\mathcal{T}| = 11$ different tags (or descriptive dimensions) of interest that they can use to describe malicious PE files: \textit{adware}, \textit{crypto-miner}, \textit{downloader}, \textit{dropper}, \textit{file-infector}, \textit{flooder}, \textit{installer}, \textit{packed}, \textit{ransomware}, \textit{spyware} and \textit{worm}. They chose that particular set of tags so that they can generate concise descriptions for most common malware currently found in the wild.
+
+Since malware tags are defined at a different level of abstraction than malware families, the authors can bypass the problem of not having a common naming strategy for malicious software, and thus exploit the knowledge contained in multiple genealogies fenerated from different sources in a quasi-independent manner: detection technologies, methodologies, etc. It becomes irrelevant if one source identifies a sample as being part of the \textit{Qakbot} family while another calls it \textit{Banking Trojan} so long as there is a way to associate those two correctly with the \textit{spyware} tag. Furthermore, this approach allows to exploit the fact that some sources might have stronger detection rules for certain kinds of malware.
+
 \subparagraph{Tag Distillation from Detection Names}
+High quality tags for malware samples at the scale required to train deep learning models can be prohibitively expensive to create manually. Instead, the authors relied on semi-automatic strategies that are noisier than manual labelling, but allow to label millions of files that can then be used to train a classifier. The authors proposed, for this purpose, a labelling function that annotates PE files using the previously defined set of tags by combining information contained in detection names from multiple vendors. They used family names from ten anti-malware solutions that are known to produce high quality detection names, as starting point. Using multiple anti-malware vendors is one possible strategy for labelling that leverages expert knowledge about a given sample. Nevertheless, the overall framework the authors propose can easily accommodate multiple other sources for labelling information, including manual and sandbox-derived (dynamic) analysis.
+
+The labelling process consists of three main stages:
+\begin{enumerate}
+	\item \textit{token extraction}
+	
+	\item \textit{token-to-tag mapping}
+	
+	\item \textit{token relationship mining}
+\end{enumerate}
+The token extraction phase consists in normalizing and parsing the multiple detection names and converting them in sets of sub-strings. In a similar way that the AVClass labelling tool does, the token-to-tag mapping stage uses rules that associate relevant tokens with the set of tags of interest. These association rules were created from expert knowledge by a group of malware analysts. Finally, they extend this mapping by mining statistical relationships between tokens to improve tagging stability and coverage.
 
 \paragraph{Tags Prediction - Implementation Details}
+The goal of the authors' work is to flexibly predict important malware qualities from static features, which they more formally define as multi-label classification problem, since zero or more tags from the set of $T$ possible tags $\mathcal{T} = \{t_1, t_2, ..., t_T\}$ can be present at the same time for a given sample. In order to predict these tags, they proposed two different neural network architectures, represented in \ref{}, which they referred to as \textit{Multi-Head} (top) and \textit{Joint Embedding} (bottom).
+
+The \textit{Multi-Head} architecture can be thought as an extension of the network used in \cite{} to multiple outputs. It consists of a base topology that is common to the prediction of all tags, and one output (or "head") per tag. The base topology can be thought of a feature extraction (or embedding) network that transforms the input features $\textbf{x}$ into low dimensional hidden vector $\textbf{h}$, while each head is a binary classifier that predicts the presence or absence of each tag from it. Both parts of the architecture consist of multiple blocks composed of dropout, a dense layer, batch normalization, and an exponential linear unit (ELU) activation function. The only exceptions are the input layer, which does not use dropout, and the very last layer of each head, which uses a sigmoid activation unit to compute the predicted probability for each label.
+
+The \textit{Joint Embedding} model, as shown at the bottom of \ref{}, is introduced with three main purposes:
+\begin{enumerate}
+	\item in an attempt to better model semantic similarities between tags;
+	
+	\item to explicitly define a low dimensional space that allows to naturally measure similarities between files;
+	
+	\item to have a more flexible architecture that can scale to larger number of tags.
+\end{enumerate}
+
+This model maps both the labels (malware tags) and the binary file features $\textbf{x}$ to vectors in a joint Euclidean latent-space. These embedding functions of files and tags are learnt via stochastic gradient descent in a way such that, for a given similarity function, the transformations of semantically similar labels are close to each other, and the embedding of a binary file should be close to that of its associated labels in the same space. This architecture consists on a PE \textit{embedding} network, a \textit{tag embedding} matrix $\textbf{E}$, and a \textit{prediction layer}.
+
+The PE embedding network learns a nonlinear function $\phi_\theta(\cdot)$, with parameters $\theta$ that maps the input binary representation of the PE executable file $\textbf{x} \in \mathbb{R}^d$ into a vector $\textbf{h} \in \mathbb{R}^D$ in low dimensional Euclidean space,
+\begin{equation}
+	\phi_\theta(\textbf{x}) : \mathbb{R}^d \rightarrow \mathbb{R}^D.
+\end{equation}
+The tag embedding matrix $\textbf{E} \in \mathbb{R}^{T \times D}$ learns a mapping from a tag $t_n \in \mathcal{T} = \{t_1, ..., t_T\}$, to a distributed representation $\textbf{e} \in \mathbb{R}^D$ in the joint embedding space.
+\begin{equation}
+	\phi_E(t) : \{t_1, ..., t_T\} \rightarrow \mathbb{R}^D.
+\end{equation}
+In practice, the embedding vector for the tag $t_n$ is simply the $n$-th row of the tag embedding matrix, i.e. $\phi_E(t_n) = \textbf{E}_n$.
+
+Finally, the prediction layer compares both the tag and the sample embeddings ($\textbf{e}$ and $\textbf{h}$ respectively) and produces a similarity score that is run through a sigmoid non-linearity to estimate the probability that sample $\textbf{x}$ is associated with tag $t$ for each $t \in \mathcal{T}$. In the final model implementation, the similarity score is the dot product between the embedding vectors. The output of the network $f_n(\textbf{x} | \theta, \textbf{E})$ then becomes,
+\begin{equation}
+	\begin{split}
+		\hat{y}_n = f_n(\textbf{x} | \theta, \textbf{E}) & = \sigma(\langle\phi_E(n), \phi_\theta(\textit{x})\rangle) \\ & = \sigma(\langle\textbf{E}_n, \textbf{h}\rangle),
+	\end{split}
+\end{equation}
+where $\sigma$ is the sigmoid activation function, and $\hat{y}_n$ is the probability estimated by the model of tag $t_n$ being a descriptor for $\textbf{x}$.
+
+The authors further constrained the embedding vectors for the tags such that:
+\begin{equation}
+	||\textbf{E}_n||_2 \leq C, n = 1, ..., T
+\end{equation},
+which acts as a regularizer for the model. They observed in practice that this normalization indeed leads to better results on the validation set. Unless stated differently they fixed the value of $C$ to 1.
+
+The authors also experimented using cosine similarity instead of a dot product as a similarity score between tags' and files' embeddings. However, they observed deteriorated performance on the validation set.
+
+The authors' goal, for a given PE file, is to learn a distributed, low dimensional representation of it, that is both "close" to the embedding of the tags that describe it and to other PE files with similar characteristics. The parameters of both embedding functions $\phi_\theta(\cdot)$ and $\phi_E(\cdot)$ are jointly optimized to minimize the binary cross-entropy loss for the prediction of each tag via backpropagation and stochastic gradient descent. The loss function to minimize for a mini-batch of $M$ samples becomes:
+\begin{equation}
+	\begin{split}
+		\mathcal{L} & = -\frac{1}{M}\sum_{i=1}^{M}\sum_{n=1}^{T}f_n(\textbf{x}^{(i)} | \theta, \textbf{E})\log(t_n^{(i)}) + (1 - f_n(\textbf{x}^{(i)} | \theta, \textbf{E})) \log(1 - t_n^{(i)}) \\ & = -\frac{1}{M}\sum_{i=1}^{M}\sum_{n=1}^{T}\hat{y}_n^{(i)}\log(t_n^{(i)}) + (1 - \hat{y}_n^{(i)}) \log(1 - t_n^{(i)})
+	\end{split}
+\end{equation}
+where $t_n^{(i)} = 1$ if sample $i$ is labelled with tag $t_n$ or zero otherwise, and $\hat{y}_n^{(i)}$ is the probability predicted by the network of that tag being associated with the $i$-th sample.
+
+In practice, to get a vector of tag similarities for a given sample $\textbf{x}$ with PE embedding vector $\textbf{h}$ we multiply the matrix of tag embeddings $\textbf{E} \in \mathbb{R}^{T \times D}$ by $\textbf{h} \in \mathbb{R}^D$ and scale the output to obtain a prediction vector $\hat{\textbf{y}} = \sigma(\textbf{E} \cdot \textbf{h}) \in \mathbb{R}^T$, where $\sigma$ is the element-wise sigmoid function for transforming the similarity values into a valid probability. Each element in $\hat{\textbf{y}}$ is then the predicted probability for each tag.
+
+The authors noted that, because this model maps every tag into the same low dimensional space, it can explicitly account for similarities on the labels. That is, if two tags are likely to occur together, they will be mapped close to each other in embedding space.
+
+Finally, if one compares both models in \ref{}, they are mathematically similar, with the main differences being the explicit modelling of the tag embedding step (and its regularization), the subsequent explicit modelling of the joint embedding space that allows to naturally perform label-to-label and sample-to-sample similarity searches, and the ability to use various distance functions in the prediction layer.
+
 \subparagraph{Evaluation of Tagging Algorithms}
+There are different ways to evaluate the performance of tagging algorithms. Particularly, the evaluation can be done in a \textit{per-tag} or a \textit{per-sample} dimension. The former seeks to quantify how well the tagging algorithm performs on identifying each tag, while the latter focuses on the quality of the predictions for each sample instead.
+
+In the \textit{per-tag} case, one suitable way to evaluate the performance of the model is to measure the area under the receiver operating characteristic curve (AUC-ROC, or simply AUC) for each of the tags being predicted. A ROC curve is created by plotting the true positive rate (TPR) against the false positive rate (FPR). Also, since the target value for the $n$-th tag of a given sample is a binary True/False value ($t_n \in \{0, 1\}$), binary classification evaluation metrics such as 'Accuracy', 'Precision', 'Recall', and 'F-score' also apply. To compute these metrics, the output probability prediction needs to be binarized. For the binarization of the predictions, the authors choose a threshold independently for each tag such that the FPR in the validation set is $0.01$ and use the resulting 0/1 predictions. The fact that the labelling methodology introduces label noise - mostly associated with negative labels - makes \textit{recall} the most adequate of these last four metrics to evaluate the tagging algorithm, since it ignores incorrect negative labels.
+
+The \textit{per-sample} evaluation dimension seeks to evaluate the performance of a tagging algorithm for a given sample, across all tags. Let $T^{(i)}$ be the set of tags associated with sample $i$ and $\hat{T}^{(i)}$ the set of tags predicted for the same sample after binarizing the predictions. We can use the Jaccard similarity (or index) $J(T^{(i)}, \hat{T^{(i)}})$ as a figure of how similar both sets are. Furthermore, let $\textbf{y} \in \{0, 1\}^T$ be the binary target vector for a PE file, where $\textbf{y}_n$ indicates whether the $n$-th tag applies to the file and $\hat{\textbf{y}}$ be the binarized prediction vector from a given tagging model. The per-sample accuracy is then defined as the percentage of samples for which the target vector is equal to the prediction vector, i.e. all tags correctly predicted, or, in other words, the Hamming distance between the two vectors is zero. For an evaluation dataset with $M$ samples one can use,
+\begin{equation}
+	\begin{split}
+		& Mean Jaccard similarity = \frac{1}{M}\sum_{i=1}^{M}J(T^{i}, \hat{T}^{(i)}) = \frac{1}{M}\sum_{i=1}^{M}\frac{T^{(i)} \cap \hat{T}^{(i)}}{T^{(i)} \cup \hat{T}^{(i)}} \\ & Mean per-sample accuracy = \frac{1}{M}\sum_{i=1}^{M}\mathbb{I}(\textbf{y}^{(i)} = \hat{\textbf{y}}^{(i)})
+	\end{split}
+\end{equation}
+as per-sample performance metrics for the tagging problem, where $\mathbb{I}$ is the indicator function which is $1$ if the condition in the argument is true, and $0$ otherwise.
 
 \paragraph{Dataset and Training details}
+The authors used 2 different dataset for training purposes: a medium size training set containing $10 million$ unique binary Windows Portable Executable (PE) files ($D_{train-M}$), and a large training set containing $76,204,855$ unique PE files ($D_{train-XL}$). The smaller training set was used for experimenting with different architectures and validation purposes, while the larger one was used to train the final models, whose architectures performed best in the validation set when trained on the smaller dataset.
+
+The authors trained the 2 model architectures previously described on the training dataset $D_{train-M}$ with different number of layers and number of nodes per layer, each for $200$ epochs using Adam optimizer on mini-batches of 4096 samples and learning rate of $5 \cdot 10^{-4}$. The combination of those values that performed best were then used to train the model on $D_{train-XL}$.
+
+The shared base topology of the final Multi-Head architecture consisted of an input feed-forward layer of output size 2048, followed by a batch normalization layer, an ELU nonlinearity and three blocks, each composed by dropout, a linear layer, batch normalization and ELU of output sizes 512, 128, and 32 respectively. Each output head is simply a linear layer (the same for each head) composed of the same type of basic blocks as are in the main base architecture, but with output size 11 (the number of tags being predicted) and a sigmoid non-linearity instead of the ELU. Binary cross-entropy loss is computed as the output of each head and then added together to form the final loss.
+
+The Joint Embedding architecture used the same base topology as the Multi-Head model for the embedding of the PE files into a 32 dimensional joint latent space. An embedding matric ($\textbf{E}$) of learnable parameters with size $T \times32$ is used for the embedding of the tags. The authors used dot product to compute the similarity between the PE file embedding and the tag embedding followed by a sigmoid non-linearity to produce an output probability score. As before, the sum of the per-tag binary cross-entropy losses is used as the mini-batch loss during model training.
+
+\paragraph{Tagging results}
+\subparagraph{Per-Tag Results}
+After training the two proposed architectures the authors proceeded to evaluate their performance on the test set $D_{test}$. They compared the per-tag true positive rate (TPR or recall) of both the Multi-Head and Joint Embedding architectures at a per-tag false positive rate (FPR) of $1\%$.
+
+For computing both recall and F-score they binarized the output using a threshold such that the FPR in the test set is $1\%$ for each tag.
+
+\subparagraph{Per-Sample Results}
+Another way of analysing the results is to measure the percentage of samples for which the models accurately predicted all tags. The authors were also interested in knowing how many tags on average (out of the 11 possible tags) each model correctly predicted per sample. For this they measured both the Jaccard similarity and the per-sample accuracy of the predictions according to equations \ref{} and \ref{} respectively.
 
 \paragraph{Latent Space (Joint Embedding) Analysis}
+The Joint Embedding network supposedly learns a more informative internal representation of the binary files, guided by the ability to model, and therefore exploit tag relationships (labels structure) in the latent space.
+
+This improved internal representation has two main advantages compared with the original feature representation:
+\begin{enumerate}
+	\item it is highly compressed (32 dimensions versus 1024) which allows for indexing malware databases in a more efficient way, and perform similarity computations and nearest neighbour searches faster;
+	
+	\item this representation also provides a more informative space where to measure files' similarities in terms of malicious capabilities that is aligned with the original underlying family structure of malware.
+\end{enumerate}
+
+\subparagraph{Malware-Tag Joint Embedding Space}
+In order to understand the latent space learned by the Joint Embedding model the authors used t-SNE \cite{} to reduce the dimensionality of the 32-dimensional latent space to a 2-dimensional representation.
+
+As seen by the t-SNE output, the embeddings of the PE files labelled with the same tag tend to cluster together. Furthermore, the embeddings of the tag labels lie close to the clusters of samples they describe. This suggests that the Joint Embedding model has effectively learned to group file representations close to their corresponding tag representations, as intended.
+
+It is also possible to perform file similarity searches: using one malware sample to retrieve other samples with similar malicious characteristics by simply retrieving files for which the embedding representation is close to the representation of the query sample. Furthermore, it can also be used for obtaining examples of malicious programs that fit a given tag description, where with given a combination of descriptive tags we can define a subspace within the embedding space containing those samples that closely match that particular tag combination of interest.
+
+\subparagraph{File-File Similarity Index}
+The proposed representation of PE files in embedding space, along with the distance function defined in this space, allows to measure not only similarities between files' and tags' embeddings, but between files' representations as well.
+
+Because of how the models were trained, two pieces of malware that are close to each other in latent space should exhibit similar malicious capabilities. This means that it is possible to use the latent representation of the files to measure how similar two pieces of malware are in terms of their capabilities. Moreover, the size of the file embedding representation (32 dimensions) is 32 times smaller than the original file feature representation (1024 dimensions). This makes the task of storing, indexing and querying large databases of malware more efficient.
+
+Because the models are being indirectly trained with malware families' information generated by a group of (quasi-)independent "experts" (anti-malware vendors), via tagging decomposition, then the authors expected to be able to differentiate malware campaigns from each other, even if they are described by the same set of tags.
+
+The authors identified the top $f = 13$ most prominent malware campaigns in the test set that can be convicted with high confidence. They noted that there are a number of families with the same tag description, for instance \textit{remcos} and \textit{emotet} families are both described with the \textit{spyware} tag.
+
+Next, the authors created the joint embedding representation for those files using the already trained Joint Embedding network.
+
+Finally, they set up the task of $f$-way family classification via nearest neighbour search. It consisted in randomly sampling $k$ files per family as anchor samples, and $q$ files per family as query samples. Each of the $(f \cdot q)$ query samples was then predicted to belong to the same class as its closest anchor sample in feature space. A more descriptive representational space should separate malware families, i.e. pull those samples that belong to the same family close to each other while pushing away samples from other families, thus performing better on the nearest neighbour classification task.
+
+The authors considered the neural network embeddings and the original 1024 features as feature spaces for this task. They randomly chose 23 query samples per family and varied the number of anchor samples $k$ from 1 to 10. They repeated the sampling process (for both anchors and query samples), classification and evaluation 15 times per value of $k$ to obtain uncertainty estimates for the accuracy results.
 
 \color{Black}
 \subsection{Learning from Context: Exploiting and Interpreting File Path Information for Better Malware Detection}
@@ -2033,7 +2199,114 @@ In order to improve the detection rate of existing anti-malware techniques also 
 
 After \textit{normalization}, the usual signature-based techniques can be applied on the normalized sample \cite{Sharma_2014}.
 
-\chapter{Dataset Used}
+\chapter{Datasets Used}
+
+\section{Ember Dataset}
+
+\section{Sorel 20M Dataset}
+(Abstract)
+Sorel20M dataset is a large-scale dataset consisting of nearly 20 million files with pre-extracted features and metadata, high-quality labels derived from multiple source, information about vendor detections of the malware samples at the time of collection, and additional "tags" related to each malware sample to serve as additional targets. IN addition to features and metadata, the authors also provided approximately 10 million "disarmed" malware samples - samples with both the \textit{optional\_headers.subsystem} and \textit{file\_header.machine} flags set to zero - that may be used for further exploration of features and detection strategies.
+
+---
+
+(Introduction)
+The use of machine learning for malware detection is now relatively widespread. The ability for modern machine learning models to learn complex relationships between a large number of both statistical and parse-based features has lead to their widespread adoption. However, the risks associated with working directly with malware, as well as the commercial nature of much research in this space, has meant that most ML-based malware models are evaluated on private or proprietary datasets. This makes measuring progress in the field difficult. Furthermore, many sources of malware are commercial in nature, placing a high barrier of entry to the field and leading to researchers evaluating their models on extremely small datasets.
+
+In contrast, fields like image classification or natural language processing have arguably benefited immensely from large, publicly available datasets such as CIFAR and ImageNet, which allow researchers to apply different approaches on a common dataset, making a direct comparison of those approaches possible. In addition to providing a basis for comparison between approaches, the existence of these common datasets has also made the fields more accessible, allowing smaller organizations that lacked the ability to compile large training and validation sets to contribute to the development of those fields.
+
+The first attempt to address this lack was the seminal EMBER dataset \cite{}, which SOREL20M dataset builds upon. The EMBER dataset was the first standard dataset to be used for malware detection, however it had some shortcomings that limited its utility as a malware benchmark set. First, EMBER was of limited size, containing 900,000 training samples and 200,000 test samples, while commercial malware models are trained on tens to hundreds of millions of samples. In addition to the training size being too small to compare to commercial scale, the small validation size makes evaluation of model performance at lower false positive rates (1 in 1000 or below) difficult due to variance issues. Perhaps due to the relatively small size of the dataset, performance of classifiers on EMBER is nearly saturated, with a baseline classifier capable of obtaining an AUC of over 0.999. In addition, the EMBER dataset provided only pre-extracted features, making further research in such topic as improvements in feature extraction or realizable adversarial sample generation difficult. Finally, EMBER provides only a single binary label based on a simple "thresholding" rule.
+
+SOREL-20M attempts to address these issues in whole or in part. The issue of training size is addressed by providing an order of magnitude more samples for analysis. Internally, the authors found that while performance continues to improve with larger datasets, validation sizes on the order of 3 to 4 million examples are sufficient to establish a stable rank order between models as well as to assess performance at lower false positive rates. When using the recommended time splits to establish training, validation and test sets, there are 12,699,013 training samples, 2,495,822 validation samples and 4,195,042 test samples, respectively.
+
+The issue of feature exploration is partially addressed by providing (disarmed) binary samples for the malware only. The authors provided 9,919,251 samples of malware (7,596,407 training samples, 962,222 validation samples and 1,360,622 test samples), which have been 'disarmed' by setting both the \textit{optional\_headers.subsystem} and \textit{file\_header.machine} to 0 in order to prevent execution. They also have provided complete PE metadata as obtained via the Python \textit{pefile} module using the \textit{dump\_dict} method.
+
+Finally, the authors provided a number of additional targets (SMART tags) for the model that describe behaviour inferred from vendor labels.
+
+The dataset is stored as a AWS bucket
+
+\subsection{Sorel 20M Dataset Description}
+The complete dataset consists of the following items:
+\begin{itemize}
+	\item The 9,919,251 original (disarmed) malware samples compressed via the Python \textit{zlib.compress} function
+	
+	\item A SQLite3 and two LMDB databases:
+	\begin{itemize}
+		\item The SQLite3 "meta.db" database contains malware labels, tags, detection counts, and first/last seen times
+		
+		\item The "ember\_features" LMDB database contains EMBER features (extracted with version 2 of the features)
+		
+		\item the "pe\_metadata" LMDB database contains the PE metadata extracted via the \textit{pefile} module, as described above
+	\end{itemize}
+
+	\item Some Pre-trained baseline models (a Pytorch feed-forward neural network (FFNN) model and a LightGBM gradient-boosted decision tree model) and their results are also provided, but will not be used in this document.
+\end{itemize}
+
+All samples are identified by their sha256 hash; in the case of the disarmed malware samples, the sha256 of the original (unmodified) file was used, and not the sha256 of the disarmed file. The sha256 hash serves as the primary key for the SQLite3 database, and the key for the two LMDB databases. LMDB entries are stored as arrays or dictionaries (for EMBER feature vectors or PE metadata. respectively) that are then serialized with \textit{msgpack} and compressed with \textit{zlib}.
+
+The data was collected from January 1st, 2017 to April 10th, 2019. The authors suggested time-splits of the data - based upon the first-seen time in RL telemetry - as follows: training data from the beginning of collection until November 29th, 2018; validation data from then until January 12th, 2019; and testing data from January 12th, 2019 through the end of the data.
+
+\paragraph{LMDB database, what is it?}
+
+\subsection{Trying to improve Dataset Loading Speed}
+\subsubsection{Dataset Pre-Processing}
+To speed up the code (particularly the trainig step) the dataset is pre-processed and saved to Google Drive in a easier (and faster) to read format. In particular the dataset is opened and read (and pre-processed), as was done in the original code every cycle, as it is saved 'as-is' to file. Doing so it is only needed to read it back into RAM 'as-is' during training, with no further processing. This greatly speeds up the overall training.
+
+This however led to disk space problems since the pre-processed dataset is much bigger than the original one (which contained compressed features).
+
+To speed up the code (specifically the training procedure, which is the one that takes longest), the dataset is pre-processed. Doing so speeded up the training execution: with the previous version I was able to train the model with a maximum of 400'000 samples in about 7:30h; now, instead, I managed to train the model with 2M samples in about 3:08h. This makes it feasable to run model training on 6M samples, which is a good amount of samples. However a new problem has now emerged: the pre-processed dataset occupies far more disk space than the original dataset (considering the same amount of samples). This is not a real problem for training, provided there is enough disk space for the pre-processed dataset alone (in fact I can pre-process the dataset separately and later import it without the need of downloding the original dataset).
+
+I managed to pre-process 6M samples developing a variation of the pre-process function called "pre-process multi". In particular I pre-processed the dataset creating multiple small files which were saved on a different hard drive (google drive) than the instance one. Then, on a new (clean) instance I merged downloaded and marged all those files together, compressed the resulting pre-processed dataset and uploaded it on google drive. The final dataset size is approximately 70 GB (containing 6M samples), but after compression it takes about 18 GB of space. The dataset can now be imported on new instances and de-compressed before training.
+With this optimization I trained the model using 6M samples. The model took approximately 6 hours to complete just 1 training epoch. Considering 10 epochs I would need approximately 60 hours in total.
+
+\subsubsection{Alternative Generators (Dataloaders)}
+As a further optimization I tried implementing 2 new dataloader variants which could have been more efficient:
+
+\paragraph{Generator alt1}
+The alternative generator 1 ('alt1') was inspired by the 'index select' version of FastTensorDataLoader suggested in this post. In this version the dataset is loaded as a set of memory-mapped numpy arrays (one array for the features, one for the labels and one for the sha256 hashes) from which batches of data are randomly sampled using the pytorch 'index\_select' function. Moreover, my version (differently from the original suggested one) is able to work also with multiple workers (in multithreading).
+
+\paragraph{Generator alt2}
+The alternative generator 2 ('alt2') was inspired by the 'shuffle in-place' version of FastTensorDataLoader suggested in this post. In this version the dataset is again loaded as a set of memory-mapped numpy arrays, as version 1. In this case, however, the arrays are randomly shuffled in place at each iteration, before sampling (in order) batches of data from them. Again, my version (differently from the original suggested one) is able to work also with multiple workers (in multithreading).
+
+\paragraph{Generator alt3}
+Unfortunately, when considering 6M samples, the alternative generator version 1 ('alt1') was only slightly faster than the original Pytorch dataloader, while version 2 ('alt2') was considerably slower having to shuffle the entire memmap-ed dataset.
+
+Since using a Google Cloud instance did not provide a significant speed-up, and since the model needed ~60 hours to complete 1 training run, I had to think of another dataloader optimization. I thus developed a further alternative dataloader ('alt3') that managed to reduce the time needed for 1 training epoch (considering 6M samples) from ~6 hours to ~15 minutes. The time needed to complete a full training run is thus now ~2.5 hours (~3 hours considering also model evaluation).
+The optimization consists of a tradeoff between loading speed and samples dispersion. In fact, the new dataloader uses a pool of threads to asynchronously load the dataset into memory in chunks. In particular each thread loads into memory 'n\_chunks' randomly chosen chunks. Each thread then proceeds to concatenate together its 'n\_chunks' chunks, which contain 'chunk\_size' malware samples each, generating each a 'chunk\_aggregate', which is then randomly shuffled and returned by the thread. The chunk\_aggregates are asynchronously inserted in a queue (the order depends on the threads instantiation order) of fixed length equal to the number of workers used. The main dataloader thread manages the chunk\_aggregate queue, instantiating the parallel threads such that the queue is always full. Moreover, the main dataloader thread sequentially extracts, when possible, one chunk\_aggregate at a time from the queue and then proceeds to return one batch of data at a time from it, when required.
+Selecting different values for chunk\_size and n\_chunks has an impact on the speed of the dataloader and on the samples dispersion. In fact the samples are not anymore randomly chosen from the whole dataset, but from a random sub-part of it. This effectively decreases the amount of dispersion (and randomness) of batches possibly affecting the final model generalization. It is therefore better to consider a higher value for n\_chunks possibly decreasing chunk\_size. Furhtermore, the values for chunk\_size and n\_chunks) should be chosed carefully since their product results in the number of samples loaded into memory (RAM) at once for a single worker thread. Increasing too much this number (together with the number of workers used) will quickly saturate the available RAM.
+
+\subparagraph{Generator parameters optimization}
+To understand the behaviour of the new dataloader and choose the best combination of values possible using 8 threads (which is double the amount of cores I have at my disposal in the Colab instance and I found is a good number of threads to use) I cross evaluated it using powers of 2 for both values. In particular I developed a function to be used to evaluate the new alternative generator on the target machine. This function performs 'epochs' model training epochs using values for chunk\_size and n\_chunks got from two intervals and plots 2 heatmaps: the first containing the average elapsed times and the second the average speeds.
+In my evaluation run I hard-coded for chunk\_size the powers of 2 ranging from $2^4$ to $2^14$ (included) and for n\_chunks the powers of 2 ranging from $2^3$ to $2^13$.
+Moreover, two further parameters have to be set in order to constrain the evaluation to meaningful values: min\_mul and max\_mul. In fact, as previously mentioned, the product of chunk\_size times n\_chunks gives the total number of samples in one chunk\_aggregate (which resides in main memory). min\_mul and max\_mul indicate the minimum and maximum number of batches retrievable from the resulting chunk\_aggregate.
+In my run I considered for min\_mul the value 1 and for max\_mul the value 32. This was done in order to be able to retrieve at least one batch from the chunk\_aggregate without saturating the available RAM (having for max\_mul a value greater than 32*batch\_size would be too mutch for my instance).
+Given the results I got (available at the end of this document), I decided to stick with the following values for all the model training runs since they seemed to be a good compromise between loading speed and samples dispersion: chunk\_size=256 and n\_chunks=256.
+
+\section{Fresh Dataset}
+To properly evaluate the model there is the need of a dataset with malware family labels. Malware Bazaar provides examples of malware executables for different malware families and it could therefore be a good source for creating a new (fresh) dataset. I therefore created a function which, given:
+\begin{itemize}
+	\item a series of malware families in order of importance
+	
+	\item the number 'x' (default: 100) of samples per family to download
+	
+	\item the number 'm' (default: 10) of families to consider
+\end{itemize}
+downloads from Malware Bazaar 'x' samples per malware family (if possible, otherwise it skips the malware family and considers the next), extracts the features from each sample and creates the new dataset (which I call 'fresh\_dataset' in the code) with 'n = x * m' (default: 1000) samples compatible with the model.
+
+\subsection{Model Evaluation with Fresh Dataset}
+I implemented a model evaluation function using the fresh\_dataset. This function randomly samples 'q' (default: 100) query samples among the ones in the fresh\_dataset, it computes the similarity between each of these samples with the other 'n-1' (default: 999), and orders these 'n-1' samples by similarity. It then calcluates the MRR (Mean Reciprocal Rank) and MAP (Mean Average Precision) scores for the model. The rankings for the 'q' (100) query samples are saved as a single json file. Moreover, 5 particular rankings are saved as csv files. These 5 rankings are those that produced:
+\begin{itemize}
+	\item the maximum RR (Reciprocal Rank)
+	
+	\item the minimum RR (Reciprocal Rank)
+	
+	\item the maximum AP (Average Precision)
+	
+	\item the minimum AP (Average Precision)
+	
+	\item the last ranking is randomly sampled between all the other rankings
+\end{itemize}
+
+The model fresh dataset evaluation computes both the MRR and MAP scores. The Mean Reciprocal Rank (MRR) is the average of the Reciprocal Ranks (RR) of a series of queries. The Reciprocal Rank (RR) of a query response is the multiplicative inverse of the rank (position in the ranking) of the single sample, belonging to the family of interest, which calssified as closest (highest rank). The MAP score instead takes into account, with proper weights, all the sampels in the family of interest. Therefore a model will have a higher MRR score if it classifies a single sample belonging to the family of interest higher in the ranking; and it will have a higher MAP score if it classifies all the samples belonging to the family of interest higher in the ranking.
 
 \chapter{Experimenting with ML based Malware Detection/Description methods}
 
