@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  22 JUN 2021 19:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  22 JUN 2021 23:06
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -837,27 +837,27 @@ LaTeX Warning: Reference `' on page 64 undefined on input line 2025.
 
 [64]
 
-LaTeX Warning: Reference `' on page 65 undefined on input line 2056.
+LaTeX Warning: Reference `' on page 65 undefined on input line 2057.
 
 
-LaTeX Warning: Reference `' on page 65 undefined on input line 2056.
+LaTeX Warning: Reference `' on page 65 undefined on input line 2057.
 
 [65] [66] [67] [68] [69] [70]
 Chapter 4.
 
-LaTeX Warning: Reference `' on page 71 undefined on input line 2227.
+LaTeX Warning: Reference `' on page 71 undefined on input line 2228.
 
 [71
 
 ] [72] [73] [74]
 LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 2
-359.
+360.
 
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/base\omscmr.fd
 File: omscmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2359.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2360.
 
 
 [75] [76] [77] [78] [79] [80]
@@ -1003,13 +1003,13 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 18203 strings out of 481296
- 298454 string characters out of 2908369
- 947866 words of memory out of 3000000
- 34402 multiletter control sequences out of 15000+600000
- 419881 words of font info for 88 fonts, out of 8000000 for 9000
+ 18205 strings out of 481296
+ 298538 string characters out of 2908369
+ 948156 words of memory out of 3000000
+ 34404 multiletter control sequences out of 15000+600000
+ 419183 words of font info for 86 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 134i,19n,137p,1887b,2869s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 134i,17n,137p,1875b,2869s stack positions out of 5000i,500n,10000p,200000b,80000s
  <C:\Users\michele\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tc
 tt0800.pk> <C:\Users\michele\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/d
 pi600\tcrm1000.pk><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/p
@@ -1038,9 +1038,9 @@ pData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users
 /michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt8.pfb
 ><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/sy
 mbols/msbm10.pfb>
-Output written on Thesis_V1.0.0.pdf (91 pages, 827868 bytes).
+Output written on Thesis_V1.0.0.pdf (91 pages, 829252 bytes).
 PDF statistics:
- 1681 PDF objects out of 1728 (max. 8388607)
- 648 named destinations out of 1000 (max. 500000)
+ 1685 PDF objects out of 1728 (max. 8388607)
+ 649 named destinations out of 1000 (max. 500000)
  398 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1761,15 +1761,15 @@ Note that much information in the metadata, which is often not used to determine
 \paragraph{Implementation Details}
 The model uses various loss functions - denoted by $L_{loss~type}(X, Y)$ for some input features $X$ and targets $Y$ - associated with the various outputs of the model, as well as how the labels $Y$ representing the targets of these outputs are constructed.
 
-The base for our model is a feedforward neural network incorporating multiple blocks composed of Dropout, a dense layer, batch normalization, and an exponential linear unit (ELU) activation. The core of the model contains five such blocks with $1024$, $768$, $512$, $512$, and $512$ hidden units, respectively. This base topology applies the function $f(\cdot)$ to the input vector to produce an intermediate $512$ dimensional representation of the input file $\textbf{h} = f(\textbf{x})$. They then append to this model an additional block, consisting of one or more dense layers and activation functions, for each output of the model. They denote the composition of their base topology and their target-specific final dense layers and activations applied to features $\textbf{x}$ by $f_{target}(\textbf{x})$. The output for the main malware/benign prediction task - $f_{mal}(\textbf{x})$ - is always present and consists of a single dense layer followed by a sigmoid activation on top of the base shared network that aims to estimate the probability of the input sample being malicious. A network architecture with only this malware/benign output serves as the baseline for our evaluations. To this baseline model they add auxiliary outputs with similar structure as described above: one fully connected layer (two for the \textit{tag} prediction task) which produces some task-specific number of outputs (a single output, with the exception of the restricted generalized Poisson distribution output, which uses two) and some task-specific activation. Except where noted otherwise, all multi-task losses were produced by computing the sum, across all tasks, of the per-task loss multiplied by a task-specific weight (1.0 for the malware/benign task and 0.1 for all other tasks). Training was standardized to 10 epochs \cite{ruddALOHA}.
+The base for our model is a feedforward neural network incorporating multiple blocks composed of Dropout, a dense layer, batch normalization, and an exponential linear unit (ELU) activation. The core of the model contains five such blocks with 1024, 768, 512, 512, and 512 hidden units, respectively. This base topology applies the function $f(\cdot)$ to the input vector to produce an intermediate 512 dimensional representation of the input file $\textbf{h} = f(\textbf{x})$. They then append to this model an additional block, consisting of one or more dense layers and activation functions, for each output of the model. They denote the composition of their base topology and their target-specific final dense layers and activations applied to features $\textbf{x}$ by $f_{target}(\textbf{x})$. The output for the main malware/benign prediction task - $f_{mal}(\textbf{x})$ - is always present and consists of a single dense layer followed by a sigmoid activation on top of the base shared network that aims to estimate the probability of the input sample being malicious. A network architecture with only this malware/benign output serves as the baseline for our evaluations. To this baseline model they add auxiliary outputs with similar structure as described above: one fully connected layer (two for the \textit{tag} prediction task) which produces some task-specific number of outputs (a single output, with the exception of the restricted generalized Poisson distribution output, which uses two) and some task-specific activation. Except where noted otherwise, all multi-task losses were produced by computing the sum, across all tasks, of the per-task loss multiplied by a task-specific weight (1.0 for the malware/benign task and 0.1 for all other tasks). Training was standardized to 10 epochs \cite{ruddALOHA}.
 
 ---
 
 \paragraph{Malware Loss}
-For the task of predicting if a given binary file, represented by its features $\textbf{x}^{i}$, is malicious or benign we used a binary cross-entropy loss between the malware/benign output of the network $\hat{y}^{i} = f_{mal}(\textbf{x}^{i})$ and the malicious label $y^{i}$. This results in the following loss for a dataset with \textit{M} samples:
+For the task of predicting if a given binary file, represented by its features $\textbf{x}^i$, is malicious or benign we used a binary cross-entropy loss between the malware/benign output of the network $\hat{y}^i = f_{mal}(\textbf{x}^i)$ and the malicious label $y^i$. This results in the following loss for a dataset with \textit{M} samples:
 \begin{equation} \label{alohaMalwareLoss}
 	\begin{split}
-		L_{mal}(X,Y) & = \frac{1}{M}\sum_{i=1}^{M}{l_{mal}(f_{mal}(\textbf{x}^{(i)}), y^{(i)})} \\ & = -\frac{1}{M}\sum_{i=1}^{M}{y^{(i)}\log{\hat{y}^{(i)}} + (1-y^{(i)})\log{(1-\hat{y}^{(i)})}}.
+		L_{mal}(X,Y) & = \frac{1}{M} \sum_{i=1}^{M} l_{mal} (f_{mal}(\textbf{x}^{(i)}), y^{(i)}) \\ & = -\frac{1}{M} \sum_{i=1}^{M} y^{(i)} \log(\hat{y}^{(i)}) + (1-y^{(i)}) \log(1-\hat{y}^{(i)}).
 	\end{split}
 \end{equation}
 The authors used a "1-/5+" criterion for labelling a given file as malicious or benign: if a file has one or fewer vendors reporting it as malicious, they label the file as 'benign' and use a weight of 1.0 for the malware loss for that sample. Similarly, if a sample has five or more vendors reporting it as malicious, they label the file as 'malicious' and use a weight of 1.0 for the malware loss for that sample \cite{ruddALOHA}.
@@ -1779,7 +1779,7 @@ The authors used a "1-/5+" criterion for labelling a given file as malicious or 
 \paragraph{Vendor Count Loss}
 The authors investigated the use of the total number of 'malicious' reports for a given sample from the vendor aggregation service as an additional target; the rationale being that a sample with a higher number of malicious vendor reports should be more likely to be malicious. In order to properly model this target, they require a suitable noise model for count data. A popular candidate is a Poisson noise model, parametrized by a single parameter $\mu$, which assumes that counts follow a Poisson process, where $\mu$ is the mean and variance of the Poisson distribution. The probability of an observation of $y$ counts conditional on $\mu$ is
 \begin{equation} \label{alohaPoisson}
-	P(y|\mu) = \mu^{y}e^{-\mu}/y!.
+	P(y|\mu) = \mu^y e^{-\mu}/y!.
 \end{equation}
 
 In their problem they expected the mean number of positive results for a given sample to be related to the file itself, they attempted to learn to \textit{estimate} $\mu$ conditional on each sample $\textbf{x}^{(i)}$ in such a way that the likelihood of $y^{(i)}|\mu^{(i)}$ is maximized (or, equivalently, the negative log-likelihood is minimized). Denote the output of the neural network with which we are attempting to estimate the mean count of vendor positives for sample \textit{i} as $f_{cnt}(\textbf{x}^{(i)})$. Note that under a non-distributional loss, this would be denoted by $\hat{y}^{(i)}$, however since they are fitting a parameter of a distribution, and not the sample label $y$ directly, they used different notation. By taking some appropriate activation function $a(\cdot)$ that map $f_{cnt}(\textbf{x}^{(i)})$ to the non-negative real numbers, they can write $\mu^{(i)} = a(f_{cnt}(\textbf{x}^{(i)}))$. The authors use an exponential activation for $a$, though one could equally well employ some other transformation with the correct output range, for instance the ReLU function.
@@ -1787,7 +1787,7 @@ In their problem they expected the mean number of positive results for a given s
 Letting $y^{(i)}$ here denote the actual number of vendors that recognized sample $\textbf{x}^{(i)}$ as malicious, the corresponding negative log-likelihood loss over the dataset is
 \begin{equation} \label{alohaVendorCountLoss}
 	\begin{split}
-		L_{p}(X,Y) & = \frac{1}{M}\sum_{i=1}^{M}{l_{p}(a(f_{cnt}(\textbf{x}^{(i)})), y^{(i)})} \\ & = \frac{1}{M}\sum_{i=1}^{M}{\mu^{(i)} - y^{(i)}\log(\mu^{(i)}) + \log(y^{(i)}!)},
+		L_p(X,Y) & = \frac{1}{M} \sum_{i=1}^{M} l_p (a(f_{cnt}(\textbf{x}^{(i)})), y^{(i)}) \\ & = \frac{1}{M} \sum_{i=1}^{M} \mu^{(i)} - y^{(i)} \log(\mu^{(i)}) + \log(y^{(i)}!),
 	\end{split}
 \end{equation}
 which they refer to as the \textit{Poisson} or \textit{vendor count} loss. In practice, they ignore the $\log(y^{(i)}!)$ term when minimizing this loss since it does not depend on the parameters of the network.
@@ -1796,13 +1796,13 @@ A Poisson loss is more intuitive for dealing with count data than other common l
 
 The authors also implemented a Restricted Generalized Poisson distribution - a slightly more intricate noise model that accomodates dispersion in the variance of vendor counts.
 \begin{equation} \label{alohaGeneralizedPoisson}
-	P(y|\alpha, \mu) = (\frac{\mu}{1+\alpha\mu})^{y}(1+\alpha y)^{y-1}\exp{(\frac{-\mu(1+\alpha y)}{1+\alpha\mu})}/y!.
+	P(y|\alpha, \mu) = (\frac{\mu}{1 + \alpha \mu})^y (1 + \alpha y)^{y-1}\exp{(\frac{-\mu(1 + \alpha y)}{1 + \alpha \mu})}/y!.
 \end{equation}
 
 When $\alpha = 0$ this reduces to \ref{alohaPoisson}. $\alpha > 0$ accounts for over-dispersion, while $\alpha < 0$ accounts for under-dispersion. Note that in our case $\alpha$, like $\mu$, is estimated by the neural network and conditioned on the feature vector, allowing varying dispersion per-sample. The new loss function becomes:
 \begin{equation} \label{alohaGeneralizedVendorCountLoss}
 	\begin{split}
-		L_{gp}(X,Y) = \frac{1}{M}\sum_{i=1}^{M}[&y^{(i)}(\log{\mu^{(i)}} - \log{(1 + \alpha^{(i)}\mu^{(i)})}) + \\ &(y^{(i)} -1)\log{(1 + \alpha^{(i)}y^{(i)})} \\ &- \frac{\mu^{(i)}(1 + \alpha^{(i)}y^{(i)})}{1 + \alpha^{(i)}\mu^{(i)}} + \log{(y^{(i)}!)}],
+		L_{gp}(X,Y) = - \frac{1}{M} \sum_{i=1}^M [ & y^{(i)} (\log{\mu^{(i)}} - \log(1 + \alpha^{(i)}\mu^{(i)})) + \\ & (y^{(i)} - 1) \log(1 + \alpha^{(i)}y^{(i)}) \\ & - \frac{\mu^{(i)} (1 + \alpha^{(i)} y^{(i)})}{1 + \alpha^{(i)} \mu^{(i)}} + \log{(y^{(i)}!)}],
 	\end{split}
 \end{equation}
 where $\alpha^{(i)}$ and $\mu^{(i)}$ are obtained as transformed outputs of the neural network in a similar fashion as $\mu^{(i)}$ is obtained for the Poisson loss. In practice, as for the Poisson loss, the term related to $y!$ is dropped since it does not affect the optimization of the network parameters \cite{ruddALOHA}.
@@ -1810,27 +1810,27 @@ where $\alpha^{(i)}$ and $\mu^{(i)}$ are obtained as transformed outputs of the 
 ---
 
 \paragraph{Per-Vendor Malware Loss}
-The authors identified a subset $\mathcal{V}=\{v_1, ..., v_V\}$ of $9$ vendors that each produced a result for (nearly) every sample in their data. Each vendor result was added as a target in addition to the malware target by adding an extra fully connected layer per vendor followed by a sigmoid activation function to the end of the shared architecture. They employed a binary cross-entropy loss per vendor during training. This differs from the vendor count loss presented above in that each high-coverage vendor is used as an individual binary target, rather than being aggregated into a count. The aggregate \textit{vendors} loss $L_{vdr}$ for the $V=9$ selected vendors is simply the sum of the individual vendor losses:
+The authors identified a subset $\mathcal{V} = \{v_1, ..., v_V\}$ of $9$ vendors that each produced a result for (nearly) every sample in their data. Each vendor result was added as a target in addition to the malware target by adding an extra fully connected layer per vendor followed by a sigmoid activation function to the end of the shared architecture. They employed a binary cross-entropy loss per vendor during training. This differs from the vendor count loss presented above in that each high-coverage vendor is used as an individual binary target, rather than being aggregated into a count. The aggregate \textit{vendors} loss $L_{vdr}$ for the $V = 9$ selected vendors is simply the sum of the individual vendor losses:
 \begin{equation} \label{alohaPerVendorMalwareLoss}
 	\begin{split}
-		L_{vdr}(X,Y) & = \frac{1}{M}\sum_{i=1}^{M}{\sum_{j=1}^{V}{l_{vdr}(f_{vdr_{j}}(\textbf{x}^{(i)}), y_{v_{j}^{(i)}})}} \\ & = -\frac{1}{M}\sum_{i=0}^{M}{\sum_{j=1}^{V}{y_{v_{j}}^{(i)}\log(\hat{y}_{v_{y}}^{(i)}) + (1-y_{v_{j}}^{(i)})\log{(1-\hat{y}_{v_{j}}^{(i)})}}},
+		L_{vdr}(X,Y) & = \frac{1}{M} \sum_{i = 1}^{M} \sum_{j = 1}^{V} l_{vdr}(f_{vdr_j}(\textbf{x}^{(i)}), y_{v_j}^{(i)}) \\ & = - \frac{1}{M} \sum_{i = 1}^{M} \sum_{j = 1}^{V} y_{v_j}^{(i)} \log(\hat{y}_{v_j}^{(i)}) + (1 - y_{v_j}^{(i)}) \log{(1 - \hat{y}_{v_j}^{(i)})},
 	\end{split}
 \end{equation}
-where $l_{vdr}$ is the per-sample binary cross-entropy function and $f_{vdr_{j}}(\textbf{x}^{(i)}) = \hat{y}_{v_{j}}^{(i)}$ is the output of the network that is trained to predict the label $y_{v_{j}}^{(i)}$ assigned by vendor $j$ to input sample $\textbf{x}^{(i)}$ \cite{ruddALOHA}.
+where $l_{vdr}$ is the per-sample binary cross-entropy function and $f_{vdr_j}(\textbf{x}^{(i)}) = \hat{y}_{v_j}^{(i)}$ is the output of the network that is trained to predict the label $y_{v_j}^{(i)}$ assigned by vendor $j$ to input sample $\textbf{x}^{(i)}$ \cite{ruddALOHA}.
 
 ---
 
 \paragraph{Malicious Tags Loss}
 The authors exploit information contained in family detection names provided by different vendors in the form of malicious tags. They defined each tag as a high level description of the purpose of a given malicious sample. The tags used as auxiliary targets in their experiments are: \textit{flooder}, \textit{downloader}, \textit{dropper}, \textit{ransomware}, \textit{crypto-miner}, \textit{worm}, \textit{adware}, \textit{spyware}, \textit{packed}, \textit{file-infector} and \textit{installer}.
 
-They created these tags from a parse of individual vendor detection names, using a set of 10 vendors which provided high quality detection names. Once they have extracted the most common tokens, they filtered them to keep only tokens related to well-known malware family names or tokens that could easily be associated with one or more of these tags, for example, the token \textit{xmrig} - even though it is not a malware family - can be recognised as referring to a crypto-currency mining software and therefore can be associated with the \textit{crypto-miner} tag. The authors then created a mapping from tokens to tags based on prior knowledge. They labelled a sample as associated with tag $t_{i}$ if any of the tokens associated with $t_{i}$ are present in any of the detection names assigned to the sample by the set of trusted vendors.
+They created these tags from a parse of individual vendor detection names, using a set of 10 vendors which provided high quality detection names. Once they have extracted the most common tokens, they filtered them to keep only tokens related to well-known malware family names or tokens that could easily be associated with one or more of these tags, for example, the token \textit{xmrig} - even though it is not a malware family - can be recognised as referring to a crypto-currency mining software and therefore can be associated with the \textit{crypto-miner} tag. The authors then created a mapping from tokens to tags based on prior knowledge. They labelled a sample as associated with tag $t_i$ if any of the tokens associated with $t_i$ are present in any of the detection names assigned to the sample by the set of trusted vendors.
 
-Annotating the dataset with these tags, allowed the authors to define the tag prediction task as multi-label binary classification, since zero or more tags from the set of possible tags $\mathcal{T}=\{t_1, ..., t_T\}$ can be present at the same time for a given sample. They introduced this prediction task in order to have targets in their loss function that are not directly related to the number of vendors that recognize the sample as malicious. The vendor counts and the individual vendor labels are closely related with the definition of their main target, i.e. the malicious label, which classifies a sample as malicious if 5 or more vendors identify the sample as malware. In the case of tag targets, this information is not present. For instance, if all the vendors recognize a given sample as coming from the \textit{WannaCry} family in their detection names, the sample will be associated only once with the \textit{ransomware} tag. ON the converse, because of their tagging mechanism, if only one vendor considers that a given sample is malicious and classifies it as coming from the \textit{WannaCry} family, the \textit{ransomware} tag will be present (although the malicious label will be 0).
+Annotating the dataset with these tags, allowed the authors to define the tag prediction task as multi-label binary classification, since zero or more tags from the set of possible tags $\mathcal{T} = \{t_1, ..., t_T\}$ can be present at the same time for a given sample. They introduced this prediction task in order to have targets in their loss function that are not directly related to the number of vendors that recognize the sample as malicious. The vendor counts and the individual vendor labels are closely related with the definition of their main target, i.e. the malicious label, which classifies a sample as malicious if 5 or more vendors identify the sample as malware. In the case of tag targets, this information is not present. For instance, if all the vendors recognize a given sample as coming from the \textit{WannaCry} family in their detection names, the sample will be associated only once with the \textit{ransomware} tag. ON the converse, because of their tagging mechanism, if only one vendor considers that a given sample is malicious and classifies it as coming from the \textit{WannaCry} family, the \textit{ransomware} tag will be present (although the malicious label will be 0).
 
 In order to predict these tags, they used a \textit{multi-headed} architecture in which they added two additional layers per tag to the end of the shared base architecture, a fully connected layer of size 512-to-256, followed by a sigmoid activation function. Each tag $t_j$ out of the possible $T=11$ tags has its own loss term computed with binary cross-entropy. Like the per-vendor malware loss, the aggregate tag loss is the sum of the individual tag losses \cite{ruddALOHA}. For the dataset with $M$ samples it becomes:
 \begin{equation} \label{alohaMalwareTagLoss}
 	\begin{split}
-		L_{tag}(X,Y) & = \frac{1}{M}\sum_{i=1}^{M}\sum_{j=1}^{T}l_{tag}(f_{tag}(\textbf{x}^{(i)}), y_{t_{j}}^{(i)}) \\ & = - \frac{1}{M}\sum_{i=1}^{M}\sum_{j=1}^{T}y_{t_j}^{(i)}\log(\hat{y}_{t_j}^{(i)}) + (1-y_{t_j}^{(i)})\log(1-\hat{y}_{t_j}^{(i)}),
+		L_{tag}(X,Y) & = \frac{1}{M} \sum_{i = 1}^{M} \sum_{j = 1}^{T} l_{tag}(f_{tag_j}(\textbf{x}^{(i)}), y_{t_j}^{(i)}) \\ & = - \frac{1}{M} \sum_{i = 1}^{M} \sum_{j = 1}^{T} y_{t_j}^{(i)} \log(\hat{y}_{t_j}^{(i)}) + (1 - y_{t_j}^{(i)}) \log(1 - \hat{y}_{t_j}^{(i)}),
 	\end{split}
 \end{equation}
 where $y_{t_j}^{(i)}$ indicates if sample $i$ is annotated with tag $j$, and $\hat{y}_{t_j}^{(i)} = f_{tag_j}(\textbf{x}^{(i)})$ is the prediction issued by the network for that value.
@@ -1848,7 +1848,7 @@ Note that ROC curves, which are commonly used as performance measures, are indep
 \paragraph{Final Loss + Experiment Evaluation}
 Each model used a loss weight of 0.1 on the aggregate malicious/benign loss and 0.1 on each auxiliary loss, i.e. when we add $K$ targets to the main loss, the final loss that gets backpropagated through the model becomes
 \begin{equation} \label{alohaFinalLoss}
-	L(X,Y) = L_{mal}(X,Y) + 0.1\sum_{k=1}^{K}L_k(X,Y).
+	L(X,Y) = L_{mal}(X,Y) + 0.1 \sum_{k=1}^{K} L_k(X,Y).
 \end{equation}
 
 As the training process for deep for deep neural networks has some degree of intrinsic randomness, which can result in variations in their performance, we report our results in terms of both the mean and standard deviation for the test statistics of interest across five runs. Each model was trained five times, each time with a different random initialization and different randomization over mini-batches, and all other parameters held identical. The authors computed the test statistic of interest (e.g. the detection rate at a false positive rate of $10^{-3}$) for each model, and then computed the average and standard deviation of those results.
@@ -1874,7 +1874,7 @@ Multi-view learning is a related approach in which multiple inputs are trained t
 \color{Red}
 
 (Abstract)
-With the rapid proliferation and increased sophistication of malicious software (malware), detection methods no longer rely only on manually generated signatures but have also incorporated more general approaches like machine learning detection. Although powerful for conviction of malicious artefacts, these methods do not produce any furhter information about the type of threat that has been detected neither allows for identifying relationships between malware samples. With this work the authors address the information gap between machine learning and signature-based detection methods by learning a representation space for malware samples in which files with similar malicious behaviours appear close to each other. They did so by introducing a deep learning based tagging model trained to generate human-interpretable semantic descriptions of malicious software, which, at the same time provides potentially more useful and flexible information than malware family names.
+With the rapid proliferation and increased sophistication of malicious software (malware), detection methods no longer rely only on manually generated signatures but have also incorporated more general approaches like machine learning detection. Although powerful for conviction of malicious artefacts, these methods do not produce any further information about the type of threat that has been detected neither allows for identifying relationships between malware samples. With this work the authors address the information gap between machine learning and signature-based detection methods by learning a representation space for malware samples in which files with similar malicious behaviours appear close to each other. They did so by introducing a deep learning based tagging model trained to generate human-interpretable semantic descriptions of malicious software, which, at the same time provides potentially more useful and flexible information than malware family names.
 
 They show that the malware descriptions generated with the proposed approach correctly identify more than $95\%$ of 11 possible tag descriptions for a given sample, at a deployable false positive rate of $1\%$ per tag. Furthermore, they used the learned representation space to introduce a similarity index between malware files, and empirically demonstrated using dynamic traces from files' execution, that is not only more effective at identifying samples from the same families, but also 32 times smaller than those based on raw feature vectors \cite{DucauAMDATSE}.
 
@@ -1985,35 +1985,35 @@ The \textit{Joint Embedding} model, as shown at the bottom of \ref{}, is introdu
 This model maps both the labels (malware tags) and the binary file features $\textbf{x}$ to vectors in a joint Euclidean latent-space. These embedding functions of files and tags are learnt via stochastic gradient descent in a way such that, for a given similarity function, the transformations of semantically similar labels are close to each other, and the embedding of a binary file should be close to that of its associated labels in the same space. This architecture consists on a PE \textit{embedding} network, a \textit{tag embedding} matrix $\textbf{E}$, and a \textit{prediction layer}.
 
 The PE embedding network learns a nonlinear function $\phi_\theta(\cdot)$, with parameters $\theta$ that maps the input binary representation of the PE executable file $\textbf{x} \in \mathbb{R}^d$ into a vector $\textbf{h} \in \mathbb{R}^D$ in low dimensional Euclidean space,
-\begin{equation}
+\begin{equation} \label{jointEmbeddingPEEmbedding}
 	\phi_\theta(\textbf{x}) : \mathbb{R}^d \rightarrow \mathbb{R}^D.
 \end{equation}
 The tag embedding matrix $\textbf{E} \in \mathbb{R}^{T \times D}$ learns a mapping from a tag $t_n \in \mathcal{T} = \{t_1, ..., t_T\}$, to a distributed representation $\textbf{e} \in \mathbb{R}^D$ in the joint embedding space.
-\begin{equation}
+\begin{equation} \label{jointEmbeddingTagEmbedding}
 	\phi_E(t) : \{t_1, ..., t_T\} \rightarrow \mathbb{R}^D.
 \end{equation}
 In practice, the embedding vector for the tag $t_n$ is simply the $n$-th row of the tag embedding matrix, i.e. $\phi_E(t_n) = \textbf{E}_n$.
 
 Finally, the prediction layer compares both the tag and the sample embeddings ($\textbf{e}$ and $\textbf{h}$ respectively) and produces a similarity score that is run through a sigmoid non-linearity to estimate the probability that sample $\textbf{x}$ is associated with tag $t$ for each $t \in \mathcal{T}$. In the final model implementation, the similarity score is the dot product between the embedding vectors. The output of the network $f_n(\textbf{x} | \theta, \textbf{E})$ then becomes,
 \begin{equation}
-	\begin{split}
-		\hat{y}_n = f_n(\textbf{x} | \theta, \textbf{E}) & = \sigma(\langle\phi_E(n), \phi_\theta(\textit{x})\rangle) \\ & = \sigma(\langle\textbf{E}_n, \textbf{h}\rangle),
+	\begin{split} \label{jointEmbeddingProbability}
+		\hat{y}_n = f_n(\textbf{x} | \theta, \textbf{E}) & = \sigma(\langle\phi_E(n), \phi_\theta(\textbf{x})\rangle) \\ & = \sigma(\langle\textbf{E}_n, \textbf{h}\rangle),
 	\end{split}
 \end{equation}
 where $\sigma$ is the sigmoid activation function, and $\hat{y}_n$ is the probability estimated by the model of tag $t_n$ being a descriptor for $\textbf{x}$.
 
 The authors further constrained the embedding vectors for the tags such that:
 \begin{equation}
-	||\textbf{E}_n||_2 \leq C, n = 1, ..., T
-\end{equation},
+	||\textbf{E}_n||_2 \leq C, n = 1, ..., T,
+\end{equation}
 which acts as a regularizer for the model. They observed in practice that this normalization indeed leads to better results on the validation set. Unless stated differently they fixed the value of $C$ to 1.
 
 The authors also experimented using cosine similarity instead of a dot product as a similarity score between tags' and files' embeddings. However, they observed deteriorated performance on the validation set.
 
-The authors' goal, for a given PE file, is to learn a distributed, low dimensional representation of it, that is both "close" to the embedding of the tags that describe it and to other PE files with similar characteristics. The parameters of both embedding functions $\phi_\theta(\cdot)$ and $\phi_E(\cdot)$ are jointly optimized to minimize the binary cross-entropy loss for the prediction of each tag via backpropagation and stochastic gradient descent. The loss function to minimize for a mini-batch of $M$ samples becomes:
-\begin{equation}
+The authors' goal, for a given PE file, is to learn a distributed, low dimensional representation of it, that is both "close" to the embedding of the tags that describe it and to other PE files with similar characteristics. The parameters of both embedding functions $\phi_\theta(\cdot)$ and $\phi_E(\cdot)$ are jointly optimized to minimize the binary cross-entropy loss for the prediction of each tag via back-propagation and stochastic gradient descent. The loss function to minimize for a mini-batch of $M$ samples becomes:
+\begin{equation} \label{jointEmbeddingLoss}
 	\begin{split}
-		\mathcal{L} & = -\frac{1}{M}\sum_{i=1}^{M}\sum_{n=1}^{T}f_n(\textbf{x}^{(i)} | \theta, \textbf{E})\log(t_n^{(i)}) + (1 - f_n(\textbf{x}^{(i)} | \theta, \textbf{E})) \log(1 - t_n^{(i)}) \\ & = -\frac{1}{M}\sum_{i=1}^{M}\sum_{n=1}^{T}\hat{y}_n^{(i)}\log(t_n^{(i)}) + (1 - \hat{y}_n^{(i)}) \log(1 - t_n^{(i)})
+		\mathcal{L} & = -\frac{1}{M} \sum_{i = 1}^{M} \sum_{n = 1}^{T} f_n(\textbf{x}^{(i)} | \theta, \textbf{E}) \log(t_n^{(i)}) + (1 - f_n(\textbf{x}^{(i)} | \theta, \textbf{E})) \log(1 - t_n^{(i)}) \\ & = -\frac{1}{M} \sum_{i = 1}^{M} \sum_{n = 1}^{T} \hat{y}_n^{(i)} \log(t_n^{(i)}) + (1 - \hat{y}_n^{(i)}) \log(1 - t_n^{(i)})
 	\end{split}
 \end{equation}
 where $t_n^{(i)} = 1$ if sample $i$ is labelled with tag $t_n$ or zero otherwise, and $\hat{y}_n^{(i)}$ is the probability predicted by the network of that tag being associated with the $i$-th sample.
@@ -2031,20 +2031,21 @@ In the \textit{per-tag} case, one suitable way to evaluate the performance of th
 
 The \textit{per-sample} evaluation dimension seeks to evaluate the performance of a tagging algorithm for a given sample, across all tags. Let $T^{(i)}$ be the set of tags associated with sample $i$ and $\hat{T}^{(i)}$ the set of tags predicted for the same sample after binarizing the predictions. We can use the Jaccard similarity (or index) $J(T^{(i)}, \hat{T^{(i)}})$ as a figure of how similar both sets are. Furthermore, let $\textbf{y} \in \{0, 1\}^T$ be the binary target vector for a PE file, where $\textbf{y}_n$ indicates whether the $n$-th tag applies to the file and $\hat{\textbf{y}}$ be the binarized prediction vector from a given tagging model. The per-sample accuracy is then defined as the percentage of samples for which the target vector is equal to the prediction vector, i.e. all tags correctly predicted, or, in other words, the Hamming distance between the two vectors is zero. For an evaluation dataset with $M$ samples one can use,
 \begin{equation}
-	\begin{split}
-		& Mean Jaccard similarity = \frac{1}{M}\sum_{i=1}^{M}J(T^{i}, \hat{T}^{(i)}) = \frac{1}{M}\sum_{i=1}^{M}\frac{T^{(i)} \cap \hat{T}^{(i)}}{T^{(i)} \cup \hat{T}^{(i)}} \\ & Mean per-sample accuracy = \frac{1}{M}\sum_{i=1}^{M}\mathbb{I}(\textbf{y}^{(i)} = \hat{\textbf{y}}^{(i)})
-	\end{split}
+	\textrm{Mean Jaccard similarity} = \frac{1}{M} \sum_{i=1}^{M} J(T^{(i)}, \hat{T}^{(i)}) = \frac{1}{M} \sum_{i=1}^{M} \frac{T^{(i)} \cap \hat{T}^{(i)}} {T^{(i)} \cup \hat{T}^{(i)}}
 \end{equation}
-as per-sample performance metrics for the tagging problem, where $\mathbb{I}$ is the indicator function which is $1$ if the condition in the argument is true, and $0$ otherwise.
+\begin{equation}
+	\textrm{Mean per-sample accuracy} = \frac{1}{M} \sum_{i=1}^{M} \mathbb{I}(\textbf{y}^{(i)} = \hat{\textbf{y}}^{(i)})
+\end{equation}
+as per-sample performance metrics for the tagging problem, where $\mathbb{I}$ is the indicator function which is 1 if the condition in the argument is true, and 0 otherwise.
 
 \paragraph{Dataset and Training details}
-The authors used 2 different dataset for training purposes: a medium size training set containing $10 million$ unique binary Windows Portable Executable (PE) files ($D_{train-M}$), and a large training set containing $76,204,855$ unique PE files ($D_{train-XL}$). The smaller training set was used for experimenting with different architectures and validation purposes, while the larger one was used to train the final models, whose architectures performed best in the validation set when trained on the smaller dataset.
+The authors used 2 different dataset for training purposes: a medium size training set containing 10 $million$ unique binary Windows Portable Executable (PE) files ($D_{train-M}$), and a large training set containing 76,204,855 unique PE files ($D_{train-XL}$). The smaller training set was used for experimenting with different architectures and validation purposes, while the larger one was used to train the final models, whose architectures performed best in the validation set when trained on the smaller dataset.
 
-The authors trained the 2 model architectures previously described on the training dataset $D_{train-M}$ with different number of layers and number of nodes per layer, each for $200$ epochs using Adam optimizer on mini-batches of 4096 samples and learning rate of $5 \cdot 10^{-4}$. The combination of those values that performed best were then used to train the model on $D_{train-XL}$.
+The authors trained the 2 model architectures previously described on the training dataset $D_{train-M}$ with different number of layers and number of nodes per layer, each for 200 epochs using Adam optimizer on mini-batches of 4096 samples and learning rate of $5 \cdot 10^{-4}$. The combination of those values that performed best were then used to train the model on $D_{train-XL}$.
 
 The shared base topology of the final Multi-Head architecture consisted of an input feed-forward layer of output size 2048, followed by a batch normalization layer, an ELU nonlinearity and three blocks, each composed by dropout, a linear layer, batch normalization and ELU of output sizes 512, 128, and 32 respectively. Each output head is simply a linear layer (the same for each head) composed of the same type of basic blocks as are in the main base architecture, but with output size 11 (the number of tags being predicted) and a sigmoid non-linearity instead of the ELU. Binary cross-entropy loss is computed as the output of each head and then added together to form the final loss.
 
-The Joint Embedding architecture used the same base topology as the Multi-Head model for the embedding of the PE files into a 32 dimensional joint latent space. An embedding matric ($\textbf{E}$) of learnable parameters with size $T \times32$ is used for the embedding of the tags. The authors used dot product to compute the similarity between the PE file embedding and the tag embedding followed by a sigmoid non-linearity to produce an output probability score. As before, the sum of the per-tag binary cross-entropy losses is used as the mini-batch loss during model training.
+The Joint Embedding architecture used the same base topology as the Multi-Head model for the embedding of the PE files into a 32 dimensional joint latent space. An embedding matrix ($\textbf{E}$) of learnable parameters with size $T \times 32$ is used for the embedding of the tags. The authors used dot product to compute the similarity between the PE file embedding and the tag embedding followed by a sigmoid non-linearity to produce an output probability score. As before, the sum of the per-tag binary cross-entropy losses is used as the mini-batch loss during model training.
 
 \paragraph{Tagging results}
 \subparagraph{Per-Tag Results}
@@ -2105,7 +2106,7 @@ The authors proposed a multi-view neural network, which takes feature vectors fr
 (Introduction)
 Static detection methods have seen performance advancements recently, thanks to the adoption of machine learning, where highly expressive classifiers, e.g. deep neural networks, are fit on labelled data sets of millions of files. When these classifiers are trained, they use \textit{feature vectors} - numerical descriptions of the static file content - as input but no auxiliary data. Dynamic analysis, however, works well precisely because of \textit{auxiliary data} - e.g. network traffic, system calls, etc. - information that cannot be gleaned directly from the static content of the file.
 
-The authors used file paths as orthogonal input information to augment static ML detectors. File paths are available statically, without any additional instrumentation of the OS, and are already used internally by malware analysts to correct and investigate mischaracterised detections.
+The authors used file paths as orthogonal input information to augment static ML detectors. File paths are available statically, without any additional instrumentation of the OS, and are already used internally by malware analysts to correct and investigate mis-characterised detections.
 
 Using file paths to augment detections on the surface seems potentially problematic, as file paths are not inherently malicious or benign. However, malware droppers often use file paths with certain characteristics for a variety of reasons. For example, a file path may be chosen to increase the likelihood that a user will execute a malicious PE masquerading as another application, to avoid disk scans, or to hide the files from a user's view. This results in a prevalence of certain types of directory hierarchies, and detectable naming characteristics, which can provide useful hints about the malicious/benign nature of a file, even when this is not immediately obvious from its content.
 
@@ -2167,24 +2168,24 @@ In total, they presented each sample as two feature vectors: A PE content featur
 ---
 
 \paragraph{Implementation details}
-The model has two inputs, the 1024 element PE content feature vector, $\textbf{x}_{PE}$, and the $100$ element file path integer vector, $\textbf{x}_{FP}$. Each distinct input is passed through a series of layers with their own parameters, $\theta_{PE}$ and $\theta_{FP}$, for PE features and FP for filepath features respectively, and are jointly optimized during training. The outputs of the se layers are then joined (concatenated) and passed through a series of final hidden layers - a joint output path with parameters $\theta_{O}$. The final output of the network consists of a dense layer followed by a sigmoid activation. The labelling convention uses $0$ as a benign label and $1$ as a malicious label, so sigmoid outputs close to $1$ are more likely to be malicious than outputs close to $0$, which are more likely to be benign. However, the threshold for malicious/benign determination can be set anywhere along the $(0.0, 1.0)$ range according to false positive rate (FPR) and detection rate (TPR) tradeoffs for the application at hand - a reasonable threshold is typically at or below $10^{-3}$ FPR.
+The model has two inputs, the 1024 element PE content feature vector, $\textbf{x}_{PE}$, and the 100 element file path integer vector, $\textbf{x}_{FP}$. Each distinct input is passed through a series of layers with their own parameters, $\theta_{PE}$ and $\theta_{FP}$, for PE features and FP for filepath features respectively, and are jointly optimized during training. The outputs of the se layers are then joined (concatenated) and passed through a series of final hidden layers - a joint output path with parameters $\theta_{O}$. The final output of the network consists of a dense layer followed by a sigmoid activation. The labelling convention uses 0 as a benign label and 1 as a malicious label, so sigmoid outputs close to 1 are more likely to be malicious than outputs close to 0, which are more likely to be benign. However, the threshold for malicious/benign determination can be set anywhere along the $(0.0, 1.0)$ range according to false positive rate (FPR) and detection rate (TPR) tradeoffs for the application at hand - a reasonable threshold is typically at or below $10^{-3}$ FPR.
 
-The PE input arm $\theta_{PE}$ passes $\textbf{x}_{PE}$ through a series of blocks consisting of four layers each: a Fully Connected layer, a Layer Normalization layer, a Dropout layer with a dropout probability of $0.05$, and a Rectified Linear Unit (ReLU) activation. Five of these blocks are connected in sequence with dense layer sizes $1024$, $768$, $512$, $512$, and $512$ nodes respectively in order.
+The PE input arm $\theta_{PE}$ passes $\textbf{x}_{PE}$ through a series of blocks consisting of four layers each: a Fully Connected layer, a Layer Normalization layer, a Dropout layer with a dropout probability of 0.05, and a Rectified Linear Unit (ReLU) activation. Five of these blocks are connected in sequence with dense layer sizes 1024, 768, 512, 512, and 512 nodes respectively in order.
 
-The file path input arm $\theta_{FP}$, passes $\textbf{x}_{FP}$ - a vector of length 100 - into an Embedding layer that converts the integer vector into a $(100, 32)$ embedding. This embedding is then fed into $4$ separate convolution blocks, that contain a 1D convolution layer with $128$ filters, a Layer Normalization layer and a 1D sum layer to flatten the output to a vector. The $4$ convolution blocks contain convolution layers with filters of size $2$, $3$, $4$ and $5$ respectively that process $2$, $3$, $4$ and $5$-grams of the input file path. The flattened outputs of these convolution blocks are then concatenated and serve as input to two dense blocks (same form as in the PE input arm).
+The file path input arm $\theta_{FP}$, passes $\textbf{x}_{FP}$ - a vector of length 100 - into an Embedding layer that converts the integer vector into a $(100, 32)$ embedding. This embedding is then fed into 4 separate convolution blocks, that contain a 1D convolution layer with 128 filters, a Layer Normalization layer and a 1D sum layer to flatten the output to a vector. The 4 convolution blocks contain convolution layers with filters of size 2, 3, 4 and 5 respectively that process 2, 3, 4 and 5-grams of the input file path. The flattened outputs of these convolution blocks are then concatenated and serve as input to two dense blocks (same form as in the PE input arm).
 
-The outputs from the fully connected blocks from the PE arm and the file path arm are then concatenated and passed into the joint output path, parametrized by $\theta_{O}$. This path consists of dense connected blocks (same form as in the PE input arm) of layer sizes $512$, $256$ and $128$. The $128D$ output of these blocks is then fed to a dense layer which projects the output to $1D$, followed by a sigmoid activation that provides the final output of the model.
+The outputs from the fully connected blocks from the PE arm and the file path arm are then concatenated and passed into the joint output path, parametrized by $\theta_{O}$. This path consists of dense connected blocks (same form as in the PE input arm) of layer sizes 512, 256 and 128. The $128D$ output of these blocks is then fed to a dense layer which projects the output to $1D$, followed by a sigmoid activation that provides the final output of the model.
 
 The PE only model is just the P+ FP model but without the FP arm, taking input $\textbf{x}_{PE}$ and fitting $\theta_{PE}$ and $\theta_{O}$ parameters. Similarly, the FP model is the PE+FP model but without the PE arm, taking input $\textbf{x}_{FP}$ fitting $\theta_{FP}$ and $\theta_{O}$ parameters. The first layer of the output subnetwork is adjusted appropriately to match the output from the previous layer.
 
 All models are fit using a binary cross entropy loss function. Given the output of the deep learning model $f(\textbf{x}; \theta)$ for input $\textbf{x}$ with label $y \in \{0,1\}$ and model parameters $\theta$ the loss is:
 \begin{equation} \label{LearningFromContextLoss}
-	L(\textbf{x}, y; \theta) = -y\log{(f(\textbf{x}; \theta))} + (1-y)\log{(1-f(\textbf{x}; \theta))}.
+	L(\textbf{x}, y; \theta) = - y \log{(f(\textbf{x}; \theta))} + (1 - y) \log{(1 - f(\textbf{x}; \theta))}.
 \end{equation}
 
 Via an optimizer, the equation is solved for $\hat{\theta}$ the optimal set of parameters that minimize the combined loss over the dataset:
 \begin{equation} \label{LearningFromContextParameters}
-	\hat{\theta} =  \argmax_{\theta} \sum_{i=1}^{M}{L(\textbf{x}^{(i)}, y_i; \theta)},
+	\hat{\theta} =  \argmax_{\theta} \sum_{i = 1}^{M} L(\textbf{x}^{(i)}, y_i; \theta),
 \end{equation}
 where $M$ is the number of samples in our dataset, and $y_i$ and $\textbf{x}^{(i)}$ are the label and the feature vector of the \textit{i}th training sample respectively \cite{KyadigeLFCEIFPIBMD}.
 
@@ -2248,7 +2249,7 @@ PE-Miner aimed to produce a machine-learning based malware detector with high tr
 
 Shortly following, the Adobe Malware Classifier aimed to produce a malware classifier from only seven features: debug size, image version, relative virtual address of the import address table, export size, resource size, virtual size of the second section, and the total number of sections. A decision tree algorithm was trained and the resulting classifier released as a freely available tool. It has been suggested, however, that since the benign dataset largely comprised of Windows binaries, the resulting models is strongly biased towards a non-Windows vs. Windows rather than a malicious vs. benign problem. Moreover, unfortunately, the dataset consisting of $\sim100K$ malicious and $\sim16K$ benign files was never released for comparative research.
 
-In contrast, the Microsoft Malware Classification Challenge 500MB dataset consisted of disassembly and byte-code of $\sim20K$ malicious samples from 9 families. The largest family consisted of features from $3K$ samples, while the smallest family included only $42$ samples. Since the conclusion of the competition, more than $50$ research papers and theses cited the dataset. Unfortunately, the disassembly features are specific to IDA Pro disassembler, and the dataset contains no benign files.
+In contrast, the Microsoft Malware Classification Challenge 500MB dataset consisted of disassembly and byte-code of $\sim20K$ malicious samples from 9 families. The largest family consisted of features from $3K$ samples, while the smallest family included only 42 samples. Since the conclusion of the competition, more than 50 research papers and theses cited the dataset. Unfortunately, the disassembly features are specific to IDA Pro disassembler, and the dataset contains no benign files.
 
 Malware sharing services like VXHeaven provide an ample supply of malicious binaries. VirusTotal can be mined for supposed benign files using heuristics about the number of detections of vendor participants. However, large-scale file access rates in VirusTotal require a payed subscription. Regardless, an agreed-upon set of malicious and benign files for machine learning benchmark purposes is so far non-existent \cite{AndersonEMBER}.
 
@@ -2440,10 +2441,10 @@ To speed up the code (particularly the trainig step) the dataset is pre-processe
 
 This however led to disk space problems since the pre-processed dataset is much bigger than the original one (which contained compressed features).
 
-To speed up the code (specifically the training procedure, which is the one that takes longest), the dataset is pre-processed. Doing so speeded up the training execution: with the previous version I was able to train the model with a maximum of 400'000 samples in about 7:30h; now, instead, I managed to train the model with 2M samples in about 3:08h. This makes it feasable to run model training on 6M samples, which is a good amount of samples. However a new problem has now emerged: the pre-processed dataset occupies far more disk space than the original dataset (considering the same amount of samples). This is not a real problem for training, provided there is enough disk space for the pre-processed dataset alone (in fact I can pre-process the dataset separately and later import it without the need of downloding the original dataset).
+To speed up the code (specifically the training procedure, which is the one that takes longest), the dataset is pre-processed. Doing so speeded up the training execution: with the previous version I was able to train the model with a maximum of 400'000 samples in about 7:30h; now, instead, I managed to train the model with $2M$ samples in about 3:08h. This makes it feasable to run model training on $6M$ samples, which is a good amount of samples. However a new problem has now emerged: the pre-processed dataset occupies far more disk space than the original dataset (considering the same amount of samples). This is not a real problem for training, provided there is enough disk space for the pre-processed dataset alone (in fact I can pre-process the dataset separately and later import it without the need of downloding the original dataset).
 
-I managed to pre-process 6M samples developing a variation of the pre-process function called "pre-process multi". In particular I pre-processed the dataset creating multiple small files which were saved on a different hard drive (google drive) than the instance one. Then, on a new (clean) instance I merged downloaded and marged all those files together, compressed the resulting pre-processed dataset and uploaded it on google drive. The final dataset size is approximately 70 GB (containing 6M samples), but after compression it takes about 18 GB of space. The dataset can now be imported on new instances and de-compressed before training.
-With this optimization I trained the model using 6M samples. The model took approximately 6 hours to complete just 1 training epoch. Considering 10 epochs I would need approximately 60 hours in total.
+I managed to pre-process $6M$ samples developing a variation of the pre-process function called "\textit{pre-process multi}". In particular I pre-processed the dataset creating multiple small files which were saved on a different hard drive (google drive) than the instance one. Then, on a new (clean) instance I merged downloaded and merged all those files together, compressed the resulting pre-processed dataset and uploaded it on google drive. The final dataset size is approximately 70 GB (containing $6M$ samples), but after compression it takes about 18 GB of space. The dataset can now be imported on new instances and de-compressed before training.
+With this optimization I trained the model using $6M$ samples. The model took approximately 6 hours to complete just 1 training epoch. Considering 10 epochs I would need approximately 60 hours in total.
 
 \color{Black}
 \subsubsection{Alternative Generators (Dataloaders)}
@@ -2455,33 +2456,33 @@ As a further optimization I tried implementing 2 new dataloader variants which c
 \paragraph{Generator alt1}
 \color{Red}
 
-The alternative generator 1 ('alt1') was inspired by the 'index select' version of FastTensorDataLoader suggested in this post. In this version the dataset is loaded as a set of memory-mapped numpy arrays (one array for the features, one for the labels and one for the sha256 hashes) from which batches of data are randomly sampled using the pytorch 'index\_select' function. Moreover, my version (differently from the original suggested one) is able to work also with multiple workers (in multithreading).
+The alternative generator 1 ('$alt1$') was inspired by the '\textit{index select}' version of \textit{FastTensorDataLoader} suggested in this post. In this version the dataset is loaded as a set of memory-mapped numpy arrays (one array for the features, one for the labels and one for the sha256 hashes) from which batches of data are randomly sampled using the pytorch '$index\_select$' function. Moreover, my version (differently from the original suggested one) is able to work also with multiple workers (in \textit{multithreading}).
 
 \color{Black}
 \paragraph{Generator alt2}
 \color{Red}
 
-The alternative generator 2 ('alt2') was inspired by the 'shuffle in-place' version of FastTensorDataLoader suggested in this post. In this version the dataset is again loaded as a set of memory-mapped numpy arrays, as version 1. In this case, however, the arrays are randomly shuffled in place at each iteration, before sampling (in order) batches of data from them. Again, my version (differently from the original suggested one) is able to work also with multiple workers (in multithreading).
+The alternative generator 2 ('$alt2$') was inspired by the '\textit{shuffle in-place}' version of \textit{FastTensorDataLoader} suggested in this post. In this version the dataset is again loaded as a set of memory-mapped numpy arrays, as version 1. In this case, however, the arrays are randomly shuffled in place at each iteration, before sampling (in order) batches of data from them. Again, my version (differently from the original suggested one) is able to work also with multiple workers (in \textit{multithreading}).
 
 \color{Black}
 \paragraph{Generator alt3}
 \color{Red}
 
-Unfortunately, when considering 6M samples, the alternative generator version 1 ('alt1') was only slightly faster than the original Pytorch dataloader, while version 2 ('alt2') was considerably slower having to shuffle the entire memmap-ed dataset.
+Unfortunately, when considering $6M$ samples, the alternative generator version 1 ('$alt1$') was only slightly faster than the original Pytorch dataloader, while version 2 ('$alt2$') was considerably slower having to shuffle the entire memmap-ed dataset.
 
-Since using a Google Cloud instance did not provide a significant speed-up, and since the model needed ~60 hours to complete 1 training run, I had to think of another dataloader optimization. I thus developed a further alternative dataloader ('alt3') that managed to reduce the time needed for 1 training epoch (considering 6M samples) from ~6 hours to ~15 minutes. The time needed to complete a full training run is thus now ~2.5 hours (~3 hours considering also model evaluation).
-The optimization consists of a tradeoff between loading speed and samples dispersion. In fact, the new dataloader uses a pool of threads to asynchronously load the dataset into memory in chunks. In particular each thread loads into memory 'n\_chunks' randomly chosen chunks. Each thread then proceeds to concatenate together its 'n\_chunks' chunks, which contain 'chunk\_size' malware samples each, generating each a 'chunk\_aggregate', which is then randomly shuffled and returned by the thread. The chunk\_aggregates are asynchronously inserted in a queue (the order depends on the threads instantiation order) of fixed length equal to the number of workers used. The main dataloader thread manages the chunk\_aggregate queue, instantiating the parallel threads such that the queue is always full. Moreover, the main dataloader thread sequentially extracts, when possible, one chunk\_aggregate at a time from the queue and then proceeds to return one batch of data at a time from it, when required.
-Selecting different values for chunk\_size and n\_chunks has an impact on the speed of the dataloader and on the samples dispersion. In fact the samples are not anymore randomly chosen from the whole dataset, but from a random sub-part of it. This effectively decreases the amount of dispersion (and randomness) of batches possibly affecting the final model generalization. It is therefore better to consider a higher value for n\_chunks possibly decreasing chunk\_size. Furhtermore, the values for chunk\_size and n\_chunks) should be chosed carefully since their product results in the number of samples loaded into memory (RAM) at once for a single worker thread. Increasing too much this number (together with the number of workers used) will quickly saturate the available RAM.
+Since using a Google Cloud instance did not provide a significant speed-up, and since the model needed $\sim60$ hours to complete 1 training run, I had to think of another dataloader optimization. I thus developed a further alternative dataloader ('$alt3$') that managed to reduce the time needed for 1 training epoch (considering 6M samples) from $\sim6$ hours to $\sim15$ minutes. The time needed to complete a full training run is thus now $\sim2.5$ hours ($\sim3$ hours considering also model evaluation).
+The optimization consists of a tradeoff between loading speed and samples dispersion. In fact, the new dataloader uses a pool of threads to asynchronously load the dataset into memory in chunks. In particular each thread loads into memory '$n\_chunks$' randomly chosen chunks. Each thread then proceeds to concatenate together its '$n\_chunks$' chunks, which contain '$chunk\_size$' malware samples each, generating each a '$chunk\_aggregate$', which is then randomly shuffled and returned by the thread. The $chunk\_aggregates$ are asynchronously inserted in a queue (the order depends on the threads instantiation order) of fixed length equal to the number of workers used. The main dataloader thread manages the $chunk\_aggregate$ queue, instantiating the parallel threads such that the queue is always full. Moreover, the main dataloader thread sequentially extracts, when possible, one $chunk\_aggregate$ at a time from the queue and then proceeds to return one batch of data at a time from it, when required.
+Selecting different values for $chunk\_size$ and $n\_chunks$ has an impact on the speed of the dataloader and on the samples dispersion. In fact the samples are not anymore randomly chosen from the whole dataset, but from a random sub-part of it. This effectively decreases the amount of dispersion (and randomness) of batches possibly affecting the final model generalization. It is therefore better to consider a higher value for $n\_chunks$ possibly decreasing $chunk\_size$. Furhtermore, the values for $chunk\_size$ and $n\_chunks$) should be chosed carefully since their product results in the number of samples loaded into memory (RAM) at once for a single worker thread. Increasing too much this number (together with the number of workers used) will quickly saturate the available RAM.
 
 \color{Black}
 \subparagraph{Generator parameters optimization}
 \color{Red}
 
-To understand the behaviour of the new dataloader and choose the best combination of values possible using 8 threads (which is double the amount of cores I have at my disposal in the Colab instance and I found is a good number of threads to use) I cross evaluated it using powers of 2 for both values. In particular I developed a function to be used to evaluate the new alternative generator on the target machine. This function performs 'epochs' model training epochs using values for chunk\_size and n\_chunks got from two intervals and plots 2 heatmaps: the first containing the average elapsed times and the second the average speeds.
-In my evaluation run I hard-coded for chunk\_size the powers of 2 ranging from $2^4$ to $2^14$ (included) and for n\_chunks the powers of 2 ranging from $2^3$ to $2^13$.
-Moreover, two further parameters have to be set in order to constrain the evaluation to meaningful values: min\_mul and max\_mul. In fact, as previously mentioned, the product of chunk\_size times n\_chunks gives the total number of samples in one chunk\_aggregate (which resides in main memory). min\_mul and max\_mul indicate the minimum and maximum number of batches retrievable from the resulting chunk\_aggregate.
-In my run I considered for min\_mul the value 1 and for max\_mul the value 32. This was done in order to be able to retrieve at least one batch from the chunk\_aggregate without saturating the available RAM (having for max\_mul a value greater than 32*batch\_size would be too mutch for my instance).
-Given the results I got (available at the end of this document), I decided to stick with the following values for all the model training runs since they seemed to be a good compromise between loading speed and samples dispersion: chunk\_size=256 and n\_chunks=256.
+To understand the behaviour of the new dataloader and choose the best combination of values possible using 8 threads (which is double the amount of cores I have at my disposal in the Colab instance and I found is a good number of threads to use) I cross evaluated it using powers of 2 for both values. In particular I developed a function to be used to evaluate the new alternative generator on the target machine. This function performs 'epochs' model training epochs using values for $chunk\_size$ and $n\_chunks$ got from two intervals and plots 2 heatmaps: the first containing the average elapsed times and the second the average speeds.
+In my evaluation run I hard-coded for $chunk\_size$ the powers of 2 ranging from $2^4$ to $2^14$ (included) and for $n\_chunks$ the powers of 2 ranging from $2^3$ to $2^13$.
+Moreover, two further parameters have to be set in order to constrain the evaluation to meaningful values: $min\_mul$ and $max\_mul$. In fact, as previously mentioned, the product of $chunk\_size \times n\_chunks$ gives the total number of samples in one $chunk\_aggregate$ (which resides in main memory). $min\_mul$ and $max\_mul$ indicate the minimum and maximum number of batches retrievable from the resulting $chunk\_aggregate$.
+In my run I considered for $min\_mul$ the value 1 and for $max\_mul$ the value 32. This was done in order to be able to retrieve at least one batch from the $chunk\_aggregate$ without saturating the available RAM (having for $max\_mul$ a value greater than $32 * batch\_size$ would be too mutch for my instance).
+Given the results I got (available at the end of this document), I decided to stick with the following values for all the model training runs since they seemed to be a good compromise between loading speed and samples dispersion: $chunk\_size = 256$ and $n\_chunks = 256$.
 
 \color{Black}
 \section{Fresh Dataset}
@@ -2491,30 +2492,30 @@ To properly evaluate the model there is the need of a dataset with malware famil
 \begin{itemize}
 	\item a series of malware families in order of importance
 	
-	\item the number 'x' (default: 100) of samples per family to download
+	\item the number '$x$' (default: 100) of samples per family to download
 	
-	\item the number 'm' (default: 10) of families to consider
+	\item the number '$m$' (default: 10) of families to consider
 \end{itemize}
-downloads from Malware Bazaar 'x' samples per malware family (if possible, otherwise it skips the malware family and considers the next), extracts the features from each sample and creates the new dataset (which I call 'fresh\_dataset' in the code) with 'n = x * m' (default: 1000) samples compatible with the model.
+downloads from Malware Bazaar '$x$' samples per malware family (if possible, otherwise it skips the malware family and considers the next), extracts the features from each sample and creates the new dataset (which I call '$fresh\_dataset$' in the code) with '$n = x * m$' (default: 1000) samples compatible with the model.
 
 \color{Black}
 \subsection{Model Evaluation with Fresh Dataset}
 \color{Red}
 
-I implemented a model evaluation function using the fresh\_dataset. This function randomly samples 'q' (default: 100) query samples among the ones in the fresh\_dataset, it computes the similarity between each of these samples with the other 'n-1' (default: 999), and orders these 'n-1' samples by similarity. It then calcluates the MRR (Mean Reciprocal Rank) and MAP (Mean Average Precision) scores for the model. The rankings for the 'q' (100) query samples are saved as a single json file. Moreover, 5 particular rankings are saved as csv files. These 5 rankings are those that produced:
+I implemented a model evaluation function using the $fresh\_dataset$. This function randomly samples '$q$' (default: 100) query samples among the ones in the $fresh\_dataset$, it computes the similarity between each of these samples with the other '$n-1$' (default: 999), and orders these '$n-1$' samples by similarity. It then calcluates the \textit{MRR} (Mean Reciprocal Rank) and \textit{MAP} (Mean Average Precision) scores for the model. The rankings for the '$q$' (100) query samples are saved as a single json file. Moreover, 5 particular rankings are saved as csv files. These 5 rankings are those that produced:
 \begin{itemize}
-	\item the maximum RR (Reciprocal Rank)
+	\item the maximum \textit{RR} (Reciprocal Rank)
 	
-	\item the minimum RR (Reciprocal Rank)
+	\item the minimum \textit{RR} (Reciprocal Rank)
 	
-	\item the maximum AP (Average Precision)
+	\item the maximum \textit{AP} (Average Precision)
 	
-	\item the minimum AP (Average Precision)
+	\item the minimum \textit{AP} (Average Precision)
 	
 	\item the last ranking is randomly sampled between all the other rankings
 \end{itemize}
 
-The model fresh dataset evaluation computes both the MRR and MAP scores. The Mean Reciprocal Rank (MRR) is the average of the Reciprocal Ranks (RR) of a series of queries. The Reciprocal Rank (RR) of a query response is the multiplicative inverse of the rank (position in the ranking) of the single sample, belonging to the family of interest, which calssified as closest (highest rank). The MAP score instead takes into account, with proper weights, all the sampels in the family of interest. Therefore a model will have a higher MRR score if it classifies a single sample belonging to the family of interest higher in the ranking; and it will have a higher MAP score if it classifies all the samples belonging to the family of interest higher in the ranking.
+The model fresh dataset evaluation computes both the \textit{MRR} and \textit{MAP} scores. The Mean Reciprocal Rank (\textit{MRR}) is the average of the Reciprocal Ranks (\textit{RR}) of a series of queries. The Reciprocal Rank (\textit{RR}) of a query response is the multiplicative inverse of the rank (position in the ranking) of the single sample, belonging to the family of interest, which calssified as closest (highest rank). The \textit{MAP} score instead takes into account, with proper weights, all the sampels in the family of interest. Therefore a model will have a higher \textit{MRR} score if it classifies a single sample belonging to the family of interest higher in the ranking; and it will have a higher \textit{MAP} score if it classifies all the samples belonging to the family of interest higher in the ranking.
 
 \color{Black}
 \chapter{Experimenting with ML based Malware Detection/Description methods}
