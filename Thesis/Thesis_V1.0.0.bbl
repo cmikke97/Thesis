@@ -217,4 +217,16 @@ F.~N. Ducau, E.~M. Rudd, T.~M. Heppner, A.~Long, and K.~Berlin, ``Automatic
 J.~Saxe and K.~Berlin, ``Deep neural network based malware detection using two
   dimensional binary program features'', 2015
 
+\bibitem{AndersonEMBER}
+H.~S. Anderson and P.~Roth, ``Ember: An open dataset for training static pe
+  malware machine learning models'', 2018
+
+\bibitem{HarangSOREL20M}
+R.~Harang and E.~M. Rudd, ``Sorel-20m: A large scale benchmark dataset for
+  malicious pe detection'', 2020
+
+\bibitem{ChuLMDBDoc}
+H.~Chu, ``Lightning memory-mapped database manager (lmdb) documentation.''
+  \url{http://www.lmdb.tech/doc/}, Accessed: 2021-06-22
+
 \end{thebibliography}

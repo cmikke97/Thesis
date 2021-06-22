@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  22 JUN 2021 16:56
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  22 JUN 2021 19:27
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -753,7 +753,7 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 91.
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<logopolito.pdf, id=174, 526.79488pt x 523.45164pt>
+<logopolito.pdf, id=198, 526.79488pt x 523.45164pt>
 File: logopolito.pdf Graphic file (type pdf)
 <use logopolito.pdf>
 Package pdftex.def Info: logopolito.pdf  used on input line 132.
@@ -844,33 +844,47 @@ LaTeX Warning: Reference `' on page 65 undefined on input line 2056.
 
 [65] [66] [67] [68] [69] [70]
 Chapter 4.
+
+LaTeX Warning: Reference `' on page 71 undefined on input line 2227.
+
 [71
 
-] [72] [73] [74] [75]
+] [72] [73] [74]
+LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 2
+359.
+
+(C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/base\omscmr.fd
+File: omscmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2359.
+
+
+[75] [76] [77] [78] [79] [80]
 Chapter 5.
-[76
+[81
 
 ]
 Chapter 6.
-[77
+[82
 
 ]
 Chapter 7.
-[78
+[83
 
 ]
 Chapter 8.
-[79
+[84
 
 ]
 Chapter 9.
-[80
+[85
 
 ]
 Chapter 10.
-[81
+[86
 
-] [82] (Thesis_V1.0.0.bbl [83]
+] [87] (Thesis_V1.0.0.bbl [88]
 Underfull \hbox (badness 1242) in paragraph at lines 10--12
 []\OT1/cmr/m/n/10 R. Sharp, ``An in-tro-duc-tion to mal-ware.'' [][]$\OT1/cmtt/
 m/n/10 https : / / orbit . dtu . dk / en / publications /
@@ -954,7 +968,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 89--92
 / searchsecurity . techtarget . com / definition /
  []
 
-[84
+[89
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 164--166
@@ -980,19 +994,19 @@ Underfull \hbox (badness 1371) in paragraph at lines 199--202
 t/m/n/10 https : / / www . forcepoint . com / cyber-[]edu /
  []
 
-[85]) [86] (Thesis_V1.0.0.aux)
+[90]) [91] (Thesis_V1.0.0.aux)
 Package rerunfilecheck Info: File `Thesis_V1.0.0.out' has not changed.
-(rerunfilecheck)             Checksum: 76471A864AAED63FE86064BAF6FF23D4;7710.
+(rerunfilecheck)             Checksum: 6272CA3AECE64DBE37DBA4035F1B14DE;8684.
 
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 18152 strings out of 481296
- 297661 string characters out of 2908369
- 947757 words of memory out of 3000000
- 34378 multiletter control sequences out of 15000+600000
+ 18203 strings out of 481296
+ 298454 string characters out of 2908369
+ 947866 words of memory out of 3000000
+ 34402 multiletter control sequences out of 15000+600000
  419881 words of font info for 88 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  134i,19n,137p,1887b,2869s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1024,9 +1038,9 @@ pData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users
 /michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt8.pfb
 ><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/sy
 mbols/msbm10.pfb>
-Output written on Thesis_V1.0.0.pdf (86 pages, 794028 bytes).
+Output written on Thesis_V1.0.0.pdf (91 pages, 827868 bytes).
 PDF statistics:
- 1589 PDF objects out of 1728 (max. 8388607)
- 624 named destinations out of 1000 (max. 500000)
- 350 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1681 PDF objects out of 1728 (max. 8388607)
+ 648 named destinations out of 1000 (max. 500000)
+ 398 words of extra memory for PDF output out of 10000 (max. 10000000)
 

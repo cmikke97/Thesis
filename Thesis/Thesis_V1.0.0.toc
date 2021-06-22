@@ -126,25 +126,41 @@
 \contentsline {paragraph}{Feature Engineering}{69}{section*.95}%
 \contentsline {paragraph}{Implementation details}{69}{section*.96}%
 \contentsline {section}{\numberline {3.7}Malware Normalization}{70}{section.3.7}%
-\contentsline {chapter}{\numberline {4}Datasets Used}{71}{chapter.4}%
+\contentsline {chapter}{\numberline {4}Datasets}{71}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Ember Dataset}{71}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Sorel 20M Dataset}{71}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Sorel 20M Dataset Description}{72}{subsection.4.2.1}%
-\contentsline {paragraph}{LMDB database, what is it?}{72}{section*.97}%
-\contentsline {subsection}{\numberline {4.2.2}Trying to improve Dataset Loading Speed}{73}{subsection.4.2.2}%
-\contentsline {subsubsection}{Dataset Pre-Processing}{73}{section*.98}%
-\contentsline {subsubsection}{Alternative Generators (Dataloaders)}{73}{section*.99}%
-\contentsline {paragraph}{Generator alt1}{73}{section*.100}%
-\contentsline {paragraph}{Generator alt2}{73}{section*.101}%
-\contentsline {paragraph}{Generator alt3}{73}{section*.102}%
-\contentsline {subparagraph}{Generator parameters optimization}{74}{section*.103}%
-\contentsline {section}{\numberline {4.3}Fresh Dataset}{74}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Model Evaluation with Fresh Dataset}{75}{subsection.4.3.1}%
-\contentsline {chapter}{\numberline {5}Experimenting with ML based Malware Detection/Description methods}{76}{chapter.5}%
-\contentsline {chapter}{\numberline {6}Proposed Tool}{77}{chapter.6}%
-\contentsline {chapter}{\numberline {7}Experiments with the proposed tool}{78}{chapter.7}%
-\contentsline {chapter}{\numberline {8}Results}{79}{chapter.8}%
-\contentsline {chapter}{\numberline {9}Conclusions}{80}{chapter.9}%
-\contentsline {chapter}{\numberline {10}Appendix}{81}{chapter.10}%
-\contentsline {section}{\numberline {10.1}Notable Examples of Malware in Recent History}{81}{section.10.1}%
-\contentsline {chapter}{Bibliography}{84}{section.10.1}%
+\contentsline {subsection}{\numberline {4.1.1}PE File Format}{71}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Static PE Malware Detection}{72}{subsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.1.3}Malicious and benign datasets}{72}{subsection.4.1.3}%
+\contentsline {subsection}{\numberline {4.1.4}Data Description}{73}{subsection.4.1.4}%
+\contentsline {subsection}{\numberline {4.1.5}Data Layout}{73}{subsection.4.1.5}%
+\contentsline {subsection}{\numberline {4.1.6}Feature Set Description}{74}{subsection.4.1.6}%
+\contentsline {subsubsection}{Parsed features}{74}{section*.97}%
+\contentsline {paragraph}{General file information}{74}{section*.98}%
+\contentsline {paragraph}{Header information}{74}{section*.99}%
+\contentsline {paragraph}{Imported functions}{74}{section*.100}%
+\contentsline {paragraph}{Exported functions}{75}{section*.101}%
+\contentsline {paragraph}{Section information}{75}{section*.102}%
+\contentsline {subsubsection}{Format-agnostic features}{75}{section*.103}%
+\contentsline {paragraph}{Byte histogram}{75}{section*.104}%
+\contentsline {paragraph}{Byte-entropy histogram}{75}{section*.105}%
+\contentsline {paragraph}{String information}{75}{section*.106}%
+\contentsline {section}{\numberline {4.2}Sorel 20M Dataset}{75}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Sorel 20M Dataset Description}{76}{subsection.4.2.1}%
+\contentsline {paragraph}{LMDB database, what is it?}{77}{section*.107}%
+\contentsline {subsection}{\numberline {4.2.2}Trying to improve Dataset Loading Speed}{78}{subsection.4.2.2}%
+\contentsline {subsubsection}{Dataset Pre-Processing}{78}{section*.108}%
+\contentsline {subsubsection}{Alternative Generators (Dataloaders)}{78}{section*.109}%
+\contentsline {paragraph}{Generator alt1}{79}{section*.110}%
+\contentsline {paragraph}{Generator alt2}{79}{section*.111}%
+\contentsline {paragraph}{Generator alt3}{79}{section*.112}%
+\contentsline {subparagraph}{Generator parameters optimization}{79}{section*.113}%
+\contentsline {section}{\numberline {4.3}Fresh Dataset}{80}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Model Evaluation with Fresh Dataset}{80}{subsection.4.3.1}%
+\contentsline {chapter}{\numberline {5}Experimenting with ML based Malware Detection/Description methods}{81}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Proposed Tool}{82}{chapter.6}%
+\contentsline {chapter}{\numberline {7}Experiments with the proposed tool}{83}{chapter.7}%
+\contentsline {chapter}{\numberline {8}Results}{84}{chapter.8}%
+\contentsline {chapter}{\numberline {9}Conclusions}{85}{chapter.9}%
+\contentsline {chapter}{\numberline {10}Appendix}{86}{chapter.10}%
+\contentsline {section}{\numberline {10.1}Notable Examples of Malware in Recent History}{86}{section.10.1}%
+\contentsline {chapter}{Bibliography}{89}{section.10.1}%
