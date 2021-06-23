@@ -43,6 +43,11 @@
 % temporaneo
 \usepackage[dvipsnames]{xcolor}
 
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
 \input{commands.tex}
 
 \definecolor{codegreen}{rgb}{0,0.6,0}
@@ -81,8 +86,14 @@
 	morestring=[d]',
 }
 
-\usepackage{amssymb}
-\usepackage{amsmath}
+\algdef{SE}% flags used internally to indicate we're defining a new block statement
+[CLASS]% new block type
+{Class}% "\Class{name}" will indicate the start of the class declaration
+{EndClass}% "\EndClass" ends the block indent
+[1]% There is one argument, which is the name of the class
+{\textbf{class} \textsc{#1}}% typesetting of the start of a class
+{\textbf{end class}}% typesetting the end of the class
+
 \DeclareMathOperator*{\argmax}{arg\,max}
 \DeclareMathOperator*{\argmin}{arg\,min}
 
@@ -1712,6 +1723,28 @@ In recent years, malware detection with machine learning techniques is gaining p
 
 In recent years, machine learning has gained its popularity in many fields including IT security. Robert Moskovitch et. al. \cite{} proposed a technique that monitors a small set of features that are sufficient for detecting malware without sacrificing accuracy. The result of the study showed that, using only 20 features, the mean detection accuracy was greater than 90\%, and for specific unknown worms, this accuracy got over 99\%, while maintaining a low level of false positives. The advantage of machine learning techniques is that it will not only detect a known malware but also act as a database for detecting new malware. Similar studies can also be found in another model such as Naive Bayes, Decision Trees, Neural Networks. Although this technique is practical, it may not replace the standard detection methods, rather than act as an add-on feature because machine learning techniques are computationally demanding and may not be suitable for end users \cite{NguyenSPVD}.
 
+---
+
+Malware detection is a popular application of Machine Learning for Information Security (ML-Sec), in which a ML classifier is trained to predict whether a given file is malware of benignware. Parameters of this classifier are typically optimized such that outputs from the model over a set of input samples most closely match the samples true malicious/benign (1/0) target labels \cite{ruddALOHA}.
+
+Machine learning (ML) for computer security (ML-Sec) has proven to be a powerful tool for malware detection. ML models are now integral parts of commercial anti-malware engines and multiple vendors in the industry have dedicated ML-Sec teams. For the malware detection problem, these models are typically tuned to predict a binary label (malicious or benign) using features extracted from sample files. Unlike signature engines, where the aim is to reactively blacklist/whitelist samples that hard-match manually-defined patterns (signatures), ML engines employ numerical optimization on parameters of highly parametrized models that aim to learn more general concepts of \textit{malware} and \textit{benignware}. This allows some degree of proactive detection of previously unseen malware samples that is not typically provided by signature-only engines \cite{ruddALOHA}.
+
+---
+
+With the rapid proliferation and increased sophistication of malicious software (malware), detection methods no longer rely only on manually generated signatures but have also incorporated more general approaches like machine learning detection \cite{DucauAMDATSE}.
+
+In recent years, multiple advances in machine learning for information security (ML-Sec) have take place. This can be attributed to several factors including an explosion in labelled data available from vendor aggregation services and threat intelligence feeds, and more powerful hardware and software frameworks for fitting highly expressive classifiers, along with a need of the cybersecurity industry to incorporate more flexible methods to improve their detection pipelines. The authors focused on analysis over Windows Portable Executable (PE) files based on static features, i.e. information that can be extracted from the binary files without having to execute them \cite{DucauAMDATSE}.
+
+---
+
+Commercial models typically rely on deep neural networks, or boosted decision tree ensembles and have been extended to other static file types as well, including web content, office documents, and archives. While methods for dealing with these different input types have their own intricacies, they typically use single inputs derived from file content as a feature vector or text embedding \cite{KyadigeLFCEIFPIBMD}.
+
+Static ML detectors use highly parametric classifiers trained on many malicious and benign samples. The goal is to tune the parameters of these classifiers to best match the outputs from the classifiers for all input samples to their actual ground truth labels. Provided that the malware/benignware samples in the training set are similar enough in content to those seen at deployment and that the samples are well labelled, the learned detection function should work well \cite{KyadigeLFCEIFPIBMD}.
+
+In practice, labels are often collected from vendor aggregation feeds, which submit samples to malware detectors from a variety of vendors. The results can be aggregated into labels that are usually correct, e.g. by using a 1-/5+ criterion or treating the label as a hidden variable and using statistical estimation methods. Often a time lag is introduced to let vendors update their models, blacklists, and whitelists accordingly. Generally, the longer the time lag, the more accurate the labels, but the less the data resembles that of the deployment distribution. In actual deployment contexts, classifiers are retrained on new data/labels periodically and the updated parameters are sent to the endpoints on which the detectors are running \cite{KyadigeLFCEIFPIBMD}.
+
+Most static ML for information security (ML-Sec) classifiers operate on learned embeddings over portions of files (e.g. headers), learned embeddings over the full file, or most commonly, on pre-engineered numerical \textit{feature vectors} designed to summarize the content from each file. Learned embeddings, which generally presume some sort of convolutional architecture, have the advantage that they do not presume a fixed structure and are derived directly during training. However, this process is significantly more expensive, and does not scale as gracefully, e.g., to tens to hundreds of millions of large PE files. Moreover generic bytes are inherently less constrained than inputs like images, video, audio, and text, where convolutions can take advantage of structural localities/hierarchies. Thus, for generic malicious/benign files there is less performance benefit from learning to embed features directly from inputs. Pre-engineered feature vector representations, by contrast quickly distil content from each file that is informative in a classification sense. There are a number of ways to craft feature vectors, including tracking per-byte statistics over sliding windows, byte histograms, n-gram histograms, treating bytes as pixel values in an image (a visualisation of the file content), opcode and function call graph statistics, symbol statistics, hashed/numerical metadata values - e.g. entry point as a fraction of the file, or hashed imports and exports, - and hashes of delimited tokens. In practical applications, several different types of feature vectors extracted from file content are often concatenated together to achieve superior performance \cite{KyadigeLFCEIFPIBMD}.
+
 \color{Black}
 \subsection{AlOHA: Auxiliary Loss Optimization for Hypothesis Augmentation}
 \color{Red}
@@ -1721,16 +1754,14 @@ Rudd et al. introduced several loss functions, including a multi-target binary c
 ---
 
 (Abstract)
-Malware detection is a popular application of Machine Learning for Information Security (ML-Sec), in which a ML classifier is trained to predict whether a given file is malware of benignware. Parameters of this classifier are typically optimized such that outputs from the model over a set of input samples most closely match the samples true malicious/benign (1/0) target labels. However, there are often a number of other sources of contextual metadata for each malware sample, beyond an aggregate malicious/benign label, including multiple labelling sources and malware type information (e.g. \textit{ransomware}, \textit{trojan}, etc.), which we can feed to the classifier as auxiliary prediction targets. The authors fit deep neural networks to multiple additional targets derived from metadata in a threat intelligence feed for Portable Executable (PE) malware and benignware, including a multi-source malicious/benign loss, a count loss on multi-source detections, and a semantic malware attribute tag loss. They found that incorporating multiple auxiliary loss terms yielded a marked improvement in performance on the main detection task. Those gains likely stem from a more informed neural network representation and are not due to a regularization artefact of multi-target learning \cite{ruddALOHA}.
+However, there are often a number of other sources of contextual metadata for each malware sample, beyond an aggregate malicious/benign label, including multiple labelling sources and malware type information (e.g. \textit{ransomware}, \textit{trojan}, etc.), which we can feed to the classifier as auxiliary prediction targets. The authors fit deep neural networks to multiple additional targets derived from metadata in a threat intelligence feed for Portable Executable (PE) malware and benignware, including a multi-source malicious/benign loss, a count loss on multi-source detections, and a semantic malware attribute tag loss. They found that incorporating multiple auxiliary loss terms yielded a marked improvement in performance on the main detection task. Those gains likely stem from a more informed neural network representation and are not due to a regularization artefact of multi-target learning \cite{ruddALOHA}.
 
 ---
 
 (Introduction)
-Machine learning (ML) for computer security (ML-Sec) has proven to be a powerful tool for malware detection. ML models are now integral parts of commercial anti-malware engines and multiple vendors in the industry have dedicated ML-Sec teams. For the malware detection problem, these models are typically tuned to predict a binary label (malicious or benign) using features extracted from sample files. Unlike signature engines, where the aim is to reactively blacklist/whitelist samples that hard-match manually-defined patterns (signatures), ML engines employ numerical optimization on parameters of highly parametrized models that aim to learn more general concepts of \textit{malware} and \textit{benignware}. This allows some degree of proactive detection of previously unseen malware samples that is not typically provided by signature-only engines.
-
 Frequently, malware classification is framed as a binary classification task using a simple binary cross-entropy or two-class softmax loss function. However, there often exist substantial metadata available at training time that contain more information about each input sample than just aggregate label of whether it is malicious or benign. Such metadata might include malicious/benign labels from multiple sources (e.g. from various security vendors), malware family information, file attributes, temporal information, geographical location information, counts of affected endpoints, and associated tags. In many cases this metadata will not be available when the model is deployed, and so in general it is difficult to include this data as features in the model.
 
-It is popular practice in the domain of malware analysis to derive binary malicious/benign labels based on a heuristic combination of multiple detection sources for a given file, and then use these noisy labels for training ML models. However, there is nothing that precludes training a classifier to predict each of these source labels simultaneously optimizing classifier parameters over these predictions + labels. In fact, guiding a model to develop representations capable of predicting multiple targets simultaneously may have a smoothing or regularizing effect conductinve to generalization, particularly if the auxiliary targets are related to the main target of interest. These auxiliary targets can be ignored during test time if they are ancillary to the task at hand (and in many cases the extra weights required to produce them can be removed from the model prior to deployment), but nevertheless, there is much reason to believe that forcing the model to fit multiple targets simultaneously can improve performance on the key output of interest. The authors took advantage of multi-target learning by exploring the use of metadata from threat intelligence feeds as auxiliary targets for model training.
+It is popular practice in the domain of malware analysis to derive binary malicious/benign labels based on a heuristic combination of multiple detection sources for a given file, and then use these noisy labels for training ML models. However, there is nothing that precludes training a classifier to predict each of these source labels simultaneously optimizing classifier parameters over these predictions + labels. In fact, guiding a model to develop representations capable of predicting multiple targets simultaneously may have a smoothing or regularizing effect conductive to generalization, particularly if the auxiliary targets are related to the main target of interest. These auxiliary targets can be ignored during test time if they are ancillary to the task at hand (and in many cases the extra weights required to produce them can be removed from the model prior to deployment), but nevertheless, there is much reason to believe that forcing the model to fit multiple targets simultaneously can improve performance on the key output of interest. The authors took advantage of multi-target learning by exploring the use of metadata from threat intelligence feeds as auxiliary targets for model training.
 
 The authors studied both the addition of multiple label sources for the same task and multiple label sources for multiple separate tasks. They did not presume the presence of all labels from all sources, and introduced a per-sample weighting scheme on each loss term to accommodate missing labels in the metadata. They further explored the use of multi-objective training as a way to expand the number of trainable samples in cases where the aggregate malicious/benign label is unclear, and where those samples would otherwise be excluded from purely binary training \cite{ruddALOHA}.
 
@@ -1868,13 +1899,12 @@ The widespread success of transfer learning is also a testament to the value of 
 
 Multi-view learning is a related approach in which multiple inputs are trained to a single target. This approach also arguably leads to the same general mechanism for improvement: the model is forced to learn relationships between sets of features that improve the performance using any particular set. While this approach often requires all sets of features to be available at test time, there are other approaches, such as \cite{}, that relax this constraint.
 
-
 \color{Black}
 \subsection{Automatic Malware Description via Attribute Tagging and Similarity Embedding}
 \color{Red}
 
 (Abstract)
-With the rapid proliferation and increased sophistication of malicious software (malware), detection methods no longer rely only on manually generated signatures but have also incorporated more general approaches like machine learning detection. Although powerful for conviction of malicious artefacts, these methods do not produce any further information about the type of threat that has been detected neither allows for identifying relationships between malware samples. With this work the authors address the information gap between machine learning and signature-based detection methods by learning a representation space for malware samples in which files with similar malicious behaviours appear close to each other. They did so by introducing a deep learning based tagging model trained to generate human-interpretable semantic descriptions of malicious software, which, at the same time provides potentially more useful and flexible information than malware family names.
+Although powerful for conviction of malicious artefacts, machine learning detection methods do not produce any further information about the type of threat that has been detected neither allows for identifying relationships between malware samples. With this work the authors address the information gap between machine learning and signature-based detection methods by learning a representation space for malware samples in which files with similar malicious behaviours appear close to each other. They did so by introducing a deep learning based tagging model trained to generate human-interpretable semantic descriptions of malicious software, which, at the same time provides potentially more useful and flexible information than malware family names.
 
 They show that the malware descriptions generated with the proposed approach correctly identify more than $95\%$ of 11 possible tag descriptions for a given sample, at a deployable false positive rate of $1\%$ per tag. Furthermore, they used the learned representation space to introduce a similarity index between malware files, and empirically demonstrated using dynamic traces from files' execution, that is not only more effective at identifying samples from the same families, but also 32 times smaller than those based on raw feature vectors \cite{DucauAMDATSE}.
 
@@ -1946,8 +1976,6 @@ Semantic attribute tagging relies on multi-label classification, wherein the aut
 An alternative approach to multi-label classification, first introduced in the image tagging and retrieval literature, is to learn a compact shared vector space representation to which map both input samples and labels - a joint embedding - where similar content across modalities are projected into similar vectors in the same low dimensional space. At query time, a similarity comparison between vectors in this learned latent space is performed, e.g. via inner product, to determine likely labels. A variety of models could be employed to form a joint embedding, but crucially, the embedding is optimized across input modalities/labels. The authors used a joint embedding model that maps malware tags and executable files into the same low dimensional Euclidean space for the malware description problem.
 
 \subparagraph{Malware Analysis with Neural Networks}
-In recent years, multiple advances in machine learning for information security (ML-Sec) have take place. This can be attributed to several factors including an explosion in labelled data available from vendor aggregation services and threat intelligence feeds, and more powerful hardware and software frameworks for fitting highly expressive classifiers, along with a need of the cybersecurity industry to incorporate more flexible methods to improve their detection pipelines. The authors focused on analysis over Windows Portable Executable (PE) files based on static features, i.e. information that can be extracted from the binary files without having to execute them.
-
 In contrast to the authors' work which focuses on malware description and representation, most modern applications of deep learning have focused on malware detection. Saxe et al. \cite{} applied deep neural network detection to feature vectors derived from 2-dimensional histogram statistics of PE files along with hashed delimited strings and hashed elements from the file header, including metadata and import tables. Further applications of deep learning exploiting similar feature sets have been used to categorize web content, office documents, and archive formats. Other types of features and classifiers have also been used for the task of PE malware detection. For instance, Raff et al. demonstrated in \cite{} a way to effectively identify malware using solely an embedding of the first 300 bytes from the PE header. Later, Raff et al. proposed an embedding strategy which takes in the entire PE file for the same problem. In \cite{}, Bugra and Erdogan use a disassembler to retrieve the opcodes of the executable files and then a shallow network based on \textit{WORD2VEC} \cite{} to embed them into a continuous vector space. Afterwards, they train a gradient search algorithm based on Gradient Boosting Machines for the malware classification task.
 
 \paragraph{Semantic Malware Attribute Tags}
@@ -2128,14 +2156,6 @@ Their multi-view classifier trained on both file content and the contextual file
 ---
 
 \paragraph{Background and Related work (Static ML Malware Detection)}
-Commercial models typically rely on deep neural networks, or boosted decision tree ensembles and have been extended to other static file types as well, including web content, office documents, and archives. While methods for dealing with these different input types have their own intricacies, they typically use single inputs derived from file content as a feature vector or text embedding.
-
-Static ML detectors use highly parametric classifiers trained on many malicious and benign samples. The goal is to tune the parameters of these classifiers to best match the outputs from the classifiers for all input samples to their actual ground truth labels. Provided that the malware/benignware samples in the training set are similar enough in content to those seen at deployment and that the samples are well labelled, the learned detection function should work well.
-
-In practice, labels are often collected from vendor aggregation feeds, which submit samples to malware detectors from a variety of vendors. The results can be aggregated into labels that are usually correct, e.g. by using a 1-/5+ criterion or treating the label as a hidden variable and using statistical estimation methods. Often a time lag is introduced to let vendors update their models, blacklists, and whitelists accordingly. Generally, the longer the time lag, the more accurate the labels, but the less the data resembles that of the deployment distribution. In actual deployment contexts, classifiers are retrained on new data/labels periodically and the updated parameters are sent to the endpoints on which the detectors are running.
-
-Most static ML for information security (ML-Sec) classifiers operate on learned embeddings over portions of files (e.g. headers), learned embeddings over the full file, or most commonly, on pre-engineered numerical \textit{feature vectors} designed to summarize the content from each file. Learned embeddings, which generally presume some sort of convolutional architecture, have the advantage that they do not presume a fixed structure and are derived directly during training. However, this process is significantly more expensive, and does not scale as gracefully, e.g., to tens to hundreds of millions of large PE files. Moreover generic bytes are inherently less constrained than inputs like images, video, audio, and text, where convolutions can take advantage of structural localities/hierarchies. Thus, for generic malicious/benign files there is less performance benefit from learning to embed features directly from inputs. Pre-engineered feature vector representations, by contrast quickly distil content from each file that is informative in a classification sense. There are a number of ways to craft feature vectors, including tracking per-byte statistics over sliding windows, byte histograms, n-gram histograms, treating bytes as pixel values in an image (a visualisation of the file content), opcode and function call graph statistics, symbol statistics, hashed/numerical metadata values - e.g. entry point as a fraction of the file, or hashed imports and exports, - and hashes of delimited tokens. In practical applications, several different types of feature vectors extracted from file content are often concatenated together to achieve superior performance \cite{KyadigeLFCEIFPIBMD}.
-
 The authors used in their work a concatenation of features derived from the content of a PE file as an input to a neural network, adding a second input which includes contextual information - namely the PE File path. The PE content input is passed though a series of hidden layers while the file path is passed through a convolutional embedding. Both inputs are ultimately concatenated together into a common 'stem' of hidden layers. The final malicious/benign output score is obtained by passing the final dense layer output (a 1-D scalar) through a sigmoid activation function \cite{KyadigeLFCEIFPIBMD}.
 
 ---
@@ -2458,11 +2478,253 @@ As a further optimization I tried implementing 2 new dataloader variants which c
 
 The alternative generator 1 ('$alt1$') was inspired by the '\textit{index select}' version of \textit{FastTensorDataLoader} suggested in this post. In this version the dataset is loaded as a set of memory-mapped numpy arrays (one array for the features, one for the labels and one for the sha256 hashes) from which batches of data are randomly sampled using the pytorch '$index\_select$' function. Moreover, my version (differently from the original suggested one) is able to work also with multiple workers (in \textit{multithreading}).
 
+\begin{algorithm}
+	\caption{Alt1 get\_batch function}\label{Alt1GetBatch}
+	\begin{algorithmic}[1] % uncomment [1] for line numbers
+		\Function{get\_batch}{\textit{tensors}, \textit{batch\_size}, \textit{i}, \textit{indices}, ...}
+		
+		\State $\textit{batch} \gets [~]$
+		\If {\textit{indices} is provided}
+		\textcolor{codegreen}{\Comment{If \textit{indices} are provided use them}}
+			\State $\textit{indices} \gets \textit{indices}~[i:(i + batch\_size)]$
+			\textcolor{codegreen}{\Comment{get current batch indices}}
+			\If {len(\textit{tensors}) = 3}
+			\textcolor{codegreen}{\Comment{if \textit{tensors} contains also \textit{S} (shas) data}}
+				\State $\textit{batch}~[0] \gets \textit{tensors}~[0][\textit{indices}]$
+				\textcolor{codegreen}{\Comment{Select shas using \textit{indices}}}
+			\EndIf
+			\ForAll{$\textit{t} \in \textit{tensors}[-2:]$}
+			\textcolor{codegreen}{\Comment{For the last 2 tensors in \textit{tensors} (\textit{X} and \textit{y})}}
+				\State $\textit{batch\_data} \gets \textbf{index\_select}(t, indices)$
+				\textcolor{codegreen}{\Comment{Select data from the current tensor \textit{t}}}
+				\State \textbf{append} $\textit{batch\_data}$ \textbf{to} $\textit{batch}$
+				\textcolor{codegreen}{\Comment{Append selected \textit{batch\_data} to \textit{batch} array}}
+			\EndFor
+		\Else
+		\textcolor{codegreen}{\Comment{Get the data in order}}
+			\ForAll{$\textit{t} \in \textit{tensors}$}
+			\textcolor{codegreen}{\Comment{For all tensors in \textit{tensors}}}
+				\State $\textit{batch\_data} \gets t[i:(i + batch\_size)]$
+				\textcolor{codegreen}{\Comment{Select data from the current tensor \textit{t}}}
+				\State \textbf{append} $\textit{batch\_data}$ \textbf{to} $\textit{batch}$
+				\textcolor{codegreen}{\Comment{Append selected \textit{batch\_data} to \textit{batch} array}}
+			\EndFor
+		\EndIf
+		\State \textbf{return} $batch$
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+	\caption{Alt1 FastDataLoader class, Init}\label{Alt1FastDataLoaderInit}
+	\begin{algorithmic}[1] % uncomment [1] for line numbers
+		\Class{FastTensorDataloader}
+			\Function{Init}{\textit{self}, \textit{tensors}, \textit{batch\_size}, \textit{shuffle}, \textit{num\_workers}, ...}
+				\State $\textit{self.tensors} \gets \textit{tensors}$
+				\State $\textit{self.batch\_size} \gets \textit{batch\_size}$
+				\State $\textit{self.shuffle} \gets \textit{shuffle}$
+				\State $\textit{self.num\_workers} \gets \textit{num\_workers}$
+				\State $\textit{self.dataset\_len} \gets \textit{tensors[0].shape[0]}$
+				\textcolor{codegreen}{\Comment{Get dataset total length}}
+				\If{$\textit{num\_workers} > 1$}
+					\State $\textit{self.async\_results} \gets [~]$
+					\textcolor{codegreen}{\Comment{Initialize async results list}}
+					\State $\textit{self.pool} \gets \textbf{ThreadPool}()$
+					\textcolor{codegreen}{\Comment{Initialize Thread pool}}
+				\EndIf
+				\State $\textit{self.n\_batches} \gets \lceil self.dataset\_len / self.batch\_size \rceil$
+				\textcolor{codegreen}{\Comment{Compute number of batches}}
+			\EndFunction
+			\Statex
+			\Function{Del}{\textit{self}}
+				\If{$\textit{self.num\_workers} > 1$}
+					\State $\textit{self.pool.\textbf{close}}()$
+					\textcolor{codegreen}{\Comment{Close thread pool}}
+				\EndIf			
+			\EndFunction
+			\algstore{bkbreak}
+		\end{algorithmic}
+	\end{algorithm}
+
+\begin{algorithm}[h]
+	\caption{Alt1 FastDataLoader class, Iter}\label{Alt1FastDataLoaderIter}
+	\begin{algorithmic}[1]
+		\algrestore{bkbreak}
+			\Function{Iter}{\textit{self}}
+				\If{\textit{self.shuffle} = \textit{true}}
+					\State $\textit{self.indices} \gets \textbf{randperm}(\textit{self.dataset\_len})$
+					\textcolor{codegreen}{\Comment{Randomly create indices}}
+				\Else
+					\State $\textit{self.indices} \gets \text{None}$
+					\textcolor{codegreen}{\Comment{No indices are created}}
+				\EndIf
+				\State $\textit{self.i} \gets 0$
+				\textcolor{codegreen}{\Comment{Set current index to 0}}
+				\State \textbf{return} \textit{self}			
+			\EndFunction
+			\algstore{bkbreak}
+		\end{algorithmic}
+	\end{algorithm}
+
+\begin{algorithm}[h]
+	\caption{Alt1 FastDataLoader class, Next}\label{Alt1FastDataLoaderNext}
+	\begin{algorithmic}[1]
+		\algrestore{bkbreak}
+			\Function{Next}{\textit{self}}
+				\If{$\textit{self.i} \ge \textit{self.dataset\_len}$}
+				\textcolor{codegreen}{\Comment{If we are at the end of the dataset}}
+					\If{($\textit{self.num\_workers} = 1$ \textbf{or} $\textbf{len}(\textit{self.async\_results}) = 0$)}
+					\textcolor{codegreen}{\Comment{If just 1 worker was used or there are no async results to wait for in case of multiple workers}}
+						\State \textbf{raise} $StopIteration$
+						\textcolor{codegreen}{\Comment{Stop iteration}}
+					\EndIf
+				\EndIf
+				
+				\If{$\textit{self.num\_workers} = 1$}
+					\State $\textit{batch} \gets \textbf{get\_batch}(\textit{tensors}, \textit{batch\_size}, \textit{i}, \textit{indices})$
+					\textcolor{codegreen}{\Comment{Get batch of data}}
+					\State $\textit{self.i} \gets \textit{self.i} + \textit{self.batch\_size}$
+					\textcolor{codegreen}{\Comment{Update current index}}
+					\State \textbf{return} \textit{batch}
+				\Else
+					\textcolor{codegreen}{\Comment{Until there is data in the dataset and there is space in the \textit{async\_results} list}}
+					\While{$\textit{self.i} < \textit{self.dataset\_len}$ \textbf{and} $\textbf{len}(\textit{self.async\_results}) < \textit{self.num\_workers}$}
+						\State $\textit{arguments} \gets (\textit{tensors}, \textit{batch\_size}, \textit{i}, \textit{indices})$
+						\textcolor{codegreen}{\Comment{Set \textit{get\_batch} arguments}}
+						\State $\textit{async\_task} \gets \textit{self.pool.\textbf{apply\_async}}(\textbf{get\_batch}, \textit{arguments})$
+						\textcolor{codegreen}{\Comment{Asynchronously call \textbf{get\_batch} function}}
+						\State $\textit{self.async\_results.\textbf{append}}(\textit{async\_task})$
+						\textcolor{codegreen}{\Comment{Append async task to \textit{async\_results}}}
+						\State $\textit{self.i} \gets \textit{self.i} + \textit{self.batch\_size}$
+						\textcolor{codegreen}{\Comment{Update current index}}
+					\EndWhile
+					\State $\textit{current\_result} \gets \textit{self.async\_results.\textbf{pop}}(0)$
+					\textcolor{codegreen}{\Comment{Pop first element of \textit{async\_results}}}
+					\State \textbf{return} $\textit{current\_result.\textbf{get}}()$
+					\textcolor{codegreen}{\Comment{Wait for task completion and return its value}}
+				\EndIf
+			\EndFunction
+		\EndClass
+	\end{algorithmic}
+\end{algorithm}
+
 \color{Black}
 \paragraph{Generator alt2}
 \color{Red}
 
 The alternative generator 2 ('$alt2$') was inspired by the '\textit{shuffle in-place}' version of \textit{FastTensorDataLoader} suggested in this post. In this version the dataset is again loaded as a set of memory-mapped numpy arrays, as version 1. In this case, however, the arrays are randomly shuffled in place at each iteration, before sampling (in order) batches of data from them. Again, my version (differently from the original suggested one) is able to work also with multiple workers (in \textit{multithreading}).
+
+\begin{algorithm}
+	\caption{Alt2 get\_batch function}\label{Alt2GetBatch}
+	\begin{algorithmic}[1] % uncomment [1] for line numbers
+		\Function{get\_batch}{\textit{tensors}, \textit{batch\_size}, \textit{i}, ...}
+			\State $\textit{batch} \gets [~]$
+			\textcolor{codegreen}{\Comment{Get the data in order}}
+			\ForAll{$\textit{t} \in \textit{tensors}$}
+				\textcolor{codegreen}{\Comment{For all tensors in \textit{tensors}}}
+				\State $\textit{batch\_data} \gets t[i:(i + batch\_size)]$
+				\textcolor{codegreen}{\Comment{Select data from the current tensor \textit{t}}}
+				\State \textbf{append} $\textit{batch\_data}$ \textbf{to} $\textit{batch}$
+				\textcolor{codegreen}{\Comment{Append selected \textit{batch\_data} to \textit{batch} array}}
+			\EndFor
+			\State \textbf{return} $batch$
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+	\caption{Alt2 FastDataLoader class, Init}\label{Alt2FastDataLoaderInit}
+	\begin{algorithmic}[1] % uncomment [1] for line numbers
+		\Class{FastTensorDataloader}
+			\Function{Init}{\textit{self}, \textit{tensors}, \textit{batch\_size}, \textit{shuffle}, \textit{num\_workers}, ...}
+				\State $\textit{self.tensors} \gets \textit{tensors}$
+				\State $\textit{self.batch\_size} \gets \textit{batch\_size}$
+				\State $\textit{self.shuffle} \gets \textit{shuffle}$
+				\State $\textit{self.num\_workers} \gets \textit{num\_workers}$
+				\State $\textit{self.dataset\_len} \gets \textit{tensors[0].shape[0]}$
+				\textcolor{codegreen}{\Comment{Get dataset total length}}
+				\If{$\textit{num\_workers} > 1$}
+				\State $\textit{self.async\_results} \gets [~]$
+				\textcolor{codegreen}{\Comment{Initialize async results list}}
+				\State $\textit{self.pool} \gets \textbf{ThreadPool}()$
+				\textcolor{codegreen}{\Comment{Initialize Thread pool}}
+				\EndIf
+				\State $\textit{self.n\_batches} \gets \lceil self.dataset\_len / self.batch\_size \rceil$
+				\textcolor{codegreen}{\Comment{Compute number of batches}}
+			\EndFunction
+			\Statex
+			\Function{Del}{\textit{self}}
+				\If{$\textit{self.num\_workers} > 1$}
+					\State $\textit{self.pool.\textbf{close}}()$
+					\textcolor{codegreen}{\Comment{Close thread pool}}
+				\EndIf			
+			\EndFunction
+			\algstore{bkbreak}
+		\end{algorithmic}
+	\end{algorithm}
+
+\begin{algorithm}[h]
+	\caption{Alt2 FastDataLoader class, Iter}\label{Alt2FastDataLoaderIter}
+	\begin{algorithmic}[1]
+		\algrestore{bkbreak}
+			\Function{Iter}{\textit{self}}
+				\If{\textit{self.shuffle} = \textit{true}}
+					\State $\textit{r} \gets \textbf{randperm}(\textit{self.dataset\_len})$
+					\textcolor{codegreen}{\Comment{Randomly create indices}}
+					\For{$\textit{i}, \textit{t} \in \textbf{enumerate}(\textit{self.tensors})$}
+						\State $\textit{self.tensors}[\textit{i}] \gets \textit{t}[\textit{r}]$
+						\textcolor{codegreen}{\Comment{Permute (in-place) the data in tensors}}
+					\EndFor
+				\EndIf
+				\State $\textit{self.i} \gets 0$
+				\textcolor{codegreen}{\Comment{Set current index to 0}}
+				\State \textbf{return} \textit{self}			
+			\EndFunction
+			\algstore{bkbreak}
+		\end{algorithmic}
+	\end{algorithm}
+
+\begin{algorithm}[h]
+	\caption{Alt2 FastDataLoader class, Next}\label{Alt2FastDataLoaderNext}
+	\begin{algorithmic}[1]
+		\algrestore{bkbreak}
+			\Function{Next}{\textit{self}}
+				\If{$\textit{self.i} \ge \textit{self.dataset\_len}$}
+				\textcolor{codegreen}{\Comment{If we are at the end of the dataset}}
+				\If{($\textit{self.num\_workers} = 1$ \textbf{or} $\textbf{len}(\textit{self.async\_results}) = 0$)}
+				\textcolor{codegreen}{\Comment{If just 1 worker was used or there are no async results to wait for in case of multiple workers}}
+				\State \textbf{raise} $StopIteration$
+				\textcolor{codegreen}{\Comment{Stop iteration}}
+				\EndIf
+				\EndIf
+				
+				\If{$\textit{self.num\_workers} = 1$}
+				\State $\textit{batch} \gets \textbf{get\_batch}(\textit{tensors}, \textit{batch\_size}, \textit{i}, \textit{indices})$
+				\textcolor{codegreen}{\Comment{Get batch of data}}
+				\State $\textit{self.i} \gets \textit{self.i} + \textit{self.batch\_size}$
+				\textcolor{codegreen}{\Comment{Update current index}}
+				\State \textbf{return} \textit{batch}
+				\Else
+				\textcolor{codegreen}{\Comment{Until there is data in the dataset and there is space in the \textit{async\_results} list}}
+				\While{$\textit{self.i} < \textit{self.dataset\_len}$ \textbf{and} $\textbf{len}(\textit{self.async\_results}) < \textit{self.num\_workers}$}
+				\State $\textit{arguments} \gets (\textit{tensors}, \textit{batch\_size}, \textit{i})$
+				\textcolor{codegreen}{\Comment{Set \textit{get\_batch} arguments}}
+				\State $\textit{async\_task} \gets \textit{self.pool.\textbf{apply\_async}}(\textbf{get\_batch}, \textit{arguments})$
+				\textcolor{codegreen}{\Comment{Asynchronously call \textbf{get\_batch} function}}
+				\State $\textit{self.async\_results.\textbf{append}}(\textit{async\_task})$
+				\textcolor{codegreen}{\Comment{Append async task to \textit{async\_results}}}
+				\State $\textit{self.i} \gets \textit{self.i} + \textit{self.batch\_size}$
+				\textcolor{codegreen}{\Comment{Update current index}}
+				\EndWhile
+				\State $\textit{current\_result} \gets \textit{self.async\_results.\textbf{pop}}(0)$
+				\textcolor{codegreen}{\Comment{Pop first element of \textit{async\_results}}}
+				\State \textbf{return} $\textit{current\_result.\textbf{get}}()$
+				\textcolor{codegreen}{\Comment{Wait for task completion and return its value}}
+				\EndIf
+			\EndFunction
+		\EndClass
+	\end{algorithmic}
+\end{algorithm}
 
 \color{Black}
 \paragraph{Generator alt3}
@@ -2473,6 +2735,118 @@ Unfortunately, when considering $6M$ samples, the alternative generator version 
 Since using a Google Cloud instance did not provide a significant speed-up, and since the model needed $\sim60$ hours to complete 1 training run, I had to think of another dataloader optimization. I thus developed a further alternative dataloader ('$alt3$') that managed to reduce the time needed for 1 training epoch (considering 6M samples) from $\sim6$ hours to $\sim15$ minutes. The time needed to complete a full training run is thus now $\sim2.5$ hours ($\sim3$ hours considering also model evaluation).
 The optimization consists of a tradeoff between loading speed and samples dispersion. In fact, the new dataloader uses a pool of threads to asynchronously load the dataset into memory in chunks. In particular each thread loads into memory '$n\_chunks$' randomly chosen chunks. Each thread then proceeds to concatenate together its '$n\_chunks$' chunks, which contain '$chunk\_size$' malware samples each, generating each a '$chunk\_aggregate$', which is then randomly shuffled and returned by the thread. The $chunk\_aggregates$ are asynchronously inserted in a queue (the order depends on the threads instantiation order) of fixed length equal to the number of workers used. The main dataloader thread manages the $chunk\_aggregate$ queue, instantiating the parallel threads such that the queue is always full. Moreover, the main dataloader thread sequentially extracts, when possible, one $chunk\_aggregate$ at a time from the queue and then proceeds to return one batch of data at a time from it, when required.
 Selecting different values for $chunk\_size$ and $n\_chunks$ has an impact on the speed of the dataloader and on the samples dispersion. In fact the samples are not anymore randomly chosen from the whole dataset, but from a random sub-part of it. This effectively decreases the amount of dispersion (and randomness) of batches possibly affecting the final model generalization. It is therefore better to consider a higher value for $n\_chunks$ possibly decreasing $chunk\_size$. Furhtermore, the values for $chunk\_size$ and $n\_chunks$) should be chosed carefully since their product results in the number of samples loaded into memory (RAM) at once for a single worker thread. Increasing too much this number (together with the number of workers used) will quickly saturate the available RAM.
+
+\begin{algorithm}
+	\caption{Alt2 get\_batch function}\label{Alt2GetBatch}
+	\begin{algorithmic}[1] % uncomment [1] for line numbers
+		\Function{get\_batch}{\textit{tensors}, \textit{batch\_size}, \textit{i}, ...}
+		\State $\textit{batch} \gets [~]$
+		\textcolor{codegreen}{\Comment{Get the data in order}}
+		\ForAll{$\textit{t} \in \textit{tensors}$}
+		\textcolor{codegreen}{\Comment{For all tensors in \textit{tensors}}}
+		\State $\textit{batch\_data} \gets t[i:(i + batch\_size)]$
+		\textcolor{codegreen}{\Comment{Select data from the current tensor \textit{t}}}
+		\State \textbf{append} $\textit{batch\_data}$ \textbf{to} $\textit{batch}$
+		\textcolor{codegreen}{\Comment{Append selected \textit{batch\_data} to \textit{batch} array}}
+		\EndFor
+		\State \textbf{return} $batch$
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+	\caption{Alt2 FastDataLoader class, Init}\label{Alt2FastDataLoaderInit}
+	\begin{algorithmic}[1] % uncomment [1] for line numbers
+		\Class{FastTensorDataloader}
+		\Function{Init}{\textit{self}, \textit{tensors}, \textit{batch\_size}, \textit{shuffle}, \textit{num\_workers}, ...}
+		\State $\textit{self.tensors} \gets \textit{tensors}$
+		\State $\textit{self.batch\_size} \gets \textit{batch\_size}$
+		\State $\textit{self.shuffle} \gets \textit{shuffle}$
+		\State $\textit{self.num\_workers} \gets \textit{num\_workers}$
+		\State $\textit{self.dataset\_len} \gets \textit{tensors[0].shape[0]}$
+		\textcolor{codegreen}{\Comment{Get dataset total length}}
+		\If{$\textit{num\_workers} > 1$}
+		\State $\textit{self.async\_results} \gets [~]$
+		\textcolor{codegreen}{\Comment{Initialize async results list}}
+		\State $\textit{self.pool} \gets \textbf{ThreadPool}()$
+		\textcolor{codegreen}{\Comment{Initialize Thread pool}}
+		\EndIf
+		\State $\textit{self.n\_batches} \gets \lceil self.dataset\_len / self.batch\_size \rceil$
+		\textcolor{codegreen}{\Comment{Compute number of batches}}
+		\EndFunction
+		\Statex
+		\Function{Del}{\textit{self}}
+		\If{$\textit{self.num\_workers} > 1$}
+		\State $\textit{self.pool.\textbf{close}}()$
+		\textcolor{codegreen}{\Comment{Close thread pool}}
+		\EndIf			
+		\EndFunction
+		\algstore{bkbreak}
+	\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[h]
+	\caption{Alt2 FastDataLoader class, Iter}\label{Alt2FastDataLoaderIter}
+	\begin{algorithmic}[1]
+		\algrestore{bkbreak}
+		\Function{Iter}{\textit{self}}
+		\If{\textit{self.shuffle} = \textit{true}}
+		\State $\textit{r} \gets \textbf{randperm}(\textit{self.dataset\_len})$
+		\textcolor{codegreen}{\Comment{Randomly create indices}}
+		\For{$\textit{i}, \textit{t} \in \textbf{enumerate}(\textit{self.tensors})$}
+		\State $\textit{self.tensors}[\textit{i}] \gets \textit{t}[\textit{r}]$
+		\textcolor{codegreen}{\Comment{Permute (in-place) the data in tensors}}
+		\EndFor
+		\EndIf
+		\State $\textit{self.i} \gets 0$
+		\textcolor{codegreen}{\Comment{Set current index to 0}}
+		\State \textbf{return} \textit{self}			
+		\EndFunction
+		\algstore{bkbreak}
+	\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[h]
+	\caption{Alt2 FastDataLoader class, Next}\label{Alt2FastDataLoaderNext}
+	\begin{algorithmic}[1]
+		\algrestore{bkbreak}
+		\Function{Next}{\textit{self}}
+		\If{$\textit{self.i} \ge \textit{self.dataset\_len}$}
+		\textcolor{codegreen}{\Comment{If we are at the end of the dataset}}
+		\If{($\textit{self.num\_workers} = 1$ \textbf{or} $\textbf{len}(\textit{self.async\_results}) = 0$)}
+		\textcolor{codegreen}{\Comment{If just 1 worker was used or there are no async results to wait for in case of multiple workers}}
+		\State \textbf{raise} $StopIteration$
+		\textcolor{codegreen}{\Comment{Stop iteration}}
+		\EndIf
+		\EndIf
+		
+		\If{$\textit{self.num\_workers} = 1$}
+		\State $\textit{batch} \gets \textbf{get\_batch}(\textit{tensors}, \textit{batch\_size}, \textit{i}, \textit{indices})$
+		\textcolor{codegreen}{\Comment{Get batch of data}}
+		\State $\textit{self.i} \gets \textit{self.i} + \textit{self.batch\_size}$
+		\textcolor{codegreen}{\Comment{Update current index}}
+		\State \textbf{return} \textit{batch}
+		\Else
+		\textcolor{codegreen}{\Comment{Until there is data in the dataset and there is space in the \textit{async\_results} list}}
+		\While{$\textit{self.i} < \textit{self.dataset\_len}$ \textbf{and} $\textbf{len}(\textit{self.async\_results}) < \textit{self.num\_workers}$}
+		\State $\textit{arguments} \gets (\textit{tensors}, \textit{batch\_size}, \textit{i})$
+		\textcolor{codegreen}{\Comment{Set \textit{get\_batch} arguments}}
+		\State $\textit{async\_task} \gets \textit{self.pool.\textbf{apply\_async}}(\textbf{get\_batch}, \textit{arguments})$
+		\textcolor{codegreen}{\Comment{Asynchronously call \textbf{get\_batch} function}}
+		\State $\textit{self.async\_results.\textbf{append}}(\textit{async\_task})$
+		\textcolor{codegreen}{\Comment{Append async task to \textit{async\_results}}}
+		\State $\textit{self.i} \gets \textit{self.i} + \textit{self.batch\_size}$
+		\textcolor{codegreen}{\Comment{Update current index}}
+		\EndWhile
+		\State $\textit{current\_result} \gets \textit{self.async\_results.\textbf{pop}}(0)$
+		\textcolor{codegreen}{\Comment{Pop first element of \textit{async\_results}}}
+		\State \textbf{return} $\textit{current\_result.\textbf{get}}()$
+		\textcolor{codegreen}{\Comment{Wait for task completion and return its value}}
+		\EndIf
+		\EndFunction
+		\EndClass
+	\end{algorithmic}
+\end{algorithm}
 
 \color{Black}
 \subparagraph{Generator parameters optimization}
