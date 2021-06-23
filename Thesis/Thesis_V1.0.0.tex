@@ -2535,13 +2535,6 @@ The alternative generator 1 ('$alt1$') was inspired by the '\textit{index select
 				\State $\textit{self.n\_batches} \gets \lceil self.dataset\_len / self.batch\_size \rceil$
 				\textcolor{codegreen}{\Comment{Compute number of batches}}
 			\EndFunction
-			\Statex
-			\Function{Del}{\textit{self}}
-				\If{$\textit{self.num\_workers} > 1$}
-					\State $\textit{self.pool.\textbf{close}}()$
-					\textcolor{codegreen}{\Comment{Close thread pool}}
-				\EndIf			
-			\EndFunction
 			\algstore{bkbreak}
 		\end{algorithmic}
 	\end{algorithm}
@@ -2644,20 +2637,13 @@ The alternative generator 2 ('$alt2$') was inspired by the '\textit{shuffle in-p
 				\State $\textit{self.dataset\_len} \gets \textit{tensors[0].shape[0]}$
 				\textcolor{codegreen}{\Comment{Get dataset total length}}
 				\If{$\textit{num\_workers} > 1$}
-				\State $\textit{self.async\_results} \gets [~]$
-				\textcolor{codegreen}{\Comment{Initialize async results list}}
-				\State $\textit{self.pool} \gets \textbf{ThreadPool}()$
-				\textcolor{codegreen}{\Comment{Initialize Thread pool}}
+					\State $\textit{self.async\_results} \gets [~]$
+					\textcolor{codegreen}{\Comment{Initialize async results list}}
+					\State $\textit{self.pool} \gets \textbf{ThreadPool}()$
+					\textcolor{codegreen}{\Comment{Initialize Thread pool}}
 				\EndIf
 				\State $\textit{self.n\_batches} \gets \lceil self.dataset\_len / self.batch\_size \rceil$
 				\textcolor{codegreen}{\Comment{Compute number of batches}}
-			\EndFunction
-			\Statex
-			\Function{Del}{\textit{self}}
-				\If{$\textit{self.num\_workers} > 1$}
-					\State $\textit{self.pool.\textbf{close}}()$
-					\textcolor{codegreen}{\Comment{Close thread pool}}
-				\EndIf			
 			\EndFunction
 			\algstore{bkbreak}
 		\end{algorithmic}
@@ -2691,35 +2677,35 @@ The alternative generator 2 ('$alt2$') was inspired by the '\textit{shuffle in-p
 			\Function{Next}{\textit{self}}
 				\If{$\textit{self.i} \ge \textit{self.dataset\_len}$}
 				\textcolor{codegreen}{\Comment{If we are at the end of the dataset}}
-				\If{($\textit{self.num\_workers} = 1$ \textbf{or} $\textbf{len}(\textit{self.async\_results}) = 0$)}
-				\textcolor{codegreen}{\Comment{If just 1 worker was used or there are no async results to wait for in case of multiple workers}}
-				\State \textbf{raise} $StopIteration$
-				\textcolor{codegreen}{\Comment{Stop iteration}}
-				\EndIf
+					\If{($\textit{self.num\_workers} = 1$ \textbf{or} $\textbf{len}(\textit{self.async\_results}) = 0$)}
+					\textcolor{codegreen}{\Comment{If just 1 worker was used or there are no async results to wait for in case of multiple workers}}
+						\State \textbf{raise} $StopIteration$
+						\textcolor{codegreen}{\Comment{Stop iteration}}
+					\EndIf
 				\EndIf
 				
 				\If{$\textit{self.num\_workers} = 1$}
-				\State $\textit{batch} \gets \textbf{get\_batch}(\textit{tensors}, \textit{batch\_size}, \textit{i}, \textit{indices})$
-				\textcolor{codegreen}{\Comment{Get batch of data}}
-				\State $\textit{self.i} \gets \textit{self.i} + \textit{self.batch\_size}$
-				\textcolor{codegreen}{\Comment{Update current index}}
-				\State \textbf{return} \textit{batch}
+					\State $\textit{batch} \gets \textbf{get\_batch}(\textit{tensors}, \textit{batch\_size}, \textit{i}, \textit{indices})$
+					\textcolor{codegreen}{\Comment{Get batch of data}}
+					\State $\textit{self.i} \gets \textit{self.i} + \textit{self.batch\_size}$
+					\textcolor{codegreen}{\Comment{Update current index}}
+					\State \textbf{return} \textit{batch}
 				\Else
 				\textcolor{codegreen}{\Comment{Until there is data in the dataset and there is space in the \textit{async\_results} list}}
-				\While{$\textit{self.i} < \textit{self.dataset\_len}$ \textbf{and} $\textbf{len}(\textit{self.async\_results}) < \textit{self.num\_workers}$}
-				\State $\textit{arguments} \gets (\textit{tensors}, \textit{batch\_size}, \textit{i})$
-				\textcolor{codegreen}{\Comment{Set \textit{get\_batch} arguments}}
-				\State $\textit{async\_task} \gets \textit{self.pool.\textbf{apply\_async}}(\textbf{get\_batch}, \textit{arguments})$
-				\textcolor{codegreen}{\Comment{Asynchronously call \textbf{get\_batch} function}}
-				\State $\textit{self.async\_results.\textbf{append}}(\textit{async\_task})$
-				\textcolor{codegreen}{\Comment{Append async task to \textit{async\_results}}}
-				\State $\textit{self.i} \gets \textit{self.i} + \textit{self.batch\_size}$
-				\textcolor{codegreen}{\Comment{Update current index}}
-				\EndWhile
-				\State $\textit{current\_result} \gets \textit{self.async\_results.\textbf{pop}}(0)$
-				\textcolor{codegreen}{\Comment{Pop first element of \textit{async\_results}}}
-				\State \textbf{return} $\textit{current\_result.\textbf{get}}()$
-				\textcolor{codegreen}{\Comment{Wait for task completion and return its value}}
+					\While{$\textit{self.i} < \textit{self.dataset\_len}$ \textbf{and} $\textbf{len}(\textit{self.async\_results}) < \textit{self.num\_workers}$}
+						\State $\textit{arguments} \gets (\textit{tensors}, \textit{batch\_size}, \textit{i})$
+						\textcolor{codegreen}{\Comment{Set \textit{get\_batch} arguments}}
+						\State $\textit{async\_task} \gets \textit{self.pool.\textbf{apply\_async}}(\textbf{get\_batch}, \textit{arguments})$
+						\textcolor{codegreen}{\Comment{Asynchronously call \textbf{get\_batch} function}}
+						\State $\textit{self.async\_results.\textbf{append}}(\textit{async\_task})$
+						\textcolor{codegreen}{\Comment{Append async task to \textit{async\_results}}}
+						\State $\textit{self.i} \gets \textit{self.i} + \textit{self.batch\_size}$
+						\textcolor{codegreen}{\Comment{Update current index}}
+					\EndWhile
+					\State $\textit{current\_result} \gets \textit{self.async\_results.\textbf{pop}}(0)$
+					\textcolor{codegreen}{\Comment{Pop first element of \textit{async\_results}}}
+					\State \textbf{return} $\textit{current\_result.\textbf{get}}()$
+					\textcolor{codegreen}{\Comment{Wait for task completion and return its value}}
 				\EndIf
 			\EndFunction
 		\EndClass
@@ -2737,13 +2723,13 @@ The optimization consists of a tradeoff between loading speed and samples disper
 Selecting different values for $chunk\_size$ and $n\_chunks$ has an impact on the speed of the dataloader and on the samples dispersion. In fact the samples are not anymore randomly chosen from the whole dataset, but from a random sub-part of it. This effectively decreases the amount of dispersion (and randomness) of batches possibly affecting the final model generalization. It is therefore better to consider a higher value for $n\_chunks$ possibly decreasing $chunk\_size$. Furhtermore, the values for $chunk\_size$ and $n\_chunks$) should be chosed carefully since their product results in the number of samples loaded into memory (RAM) at once for a single worker thread. Increasing too much this number (together with the number of workers used) will quickly saturate the available RAM.
 
 \begin{algorithm}
-	\caption{Alt2 get\_batch function}\label{Alt2GetBatch}
+	\caption{Alt3 get\_batch function}\label{Alt3GetBatch}
 	\begin{algorithmic}[1] % uncomment [1] for line numbers
-		\Function{get\_batch}{\textit{tensors}, \textit{batch\_size}, \textit{i}, ...}
+		\Function{get\_batch}{\textit{chunk\_agg}, \textit{batch\_size}, \textit{i}, ...}
 		\State $\textit{batch} \gets [~]$
 		\textcolor{codegreen}{\Comment{Get the data in order}}
-		\ForAll{$\textit{t} \in \textit{tensors}$}
-		\textcolor{codegreen}{\Comment{For all tensors in \textit{tensors}}}
+		\ForAll{$\textit{t} \in \textit{chunk\_agg}$}
+		\textcolor{codegreen}{\Comment{For all tensors in \textit{chunk\_agg}}}
 		\State $\textit{batch\_data} \gets t[i:(i + batch\_size)]$
 		\textcolor{codegreen}{\Comment{Select data from the current tensor \textit{t}}}
 		\State \textbf{append} $\textit{batch\_data}$ \textbf{to} $\textit{batch}$
@@ -2755,7 +2741,20 @@ Selecting different values for $chunk\_size$ and $n\_chunks$ has an impact on th
 \end{algorithm}
 
 \begin{algorithm}
-	\caption{Alt2 FastDataLoader class, Init}\label{Alt2FastDataLoaderInit}
+	\caption{Alt3 get\_chunks function}\label{Alt3GetChunks}
+	\begin{algorithmic}[1] % uncomment [1] for line numbers
+		\Function{get\_chunks}{\textit{tensors}, \textit{chunk\_indices}, \textit{chunk\_size}, \textit{last\_chunk\_size}, \textit{n\_chunks}, \textit{shuffle}}
+			\If{$n\_chunks - 1$ \textbf{in} $chunk\_indices$}
+				\State $\textit{chunk\_agg\_size} \gets (\textbf{len}(\textit{chunk\_indices}) - 1) \cdot \textit{chunk\_size} + \textit{last\_chunk\_size}$
+			\Else
+				\State $\textit{chunk\_agg\_size} \gets \textbf{len}(\textit{chunk\_indices}) \cdot \textit{chunk\_size}$
+			\EndIf		
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+	\caption{Alt3 FastDataLoader class, Init}\label{Alt3FastDataLoaderInit}
 	\begin{algorithmic}[1] % uncomment [1] for line numbers
 		\Class{FastTensorDataloader}
 		\Function{Init}{\textit{self}, \textit{tensors}, \textit{batch\_size}, \textit{shuffle}, \textit{num\_workers}, ...}
@@ -2774,19 +2773,12 @@ Selecting different values for $chunk\_size$ and $n\_chunks$ has an impact on th
 		\State $\textit{self.n\_batches} \gets \lceil self.dataset\_len / self.batch\_size \rceil$
 		\textcolor{codegreen}{\Comment{Compute number of batches}}
 		\EndFunction
-		\Statex
-		\Function{Del}{\textit{self}}
-		\If{$\textit{self.num\_workers} > 1$}
-		\State $\textit{self.pool.\textbf{close}}()$
-		\textcolor{codegreen}{\Comment{Close thread pool}}
-		\EndIf			
-		\EndFunction
 		\algstore{bkbreak}
 	\end{algorithmic}
 \end{algorithm}
 
 \begin{algorithm}[h]
-	\caption{Alt2 FastDataLoader class, Iter}\label{Alt2FastDataLoaderIter}
+	\caption{Alt3 FastDataLoader class, Iter}\label{Alt3FastDataLoaderIter}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 		\Function{Iter}{\textit{self}}
@@ -2807,7 +2799,7 @@ Selecting different values for $chunk\_size$ and $n\_chunks$ has an impact on th
 \end{algorithm}
 
 \begin{algorithm}[h]
-	\caption{Alt2 FastDataLoader class, Next}\label{Alt2FastDataLoaderNext}
+	\caption{Alt3 FastDataLoader class, Next}\label{Alt3FastDataLoaderNext}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 		\Function{Next}{\textit{self}}
