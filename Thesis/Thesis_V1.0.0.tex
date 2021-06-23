@@ -2726,15 +2726,16 @@ Selecting different values for $chunk\_size$ and $n\_chunks$ has an impact on th
 	\caption{Alt3 get\_batch function}\label{Alt3GetBatch}
 	\begin{algorithmic}[1] % uncomment [1] for line numbers
 		\Function{get\_batch}{\textit{chunk\_agg}, \textit{batch\_size}, \textit{i}, ...}
-		\State $\textit{batch} \gets [~]$
+		\State $batch \gets [~]$
 		\textcolor{codegreen}{\Comment{Get the data in order}}
-		\ForAll{$\textit{t} \in \textit{chunk\_agg}$}
+		\ForAll{$t \in chunk\_agg$}
 		\textcolor{codegreen}{\Comment{For all tensors in \textit{chunk\_agg}}}
-		\State $\textit{batch\_data} \gets t[i:(i + batch\_size)]$
+		\State $batch\_data \gets t[i:(i + batch\_size)]$
 		\textcolor{codegreen}{\Comment{Select data from the current tensor \textit{t}}}
-		\State \textbf{append} $\textit{batch\_data}$ \textbf{to} $\textit{batch}$
+		\State $batch.\textbf{append}(batch\_data)$
 		\textcolor{codegreen}{\Comment{Append selected \textit{batch\_data} to \textit{batch} array}}
 		\EndFor
+		\State
 		\State \textbf{return} $batch$
 		\EndFunction
 	\end{algorithmic}
@@ -2745,10 +2746,49 @@ Selecting different values for $chunk\_size$ and $n\_chunks$ has an impact on th
 	\begin{algorithmic}[1] % uncomment [1] for line numbers
 		\Function{get\_chunks}{\textit{tensors}, \textit{chunk\_indices}, \textit{chunk\_size}, \textit{last\_chunk\_size}, \textit{n\_chunks}, \textit{shuffle}}
 			\If{$n\_chunks - 1$ \textbf{in} $chunk\_indices$}
-				\State $\textit{chunk\_agg\_size} \gets (\textbf{len}(\textit{chunk\_indices}) - 1) \cdot \textit{chunk\_size} + \textit{last\_chunk\_size}$
+				\State $chunk\_agg\_size \gets (\textbf{len}(chunk\_indices) - 1) \cdot chunk\_size + last\_chunk\_size$
 			\Else
-				\State $\textit{chunk\_agg\_size} \gets \textbf{len}(\textit{chunk\_indices}) \cdot \textit{chunk\_size}$
-			\EndIf		
+				\State $chunk\_agg\_size \gets \textbf{len}(chunk\_indices) \cdot chunk\_size$
+			\EndIf
+			\State
+			\State $chunk\_agg \gets []$
+			\If {len(\textit{tensors}) = 3}
+				\textcolor{codegreen}{\Comment{if \textit{tensors} contains also \textit{S} (shas) data}}
+				\State $chunk\_agg.\textbf{append}(\textbf{emptyNumpyArray})$
+				\ForAll{$t \in tensors[-2:]$}
+					\State $chunk\_agg.\textbf{append}(\textbf{emptyTensor})$
+				\EndFor
+			\Else
+				\ForAll{$t \in tensors$}
+					\State $chunk\_agg.\textbf{append}(\textbf{emptyTensor})$
+				\EndFor
+			\EndIf
+			\State
+			\State $c\_start \gets 0$
+			\ForAll{$idx \in [0, ..., \textbf{len}(chunk\_indices)]$}
+				\State $t\_start \gets chunk\_indices[idx] \cdot chunk\_size$
+				\If{$chunk\_indices[idx] \neq n\_chunks - 1$}
+					\State $c\_end \gets c\_start + chunk\_size$
+					\State $t\_end \gets t\_start + chunk\_size$
+				\Else
+					\State $c\_end \gets c\_start + last\_chunk\_size$
+					\State $t\_end \gets t\_start + last\_chunk\_size$
+				\EndIf
+				
+				\For{$i, t \in \textbf{enumerate}(tensors)$}
+					\State $chunk\_agg[i][c\_start:c\_end] \gets t[t\_start:t\_end]$
+				\EndFor
+				\State $c\_start = c\_end$
+			\EndFor
+			\State
+			\If{$shuffle = true$}
+				\State $r = \textbf{randperm}(chunk\_agg\_size)$
+				\For{$i, t \in \textbf{enumerate}(chunk\_agg)$}
+					\State $chunk\_agg[i] = t[r]$
+				\EndFor
+			\EndIf
+			\State
+			\State \textbf{return} $chunk\_agg$, $chunk\_agg\_size$
 		\EndFunction
 	\end{algorithmic}
 \end{algorithm}

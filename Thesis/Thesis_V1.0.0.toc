@@ -154,13 +154,13 @@
 \contentsline {paragraph}{Generator alt2}{80}{section*.111}%
 \contentsline {paragraph}{Generator alt3}{80}{section*.112}%
 \contentsline {subparagraph}{Generator parameters optimization}{83}{section*.113}%
-\contentsline {section}{\numberline {4.3}Fresh Dataset}{85}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Model Evaluation with Fresh Dataset}{86}{subsection.4.3.1}%
-\contentsline {chapter}{\numberline {5}Experimenting with ML based Malware Detection/Description methods}{87}{chapter.5}%
-\contentsline {chapter}{\numberline {6}Proposed Tool}{88}{chapter.6}%
-\contentsline {chapter}{\numberline {7}Experiments with the proposed tool}{89}{chapter.7}%
-\contentsline {chapter}{\numberline {8}Results}{90}{chapter.8}%
-\contentsline {chapter}{\numberline {9}Conclusions}{91}{chapter.9}%
-\contentsline {chapter}{\numberline {10}Appendix}{92}{chapter.10}%
-\contentsline {section}{\numberline {10.1}Notable Examples of Malware in Recent History}{92}{section.10.1}%
-\contentsline {chapter}{Bibliography}{95}{section.10.1}%
+\contentsline {section}{\numberline {4.3}Fresh Dataset}{86}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Model Evaluation with Fresh Dataset}{87}{subsection.4.3.1}%
+\contentsline {chapter}{\numberline {5}Experimenting with ML based Malware Detection/Description methods}{88}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Proposed Tool}{89}{chapter.6}%
+\contentsline {chapter}{\numberline {7}Experiments with the proposed tool}{90}{chapter.7}%
+\contentsline {chapter}{\numberline {8}Results}{91}{chapter.8}%
+\contentsline {chapter}{\numberline {9}Conclusions}{92}{chapter.9}%
+\contentsline {chapter}{\numberline {10}Appendix}{93}{chapter.10}%
+\contentsline {section}{\numberline {10.1}Notable Examples of Malware in Recent History}{93}{section.10.1}%
+\contentsline {chapter}{Bibliography}{96}{section.10.1}%
