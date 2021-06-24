@@ -1715,37 +1715,46 @@ As opposed to traditional \textit{signature-base} detection methods which identi
 Nowadays \textit{heuristic} analysis can be found in most mainstream antivirus solutions in the market, combined with signature-based scanners in order to improve detection rate while reducing false alarms \cite{NamanyaTWM}.
 
 \section{Machine Learning}
-\color{Red}
+In recent years, the rapid proliferation and increased sophistication of malicious software, coupled with the rising popularity of machine learning techniques in many fields, led to the adoption of more general ML-based approaches to malware detection on top of the use of manually generated signatures \cite{DucauAMDATSE}.
 
-In recent years, malware detection with machine learning techniques is gaining popularity. Tom Mitchell \cite{} defines machine learning as the study of computer algorithms that improve through experiments. Robert Moskovitch et. al. \cite{} proposed detection of malwares based on monitoring the computer behaviour (features). His evaluation results suggest that by using classification algorithms applied on only 20 features the mean detection accuracy exceeded 90\%. The advantage of machine learning techniques is that it will not only detect known malwares but also act as knowledge for the detection of new malware. The popular machine learning techniques among the researchers for the detection of second generation malwares are Naive Bayes, Decision Trees, Data Mining, Neural Networks and Hidden Markov Modes. This technique may not replace the standard detection methods, but it can act as an add-on feature. Generally, machine learning techniques are more computationally demanding than the standard anti-malware, hence it may not be suitable for end users. However, it can be implemented at enterprise gateaway level to act as a central anti-malware engine to supplement anti-malwares. Although infrastructure requirement is costly, it can help in protecting valuable enterprises data from the security threats and can prevent immense financial damages \cite{Sharma_2014}.
+In particular, the application of machine learning for Information Security (ML-Sec) methods to perform malware detection generally consists in training a highly parametrized ML classifier to reliably (as much as possible) predict a binary label (malicious or benign) using features extracted from sample files. In order to do this the classifier parameters are numerically optimized to learn general concepts of \textit{malware} and \textit{benignware} by making the outputs of the classifier for all input samples match, with some approximations, their actual ground truth labels. This is based on the assumption that, if the samples are well labelled and malware/benignware samples in the training set are similar enough to those seen at test/deployment, the learned detection function should work well on unseen samples \cite{ruddALOHA}.
 
----
+Most static ML-Sec classifiers operate on learned embeddings over portions of files (e.g. headers), learned embeddings over full files, or most commonly, on pre-engineered numerical \textit{feature vectors} designed to summarize the content from each file. Learned embeddings generally are the result of convolutional architectures which do not presume a fixed file structure. However, the process of embedding features directly from inputs is expensive, and does not scale gracefully. Moreover, general bytes do not present structural localities/hierarchies typical of images and text inputs that can be exploited by convolutional filters. Pre-engineered feature vector representations, on the other hand, quickly distil content useful for classification from each file \cite{KyadigeLFCEIFPIBMD}. There are various possible ways to statically craft feature vectors, for example:
+\begin{itemize}
+	\item  tracking per-byte statistics over sliding windows
+	
+	\item byte histograms
+	
+	\item n-gram histograms
+	
+	\item treating bytes as pixel values in an image
+	
+	\item opcode and function call graph statistics
+	
+	\item symbol statistics
+	
+	\item hashed/numerical metadata values
+	
+	\item hashes of delimited tokens
+	
+	\item etc.
+\end{itemize}
 
-In recent years, machine learning has gained its popularity in many fields including IT security. Robert Moskovitch et. al. \cite{} proposed a technique that monitors a small set of features that are sufficient for detecting malware without sacrificing accuracy. The result of the study showed that, using only 20 features, the mean detection accuracy was greater than 90\%, and for specific unknown worms, this accuracy got over 99\%, while maintaining a low level of false positives. The advantage of machine learning techniques is that it will not only detect a known malware but also act as a database for detecting new malware. Similar studies can also be found in another model such as Naive Bayes, Decision Trees, Neural Networks. Although this technique is practical, it may not replace the standard detection methods, rather than act as an add-on feature because machine learning techniques are computationally demanding and may not be suitable for end users \cite{NguyenSPVD}.
+ML methods generally require many high quality samples in order to train effective models. When creating datasets for these models labels are often collected from vendor aggregation feeds, which combine detection results from various vendors for each malware sample. This can be done, for example, by using a $1-$/$5+$ criterion or by using statistical estimation methods. Moreover, it is common practice to introduce a time lag to let vendors update their models to account for new malware samples. When deployed, classifiers are periodically re-trained on new data/labels to reflect the current malware trends \cite{KyadigeLFCEIFPIBMD}.
 
----
+The advantage of machine learning techniques with respect to signature engines, where the aim is to reactively blacklist/whitelist samples that hard-match manually-defined patterns (signatures), is that, by being more general, they are able to detect not only known malwares but also novel malware strains/variants, providing some degree of proactive detection \cite{NguyenSPVD}.
 
-Malware detection is a popular application of Machine Learning for Information Security (ML-Sec), in which a ML classifier is trained to predict whether a given file is malware of benignware. Parameters of this classifier are typically optimized such that outputs from the model over a set of input samples most closely match the samples true malicious/benign (1/0) target labels \cite{ruddALOHA}.
+Commercial anti-malware solutions/engines have nowadays integrated ML on top of standard detection methods (without replacing them) with the aim of enhancing the detection results, especially for second generation malwares and novel malware strains. Popular ML techniques employed by such tools are, for example, deep neural networks (DNN), boosted decision tree ensembles, Na\"ive Bayes models, Data Mining approaches and Hidden Markov Models. Moreover, multiple vendors in the IT security industry nowadays have dedicated ML-Sec teams \cite{Sharma_2014}.
 
-Machine learning (ML) for computer security (ML-Sec) has proven to be a powerful tool for malware detection. ML models are now integral parts of commercial anti-malware engines and multiple vendors in the industry have dedicated ML-Sec teams. For the malware detection problem, these models are typically tuned to predict a binary label (malicious or benign) using features extracted from sample files. Unlike signature engines, where the aim is to reactively blacklist/whitelist samples that hard-match manually-defined patterns (signatures), ML engines employ numerical optimization on parameters of highly parametrized models that aim to learn more general concepts of \textit{malware} and \textit{benignware}. This allows some degree of proactive detection of previously unseen malware samples that is not typically provided by signature-only engines \cite{ruddALOHA}.
+In the following three recent ML-Sec malware detection methods will be described:
+\begin{itemize}
+	\item AlOHA: Auxiliary Loss Optimization for Hypothesis Augmentation
+	
+	\item Automatic Malware Description via Attribute Tagging and Similarity Embedding
+	
+	\item Learning from Context: Exploiting and Interpreting File Path Information for Better Malware Detection
+\end{itemize}
 
----
-
-With the rapid proliferation and increased sophistication of malicious software (malware), detection methods no longer rely only on manually generated signatures but have also incorporated more general approaches like machine learning detection \cite{DucauAMDATSE}.
-
-In recent years, multiple advances in machine learning for information security (ML-Sec) have take place. This can be attributed to several factors including an explosion in labelled data available from vendor aggregation services and threat intelligence feeds, and more powerful hardware and software frameworks for fitting highly expressive classifiers, along with a need of the cybersecurity industry to incorporate more flexible methods to improve their detection pipelines. The authors focused on analysis over Windows Portable Executable (PE) files based on static features, i.e. information that can be extracted from the binary files without having to execute them \cite{DucauAMDATSE}.
-
----
-
-Commercial models typically rely on deep neural networks, or boosted decision tree ensembles and have been extended to other static file types as well, including web content, office documents, and archives. While methods for dealing with these different input types have their own intricacies, they typically use single inputs derived from file content as a feature vector or text embedding \cite{KyadigeLFCEIFPIBMD}.
-
-Static ML detectors use highly parametric classifiers trained on many malicious and benign samples. The goal is to tune the parameters of these classifiers to best match the outputs from the classifiers for all input samples to their actual ground truth labels. Provided that the malware/benignware samples in the training set are similar enough in content to those seen at deployment and that the samples are well labelled, the learned detection function should work well \cite{KyadigeLFCEIFPIBMD}.
-
-In practice, labels are often collected from vendor aggregation feeds, which submit samples to malware detectors from a variety of vendors. The results can be aggregated into labels that are usually correct, e.g. by using a 1-/5+ criterion or treating the label as a hidden variable and using statistical estimation methods. Often a time lag is introduced to let vendors update their models, blacklists, and whitelists accordingly. Generally, the longer the time lag, the more accurate the labels, but the less the data resembles that of the deployment distribution. In actual deployment contexts, classifiers are retrained on new data/labels periodically and the updated parameters are sent to the endpoints on which the detectors are running \cite{KyadigeLFCEIFPIBMD}.
-
-Most static ML for information security (ML-Sec) classifiers operate on learned embeddings over portions of files (e.g. headers), learned embeddings over the full file, or most commonly, on pre-engineered numerical \textit{feature vectors} designed to summarize the content from each file. Learned embeddings, which generally presume some sort of convolutional architecture, have the advantage that they do not presume a fixed structure and are derived directly during training. However, this process is significantly more expensive, and does not scale as gracefully, e.g., to tens to hundreds of millions of large PE files. Moreover generic bytes are inherently less constrained than inputs like images, video, audio, and text, where convolutions can take advantage of structural localities/hierarchies. Thus, for generic malicious/benign files there is less performance benefit from learning to embed features directly from inputs. Pre-engineered feature vector representations, by contrast quickly distil content from each file that is informative in a classification sense. There are a number of ways to craft feature vectors, including tracking per-byte statistics over sliding windows, byte histograms, n-gram histograms, treating bytes as pixel values in an image (a visualisation of the file content), opcode and function call graph statistics, symbol statistics, hashed/numerical metadata values - e.g. entry point as a fraction of the file, or hashed imports and exports, - and hashes of delimited tokens. In practical applications, several different types of feature vectors extracted from file content are often concatenated together to achieve superior performance \cite{KyadigeLFCEIFPIBMD}.
-
-\color{Black}
 \subsection{AlOHA: Auxiliary Loss Optimization for Hypothesis Augmentation}
 \color{Red}
 
