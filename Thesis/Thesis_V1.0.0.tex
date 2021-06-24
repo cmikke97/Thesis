@@ -1764,14 +1764,13 @@ However, this metadata is, in many cases, not available at deployment time thus 
 In practice, in their work \cite{ruddALOHA} the authors fit a deep neural network with multiple additional targets derived from metadata in a threat intelligence feed for Portable Executable (PE) malware and benignware. The additional losses include a multi-source malicious/benign loss, a count loss on multi-source detections, and a semantic malware attribute tag loss. The authors ultimately stated that this approach yielded a considerable improvement in performance on the main detection task.
 
 \paragraph{Implementation Details}
-\color{Red}
-The model uses various loss functions - denoted by $L_{loss~type}(X, Y)$ for some input features $X$ and targets $Y$ - associated with the various outputs of the model, as well as how the labels $Y$ representing the targets of these outputs are constructed.
+The model presented in \cite{ruddALOHA} is composed of a base feed-forward neural network consisting of 5 blocks, each composed of Dropout, a dense layer, batch normalization, and an exponential linear unit (ELU) activation, with 1024, 768, 512, 512, and 512 hidden units respectively. This base topology applies the function $f(\cdot)$ to the input vector to produce an intermediate 512 dimensional representation of the input file $\textbf{h} = f(\textbf{x})$. An additional block for each output of the model, consisting of one or more dense layers and activation functions, is then appended on top of the base net. This composition of the base topology and the target-specific 'heads' is denoted as $f_{target}(\textbf{x})$.
 
-The base for our model is a feedforward neural network incorporating multiple blocks composed of Dropout, a dense layer, batch normalization, and an exponential linear unit (ELU) activation. The core of the model contains five such blocks with 1024, 768, 512, 512, and 512 hidden units, respectively. This base topology applies the function $f(\cdot)$ to the input vector to produce an intermediate 512 dimensional representation of the input file $\textbf{h} = f(\textbf{x})$. They then append to this model an additional block, consisting of one or more dense layers and activation functions, for each output of the model. They denote the composition of their base topology and their target-specific final dense layers and activations applied to features $\textbf{x}$ by $f_{target}(\textbf{x})$. The output for the main malware/benign prediction task - $f_{mal}(\textbf{x})$ - is always present and consists of a single dense layer followed by a sigmoid activation on top of the base shared network that aims to estimate the probability of the input sample being malicious. A network architecture with only this malware/benign output serves as the baseline for our evaluations. To this baseline model they add auxiliary outputs with similar structure as described above: one fully connected layer (two for the \textit{tag} prediction task) which produces some task-specific number of outputs (a single output, with the exception of the restricted generalized Poisson distribution output, which uses two) and some task-specific activation. Except where noted otherwise, all multi-task losses were produced by computing the sum, across all tasks, of the per-task loss multiplied by a task-specific weight (1.0 for the malware/benign task and 0.1 for all other tasks). Training was standardized to 10 epochs \cite{ruddALOHA}.
-
----
+The output for the main malware/benign prediction task - $f_{mal}(\textbf{x})$ - is always present (it constitutes the baseline model) and consists of a single dense layer followed by a sigmoid activation function on top of the base shared network. On top of that one or more auxiliary outputs are added with similar structure as described above: one fully connected layer (two for the \textit{tag} prediction task) with a task-specific activation function. Finally, multi-task losses are produced by computing the sum, across all tasks, of the per-task loss multiplied by a task-specific weight (1.0 for the malware/benign task and 0.1 for all other tasks) \cite{ruddALOHA}.
 
 \paragraph{Malware Loss}
+\color{Red}
+
 For the task of predicting if a given binary file, represented by its features $\textbf{x}^i$, is malicious or benign we used a binary cross-entropy loss between the malware/benign output of the network $\hat{y}^i = f_{mal}(\textbf{x}^i)$ and the malicious label $y^i$. This results in the following loss for a dataset with \textit{M} samples:
 \begin{equation} \label{alohaMalwareLoss}
 	\begin{split}
@@ -1784,7 +1783,10 @@ The authors used a "1-/5+" criterion for labelling a given file as malicious or 
 
 ---
 
+\color{Black}
 \paragraph{Vendor Count Loss}
+\color{Red}
+
 The authors investigated the use of the total number of 'malicious' reports for a given sample from the vendor aggregation service as an additional target; the rationale being that a sample with a higher number of malicious vendor reports should be more likely to be malicious. In order to properly model this target, they require a suitable noise model for count data. A popular candidate is a Poisson noise model, parametrized by a single parameter $\mu$, which assumes that counts follow a Poisson process, where $\mu$ is the mean and variance of the Poisson distribution. The probability of an observation of $y$ counts conditional on $\mu$ is
 \begin{equation} \label{alohaPoisson}
 	P(y|\mu) = \mu^y e^{-\mu}/y!.
@@ -1817,7 +1819,10 @@ where $\alpha^{(i)}$ and $\mu^{(i)}$ are obtained as transformed outputs of the 
 
 ---
 
+\color{Black}
 \paragraph{Per-Vendor Malware Loss}
+\color{Red}
+
 The authors identified a subset $\mathcal{V} = \{v_1, ..., v_V\}$ of $9$ vendors that each produced a result for (nearly) every sample in their data. Each vendor result was added as a target in addition to the malware target by adding an extra fully connected layer per vendor followed by a sigmoid activation function to the end of the shared architecture. They employed a binary cross-entropy loss per vendor during training. This differs from the vendor count loss presented above in that each high-coverage vendor is used as an individual binary target, rather than being aggregated into a count. The aggregate \textit{vendors} loss $L_{vdr}$ for the $V = 9$ selected vendors is simply the sum of the individual vendor losses:
 \begin{equation} \label{alohaPerVendorMalwareLoss}
 	\begin{split}
@@ -1828,7 +1833,10 @@ where $l_{vdr}$ is the per-sample binary cross-entropy function and $f_{vdr_j}(\
 
 ---
 
+\color{Black}
 \paragraph{Malicious Tags Loss}
+\color{Red}
+
 The authors exploit information contained in family detection names provided by different vendors in the form of malicious tags. They defined each tag as a high level description of the purpose of a given malicious sample. The tags used as auxiliary targets in their experiments are: \textit{flooder}, \textit{downloader}, \textit{dropper}, \textit{ransomware}, \textit{crypto-miner}, \textit{worm}, \textit{adware}, \textit{spyware}, \textit{packed}, \textit{file-infector} and \textit{installer}.
 
 They created these tags from a parse of individual vendor detection names, using a set of 10 vendors which provided high quality detection names. Once they have extracted the most common tokens, they filtered them to keep only tokens related to well-known malware family names or tokens that could easily be associated with one or more of these tags. The authors then created a mapping from tokens to tags based on prior knowledge.
@@ -1843,14 +1851,20 @@ In order to predict these tags, they used a \textit{multi-headed} architecture i
 \end{equation}
 where $y_{t_j}^{(i)}$ indicates if sample $i$ is annotated with tag $j$, and $\hat{y}_{t_j}^{(i)} = f_{tag_j}(\textbf{x}^{(i)})$ is the prediction issued by the network for that value.
 
+\color{Black}
 \paragraph{Dataset used}
+\color{Red}
+
 The authors collected two datasets of PE files and associated metadata from a threat intelligence feed; a set for training/validation and a test set.
 
 They extracted 1024-element feature vectors for all those files using feature type described in \cite{} and derived an aggregate malicious/benign label using a 1-/5+ criterion as described above.
 
 ROC curves. They also focused on improvements in detection at very low FPR of 0.1\% or below, where we see the most dramatic improvements, since several publications by anti-virus vendors suggest that 0.1\% or lower is indeed a practical FPR target for most deployment scenarios \cite{ruddALOHA}.
 
+\color{Black}
 \paragraph{Final Loss + Experiment Evaluation}
+\color{Red}
+
 Each model used a loss weight of 0.1 on the aggregate malicious/benign loss and 0.1 on each auxiliary loss, i.e. when we add $K$ targets to the main loss, the final loss that gets backpropagated through the model becomes
 \begin{equation} \label{alohaFinalLoss}
 	L(X,Y) = L_{mal}(X,Y) + 0.1 \sum_{k=1}^{K} L_k(X,Y).

@@ -102,25 +102,25 @@
 \contentsline {paragraph}{Dataset used}{55}{section*.73}%
 \contentsline {paragraph}{Final Loss + Experiment Evaluation}{55}{section*.74}%
 \contentsline {subsection}{\numberline {3.6.2}Automatic Malware Description via Attribute Tagging and Similarity Embedding}{55}{subsection.3.6.2}%
-\contentsline {paragraph}{Background and Related Work}{57}{section*.75}%
-\contentsline {subparagraph}{Malware Family Categorization}{57}{section*.76}%
+\contentsline {paragraph}{Background and Related Work}{56}{section*.75}%
+\contentsline {subparagraph}{Malware Family Categorization}{56}{section*.76}%
 \contentsline {subparagraph}{Semantic Attribute Tagging}{58}{section*.77}%
-\contentsline {subparagraph}{Multi-Label Classification}{59}{section*.78}%
+\contentsline {subparagraph}{Multi-Label Classification}{58}{section*.78}%
 \contentsline {subparagraph}{Malware Analysis with Neural Networks}{59}{section*.79}%
 \contentsline {paragraph}{Semantic Malware Attribute Tags}{59}{section*.80}%
-\contentsline {subparagraph}{Tag Distillation from Detection Names}{60}{section*.81}%
+\contentsline {subparagraph}{Tag Distillation from Detection Names}{59}{section*.81}%
 \contentsline {paragraph}{Tags Prediction - Implementation Details}{60}{section*.82}%
-\contentsline {subparagraph}{Evaluation of Tagging Algorithms}{62}{section*.83}%
+\contentsline {subparagraph}{Evaluation of Tagging Algorithms}{61}{section*.83}%
 \contentsline {paragraph}{Dataset and Training details}{62}{section*.84}%
-\contentsline {paragraph}{Tagging results}{63}{section*.85}%
+\contentsline {paragraph}{Tagging results}{62}{section*.85}%
 \contentsline {subparagraph}{Per-Tag Results}{63}{section*.86}%
 \contentsline {subparagraph}{Per-Sample Results}{63}{section*.87}%
 \contentsline {paragraph}{Latent Space (Joint Embedding) Analysis}{63}{section*.88}%
 \contentsline {subparagraph}{Malware-Tag Joint Embedding Space}{63}{section*.89}%
-\contentsline {subparagraph}{File-File Similarity Index}{64}{section*.90}%
+\contentsline {subparagraph}{File-File Similarity Index}{63}{section*.90}%
 \contentsline {subsection}{\numberline {3.6.3}Learning from Context: Exploiting and Interpreting File Path Information for Better Malware Detection}{64}{subsection.3.6.3}%
 \contentsline {paragraph}{Background and Related work (Static ML Malware Detection)}{65}{section*.91}%
-\contentsline {paragraph}{Dataset used}{66}{section*.92}%
+\contentsline {paragraph}{Dataset used}{65}{section*.92}%
 \contentsline {paragraph}{Feature Engineering}{66}{section*.93}%
 \contentsline {paragraph}{Implementation details}{66}{section*.94}%
 \contentsline {section}{\numberline {3.7}Malware Normalization}{67}{section.3.7}%
