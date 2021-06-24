@@ -1741,7 +1741,7 @@ Most static ML-Sec classifiers work on learned embeddings over portions of files
 \end{itemize}
 The process of transforming a sample file to its numerical feature representation is called \textit{feature extraction} and consists of some numerical transformation that preserves aggregate and fine-grained information throughout each sample \cite{ruddALOHA}.
 
-ML methods generally require many high quality samples in order to train effective models. When creating datasets for these models labels are often collected from vendor aggregation feeds, which combine detection results from various vendors for each malware sample. This can be done, for example, by using a $1-$/$5+$ criterion or by using statistical estimation methods. Moreover, it is common practice to introduce a time lag to let vendors update their models to account for new malware samples. When deployed, classifiers are periodically re-trained on new data/labels to reflect the current malware trends \cite{KyadigeLFCEIFPIBMD}.
+ML methods generally require many high quality samples in order to train effective models. When creating datasets for these models labels are often collected from vendor aggregation feeds, which combine detection results from various vendors for each malware sample. This can be done, for example, by using a $1-$/$5+$ criterion or by using statistical estimation methods. The $1-$/$5+$ criterion works as follows: if a file has one or fewer vendors reporting it as malicious, the file is labelled as 'benign'; on the other hand, if a sample has five or more vendors reporting it as malicious, the file is labelled as 'malicious'. Moreover, it is common practice to introduce a time lag to let vendors update their models to account for new malware samples. When deployed, classifiers are periodically re-trained on new data/labels to reflect the current malware trends \cite{KyadigeLFCEIFPIBMD}.
 
 The advantage of machine learning techniques with respect to signature engines, where the aim is to reactively blacklist/whitelist samples that hard-match manually-defined patterns (signatures), is that, by being more general, they are able to detect not only known malwares but also novel malware strains/variants, providing some degree of proactive detection \cite{NguyenSPVD}.
 
@@ -1769,21 +1769,14 @@ The model presented in \cite{ruddALOHA} is composed of a base feed-forward neura
 The output for the main malware/benign prediction task - $f_{mal}(\textbf{x})$ - is always present (it constitutes the baseline model) and consists of a single dense layer followed by a sigmoid activation function on top of the base shared network. On top of that one or more auxiliary outputs are added with similar structure as described above: one fully connected layer (two for the \textit{tag} prediction task) with a task-specific activation function. Finally, multi-task losses are produced by computing the sum, across all tasks, of the per-task loss multiplied by a task-specific weight (1.0 for the malware/benign task and 0.1 for all other tasks) \cite{ruddALOHA}.
 
 \paragraph{Malware Loss}
-\color{Red}
-
-For the task of predicting if a given binary file, represented by its features $\textbf{x}^i$, is malicious or benign we used a binary cross-entropy loss between the malware/benign output of the network $\hat{y}^i = f_{mal}(\textbf{x}^i)$ and the malicious label $y^i$. This results in the following loss for a dataset with \textit{M} samples:
+The task of predicting if a given binary file, represented by its features $\textbf{x}^{(i)}$, is malicious or benign is optimized by minimizing the binary cross-entropy loss between the malware/benign output of the network $\hat{y}^{(i)} = f_{mal}(\textbf{x}^{(i)})$ and the malicious label $y^{(i)}$. This results in the following loss for a dataset with \textit{M} samples:
 \begin{equation} \label{alohaMalwareLoss}
 	\begin{split}
 		L_{mal}(X,Y) & = \frac{1}{M} \sum_{i=1}^{M} l_{mal} (f_{mal}(\textbf{x}^{(i)}), y^{(i)}) \\ & = -\frac{1}{M} \sum_{i=1}^{M} y^{(i)} \log(\hat{y}^{(i)}) + (1-y^{(i)}) \log(1-\hat{y}^{(i)}).
 	\end{split}
 \end{equation}
-The authors used a "1-/5+" criterion for labelling a given file as malicious or benign: if a file has one or fewer vendors reporting it as malicious, they label the file as 'benign' and use a weight of 1.0 for the malware loss for that sample. Similarly, if a sample has five or more vendors reporting it as malicious, they label the file as 'malicious' and use a weight of 1.0 for the malware loss for that sample \cite{ruddALOHA}.
+A "1-/5+" criterion was used for labelling a given file as malicious or benign \cite{ruddALOHA}.
 
-(an aggregate label can be derived either by a voting mechanism or by thresholding the net number of vendors that identify a given sample as malicious)
-
----
-
-\color{Black}
 \paragraph{Vendor Count Loss}
 \color{Red}
 

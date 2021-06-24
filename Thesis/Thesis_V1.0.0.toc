@@ -96,10 +96,10 @@
 \contentsline {subsection}{\numberline {3.6.1}AlOHA: Auxiliary Loss Optimization for Hypothesis Augmentation}{52}{subsection.3.6.1}%
 \contentsline {paragraph}{Implementation Details}{52}{section*.68}%
 \contentsline {paragraph}{Malware Loss}{52}{section*.69}%
-\contentsline {paragraph}{Vendor Count Loss}{53}{section*.70}%
+\contentsline {paragraph}{Vendor Count Loss}{52}{section*.70}%
 \contentsline {paragraph}{Per-Vendor Malware Loss}{54}{section*.71}%
 \contentsline {paragraph}{Malicious Tags Loss}{54}{section*.72}%
-\contentsline {paragraph}{Dataset used}{55}{section*.73}%
+\contentsline {paragraph}{Dataset used}{54}{section*.73}%
 \contentsline {paragraph}{Final Loss + Experiment Evaluation}{55}{section*.74}%
 \contentsline {subsection}{\numberline {3.6.2}Automatic Malware Description via Attribute Tagging and Similarity Embedding}{55}{subsection.3.6.2}%
 \contentsline {paragraph}{Background and Related Work}{56}{section*.75}%
@@ -113,7 +113,7 @@
 \contentsline {subparagraph}{Evaluation of Tagging Algorithms}{61}{section*.83}%
 \contentsline {paragraph}{Dataset and Training details}{62}{section*.84}%
 \contentsline {paragraph}{Tagging results}{62}{section*.85}%
-\contentsline {subparagraph}{Per-Tag Results}{63}{section*.86}%
+\contentsline {subparagraph}{Per-Tag Results}{62}{section*.86}%
 \contentsline {subparagraph}{Per-Sample Results}{63}{section*.87}%
 \contentsline {paragraph}{Latent Space (Joint Embedding) Analysis}{63}{section*.88}%
 \contentsline {subparagraph}{Malware-Tag Joint Embedding Space}{63}{section*.89}%
@@ -121,7 +121,7 @@
 \contentsline {subsection}{\numberline {3.6.3}Learning from Context: Exploiting and Interpreting File Path Information for Better Malware Detection}{64}{subsection.3.6.3}%
 \contentsline {paragraph}{Background and Related work (Static ML Malware Detection)}{65}{section*.91}%
 \contentsline {paragraph}{Dataset used}{65}{section*.92}%
-\contentsline {paragraph}{Feature Engineering}{66}{section*.93}%
+\contentsline {paragraph}{Feature Engineering}{65}{section*.93}%
 \contentsline {paragraph}{Implementation details}{66}{section*.94}%
 \contentsline {section}{\numberline {3.7}Malware Normalization}{67}{section.3.7}%
 \contentsline {chapter}{\numberline {4}Datasets}{68}{chapter.4}%
