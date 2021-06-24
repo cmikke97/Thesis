@@ -95,72 +95,70 @@
 \contentsline {section}{\numberline {3.6}Machine Learning}{50}{section.3.6}%
 \contentsline {subsection}{\numberline {3.6.1}AlOHA: Auxiliary Loss Optimization for Hypothesis Augmentation}{51}{subsection.3.6.1}%
 \contentsline {paragraph}{Implementation Details}{53}{section*.68}%
-\contentsline {paragraph}{Malware Loss}{54}{section*.69}%
+\contentsline {paragraph}{Malware Loss}{53}{section*.69}%
 \contentsline {paragraph}{Vendor Count Loss}{54}{section*.70}%
 \contentsline {paragraph}{Per-Vendor Malware Loss}{55}{section*.71}%
 \contentsline {paragraph}{Malicious Tags Loss}{55}{section*.72}%
-\contentsline {paragraph}{Sample Weights}{56}{section*.73}%
-\contentsline {paragraph}{Dataset used}{56}{section*.74}%
-\contentsline {paragraph}{Final Loss + Experiment Evaluation}{57}{section*.75}%
-\contentsline {paragraph}{Related Work}{57}{section*.76}%
-\contentsline {subsection}{\numberline {3.6.2}Automatic Malware Description via Attribute Tagging and Similarity Embedding}{58}{subsection.3.6.2}%
-\contentsline {paragraph}{Background and Related Work}{59}{section*.77}%
-\contentsline {subparagraph}{Malware Family Categorization}{59}{section*.78}%
-\contentsline {subparagraph}{Semantic Attribute Tagging}{61}{section*.79}%
-\contentsline {subparagraph}{Multi-Label Classification}{61}{section*.80}%
-\contentsline {subparagraph}{Malware Analysis with Neural Networks}{61}{section*.81}%
-\contentsline {paragraph}{Semantic Malware Attribute Tags}{62}{section*.82}%
-\contentsline {subparagraph}{Tag Distillation from Detection Names}{62}{section*.83}%
-\contentsline {paragraph}{Tags Prediction - Implementation Details}{62}{section*.84}%
-\contentsline {subparagraph}{Evaluation of Tagging Algorithms}{64}{section*.85}%
-\contentsline {paragraph}{Dataset and Training details}{65}{section*.86}%
-\contentsline {paragraph}{Tagging results}{65}{section*.87}%
-\contentsline {subparagraph}{Per-Tag Results}{65}{section*.88}%
-\contentsline {subparagraph}{Per-Sample Results}{65}{section*.89}%
-\contentsline {paragraph}{Latent Space (Joint Embedding) Analysis}{65}{section*.90}%
-\contentsline {subparagraph}{Malware-Tag Joint Embedding Space}{66}{section*.91}%
-\contentsline {subparagraph}{File-File Similarity Index}{66}{section*.92}%
-\contentsline {subsection}{\numberline {3.6.3}Learning from Context: Exploiting and Interpreting File Path Information for Better Malware Detection}{67}{subsection.3.6.3}%
-\contentsline {paragraph}{Background and Related work (Static ML Malware Detection)}{68}{section*.93}%
-\contentsline {paragraph}{Dataset used}{68}{section*.94}%
-\contentsline {paragraph}{Feature Engineering}{68}{section*.95}%
-\contentsline {paragraph}{Implementation details}{69}{section*.96}%
-\contentsline {section}{\numberline {3.7}Malware Normalization}{70}{section.3.7}%
-\contentsline {chapter}{\numberline {4}Datasets}{71}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Ember Dataset}{71}{section.4.1}%
-\contentsline {subsection}{\numberline {4.1.1}PE File Format}{71}{subsection.4.1.1}%
-\contentsline {subsection}{\numberline {4.1.2}Static PE Malware Detection}{72}{subsection.4.1.2}%
-\contentsline {subsection}{\numberline {4.1.3}Malicious and benign datasets}{72}{subsection.4.1.3}%
-\contentsline {subsection}{\numberline {4.1.4}Data Description}{73}{subsection.4.1.4}%
-\contentsline {subsection}{\numberline {4.1.5}Data Layout}{73}{subsection.4.1.5}%
-\contentsline {subsection}{\numberline {4.1.6}Feature Set Description}{74}{subsection.4.1.6}%
-\contentsline {subsubsection}{Parsed features}{74}{section*.97}%
-\contentsline {paragraph}{General file information}{74}{section*.98}%
-\contentsline {paragraph}{Header information}{74}{section*.99}%
-\contentsline {paragraph}{Imported functions}{74}{section*.100}%
-\contentsline {paragraph}{Exported functions}{75}{section*.101}%
-\contentsline {paragraph}{Section information}{75}{section*.102}%
-\contentsline {subsubsection}{Format-agnostic features}{75}{section*.103}%
-\contentsline {paragraph}{Byte histogram}{75}{section*.104}%
-\contentsline {paragraph}{Byte-entropy histogram}{75}{section*.105}%
-\contentsline {paragraph}{String information}{75}{section*.106}%
-\contentsline {section}{\numberline {4.2}Sorel 20M Dataset}{75}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Sorel 20M Dataset Description}{76}{subsection.4.2.1}%
-\contentsline {paragraph}{LMDB database, what is it?}{77}{section*.107}%
-\contentsline {subsection}{\numberline {4.2.2}Trying to improve Dataset Loading Speed}{78}{subsection.4.2.2}%
-\contentsline {subsubsection}{Dataset Pre-Processing}{78}{section*.108}%
-\contentsline {subsubsection}{Alternative Generators (Dataloaders)}{78}{section*.109}%
-\contentsline {paragraph}{Generator alt1}{79}{section*.110}%
-\contentsline {paragraph}{Generator alt2}{79}{section*.111}%
-\contentsline {paragraph}{Generator alt3}{80}{section*.112}%
-\contentsline {subparagraph}{Generator parameters optimization}{82}{section*.113}%
-\contentsline {section}{\numberline {4.3}Fresh Dataset}{85}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Model Evaluation with Fresh Dataset}{85}{subsection.4.3.1}%
-\contentsline {chapter}{\numberline {5}Experimenting with ML based Malware Detection/Description methods}{88}{chapter.5}%
-\contentsline {chapter}{\numberline {6}Proposed Tool}{89}{chapter.6}%
-\contentsline {chapter}{\numberline {7}Experiments with the proposed tool}{90}{chapter.7}%
-\contentsline {chapter}{\numberline {8}Results}{91}{chapter.8}%
-\contentsline {chapter}{\numberline {9}Conclusions}{92}{chapter.9}%
-\contentsline {chapter}{\numberline {10}Appendix}{93}{chapter.10}%
-\contentsline {section}{\numberline {10.1}Notable Examples of Malware in Recent History}{93}{section.10.1}%
-\contentsline {chapter}{Bibliography}{96}{section.10.1}%
+\contentsline {paragraph}{Dataset used}{56}{section*.73}%
+\contentsline {paragraph}{Final Loss + Experiment Evaluation}{56}{section*.74}%
+\contentsline {subsection}{\numberline {3.6.2}Automatic Malware Description via Attribute Tagging and Similarity Embedding}{56}{subsection.3.6.2}%
+\contentsline {paragraph}{Background and Related Work}{57}{section*.75}%
+\contentsline {subparagraph}{Malware Family Categorization}{57}{section*.76}%
+\contentsline {subparagraph}{Semantic Attribute Tagging}{59}{section*.77}%
+\contentsline {subparagraph}{Multi-Label Classification}{59}{section*.78}%
+\contentsline {subparagraph}{Malware Analysis with Neural Networks}{60}{section*.79}%
+\contentsline {paragraph}{Semantic Malware Attribute Tags}{60}{section*.80}%
+\contentsline {subparagraph}{Tag Distillation from Detection Names}{60}{section*.81}%
+\contentsline {paragraph}{Tags Prediction - Implementation Details}{61}{section*.82}%
+\contentsline {subparagraph}{Evaluation of Tagging Algorithms}{62}{section*.83}%
+\contentsline {paragraph}{Dataset and Training details}{63}{section*.84}%
+\contentsline {paragraph}{Tagging results}{63}{section*.85}%
+\contentsline {subparagraph}{Per-Tag Results}{64}{section*.86}%
+\contentsline {subparagraph}{Per-Sample Results}{64}{section*.87}%
+\contentsline {paragraph}{Latent Space (Joint Embedding) Analysis}{64}{section*.88}%
+\contentsline {subparagraph}{Malware-Tag Joint Embedding Space}{64}{section*.89}%
+\contentsline {subparagraph}{File-File Similarity Index}{64}{section*.90}%
+\contentsline {subsection}{\numberline {3.6.3}Learning from Context: Exploiting and Interpreting File Path Information for Better Malware Detection}{65}{subsection.3.6.3}%
+\contentsline {paragraph}{Background and Related work (Static ML Malware Detection)}{66}{section*.91}%
+\contentsline {paragraph}{Dataset used}{66}{section*.92}%
+\contentsline {paragraph}{Feature Engineering}{67}{section*.93}%
+\contentsline {paragraph}{Implementation details}{67}{section*.94}%
+\contentsline {section}{\numberline {3.7}Malware Normalization}{68}{section.3.7}%
+\contentsline {chapter}{\numberline {4}Datasets}{69}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Ember Dataset}{69}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}PE File Format}{69}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Static PE Malware Detection}{70}{subsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.1.3}Malicious and benign datasets}{70}{subsection.4.1.3}%
+\contentsline {subsection}{\numberline {4.1.4}Data Description}{71}{subsection.4.1.4}%
+\contentsline {subsection}{\numberline {4.1.5}Data Layout}{71}{subsection.4.1.5}%
+\contentsline {subsection}{\numberline {4.1.6}Feature Set Description}{72}{subsection.4.1.6}%
+\contentsline {subsubsection}{Parsed features}{72}{section*.95}%
+\contentsline {paragraph}{General file information}{72}{section*.96}%
+\contentsline {paragraph}{Header information}{72}{section*.97}%
+\contentsline {paragraph}{Imported functions}{72}{section*.98}%
+\contentsline {paragraph}{Exported functions}{73}{section*.99}%
+\contentsline {paragraph}{Section information}{73}{section*.100}%
+\contentsline {subsubsection}{Format-agnostic features}{73}{section*.101}%
+\contentsline {paragraph}{Byte histogram}{73}{section*.102}%
+\contentsline {paragraph}{Byte-entropy histogram}{73}{section*.103}%
+\contentsline {paragraph}{String information}{73}{section*.104}%
+\contentsline {section}{\numberline {4.2}Sorel 20M Dataset}{73}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Sorel 20M Dataset Description}{74}{subsection.4.2.1}%
+\contentsline {paragraph}{LMDB database, what is it?}{75}{section*.105}%
+\contentsline {subsection}{\numberline {4.2.2}Trying to improve Dataset Loading Speed}{76}{subsection.4.2.2}%
+\contentsline {subsubsection}{Dataset Pre-Processing}{76}{section*.106}%
+\contentsline {subsubsection}{Alternative Generators (Dataloaders)}{76}{section*.107}%
+\contentsline {paragraph}{Generator alt1}{77}{section*.108}%
+\contentsline {paragraph}{Generator alt2}{77}{section*.109}%
+\contentsline {paragraph}{Generator alt3}{78}{section*.110}%
+\contentsline {subparagraph}{Generator parameters optimization}{80}{section*.111}%
+\contentsline {section}{\numberline {4.3}Fresh Dataset}{83}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Model Evaluation with Fresh Dataset}{83}{subsection.4.3.1}%
+\contentsline {chapter}{\numberline {5}Experimenting with ML based Malware Detection/Description methods}{86}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Proposed Tool}{87}{chapter.6}%
+\contentsline {chapter}{\numberline {7}Experiments with the proposed tool}{88}{chapter.7}%
+\contentsline {chapter}{\numberline {8}Results}{89}{chapter.8}%
+\contentsline {chapter}{\numberline {9}Conclusions}{90}{chapter.9}%
+\contentsline {chapter}{\numberline {10}Appendix}{91}{chapter.10}%
+\contentsline {section}{\numberline {10.1}Notable Examples of Malware in Recent History}{91}{section.10.1}%
+\contentsline {chapter}{Bibliography}{94}{section.10.1}%
