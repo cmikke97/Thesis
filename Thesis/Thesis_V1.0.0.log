@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  24 JUN 2021 23:02
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  26 JUN 2021 13:28
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -852,45 +852,38 @@ LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line
 File: ts1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 [41] [42] [43] [44] [45] [46] [47] [48] [49] [50] [51] [52] [53] [54] [55]
-[56] [57] [58]
+[56] [57]
 
-LaTeX Warning: Reference `' on page 59 undefined on input line 1921.
-
-
-LaTeX Warning: Reference `' on page 59 undefined on input line 1925.
-
-[59]
-
-LaTeX Warning: Reference `' on page 60 undefined on input line 1974.
-
-[60] [61]
-
-LaTeX Warning: Reference `' on page 62 undefined on input line 2006.
+LaTeX Warning: Reference `' on page 58 undefined on input line 1914.
 
 
-LaTeX Warning: Reference `' on page 62 undefined on input line 2006.
+LaTeX Warning: Reference `' on page 58 undefined on input line 1918.
 
-[62] [63] [64] [65] [66]
+[58]
+
+LaTeX Warning: Reference `' on page 59 undefined on input line 1965.
+
+[59] [60] [61] [62] [63] [64]
 Chapter 4.
 
-LaTeX Warning: Reference `' on page 67 undefined on input line 2169.
+LaTeX Warning: Reference `' on page 65 undefined on input line 2136.
 
-[67
+[65
 
-] [68] [69] [70]
+] [66] [67] [68]
 LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 2
-301.
+268.
 
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/base\omscmr.fd
 File: omscmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2301.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2268.
 
 
-[71] [72] [73] [74]
+[69] [70] [71] [72]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 2403.
+put line 2370.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -904,19 +897,19 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[75] [76] [77]
+[73] [74] [75]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2797--2798
+Underfull \hbox (badness 10000) in paragraph at lines 2764--2765
 [] \OT1/cmr/m/it/10 self.chunk[]agg\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 self.chun
 k[]agg[]size $\OMS/cmsy/m/n/10  $ \OT1/cmr/bx/n/10 get[]chunks\OT1/cmr/m/n/10 (
 \OT1/cmr/m/it/10 self.tensor\OT1/cmr/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2797--2798
+Underfull \hbox (badness 10000) in paragraph at lines 2764--2765
 \OT1/cmr/m/it/10 self.chunk[]indices\OT1/cmr/m/n/10 [\OT1/cmr/m/it/10 start[]i\
 OT1/cmr/m/n/10 :\OT1/cmr/m/it/10 end[]i\OT1/cmr/m/n/10 ], \OT1/cmr/m/it/10 self
 .chunk[]size\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 self.last[]chunk[]size\OT1/cmr/m
@@ -924,7 +917,7 @@ OT1/cmr/m/n/10 :\OT1/cmr/m/it/10 end[]i\OT1/cmr/m/n/10 ], \OT1/cmr/m/it/10 self
  []
 
 
-Underfull \hbox (badness 1337) in paragraph at lines 2805--2806
+Underfull \hbox (badness 1337) in paragraph at lines 2772--2773
 [] \OT1/cmr/m/it/10 ar-gu-ments $\OMS/cmsy/m/n/10  $ \OT1/cmr/m/n/10 (\OT1/cmr/
 m/it/10 self.tensors\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 self.chunk[]indices\OT1/
 cmr/m/n/10 [\OT1/cmr/m/it/10 start[]i\OT1/cmr/m/n/10 :\OT1/cmr/m/it/10 end[]i\O
@@ -934,31 +927,31 @@ T1/cmr/m/n/10 ], \OT1/cmr/m/it/10 self.chunk[]size\OT1/cmr/m/n/10 ,
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[78] [79] [80] [81] [82] [83]
+[76] [77] [78] [79] [80] [81]
 Chapter 5.
-[84
+[82
 
 ]
 Chapter 6.
-[85
+[83
 
 ]
 Chapter 7.
-[86
+[84
 
 ]
 Chapter 8.
-[87
+[85
 
 ]
 Chapter 9.
-[88
+[86
 
 ]
 Chapter 10.
-[89
+[87
 
-] [90] (Thesis_V1.0.0.bbl [91]
+] [88] (Thesis_V1.0.0.bbl [89]
 Underfull \hbox (badness 1242) in paragraph at lines 10--12
 []\OT1/cmr/m/n/10 R. Sharp, ``An in-tro-duc-tion to mal-ware.'' [][]$\OT1/cmtt/
 m/n/10 https : / / orbit . dtu . dk / en / publications /
@@ -1042,7 +1035,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 89--92
 / searchsecurity . techtarget . com / definition /
  []
 
-[92
+[90
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 164--166
@@ -1068,7 +1061,7 @@ Underfull \hbox (badness 1371) in paragraph at lines 199--202
 t/m/n/10 https : / / www . forcepoint . com / cyber-[]edu /
  []
 
-[93]) [94] (Thesis_V1.0.0.aux)
+[91]) [92] (Thesis_V1.0.0.aux)
 Package rerunfilecheck Info: File `Thesis_V1.0.0.out' has not changed.
 (rerunfilecheck)             Checksum: 6272CA3AECE64DBE37DBA4035F1B14DE;8684.
 
@@ -1077,8 +1070,8 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 18876 strings out of 481296
- 308367 string characters out of 2908369
+ 18866 strings out of 481296
+ 308267 string characters out of 2908369
  957955 words of memory out of 3000000
  35053 multiletter control sequences out of 15000+600000
  419183 words of font info for 86 fonts, out of 8000000 for 9000
@@ -1113,9 +1106,9 @@ ichele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
 <C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmtt8.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
 sfonts/symbols/msbm10.pfb>
-Output written on Thesis_V1.0.0.pdf (94 pages, 843625 bytes).
+Output written on Thesis_V1.0.0.pdf (92 pages, 832122 bytes).
 PDF statistics:
- 1712 PDF objects out of 1728 (max. 8388607)
- 657 named destinations out of 1000 (max. 500000)
+ 1692 PDF objects out of 1728 (max. 8388607)
+ 647 named destinations out of 1000 (max. 500000)
  398 words of extra memory for PDF output out of 10000 (max. 10000000)
 
