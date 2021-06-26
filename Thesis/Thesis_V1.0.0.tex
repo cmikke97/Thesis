@@ -2032,13 +2032,11 @@ The authors of \cite{KyadigeLFCEIFPIBMD} finally stated that their proposed mult
 \paragraph{Background and Related work (Static ML Malware Detection)}
 
 \paragraph{Feature Engineering}
-
-
-In order to use file paths in feed-forward neural network, the authors first needed to convert the variable length strings into numeric vectors of fixed length. They did that using a vectorization scheme, by creating a lookup table keyed on each character with a numeric value (between 0 and the character set size) representing each character. This transformation required their file paths to be trimmed to a fixed size, so they trimmed them to the last 100 characters.
+In order to be able to use file paths in a feed-forward neural network along with PE file content feature vectors, the file paths, which are strings of variable length, needed to be converted into numerical vectors of fixed size. To do this the authors of \cite{KyadigeLFCEIFPIBMD} created a lookup table keyed on each character with a numeric value (between 0 and the character set size) representing each character. Moreover, the conversion required the file paths to be trimmed to a fixed size, therefore the authors considered just the first 100 characters of each file path.
 
 As features for the content of the PE files, they used floating point 1024-dimensional feature vectors consisting of four distinct feature types, similar to \cite{saxeDNNBMDUTDBPF}:
 \begin{enumerate}
-	\item A 256-dimensional (16x16) 2D histogram of windowed entropy values per byte. A window size of 1024 was selected.
+	\item A 256-dimensional (16x16) 2D histogram of windowed entropy values per byte with a window size of 1024.
 	
 	\item A 256-dimensional (16x16) 2D logarithmically scaled string length/hash histogram.
 	
@@ -2046,12 +2044,11 @@ As features for the content of the PE files, they used floating point 1024-dimen
 	
 	\item A 256-dimensional (16x16) byte standard deviation/entropy histogram.
 \end{enumerate}
-In total, they presented each sample as two feature vectors: A PE content feature vector of 1024 dimensions and a contextual file path feature vector of 100 dimensions \cite{KyadigeLFCEIFPIBMD}.
-
----
+In total, they represented each sample as two feature vectors: A PE-content feature vector of 1024 dimensions and a contextual file-path feature vector of 100 dimensions \cite{KyadigeLFCEIFPIBMD}.
 
 \paragraph{Implementation details}
 
+\color{Red}
 The authors used in their work a concatenation of features derived from the content of a PE file as an input to a neural network, adding a second input which includes contextual information - namely the PE File path. The PE content input is passed though a series of hidden layers while the file path is passed through a convolutional embedding. Both inputs are ultimately concatenated together into a common 'stem' of hidden layers. The final malicious/benign output score is obtained by passing the final dense layer output (a 1-D scalar) through a sigmoid activation function \cite{KyadigeLFCEIFPIBMD}.
 
 ---
