@@ -1810,7 +1810,7 @@ Finally, in \cite{ruddALOHA} each model used a loss weight of 0.1 on the aggrega
 \end{equation}
 
 \subsection{Automatic Malware Description via Attribute Tagging and Similarity Embedding}
-As explained by Ducau et Al. in \cite{DucauAMDATSE}, in order to counter and remediate a malware infection on a system/network it is of vital importance to understand the nature (malware family and variant) of the attack in progress. In fact, knowing the malicious capabilities associated with each suspicious file found on a system/network gives important clues to the system end user, administrator or security operator that help define a remediation procedure, identify possible root causes, and evaluate the severity and potential consequences of the attack. 
+As explained by Ducau et al. in \cite{DucauAMDATSE}, in order to counter and remediate a malware infection on a system/network it is of vital importance to understand the nature (malware family and variant) of the attack in progress. In fact, knowing the malicious capabilities associated with each suspicious file found on a system/network gives important clues to the system end user, administrator or security operator that help define a remediation procedure, identify possible root causes, and evaluate the severity and potential consequences of the attack. 
 
 Machine learning detection methods, which have the potential to identify even new malware samples/variants as malicious, however, generally produce a simple binary malicious/benign label with no further information about the type of threat posed by malicious samples, which in turn does not allow the identification of relationships between malware samples. On the other hand, most commercial anti-malware solutions provide,  when they alert about potentially harmful files detected in a machine, \textit{detection names} coming from specific hand-written signatures created by reverse engineers to identify particular threats, that are theoretically useful for categorizing known malware variants. However, even these detection names are problematic. In fact, the increasing number of feature-rich malware and the fact that different vendors use differing malware naming conventions led to inconsistent and highly vendor-specific detection names. Moreover, it is now common to see detection names which only act as unique identifiers without providing actionable information about the type of potential harm the malicious sample is capable of doing.
 
@@ -1842,7 +1842,7 @@ An alternative approach to multi-label classification is to learn a compact shar
 
 \color{Black}
 \paragraph{Tag Distillation from Detection Names}
-Ducau et Al. \cite{DucauAMDATSE} relied on semi-automatic strategies, even if they are noisier than manual labelling, because they allowed them to label millions of files that can be then used to train a classifier. In particular, they designed a labelling function which annotates PE files using the previously mentioned set of tags $\mathcal{T}$ by combining information extracted from the detection names got from ten reputable anti-malware vendors.
+Ducau et al. \cite{DucauAMDATSE} relied on semi-automatic strategies, even if they are noisier than manual labelling, because they allowed them to label millions of files that can be then used to train a classifier. In particular, they designed a labelling function which annotates PE files using the previously mentioned set of tags $\mathcal{T}$ by combining information extracted from the detection names got from ten reputable anti-malware vendors.
 
 The labelling process consisted of the following three main stages:
 \begin{enumerate}
@@ -1926,29 +1926,17 @@ On the other hand, the \textit{Mean Jaccard} similarity and \textit{Mean per-sam
 where $T^{(i)}$ is the set of tags associated with sample $i$, $\hat{T}^{(i)}$ is the set of tags predicted for the same sample after binarizing the predictions, $\textbf{y} \in \{0, 1\}^T$ is the binary target vector for a PE file (where $\textbf{y}_n$ indicates whether the $n$-th tag applies to the file), $\hat{\textbf{y}}$ is the binarized prediction vector from a given tagging model and $\mathbb{I}$ is the indicator function which is 1 if the condition in the argument is true, and 0 otherwise.
 
 \paragraph{Latent Space (Joint Embedding) Analysis}
-\color{Red}
-The Joint Embedding network supposedly learns a more informative internal representation of the binary files, guided by the ability to model, and therefore exploit tag relationships (labels structure) in the latent space.
+Ducau et al. stated in \cite{DucauAMDATSE} that 'the Joint Embedding network learns a more informative representation of binary files, guided by the ability to model, and therefore exploit tag relationships (labels structure) in the latent space'. The representations of malware binary files learnt during training can be taught as implicit signatures describing their capabilities.
 
-It is also possible to perform file similarity searches: using one malware sample to retrieve other samples with similar malicious characteristics by simply retrieving files for which the embedding representation is close to the representation of the query sample. Furthermore, it can also be used for obtaining examples of malicious programs that fit a given tag description, where with given a combination of descriptive tags we can define a subspace within the embedding space containing those samples that closely match that particular tag combination of interest.
+Moreover, it is also possible to perform file similarity searches: using one malware sample other samples with similar malicious characteristics can be retrieved by simply getting the nearest files in the joint embedding space.
 
-\color{Black}
 \subparagraph{File-File Similarity Index}
-\color{Red}
-The proposed representation of PE files in embedding space, along with the distance function defined in this space, allows to measure not only similarities between files' and tags' embeddings, but between files' representations as well.
+Interestingly, in \cite{DucauAMDATSE} the authors state that the proposed representation of PE files in joint embedding space, along with the distance function defined in this space, allows to measure not only similarities between files' and tags' embeddings, but between files' representations as well.
 
-Because of how the models were trained, two pieces of malware that are close to each other in latent space should exhibit similar malicious capabilities. This means that it is possible to use the latent representation of the files to measure how similar two pieces of malware are in terms of their capabilities. Moreover, the size of the file embedding representation (32 dimensions) is 32 times smaller than the original file feature representation (1024 dimensions). This makes the task of storing, indexing and querying large databases of malware more efficient.
+In particular, because of how the joint embedding model is designed and trained, two pieces of malware that are close to each other in latent space should exhibit similar malicious capabilities. This theoretically makes it possible to to measure how similar two pieces of malware are in terms of their capabilities by use their latent representations. Moreover, the joint embedding representation, given that its size (32 dimensions) is 32 times smaller than the original file feature representation (1024 dimensions), is particularly efficient for storing, indexing and querying large malware databases.
 
-Because the models are being indirectly trained with malware families' information generated by a group of (quasi-)independent "experts" (anti-malware vendors), via tagging decomposition, then the authors expected to be able to differentiate malware campaigns from each other, even if they are described by the same set of tags.
+Additionally, given the fact that the model is indirectly trained with malware families' information generated by a set of different anti-malware vendors, Ducau et al. \cite{DucauAMDATSE} expects it to be able, to a certain extent, to differentiate malware campaigns from each other, even if they are described by the same set of tags.
 
-The authors identified the top $f = 13$ most prominent malware campaigns in the test set that can be convicted with high confidence.
-
-Next, the authors created the joint embedding representation for those files using the already trained Joint Embedding network.
-
-Finally, they set up the task of $f$-way family classification via nearest neighbour search. It consisted in randomly sampling $k$ files per family as anchor samples, and $q$ files per family as query samples. Each of the $(f \cdot q)$ query samples was then predicted to belong to the same class as its closest anchor sample in feature space. A more descriptive representational space should separate malware families, i.e. pull those samples that belong to the same family close to each other while pushing away samples from other families, thus performing better on the nearest neighbour classification task.
-
-The authors considered the neural network embeddings and the original 1024 features as feature spaces for this task. They randomly chose 23 query samples per family and varied the number of anchor samples $k$ from 1 to 10. They repeated the sampling process (for both anchors and query samples), classification and evaluation 15 times per value of $k$ to obtain uncertainty estimates for the accuracy results.
-
-\color{Black}
 \subsection{Learning from Context: Exploiting and Interpreting File Path Information for Better Malware Detection}
 Recent static portable executable (PE) malware detection techniques, including \cite{ruddALOHA}, typically employ ML-Sec classifiers with a single numerical feature vector derived from each file as input, having as output one or more target labels/tasks during training. However, as noted by Kyadige et. al. in \cite{KyadigeLFCEIFPIBMD}, there is still much unused orthogonal information that could be exploited regarding the samples files, namely the file paths. The authors in \cite{KyadigeLFCEIFPIBMD} thus proposed utilizing the paths of the PE files as static source of contextual information as auxiliary data to the classifier in order to augment static ML detectors. File paths, which are already commonly used by malware analysts to correct and investigate detection errors, are available statically with very little overhead, and can seamlessly be integrated into a multi-view static ML detector.
 
