@@ -1862,12 +1862,12 @@ In particular, the \textit{Multi-Head} consisted of a base topology common to th
 
 The \textit{Joint Embedding} model, instead, mapped both the labels (malware tags) and the binary file features $\textbf{x}$ to vectors in a joint Euclidean latent-space in such a way that, for a given similarity function, the transformations of semantically similar labels are close to each other, and the embedding of a binary file should be close to that of its associated labels in the same space. In practice, the \textit{Joint Embedding} model consisted on a PE \textit{embedding} network, a \textit{tag embedding} matrix $\textbf{E}$, and a \textit{prediction layer}.
 
-The PE embedding network learns a non-linear function $\phi_\theta(\cdot)$, with parameters $\theta$ that maps the input binary representation of the PE executable file $\textbf{x} \in \mathbb{R}^d$ into a vector $\textbf{h} \in \mathbb{R}^D$ in low dimensional Euclidean space,
+The PE embedding network, using the same base topology as the Multi-Head model, learns a non-linear function $\phi_\theta(\cdot)$, with parameters $\theta$ that maps the input binary representation of the PE executable file $\textbf{x} \in \mathbb{R}^d$ into a vector $\textbf{h} \in \mathbb{R}^D$ in low dimensional Euclidean space (with $D=32$),
 \begin{equation} \label{jointEmbeddingPEEmbedding}
 	\phi_\theta(\textbf{x}) : \mathbb{R}^d \rightarrow \mathbb{R}^D.
 \end{equation}
 
-The tag embedding matrix $\textbf{E} \in \mathbb{R}^{T \times D}$ learns a mapping from a tag $t_n \in \mathcal{T} = \{t_1, ..., t_T\}$, to a distributed representation $\textbf{e} \in \mathbb{R}^D$ in the joint embedding space.
+The tag embedding matrix $\textbf{E} \in \mathbb{R}^{T \times D}$ of learnable parameters learns a mapping from a tag $t_n \in \mathcal{T} = \{t_1, ..., t_T\}$, to a distributed representation $\textbf{e} \in \mathbb{R}^D$ in the joint embedding space (with $D=32$).
 \begin{equation} \label{jointEmbeddingTagEmbedding}
 	\phi_E(t) : \{t_1, ..., t_T\} \rightarrow \mathbb{R}^D.
 \end{equation}
@@ -1905,8 +1905,6 @@ The authors noted that, because this model maps every tag into the same low dime
 Finally, if one compares both models in \ref{}, they are mathematically similar, with the main differences being the explicit modelling of the tag embedding step (and its regularization), the subsequent explicit modelling of the joint embedding space that allows to naturally perform label-to-label and sample-to-sample similarity searches, and the ability to use various distance functions in the prediction layer.
 
 ---
-
-The Joint Embedding architecture used the same base topology as the Multi-Head model for the embedding of the PE files into a 32 dimensional joint latent space. An embedding matrix ($\textbf{E}$) of learnable parameters with size $T \times 32$ is used for the embedding of the tags. The authors used dot product to compute the similarity between the PE file embedding and the tag embedding followed by a sigmoid non-linearity to produce an output probability score. As before, the sum of the per-tag binary cross-entropy losses is used as the mini-batch loss during model training.
 
 \color{Black}
 \subparagraph{Evaluation of Tagging Algorithms}
