@@ -1926,7 +1926,7 @@ On the other hand, the \textit{Mean Jaccard} similarity and \textit{Mean per-sam
 where $T^{(i)}$ is the set of tags associated with sample $i$, $\hat{T}^{(i)}$ is the set of tags predicted for the same sample after binarizing the predictions, $\textbf{y} \in \{0, 1\}^T$ is the binary target vector for a PE file (where $\textbf{y}_n$ indicates whether the $n$-th tag applies to the file), $\hat{\textbf{y}}$ is the binarized prediction vector from a given tagging model and $\mathbb{I}$ is the indicator function which is 1 if the condition in the argument is true, and 0 otherwise.
 
 \paragraph{Latent Space (Joint Embedding) Analysis}
-Ducau et al. stated in \cite{DucauAMDATSE} that 'the Joint Embedding network learns a more informative representation of binary files, guided by the ability to model, and therefore exploit tag relationships (labels structure) in the latent space'. The representations of malware binary files learnt during training can be taught as implicit signatures describing their capabilities.
+The representations of malware binary files learnt during training can be taught as implicit signatures describing their capabilities.
 
 Moreover, it is also possible to perform file similarity searches: using one malware sample other samples with similar malicious characteristics can be retrieved by simply getting the nearest files in the joint embedding space.
 
