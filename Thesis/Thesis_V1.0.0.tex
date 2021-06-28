@@ -1862,17 +1862,19 @@ In particular, the \textit{Multi-Head} consisted of a base topology common to th
 
 The \textit{Joint Embedding} model, instead, mapped both the labels (malware tags) and the binary file features $\textbf{x}$ to vectors in a joint Euclidean latent-space in such a way that, for a given similarity function, the transformations of semantically similar labels are close to each other, and the embedding of a binary file should be close to that of its associated labels in the same space. In practice, the \textit{Joint Embedding} model consisted on a PE \textit{embedding} network, a \textit{tag embedding} matrix $\textbf{E}$, and a \textit{prediction layer}.
 
-\color{Red}
-
-The PE embedding network learns a nonlinear function $\phi_\theta(\cdot)$, with parameters $\theta$ that maps the input binary representation of the PE executable file $\textbf{x} \in \mathbb{R}^d$ into a vector $\textbf{h} \in \mathbb{R}^D$ in low dimensional Euclidean space,
+The PE embedding network learns a non-linear function $\phi_\theta(\cdot)$, with parameters $\theta$ that maps the input binary representation of the PE executable file $\textbf{x} \in \mathbb{R}^d$ into a vector $\textbf{h} \in \mathbb{R}^D$ in low dimensional Euclidean space,
 \begin{equation} \label{jointEmbeddingPEEmbedding}
 	\phi_\theta(\textbf{x}) : \mathbb{R}^d \rightarrow \mathbb{R}^D.
 \end{equation}
+
 The tag embedding matrix $\textbf{E} \in \mathbb{R}^{T \times D}$ learns a mapping from a tag $t_n \in \mathcal{T} = \{t_1, ..., t_T\}$, to a distributed representation $\textbf{e} \in \mathbb{R}^D$ in the joint embedding space.
 \begin{equation} \label{jointEmbeddingTagEmbedding}
 	\phi_E(t) : \{t_1, ..., t_T\} \rightarrow \mathbb{R}^D.
 \end{equation}
+
 In practice, the embedding vector for the tag $t_n$ is simply the $n$-th row of the tag embedding matrix, i.e. $\phi_E(t_n) = \textbf{E}_n$.
+
+\color{Red}
 
 Finally, the prediction layer compares both the tag and the sample embeddings ($\textbf{e}$ and $\textbf{h}$ respectively) and produces a similarity score that is run through a sigmoid non-linearity to estimate the probability that sample $\textbf{x}$ is associated with tag $t$ for each $t \in \mathcal{T}$. In the final model implementation, the similarity score is the dot product between the embedding vectors. The output of the network $f_n(\textbf{x} | \theta, \textbf{E})$ then becomes,
 \begin{equation}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  28 JUN 2021 15:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  28 JUN 2021 15:15
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -857,29 +857,29 @@ LaTeX Warning: Reference `' on page 55 undefined on input line 1859.
 
 [55]
 
-LaTeX Warning: Reference `' on page 56 undefined on input line 1903.
+LaTeX Warning: Reference `' on page 56 undefined on input line 1905.
 
 [56] [57] [58] [59] [60]
 Chapter 4.
 
-LaTeX Warning: Reference `' on page 61 undefined on input line 2039.
+LaTeX Warning: Reference `' on page 61 undefined on input line 2041.
 
 [61
 
 ] [62] [63] [64]
 LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 2
-171.
+173.
 
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/base\omscmr.fd
 File: omscmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2171.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2173.
 
 
 [65] [66] [67] [68]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 2273.
+put line 2275.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -898,14 +898,14 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2667--2668
+Underfull \hbox (badness 10000) in paragraph at lines 2669--2670
 [] \OT1/cmr/m/it/10 self.chunk[]agg\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 self.chun
 k[]agg[]size $\OMS/cmsy/m/n/10  $ \OT1/cmr/bx/n/10 get[]chunks\OT1/cmr/m/n/10 (
 \OT1/cmr/m/it/10 self.tensor\OT1/cmr/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2667--2668
+Underfull \hbox (badness 10000) in paragraph at lines 2669--2670
 \OT1/cmr/m/it/10 self.chunk[]indices\OT1/cmr/m/n/10 [\OT1/cmr/m/it/10 start[]i\
 OT1/cmr/m/n/10 :\OT1/cmr/m/it/10 end[]i\OT1/cmr/m/n/10 ], \OT1/cmr/m/it/10 self
 .chunk[]size\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 self.last[]chunk[]size\OT1/cmr/m
@@ -913,7 +913,7 @@ OT1/cmr/m/n/10 :\OT1/cmr/m/it/10 end[]i\OT1/cmr/m/n/10 ], \OT1/cmr/m/it/10 self
  []
 
 
-Underfull \hbox (badness 1337) in paragraph at lines 2675--2676
+Underfull \hbox (badness 1337) in paragraph at lines 2677--2678
 [] \OT1/cmr/m/it/10 ar-gu-ments $\OMS/cmsy/m/n/10  $ \OT1/cmr/m/n/10 (\OT1/cmr/
 m/it/10 self.tensors\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 self.chunk[]indices\OT1/
 cmr/m/n/10 [\OT1/cmr/m/it/10 start[]i\OT1/cmr/m/n/10 :\OT1/cmr/m/it/10 end[]i\O
@@ -1102,7 +1102,7 @@ ichele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
 <C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmtt8.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
 sfonts/symbols/msbm10.pfb>
-Output written on Thesis_V1.0.0.pdf (88 pages, 818834 bytes).
+Output written on Thesis_V1.0.0.pdf (88 pages, 818823 bytes).
 PDF statistics:
  1677 PDF objects out of 1728 (max. 8388607)
  635 named destinations out of 1000 (max. 500000)
