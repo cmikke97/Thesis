@@ -200,18 +200,23 @@ Forcepoint, ``What is heuristic analysis?.''
   \url{https://www.forcepoint.com/cyber-edu/heuristic-analysis}, Accessed:
   2021-06-13
 
-\bibitem{KyadigeLFCEIFPIBMD}
-A.~Kyadige, E.~M. Rudd, and K.~Berlin, ``Learning from context: Exploiting and
-  interpreting file path information for better malware detection'', 2019
+\bibitem{DucauAMDATSE}
+F.~N. Ducau, E.~M. Rudd, T.~M. Heppner, A.~Long, and K.~Berlin, ``Automatic
+  malware description via attribute tagging and similarity embedding.'', arXiv:
+  Learning, 2019
 
 \bibitem{ruddALOHA}
 E.~M. Rudd, F.~N. Ducau, C.~Wild, K.~Berlin, and R.~Harang, ``Aloha: Auxiliary
   loss optimization for hypothesis augmentation'', 2019
 
-\bibitem{DucauAMDATSE}
-F.~N. Ducau, E.~M. Rudd, T.~M. Heppner, A.~Long, and K.~Berlin, ``Automatic
-  malware description via attribute tagging and similarity embedding.'', arXiv:
-  Learning, 2019
+\bibitem{KyadigeLFCEIFPIBMD}
+A.~Kyadige, E.~M. Rudd, and K.~Berlin, ``Learning from context: Exploiting and
+  interpreting file path information for better malware detection'', 2019
+
+\bibitem{MarcosAVclass}
+M.~Sebastián, R.~Rivera, P.~Kotzias, and J.~Caballero, ``Avclass: A tool for
+  massive malware labeling'', 09 2016, pp.~230--253,
+  \doi{10.1007/978-3-319-45719-2_11}
 
 \bibitem{saxeDNNBMDUTDBPF}
 J.~Saxe and K.~Berlin, ``Deep neural network based malware detection using two

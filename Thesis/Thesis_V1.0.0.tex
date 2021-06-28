@@ -1842,10 +1842,9 @@ An alternative approach to multi-label classification is to learn a compact shar
 
 \color{Black}
 \paragraph{Tag Distillation from Detection Names}
-\color{Red}
-The authors relied on semi-automatic strategies that are noisier than manual labelling, but allow to label millions of files that can then be used to train a classifier. The authors proposed, for this purpose, a labelling function that annotates PE files using the previously defined set of tags by combining information contained in detection names from multiple vendors. They used family names from ten anti-malware solutions that are known to produce high quality detection names, as starting point. Using multiple anti-malware vendors is one possible strategy for labelling that leverages expert knowledge about a given sample.
+Ducau et Al. \cite{DucauAMDATSE} relied on semi-automatic strategies, even if they are noisier than manual labelling, because they allowed them to label millions of files that can be then used to train a classifier. In particular, they designed a labelling function which annotates PE files using the previously mentioned set of tags $\mathcal{T}$ by combining information extracted from the detection names got from ten reputable anti-malware vendors.
 
-The labelling process consists of three main stages:
+The labelling process consisted of the following three main stages:
 \begin{enumerate}
 	\item \textit{token extraction}
 	
@@ -1853,13 +1852,8 @@ The labelling process consists of three main stages:
 	
 	\item \textit{token relationship mining}
 \end{enumerate}
-The token extraction phase consists in normalizing and parsing the multiple detection names and converting them in sets of sub-strings. In a similar way that the AVClass labelling tool does, the token-to-tag mapping stage uses rules that associate relevant tokens with the set of tags of interest. These association rules were created from expert knowledge by a group of malware analysts. Finally, they extend this mapping by mining statistical relationships between tokens to improve tagging stability and coverage.
 
----
-
-In \cite{}, Marcos et al. proposed AVClass: a malware labelling tool that uses data-mining techniques to distil family names for malware samples by combining detection names from multiple anti-malware solutions.
-
-The authors followed the idea of combining detection names from multiple vendors to better understand the nature of malware samples, but instead of trying to fit each new sample to a naming scheme with mutually exclusive hierarchical categories such as families, they proposed an alternate approach to describing the functionality and the relationship between malicious samples by using attribute tags. A set of attribute tags describes a piece of malware though easy to interpret properties, and can be thought of as a soft-family classification, since it describes the sample and relates it with other samples described with the same (or an overlapping) set of tags.
+The token extraction phase consisted of normalizing and parsing the multiple detection names and converting them in sets of sub-strings. In a similar way to what the malware labelling tool AVClass, which was proposed by Marcos et al. in \cite{MarcosAVclass}, does, the token-to-tag mapping stage uses rules created from expert knowledge by a group of malware analysts, that associate relevant tokens with the set of tags of interest. Finally, this mapping is extended by mining statistical relationships between tokens to improve tagging stability and coverage.
 
 \color{Black}
 \paragraph{Tags Prediction - Implementation Details}
@@ -1923,7 +1917,7 @@ The shared base topology of the final Multi-Head architecture consisted of an in
 
 The Joint Embedding architecture used the same base topology as the Multi-Head model for the embedding of the PE files into a 32 dimensional joint latent space. An embedding matrix ($\textbf{E}$) of learnable parameters with size $T \times 32$ is used for the embedding of the tags. The authors used dot product to compute the similarity between the PE file embedding and the tag embedding followed by a sigmoid non-linearity to produce an output probability score. As before, the sum of the per-tag binary cross-entropy losses is used as the mini-batch loss during model training.
 
-\color{Balck}
+\color{Black}
 \subparagraph{Evaluation of Tagging Algorithms}
 \color{Red}
 There are different ways to evaluate the performance of tagging algorithms. Particularly, the evaluation can be done in a \textit{per-tag} or a \textit{per-sample} dimension. The former seeks to quantify how well the tagging algorithm performs on identifying each tag, while the latter focuses on the quality of the predictions for each sample instead.

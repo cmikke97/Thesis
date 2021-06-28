@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  28 JUN 2021 14:43
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  28 JUN 2021 14:55
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -853,65 +853,36 @@ File: ts1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 [40] [41] [42] [43] [44] [45] [46] [47] [48] [49] [50] [51] [52] [53] [54]
 
-LaTeX Warning: Reference `' on page 55 undefined on input line 1867.
+LaTeX Warning: Reference `' on page 55 undefined on input line 1861.
 
 
-LaTeX Warning: Reference `' on page 55 undefined on input line 1871.
+LaTeX Warning: Reference `' on page 55 undefined on input line 1865.
 
-[55] [56]
+[55]
 
-LaTeX Warning: Reference `' on page 57 undefined on input line 1918.
+LaTeX Warning: Reference `' on page 56 undefined on input line 1912.
 
-
-! Package xcolor Error: Undefined color `Balck'.
-
-See the xcolor package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-\GenericError  ...                                
-                                                  \endgroup 
-\c@lor@error ...{xcolor}{Undefined color #1}\@ehc 
-                                                  \else \PackageWarning {xco...
-<argument> \c@lor@error {`\@@nam '}
-                                   \def \@@nam {black}
-\@ifundefin@d@ii \fi #1#2#3->\fi #2
-                                   
-\XC@split@viii ...`\@@nam '}\def \@@nam {black}}{}
-                                                  \let \xcolor@ \@xcolor@ \@...
-
-\XC@split@i ...f \@@tmp {#1}\XC@split@ii #1:\@nil 
-                                                  \XC@func 
-\XC@split ...{#1}\expandafter \XC@split@i \@@tmp >
-                                                  >\@nnil 
-\XC@declaredcolor ->\XC@split \XC@@tmp 
-                                       \edef \@@tmp {\noexpand \@undeclaredc...
-l.1926 \color{Balck}
-                    
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-[57] [58] [59] [60]
+[56] [57] [58] [59] [60]
 Chapter 4.
 
-LaTeX Warning: Reference `' on page 61 undefined on input line 2056.
+LaTeX Warning: Reference `' on page 61 undefined on input line 2050.
 
 [61
 
 ] [62] [63] [64]
 LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 2
-188.
+182.
 
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/base\omscmr.fd
 File: omscmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2188.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2182.
 
 
 [65] [66] [67] [68]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 2290.
+put line 2284.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -930,14 +901,14 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2684--2685
+Underfull \hbox (badness 10000) in paragraph at lines 2678--2679
 [] \OT1/cmr/m/it/10 self.chunk[]agg\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 self.chun
 k[]agg[]size $\OMS/cmsy/m/n/10  $ \OT1/cmr/bx/n/10 get[]chunks\OT1/cmr/m/n/10 (
 \OT1/cmr/m/it/10 self.tensor\OT1/cmr/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2684--2685
+Underfull \hbox (badness 10000) in paragraph at lines 2678--2679
 \OT1/cmr/m/it/10 self.chunk[]indices\OT1/cmr/m/n/10 [\OT1/cmr/m/it/10 start[]i\
 OT1/cmr/m/n/10 :\OT1/cmr/m/it/10 end[]i\OT1/cmr/m/n/10 ], \OT1/cmr/m/it/10 self
 .chunk[]size\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 self.last[]chunk[]size\OT1/cmr/m
@@ -945,7 +916,7 @@ OT1/cmr/m/n/10 :\OT1/cmr/m/it/10 end[]i\OT1/cmr/m/n/10 ], \OT1/cmr/m/it/10 self
  []
 
 
-Underfull \hbox (badness 1337) in paragraph at lines 2692--2693
+Underfull \hbox (badness 1337) in paragraph at lines 2686--2687
 [] \OT1/cmr/m/it/10 ar-gu-ments $\OMS/cmsy/m/n/10  $ \OT1/cmr/m/n/10 (\OT1/cmr/
 m/it/10 self.tensors\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 self.chunk[]indices\OT1/
 cmr/m/n/10 [\OT1/cmr/m/it/10 start[]i\OT1/cmr/m/n/10 :\OT1/cmr/m/it/10 end[]i\O
@@ -1098,10 +1069,10 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 18857 strings out of 481296
- 308189 string characters out of 2908369
- 956758 words of memory out of 3000000
- 35054 multiletter control sequences out of 15000+600000
+ 18859 strings out of 481296
+ 308218 string characters out of 2908369
+ 956794 words of memory out of 3000000
+ 35055 multiletter control sequences out of 15000+600000
  419183 words of font info for 86 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  134i,17n,137p,1463b,2558s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1134,9 +1105,9 @@ ichele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
 <C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmtt8.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
 sfonts/symbols/msbm10.pfb>
-Output written on Thesis_V1.0.0.pdf (88 pages, 819386 bytes).
+Output written on Thesis_V1.0.0.pdf (88 pages, 819885 bytes).
 PDF statistics:
- 1676 PDF objects out of 1728 (max. 8388607)
- 637 named destinations out of 1000 (max. 500000)
+ 1680 PDF objects out of 1728 (max. 8388607)
+ 638 named destinations out of 1000 (max. 500000)
  398 words of extra memory for PDF output out of 10000 (max. 10000000)
 
