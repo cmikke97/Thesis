@@ -1822,44 +1822,19 @@ Finally, in \cite{ruddALOHA} each model used a loss weight of 0.1 on the aggrega
 \end{equation}
 
 \subsection{Automatic Malware Description via Attribute Tagging and Similarity Embedding}
-\color{Red}
+As explained by Ducau et Al. in \cite{DucauAMDATSE}, in order to counter and remediate a malware infection on a system/network it is of vital importance to understand the nature of the attack in progress. In fact, knowing the malicious capabilities associated with each suspicious file found on the system/network gives important clues to defenders that help them define and prioritize counter-measures. 
 
-(Abstract)
-Although powerful for conviction of malicious artefacts, machine learning detection methods do not produce any further information about the type of threat that has been detected neither allows for identifying relationships between malware samples.
+Machine learning detection methods, which have the potential to identify even new malware samples/variants as malicious, however, generally produce a simple binary malicious/benign label with no further information about the type of threat posed by malicious samples, which in turn does not allow the identification of relationships between malware samples. On the other hand, most commercial anti-malware solutions provide,  when they alert about potentially harmful files detected in a machine, \textit{detection names} coming from specific hand-written signatures created by reverse engineers to identify particular threats, that are theoretically useful for categorizing known malware variants. However, even these detection names are problematic. In fact, the increasing number of feature-rich malware and the fact that different vendors use differing malware naming conventions led to inconsistent and highly vendor-specific detection names. Moreover, it is now common to see detection names which only act as unique identifiers without providing actionable information about the type of potential harm the malicious sample is capable of doing.
 
----
+The authors of \cite{DucauAMDATSE} therefore proposed the use of SMART (Semantic Malware Attribute Relevance Tagging) tags, which are human interpretable, high level descriptions of the capabilities of a given malware sample, to approach malicious software description. These SMART tags, which were derived by leveraging the underlying knowledge encoded in detection names from different anti-malware vendors in the industry, are non-exclusive, meaning that one malware family can be associated with multiple tags and a given tag can be associated with multiple malware families.
 
-With this work the authors address the information gap between machine learning and signature-based detection methods by learning a representation space for malware samples in which files with similar malicious behaviours appear close to each other. They did so by introducing a deep learning based tagging model trained to generate human-interpretable semantic descriptions of malicious software, which, at the same time provides potentially more useful and flexible information than malware family names.
+These tags were then used to train a Joint Embedding neural network to learn a low dimensional Euclidean representation (embedding) space in which malware samples with similar characteristics are close to each other, having access only to the files' static binary representations; this in turn is used at test/deploy time for automatically predicting tags for new (unseen) files in real time.
 
-Furthermore, they used the learned representation space to introduce a similarity index between malware files, and empirically demonstrated using dynamic traces from files' execution, that is not only more effective at identifying samples from the same families, but also 32 times smaller than those based on raw feature vectors \cite{DucauAMDATSE}.
-
----
-
-(Introduction)
-Whenever one or more malicious files are found in a computer network, the first step towards remediation is to understand the nature of the attack in progress. Knowing the malicious capabilities associated with each suspicious file gives important context to network defenders which helps them define and prioritize counter-measures.
-
-Generally, anti-virus (AV) or anti-malware solutions provide a \textit{detection name} when they alert about potentially harmful files detected in a machine as a way to provide this context. These detection names usually come from specific signatures written by reverse engineers to identify particular threats, therefore encoding expert knowledge about a given malware sample. While this is theoretically useful for categorizing known malware variants, differing malware naming conventions among vendors have led to detection names that are inconsistent and highly vendor-specific. The problem of inconsistent naming conventions has been compounded due to more feature-rich malware and increased quantities of threats over time. Moreover, some detection names serve only as unique identifiers and do not provide actionable information about what type of harm the malicious sample could do if it infects a system.
-
-When a novel malware variant appears, applying existing detection names, or even measuring similarity with known malicious files is problematic, since current rule-based signatures will likely not trigger on these variants at all. Machine learning (ML) malware detectors have the potential to identify these new malware samples as malicious, but generally do not provide further information about the type of threat encountered neither on how it relates with the universe of known malware.
-
-The authors propose to use Semantic Malware Attribute Relevance Tagging (SMART) to approach malicious software description. In contradistinction to prior malware (family) detection names, this semantic malware attribute tags approach yields human interpretable, high level descriptions of the capabilities of a given malware sample. SMART tags are related to malware family names in the sense that they attempt to describe how a piece of malicious software executed and the intent behind it. However, unlike malware family names, malware tags are non-exclusive, meaning that one malware campaign (or family) can be associated with multiple tags and a given tag can be associated with multiple malware families.
-
-The number of tags is also inherently bounded by types of malicious behaviour and chosen granularity in description. Thus, a fixed number of tags can roughly describe all malicious samples, even when the number of malware families increases dramatically. Because of this, the tagging approach makes the task of malware description suitable to be addressed with machine learning methods.
-
-The authors derived tags by leveraging the underlying knowledge encoded in detection names from different anti-malware vendors in the industry, although the general framework applies whenever multiple analyses of the same file are available.
-
-Using their derived tags, the authors then trained a multi-label deep neural network to automatically predict tags for new (unseen) files in real time. Their approach only assumes access to the files' static binary representations. They found that their network yields impressive performance on the tag prediction task. It does so by learning a low dimensional Euclidean representation space in which malware samples with similar characteristics are close to each other. During the model training phase they used binary files and malware descriptions generated by multiple expert systems to train a machine learning model, that can later be deployed to automatically produce descriptive tags for new files in a fraction of a second.
-
-The proposed approach of describing malicious capabilities by learning a low dimensional embedding space (and associated embedding function) for malicious files enables to compare malware samples by \textit{semantic similarity} in terms of \textit{type} of malicious content. This compressed representation further allows for efficient indexing, searching and querying of malware corpora along explainable dimensions. This ability is particularly useful for identifying new samples of a novel malware campaign from which we only have identified a small number of samples.
-
-The authors introduced the task of automatic malicious tag prediction for malware description, and proposed a Joint Embedding neural network architecture and training methodology that allow to generate descriptive tags for malware files with high true positive rates at low false positive rates in a static fashion (without executing the software).
-Their neural network learnt a compact, yet expressive representation space for binary files which is informed by their malicious capabilities.
-They proposed a novel file-file similarity index based on the representation space of their neural network that enables for efficient indexing and searching in large malware corpora along interpretable dimensions.
-
----
+Furthermore, the learned low dimensional embedding space (and the associated embedding function) for malicious files enables the comparison between malware samples in terms of \textit{type} of malicious content. This in turns allows the introduction of a similarity index between malware files, allowing for efficient indexing, searching and querying of malware corpora along interpretable dimensions.
 
 \paragraph{Background and Related Work}
 \subparagraph{Malware Family Categorization}
+\color{Red}
 Identifying the family and variant of a particular malicious sample can provide important intelligence to the end user, administrator or security operator of a system about what type of attack might be underway. This extra contextual information can help define a remediation procedure, identify possible root causes, and evaluate the severity and potential consequences of the attack. In fact, numerous vendors provide in their websites detailed information about popular family/variant information, with associated description of what that variant does, and suggest how a particular piece of malware can be removed.
 
 The quantity of new malware samples that security vendors' labs receive has increased dramatically, to millions per month. In this scenario it becomes practically unfeasible to manually and consistently group each malicious file into a well defined hierarchy of families.
@@ -1881,7 +1856,9 @@ The increasing quantities of malware samples and the resilience to signature met
 \end{itemize}
 In \cite{}, Marcos et al. proposed AVClass: a malware labelling tool that uses data-mining techniques to distill family names for malware samples by combining detection names from multiple anti-malware solutions. The authors followed the idea of combining detection names from multiple vendors to better understand the nature of malware samples, but instead of trying to fit each new sample to a naming scheme with mutually exclusive hierarchical categories such as families, they proposed an alternate approach to describing the functionality and the relationship between malicious samples by using attribute tags. A set of attribute tags describes a piece of malware though easy to interpret properties, and can be thought of as a soft-family classification, since it describes the sample and relates it with other samples described with the same (or an overlapping) set of tags.
 
+\color{Black}
 \subparagraph{Semantic Attribute Tagging}
+\color{Red}
 Semantic attribute tagging refers to the association of samples with key-words that convey various types of high-level information about their content. These tags can later be used to interpret or summarize the content of the sample, for information retrieval in a large database of samples or for clustering, among others.
 
 Semantic attribute tagging has two important characteristics worth considering:
@@ -1891,17 +1868,23 @@ Semantic attribute tagging has two important characteristics worth considering:
 	\item semantic tags can be stored, structured, and retrieved in a human interpretable manner.
 \end{enumerate}
 
+\color{Black}
 \subparagraph{Multi-Label Classification}
+\color{Red}
 Semantic attribute tagging relies on multi-label classification, wherein the authors aim to predict multiple labels simultaneously. There are several ways to do this, the most trivial of which is to learn one classifier per label. This naive approach is not efficient in the sense that one classifier does not benefit from what the other classifiers have learned about a given sample. Furthermore, it can be unfeasible from a deployment perspective, particularly as the number of labels grow. For correlated labels, a popular approach is to use a single classifier with multiple outputs, on per output label. The total loss for the classifier is obtained by adding together the loss terms across the model's outputs during training and optimizing over a multi-objective loss. Not only does this yield a more compact representation but it also improves classification performance over using independent classifiers. The authors used as baseline architecture a multi-label deep neural network architecture which exploits a shared representation of the input samples, and has multiple binary cross entropy loss functions atop stacks of hidden layers, or heads, with final sigmoid outputs - one per tag.
 
 An alternative approach to multi-label classification, first introduced in the image tagging and retrieval literature, is to learn a compact shared vector space representation to which map both input samples and labels - a joint embedding - where similar content across modalities are projected into similar vectors in the same low dimensional space. At query time, a similarity comparison between vectors in this learned latent space is performed, e.g. via inner product, to determine likely labels. A variety of models could be employed to form a joint embedding, but crucially, the embedding is optimized across input modalities/labels. The authors used a joint embedding model that maps malware tags and executable files into the same low dimensional Euclidean space for the malware description problem.
 
+\color{Black}
 \paragraph{Semantic Malware Attribute Tags}
+\color{Red}
 The authors defined SMART tags (which they also refer to as \textit{malicious} or \textit{malware} tags) as potentially informative, high-level attributes of malicious or potentially unwanted software. These tags are loosely related to malware families, in the sense that they attempt to describe how a piece of malicious software executes and the intent behind it, but they do so in a more general and flexible way. One malware campaign (or family) can be associated with more than one tag, and a given tag is associated with multiple families. The authors defined a set of malicious tags $\mathcal{T}$, with $|\mathcal{T}| = 11$ different tags (or descriptive dimensions) of interest that they can use to describe malicious PE files: \textit{adware}, \textit{crypto-miner}, \textit{downloader}, \textit{dropper}, \textit{file-infector}, \textit{flooder}, \textit{installer}, \textit{packed}, \textit{ransomware}, \textit{spyware} and \textit{worm}.
 
 Since malware tags are defined at a different level of abstraction than malware families, the authors can bypass the problem of not having a common naming strategy for malicious software, and thus exploit the knowledge contained in multiple genealogies fenerated from different sources in a quasi-independent manner.
 
+\color{Black}
 \subparagraph{Tag Distillation from Detection Names}
+\color{Red}
 The authors relied on semi-automatic strategies that are noisier than manual labelling, but allow to label millions of files that can then be used to train a classifier. The authors proposed, for this purpose, a labelling function that annotates PE files using the previously defined set of tags by combining information contained in detection names from multiple vendors. They used family names from ten anti-malware solutions that are known to produce high quality detection names, as starting point. Using multiple anti-malware vendors is one possible strategy for labelling that leverages expert knowledge about a given sample.
 
 The labelling process consists of three main stages:
@@ -1914,7 +1897,9 @@ The labelling process consists of three main stages:
 \end{enumerate}
 The token extraction phase consists in normalizing and parsing the multiple detection names and converting them in sets of sub-strings. In a similar way that the AVClass labelling tool does, the token-to-tag mapping stage uses rules that associate relevant tokens with the set of tags of interest. These association rules were created from expert knowledge by a group of malware analysts. Finally, they extend this mapping by mining statistical relationships between tokens to improve tagging stability and coverage.
 
+\color{Black}
 \paragraph{Tags Prediction - Implementation Details}
+\color{Red}
 The goal of the authors' work is to flexibly predict important malware qualities from static features, which they more formally define as multi-label classification problem, since zero or more tags from the set of $T$ possible tags $\mathcal{T} = \{t_1, t_2, ..., t_T\}$ can be present at the same time for a given sample. In order to predict these tags, they proposed two different neural network architectures, represented in \ref{}, which they referred to as \textit{Multi-Head} (top) and \textit{Joint Embedding} (bottom).
 
 The \textit{Multi-Head} architecture can be thought as an extension of the network used in \cite{} to multiple outputs. It consists of a base topology that is common to the prediction of all tags, and one output (or "head") per tag. The base topology can be thought of a feature extraction (or embedding) network that transforms the input features $\textbf{x}$ into low dimensional hidden vector $\textbf{h}$, while each head is a binary classifier that predicts the presence or absence of each tag from it. Both parts of the architecture consist of multiple blocks composed of dropout, a dense layer, batch normalization, and an exponential linear unit (ELU) activation function. The only exceptions are the input layer, which does not use dropout, and the very last layer of each head, which uses a sigmoid activation unit to compute the predicted probability for each label.
@@ -1974,7 +1959,9 @@ The shared base topology of the final Multi-Head architecture consisted of an in
 
 The Joint Embedding architecture used the same base topology as the Multi-Head model for the embedding of the PE files into a 32 dimensional joint latent space. An embedding matrix ($\textbf{E}$) of learnable parameters with size $T \times 32$ is used for the embedding of the tags. The authors used dot product to compute the similarity between the PE file embedding and the tag embedding followed by a sigmoid non-linearity to produce an output probability score. As before, the sum of the per-tag binary cross-entropy losses is used as the mini-batch loss during model training.
 
+\color{Balck}
 \subparagraph{Evaluation of Tagging Algorithms}
+\color{Red}
 There are different ways to evaluate the performance of tagging algorithms. Particularly, the evaluation can be done in a \textit{per-tag} or a \textit{per-sample} dimension. The former seeks to quantify how well the tagging algorithm performs on identifying each tag, while the latter focuses on the quality of the predictions for each sample instead.
 
 In the \textit{per-tag} case, one suitable way to evaluate the performance of the model is to measure the area under the receiver operating characteristic curve (AUC-ROC, or simply AUC) for each of the tags being predicted. A ROC curve is created by plotting the true positive rate (TPR) against the false positive rate (FPR). Also, since the target value for the $n$-th tag of a given sample is a binary True/False value ($t_n \in \{0, 1\}$), binary classification evaluation metrics such as 'Accuracy', 'Precision', 'Recall', and 'F-score' also apply. To compute these metrics, the output probability prediction needs to be binarized. For the binarization of the predictions, the authors choose a threshold independently for each tag such that the FPR in the validation set is $0.01$ and use the resulting 0/1 predictions.
@@ -1988,12 +1975,16 @@ The \textit{per-sample} evaluation dimension seeks to evaluate the performance o
 \end{equation}
 as per-sample performance metrics for the tagging problem, where $\mathbb{I}$ is the indicator function which is 1 if the condition in the argument is true, and 0 otherwise.
 
+\color{Black}
 \paragraph{Latent Space (Joint Embedding) Analysis}
+\color{Red}
 The Joint Embedding network supposedly learns a more informative internal representation of the binary files, guided by the ability to model, and therefore exploit tag relationships (labels structure) in the latent space.
 
 It is also possible to perform file similarity searches: using one malware sample to retrieve other samples with similar malicious characteristics by simply retrieving files for which the embedding representation is close to the representation of the query sample. Furthermore, it can also be used for obtaining examples of malicious programs that fit a given tag description, where with given a combination of descriptive tags we can define a subspace within the embedding space containing those samples that closely match that particular tag combination of interest.
 
+\color{Black}
 \subparagraph{File-File Similarity Index}
+\color{Red}
 The proposed representation of PE files in embedding space, along with the distance function defined in this space, allows to measure not only similarities between files' and tags' embeddings, but between files' representations as well.
 
 Because of how the models were trained, two pieces of malware that are close to each other in latent space should exhibit similar malicious capabilities. This means that it is possible to use the latent representation of the files to measure how similar two pieces of malware are in terms of their capabilities. Moreover, the size of the file embedding representation (32 dimensions) is 32 times smaller than the original file feature representation (1024 dimensions). This makes the task of storing, indexing and querying large databases of malware more efficient.
