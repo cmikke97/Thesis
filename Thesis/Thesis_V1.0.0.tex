@@ -1810,7 +1810,7 @@ Finally, in \cite{ruddALOHA} each model used a loss weight of 0.1 on the aggrega
 \end{equation}
 
 \subsection{Automatic Malware Description via Attribute Tagging and Similarity Embedding}
-As explained by Ducau et Al. in \cite{DucauAMDATSE}, in order to counter and remediate a malware infection on a system/network it is of vital importance to understand the nature of the attack in progress. In fact, knowing the malicious capabilities associated with each suspicious file found on the system/network gives important clues to defenders that help them define and prioritize counter-measures. 
+As explained by Ducau et Al. in \cite{DucauAMDATSE}, in order to counter and remediate a malware infection on a system/network it is of vital importance to understand the nature (malware family and variant) of the attack in progress. In fact, knowing the malicious capabilities associated with each suspicious file found on a system/network gives important clues to the system end user, administrator or security operator that help define a remediation procedure, identify possible root causes, and evaluate the severity and potential consequences of the attack. 
 
 Machine learning detection methods, which have the potential to identify even new malware samples/variants as malicious, however, generally produce a simple binary malicious/benign label with no further information about the type of threat posed by malicious samples, which in turn does not allow the identification of relationships between malware samples. On the other hand, most commercial anti-malware solutions provide,  when they alert about potentially harmful files detected in a machine, \textit{detection names} coming from specific hand-written signatures created by reverse engineers to identify particular threats, that are theoretically useful for categorizing known malware variants. However, even these detection names are problematic. In fact, the increasing number of feature-rich malware and the fact that different vendors use differing malware naming conventions led to inconsistent and highly vendor-specific detection names. Moreover, it is now common to see detection names which only act as unique identifiers without providing actionable information about the type of potential harm the malicious sample is capable of doing.
 
@@ -1820,32 +1820,23 @@ These tags were then used to train a Joint Embedding neural network to learn a l
 
 Furthermore, the learned low dimensional embedding space (and the associated embedding function) for malicious files enables the comparison between malware samples in terms of \textit{type} of malicious content. This in turns allows the introduction of a similarity index between malware files, allowing for efficient indexing, searching and querying of malware corpora along interpretable dimensions.
 
-\paragraph{Background and Related Work}
-\subparagraph{Malware Family Categorization}
-\color{Red}
-Identifying the family and variant of a particular malicious sample can provide important intelligence to the end user, administrator or security operator of a system about what type of attack might be underway. This extra contextual information can help define a remediation procedure, identify possible root causes, and evaluate the severity and potential consequences of the attack. In fact, numerous vendors provide in their websites detailed information about popular family/variant information, with associated description of what that variant does, and suggest how a particular piece of malware can be removed.
+\paragraph{Malware Family Categorization}
+Given the extremely high number of malware samples which are nowadays received by security vendors' labs, in the order of millions per month, it has become unfeasible to manually and consistently group each malicious file into a well defined hierarchy of families. 
 
-The quantity of new malware samples that security vendors' labs receive has increased dramatically, to millions per month. In this scenario it becomes practically unfeasible to manually and consistently group each malicious file into a well defined hierarchy of families.
-
-The increasing quantities of malware samples and the resilience to signature methods caused the security community to start using more flexible analytic tools than signatures designed only to identify a single malware variant, and increasingly rely on dynamic analysis and more generic signatures when possible. Modern security vendor detection names typically fall into one of four categories, containing varying amounts of information about the threat family to which a malware sample belongs.
+The detection names typically used by modern security vendors can be divided into four categories, which contain varying amounts of information about the specific malware families.
 
 \begin{itemize}
-	\item \textit{Traditional family based}: Names are associated with unique and distinctive attributes of the malware and its variants. This not only gives them a distinctive attribute that can aid in the classification, but also requires researchers to put forth more effort to analyse their inner-workings. These types of detection names are often of high-quality and have more consistency across vendors.
+	\item \textit{Traditional family based}: Detection names are associated to unique and distinctive attributes of malware and its variants. More effort in analysing malware inner-workings is required. Detection names of this type are often of high-quality and have more consistency across vendors.
 	
-	These types of names usually use a suffix to identify specific variants, which often denotes a revision to the malware or change in the configuration data for use in a different campaign.
+	\item \textit{Technique based}: Detection names group together malware that may come from different origins and/or have multiple authors but share a common method or technique. The difference in detection methods employed by different vendors often results in less consistency in detection names across vendors.
 	
-	\item \textit{Technique based}: These types of detection names group together malware that may come from different origins and/or have multiple authors but share a common method or technique.
+	\item \textit{Method based}: Detection names denote the specific detection technology used to detect the malware sample. Some detection names can be that of a patented technology, project, or internal code name specific to the AV vendor, indicating the use of heuristics, ML, or real-time detection technologies. In this case the detection name does not refer to a particular malware family, but to the specific method that was used to detect the sample.
 	
-	Some anti-malware solutions would generically detect and classify many of these malware samples under the same generic family name, where other vendors may have defined different more specific criteria for each family classification based on other attributes of the payload. The difference in detection methods employed often results in less consistency in detection names across vendors.
-	
-	\item \textit{Method based}: This type of detection name simply denotes the detection technology used to detect the malware sample. Some detection names can simply be that of a patented technology, project, or internal code name specific to the AV vendor, indicating the use of heuristics, ML, or real-time detection technologies like cloud look-ups. In these cases the detection name is not that of a malware family, but that of the method that was utilized to detect the sample.
-	
-	\item \textit{Kit based}: AV vendors will often use more generic family names for detecting malware that has been generated by a known kit. These kits are often referred to as grey hat tools, as they can be used both offensively by penetration testing teams and by malware authors. Many of these kits obfuscate their payloads in an attempt to circumvent detection by AV software. Detection names in this category tend to not describe the origins or functionality of the specific malicious payload, but instead identify methods used by the kit or tool to obfuscate or hide their payload.
+	\item \textit{Kit based}: Detection names are associated to kits/tools used to generate the specific malware sample. These kits can be used both offensively by penetration testing teams and by malware authors and are therefore often referred to as grey hat tools. Detection names in this category tend to identify methods used by the kit or tool to obfuscate or hide the payload of a specific malware sample, rather than to describe its origin or functionality.
 \end{itemize}
-In \cite{}, Marcos et al. proposed AVClass: a malware labelling tool that uses data-mining techniques to distill family names for malware samples by combining detection names from multiple anti-malware solutions. The authors followed the idea of combining detection names from multiple vendors to better understand the nature of malware samples, but instead of trying to fit each new sample to a naming scheme with mutually exclusive hierarchical categories such as families, they proposed an alternate approach to describing the functionality and the relationship between malicious samples by using attribute tags. A set of attribute tags describes a piece of malware though easy to interpret properties, and can be thought of as a soft-family classification, since it describes the sample and relates it with other samples described with the same (or an overlapping) set of tags.
 
 \color{Black}
-\subparagraph{Semantic Attribute Tagging}
+\paragraph{Semantic Attribute Tagging}
 \color{Red}
 Semantic attribute tagging refers to the association of samples with key-words that convey various types of high-level information about their content. These tags can later be used to interpret or summarize the content of the sample, for information retrieval in a large database of samples or for clustering, among others.
 
@@ -1857,7 +1848,7 @@ Semantic attribute tagging has two important characteristics worth considering:
 \end{enumerate}
 
 \color{Black}
-\subparagraph{Multi-Label Classification}
+\paragraph{Multi-Label Classification}
 \color{Red}
 Semantic attribute tagging relies on multi-label classification, wherein the authors aim to predict multiple labels simultaneously. There are several ways to do this, the most trivial of which is to learn one classifier per label. This naive approach is not efficient in the sense that one classifier does not benefit from what the other classifiers have learned about a given sample. Furthermore, it can be unfeasible from a deployment perspective, particularly as the number of labels grow. For correlated labels, a popular approach is to use a single classifier with multiple outputs, on per output label. The total loss for the classifier is obtained by adding together the loss terms across the model's outputs during training and optimizing over a multi-objective loss. Not only does this yield a more compact representation but it also improves classification performance over using independent classifiers. The authors used as baseline architecture a multi-label deep neural network architecture which exploits a shared representation of the input samples, and has multiple binary cross entropy loss functions atop stacks of hidden layers, or heads, with final sigmoid outputs - one per tag.
 
@@ -1866,6 +1857,12 @@ An alternative approach to multi-label classification, first introduced in the i
 \color{Black}
 \paragraph{Semantic Malware Attribute Tags}
 \color{Red}
+In \cite{}, Marcos et al. proposed AVClass: a malware labelling tool that uses data-mining techniques to distil family names for malware samples by combining detection names from multiple anti-malware solutions.
+
+The authors followed the idea of combining detection names from multiple vendors to better understand the nature of malware samples, but instead of trying to fit each new sample to a naming scheme with mutually exclusive hierarchical categories such as families, they proposed an alternate approach to describing the functionality and the relationship between malicious samples by using attribute tags. A set of attribute tags describes a piece of malware though easy to interpret properties, and can be thought of as a soft-family classification, since it describes the sample and relates it with other samples described with the same (or an overlapping) set of tags.
+
+---
+
 The authors defined SMART tags (which they also refer to as \textit{malicious} or \textit{malware} tags) as potentially informative, high-level attributes of malicious or potentially unwanted software. These tags are loosely related to malware families, in the sense that they attempt to describe how a piece of malicious software executes and the intent behind it, but they do so in a more general and flexible way. One malware campaign (or family) can be associated with more than one tag, and a given tag is associated with multiple families. The authors defined a set of malicious tags $\mathcal{T}$, with $|\mathcal{T}| = 11$ different tags (or descriptive dimensions) of interest that they can use to describe malicious PE files: \textit{adware}, \textit{crypto-miner}, \textit{downloader}, \textit{dropper}, \textit{file-infector}, \textit{flooder}, \textit{installer}, \textit{packed}, \textit{ransomware}, \textit{spyware} and \textit{worm}.
 
 Since malware tags are defined at a different level of abstraction than malware families, the authors can bypass the problem of not having a common naming strategy for malicious software, and thus exploit the knowledge contained in multiple genealogies fenerated from different sources in a quasi-independent manner.
