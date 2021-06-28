@@ -852,16 +852,16 @@ LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line
 File: ts1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 [40] [41] [42] [43] [44] [45] [46] [47] [48] [49] [50] [51] [52] [53] [54]
+
+LaTeX Warning: Reference `' on page 55 undefined on input line 1876.
+
 [55]
 
-LaTeX Warning: Reference `' on page 56 undefined on input line 1888.
-
-
-LaTeX Warning: Reference `' on page 56 undefined on input line 1892.
+LaTeX Warning: Reference `' on page 56 undefined on input line 1880.
 
 [56]
 
-LaTeX Warning: Reference `' on page 57 undefined on input line 1939.
+LaTeX Warning: Reference `' on page 57 undefined on input line 1927.
 
 
 ! Package xcolor Error: Undefined color `Balck'.
@@ -887,7 +887,7 @@ Type  H <return>  for immediate help.
                                                   >\@nnil 
 \XC@declaredcolor ->\XC@split \XC@@tmp 
                                        \edef \@@tmp {\noexpand \@undeclaredc...
-l.1947 \color{Balck}
+l.1935 \color{Balck}
                     
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -895,24 +895,24 @@ If that doesn't work, type  X <return>  to quit.
 [57] [58] [59] [60] [61]
 Chapter 4.
 
-LaTeX Warning: Reference `' on page 62 undefined on input line 2077.
+LaTeX Warning: Reference `' on page 62 undefined on input line 2065.
 
 [62
 
 ] [63] [64] [65]
 LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 2
-209.
+197.
 
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/base\omscmr.fd
 File: omscmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2209.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2197.
 
 
 [66] [67] [68] [69]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 2311.
+put line 2299.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -931,14 +931,14 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2705--2706
+Underfull \hbox (badness 10000) in paragraph at lines 2693--2694
 [] \OT1/cmr/m/it/10 self.chunk[]agg\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 self.chun
 k[]agg[]size $\OMS/cmsy/m/n/10  $ \OT1/cmr/bx/n/10 get[]chunks\OT1/cmr/m/n/10 (
 \OT1/cmr/m/it/10 self.tensor\OT1/cmr/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2705--2706
+Underfull \hbox (badness 10000) in paragraph at lines 2693--2694
 \OT1/cmr/m/it/10 self.chunk[]indices\OT1/cmr/m/n/10 [\OT1/cmr/m/it/10 start[]i\
 OT1/cmr/m/n/10 :\OT1/cmr/m/it/10 end[]i\OT1/cmr/m/n/10 ], \OT1/cmr/m/it/10 self
 .chunk[]size\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 self.last[]chunk[]size\OT1/cmr/m
@@ -946,7 +946,7 @@ OT1/cmr/m/n/10 :\OT1/cmr/m/it/10 end[]i\OT1/cmr/m/n/10 ], \OT1/cmr/m/it/10 self
  []
 
 
-Underfull \hbox (badness 1337) in paragraph at lines 2713--2714
+Underfull \hbox (badness 1337) in paragraph at lines 2701--2702
 [] \OT1/cmr/m/it/10 ar-gu-ments $\OMS/cmsy/m/n/10  $ \OT1/cmr/m/n/10 (\OT1/cmr/
 m/it/10 self.tensors\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 self.chunk[]indices\OT1/
 cmr/m/n/10 [\OT1/cmr/m/it/10 start[]i\OT1/cmr/m/n/10 :\OT1/cmr/m/it/10 end[]i\O
@@ -1097,10 +1097,13 @@ Package rerunfilecheck Info: File `Thesis_V1.0.0.out' has not changed.
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  ) 
 Here is how much of TeX's memory you used:
- 18862 strings out of 481296
- 308234 string characters out of 2908369
+ 18859 strings out of 481296
+ 308208 string characters out of 2908369
  956758 words of memory out of 3000000
  35054 multiletter control sequences out of 15000+600000
  419183 words of font info for 86 fonts, out of 8000000 for 9000
@@ -1135,9 +1138,9 @@ ichele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
 <C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmtt8.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
 sfonts/symbols/msbm10.pfb>
-Output written on Thesis_V1.0.0.pdf (89 pages, 821286 bytes).
+Output written on Thesis_V1.0.0.pdf (89 pages, 820510 bytes).
 PDF statistics:
- 1677 PDF objects out of 1728 (max. 8388607)
- 642 named destinations out of 1000 (max. 500000)
+ 1674 PDF objects out of 1728 (max. 8388607)
+ 639 named destinations out of 1000 (max. 500000)
  398 words of extra memory for PDF output out of 10000 (max. 10000000)
 

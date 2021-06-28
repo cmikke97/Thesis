@@ -1836,18 +1836,6 @@ The detection names typically used by modern security vendors can be divided int
 \end{itemize}
 
 \color{Black}
-\paragraph{Semantic Attribute Tagging}
-\color{Red}
-Semantic attribute tagging refers to the association of samples with key-words that convey various types of high-level information about their content. These tags can later be used to interpret or summarize the content of the sample, for information retrieval in a large database of samples or for clustering, among others.
-
-Semantic attribute tagging has two important characteristics worth considering:
-\begin{enumerate}
-	\item it can convey a lot of identifying information about a sample, even if the sample is novel.
-	
-	\item semantic tags can be stored, structured, and retrieved in a human interpretable manner.
-\end{enumerate}
-
-\color{Black}
 \paragraph{Multi-Label Classification}
 \color{Red}
 Semantic attribute tagging relies on multi-label classification, wherein the authors aim to predict multiple labels simultaneously. There are several ways to do this, the most trivial of which is to learn one classifier per label. This naive approach is not efficient in the sense that one classifier does not benefit from what the other classifiers have learned about a given sample. Furthermore, it can be unfeasible from a deployment perspective, particularly as the number of labels grow. For correlated labels, a popular approach is to use a single classifier with multiple outputs, on per output label. The total loss for the classifier is obtained by adding together the loss terms across the model's outputs during training and optimizing over a multi-objective loss. Not only does this yield a more compact representation but it also improves classification performance over using independent classifiers. The authors used as baseline architecture a multi-label deep neural network architecture which exploits a shared representation of the input samples, and has multiple binary cross entropy loss functions atop stacks of hidden layers, or heads, with final sigmoid outputs - one per tag.
