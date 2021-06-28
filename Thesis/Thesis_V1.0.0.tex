@@ -1824,8 +1824,6 @@ Interestingly, in \cite{DucauAMDATSE} the authors state that the proposed repres
 
 In particular, because of how the joint embedding model is designed and trained, two pieces of malware that are close to each other in latent (embedding) space should theoretically exhibit similar malicious capabilities. This makes it possible to measure how close two pieces of malware are in terms of their capabilities by using their latent representations. Moreover, the joint embedding representation, given that its size (32 dimensions) is 32 times smaller than the original file feature representation (1024 dimensions), is particularly efficient for storing, indexing and querying large malware databases \cite{DucauAMDATSE}.
 
-Furthermore, the learned low dimensional embedding space (and the associated embedding function) for malicious files enables the comparison between malware samples in terms of \textit{type} of malicious content. This in turns allows the introduction of a similarity index between malware files, allowing for efficient indexing, searching and querying of malware corpora along interpretable dimensions \cite{DucauAMDATSE}.
-
 \paragraph{Malware Family Categorization}
 Given the extremely high number of malware samples which are nowadays received by security vendors' labs, in the order of millions per month, it has become unfeasible to manually and consistently group each malicious file into a well defined hierarchy of families. 
 
