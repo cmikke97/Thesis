@@ -109,7 +109,7 @@
 \contentsline {paragraph}{Latent Space (Joint Embedding) Analysis}{57}{section*.79}%
 \contentsline {subparagraph}{File-File Similarity Index}{57}{section*.80}%
 \contentsline {subsection}{\numberline {3.6.3}Learning from Context: Exploiting and Interpreting File Path Information for Better Malware Detection}{58}{subsection.3.6.3}%
-\contentsline {paragraph}{Background and Related work (Static ML Malware Detection)}{59}{section*.81}%
+\contentsline {paragraph}{Background and Related work (Static ML Malware Detection)}{58}{section*.81}%
 \contentsline {paragraph}{Feature Engineering}{59}{section*.82}%
 \contentsline {paragraph}{Implementation details}{59}{section*.83}%
 \contentsline {section}{\numberline {3.7}Malware Normalization}{60}{section.3.7}%

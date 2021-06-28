@@ -1874,9 +1874,7 @@ The tag embedding matrix $\textbf{E} \in \mathbb{R}^{T \times D}$ learns a mappi
 
 In practice, the embedding vector for the tag $t_n$ is simply the $n$-th row of the tag embedding matrix, i.e. $\phi_E(t_n) = \textbf{E}_n$.
 
-\color{Red}
-
-Finally, the prediction layer compares both the tag and the sample embeddings ($\textbf{e}$ and $\textbf{h}$ respectively) and produces a similarity score that is run through a sigmoid non-linearity to estimate the probability that sample $\textbf{x}$ is associated with tag $t$ for each $t \in \mathcal{T}$. In the final model implementation, the similarity score is the dot product between the embedding vectors. The output of the network $f_n(\textbf{x} | \theta, \textbf{E})$ then becomes,
+Finally, the prediction layer compares both the tag and the sample embeddings ($\textbf{e}$ and $\textbf{h}$ respectively) and produces a similarity score. This is later run through a sigmoid non-linearity to estimate the probability that sample $\textbf{x}$ is associated with tag $t$ for each $t \in \mathcal{T}$. In the final model implementation, the similarity score is the dot product between the embedding vectors. The output of the network $f_n(\textbf{x} | \theta, \textbf{E})$ then becomes,
 \begin{equation}
 	\begin{split} \label{jointEmbeddingProbability}
 		\hat{y}_n = f_n(\textbf{x} | \theta, \textbf{E}) & = \sigma(\langle\phi_E(n), \phi_\theta(\textbf{x})\rangle) \\ & = \sigma(\langle\textbf{E}_n, \textbf{h}\rangle),
@@ -1884,11 +1882,13 @@ Finally, the prediction layer compares both the tag and the sample embeddings ($
 \end{equation}
 where $\sigma$ is the sigmoid activation function, and $\hat{y}_n$ is the probability estimated by the model of tag $t_n$ being a descriptor for $\textbf{x}$.
 
-The authors further constrained the embedding vectors for the tags such that:
+Furthermore, the authors of \cite{DucauAMDATSE} constrained the embedding vectors for the tags such that:
 \begin{equation}
 	||\textbf{E}_n||_2 \leq C, n = 1, ..., T,
 \end{equation}
-which acts as a regularizer for the model. They observed in practice that this normalization indeed leads to better results on the validation set. Unless stated differently they fixed the value of $C$ to 1.
+which has a regularizing effect and they fixed the value of $C$ to 1.
+
+\color{Red}
 
 The authors' goal, for a given PE file, is to learn a distributed, low dimensional representation of it, that is both "close" to the embedding of the tags that describe it and to other PE files with similar characteristics. The parameters of both embedding functions $\phi_\theta(\cdot)$ and $\phi_E(\cdot)$ are jointly optimized to minimize the binary cross-entropy loss for the prediction of each tag via back-propagation and stochastic gradient descent. The loss function to minimize for a mini-batch of $M$ samples becomes:
 \begin{equation} \label{jointEmbeddingLoss}
