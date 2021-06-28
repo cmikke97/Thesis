@@ -105,9 +105,9 @@
 \contentsline {paragraph}{Multi-Label Classification}{54}{section*.75}%
 \contentsline {paragraph}{Tag Distillation from Detection Names}{55}{section*.76}%
 \contentsline {paragraph}{Tags Prediction - Implementation Details}{55}{section*.77}%
-\contentsline {subparagraph}{Evaluation of Tagging Algorithms}{57}{section*.78}%
+\contentsline {subparagraph}{Evaluation of Tagging Algorithms}{56}{section*.78}%
 \contentsline {paragraph}{Latent Space (Joint Embedding) Analysis}{57}{section*.79}%
-\contentsline {subparagraph}{File-File Similarity Index}{58}{section*.80}%
+\contentsline {subparagraph}{File-File Similarity Index}{57}{section*.80}%
 \contentsline {subsection}{\numberline {3.6.3}Learning from Context: Exploiting and Interpreting File Path Information for Better Malware Detection}{58}{subsection.3.6.3}%
 \contentsline {paragraph}{Background and Related work (Static ML Malware Detection)}{59}{section*.81}%
 \contentsline {paragraph}{Feature Engineering}{59}{section*.82}%

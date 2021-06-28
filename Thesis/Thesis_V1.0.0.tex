@@ -1855,23 +1855,14 @@ The labelling process consisted of the following three main stages:
 
 The token extraction phase consisted of normalizing and parsing the multiple detection names and converting them in sets of sub-strings. In a similar way to what the malware labelling tool AVClass, which was proposed by Marcos et al. in \cite{MarcosAVclass}, does, the token-to-tag mapping stage uses rules created from expert knowledge by a group of malware analysts, that associate relevant tokens with the set of tags of interest. Finally, this mapping is extended by mining statistical relationships between tokens to improve tagging stability and coverage.
 
-\color{Black}
 \paragraph{Tags Prediction - Implementation Details}
+In \cite{DucauAMDATSE}, in order to predict, in a multi-label classification manner, zero or more tags per sample from the set of $T$ possible tags $\mathcal{T} = \{t_1, t_2, ..., t_T\}$, the authors proposed two different neural network architectures, represented in \ref{}, which they referred to as \textit{Multi-Head} (top) and \textit{Joint Embedding} (bottom).
+
+In particular, the \textit{Multi-Head} consisted of a base topology common to the prediction of all tags, and one output (or "head") per tag. The shared base topology can be thought of a feature extraction (or embedding) network that transforms the input features $\textbf{x}$ into low dimensional hidden vector $\textbf{h}$ and consisted of an input feed-forward layer of output size 2048, followed by a batch normalization layer, an ELU non-linearity and three blocks, each composed by dropout, a linear layer, batch normalization and ELU of output sizes 512, 128, and 32 respectively. Each head, on the other hand, is a binary classifier that predicts the presence or absence of each tag and it consists of a a linear layer (the same for each head) composed of the same type of basic blocks as are in the main base architecture, but with output size 11 (the number of tags being predicted) and a sigmoid non-linearity instead of the ELU to compute the predicted probability for each label. Binary cross-entropy loss is computed as the output of each head and then added together to form the final loss.
+
+The \textit{Joint Embedding} model, instead, mapped both the labels (malware tags) and the binary file features $\textbf{x}$ to vectors in a joint Euclidean latent-space in such a way that, for a given similarity function, the transformations of semantically similar labels are close to each other, and the embedding of a binary file should be close to that of its associated labels in the same space. In practice, the \textit{Joint Embedding} model consisted on a PE \textit{embedding} network, a \textit{tag embedding} matrix $\textbf{E}$, and a \textit{prediction layer}.
+
 \color{Red}
-The goal of the authors' work is to flexibly predict important malware qualities from static features, which they more formally define as multi-label classification problem, since zero or more tags from the set of $T$ possible tags $\mathcal{T} = \{t_1, t_2, ..., t_T\}$ can be present at the same time for a given sample. In order to predict these tags, they proposed two different neural network architectures, represented in \ref{}, which they referred to as \textit{Multi-Head} (top) and \textit{Joint Embedding} (bottom).
-
-The \textit{Multi-Head} architecture can be thought as an extension of the network used in \cite{} to multiple outputs. It consists of a base topology that is common to the prediction of all tags, and one output (or "head") per tag. The base topology can be thought of a feature extraction (or embedding) network that transforms the input features $\textbf{x}$ into low dimensional hidden vector $\textbf{h}$, while each head is a binary classifier that predicts the presence or absence of each tag from it. Both parts of the architecture consist of multiple blocks composed of dropout, a dense layer, batch normalization, and an exponential linear unit (ELU) activation function. The only exceptions are the input layer, which does not use dropout, and the very last layer of each head, which uses a sigmoid activation unit to compute the predicted probability for each label.
-
-The \textit{Joint Embedding} model, as shown at the bottom of \ref{}, is introduced with three main purposes:
-\begin{enumerate}
-	\item in an attempt to better model semantic similarities between tags;
-	
-	\item to explicitly define a low dimensional space that allows to naturally measure similarities between files;
-	
-	\item to have a more flexible architecture that can scale to larger number of tags.
-\end{enumerate}
-
-This model maps both the labels (malware tags) and the binary file features $\textbf{x}$ to vectors in a joint Euclidean latent-space. These embedding functions of files and tags are learnt via stochastic gradient descent in a way such that, for a given similarity function, the transformations of semantically similar labels are close to each other, and the embedding of a binary file should be close to that of its associated labels in the same space. This architecture consists on a PE \textit{embedding} network, a \textit{tag embedding} matrix $\textbf{E}$, and a \textit{prediction layer}.
 
 The PE embedding network learns a nonlinear function $\phi_\theta(\cdot)$, with parameters $\theta$ that maps the input binary representation of the PE executable file $\textbf{x} \in \mathbb{R}^d$ into a vector $\textbf{h} \in \mathbb{R}^D$ in low dimensional Euclidean space,
 \begin{equation} \label{jointEmbeddingPEEmbedding}
@@ -1912,8 +1903,6 @@ The authors noted that, because this model maps every tag into the same low dime
 Finally, if one compares both models in \ref{}, they are mathematically similar, with the main differences being the explicit modelling of the tag embedding step (and its regularization), the subsequent explicit modelling of the joint embedding space that allows to naturally perform label-to-label and sample-to-sample similarity searches, and the ability to use various distance functions in the prediction layer.
 
 ---
-
-The shared base topology of the final Multi-Head architecture consisted of an input feed-forward layer of output size 2048, followed by a batch normalization layer, an ELU nonlinearity and three blocks, each composed by dropout, a linear layer, batch normalization and ELU of output sizes 512, 128, and 32 respectively. Each output head is simply a linear layer (the same for each head) composed of the same type of basic blocks as are in the main base architecture, but with output size 11 (the number of tags being predicted) and a sigmoid non-linearity instead of the ELU. Binary cross-entropy loss is computed as the output of each head and then added together to form the final loss.
 
 The Joint Embedding architecture used the same base topology as the Multi-Head model for the embedding of the PE files into a 32 dimensional joint latent space. An embedding matrix ($\textbf{E}$) of learnable parameters with size $T \times 32$ is used for the embedding of the tags. The authors used dot product to compute the similarity between the PE file embedding and the tag embedding followed by a sigmoid non-linearity to produce an output probability score. As before, the sum of the per-tag binary cross-entropy losses is used as the mini-batch loss during model training.
 
