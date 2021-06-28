@@ -103,52 +103,51 @@
 \contentsline {subsection}{\numberline {3.6.2}Automatic Malware Description via Attribute Tagging and Similarity Embedding}{53}{subsection.3.6.2}%
 \contentsline {paragraph}{Malware Family Categorization}{54}{section*.74}%
 \contentsline {paragraph}{Multi-Label Classification}{54}{section*.75}%
-\contentsline {paragraph}{Semantic Malware Attribute Tags}{55}{section*.76}%
-\contentsline {subparagraph}{Tag Distillation from Detection Names}{55}{section*.77}%
-\contentsline {paragraph}{Tags Prediction - Implementation Details}{55}{section*.78}%
-\contentsline {subparagraph}{Evaluation of Tagging Algorithms}{57}{section*.79}%
-\contentsline {paragraph}{Latent Space (Joint Embedding) Analysis}{58}{section*.80}%
-\contentsline {subparagraph}{File-File Similarity Index}{58}{section*.81}%
-\contentsline {subsection}{\numberline {3.6.3}Learning from Context: Exploiting and Interpreting File Path Information for Better Malware Detection}{59}{subsection.3.6.3}%
-\contentsline {paragraph}{Background and Related work (Static ML Malware Detection)}{59}{section*.82}%
-\contentsline {paragraph}{Feature Engineering}{59}{section*.83}%
-\contentsline {paragraph}{Implementation details}{60}{section*.84}%
-\contentsline {section}{\numberline {3.7}Malware Normalization}{61}{section.3.7}%
-\contentsline {chapter}{\numberline {4}Datasets}{62}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Ember Dataset}{62}{section.4.1}%
-\contentsline {subsection}{\numberline {4.1.1}PE File Format}{62}{subsection.4.1.1}%
-\contentsline {subsection}{\numberline {4.1.2}Static PE Malware Detection}{63}{subsection.4.1.2}%
-\contentsline {subsection}{\numberline {4.1.3}Malicious and benign datasets}{63}{subsection.4.1.3}%
-\contentsline {subsection}{\numberline {4.1.4}Data Description}{64}{subsection.4.1.4}%
-\contentsline {subsection}{\numberline {4.1.5}Data Layout}{64}{subsection.4.1.5}%
-\contentsline {subsection}{\numberline {4.1.6}Feature Set Description}{65}{subsection.4.1.6}%
-\contentsline {subsubsection}{Parsed features}{65}{section*.85}%
-\contentsline {paragraph}{General file information}{65}{section*.86}%
-\contentsline {paragraph}{Header information}{65}{section*.87}%
-\contentsline {paragraph}{Imported functions}{65}{section*.88}%
-\contentsline {paragraph}{Exported functions}{66}{section*.89}%
-\contentsline {paragraph}{Section information}{66}{section*.90}%
-\contentsline {subsubsection}{Format-agnostic features}{66}{section*.91}%
-\contentsline {paragraph}{Byte histogram}{66}{section*.92}%
-\contentsline {paragraph}{Byte-entropy histogram}{66}{section*.93}%
-\contentsline {paragraph}{String information}{66}{section*.94}%
-\contentsline {section}{\numberline {4.2}Sorel 20M Dataset}{66}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Sorel 20M Dataset Description}{67}{subsection.4.2.1}%
-\contentsline {paragraph}{LMDB database, what is it?}{68}{section*.95}%
-\contentsline {subsection}{\numberline {4.2.2}Trying to improve Dataset Loading Speed}{69}{subsection.4.2.2}%
-\contentsline {subsubsection}{Dataset Pre-Processing}{69}{section*.96}%
-\contentsline {subsubsection}{Alternative Generators (Dataloaders)}{69}{section*.97}%
-\contentsline {paragraph}{Generator alt1}{70}{section*.98}%
-\contentsline {paragraph}{Generator alt2}{70}{section*.99}%
-\contentsline {paragraph}{Generator alt3}{71}{section*.100}%
-\contentsline {subparagraph}{Generator parameters optimization}{73}{section*.101}%
-\contentsline {section}{\numberline {4.3}Fresh Dataset}{76}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Model Evaluation with Fresh Dataset}{76}{subsection.4.3.1}%
-\contentsline {chapter}{\numberline {5}Experimenting with ML based Malware Detection/Description methods}{79}{chapter.5}%
-\contentsline {chapter}{\numberline {6}Proposed Tool}{80}{chapter.6}%
-\contentsline {chapter}{\numberline {7}Experiments with the proposed tool}{81}{chapter.7}%
-\contentsline {chapter}{\numberline {8}Results}{82}{chapter.8}%
-\contentsline {chapter}{\numberline {9}Conclusions}{83}{chapter.9}%
-\contentsline {chapter}{\numberline {10}Appendix}{84}{chapter.10}%
-\contentsline {section}{\numberline {10.1}Notable Examples of Malware in Recent History}{84}{section.10.1}%
-\contentsline {chapter}{Bibliography}{87}{section.10.1}%
+\contentsline {paragraph}{Tag Distillation from Detection Names}{55}{section*.76}%
+\contentsline {paragraph}{Tags Prediction - Implementation Details}{55}{section*.77}%
+\contentsline {subparagraph}{Evaluation of Tagging Algorithms}{57}{section*.78}%
+\contentsline {paragraph}{Latent Space (Joint Embedding) Analysis}{58}{section*.79}%
+\contentsline {subparagraph}{File-File Similarity Index}{58}{section*.80}%
+\contentsline {subsection}{\numberline {3.6.3}Learning from Context: Exploiting and Interpreting File Path Information for Better Malware Detection}{58}{subsection.3.6.3}%
+\contentsline {paragraph}{Background and Related work (Static ML Malware Detection)}{59}{section*.81}%
+\contentsline {paragraph}{Feature Engineering}{59}{section*.82}%
+\contentsline {paragraph}{Implementation details}{60}{section*.83}%
+\contentsline {section}{\numberline {3.7}Malware Normalization}{60}{section.3.7}%
+\contentsline {chapter}{\numberline {4}Datasets}{61}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Ember Dataset}{61}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}PE File Format}{61}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Static PE Malware Detection}{62}{subsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.1.3}Malicious and benign datasets}{62}{subsection.4.1.3}%
+\contentsline {subsection}{\numberline {4.1.4}Data Description}{63}{subsection.4.1.4}%
+\contentsline {subsection}{\numberline {4.1.5}Data Layout}{63}{subsection.4.1.5}%
+\contentsline {subsection}{\numberline {4.1.6}Feature Set Description}{64}{subsection.4.1.6}%
+\contentsline {subsubsection}{Parsed features}{64}{section*.84}%
+\contentsline {paragraph}{General file information}{64}{section*.85}%
+\contentsline {paragraph}{Header information}{64}{section*.86}%
+\contentsline {paragraph}{Imported functions}{64}{section*.87}%
+\contentsline {paragraph}{Exported functions}{65}{section*.88}%
+\contentsline {paragraph}{Section information}{65}{section*.89}%
+\contentsline {subsubsection}{Format-agnostic features}{65}{section*.90}%
+\contentsline {paragraph}{Byte histogram}{65}{section*.91}%
+\contentsline {paragraph}{Byte-entropy histogram}{65}{section*.92}%
+\contentsline {paragraph}{String information}{65}{section*.93}%
+\contentsline {section}{\numberline {4.2}Sorel 20M Dataset}{65}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Sorel 20M Dataset Description}{66}{subsection.4.2.1}%
+\contentsline {paragraph}{LMDB database, what is it?}{67}{section*.94}%
+\contentsline {subsection}{\numberline {4.2.2}Trying to improve Dataset Loading Speed}{68}{subsection.4.2.2}%
+\contentsline {subsubsection}{Dataset Pre-Processing}{68}{section*.95}%
+\contentsline {subsubsection}{Alternative Generators (Dataloaders)}{68}{section*.96}%
+\contentsline {paragraph}{Generator alt1}{69}{section*.97}%
+\contentsline {paragraph}{Generator alt2}{69}{section*.98}%
+\contentsline {paragraph}{Generator alt3}{70}{section*.99}%
+\contentsline {subparagraph}{Generator parameters optimization}{72}{section*.100}%
+\contentsline {section}{\numberline {4.3}Fresh Dataset}{75}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Model Evaluation with Fresh Dataset}{75}{subsection.4.3.1}%
+\contentsline {chapter}{\numberline {5}Experimenting with ML based Malware Detection/Description methods}{78}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Proposed Tool}{79}{chapter.6}%
+\contentsline {chapter}{\numberline {7}Experiments with the proposed tool}{80}{chapter.7}%
+\contentsline {chapter}{\numberline {8}Results}{81}{chapter.8}%
+\contentsline {chapter}{\numberline {9}Conclusions}{82}{chapter.9}%
+\contentsline {chapter}{\numberline {10}Appendix}{83}{chapter.10}%
+\contentsline {section}{\numberline {10.1}Notable Examples of Malware in Recent History}{83}{section.10.1}%
+\contentsline {chapter}{Bibliography}{86}{section.10.1}%

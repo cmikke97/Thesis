@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  28 JUN 2021 14:02
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  28 JUN 2021 14:43
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -853,15 +853,14 @@ File: ts1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 [40] [41] [42] [43] [44] [45] [46] [47] [48] [49] [50] [51] [52] [53] [54]
 
-LaTeX Warning: Reference `' on page 55 undefined on input line 1876.
+LaTeX Warning: Reference `' on page 55 undefined on input line 1867.
 
-[55]
 
-LaTeX Warning: Reference `' on page 56 undefined on input line 1880.
+LaTeX Warning: Reference `' on page 55 undefined on input line 1871.
 
-[56]
+[55] [56]
 
-LaTeX Warning: Reference `' on page 57 undefined on input line 1927.
+LaTeX Warning: Reference `' on page 57 undefined on input line 1918.
 
 
 ! Package xcolor Error: Undefined color `Balck'.
@@ -887,32 +886,32 @@ Type  H <return>  for immediate help.
                                                   >\@nnil 
 \XC@declaredcolor ->\XC@split \XC@@tmp 
                                        \edef \@@tmp {\noexpand \@undeclaredc...
-l.1935 \color{Balck}
+l.1926 \color{Balck}
                     
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-[57] [58] [59] [60] [61]
+[57] [58] [59] [60]
 Chapter 4.
 
-LaTeX Warning: Reference `' on page 62 undefined on input line 2065.
+LaTeX Warning: Reference `' on page 61 undefined on input line 2056.
 
-[62
+[61
 
-] [63] [64] [65]
+] [62] [63] [64]
 LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 2
-197.
+188.
 
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/base\omscmr.fd
 File: omscmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2197.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2188.
 
 
-[66] [67] [68] [69]
+[65] [66] [67] [68]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 2299.
+put line 2290.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -926,19 +925,19 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[70] [71] [72]
+[69] [70] [71]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2693--2694
+Underfull \hbox (badness 10000) in paragraph at lines 2684--2685
 [] \OT1/cmr/m/it/10 self.chunk[]agg\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 self.chun
 k[]agg[]size $\OMS/cmsy/m/n/10  $ \OT1/cmr/bx/n/10 get[]chunks\OT1/cmr/m/n/10 (
 \OT1/cmr/m/it/10 self.tensor\OT1/cmr/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2693--2694
+Underfull \hbox (badness 10000) in paragraph at lines 2684--2685
 \OT1/cmr/m/it/10 self.chunk[]indices\OT1/cmr/m/n/10 [\OT1/cmr/m/it/10 start[]i\
 OT1/cmr/m/n/10 :\OT1/cmr/m/it/10 end[]i\OT1/cmr/m/n/10 ], \OT1/cmr/m/it/10 self
 .chunk[]size\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 self.last[]chunk[]size\OT1/cmr/m
@@ -946,7 +945,7 @@ OT1/cmr/m/n/10 :\OT1/cmr/m/it/10 end[]i\OT1/cmr/m/n/10 ], \OT1/cmr/m/it/10 self
  []
 
 
-Underfull \hbox (badness 1337) in paragraph at lines 2701--2702
+Underfull \hbox (badness 1337) in paragraph at lines 2692--2693
 [] \OT1/cmr/m/it/10 ar-gu-ments $\OMS/cmsy/m/n/10  $ \OT1/cmr/m/n/10 (\OT1/cmr/
 m/it/10 self.tensors\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 self.chunk[]indices\OT1/
 cmr/m/n/10 [\OT1/cmr/m/it/10 start[]i\OT1/cmr/m/n/10 :\OT1/cmr/m/it/10 end[]i\O
@@ -956,31 +955,31 @@ T1/cmr/m/n/10 ], \OT1/cmr/m/it/10 self.chunk[]size\OT1/cmr/m/n/10 ,
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[73] [74] [75] [76] [77] [78]
+[72] [73] [74] [75] [76] [77]
 Chapter 5.
-[79
+[78
 
 ]
 Chapter 6.
-[80
+[79
 
 ]
 Chapter 7.
-[81
+[80
 
 ]
 Chapter 8.
-[82
+[81
 
 ]
 Chapter 9.
-[83
+[82
 
 ]
 Chapter 10.
-[84
+[83
 
-] [85] (Thesis_V1.0.0.bbl [86]
+] [84] (Thesis_V1.0.0.bbl [85]
 Underfull \hbox (badness 1242) in paragraph at lines 10--12
 []\OT1/cmr/m/n/10 R. Sharp, ``An in-tro-duc-tion to mal-ware.'' [][]$\OT1/cmtt/
 m/n/10 https : / / orbit . dtu . dk / en / publications /
@@ -1064,7 +1063,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 89--92
 / searchsecurity . techtarget . com / definition /
  []
 
-[87
+[86
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 164--166
@@ -1090,20 +1089,17 @@ Underfull \hbox (badness 1371) in paragraph at lines 199--202
 t/m/n/10 https : / / www . forcepoint . com / cyber-[]edu /
  []
 
-[88]) [89] (Thesis_V1.0.0.aux)
+[87]) [88] (Thesis_V1.0.0.aux)
 Package rerunfilecheck Info: File `Thesis_V1.0.0.out' has not changed.
 (rerunfilecheck)             Checksum: A5CB9CECF456BFC7C2D4681E4C5ED4E8;8722.
 
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
  ) 
 Here is how much of TeX's memory you used:
- 18859 strings out of 481296
- 308208 string characters out of 2908369
+ 18857 strings out of 481296
+ 308189 string characters out of 2908369
  956758 words of memory out of 3000000
  35054 multiletter control sequences out of 15000+600000
  419183 words of font info for 86 fonts, out of 8000000 for 9000
@@ -1138,9 +1134,9 @@ ichele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
 <C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmtt8.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
 sfonts/symbols/msbm10.pfb>
-Output written on Thesis_V1.0.0.pdf (89 pages, 820510 bytes).
+Output written on Thesis_V1.0.0.pdf (88 pages, 819386 bytes).
 PDF statistics:
- 1674 PDF objects out of 1728 (max. 8388607)
- 639 named destinations out of 1000 (max. 500000)
+ 1676 PDF objects out of 1728 (max. 8388607)
+ 637 named destinations out of 1000 (max. 500000)
  398 words of extra memory for PDF output out of 10000 (max. 10000000)
 
