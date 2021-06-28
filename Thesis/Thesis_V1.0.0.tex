@@ -1896,17 +1896,8 @@ During training, the parameters of both embedding functions $\phi_\theta(\cdot)$
 \end{equation}
 where $t_n^{(i)} = 1$ if sample $i$ is labelled with tag $t_n$ or zero otherwise, and $\hat{y}_n^{(i)}$ is the probability predicted by the network of that tag being associated with the $i$-th sample.
 
-\color{Red}
+In order to get a vector of tag similarities for a given sample $\textbf{x}$ with PE embedding vector $\textbf{h}$, the matrix of tag embeddings $\textbf{E} \in \mathbb{R}^{T \times D}$ is multiplied by $\textbf{h} \in \mathbb{R}^D$; the output is then scaled to obtain a prediction vector $\hat{\textbf{y}} = \sigma(\textbf{E} \cdot \textbf{h}) \in \mathbb{R}^T$, where $\sigma$ is the element-wise sigmoid function for transforming the similarity values into a valid probability. Each element in $\hat{\textbf{y}}$ is then the predicted probability for each tag.
 
-In practice, to get a vector of tag similarities for a given sample $\textbf{x}$ with PE embedding vector $\textbf{h}$ we multiply the matrix of tag embeddings $\textbf{E} \in \mathbb{R}^{T \times D}$ by $\textbf{h} \in \mathbb{R}^D$ and scale the output to obtain a prediction vector $\hat{\textbf{y}} = \sigma(\textbf{E} \cdot \textbf{h}) \in \mathbb{R}^T$, where $\sigma$ is the element-wise sigmoid function for transforming the similarity values into a valid probability. Each element in $\hat{\textbf{y}}$ is then the predicted probability for each tag.
-
-The authors noted that, because this model maps every tag into the same low dimensional space, it can explicitly account for similarities on the labels. That is, if two tags are likely to occur together, they will be mapped close to each other in embedding space.
-
-Finally, if one compares both models in \ref{}, they are mathematically similar, with the main differences being the explicit modelling of the tag embedding step (and its regularization), the subsequent explicit modelling of the joint embedding space that allows to naturally perform label-to-label and sample-to-sample similarity searches, and the ability to use various distance functions in the prediction layer.
-
----
-
-\color{Black}
 \subparagraph{Evaluation of Tagging Algorithms}
 \color{Red}
 There are different ways to evaluate the performance of tagging algorithms. Particularly, the evaluation can be done in a \textit{per-tag} or a \textit{per-sample} dimension. The former seeks to quantify how well the tagging algorithm performs on identifying each tag, while the latter focuses on the quality of the predictions for each sample instead.
