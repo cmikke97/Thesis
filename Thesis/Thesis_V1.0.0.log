@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  28 JUN 2021 18:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  30 JUN 2021 17:01
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -871,23 +871,24 @@ LaTeX Warning: Citation `fBetaScoreEq' on page 56 undefined on input line 1908.
 
 [56] [57] [58] [59]
 Chapter 4.
-
-LaTeX Warning: Reference `' on page 60 undefined on input line 2021.
-
 [60
 
-] [61] [62] [63]
+] [61] [62]
+
+LaTeX Warning: Reference `' on page 63 undefined on input line 2091.
+
+[63] [64] [65]
 LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 2
-153.
+223.
 
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/base\omscmr.fd
 File: omscmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2153.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2223.
 
 
-[64] [65] [66] [67]
+[66]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
 put line 2255.
 
@@ -897,13 +898,14 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
+[67] [68]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[68] [69] [70]
+[69] [70]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
@@ -1068,53 +1070,76 @@ t/m/n/10 https : / / www . forcepoint . com / cyber-[]edu /
  []
 
 [86]) [87] (Thesis_V1.0.0.aux)
-Package rerunfilecheck Info: File `Thesis_V1.0.0.out' has not changed.
-(rerunfilecheck)             Checksum: A5CB9CECF456BFC7C2D4681E4C5ED4E8;8722.
 
+Package rerunfilecheck Warning: File `Thesis_V1.0.0.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `Thesis_V1.0.0.out':
+(rerunfilecheck)             Before: A5CB9CECF456BFC7C2D4681E4C5ED4E8;8722
+(rerunfilecheck)             After:  1D9FA89498D4534091D245AB8E034C0B;7727.
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 18861 strings out of 481296
- 308276 string characters out of 2908369
+ 18867 strings out of 481296
+ 308347 string characters out of 2908369
  957054 words of memory out of 3000000
  35059 multiletter control sequences out of 15000+600000
  419183 words of font info for 86 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  134i,17n,137p,1463b,2558s stack positions out of 5000i,500n,10000p,200000b,80000s
- <C:\Users\michele\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tc
-tt0800.pk> <C:\Users\michele\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/d
-pi600\tcrm1000.pk><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/p
-ublic/amsfonts/cm/cmbx10.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fo
-nts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/michele/AppData/Local/Program
-s/MiKTeX/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Users/michele/AppData/
-Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/mich
-ele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:
-/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmm
-i10.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsf
-onts/cm/cmmi5.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/p
-ublic/amsfonts/cm/cmmi7.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fon
-ts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/michele/AppData/Local/Programs/
-MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/michele/AppData/Local
-/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/michele/App
-Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/mi
-chele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:
-/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr
-8.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
-ts/cm/cmr9.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/publ
-ic/amsfonts/cm/cmsl8.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/
-type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/michele/AppData/Local/Programs/Mi
-KTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/michele/AppData/Local/P
-rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/michele/AppD
-ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/m
-ichele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-<C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
-cmtt8.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
-sfonts/symbols/msbm10.pfb>
-Output written on Thesis_V1.0.0.pdf (87 pages, 817672 bytes).
+pdfTeX warning (dest): name{subsection.4.3.1} has been referenced but does no
+t exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{section.4.3} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.4.2.2} has been referenced but does not 
+exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.4.1.6} has been referenced but does not 
+exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.4.1.5} has been referenced but does not 
+exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.4.1.4} has been referenced but does not 
+exist, replaced by a fixed one
+
+ <C:\Users\michele\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt
+0800.pk> <C:\Users\michele\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi
+600\tcrm1000.pk><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/pub
+lic/amsfonts/cm/cmbx10.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/font
+s/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/michele/AppData/Local/Programs/
+MiKTeX/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Users/michele/AppData/Lo
+cal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/michel
+e/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/U
+sers/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi1
+0.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
+ts/cm/cmmi5.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/pub
+lic/amsfonts/cm/cmmi7.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts
+/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/michele/AppData/Local/Programs/Mi
+KTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/michele/AppData/Local/P
+rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/michele/AppDa
+ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/mich
+ele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/U
+sers/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.
+pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
+/cm/cmr9.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public
+/amsfonts/cm/cmsl8.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/ty
+pe1/public/amsfonts/cm/cmsy10.pfb><C:/Users/michele/AppData/Local/Programs/MiKT
+eX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/michele/AppData/Local/Pro
+grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/michele/AppDat
+a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/mic
+hele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C
+:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cm
+tt8.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsf
+onts/symbols/msbm10.pfb>
+Output written on Thesis_V1.0.0.pdf (87 pages, 818144 bytes).
 PDF statistics:
- 1677 PDF objects out of 1728 (max. 8388607)
- 636 named destinations out of 1000 (max. 500000)
+ 1684 PDF objects out of 1728 (max. 8388607)
+ 642 named destinations out of 1000 (max. 500000)
  398 words of extra memory for PDF output out of 10000 (max. 10000000)
 

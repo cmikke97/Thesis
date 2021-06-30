@@ -1997,162 +1997,6 @@ After \textit{normalization}, the usual signature-based techniques can be applie
 \color{Red}
 
 \color{Black}
-\section{Ember Dataset}
-\color{Red}
-
-(Abstract)
-EMBER is a labelled benchmark dataset for training machine learning models to statically detect malicious Windows Portable Executable (PE) files. The dataset includes features extracted from 1.1M binary files: 900K training samples (300K malicious, 300K benign, 300K unlabelled) and 200K test samples (100K malicious, 100K benign). The authors also released open source code for extracting features from additional binaries so that additional sample features can be appended to the dataset. This dataset fills a void in the information security machine learning community: a benign/malicious dataset that is large, open and general enough to cover several interesting use cases \cite{AndersonEMBER}.
-
----
-
-(Introduction)
-Machine learning can be an attractive tool for either a primary detection capability or supplementary detection heuristics. Supervised learning models automatically exploit complex relationships between file attributes in training data that are discriminating between malicious and benign samples. Furthermore, properly regularized machine learning models generalize to new samples whose features and labels follow a similar distribution to the training data.
-
-However, malware detection using machine learning has not received nearly the same attention in the open research community as other applications, where rich benchmark datasets exist. These include handwritten digit classification (e.g. MNIST), image labelling (e.g. CIFAR or ImageNet), traffic sign detection, speech recognition (e.g. TIMIT), sentiment analysis, and a host of other datasets suitable for training models to mimic human perception and cognition tasks. The challenges to releasing a benchmark dataset for malware detection are many, and may include the following: \textit{Labelling challenges}. Unlike images, text and speech - which may be labelled relatively quickly, and in many cases by a non-expert - determining whether a binary file is malicious benign can be a time-consuming process for even the well-trained. The work of labelling may be automated via anti-malware scanners that codify much of this human expertise, but the results may be proprietary or otherwise protected.
-
-The authors address this issue with the release of the Endgame Malware BEnchmark for Research (EMBER) dataset, extracted from a large corpus of Windows Portable Executable (PE) malicious and benign files. Samples are released together with the sha256 hash of the original file, and a label to denote whether the file is deemed to be malicious or benign \cite{AndersonEMBER}.
-
-\color{Black}
-\subsection{PE File Format}
-\color{Red}
-
-The PE file format describes the predominant executable format for Microsoft Windows operating systems, and includes executables, dynamically-linked libraries (DLLs), and FON font files. The format is currently supported on Intel, AMD and variants of ARM instruction set architectures.
-
-The file format is arranged with a number of standard headers (\ref{}), followed by one or more sections. Headers include the Common Object File Format (COFF) file header that contains important information such as the type of machine for which the file is intended, the nature of the file (DLL, EXE, OBJ), the number of sections, the number of symbols, etc. The optional header identifies the linker version, the size of the code, the size of initialized and uninitialized data, the address of the entry point, etc. Data directories within the optional header provide pointers to the sections that follow it. This includes tables for exports, imports, resources, exceptions, debug information, certificate information, and relocation tables. AS such, it provides a useful summary of the contents of an executable. Finally, the section table outlines the name, offset and size of each section in the PE file.
-
-PE sections contain code and initialized data that the Windows loader is to map into executable or readable/write-able memory pages, respectively, as well as imports, exports and resources defined by the file. Each section contains a header that specifies the size and address. An import address table instructs the loader which functions to statically import. A resources section may contain resources such as required for user interfaces: cursors, fonts, bitmaps, icons, menus, etc. A basic PE file would normally contain a \textit{.text} code section and one or more data sections (\textit{.data}, \textit{.text} or \textit{.bss}). Relocation tables are typically stored in a \textit{.reloc} section, used by the Windows loader to reassign a base address from the executable's preferred base. A \textit{.tls} section contains special thread local storage (TLS) structure for storing thread-specific local variables, which has been exploited to redirect the entry point of an executable to first check if a debugger or other analysis tool are being run. Section names are arbitrary from the perspective of the Windows loader, but specific names have been adopted by precedent and are overwhelmingly common. Packers may create new sections, for example, the UPX packer creates \textit{UPX1} to house packed data and an empty section \textit{UPX0} that reserves an address range for runtime unpacking \cite{AndersonEMBER}.
-
-\color{Black}
-\subsection{Static PE Malware Detection}
-\color{Red}
-
-(to be moved)
-Static malware detection attempts to classify samples as malicious or benign without executing them, in contrast to dynamic malware detection which detects malware based on its runtime behaviour including time-dependent sequences of system calls for analysis. Although static detection is well-known to be undecidable in general, it is an important protection layer in a security suite because when successful, it allows malicious files to be detected prior to execution.
-
-Machine learning-based static PE malware detectors have been used since at least 2001, and owing largely to the structured file format and backwards-compatibility requirements, many concepts remain surprisingly similar in subsequent works. Schultz et al. \cite{} assembled a dataset and generated labels by running through a McAfee virus scanner. PE files were represented by features that included imported functions, strings and byte sequences. Various machine learning models were trained and validated on a holdout set. Models included rules induced from RIPPER \cite{}, naive Bayes and an ensemble classifier. Kolter et al. \cite{} extended this approach by including byte-level N-grams, and employed techniques from natural language processing, including \textit{tf-idf} weighting of strings. Shafiq et al. \cite{} proposed using just seven features from the PE header, motivated by the fact that most malware samples in their study typically exhibited those elements. Saxe and Berlin leveraged novel two dimensional byte entropy histograms that is fed into a multi-layer neural network for classification \cite{}.
-
-Recent advances in end-to-end deep learning have dramatically improved the state of the art especially in object classification, machine translation and speech recognition. In many of these approaches, raw images, text or speech waveforms are used as input to a machine learning model which infers the most useful feature representation for the task at hand. However, despite successes in other domains, hand-crafted features apparently still represent the state of the art for malware detection in published literature. The state of the art may change to end-to-end deep learning in the ensuing months or years, but hand-crafted features derived from parsing the PE file may continue to be relevant indefinitely because of the structured format \cite{AndersonEMBER}.
-
-\color{Black}
-\subsection{Malicious and benign datasets}
-\color{Red}
-
-(to be moved)
-PE-Miner aimed to produce a machine-learning based malware detector with high true positive rate (TPR) at low false positive rates (FPRs), with a runtime comparable to signature-based scanners of the day \cite{}. It was trained on a dataset of $\sim1K$ benign files on the operating system, $\sim10K$ malicious PE files from VXHeaven and $\sim5K$ malicious PE files from Malfease. Unfortunately, many of the features were not disclosed publicly, some being deemed sensitive and protected under NDA. Several model types were evaluated on the dataset, and of those, it was discovered that the J48 decision tree algorithm provided the best performance. Notably, although many papers cite this work as one of the first performant non-signature-based methods, the lack of public dataset has resulted no real comparative study.
-
-Shortly following, the Adobe Malware Classifier aimed to produce a malware classifier from only seven features: debug size, image version, relative virtual address of the import address table, export size, resource size, virtual size of the second section, and the total number of sections. A decision tree algorithm was trained and the resulting classifier released as a freely available tool. It has been suggested, however, that since the benign dataset largely comprised of Windows binaries, the resulting models is strongly biased towards a non-Windows vs. Windows rather than a malicious vs. benign problem. Moreover, unfortunately, the dataset consisting of $\sim100K$ malicious and $\sim16K$ benign files was never released for comparative research.
-
-In contrast, the Microsoft Malware Classification Challenge 500MB dataset consisted of disassembly and byte-code of $\sim20K$ malicious samples from 9 families. The largest family consisted of features from $3K$ samples, while the smallest family included only 42 samples. Since the conclusion of the competition, more than 50 research papers and theses cited the dataset. Unfortunately, the disassembly features are specific to IDA Pro disassembler, and the dataset contains no benign files.
-
-Malware sharing services like VXHeaven provide an ample supply of malicious binaries. VirusTotal can be mined for supposed benign files using heuristics about the number of detections of vendor participants. However, large-scale file access rates in VirusTotal require a payed subscription. Regardless, an agreed-upon set of malicious and benign files for machine learning benchmark purposes is so far non-existent \cite{AndersonEMBER}.
-
-\color{Black}
-\subsection{Data Description}
-\color{Red}
-
-In crafting the EMBER dataset, the authors considered several practical use cases and research studies, including the following \cite{AndersonEMBER}.
-\begin{itemize}
-	\item Compare machine learning models for malware detection.
-	
-	\item Quantify model degradation and concept drift over time.
-	
-	\item Research interpretable machine learning.
-	
-	\item Compare features for malware classification, particularly novel features not represented in the EMBER dataset. This requires an extensible dataset.
-	
-	\item Compare to featureless end-to-end deep learning. This may require code to extract features from a new dataset, or sha256 hashes to build a raw binary dataset to match EMBER.
-	
-	\item Research adversarial attacks against machine learning malware, and subsequent defence strategies.
-	
-	\item Leverage unlabelled samples via unsupervised learning for PE file representation or semi-supervised learning for classification.
-\end{itemize}
-
-\color{Black}
-\subsection{Data Layout}
-\color{Red}
-
-The EMBER dataset consists of a collection of JSON lines files, where each line contains a single JSON object. Each object includes the following types in data:
-\begin{itemize}
-	\item the sha256 hash of the original file as a unique identifier;
-	
-	\item coarse time information (month resolution) that establishes an estimate of when the file was first seen;
-	
-	\item a label, which may be 0 for benign, 1 for malicious or -1 for unlabelled;
-	
-	\item 8 groups of raw features that include both parsed values as well as format-agnostic histograms.
-\end{itemize}
-
-For convenience the dataset is comprised of raw features that are human readable. The code that produces a numeric feature vector required for model building from raw features is also provided.
-
-The authors temporally split the training/test sets to mimic generational dependencies of both malicious and benign software. The coarse time stamps for one year of malicious and benign files may also allow for simple longitudinal studies. Including the sha256 hash of the original file allows researchers to link features to the raw binaries, including other metadata that may be available through file sharing sites like VirusShare or VirusTotal \cite{AndersonEMBER}.
-
-\color{Black}
-\subsection{Feature Set Description}
-\color{Red}
-
-The EMBER dataset consists of 8 groups of raw features that include both parsed features and format-agnostic histograms and counts of strings. The authors made a distinction between \textit{raw features} (the dataset provided) and \textit{model features} (or \textit{vectorized features}) derived from the dataset. \textit{Model features} represent a feature matrix of fixed size used for training a model, representing a numerical summary of the raw features, wherein strings, imported names, exported names, etc., are captured using the feature hashing trick \cite{}. The feature matrix is not explicitly provided in the published dataset, but code is provided to convert raw features to model features to train a model \cite{AndersonEMBER}.
-
-\color{Black}
-\subsubsection{Parsed features}
-\color{Red}
-
-The dataset includes 5 groups of features that are extracted after parsing the PE file. The authors leveraged the \textit{Library to Instrument Executable Formats} \cite{} as a convenient PE parser. \textit{LIEF} names are used for strings that represent symbolic objects, such as characteristics and properties \cite{AndersonEMBER}.
-
-\color{Black}
-\paragraph{General file information}
-\color{Red}
-
-The set of features in the general file information group includes the file size and basic information obtained from the PE header: the virtual size of the file, the number of imported and exported functions, whether the file has a debug section, thread local storage, resources, relocations, or a signature, and the number of symbols \cite{AndersonEMBER}.
-
-\color{Black}
-\paragraph{Header information}
-\color{Red}
-
-From the \textit{COFF} header, the authors reported the timestamp in the header, the target machine (string) and a list of image characteristics (list of strings). From the optional header, the authors provide the target subsystem (string), DLL characteristics (a list of strings), the file magic as a string (e.g. "PE32"), major and minor image versions, linker versions, system versions and subsystem versions, and the code, headers and commit sizes. TO create model features, string descriptors such as DLL characteristics, target machine, subsystem, etc. are summarized using the feature hashing trick prior to training a model, with 10 bins allotted for each noisy indicator vector \cite{AndersonEMBER}.
-
-\color{Black}
-\paragraph{Imported functions}
-\color{Red}
-
-The authors parse the import address table and report the imported functions by library. To create model features for the baseline model, the authors simply collect the set of unique libraries and use the hashing trick to sketch the set (256 bins). Similarly, they use the hashing trick (1024 bins) to capture individual functions, by representing each as a string such as \textit{library:FunctionName} pair (e.g. \textit{kernel32.dll:CreateFileMappingA}) \cite{AndersonEMBER}.
-
-\color{Black}
-\paragraph{Exported functions}
-\color{Red}
-
-The raw features include a list of the exported functions. These strings are summarized into model features using the hashing trick with 128 bins \cite{AndersonEMBER}.
-
-\color{Black}
-\paragraph{Section information}
-\color{Red}
-
-Properties of each section are provided and include the name, size, entropy, virtual size, and a list of strings representing section characteristics. The entry point is specified by name. To convert to model features, the authors used the hashing trick on (section name, value) pairs to create vectors containing section size, section entropy, and virtual size (50 bins each). They also used the hashing trick to capture the characteristics (list of strings) for the entry point \cite{AndersonEMBER}.
-
-\color{Black}
-\subsubsection{Format-agnostic features}
-\color{Red}
-
-The EMBER dataset also includes three groups of features that are format agnostic, in that they do not require parsing of the PE file for extraction: a raw byte histogram, byte entropy histogram based on work previously published in \cite{}, and string extraction \cite{AndersonEMBER}.
-
-\color{Black}
-\paragraph{Byte histogram}
-\color{Red}
-
-The byte histogram contains 256 integer values, representing the counts of each byte value within the file. When generating model features, this byte histogram is normalized to a distribution, since the file size is represented as a feature in the general file information \cite{AndersonEMBER}.
-
-\color{Black}
-\paragraph{Byte-entropy histogram}
-\color{Red}
-
-The byte entropy histogram approximates the joint distribution $p(H, X)$ of entropy $H$ and byte value $X$. This is done as described in \cite{}, by computing the scalar entropy $H$ for a fixed-length window and pairing it with each byte occurrence within the window. This is repeated as the window slides across the input bytes. In their implementation, the authors used a window size of 2048 and a step size of 1024 bytes, with $16 \times 16$ bins that quantize entropy and the byte value. Before training, these counts are normalized to sum to unity \cite{AndersonEMBER}.
-
-\color{Black}
-\paragraph{String information}
-\color{Red}
-
-The dataset includes simple statistics about printable strings (consisting of characters in the range \textit{0x20} to \textit{0x7f}, inclusive) that are at least five printable characters long. In particular, reported are the number of strings, their average length, a histogram of the printable characters within those strings, and the entropy of characters across all printable strings. The printable characters distribution provides distinct information from the byte histogram information above since it is derived only from strings containing at least five consecutive printable characters. In addition, the string feature group includes the number of strings that begin with \textit{C:\textbackslash} (case insensitive) that may indicate a path, the number of occurrences of \textit{http://} or \textit{http://} (case insensitive) that may indicate a \textit{URL}, the number of occurrences of \textit{HKEY\_} that may indicate a registry key, and the number of occurrences of the short string \textit{MZ} that may provide weak evidence of a Windows PE dropper or bundled executables. By providing a simple statistical summary of strings rather than a listing of raw strings, the authors mitigate privacy concerns that may exist for some benign files \cite{AndersonEMBER}.
-
-\color{Black}
 \section{Sorel 20M Dataset}
 \color{Red}
 
@@ -2221,6 +2065,162 @@ The memory map can be used as a read-only or read-write map. It is read-only by 
 Lightning Memory-Mapped Database (LMDB) is a software library that provides a high-performance embedded transactional database in the form of a key-value store. LMDB stores arbitrary key/data pairs as byte arrays, has a range-based search capability, supports multiple data items for a single key and has a special mode for appending records at the end of the database which gives a dramatic write performance increase over other similar stores. LMDB is not a relational database, it is strictly a key-value store.
 
 LMDB may also be used concurrently in a multi-threaded or multi-processing environment, with read performance scaling linearly by design. LMDB databases may have only one writer at a time, however unlike many similar key-value databases, write transactions do not block readers, nor do readers block writers. LMDB is also unusual in that multiple applications on the same system may simultaneously open and use the same LMDB store, as a means to scale up performance. Also, LMDB does not require a transaction log (thereby increasing write performance by not needing to write data twice) because it maintains data integrity inherently by design.
+
+\color{Black}
+\subsection{Ember Dataset}
+\color{Red}
+
+(Abstract)
+EMBER is a labelled benchmark dataset for training machine learning models to statically detect malicious Windows Portable Executable (PE) files. The dataset includes features extracted from 1.1M binary files: 900K training samples (300K malicious, 300K benign, 300K unlabelled) and 200K test samples (100K malicious, 100K benign). The authors also released open source code for extracting features from additional binaries so that additional sample features can be appended to the dataset. This dataset fills a void in the information security machine learning community: a benign/malicious dataset that is large, open and general enough to cover several interesting use cases \cite{AndersonEMBER}.
+
+---
+
+(Introduction)
+Machine learning can be an attractive tool for either a primary detection capability or supplementary detection heuristics. Supervised learning models automatically exploit complex relationships between file attributes in training data that are discriminating between malicious and benign samples. Furthermore, properly regularized machine learning models generalize to new samples whose features and labels follow a similar distribution to the training data.
+
+However, malware detection using machine learning has not received nearly the same attention in the open research community as other applications, where rich benchmark datasets exist. These include handwritten digit classification (e.g. MNIST), image labelling (e.g. CIFAR or ImageNet), traffic sign detection, speech recognition (e.g. TIMIT), sentiment analysis, and a host of other datasets suitable for training models to mimic human perception and cognition tasks. The challenges to releasing a benchmark dataset for malware detection are many, and may include the following: \textit{Labelling challenges}. Unlike images, text and speech - which may be labelled relatively quickly, and in many cases by a non-expert - determining whether a binary file is malicious benign can be a time-consuming process for even the well-trained. The work of labelling may be automated via anti-malware scanners that codify much of this human expertise, but the results may be proprietary or otherwise protected.
+
+The authors address this issue with the release of the Endgame Malware BEnchmark for Research (EMBER) dataset, extracted from a large corpus of Windows Portable Executable (PE) malicious and benign files. Samples are released together with the sha256 hash of the original file, and a label to denote whether the file is deemed to be malicious or benign \cite{AndersonEMBER}.
+
+\color{Black}
+\subsubsection{PE File Format}
+\color{Red}
+
+The PE file format describes the predominant executable format for Microsoft Windows operating systems, and includes executables, dynamically-linked libraries (DLLs), and FON font files. The format is currently supported on Intel, AMD and variants of ARM instruction set architectures.
+
+The file format is arranged with a number of standard headers (\ref{}), followed by one or more sections. Headers include the Common Object File Format (COFF) file header that contains important information such as the type of machine for which the file is intended, the nature of the file (DLL, EXE, OBJ), the number of sections, the number of symbols, etc. The optional header identifies the linker version, the size of the code, the size of initialized and uninitialized data, the address of the entry point, etc. Data directories within the optional header provide pointers to the sections that follow it. This includes tables for exports, imports, resources, exceptions, debug information, certificate information, and relocation tables. AS such, it provides a useful summary of the contents of an executable. Finally, the section table outlines the name, offset and size of each section in the PE file.
+
+PE sections contain code and initialized data that the Windows loader is to map into executable or readable/write-able memory pages, respectively, as well as imports, exports and resources defined by the file. Each section contains a header that specifies the size and address. An import address table instructs the loader which functions to statically import. A resources section may contain resources such as required for user interfaces: cursors, fonts, bitmaps, icons, menus, etc. A basic PE file would normally contain a \textit{.text} code section and one or more data sections (\textit{.data}, \textit{.text} or \textit{.bss}). Relocation tables are typically stored in a \textit{.reloc} section, used by the Windows loader to reassign a base address from the executable's preferred base. A \textit{.tls} section contains special thread local storage (TLS) structure for storing thread-specific local variables, which has been exploited to redirect the entry point of an executable to first check if a debugger or other analysis tool are being run. Section names are arbitrary from the perspective of the Windows loader, but specific names have been adopted by precedent and are overwhelmingly common. Packers may create new sections, for example, the UPX packer creates \textit{UPX1} to house packed data and an empty section \textit{UPX0} that reserves an address range for runtime unpacking \cite{AndersonEMBER}.
+
+\color{Black}
+\subsubsection{Static PE Malware Detection}
+\color{Red}
+
+(to be moved)
+Static malware detection attempts to classify samples as malicious or benign without executing them, in contrast to dynamic malware detection which detects malware based on its runtime behaviour including time-dependent sequences of system calls for analysis. Although static detection is well-known to be undecidable in general, it is an important protection layer in a security suite because when successful, it allows malicious files to be detected prior to execution.
+
+Machine learning-based static PE malware detectors have been used since at least 2001, and owing largely to the structured file format and backwards-compatibility requirements, many concepts remain surprisingly similar in subsequent works. Schultz et al. \cite{} assembled a dataset and generated labels by running through a McAfee virus scanner. PE files were represented by features that included imported functions, strings and byte sequences. Various machine learning models were trained and validated on a holdout set. Models included rules induced from RIPPER \cite{}, naive Bayes and an ensemble classifier. Kolter et al. \cite{} extended this approach by including byte-level N-grams, and employed techniques from natural language processing, including \textit{tf-idf} weighting of strings. Shafiq et al. \cite{} proposed using just seven features from the PE header, motivated by the fact that most malware samples in their study typically exhibited those elements. Saxe and Berlin leveraged novel two dimensional byte entropy histograms that is fed into a multi-layer neural network for classification \cite{}.
+
+Recent advances in end-to-end deep learning have dramatically improved the state of the art especially in object classification, machine translation and speech recognition. In many of these approaches, raw images, text or speech waveforms are used as input to a machine learning model which infers the most useful feature representation for the task at hand. However, despite successes in other domains, hand-crafted features apparently still represent the state of the art for malware detection in published literature. The state of the art may change to end-to-end deep learning in the ensuing months or years, but hand-crafted features derived from parsing the PE file may continue to be relevant indefinitely because of the structured format \cite{AndersonEMBER}.
+
+\color{Black}
+\subsubsection{Malicious and benign datasets}
+\color{Red}
+
+(to be moved)
+PE-Miner aimed to produce a machine-learning based malware detector with high true positive rate (TPR) at low false positive rates (FPRs), with a runtime comparable to signature-based scanners of the day \cite{}. It was trained on a dataset of $\sim1K$ benign files on the operating system, $\sim10K$ malicious PE files from VXHeaven and $\sim5K$ malicious PE files from Malfease. Unfortunately, many of the features were not disclosed publicly, some being deemed sensitive and protected under NDA. Several model types were evaluated on the dataset, and of those, it was discovered that the J48 decision tree algorithm provided the best performance. Notably, although many papers cite this work as one of the first performant non-signature-based methods, the lack of public dataset has resulted no real comparative study.
+
+Shortly following, the Adobe Malware Classifier aimed to produce a malware classifier from only seven features: debug size, image version, relative virtual address of the import address table, export size, resource size, virtual size of the second section, and the total number of sections. A decision tree algorithm was trained and the resulting classifier released as a freely available tool. It has been suggested, however, that since the benign dataset largely comprised of Windows binaries, the resulting models is strongly biased towards a non-Windows vs. Windows rather than a malicious vs. benign problem. Moreover, unfortunately, the dataset consisting of $\sim100K$ malicious and $\sim16K$ benign files was never released for comparative research.
+
+In contrast, the Microsoft Malware Classification Challenge 500MB dataset consisted of disassembly and byte-code of $\sim20K$ malicious samples from 9 families. The largest family consisted of features from $3K$ samples, while the smallest family included only 42 samples. Since the conclusion of the competition, more than 50 research papers and theses cited the dataset. Unfortunately, the disassembly features are specific to IDA Pro disassembler, and the dataset contains no benign files.
+
+Malware sharing services like VXHeaven provide an ample supply of malicious binaries. VirusTotal can be mined for supposed benign files using heuristics about the number of detections of vendor participants. However, large-scale file access rates in VirusTotal require a payed subscription. Regardless, an agreed-upon set of malicious and benign files for machine learning benchmark purposes is so far non-existent \cite{AndersonEMBER}.
+
+\color{Black}
+\subsubsection{Data Description}
+\color{Red}
+
+In crafting the EMBER dataset, the authors considered several practical use cases and research studies, including the following \cite{AndersonEMBER}.
+\begin{itemize}
+	\item Compare machine learning models for malware detection.
+	
+	\item Quantify model degradation and concept drift over time.
+	
+	\item Research interpretable machine learning.
+	
+	\item Compare features for malware classification, particularly novel features not represented in the EMBER dataset. This requires an extensible dataset.
+	
+	\item Compare to featureless end-to-end deep learning. This may require code to extract features from a new dataset, or sha256 hashes to build a raw binary dataset to match EMBER.
+	
+	\item Research adversarial attacks against machine learning malware, and subsequent defence strategies.
+	
+	\item Leverage unlabelled samples via unsupervised learning for PE file representation or semi-supervised learning for classification.
+\end{itemize}
+
+\color{Black}
+\subsubsection{Data Layout}
+\color{Red}
+
+The EMBER dataset consists of a collection of JSON lines files, where each line contains a single JSON object. Each object includes the following types in data:
+\begin{itemize}
+	\item the sha256 hash of the original file as a unique identifier;
+	
+	\item coarse time information (month resolution) that establishes an estimate of when the file was first seen;
+	
+	\item a label, which may be 0 for benign, 1 for malicious or -1 for unlabelled;
+	
+	\item 8 groups of raw features that include both parsed values as well as format-agnostic histograms.
+\end{itemize}
+
+For convenience the dataset is comprised of raw features that are human readable. The code that produces a numeric feature vector required for model building from raw features is also provided.
+
+The authors temporally split the training/test sets to mimic generational dependencies of both malicious and benign software. The coarse time stamps for one year of malicious and benign files may also allow for simple longitudinal studies. Including the sha256 hash of the original file allows researchers to link features to the raw binaries, including other metadata that may be available through file sharing sites like VirusShare or VirusTotal \cite{AndersonEMBER}.
+
+\color{Black}
+\subsubsection{Feature Set Description}
+\color{Red}
+
+The EMBER dataset consists of 8 groups of raw features that include both parsed features and format-agnostic histograms and counts of strings. The authors made a distinction between \textit{raw features} (the dataset provided) and \textit{model features} (or \textit{vectorized features}) derived from the dataset. \textit{Model features} represent a feature matrix of fixed size used for training a model, representing a numerical summary of the raw features, wherein strings, imported names, exported names, etc., are captured using the feature hashing trick \cite{}. The feature matrix is not explicitly provided in the published dataset, but code is provided to convert raw features to model features to train a model \cite{AndersonEMBER}.
+
+\color{Black}
+\paragraph{Parsed features}
+\color{Red}
+
+The dataset includes 5 groups of features that are extracted after parsing the PE file. The authors leveraged the \textit{Library to Instrument Executable Formats} \cite{} as a convenient PE parser. \textit{LIEF} names are used for strings that represent symbolic objects, such as characteristics and properties \cite{AndersonEMBER}.
+
+\color{Black}
+\subparagraph{General file information}
+\color{Red}
+
+The set of features in the general file information group includes the file size and basic information obtained from the PE header: the virtual size of the file, the number of imported and exported functions, whether the file has a debug section, thread local storage, resources, relocations, or a signature, and the number of symbols \cite{AndersonEMBER}.
+
+\color{Black}
+\subparagraph{Header information}
+\color{Red}
+
+From the \textit{COFF} header, the authors reported the timestamp in the header, the target machine (string) and a list of image characteristics (list of strings). From the optional header, the authors provide the target subsystem (string), DLL characteristics (a list of strings), the file magic as a string (e.g. "PE32"), major and minor image versions, linker versions, system versions and subsystem versions, and the code, headers and commit sizes. TO create model features, string descriptors such as DLL characteristics, target machine, subsystem, etc. are summarized using the feature hashing trick prior to training a model, with 10 bins allotted for each noisy indicator vector \cite{AndersonEMBER}.
+
+\color{Black}
+\subparagraph{Imported functions}
+\color{Red}
+
+The authors parse the import address table and report the imported functions by library. To create model features for the baseline model, the authors simply collect the set of unique libraries and use the hashing trick to sketch the set (256 bins). Similarly, they use the hashing trick (1024 bins) to capture individual functions, by representing each as a string such as \textit{library:FunctionName} pair (e.g. \textit{kernel32.dll:CreateFileMappingA}) \cite{AndersonEMBER}.
+
+\color{Black}
+\subparagraph{Exported functions}
+\color{Red}
+
+The raw features include a list of the exported functions. These strings are summarized into model features using the hashing trick with 128 bins \cite{AndersonEMBER}.
+
+\color{Black}
+\subparagraph{Section information}
+\color{Red}
+
+Properties of each section are provided and include the name, size, entropy, virtual size, and a list of strings representing section characteristics. The entry point is specified by name. To convert to model features, the authors used the hashing trick on (section name, value) pairs to create vectors containing section size, section entropy, and virtual size (50 bins each). They also used the hashing trick to capture the characteristics (list of strings) for the entry point \cite{AndersonEMBER}.
+
+\color{Black}
+\paragraph{Format-agnostic features}
+\color{Red}
+
+The EMBER dataset also includes three groups of features that are format agnostic, in that they do not require parsing of the PE file for extraction: a raw byte histogram, byte entropy histogram based on work previously published in \cite{}, and string extraction \cite{AndersonEMBER}.
+
+\color{Black}
+\subparagraph{Byte histogram}
+\color{Red}
+
+The byte histogram contains 256 integer values, representing the counts of each byte value within the file. When generating model features, this byte histogram is normalized to a distribution, since the file size is represented as a feature in the general file information \cite{AndersonEMBER}.
+
+\color{Black}
+\subparagraph{Byte-entropy histogram}
+\color{Red}
+
+The byte entropy histogram approximates the joint distribution $p(H, X)$ of entropy $H$ and byte value $X$. This is done as described in \cite{}, by computing the scalar entropy $H$ for a fixed-length window and pairing it with each byte occurrence within the window. This is repeated as the window slides across the input bytes. In their implementation, the authors used a window size of 2048 and a step size of 1024 bytes, with $16 \times 16$ bins that quantize entropy and the byte value. Before training, these counts are normalized to sum to unity \cite{AndersonEMBER}.
+
+\color{Black}
+\subparagraph{String information}
+\color{Red}
+
+The dataset includes simple statistics about printable strings (consisting of characters in the range \textit{0x20} to \textit{0x7f}, inclusive) that are at least five printable characters long. In particular, reported are the number of strings, their average length, a histogram of the printable characters within those strings, and the entropy of characters across all printable strings. The printable characters distribution provides distinct information from the byte histogram information above since it is derived only from strings containing at least five consecutive printable characters. In addition, the string feature group includes the number of strings that begin with \textit{C:\textbackslash} (case insensitive) that may indicate a path, the number of occurrences of \textit{http://} or \textit{http://} (case insensitive) that may indicate a \textit{URL}, the number of occurrences of \textit{HKEY\_} that may indicate a registry key, and the number of occurrences of the short string \textit{MZ} that may provide weak evidence of a Windows PE dropper or bundled executables. By providing a simple statistical summary of strings rather than a listing of raw strings, the authors mitigate privacy concerns that may exist for some benign files \cite{AndersonEMBER}.
 
 \color{Black}
 \subsection{Trying to improve Dataset Loading Speed}
