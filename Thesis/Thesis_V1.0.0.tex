@@ -2093,22 +2093,7 @@ PE sections contain code and initialized data that the Windows loader is to map 
 (to be moved)
 Static malware detection attempts to classify samples as malicious or benign without executing them, in contrast to dynamic malware detection which detects malware based on its runtime behaviour including time-dependent sequences of system calls for analysis. Although static detection is well-known to be undecidable in general, it is an important protection layer in a security suite because when successful, it allows malicious files to be detected prior to execution.
 
-Machine learning-based static PE malware detectors have been used since at least 2001, and owing largely to the structured file format and backwards-compatibility requirements, many concepts remain surprisingly similar in subsequent works. Schultz et al. \cite{} assembled a dataset and generated labels by running through a McAfee virus scanner. PE files were represented by features that included imported functions, strings and byte sequences. Various machine learning models were trained and validated on a holdout set. Models included rules induced from RIPPER \cite{}, naive Bayes and an ensemble classifier. Kolter et al. \cite{} extended this approach by including byte-level N-grams, and employed techniques from natural language processing, including \textit{tf-idf} weighting of strings. Shafiq et al. \cite{} proposed using just seven features from the PE header, motivated by the fact that most malware samples in their study typically exhibited those elements. Saxe and Berlin leveraged novel two dimensional byte entropy histograms that is fed into a multi-layer neural network for classification \cite{}.
-
 Recent advances in end-to-end deep learning have dramatically improved the state of the art especially in object classification, machine translation and speech recognition. In many of these approaches, raw images, text or speech waveforms are used as input to a machine learning model which infers the most useful feature representation for the task at hand. However, despite successes in other domains, hand-crafted features apparently still represent the state of the art for malware detection in published literature. The state of the art may change to end-to-end deep learning in the ensuing months or years, but hand-crafted features derived from parsing the PE file may continue to be relevant indefinitely because of the structured format \cite{AndersonEMBER}.
-
-\color{Black}
-\subsubsection{Malicious and benign datasets}
-\color{Red}
-
-(to be moved)
-PE-Miner aimed to produce a machine-learning based malware detector with high true positive rate (TPR) at low false positive rates (FPRs), with a runtime comparable to signature-based scanners of the day \cite{}. It was trained on a dataset of $\sim1K$ benign files on the operating system, $\sim10K$ malicious PE files from VXHeaven and $\sim5K$ malicious PE files from Malfease. Unfortunately, many of the features were not disclosed publicly, some being deemed sensitive and protected under NDA. Several model types were evaluated on the dataset, and of those, it was discovered that the J48 decision tree algorithm provided the best performance. Notably, although many papers cite this work as one of the first performant non-signature-based methods, the lack of public dataset has resulted no real comparative study.
-
-Shortly following, the Adobe Malware Classifier aimed to produce a malware classifier from only seven features: debug size, image version, relative virtual address of the import address table, export size, resource size, virtual size of the second section, and the total number of sections. A decision tree algorithm was trained and the resulting classifier released as a freely available tool. It has been suggested, however, that since the benign dataset largely comprised of Windows binaries, the resulting models is strongly biased towards a non-Windows vs. Windows rather than a malicious vs. benign problem. Moreover, unfortunately, the dataset consisting of $\sim100K$ malicious and $\sim16K$ benign files was never released for comparative research.
-
-In contrast, the Microsoft Malware Classification Challenge 500MB dataset consisted of disassembly and byte-code of $\sim20K$ malicious samples from 9 families. The largest family consisted of features from $3K$ samples, while the smallest family included only 42 samples. Since the conclusion of the competition, more than 50 research papers and theses cited the dataset. Unfortunately, the disassembly features are specific to IDA Pro disassembler, and the dataset contains no benign files.
-
-Malware sharing services like VXHeaven provide an ample supply of malicious binaries. VirusTotal can be mined for supposed benign files using heuristics about the number of detections of vendor participants. However, large-scale file access rates in VirusTotal require a payed subscription. Regardless, an agreed-upon set of malicious and benign files for machine learning benchmark purposes is so far non-existent \cite{AndersonEMBER}.
 
 \color{Black}
 \subsubsection{Data Description}
@@ -2148,7 +2133,7 @@ The EMBER dataset consists of a collection of JSON lines files, where each line 
 
 For convenience the dataset is comprised of raw features that are human readable. The code that produces a numeric feature vector required for model building from raw features is also provided.
 
-The authors temporally split the training/test sets to mimic generational dependencies of both malicious and benign software. The coarse time stamps for one year of malicious and benign files may also allow for simple longitudinal studies. Including the sha256 hash of the original file allows researchers to link features to the raw binaries, including other metadata that may be available through file sharing sites like VirusShare or VirusTotal \cite{AndersonEMBER}.
+The authors temporally split the training/test sets to mimic generational dependencies of both malicious and benign software. The coarse time stamps for one year of malicious and benign files may also allow for simple longitudinal studies \cite{AndersonEMBER}.
 
 \color{Black}
 \subsubsection{Feature Set Description}
