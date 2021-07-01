@@ -2039,10 +2039,23 @@ The entire database is exposed in a memory map, and all data fetches return data
 
 The memory map can be used as a read-only or read-write map. It is read-only by default as this provides total immunity to corruption. On the other hand, using read-write mode offers much higher write performance \cite{ChuLMDBDoc}. LMDB may also be used concurrently in a multi-threaded or multi-processing environment, with read performance scaling linearly by design. In particular it uses shared memory copy-on-write semantics with a single writer; however unlike many similar key-value databases, write transactions do not block readers, nor do readers block writers.
 
-\subsection{Ember Dataset}
-Anderson et al. \cite{AndersonEMBER} released in 2018 the first version of the Endgame Malware BEnchmark for Research (EMBER) dataset, extracted from a large corpus of Windows Portable Executable (PE) malicious and benign files. In particular, the samples were released together with the sha256 hash of the original file, and a label to denote whether the file is malicious or benign.
+\subsection{Ember Features}
+As previously mentioned, Sorel20M dataset consists of a bunch of databases (Sqlite3 and LMDB), indexed by the sha256 hash of the files, which contain the feature vectors representing the samples together with the corresponding labels/metadata. In particular the feature vectors were derived from the samples' code through the use of an open source feature extraction code released by Anderson et al. \cite{AndersonEMBER} in 2018 as an attachment to the Endgame Malware BEnchmark for Research (EMBER) dataset. In particular, Sorel20M uses version 2 of this feature extraction code which adds information on data directories to the feature representation with respect to version 1.
 
-The authors of \cite{AndersonEMBER} also released open source code for extracting features from additional binaries so that additional sample features can be appended to the dataset.
+The PE file format and the features extracted by the EMBER feature extraction code will be described in the next two sections. Before that, here is a brief description of the EMBER dataset useful for context.
+
+The EMBER dataset, which was extracted from a large corpus of Windows Portable Executable (PE) malicious and benign files, consists of a collection of JSON lines files, where each line contains a single JSON object. Each object includes the following types of data:
+\begin{itemize}
+	\item the sha256 hash of the original file as a unique identifier;
+	
+	\item coarse time information (month resolution) about when the file was first seen;
+	
+	\item a malicious/benign label, which may be 0 for benign, 1 for malicious or -1 for unlabelled;
+	
+	\item 8 groups of raw features that include both parsed values as well as format-agnostic histograms.
+\end{itemize}
+
+A notable difference with respect to Sorel20M, however, is that the EMBER dataset is comprised of raw features that are human-readable instead of directly having the feature vectors required for model building. This was done to allow researchers to decouple raw features from the vectorizing strategy and to improve model interpretability. Anyway, the authors of \cite{AndersonEMBER} provided also the code for producing numeric feature vectors from those raw features. The raw feature extraction code and the numeric feature vector generation code were used in succession by Sorel20M authors to directly obtain the feature vector representations from samples.
 
 \subsubsection{PE File Format}
 \color{Red}
@@ -2052,25 +2065,6 @@ The PE file format describes the predominant executable format for Microsoft Win
 The file format is arranged with a number of standard headers (\ref{}), followed by one or more sections. Headers include the Common Object File Format (COFF) file header that contains important information such as the type of machine for which the file is intended, the nature of the file (DLL, EXE, OBJ), the number of sections, the number of symbols, etc. The optional header identifies the linker version, the size of the code, the size of initialized and uninitialized data, the address of the entry point, etc. Data directories within the optional header provide pointers to the sections that follow it. This includes tables for exports, imports, resources, exceptions, debug information, certificate information, and relocation tables. AS such, it provides a useful summary of the contents of an executable. Finally, the section table outlines the name, offset and size of each section in the PE file.
 
 PE sections contain code and initialized data that the Windows loader is to map into executable or readable/write-able memory pages, respectively, as well as imports, exports and resources defined by the file. Each section contains a header that specifies the size and address. An import address table instructs the loader which functions to statically import. A resources section may contain resources such as required for user interfaces: cursors, fonts, bitmaps, icons, menus, etc. A basic PE file would normally contain a \textit{.text} code section and one or more data sections (\textit{.data}, \textit{.text} or \textit{.bss}). Relocation tables are typically stored in a \textit{.reloc} section, used by the Windows loader to reassign a base address from the executable's preferred base. A \textit{.tls} section contains special thread local storage (TLS) structure for storing thread-specific local variables, which has been exploited to redirect the entry point of an executable to first check if a debugger or other analysis tool are being run. Section names are arbitrary from the perspective of the Windows loader, but specific names have been adopted by precedent and are overwhelmingly common. Packers may create new sections, for example, the UPX packer creates \textit{UPX1} to house packed data and an empty section \textit{UPX0} that reserves an address range for runtime unpacking \cite{AndersonEMBER}.
-
-\color{Black}
-\subsubsection{Data Layout}
-\color{Red}
-
-The EMBER dataset consists of a collection of JSON lines files, where each line contains a single JSON object. Each object includes the following types in data:
-\begin{itemize}
-	\item the sha256 hash of the original file as a unique identifier;
-	
-	\item coarse time information (month resolution) that establishes an estimate of when the file was first seen;
-	
-	\item a label, which may be 0 for benign, 1 for malicious or -1 for unlabelled;
-	
-	\item 8 groups of raw features that include both parsed values as well as format-agnostic histograms.
-\end{itemize}
-
-For convenience the dataset is comprised of raw features that are human readable. The code that produces a numeric feature vector required for model building from raw features is also provided.
-
-The authors temporally split the training/test sets to mimic generational dependencies of both malicious and benign software. The coarse time stamps for one year of malicious and benign files may also allow for simple longitudinal studies \cite{AndersonEMBER}.
 
 \color{Black}
 \subsubsection{Feature Set Description}

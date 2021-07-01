@@ -115,27 +115,26 @@
 \contentsline {section}{\numberline {4.1}Sorel 20M Dataset}{60}{section.4.1}%
 \contentsline {subsection}{\numberline {4.1.1}Sorel 20M Dataset Description}{61}{subsection.4.1.1}%
 \contentsline {paragraph}{LMDB database, what is it?}{61}{section*.82}%
-\contentsline {subsection}{\numberline {4.1.2}Ember Dataset}{61}{subsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.1.2}Ember Features}{61}{subsection.4.1.2}%
 \contentsline {subsubsection}{PE File Format}{62}{section*.83}%
-\contentsline {subsubsection}{Data Layout}{62}{section*.84}%
-\contentsline {subsubsection}{Feature Set Description}{62}{section*.85}%
-\contentsline {paragraph}{Parsed features}{63}{section*.86}%
-\contentsline {subparagraph}{General file information}{63}{section*.87}%
-\contentsline {subparagraph}{Header information}{63}{section*.88}%
-\contentsline {subparagraph}{Imported functions}{63}{section*.89}%
-\contentsline {subparagraph}{Exported functions}{63}{section*.90}%
-\contentsline {subparagraph}{Section information}{63}{section*.91}%
-\contentsline {paragraph}{Format-agnostic features}{63}{section*.92}%
-\contentsline {subparagraph}{Byte histogram}{63}{section*.93}%
-\contentsline {subparagraph}{Byte-entropy histogram}{64}{section*.94}%
-\contentsline {subparagraph}{String information}{64}{section*.95}%
+\contentsline {subsubsection}{Feature Set Description}{62}{section*.84}%
+\contentsline {paragraph}{Parsed features}{63}{section*.85}%
+\contentsline {subparagraph}{General file information}{63}{section*.86}%
+\contentsline {subparagraph}{Header information}{63}{section*.87}%
+\contentsline {subparagraph}{Imported functions}{63}{section*.88}%
+\contentsline {subparagraph}{Exported functions}{63}{section*.89}%
+\contentsline {subparagraph}{Section information}{63}{section*.90}%
+\contentsline {paragraph}{Format-agnostic features}{63}{section*.91}%
+\contentsline {subparagraph}{Byte histogram}{63}{section*.92}%
+\contentsline {subparagraph}{Byte-entropy histogram}{64}{section*.93}%
+\contentsline {subparagraph}{String information}{64}{section*.94}%
 \contentsline {subsection}{\numberline {4.1.3}Trying to improve Dataset Loading Speed}{64}{subsection.4.1.3}%
-\contentsline {subsubsection}{Dataset Pre-Processing}{64}{section*.96}%
-\contentsline {subsubsection}{Alternative Generators (Dataloaders)}{64}{section*.97}%
-\contentsline {paragraph}{Generator alt1}{65}{section*.98}%
-\contentsline {paragraph}{Generator alt2}{65}{section*.99}%
-\contentsline {paragraph}{Generator alt3}{66}{section*.100}%
-\contentsline {subparagraph}{Generator parameters optimization}{68}{section*.101}%
+\contentsline {subsubsection}{Dataset Pre-Processing}{64}{section*.95}%
+\contentsline {subsubsection}{Alternative Generators (Dataloaders)}{64}{section*.96}%
+\contentsline {paragraph}{Generator alt1}{65}{section*.97}%
+\contentsline {paragraph}{Generator alt2}{65}{section*.98}%
+\contentsline {paragraph}{Generator alt3}{66}{section*.99}%
+\contentsline {subparagraph}{Generator parameters optimization}{68}{section*.100}%
 \contentsline {section}{\numberline {4.2}Fresh Dataset}{71}{section.4.2}%
 \contentsline {subsection}{\numberline {4.2.1}Model Evaluation with Fresh Dataset}{71}{subsection.4.2.1}%
 \contentsline {chapter}{\numberline {5}Experimenting with ML based Malware Detection/Description methods}{74}{chapter.5}%

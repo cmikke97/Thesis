@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  1 JUL 2021 23:30
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  2 JUL 2021 00:38
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -873,24 +873,24 @@ LaTeX Warning: Citation `fBetaScoreEq' on page 56 undefined on input line 1908.
 Chapter 4.
 [60
 
-]
+] [61]
 
-LaTeX Warning: Reference `' on page 61 undefined on input line 2052.
+LaTeX Warning: Reference `' on page 62 undefined on input line 2065.
 
-[61] [62] [63]
+[62] [63]
 LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 2
-139.
+133.
 
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/base\omscmr.fd
 File: omscmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2139.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2133.
 
 
 [64]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 2171.
+put line 2165.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -909,14 +909,14 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2565--2566
+Underfull \hbox (badness 10000) in paragraph at lines 2559--2560
 [] \OT1/cmr/m/it/10 self.chunk[]agg\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 self.chun
 k[]agg[]size $\OMS/cmsy/m/n/10  $ \OT1/cmr/bx/n/10 get[]chunks\OT1/cmr/m/n/10 (
 \OT1/cmr/m/it/10 self.tensor\OT1/cmr/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2565--2566
+Underfull \hbox (badness 10000) in paragraph at lines 2559--2560
 \OT1/cmr/m/it/10 self.chunk[]indices\OT1/cmr/m/n/10 [\OT1/cmr/m/it/10 start[]i\
 OT1/cmr/m/n/10 :\OT1/cmr/m/it/10 end[]i\OT1/cmr/m/n/10 ], \OT1/cmr/m/it/10 self
 .chunk[]size\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 self.last[]chunk[]size\OT1/cmr/m
@@ -924,7 +924,7 @@ OT1/cmr/m/n/10 :\OT1/cmr/m/it/10 end[]i\OT1/cmr/m/n/10 ], \OT1/cmr/m/it/10 self
  []
 
 
-Underfull \hbox (badness 1337) in paragraph at lines 2573--2574
+Underfull \hbox (badness 1337) in paragraph at lines 2567--2568
 [] \OT1/cmr/m/it/10 ar-gu-ments $\OMS/cmsy/m/n/10  $ \OT1/cmr/m/n/10 (\OT1/cmr/
 m/it/10 self.tensors\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 self.chunk[]indices\OT1/
 cmr/m/n/10 [\OT1/cmr/m/it/10 start[]i\OT1/cmr/m/n/10 :\OT1/cmr/m/it/10 end[]i\O
@@ -1070,15 +1070,15 @@ t/m/n/10 https : / / www . forcepoint . com / cyber-[]edu /
 
 [83]) [84] (Thesis_V1.0.0.aux)
 Package rerunfilecheck Info: File `Thesis_V1.0.0.out' has not changed.
-(rerunfilecheck)             Checksum: 1D9FA89498D4534091D245AB8E034C0B;7727.
+(rerunfilecheck)             Checksum: D80001D6E237F0AB1F7F39B8D54ACC0B;7732.
 
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 18849 strings out of 481296
- 308096 string characters out of 2908369
+ 18848 strings out of 481296
+ 308084 string characters out of 2908369
  957051 words of memory out of 3000000
  35053 multiletter control sequences out of 15000+600000
  419183 words of font info for 86 fonts, out of 8000000 for 9000
@@ -1113,9 +1113,9 @@ ichele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
 <C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmtt8.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
 sfonts/symbols/msbm10.pfb>
-Output written on Thesis_V1.0.0.pdf (84 pages, 801195 bytes).
+Output written on Thesis_V1.0.0.pdf (84 pages, 801372 bytes).
 PDF statistics:
- 1635 PDF objects out of 1728 (max. 8388607)
- 630 named destinations out of 1000 (max. 500000)
+ 1633 PDF objects out of 1728 (max. 8388607)
+ 629 named destinations out of 1000 (max. 500000)
  350 words of extra memory for PDF output out of 10000 (max. 10000000)
 
