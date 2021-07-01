@@ -2002,9 +2002,9 @@ Throughout the experiments conducted and reported in this document, two datasets
 \end{itemize}
 
 \section{Sorel 20M Dataset}
-The \textit{\textbf{Sorel20M}} large-scale dataset consists of nearly 20 million files, each represented by the corresponding pre-extracted features, metadata, malicious/benign label derived from multiple sources, vendor detections count information and additional SMART 'tags' to serve as additional targets \cite{HarangSOREL20M}.
+The \textit{\textbf{Sorel20M}}, released in 2020, large-scale dataset consists of nearly 20 million files, each represented by the corresponding pre-extracted features, metadata, malicious/benign label derived from multiple sources, vendor detections count information and additional SMART 'tags' to serve as additional targets \cite{HarangSOREL20M}.
 
-SOREL20M dataset builds upon EMBER dataset \cite{AndersonEMBER}, the first standard and open dataset to be used for malware detection, addressing some of its drawbacks that limited its utility as a malware benchmark set. In particular, EMBER contains $900,000$ training samples and $200,000$ test samples and is therefore of limited size compared to the private/proprietary datasets containing from tens to hundreds of millions of samples commercial malware models are usually trained on. Additionally, the small number of validation samples makes it difficult to evaluate the model performance at low false positive rates due to high variance. Moreover, the EMBER dataset only provides a single binary malware/benignware label with no additional information.
+SOREL20M dataset builds upon EMBER dataset \cite{AndersonEMBER}, the first standard and open dataset specifically designed to be used for static malware detection, addressing some of its drawbacks that limited its utility as a malware benchmark set. In particular, EMBER contains $900,000$ training samples (300K malicious, 300K unlabelled) and $200,000$ test samples (100K malicious, 100K benign) and is therefore of limited size compared to the private/proprietary datasets containing from tens to hundreds of millions of samples commercial malware models are usually trained on. Additionally, the small number of validation samples makes it difficult to evaluate the model performance at low false positive rates due to high variance. Moreover, the EMBER dataset only provides a single binary malware/benignware label with no additional information.
 
 SOREL20M, in fact provides an order of magnitude more samples for analysis: when using the recommended time splits to establish training, validation and test sets, there are $12,699,013$ training samples, $2,495,822$ validation samples and $4,195,042$ test samples, respectively. Furthermore, Sorel20M \cite{HarangSOREL20M} provides $9,919,251$ samples of malware ($7,596,407$ training samples, $962,222$ validation samples and $1,360,622$ test samples), which have been 'disarmed' by setting both the \textit{optional\_headers.subsystem} and \textit{file\_header.machine} to 0 in order to prevent execution. Additionally, complete PE metadata, obtained via the Python \textit{pefile} module using the \textit{dump\_dict} method, is provided for each sample.
 
@@ -2040,21 +2040,10 @@ The entire database is exposed in a memory map, and all data fetches return data
 The memory map can be used as a read-only or read-write map. It is read-only by default as this provides total immunity to corruption. On the other hand, using read-write mode offers much higher write performance \cite{ChuLMDBDoc}. LMDB may also be used concurrently in a multi-threaded or multi-processing environment, with read performance scaling linearly by design. In particular it uses shared memory copy-on-write semantics with a single writer; however unlike many similar key-value databases, write transactions do not block readers, nor do readers block writers.
 
 \subsection{Ember Dataset}
-\color{Red}
+Anderson et al. \cite{AndersonEMBER} released in 2018 the first version of the Endgame Malware BEnchmark for Research (EMBER) dataset, extracted from a large corpus of Windows Portable Executable (PE) malicious and benign files. In particular, the samples were released together with the sha256 hash of the original file, and a label to denote whether the file is malicious or benign.
 
-(Abstract)
-EMBER is a labelled benchmark dataset for training machine learning models to statically detect malicious Windows Portable Executable (PE) files. The dataset includes features extracted from 1.1M binary files: 900K training samples (300K malicious, 300K benign, 300K unlabelled) and 200K test samples (100K malicious, 100K benign). The authors also released open source code for extracting features from additional binaries so that additional sample features can be appended to the dataset. This dataset fills a void in the information security machine learning community: a benign/malicious dataset that is large, open and general enough to cover several interesting use cases \cite{AndersonEMBER}.
+The authors of \cite{AndersonEMBER} also released open source code for extracting features from additional binaries so that additional sample features can be appended to the dataset.
 
----
-
-(Introduction)
-Machine learning can be an attractive tool for either a primary detection capability or supplementary detection heuristics. Supervised learning models automatically exploit complex relationships between file attributes in training data that are discriminating between malicious and benign samples. Furthermore, properly regularized machine learning models generalize to new samples whose features and labels follow a similar distribution to the training data.
-
-Unlike images, text and speech - which may be labelled relatively quickly, and in many cases by a non-expert - determining whether a binary file is malicious benign can be a time-consuming process for even the well-trained. The work of labelling may be automated via anti-malware scanners that codify much of this human expertise, but the results may be proprietary or otherwise protected.
-
-The authors address this issue with the release of the Endgame Malware BEnchmark for Research (EMBER) dataset, extracted from a large corpus of Windows Portable Executable (PE) malicious and benign files. Samples are released together with the sha256 hash of the original file, and a label to denote whether the file is deemed to be malicious or benign \cite{AndersonEMBER}.
-
-\color{Black}
 \subsubsection{PE File Format}
 \color{Red}
 
@@ -2063,36 +2052,6 @@ The PE file format describes the predominant executable format for Microsoft Win
 The file format is arranged with a number of standard headers (\ref{}), followed by one or more sections. Headers include the Common Object File Format (COFF) file header that contains important information such as the type of machine for which the file is intended, the nature of the file (DLL, EXE, OBJ), the number of sections, the number of symbols, etc. The optional header identifies the linker version, the size of the code, the size of initialized and uninitialized data, the address of the entry point, etc. Data directories within the optional header provide pointers to the sections that follow it. This includes tables for exports, imports, resources, exceptions, debug information, certificate information, and relocation tables. AS such, it provides a useful summary of the contents of an executable. Finally, the section table outlines the name, offset and size of each section in the PE file.
 
 PE sections contain code and initialized data that the Windows loader is to map into executable or readable/write-able memory pages, respectively, as well as imports, exports and resources defined by the file. Each section contains a header that specifies the size and address. An import address table instructs the loader which functions to statically import. A resources section may contain resources such as required for user interfaces: cursors, fonts, bitmaps, icons, menus, etc. A basic PE file would normally contain a \textit{.text} code section and one or more data sections (\textit{.data}, \textit{.text} or \textit{.bss}). Relocation tables are typically stored in a \textit{.reloc} section, used by the Windows loader to reassign a base address from the executable's preferred base. A \textit{.tls} section contains special thread local storage (TLS) structure for storing thread-specific local variables, which has been exploited to redirect the entry point of an executable to first check if a debugger or other analysis tool are being run. Section names are arbitrary from the perspective of the Windows loader, but specific names have been adopted by precedent and are overwhelmingly common. Packers may create new sections, for example, the UPX packer creates \textit{UPX1} to house packed data and an empty section \textit{UPX0} that reserves an address range for runtime unpacking \cite{AndersonEMBER}.
-
-\color{Black}
-\subsubsection{Static PE Malware Detection}
-\color{Red}
-
-(to be moved)
-Static malware detection attempts to classify samples as malicious or benign without executing them, in contrast to dynamic malware detection which detects malware based on its runtime behaviour including time-dependent sequences of system calls for analysis. Although static detection is well-known to be undecidable in general, it is an important protection layer in a security suite because when successful, it allows malicious files to be detected prior to execution.
-
-Recent advances in end-to-end deep learning have dramatically improved the state of the art especially in object classification, machine translation and speech recognition. In many of these approaches, raw images, text or speech waveforms are used as input to a machine learning model which infers the most useful feature representation for the task at hand. However, despite successes in other domains, hand-crafted features apparently still represent the state of the art for malware detection in published literature. The state of the art may change to end-to-end deep learning in the ensuing months or years, but hand-crafted features derived from parsing the PE file may continue to be relevant indefinitely because of the structured format \cite{AndersonEMBER}.
-
-\color{Black}
-\subsubsection{Data Description}
-\color{Red}
-
-In crafting the EMBER dataset, the authors considered several practical use cases and research studies, including the following \cite{AndersonEMBER}.
-\begin{itemize}
-	\item Compare machine learning models for malware detection.
-	
-	\item Quantify model degradation and concept drift over time.
-	
-	\item Research interpretable machine learning.
-	
-	\item Compare features for malware classification, particularly novel features not represented in the EMBER dataset. This requires an extensible dataset.
-	
-	\item Compare to featureless end-to-end deep learning. This may require code to extract features from a new dataset, or sha256 hashes to build a raw binary dataset to match EMBER.
-	
-	\item Research adversarial attacks against machine learning malware, and subsequent defence strategies.
-	
-	\item Leverage unlabelled samples via unsupervised learning for PE file representation or semi-supervised learning for classification.
-\end{itemize}
 
 \color{Black}
 \subsubsection{Data Layout}
