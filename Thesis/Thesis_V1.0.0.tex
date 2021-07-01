@@ -1994,35 +1994,26 @@ In order to improve the detection rate of existing anti-malware techniques also 
 After \textit{normalization}, the usual signature-based techniques can be applied on the normalized sample \cite{Sharma_2014}.
 
 \chapter{Datasets}
-\color{Red}
+Throughout the experiments conducted and reported in this document, two datasets were used in order to train the different models and evaluate their relative performances:
+\begin{itemize}
+	\item The large-scale dataset called \textit{\textbf{Sorel 20M dataset}} \cite{HarangSOREL20M} was used to train and evaluate the models implemented on the task of sample SMART tagging and/or malicious/benign label prediction.
+	
+	\item A smaller dataset, referred to as '\textit{\textbf{Fresh dataset}}' in this document, was specifically crafted for the evaluation of the proposed framework on the task of predicting the malware family each specific sample belongs to.
+\end{itemize}
 
-\color{Black}
 \section{Sorel 20M Dataset}
-\color{Red}
+The \textit{\textbf{Sorel20M}} large-scale dataset consists of nearly 20 million files, each represented by the corresponding pre-extracted features, metadata, malicious/benign label derived from multiple sources, vendor detections count information and additional SMART 'tags' to serve as additional targets \cite{HarangSOREL20M}.
 
-(Abstract)
-Sorel20M dataset is a large-scale dataset consisting of nearly 20 million files with pre-extracted features and metadata, high-quality labels derived from multiple source, information about vendor detections of the malware samples at the time of collection, and additional "tags" related to each malware sample to serve as additional targets \cite{HarangSOREL20M}.
+SOREL20M dataset builds upon EMBER dataset \cite{AndersonEMBER}, the first standard and open dataset to be used for malware detection, addressing some of its drawbacks that limited its utility as a malware benchmark set. In particular, EMBER contains $900,000$ training samples and $200,000$ test samples and is therefore of limited size compared to the private/proprietary datasets containing from tens to hundreds of millions of samples commercial malware models are usually trained on. Additionally, the small number of validation samples makes it difficult to evaluate the model performance at low false positive rates due to high variance. Moreover, the EMBER dataset only provides a single binary malware/benignware label with no additional information.
 
----
+SOREL20M, in fact provides an order of magnitude more samples for analysis: when using the recommended time splits to establish training, validation and test sets, there are $12,699,013$ training samples, $2,495,822$ validation samples and $4,195,042$ test samples, respectively. Furthermore, Sorel20M \cite{HarangSOREL20M} provides $9,919,251$ samples of malware ($7,596,407$ training samples, $962,222$ validation samples and $1,360,622$ test samples), which have been 'disarmed' by setting both the \textit{optional\_headers.subsystem} and \textit{file\_header.machine} to 0 in order to prevent execution. Additionally, complete PE metadata, obtained via the Python \textit{pefile} module using the \textit{dump\_dict} method, is provided for each sample.
 
-(Introduction)
-The use of machine learning for malware detection is now relatively widespread. The ability for modern machine learning models to learn complex relationships between a large number of both statistical and parse-based features has lead to their widespread adoption.
+Finally, the dataset provides for each sample a number of additional targets (SMART tags) for the model that describe behaviour inferred from vendor family labels, together with the vendor detection count and the malicious/benign label.
 
-The first attempt to address this lack was the seminal EMBER dataset \cite{}, which SOREL20M dataset builds upon. The EMBER dataset was the first standard dataset to be used for malware detection, however it had some shortcomings that limited its utility as a malware benchmark set. First, EMBER was of limited size, containing 900,000 training samples and 200,000 test samples, while commercial malware models are trained on tens to hundreds of millions of samples. In addition to the training size being too small to compare to commercial scale, the small validation size makes evaluation of model performance at lower false positive rates (1 in 1000 or below) difficult due to variance issues. Perhaps due to the relatively small size of the dataset, performance of classifiers on EMBER is nearly saturated, with a baseline classifier capable of obtaining an AUC of over 0.999. In addition, the EMBER dataset provided only pre-extracted features, making further research in such topic as improvements in feature extraction or realizable adversarial sample generation difficult. Finally, EMBER provides only a single binary label based on a simple "thresholding" rule.
-
-SOREL-20M attempts to address these issues in whole or in part. The issue of training size is addressed by providing an order of magnitude more samples for analysis. Internally, the authors found that while performance continues to improve with larger datasets, validation sizes on the order of 3 to 4 million examples are sufficient to establish a stable rank order between models as well as to assess performance at lower false positive rates. When using the recommended time splits to establish training, validation and test sets, there are 12,699,013 training samples, 2,495,822 validation samples and 4,195,042 test samples, respectively.
-
-The issue of feature exploration is partially addressed by providing (disarmed) binary samples for the malware only. The authors provided 9,919,251 samples of malware (7,596,407 training samples, 962,222 validation samples and 1,360,622 test samples), which have been 'disarmed' by setting both the \textit{optional\_headers.subsystem} and \textit{file\_header.machine} to 0 in order to prevent execution. They also have provided complete PE metadata as obtained via the Python \textit{pefile} module using the \textit{dump\_dict} method.
-
-Finally, the authors provided a number of additional targets (SMART tags) for the model that describe behaviour inferred from vendor labels \cite{HarangSOREL20M}.
-
-The dataset is stored as a AWS bucket
-
-\color{Black}
 \subsection{Sorel 20M Dataset Description}
 \color{Red}
 
-The complete dataset consists of the following items:
+The complete dataset, which is available as a AWS bucket, consists of the following items:
 \begin{itemize}
 	\item The 9,919,251 original (disarmed) malware samples compressed via the Python \textit{zlib.compress} function
 	
