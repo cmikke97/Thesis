@@ -115,9 +115,9 @@
 \contentsline {section}{\numberline {4.1}Sorel 20M Dataset}{60}{section.4.1}%
 \contentsline {subsection}{\numberline {4.1.1}Sorel 20M Dataset Description}{61}{subsection.4.1.1}%
 \contentsline {paragraph}{LMDB database, what is it?}{61}{section*.82}%
-\contentsline {subsection}{\numberline {4.1.2}Ember Dataset}{62}{subsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.1.2}Ember Dataset}{61}{subsection.4.1.2}%
 \contentsline {subsubsection}{PE File Format}{62}{section*.83}%
-\contentsline {subsubsection}{Static PE Malware Detection}{63}{section*.84}%
+\contentsline {subsubsection}{Static PE Malware Detection}{62}{section*.84}%
 \contentsline {subsubsection}{Data Description}{63}{section*.85}%
 \contentsline {subsubsection}{Data Layout}{63}{section*.86}%
 \contentsline {subsubsection}{Feature Set Description}{64}{section*.87}%
