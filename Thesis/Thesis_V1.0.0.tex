@@ -2011,29 +2011,27 @@ SOREL20M, in fact provides an order of magnitude more samples for analysis: when
 Finally, the dataset provides for each sample a number of additional targets (SMART tags) for the model that describe behaviour inferred from vendor family labels, together with the vendor detection count and the malicious/benign label.
 
 \subsection{Sorel 20M Dataset Description}
-\color{Red}
 
 The complete dataset, which is available as a AWS bucket, consists of the following items:
 \begin{itemize}
-	\item The 9,919,251 original (disarmed) malware samples compressed via the Python \textit{zlib.compress} function
+	\item $9,919,251$ original (disarmed) malware samples compressed via the Python \textit{zlib.compress} function
 	
 	\item A SQLite3 and two LMDB databases:
 	\begin{itemize}
-		\item The SQLite3 "meta.db" database contains malware labels, tags, detection counts, and first/last seen times
+		\item The SQLite3 "meta.db" database containing malware labels, tags, detection counts, and first/last seen times
 		
-		\item The "ember\_features" LMDB database contains EMBER features (extracted with version 2 of the features)
+		\item The "\textit{ember\_features}" LMDB database containing the EMBER features (EMBER features version 2)
 		
-		\item the "pe\_metadata" LMDB database contains the PE metadata extracted via the \textit{pefile} module, as described above
+		\item the "\textit{pe\_metadata}" LMDB database containing the PE metadata extracted through the \textit{pefile} module, as described above
 	\end{itemize}
 
-	\item Some Pre-trained baseline models (a Pytorch feed-forward neural network (FFNN) model and a LightGBM gradient-boosted decision tree model) and their results are also provided, but will not be used in this document.
+	\item Moreover, some Pre-trained baseline models (a Pytorch feed-forward neural network (FFNN) model and a LightGBM gradient-boosted decision tree model) and their results are also provided, but will not be used in this document.
 \end{itemize}
 
-All samples are identified by their sha256 hash; in the case of the disarmed malware samples, the sha256 of the original (unmodified) file was used, and not the sha256 of the disarmed file. The sha256 hash serves as the primary key for the SQLite3 database, and the key for the two LMDB databases. LMDB entries are stored as arrays or dictionaries (for EMBER feature vectors or PE metadata. respectively) that are then serialized with \textit{msgpack} and compressed with \textit{zlib}.
+All samples are identified by their sha256 hash which serves as the primary key for the SQLite3 database, and the key to be used to access the two LMDB databases. LMDB entries are stored as arrays or dictionaries that are then serialized with \textit{msgpack} and compressed with \textit{zlib}.
 
-The data was collected from January 1st, 2017 to April 10th, 2019. The authors suggested time-splits of the data - based upon the first-seen time in RL telemetry - as follows: training data from the beginning of collection until November 29th, 2018; validation data from then until January 12th, 2019; and testing data from January 12th, 2019 through the end of the data \cite{HarangSOREL20M}.
+The data was collected from January 1st, 2017 to April 10th, 2019. In \cite{HarangSOREL20M}, Harang et al. suggest to use the following time-splits of the data (based on the first-seen time in RL telemetry): training data from the beginning of collection until November 29th, 2018; validation data from then until January 12th, 2019; and testing data from January 12th, 2019 through the end of the data.
 
-\color{Black}
 \paragraph{LMDB database, what is it?}
 \color{Red}
 
