@@ -5,10 +5,6 @@ Reallocating 'name_of_file' (item size: 1) to 7 items.
 The style file: torsec.bst
 Reallocating 'name_of_file' (item size: 1) to 7 items.
 Database file #1: biblio.bib
-Repeated entry---line 528 of file biblio.bib
- : @misc{saxeDNNBMDUTDBPF
- :                       ,
-I'm skipping whatever remains of this entry
 Warning--I didn't find a database entry for "accuracyEq"
 Warning--I didn't find a database entry for "precisionEq"
 Warning--I didn't find a database entry for "recallEq"
@@ -58,4 +54,4 @@ warning$ -- 4
 while$ -- 72
 width$ -- 53
 write$ -- 447
-(There was 1 error message)
+(There were 8 warnings)
