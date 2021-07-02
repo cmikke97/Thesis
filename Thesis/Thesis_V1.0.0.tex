@@ -47,6 +47,8 @@
 \usepackage{amsmath}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
+\usepackage{graphicx}
+\usepackage{xcolor}
 
 \input{commands.tex}
 
@@ -96,8 +98,6 @@
 
 \DeclareMathOperator*{\argmax}{arg\,max}
 \DeclareMathOperator*{\argmin}{arg\,min}
-
-\usepackage{xcolor}
 
 \begin{document}
 	
@@ -2060,7 +2060,14 @@ A notable difference with respect to Sorel20M, however, is that the EMBER datase
 \subsubsection{PE File Format}
 The Portable Executable (PE) format is a file format for executables, object code, dynamically-linked libraries (DLLs), FON font files and more, used in 32-bit and 64-bit versions of Windows operating systems (it is currently supported on Intel, AMD and variants of ARM instruction set architectures).
 
-The PE format structure consists of a number of standard headers (\ref{}) followed by one or more sections and it encapsulates the information necessary for the Windows OS loader to manage the wrapped executable code: for example, among other things, it tells the dynamic linker how to map the file into memory. In particular, the PE structure usually consist of the following 3 headers:
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\textwidth]{./images/Portable_Executable_32_bit_Structure.png}
+	\caption{PE file structure}
+	\label{fig:mesh1}
+\end{figure}
+
+The PE format structure consists of a number of standard headers (\ref{fig:mesh1}) followed by one or more sections and it encapsulates the information necessary for the Windows OS loader to manage the wrapped executable code: for example, among other things, it tells the dynamic linker how to map the file into memory. In particular, the PE structure usually consist of the following 3 headers:
 \begin{itemize}
 	\item \textit{Common Object File Format (COFF)} file header: it contains important information about the file such as the type of machine for which it is intended, its nature (DLL, EXE, OBJ), the number of sections, the number of symbols, etc.
 	
@@ -2076,9 +2083,9 @@ The PE format structure consists of a number of standard headers (\ref{}) follow
 	\item \textit{Section Table}: it outlines the name, offset and size of each section in the PE file.
 \end{itemize}
 
-The PE file format therefore provides a useful summary of the static contents of an executable.
-
 PE sections contain code and initialized data that the Windows loader maps into executable or readable/write-able memory pages, respectively, as well as imports, exports and resources defined by the file. Each section contains a header that specifies its size and address. An import address table, for example, instructs the loader on which functions to statically import. A resources section may contain resources such as required for user interfaces: cursors, fonts, bitmaps, icons, menus, etc. A basic PE file would normally contain a \textit{.text} code section (which holds program code) and one or more data sections (\textit{.data}, \textit{.text} or \textit{.bss}) holding global variables. Relocation tables are typically stored in a \textit{.reloc} section, used by the Windows loader to reassign a base address from the executable's preferred base. A \textit{.tls} section contains special thread local storage (TLS) structures for storing thread-specific local variables. Section names are arbitrary from the perspective of the Windows loader, but specific names have been adopted by precedent and are overwhelmingly common. Packers may create new sections, for example, the UPX packer creates \textit{UPX1} to house packed data and an empty section \textit{UPX0} that reserves an address range for runtime unpacking \cite{AndersonEMBER}.
+
+The PE file format therefore provides a useful summary of the static contents of an executable.
 
 \subsubsection{Feature Set Description}
 \color{Red}

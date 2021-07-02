@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  2 JUL 2021 13:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  2 JUL 2021 13:28
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -874,23 +874,56 @@ Chapter 4.
 [60
 
 ] [61]
+<./images/Portable_Executable_32_bit_Structure.png, id=1215, 2991.175pt x 4228.
+79875pt>
+File: ./images/Portable_Executable_32_bit_Structure.png Graphic file (type png)
 
-LaTeX Warning: Reference `' on page 62 undefined on input line 2063.
+<use ./images/Portable_Executable_32_bit_Structure.png>
+Package pdftex.def Info: ./images/Portable_Executable_32_bit_Structure.png  use
+d on input line 2065.
+(pdftex.def)             Requested size: 422.50232pt x 597.25443pt.
 
-[62] [63]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[62]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [63pdfTeX warning (ext4): destination with the same identifier (name{figure.4.
+1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+\use_ii:nn #1#2->#2
+                   
+<argument> ...ipout:D \box_use:N \l_shipout_box }}
+                                                  \cs_set_eq:NN \protect \__...
+
+\use_ii:nn #1#2->#2
+                   
+<to be read again> \__shipout_execute_cont: 
+                                            \endgroup \set@typeset@protect 
+\@outputpage ...width {\@thefoot }\color@endbox }}
+                                                  \global \let \if@newlist \...
+
+\@opcol ...lumn \@outputdblcol \else \@outputpage 
+                                                  \fi \global \@mparbottom \...
+<output> ...specialoutput \else \@makecol \@opcol 
+                                                  \@startcolumn \@whilesw \i...
+l.2087 
+        <./images/Portable_Executable_32_bit_Structure.png>] [64]
 LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 2
-146.
+153.
 
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/base\omscmr.fd
 File: omscmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2146.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2153.
 
 
-[64]
+[65]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 2178.
+put line 2185.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -904,19 +937,19 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[65] [66] [67] [68]
+[66] [67] [68] [69]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2572--2573
+Underfull \hbox (badness 10000) in paragraph at lines 2579--2580
 [] \OT1/cmr/m/it/10 self.chunk[]agg\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 self.chun
 k[]agg[]size $\OMS/cmsy/m/n/10  $ \OT1/cmr/bx/n/10 get[]chunks\OT1/cmr/m/n/10 (
 \OT1/cmr/m/it/10 self.tensor\OT1/cmr/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2572--2573
+Underfull \hbox (badness 10000) in paragraph at lines 2579--2580
 \OT1/cmr/m/it/10 self.chunk[]indices\OT1/cmr/m/n/10 [\OT1/cmr/m/it/10 start[]i\
 OT1/cmr/m/n/10 :\OT1/cmr/m/it/10 end[]i\OT1/cmr/m/n/10 ], \OT1/cmr/m/it/10 self
 .chunk[]size\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 self.last[]chunk[]size\OT1/cmr/m
@@ -924,7 +957,7 @@ OT1/cmr/m/n/10 :\OT1/cmr/m/it/10 end[]i\OT1/cmr/m/n/10 ], \OT1/cmr/m/it/10 self
  []
 
 
-Underfull \hbox (badness 1337) in paragraph at lines 2580--2581
+Underfull \hbox (badness 1337) in paragraph at lines 2587--2588
 [] \OT1/cmr/m/it/10 ar-gu-ments $\OMS/cmsy/m/n/10  $ \OT1/cmr/m/n/10 (\OT1/cmr/
 m/it/10 self.tensors\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 self.chunk[]indices\OT1/
 cmr/m/n/10 [\OT1/cmr/m/it/10 start[]i\OT1/cmr/m/n/10 :\OT1/cmr/m/it/10 end[]i\O
@@ -934,31 +967,31 @@ T1/cmr/m/n/10 ], \OT1/cmr/m/it/10 self.chunk[]size\OT1/cmr/m/n/10 ,
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[69] [70] [71] [72] [73] [74]
+[70] [71] [72] [73] [74] [75]
 Chapter 5.
-[75
-
-]
-Chapter 6.
 [76
 
 ]
-Chapter 7.
+Chapter 6.
 [77
 
 ]
-Chapter 8.
+Chapter 7.
 [78
 
 ]
-Chapter 9.
+Chapter 8.
 [79
 
 ]
-Chapter 10.
+Chapter 9.
 [80
 
-] [81] (Thesis_V1.0.0.bbl [82]
+]
+Chapter 10.
+[81
+
+] [82] (Thesis_V1.0.0.bbl [83]
 Underfull \hbox (badness 1242) in paragraph at lines 10--12
 []\OT1/cmr/m/n/10 R. Sharp, ``An in-tro-duc-tion to mal-ware.'' [][]$\OT1/cmtt/
 m/n/10 https : / / orbit . dtu . dk / en / publications /
@@ -1042,7 +1075,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 89--92
 / searchsecurity . techtarget . com / definition /
  []
 
-[83
+[84
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 164--166
@@ -1068,7 +1101,7 @@ Underfull \hbox (badness 1371) in paragraph at lines 199--202
 t/m/n/10 https : / / www . forcepoint . com / cyber-[]edu /
  []
 
-[84]) [85] (Thesis_V1.0.0.aux)
+[85]) [86] (Thesis_V1.0.0.aux)
 Package rerunfilecheck Info: File `Thesis_V1.0.0.out' has not changed.
 (rerunfilecheck)             Checksum: D80001D6E237F0AB1F7F39B8D54ACC0B;7732.
 
@@ -1077,10 +1110,10 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 18849 strings out of 481296
- 308091 string characters out of 2908369
- 957051 words of memory out of 3000000
- 35053 multiletter control sequences out of 15000+600000
+ 18862 strings out of 481296
+ 308462 string characters out of 2908369
+ 957095 words of memory out of 3000000
+ 35061 multiletter control sequences out of 15000+600000
  419183 words of font info for 86 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  134i,17n,137p,1391b,2558s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1113,9 +1146,9 @@ ichele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
 <C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmtt8.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
 sfonts/symbols/msbm10.pfb>
-Output written on Thesis_V1.0.0.pdf (85 pages, 803093 bytes).
+Output written on Thesis_V1.0.0.pdf (86 pages, 1595695 bytes).
 PDF statistics:
- 1638 PDF objects out of 1728 (max. 8388607)
- 630 named destinations out of 1000 (max. 500000)
- 350 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1648 PDF objects out of 1728 (max. 8388607)
+ 632 named destinations out of 1000 (max. 500000)
+ 355 words of extra memory for PDF output out of 10000 (max. 10000000)
 
