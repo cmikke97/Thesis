@@ -117,7 +117,7 @@
 \contentsline {paragraph}{LMDB database, what is it?}{61}{section*.82}%
 \contentsline {subsection}{\numberline {4.1.2}Ember Features}{61}{subsection.4.1.2}%
 \contentsline {subsubsection}{PE File Format}{62}{section*.83}%
-\contentsline {subsubsection}{Feature Set Description}{62}{section*.84}%
+\contentsline {subsubsection}{Feature Set Description}{63}{section*.84}%
 \contentsline {paragraph}{Parsed features}{63}{section*.85}%
 \contentsline {subparagraph}{General file information}{63}{section*.86}%
 \contentsline {subparagraph}{Header information}{63}{section*.87}%
