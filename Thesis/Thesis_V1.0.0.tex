@@ -2115,7 +2115,7 @@ In particular, the authors of \cite{AndersonEMBER} made a distinction between hu
 The first 5 groups of features are extracted after parsing the PE file. The authors of \cite{AndersonEMBER} leveraged the \textit{Library to Instrument Executable Formats (LIEF)} \cite{LIEFProject} as a convenient PE parser. \textit{LIEF} names are used for strings that represent symbolic objects, such as characteristics and properties.
 
 \begin{itemize}
-	\item \textbf{General file information} - The set of features belonging to the general file information group includes the file size and basic information obtained from the PE header: the virtual size of the file, the number of imported and exported functions, whether the file has a debug section, thread local storage, resources, relocations, or a signature, and the number of symbols.
+	\item \textbf{General file information} - The set of raw features belonging to the general file information group includes the file size and basic information obtained from the PE header: the virtual size of the file, the number of imported and exported functions, whether the file has a debug section, thread local storage, resources, relocations, or a signature, and the number of symbols.
 	
 	\item \textbf{Header information} - From the \textit{COFF} header, the timestamp in the header, the target machine (string) and a list of image characteristics (list of strings) are extracted. From the optional header, instead, the code extracts the target subsystem (string), DLL characteristics (a list of strings), the file magic as a string (e.g. "PE32"), major and minor image versions, linker versions, system versions and subsystem versions, and the code, headers and commit sizes. Then, in order to create the model features, string descriptors such as DLL characteristics, target machine, subsystem, etc. are summarized using the feature hashing trick, with 10 bins allotted for each indicator vector.
 	
@@ -2126,29 +2126,16 @@ The first 5 groups of features are extracted after parsing the PE file. The auth
 	\item \textbf{Section information} - Properties of each section are provided and include the name, size, entropy, virtual size, and a list of strings representing section characteristics. The entry point is specified by name. To convert them to model features, the hashing trick is again used on (section name, value) pairs to create vectors containing section size, section entropy, and virtual size (50 bins each). The hashing trick is also used to capture the the entry point characteristics (list of strings).
 \end{itemize}
 
-\color{Black}
 \paragraph{Format-agnostic features}
-\color{Red}
+The EMBER dataset also includes three groups of features that are format agnostic, in that they do not require parsing of the PE file for extraction: a raw byte histogram, byte entropy histogram based on work previously published in \cite{saxeDNNBMDUTDBPF}, and string extraction.
 
-The EMBER dataset also includes three groups of features that are format agnostic, in that they do not require parsing of the PE file for extraction: a raw byte histogram, byte entropy histogram based on work previously published in \cite{}, and string extraction \cite{AndersonEMBER}.
-
-\color{Black}
-\subparagraph{Byte histogram}
-\color{Red}
-
-The byte histogram contains 256 integer values, representing the counts of each byte value within the file. When generating model features, this byte histogram is normalized to a distribution, since the file size is represented as a feature in the general file information \cite{AndersonEMBER}.
-
-\color{Black}
-\subparagraph{Byte-entropy histogram}
-\color{Red}
-
-The byte entropy histogram approximates the joint distribution $p(H, X)$ of entropy $H$ and byte value $X$. This is done as described in \cite{}, by computing the scalar entropy $H$ for a fixed-length window and pairing it with each byte occurrence within the window. This is repeated as the window slides across the input bytes. In their implementation, the authors used a window size of 2048 and a step size of 1024 bytes, with $16 \times 16$ bins that quantize entropy and the byte value. Before training, these counts are normalized to sum to unity \cite{AndersonEMBER}.
-
-\color{Black}
-\subparagraph{String information}
-\color{Red}
-
-The dataset includes simple statistics about printable strings (consisting of characters in the range \textit{0x20} to \textit{0x7f}, inclusive) that are at least five printable characters long. In particular, reported are the number of strings, their average length, a histogram of the printable characters within those strings, and the entropy of characters across all printable strings. The printable characters distribution provides distinct information from the byte histogram information above since it is derived only from strings containing at least five consecutive printable characters. In addition, the string feature group includes the number of strings that begin with \textit{C:\textbackslash} (case insensitive) that may indicate a path, the number of occurrences of \textit{http://} or \textit{http://} (case insensitive) that may indicate a \textit{URL}, the number of occurrences of \textit{HKEY\_} that may indicate a registry key, and the number of occurrences of the short string \textit{MZ} that may provide weak evidence of a Windows PE dropper or bundled executables. By providing a simple statistical summary of strings rather than a listing of raw strings, the authors mitigate privacy concerns that may exist for some benign files \cite{AndersonEMBER}.
+\begin{itemize}
+	\item \textbf{Byte histogram} - The byte histogram contains 256 integer values, representing the counts of each byte value within the file. When generating model features, this byte histogram is normalized to a distribution, since the file size is represented as a feature in the general file information.
+	
+	\item \textbf{Byte-entropy histogram} - The byte entropy histogram approximates the joint distribution $p(H, X)$ of entropy $H$ and byte value $X$. This is done as described in \cite{saxeDNNBMDUTDBPF}, by computing the scalar entropy $H$ for a fixed-length window and pairing it with each byte occurrence within the window. This is repeated as the window slides across the input bytes. In their implementation, the authors used a window size of 2048 and a step size of 1024 bytes, with $16 \times 16$ bins that quantize entropy and the byte value. Before training, these counts are normalized to sum to unity.
+	
+	\item \textbf{String information} - The dataset includes simple statistics about printable strings (consisting of characters in the range \textit{0x20} to \textit{0x7f}, inclusive) that are at least five printable characters long. In particular, reported are the number of strings, their average length, a histogram of the printable characters within those strings, and the entropy of characters across all printable strings. The printable characters distribution provides distinct information from the byte histogram information above since it is derived only from strings containing at least five consecutive printable characters. In addition, the string feature group includes the number of strings that begin with \textit{C:\textbackslash} (case insensitive) that may indicate a path, the number of occurrences of \textit{http://} or \textit{http://} (case insensitive) that may indicate a \textit{URL}, the number of occurrences of \textit{HKEY\_} that may indicate a registry key, and the number of occurrences of the short string \textit{MZ} that may provide weak evidence of a Windows PE dropper or bundled executables. By providing a simple statistical summary of strings rather than a listing of raw strings, the authors mitigate privacy concerns that may exist for some benign files.
+\end{itemize}
 
 \color{Black}
 \subsection{Trying to improve Dataset Loading Speed}

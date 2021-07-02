@@ -120,16 +120,13 @@
 \contentsline {subsubsection}{Feature Set Description}{64}{section*.84}%
 \contentsline {paragraph}{Parsed features}{64}{section*.85}%
 \contentsline {paragraph}{Format-agnostic features}{65}{section*.86}%
-\contentsline {subparagraph}{Byte histogram}{65}{section*.87}%
-\contentsline {subparagraph}{Byte-entropy histogram}{65}{section*.88}%
-\contentsline {subparagraph}{String information}{65}{section*.89}%
 \contentsline {subsection}{\numberline {4.1.3}Trying to improve Dataset Loading Speed}{65}{subsection.4.1.3}%
-\contentsline {subsubsection}{Dataset Pre-Processing}{65}{section*.90}%
-\contentsline {subsubsection}{Alternative Generators (Dataloaders)}{66}{section*.91}%
-\contentsline {paragraph}{Generator alt1}{66}{section*.92}%
-\contentsline {paragraph}{Generator alt2}{66}{section*.93}%
-\contentsline {paragraph}{Generator alt3}{66}{section*.94}%
-\contentsline {subparagraph}{Generator parameters optimization}{70}{section*.95}%
+\contentsline {subsubsection}{Dataset Pre-Processing}{65}{section*.87}%
+\contentsline {subsubsection}{Alternative Generators (Dataloaders)}{66}{section*.88}%
+\contentsline {paragraph}{Generator alt1}{66}{section*.89}%
+\contentsline {paragraph}{Generator alt2}{66}{section*.90}%
+\contentsline {paragraph}{Generator alt3}{68}{section*.91}%
+\contentsline {subparagraph}{Generator parameters optimization}{70}{section*.92}%
 \contentsline {section}{\numberline {4.2}Fresh Dataset}{73}{section.4.2}%
 \contentsline {subsection}{\numberline {4.2.1}Model Evaluation with Fresh Dataset}{73}{subsection.4.2.1}%
 \contentsline {chapter}{\numberline {5}Experimenting with ML based Malware Detection/Description methods}{76}{chapter.5}%
