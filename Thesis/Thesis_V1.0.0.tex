@@ -2107,45 +2107,26 @@ A basic PE file normally contains a \textit{.text} code section and one or more 
 It is interesting to notice how packers sometimes create new sections, for example, the UPX packer creates a section \textit{UPX1} to store packed data and an empty section \textit{UPX0} that reserves an address range for runtime unpacking \cite{AndersonEMBER}.
 
 \subsubsection{Feature Set Description}
-\color{Red}
+EMBER feature extraction code extracts 8 groups of raw features that include both parsed features and format-agnostic histograms and string counts.
 
-The EMBER dataset consists of 8 groups of raw features that include both parsed features and format-agnostic histograms and counts of strings. The authors made a distinction between \textit{raw features} (the dataset provided) and \textit{model features} (or \textit{vectorized features}) derived from the dataset. \textit{Model features} represent a feature matrix of fixed size used for training a model, representing a numerical summary of the raw features, wherein strings, imported names, exported names, etc., are captured using the feature hashing trick \cite{}. The feature matrix is not explicitly provided in the published dataset, but code is provided to convert raw features to model features to train a model \cite{AndersonEMBER}.
+In particular, the authors of \cite{AndersonEMBER} made a distinction between human/readable \textit{raw features} (the provided provided by the EMBER dataset) and numerical \textit{model features} (or \textit{vectorized features}) derived from the dataset. \textit{Model features} represent a feature matrix of fixed size used for training a model, representing a numerical summary of the raw features, wherein strings, imported names, exported names, etc., are captured using the feature hashing trick \cite{}.
 
-\color{Black}
 \paragraph{Parsed features}
+The first 5 groups of features are extracted after parsing the PE file. The authors of \cite{AndersonEMBER} leveraged the \textit{Library to Instrument Executable Formats (LIEF)} \cite{} as a convenient PE parser. \textit{LIEF} names are used for strings that represent symbolic objects, such as characteristics and properties.
+
 \color{Red}
 
-The dataset includes 5 groups of features that are extracted after parsing the PE file. The authors leveraged the \textit{Library to Instrument Executable Formats} \cite{} as a convenient PE parser. \textit{LIEF} names are used for strings that represent symbolic objects, such as characteristics and properties \cite{AndersonEMBER}.
-
-\color{Black}
-\subparagraph{General file information}
-\color{Red}
-
-The set of features in the general file information group includes the file size and basic information obtained from the PE header: the virtual size of the file, the number of imported and exported functions, whether the file has a debug section, thread local storage, resources, relocations, or a signature, and the number of symbols \cite{AndersonEMBER}.
-
-\color{Black}
-\subparagraph{Header information}
-\color{Red}
-
-From the \textit{COFF} header, the authors reported the timestamp in the header, the target machine (string) and a list of image characteristics (list of strings). From the optional header, the authors provide the target subsystem (string), DLL characteristics (a list of strings), the file magic as a string (e.g. "PE32"), major and minor image versions, linker versions, system versions and subsystem versions, and the code, headers and commit sizes. TO create model features, string descriptors such as DLL characteristics, target machine, subsystem, etc. are summarized using the feature hashing trick prior to training a model, with 10 bins allotted for each noisy indicator vector \cite{AndersonEMBER}.
-
-\color{Black}
-\subparagraph{Imported functions}
-\color{Red}
-
-The authors parse the import address table and report the imported functions by library. To create model features for the baseline model, the authors simply collect the set of unique libraries and use the hashing trick to sketch the set (256 bins). Similarly, they use the hashing trick (1024 bins) to capture individual functions, by representing each as a string such as \textit{library:FunctionName} pair (e.g. \textit{kernel32.dll:CreateFileMappingA}) \cite{AndersonEMBER}.
-
-\color{Black}
-\subparagraph{Exported functions}
-\color{Red}
-
-The raw features include a list of the exported functions. These strings are summarized into model features using the hashing trick with 128 bins \cite{AndersonEMBER}.
-
-\color{Black}
-\subparagraph{Section information}
-\color{Red}
-
-Properties of each section are provided and include the name, size, entropy, virtual size, and a list of strings representing section characteristics. The entry point is specified by name. To convert to model features, the authors used the hashing trick on (section name, value) pairs to create vectors containing section size, section entropy, and virtual size (50 bins each). They also used the hashing trick to capture the characteristics (list of strings) for the entry point \cite{AndersonEMBER}.
+\begin{itemize}
+	\item \textbf{General file information} - The set of features belonging to the general file information group includes the file size and basic information obtained from the PE header: the virtual size of the file, the number of imported and exported functions, whether the file has a debug section, thread local storage, resources, relocations, or a signature, and the number of symbols.
+	
+	\item \textbf{Header information} - From the \textit{COFF} header, the authors reported the timestamp in the header, the target machine (string) and a list of image characteristics (list of strings). From the optional header, the authors provide the target subsystem (string), DLL characteristics (a list of strings), the file magic as a string (e.g. "PE32"), major and minor image versions, linker versions, system versions and subsystem versions, and the code, headers and commit sizes. TO create model features, string descriptors such as DLL characteristics, target machine, subsystem, etc. are summarized using the feature hashing trick prior to training a model, with 10 bins allotted for each noisy indicator vector \cite{AndersonEMBER}.
+	
+	\item \textbf{Imported functions} - The authors parse the import address table and report the imported functions by library. To create model features for the baseline model, the authors simply collect the set of unique libraries and use the hashing trick to sketch the set (256 bins). Similarly, they use the hashing trick (1024 bins) to capture individual functions, by representing each as a string such as \textit{library:FunctionName} pair (e.g. \textit{kernel32.dll:CreateFileMappingA}) \cite{AndersonEMBER}.
+	
+	\item \textbf{Exported functions} - The raw features include a list of the exported functions. These strings are summarized into model features using the hashing trick with 128 bins \cite{AndersonEMBER}.
+	
+	\item \textbf{Section information} - Properties of each section are provided and include the name, size, entropy, virtual size, and a list of strings representing section characteristics. The entry point is specified by name. To convert to model features, the authors used the hashing trick on (section name, value) pairs to create vectors containing section size, section entropy, and virtual size (50 bins each). They also used the hashing trick to capture the characteristics (list of strings) for the entry point \cite{AndersonEMBER}.
+\end{itemize}
 
 \color{Black}
 \paragraph{Format-agnostic features}
