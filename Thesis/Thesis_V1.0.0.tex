@@ -2083,9 +2083,28 @@ The PE format structure consists of a number of standard headers (\ref{fig:mesh1
 	\item \textit{Section Table}: it outlines the name, offset and size of each section in the PE file.
 \end{itemize}
 
-PE sections contain code and initialized data that the Windows loader maps into executable or readable/write-able memory pages, respectively, as well as imports, exports and resources defined by the file. Each section contains a header that specifies its size and address. An import address table, for example, instructs the loader on which functions to statically import. A resources section may contain resources such as required for user interfaces: cursors, fonts, bitmaps, icons, menus, etc. A basic PE file would normally contain a \textit{.text} code section (which holds program code) and one or more data sections (\textit{.data}, \textit{.text} or \textit{.bss}) holding global variables. Relocation tables are typically stored in a \textit{.reloc} section, used by the Windows loader to reassign a base address from the executable's preferred base. A \textit{.tls} section contains special thread local storage (TLS) structures for storing thread-specific local variables. Section names are arbitrary from the perspective of the Windows loader, but specific names have been adopted by precedent and are overwhelmingly common. Packers may create new sections, for example, the UPX packer creates \textit{UPX1} to house packed data and an empty section \textit{UPX0} that reserves an address range for runtime unpacking \cite{AndersonEMBER}.
+PE sections, on the other hand, contain code and initialized data that will be mapped into executable or readable/write-able memory pages, respectively, by the Windows loader at execution time, as well as imports, exports and resources defined by the file. Each section contains a header that specifies its size and address. A windows executable typically has the nine predefined sections named \textit{.text}, \textit{.bss}, \textit{.rdata}, \textit{.data}, \textit{.rsrc}, \textit{.edata}, \textit{.idata}, \textit{.pdata}, and \textit{.debug}. Some applications however do not need all of these sections, while others may define still more sections to suit their specific needs.
 
-The PE file format therefore provides a useful summary of the static contents of an executable.
+Among the different sections a PE file may contain here are described some of the most common:
+\begin{itemize}
+	\item \textit{Executable code section, \textbf{.text}}: it holds the program code. The \textit{.text} section also contains the code entry point and the \textit{Import Address Table (IAT)} (which is used as a lookup table when the application is calling a function in a different module).
+	
+	\item \textit{Data sections, \textbf{.bss}, \textbf{.rdata}, \textbf{.data}}: The \textit{.bss} section contains uninitialized data for the application, the \textit{.rdata} section contains read-only data. All other application/global variables are stored in the .data section.
+	
+	\item \textit{Resources section, \textbf{.rsrc}}: it contains resource information for a module, such as the ones required for user interfaces: cursors, fonts, bitmaps, icons, menus, etc.
+	
+	\item \textit{Export data section, \textbf{.edata}}: it contains export data for the application or DLL.
+	
+	\item \textit{Import data section, \textbf{.idata}}: it contains import data, including the import directory and import address name table.
+		
+	\item \textit{\textbf{.reloc} section}: it stores \textit{Relocation tables} which are used by the Windows loader to rebase the PE file if it cannot be loaded at its preferred base address. In fact, PE files normally do not contain position-independent code but are compiled to a preferred base address, and all addresses emitted by the compiler/linker are fixed ahead of time.
+	
+	\item \textit{\textbf{.tls} section}: it contains special thread local storage (TLS) structures for storing thread-specific local variables.
+\end{itemize}
+
+A basic PE file normally contains a \textit{.text} code section and one or more data sections (\textit{.data}, \textit{.rdata} or \textit{.bss}).
+
+It is interesting to notice how packers sometimes create new sections, for example, the UPX packer creates a section \textit{UPX1} to store packed data and an empty section \textit{UPX0} that reserves an address range for runtime unpacking \cite{AndersonEMBER}.
 
 \subsubsection{Feature Set Description}
 \color{Red}
