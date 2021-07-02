@@ -2109,10 +2109,10 @@ It is interesting to notice how packers sometimes create new sections, for examp
 \subsubsection{Feature Set Description}
 EMBER feature extraction code extracts 8 groups of raw features that include both parsed features and format-agnostic histograms and string counts.
 
-In particular, the authors of \cite{AndersonEMBER} made a distinction between human/readable \textit{raw features} (the provided provided by the EMBER dataset) and numerical \textit{model features} (or \textit{vectorized features}) derived from the dataset. \textit{Model features} represent a feature matrix of fixed size used for training a model, representing a numerical summary of the raw features, wherein strings, imported names, exported names, etc., are captured using the feature hashing trick \cite{}.
+In particular, the authors of \cite{AndersonEMBER} made a distinction between human/readable \textit{raw features} (the provided provided by the EMBER dataset) and numerical \textit{model features} (or \textit{vectorized features}) derived from the dataset. \textit{Model features} represent a feature matrix of fixed size used for training a model, representing a numerical summary of the raw features, wherein strings, imported names, exported names, etc., are captured using the feature hashing trick \cite{weinbergerFHLSML}.
 
 \paragraph{Parsed features}
-The first 5 groups of features are extracted after parsing the PE file. The authors of \cite{AndersonEMBER} leveraged the \textit{Library to Instrument Executable Formats (LIEF)} \cite{} as a convenient PE parser. \textit{LIEF} names are used for strings that represent symbolic objects, such as characteristics and properties.
+The first 5 groups of features are extracted after parsing the PE file. The authors of \cite{AndersonEMBER} leveraged the \textit{Library to Instrument Executable Formats (LIEF)} \cite{LIEFProject} as a convenient PE parser. \textit{LIEF} names are used for strings that represent symbolic objects, such as characteristics and properties.
 
 \begin{itemize}
 	\item \textbf{General file information} - The set of features belonging to the general file information group includes the file size and basic information obtained from the PE header: the virtual size of the file, the number of imported and exported functions, whether the file has a debug section, thread local storage, resources, relocations, or a signature, and the number of symbols.

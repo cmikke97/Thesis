@@ -5,40 +5,44 @@ Reallocating 'name_of_file' (item size: 1) to 7 items.
 The style file: torsec.bst
 Reallocating 'name_of_file' (item size: 1) to 7 items.
 Database file #1: biblio.bib
+Warning--I didn't find a database entry for "accuracyEq"
+Warning--I didn't find a database entry for "precisionEq"
+Warning--I didn't find a database entry for "recallEq"
+Warning--I didn't find a database entry for "fBetaScoreEq"
 Warning--empty booktitle in LiPRTCMP
 Warning--empty booktitle in YouMOT
 Warning--empty booktitle in NguyenSPVD
 Warning--empty booktitle in MarcosAVclass
-You've used 49 entries,
+You've used 51 entries,
             1924 wiz_defined-function locations,
-            790 strings with 11859 characters,
-and the built_in function-call counts, 8963 in all, are:
-= -- 747
-> -- 374
+            806 strings with 12189 characters,
+and the built_in function-call counts, 9244 in all, are:
+= -- 763
+> -- 392
 < -- 0
-+ -- 150
-- -- 101
-* -- 556
-:= -- 1266
++ -- 157
+- -- 106
+* -- 572
+:= -- 1302
 add.period$ -- 0
-call.type$ -- 49
-change.case$ -- 52
+call.type$ -- 51
+change.case$ -- 54
 chr.to.int$ -- 0
-cite$ -- 53
-duplicate$ -- 393
-empty$ -- 1076
-format.name$ -- 101
-if$ -- 2229
+cite$ -- 55
+duplicate$ -- 403
+empty$ -- 1116
+format.name$ -- 106
+if$ -- 2299
 int.to.chr$ -- 0
-int.to.str$ -- 49
+int.to.str$ -- 51
 missing$ -- 24
-newline$ -- 150
-num.names$ -- 49
-pop$ -- 286
+newline$ -- 156
+num.names$ -- 50
+pop$ -- 301
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 318
+skip$ -- 330
 stack$ -- 0
 substring$ -- 295
 swap$ -- 84
@@ -47,7 +51,7 @@ text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 4
-while$ -- 71
-width$ -- 51
-write$ -- 434
-(There were 4 warnings)
+while$ -- 72
+width$ -- 53
+write$ -- 447
+(There were 8 warnings)

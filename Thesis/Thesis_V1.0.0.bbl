@@ -222,16 +222,23 @@ M.~Sebastián, R.~Rivera, P.~Kotzias, and J.~Caballero, ``Avclass: A tool for
 J.~Saxe and K.~Berlin, ``Deep neural network based malware detection using two
   dimensional binary program features'', 2015
 
-\bibitem{AndersonEMBER}
-H.~S. Anderson and P.~Roth, ``Ember: An open dataset for training static pe
-  malware machine learning models'', 2018
-
 \bibitem{HarangSOREL20M}
 R.~Harang and E.~M. Rudd, ``Sorel-20m: A large scale benchmark dataset for
   malicious pe detection'', 2020
 
+\bibitem{AndersonEMBER}
+H.~S. Anderson and P.~Roth, ``Ember: An open dataset for training static pe
+  malware machine learning models'', 2018
+
 \bibitem{ChuLMDBDoc}
 H.~Chu, ``Lightning memory-mapped database manager (lmdb) documentation.''
   \url{http://www.lmdb.tech/doc/}, Accessed: 2021-06-22
+
+\bibitem{weinbergerFHLSML}
+K.~Weinberger, A.~Dasgupta, J.~Attenberg, J.~Langford, and A.~Smola, ``Feature
+  hashing for large scale multitask learning'', 2010
+
+\bibitem{LIEFProject}
+``Lief project.'' \url{https://github.com/lief-project/LIEF}
 
 \end{thebibliography}
