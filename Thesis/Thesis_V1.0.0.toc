@@ -128,7 +128,7 @@
 \contentsline {subsubsection}{Alternative Generators (Dataloaders)}{66}{section*.91}%
 \contentsline {paragraph}{Generator alt1}{66}{section*.92}%
 \contentsline {paragraph}{Generator alt2}{66}{section*.93}%
-\contentsline {paragraph}{Generator alt3}{68}{section*.94}%
+\contentsline {paragraph}{Generator alt3}{66}{section*.94}%
 \contentsline {subparagraph}{Generator parameters optimization}{70}{section*.95}%
 \contentsline {section}{\numberline {4.2}Fresh Dataset}{73}{section.4.2}%
 \contentsline {subsection}{\numberline {4.2.1}Model Evaluation with Fresh Dataset}{73}{subsection.4.2.1}%
