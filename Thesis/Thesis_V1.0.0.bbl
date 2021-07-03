@@ -241,4 +241,8 @@ K.~Weinberger, A.~Dasgupta, J.~Attenberg, J.~Langford, and A.~Smola, ``Feature
 \bibitem{LIEFProject}
 ``Lief project.'' \url{https://github.com/lief-project/LIEF}
 
+\bibitem{FastTensorDataloader}
+J.~Mu, ``Fasttensordataloader.''
+  \url{https://discuss.pytorch.org/t/dataloader-much-slower-than-manual-batching/27014/6}
+
 \end{thebibliography}

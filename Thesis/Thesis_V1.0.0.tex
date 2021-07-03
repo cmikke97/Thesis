@@ -2152,9 +2152,9 @@ When using an instance with limited disk size the amount of space occupied by th
 \paragraph{Pytorch Dataloader}
 In the first implementation of the data loading code the original \textit{Pytorch} Dataloader class was used by passing it a specially crafted class called '\textit{Dataset}' (derived from \textit{Pytorch} 'torch.utils.data.Dataset' class) which is responsible for loading the pre-processed version of the dataset and for retrieving the data (features, labels and sha256) for a specific sample '\textit{i}'.
 
-In particular, as it can be seen in algorithm \ref{alg:DatasetInit} and \ref{alg:DatasetGetItem}, the \textit{Dataset} class consists of 2 main member functions (although other less important member functions such as the \textit{Len} function are also implemented): \textit{Init} and \textit{GetItem}. In the \textit{Init} constructor function (\ref{alg:DatasetInit}) the dataset, consisting of features (\textit{X}), labels (\textit{y}) and sha256 hashes (\textit{S}), gets loaded into a set of 3 parallel memory mapped arrays. In the \textit{GetItem} member function (\ref{alg:DatasetGetItem}), instead, the data (features, labels and/or sha256) corresponding to a specific sample with index '\textit{index}' is retrieved and returned to the function caller (that will be the Pytorch original Dataloader itself).
+In particular, as it can be seen in algorithms \ref{alg:DatasetInit} and \ref{alg:DatasetGetItem}, the \textit{Dataset} class consists of 2 main member functions (although other less important member functions such as the \textit{Len} function are also implemented): \textit{Init} and \textit{GetItem}. In the \textit{Init} constructor function (alg. \ref{alg:DatasetInit}) the dataset, consisting of features (\textit{X}), labels (\textit{y}) and sha256 hashes (\textit{S}), gets loaded into a set of 3 parallel memory mapped arrays. In the \textit{GetItem} member function (alg. \ref{alg:DatasetGetItem}), instead, the data (features, labels and/or sha256) corresponding to a specific sample with index '\textit{index}' is retrieved and returned to the function caller (that will be the Pytorch original Dataloader itself).
 
-\begin{algorithm}
+\begin{algorithm}[h]
 	\caption{Dataset class, Init}\label{alg:DatasetInit}
 	\begin{algorithmic}[1]
 		\Class{Dataset}
@@ -2196,7 +2196,7 @@ In particular, as it can be seen in algorithm \ref{alg:DatasetInit} and \ref{alg
 	\end{algorithmic}
 \end{algorithm}
 
-Before model training/evaluation the dataset generator (dataloader) is defined by passing this dataset class to the \textit{Pytorch} Dataloader implementation (\textit{torch.utils.data.Dataloader}) together with additional arguments specifying the batch size, the number of workers and whether to shuffle the data during loading (\ref{alg:PytorchDataloader}). Then, during training, the \textit{Pytorch} Dataloader class will load the batches of data by iteratively calling the \textit{Dataset}'s \textit{GetItem} function \textit{batch\_size} times for each batch concatenating the extracted samples together using the \textit{torch.cat} function.
+Before model training/evaluation the dataset generator (dataloader) is defined by passing this dataset class to the \textit{Pytorch} Dataloader implementation (\textit{torch.utils.data.Dataloader}) together with additional arguments specifying the batch size, the number of workers and whether to shuffle the data during loading (alg. \ref{alg:PytorchDataloader}). Then, during training, the \textit{Pytorch} Dataloader class will load the batches of data by iteratively calling the \textit{Dataset}'s \textit{GetItem} function \textit{batch\_size} times for each batch concatenating the extracted samples together using the \textit{torch.cat} function.
 
 As previously mentioned, this implementation is faster than the original Sorel20M dataloader code while being also relatively simple, however given how the pre-processed dataset is saved (consecutive samples are saved on consecutive locations on disk) it is still somewhat inefficient. In fact, the time needed for completing 10 epochs training on a less powerful instance is still unreasonable. One possible optimization would be to read batches in one go as big chunks rather than calling the \textit{GetItem} function on the Dataset once per sample and then concatenating the resulting data. However, random sampling during model training introduces a regularization effect which generally improves model generalization on unseen samples, therefore it would be better to find an optimization combining both data loading efficiency and random sampling.
 
@@ -2209,83 +2209,44 @@ As previously mentioned, this implementation is faster than the original Sorel20
 \end{algorithm}
 
 \paragraph{Generator alt1/alt2}
-\color{Red}
+The first attempts at optimizing the generator were inspired by the '\textit{\textbf{index select}}' and '\textit{\textbf{shuffle in-place}}' versions of \textit{\textbf{FastTensorDataLoader}} suggested in \cite{FastTensorDataloader}.
 
-The alternative generator 1 ('$alt1$') was inspired by the '\textit{index select}' version of \textit{FastTensorDataLoader} suggested in this post. In this version the dataset is loaded as a set of memory-mapped numpy arrays (one array for the features, one for the labels and one for the sha256 hashes) from which batches of data are randomly sampled using the pytorch '$index\_select$' function. Moreover, my version (differently from the original suggested one) is able to work also with multiple workers (in \textit{multithreading}).
+In particular, the alternative generator 1 ('\textit{\textbf{alt1}}'), again loads the pre-processed dataset as a set of memory mapped arrays and assigns them to a set of tensors (\textit{X}, \textit{y} and \textit{S}) from which batches of data are randomly sampled using the \textit{Pytorch} '$index\_select$' function in \textit{multithreading}.
 
-The alternative generator 2 ('$alt2$') was inspired by the '\textit{shuffle in-place}' version of \textit{FastTensorDataLoader} suggested in this post. In this version the dataset is again loaded as a set of memory-mapped numpy arrays, as version 1. In this case, however, the arrays are randomly shuffled in place at each iteration, before sampling (in order) batches of data from them. Again, my version (differently from the original suggested one) is able to work also with multiple workers (in \textit{multithreading}).
-
-\begin{algorithm}
-	\caption{Alt1 get\_batch function}\label{alg:Alt1GetBatch}
-	\begin{algorithmic}[1]
-		\Function{get\_batch}{\textit{tensors}, \textit{batch\_size}, \textit{i}, \textit{indices}, ...}
-			\State \textit{batch} $\gets$ [ ]
-			\If {\textit{indices} is provided}
-				\State \textit{indices} $\gets$ \textit{indices}[\textit{i}:(\textit{i} + \textit{batch\_size})]
-				\State
-				\ForAll{\textit{t} $\in$ \textit{tensors}}
-					\State \textit{batch\_data} $\gets$ \textbf{index\_select}(\textit{t}, \textit{indices})
-					\State \textit{batch.}\textbf{append}(\textit{batch\_data})
-				\EndFor
-			\Else
-				\ForAll{\textit{t} $\in$ \textit{tensors}}
-					\State \textit{batch\_data} $\gets$ \textit{t}[\textit{i}:(\textit{i} + \textit{batch\_size})]
-					\State \textit{batch.}\textbf{append}(\textit{batch\_data})
-				\EndFor
-			\EndIf
-			\State
-			\State \textbf{return} \textit{batch}
-		\EndFunction
-	\end{algorithmic}
-\end{algorithm}
-
-\begin{algorithm}
-	\caption{Alt2 get\_batch function}\label{alg:Alt2GetBatch}
-	\begin{algorithmic}[1]
-		\Function{get\_batch}{\textit{tensors}, \textit{batch\_size}, \textit{i}, ...}
-			\State \textit{batch} $\gets$ [ ]
-			\ForAll{\textit{t} $\in$ \textit{tensors}}
-				\State \textit{batch\_data} $\gets$ \textit{t}[\textit{i}:(\textit{i} + \textit{batch\_size})]
-				\State \textit{batch}.\textbf{append}(\textit{batch\_data})
-			\EndFor
-			\State
-			\State \textbf{return} \textit{batch}
-		\EndFunction
-	\end{algorithmic}
-\end{algorithm}
+In the alternative generator 2 ('\textit{\textbf{alt2}}'), on the other hand, the tensors created by loading the dataset as was done in \textit{\textbf{alt1}} are randomly shuffled in place at each iteration. Then the batches of data are sampled (in order) from them in \textit{multithreading}.
 
 \begin{algorithm}
 	\caption{Alt1/Alt2 FastDataLoader class, Init function}\label{alg:Alt1_2FastDataLoaderInit}
 	\begin{algorithmic}[1]
 		\Function{Init}{\textit{self}, \textit{tensors}, \textit{batch\_size}, \textit{shuffle}, \textit{num\_workers}, ...}
-			\State \textit{self.tensors} $\gets$ \textit{tensors}
-			\State \textit{self.batch\_size} $\gets$ \textit{batch\_size}
-			\State \textit{self.shuffle} $\gets$ \textit{shuffle}
-			\State \textit{self.num\_workers} $\gets$ \textit{num\_workers}
-			\State \textit{self.dataset\_len} $\gets$ \textit{tensors}[0].\textbf{shape}[0]
-			\State
-			\If{\textit{num\_workers} $> 1$}
-				\State \textit{self.async\_results} $\gets$ [ ]
-				\State \textit{self.pool} $\gets$ \textbf{ThreadPool}()
-			\EndIf
-			\State
-			\State \textit{self.n\_batches} $\gets \lceil$\textit{self.dataset\_len} / \textit{self.batch\_size}$\rceil$
+		\State \textit{self.tensors} $\gets$ \textit{tensors}
+		\State \textit{self.batch\_size} $\gets$ \textit{batch\_size}
+		\State \textit{self.shuffle} $\gets$ \textit{shuffle}
+		\State \textit{self.num\_workers} $\gets$ \textit{num\_workers}
+		\State \textit{self.dataset\_len} $\gets$ \textit{tensors}[0].\textbf{shape}[0]
+		\State
+		\If{\textit{num\_workers} $> 1$}
+		\State \textit{self.async\_results} $\gets$ [ ]
+		\State \textit{self.pool} $\gets$ \textbf{ThreadPool}()
+		\EndIf
+		\State
+		\State \textit{self.n\_batches} $\gets \lceil$\textit{self.dataset\_len} / \textit{self.batch\_size}$\rceil$
 		\EndFunction
 	\end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}[h]
+\begin{algorithm}
 	\caption{Alt1 FastDataLoader class, Iter function}\label{alg:Alt1FastDataLoaderIter}
 	\begin{algorithmic}[1]
 		\Function{Iter}{\textit{self}}
-			\If{\textit{self.shuffle} $=$ \textit{true}}
-				\State \textit{self.indices} $\gets$ \textbf{randperm}(\textit{self.dataset\_len})
-			\Else
-				\State \textit{self.indices} $\gets$ None
-			\EndIf
-			\State
-			\State \textit{self.i} $\gets$ 0
-			\State \textbf{return} \textit{self}			
+		\If{\textit{self.shuffle} $=$ \textit{true}}
+		\State \textit{self.indices} $\gets$ \textbf{randperm}(\textit{self.dataset\_len})
+		\Else
+		\State \textit{self.indices} $\gets$ None
+		\EndIf
+		\State
+		\State \textit{self.i} $\gets$ 0
+		\State \textbf{return} \textit{self}			
 		\EndFunction
 	\end{algorithmic}
 \end{algorithm}
@@ -2294,53 +2255,101 @@ The alternative generator 2 ('$alt2$') was inspired by the '\textit{shuffle in-p
 	\caption{Alt2 FastDataLoader class, Iter function}\label{alg:Alt2FastDataLoaderIter}
 	\begin{algorithmic}[1]
 		\Function{Iter}{\textit{self}}
-			\If{\textit{self.shuffle} $=$ \textit{true}}
-				\State \textit{r} $\gets$ \textbf{randperm}(\textit{self.dataset\_len})
-				\For{\textit{i}, \textit{t} $\in$ \textbf{enumerate}(\textit{self.tensors})}
-					\State \textit{self.tensors}[\textit{i}] $\gets$ \textit{t}[\textit{r}]
-				\EndFor
-			\EndIf
-			\State
-			\State \textit{self.i} $\gets$ 0
-			\State \textbf{return} \textit{self}			
+		\If{\textit{self.shuffle} $=$ \textit{true}}
+		\State \textit{r} $\gets$ \textbf{randperm}(\textit{self.dataset\_len})
+		\For{\textit{i}, \textit{t} $\in$ \textbf{enumerate}(\textit{self.tensors})}
+		\State \textit{self.tensors}[\textit{i}] $\gets$ \textit{t}[\textit{r}]
+		\EndFor
+		\EndIf
+		\State
+		\State \textit{self.i} $\gets$ 0
+		\State \textbf{return} \textit{self}			
 		\EndFunction
 	\end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}[h]
+\begin{algorithm}
 	\caption{Alt1/Alt2 FastDataLoader class, Next function}\label{alg:Alt1_2FastDataLoaderNext}
 	\begin{algorithmic}[1]
 		\Function{Next}{\textit{self}}
-			\If{\textit{self.i} $\ge$ \textit{self.dataset\_len}}
-				\If{(\textit{self.num\_workers} $= 1$ \textbf{or} \textbf{len}(\textit{self.async\_results}) $= 0$)}
-					\State \textbf{raise} \textit{StopIteration}
-				\EndIf
-			\EndIf
-			\State
-			\If{\textit{self.num\_workers} $= 1$}
-				\State \textit{batch} $\gets$ \textbf{get\_batch}(\textit{self.tensors}, \textit{self.batch\_size}, \textit{self.i}, (\textit{self.indices}))
-				\State \textit{self.i} $\gets$ \textit{self.i} + \textit{self.batch\_size}
-				\State \textbf{return} \textit{batch}
-			\Else
-				\While{\textit{self.i} $<$ \textit{self.dataset\_len} \textbf{and} \textbf{len}(\textit{self.async\_results}) $<$ \textit{self.num\_workers}}
-					\State \textit{arguments} $\gets$ (\textit{self.tensors}, \textit{self.batch\_size}, \textit{self.i}, (\textit{self.indices}))
-					\State \textit{async\_task} $\gets$ \textit{self.pool}.\textbf{apply\_async}(\textbf{get\_batch}, \textit{arguments})
-					\State \textit{self.async\_results}.\textbf{append}(\textit{async\_task})
-					\State \textit{self.i} $\gets$ \textit{self.i} + \textit{self.batch\_size}
-				\EndWhile
-				\State
-				\State \textit{current\_result} $\gets$ \textit{self.async\_results}.\textbf{pop}(0)
-				\State \textbf{return} \textit{current\_result}.\textbf{get}()
-			\EndIf
+		\If{\textit{self.i} $\ge$ \textit{self.dataset\_len}}
+		\If{(\textit{self.num\_workers} $= 1$ \textbf{or} \textbf{len}(\textit{self.async\_results}) $= 0$)}
+		\State \textbf{raise} \textit{StopIteration}
+		\EndIf
+		\EndIf
+		\State
+		\If{\textit{self.num\_workers} $= 1$}
+		\State \textit{batch} $\gets$ \textbf{get\_batch}(\textit{self.tensors}, \textit{self.batch\_size}, \textit{self.i}, (\textit{self.indices}))
+		\State \textit{self.i} $\gets$ \textit{self.i} + \textit{self.batch\_size}
+		\State \textbf{return} \textit{batch}
+		\Else
+		\While{\textit{self.i} $<$ \textit{self.dataset\_len} \textbf{and} \textbf{len}(\textit{self.async\_results}) $<$ \textit{self.num\_workers}}
+		\State \textit{arguments} $\gets$ (\textit{self.tensors}, \textit{self.batch\_size}, \textit{self.i}, (\textit{self.indices}))
+		\State \textit{async\_task} $\gets$ \textit{self.pool}.\textbf{apply\_async}(\textbf{get\_batch}, \textit{arguments})
+		\State \textit{self.async\_results}.\textbf{append}(\textit{async\_task})
+		\State \textit{self.i} $\gets$ \textit{self.i} + \textit{self.batch\_size}
+		\EndWhile
+		\State
+		\State \textit{current\_result} $\gets$ \textit{self.async\_results}.\textbf{pop}(0)
+		\State \textbf{return} \textit{current\_result}.\textbf{get}()
+		\EndIf
 		\EndFunction
 	\end{algorithmic}
 \end{algorithm}
 
-\color{Black}
+\begin{algorithm}
+	\caption{Alt1 get\_batch function}\label{alg:Alt1GetBatch}
+	\begin{algorithmic}[1]
+		\Function{get\_batch}{\textit{tensors}, \textit{batch\_size}, \textit{i}, \textit{indices}, ...}
+		\State \textit{batch} $\gets$ [ ]
+		\If {\textit{indices} is provided}
+		\State \textit{indices} $\gets$ \textit{indices}[\textit{i}:(\textit{i} + \textit{batch\_size})]
+		\State
+		\ForAll{\textit{t} $\in$ \textit{tensors}}
+		\State \textit{batch\_data} $\gets$ \textbf{index\_select}(\textit{t}, \textit{indices})
+		\State \textit{batch.}\textbf{append}(\textit{batch\_data})
+		\EndFor
+		\Else
+		\ForAll{\textit{t} $\in$ \textit{tensors}}
+		\State \textit{batch\_data} $\gets$ \textit{t}[\textit{i}:(\textit{i} + \textit{batch\_size})]
+		\State \textit{batch.}\textbf{append}(\textit{batch\_data})
+		\EndFor
+		\EndIf
+		\State
+		\State \textbf{return} \textit{batch}
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+	\caption{Alt2 get\_batch function}\label{alg:Alt2GetBatch}
+	\begin{algorithmic}[1]
+		\Function{get\_batch}{\textit{tensors}, \textit{batch\_size}, \textit{i}, ...}
+		\State \textit{batch} $\gets$ [ ]
+		\ForAll{\textit{t} $\in$ \textit{tensors}}
+		\State \textit{batch\_data} $\gets$ \textit{t}[\textit{i}:(\textit{i} + \textit{batch\_size})]
+		\State \textit{batch}.\textbf{append}(\textit{batch\_data})
+		\EndFor
+		\State
+		\State \textbf{return} \textit{batch}
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}
+
+In practice, both versions of the generator share (for the most part) the \textit{Init} and \textit{Next} functions. The main differences are, instead, in the \textit{Iter} and \textit{get\_batch} functions.
+
+The \textit{Init} function (alg. \ref{alg:Alt1_2FastDataLoaderInit}) is used for setting up some \textit{\textbf{FastTensorDataLoader}} variables and optionally initializing the \textit{\textbf{ThreadPool}} used for \textit{multithreading}.
+
+The \textit{Iter} function purpose is to set up the parameters for the current cycle at the beginning of each epoch. The two generator alternatives have, however, different \textit{Init} functions. In particular, generator \textit{\textbf{alt1}} \textit{Iter} function (alg. \ref{alg:Alt1FastDataLoaderIter}) resets the count of extracted samples and, if shuffling is enabled, randomly generates the current epoch sample indices (which define the order the samples are extracted from the dataset tensors). On the other hand, generator \textit{\textbf{alt2}} \textit{Iter} function (alg. \ref{alg:Alt2FastDataLoaderIter}) again resets the count of extracted samples, but if shuffling is enabled, it randomly permutes \textit{in-place} the dataset tensors themselves.
+
+In order to get a batch of data, the \textit{Next} function (alg. \ref{alg:Alt1_2FastDataLoaderNext}), which is similar for both generator versions, is used. In particular, this function monitors the number of samples already extracted from the dataset tensors and raises a \textit{StopIteration} exception when it has cycled through all the data. Moreover, this function is also responsible for extracting and returning a batch of data from the dataset tensors. This can be done in sequence or in \textit{multithreading}. Specifically, when the number of workers selected is 1 the function sequentially gets one single batch and returns it after having updated the count of already extracted samples for the current epoch. On the other hand, if more than 1 workers are used the function prepares a number of asynchronous batch extraction tasks to be run in parallel by the threads in the thread pool, then it waits for the first result and returns it. The next call to the function will prepare other tasks and wait for the next first result. The exact number of asynchronous tasks prepared at each call is chosen dynamically to keep an array of async task results of size fixed to \textit{num\_workers} always full.
+
+Finally, in algorithm \ref{alg:Alt1GetBatch} is shown the \textit{get\_batch} function used by generator \textit{\textbf{alt1}}: if the sample \textit{indices} are provided they are used with the \textit{index\_select} function to select the data samples for the current batch of data, otherwise a set of consecutive samples is drawn from the dataset. The \textit{get\_batch} function used by generator \textit{\textbf{alt2}} (alg. \ref{alg:Alt2GetBatch}) is simpler: it simply selects a set of consecutive samples from the dataset tensors since those were already shuffled if required.
+
+Unfortunately, the presented two generator alternatives did not improve the data loading process enough. More specifically, when considering $6M$ samples, generator \textit{\textbf{alt1}} was only slightly faster than the original Pytorch Dataloader, while \textit{\textbf{alt2}} was even significantly slower. Generator \textit{\textbf{alt1}}, in fact, was still fairly similar to the Pytorch Dataloader implementation having used the \textit{index\_select} function instead of the slower \textit{torch.cat}. On the other hand, generator \textit{\textbf{alt2}} worked by shuffling the entire dataset tensors prior to batch extraction. If this solution surely can be more efficient for small to moderately sized dataset, it can become a bottleneck in case of huge datasets.
+
 \paragraph{Generator alt3}
 \color{Red}
-
-Unfortunately, when considering $6M$ samples, the alternative generator version 1 ('$alt1$') was only slightly faster than the original Pytorch dataloader, while version 2 ('$alt2$') was considerably slower having to shuffle the entire memmap-ed dataset.
 
 Since using a Google Cloud instance did not provide a significant speed-up, and since the model needed $\sim60$ hours to complete 1 training run, I had to think of another dataloader optimization. I thus developed a further alternative dataloader ('$alt3$') that managed to reduce the time needed for 1 training epoch (considering 6M samples) from $\sim6$ hours to $\sim15$ minutes. The time needed to complete a full training run is thus now $\sim2.5$ hours ($\sim3$ hours considering also model evaluation).
 The optimization consists of a tradeoff between loading speed and samples dispersion. In fact, the new dataloader uses a pool of threads to asynchronously load the dataset into memory in chunks. In particular each thread loads into memory '$n\_chunks$' randomly chosen chunks. Each thread then proceeds to concatenate together its '$n\_chunks$' chunks, which contain '$chunk\_size$' malware samples each, generating each a '$chunk\_aggregate$', which is then randomly shuffled and returned by the thread. The $chunk\_aggregates$ are asynchronously inserted in a queue (the order depends on the threads instantiation order) of fixed length equal to the number of workers used. The main dataloader thread manages the $chunk\_aggregate$ queue, instantiating the parallel threads such that the queue is always full. Moreover, the main dataloader thread sequentially extracts, when possible, one $chunk\_aggregate$ at a time from the queue and then proceeds to return one batch of data at a time from it, when required.
@@ -2449,7 +2458,7 @@ Selecting different values for $chunk\_size$ and $n\_chunks$ has an impact on th
 	\end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}[h]
+\begin{algorithm}
 	\caption{Alt3 FastDataLoader class, Iter}\label{Alt3FastDataLoaderIter}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
@@ -2474,7 +2483,7 @@ Selecting different values for $chunk\_size$ and $n\_chunks$ has an impact on th
 	\end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}[h]
+\begin{algorithm}
 	\caption{Alt3 FastDataLoader class, Next}\label{Alt3FastDataLoaderNext}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
