@@ -2151,6 +2151,31 @@ When using an instance with limited disk size the amount of space occupied by th
 \subsubsection{Alternative Generators (Dataloaders)}
 \color{Red}
 
+\begin{algorithm}
+	\caption{Dataset class}\label{Dataset}
+	\begin{algorithmic}[1] % uncomment [1] for line numbers
+		\Class{FastTensorDataloader}
+			\Function{Init}{self, ds\_root, mode, n\_samples, ...}
+			...
+			\State \textit{X\_path} $\gets$ \textit{os.}\textbf{path.join}(\textit{ds\_root}, "\textit{X\_{}\_{}.dat}".\textbf{format}(\textit{mode}, \textit{n\_samples}))
+			\State \textit{y\_path} $\gets$ \textit{os.}\textbf{path.join}(\textit{ds\_root}, "\textit{y\_{}\_{}.dat}".\textbf{format}(\textit{mode}, \textit{n\_samples}))
+			\State \textit{S\_path} $\gets$ \textit{os.}\textbf{path.join}(\textit{ds\_root}, "\textit{S\_{}\_{}.dat}".\textbf{format}(\textit{mode}, \textit{n\_samples}))
+			\State
+			\State \textit{self.S} $\gets$ \textbf{np.memmap}(\textit{S\_path}, \textit{dtype}=\textbf{np.dtype}('\textit{U64}'), \textit{mode="r+"})
+			
+			\State \textit{self.N} $\gets$ \textit{self.S}.\textbf{shape}[0]
+			\State
+			\State \textit{self.y} = \textbf{np.memmap}(\textit{y\_path}, \textit{dtype}=\textbf{np.float32}, \textit{mode="r+"}, \textit{shape}=(\textit{self.N}, \textit{labels\_dim}))
+			\State
+			\State \textit{self.X} $\gets$ \textbf{np.memmap}(\textit{X\_path}, \textit{dtype}=\textbf{np.float32}, \textit{mode="r+"}, \textit{shape}=(\textit{self.N}, \textit{ndim}))		
+			\EndFunction
+			
+			\Function{GetItem}{self, index}
+			\EndFunction
+		\EndClass
+	\end{algorithmic}
+\end{algorithm}
+
 As a further optimization I tried implementing 2 new dataloader variants which could have been more efficient:
 
 \color{Black}
