@@ -2208,43 +2208,29 @@ As previously mentioned, this implementation is faster than the original Sorel20
 	\end{algorithmic}
 \end{algorithm}
 
-\color{Black}
-\paragraph{Generator alt1}
+\paragraph{Generator alt1/alt2}
 \color{Red}
 
 The alternative generator 1 ('$alt1$') was inspired by the '\textit{index select}' version of \textit{FastTensorDataLoader} suggested in this post. In this version the dataset is loaded as a set of memory-mapped numpy arrays (one array for the features, one for the labels and one for the sha256 hashes) from which batches of data are randomly sampled using the pytorch '$index\_select$' function. Moreover, my version (differently from the original suggested one) is able to work also with multiple workers (in \textit{multithreading}).
 
+The alternative generator 2 ('$alt2$') was inspired by the '\textit{shuffle in-place}' version of \textit{FastTensorDataLoader} suggested in this post. In this version the dataset is again loaded as a set of memory-mapped numpy arrays, as version 1. In this case, however, the arrays are randomly shuffled in place at each iteration, before sampling (in order) batches of data from them. Again, my version (differently from the original suggested one) is able to work also with multiple workers (in \textit{multithreading}).
+
 \begin{algorithm}
-	\caption{Alt1 get\_batch function}\label{Alt1GetBatch}
-	\begin{algorithmic}[1] % uncomment [1] for line numbers
+	\caption{Alt1 get\_batch function}\label{alg:Alt1GetBatch}
+	\begin{algorithmic}[1]
 		\Function{get\_batch}{\textit{tensors}, \textit{batch\_size}, \textit{i}, \textit{indices}, ...}
 			\State \textit{batch} $\gets$ [ ]
 			\If {\textit{indices} is provided}
-			%\textcolor{codegreen}{\Comment{If \textit{indices} are provided use them}}
 				\State \textit{indices} $\gets$ \textit{indices}[\textit{i}:(\textit{i} + \textit{batch\_size})]
-				%\textcolor{codegreen}{\Comment{get current batch indices}}
 				\State
-				\If {len(\textit{tensors}) $= 3$}
-				%\textcolor{codegreen}{\Comment{if \textit{tensors} contains also \textit{S} (shas) data}}
-					\State \textit{batch}[0] $\gets$ \textit{tensors}[0][\textit{indices}]
-					%\textcolor{codegreen}{\Comment{Select shas using \textit{indices}}}
-				\EndIf
-				\State
-				\ForAll{\textit{t} $\in$ \textit{tensors}[$-2$:]}
-				%\textcolor{codegreen}{\Comment{For the last 2 tensors in \textit{tensors} (\textit{X} and \textit{y})}}
+				\ForAll{\textit{t} $\in$ \textit{tensors}}
 					\State \textit{batch\_data} $\gets$ \textbf{index\_select}(\textit{t}, \textit{indices})
-					%\textcolor{codegreen}{\Comment{Select data from the current tensor \textit{t}}}
 					\State \textit{batch.}\textbf{append}(\textit{batch\_data})
-					%\textcolor{codegreen}{\Comment{Append selected \textit{batch\_data} to \textit{batch} array}}
 				\EndFor
 			\Else
-			%\textcolor{codegreen}{\Comment{Get the data in order}}
 				\ForAll{\textit{t} $\in$ \textit{tensors}}
-				%\textcolor{codegreen}{\Comment{For all tensors in \textit{tensors}}}
 					\State \textit{batch\_data} $\gets$ \textit{t}[\textit{i}:(\textit{i} + \textit{batch\_size})]
-					%\textcolor{codegreen}{\Comment{Select data from the current tensor \textit{t}}}
 					\State \textit{batch.}\textbf{append}(\textit{batch\_data})
-					%\textcolor{codegreen}{\Comment{Append selected \textit{batch\_data} to \textit{batch} array}}
 				\EndFor
 			\EndIf
 			\State
@@ -2254,113 +2240,13 @@ The alternative generator 1 ('$alt1$') was inspired by the '\textit{index select
 \end{algorithm}
 
 \begin{algorithm}
-	\caption{Alt1 FastDataLoader class, Init}\label{Alt1FastDataLoaderInit}
-	\begin{algorithmic}[1] % uncomment [1] for line numbers
-		\Class{FastTensorDataloader}
-			\Function{Init}{\textit{self}, \textit{tensors}, \textit{batch\_size}, \textit{shuffle}, \textit{num\_workers}, ...}
-				\State \textit{self.tensors} $\gets$ \textit{tensors}
-				\State \textit{self.batch\_size} $\gets$ \textit{batch\_size}
-				\State \textit{self.shuffle} $\gets$ \textit{shuffle}
-				\State \textit{self.num\_workers} $\gets$ \textit{num\_workers}
-				\State \textit{self.dataset\_len} $\gets$ \textit{tensors}[0].\textbf{shape}[0]
-				%\textcolor{codegreen}{\Comment{Get dataset total length}}
-				\State
-				\If{\textit{num\_workers} $> 1$}
-					\State \textit{self.async\_results} $\gets$ [ ]
-					%\textcolor{codegreen}{\Comment{Initialize async results list}}
-					\State \textit{self.pool} $\gets$ \textbf{ThreadPool}()
-					%\textcolor{codegreen}{\Comment{Initialize Thread pool}}
-				\EndIf
-				\State
-				\State \textit{self.n\_batches} $\gets \lceil$\textit{self.dataset\_len} / \textit{self.batch\_size}$\rceil$
-				%\textcolor{codegreen}{\Comment{Compute number of batches}}
-			\EndFunction
-			\algstore{bkbreak}
-		\end{algorithmic}
-	\end{algorithm}
-
-\begin{algorithm}[h]
-	\caption{Alt1 FastDataLoader class, Iter}\label{Alt1FastDataLoaderIter}
+	\caption{Alt2 get\_batch function}\label{alg:Alt2GetBatch}
 	\begin{algorithmic}[1]
-		\algrestore{bkbreak}
-			\Function{Iter}{\textit{self}}
-				\If{\textit{self.shuffle} $=$ \textit{true}}
-					\State \textit{self.indices} $\gets$ \textbf{randperm}(\textit{self.dataset\_len})
-					%\textcolor{codegreen}{\Comment{Randomly create indices}}
-				\Else
-					\State \textit{self.indices} $\gets$ None
-					%\textcolor{codegreen}{\Comment{No indices are created}}
-				\EndIf
-				\State
-				\State \textit{self.i} $\gets$ 0
-				%\textcolor{codegreen}{\Comment{Set current index to 0}}
-				\State \textbf{return} \textit{self}			
-			\EndFunction
-			\algstore{bkbreak}
-		\end{algorithmic}
-	\end{algorithm}
-
-\begin{algorithm}[h]
-	\caption{Alt1 FastDataLoader class, Next}\label{Alt1FastDataLoaderNext}
-	\begin{algorithmic}[1]
-		\algrestore{bkbreak}
-			\Function{Next}{\textit{self}}
-				\If{\textit{self.i} $\ge$ \textit{self.dataset\_len}}
-				%\textcolor{codegreen}{\Comment{If we are at the end of the dataset}}
-					\If{(\textit{self.num\_workers} $= 1$ \textbf{or} \textbf{len}(\textit{self.async\_results}) $= 0$)}
-					%\textcolor{codegreen}{\Comment{If just 1 worker was used or there are no async results to wait for in case of multiple workers}}
-						\State \textbf{raise} \textit{StopIteration}
-						%\textcolor{codegreen}{\Comment{Stop iteration}}
-					\EndIf
-				\EndIf
-				\State
-				\If{\textit{self.num\_workers} $= 1$}
-					\State \textit{batch} $\gets$ \textbf{get\_batch}(\textit{self.tensors}, \textit{self.batch\_size}, \textit{self.i}, \textit{self.indices})
-					%\textcolor{codegreen}{\Comment{Get batch of data}}
-					\State \textit{self.i} $\gets$ \textit{self.i} + \textit{self.batch\_size}
-					%\textcolor{codegreen}{\Comment{Update current index}}
-					\State \textbf{return} \textit{batch}
-				\Else
-					%\textcolor{codegreen}{\Comment{Until there is data in the dataset and there is space in the \textit{async\_results} list}}
-					\While{\textit{self.i} $<$ \textit{self.dataset\_len} \textbf{and} \textbf{len}(\textit{self.async\_results}) $<$ \textit{self.num\_workers}}
-						\State \textit{arguments} $\gets$ (\textit{self.tensors}, \textit{self.batch\_size}, \textit{self.i}, \textit{self.indices})
-						%\textcolor{codegreen}{\Comment{Set \textit{get\_batch} arguments}}
-						\State \textit{async\_task} $\gets$ \textit{self.pool}.\textbf{apply\_async}(\textbf{get\_batch}, \textit{arguments})
-						%\textcolor{codegreen}{\Comment{Asynchronously call \textbf{get\_batch} function}}
-						\State \textit{self.async\_results}.\textbf{append}(\textit{async\_task})
-						%\textcolor{codegreen}{\Comment{Append async task to \textit{async\_results}}}
-						\State \textit{self.i} $\gets$ \textit{self.i} + \textit{self.batch\_size}
-						%\textcolor{codegreen}{\Comment{Update current index}}
-					\EndWhile
-					\State
-					\State \textit{current\_result} $\gets$ \textit{self.async\_results}.\textbf{pop}(0)
-					%\textcolor{codegreen}{\Comment{Pop first element of \textit{async\_results}}}
-					\State \textbf{return} \textit{current\_result}.\textbf{get}()
-					%\textcolor{codegreen}{\Comment{Wait for task completion and return its value}}
-				\EndIf
-			\EndFunction
-		\EndClass
-	\end{algorithmic}
-\end{algorithm}
-
-\color{Black}
-\paragraph{Generator alt2}
-\color{Red}
-
-The alternative generator 2 ('$alt2$') was inspired by the '\textit{shuffle in-place}' version of \textit{FastTensorDataLoader} suggested in this post. In this version the dataset is again loaded as a set of memory-mapped numpy arrays, as version 1. In this case, however, the arrays are randomly shuffled in place at each iteration, before sampling (in order) batches of data from them. Again, my version (differently from the original suggested one) is able to work also with multiple workers (in \textit{multithreading}).
-
-\begin{algorithm}
-	\caption{Alt2 get\_batch function}\label{Alt2GetBatch}
-	\begin{algorithmic}[1] % uncomment [1] for line numbers
 		\Function{get\_batch}{\textit{tensors}, \textit{batch\_size}, \textit{i}, ...}
 			\State \textit{batch} $\gets$ [ ]
-			%\textcolor{codegreen}{\Comment{Get the data in order}}
 			\ForAll{\textit{t} $\in$ \textit{tensors}}
-				%\textcolor{codegreen}{\Comment{For all tensors in \textit{tensors}}}
 				\State \textit{batch\_data} $\gets$ \textit{t}[\textit{i}:(\textit{i} + \textit{batch\_size})]
-				%\textcolor{codegreen}{\Comment{Select data from the current tensor \textit{t}}}
 				\State \textit{batch}.\textbf{append}(\textit{batch\_data})
-				%\textcolor{codegreen}{\Comment{Append selected \textit{batch\_data} to \textit{batch} array}}
 			\EndFor
 			\State
 			\State \textbf{return} \textit{batch}
@@ -2369,92 +2255,84 @@ The alternative generator 2 ('$alt2$') was inspired by the '\textit{shuffle in-p
 \end{algorithm}
 
 \begin{algorithm}
-	\caption{Alt2 FastDataLoader class, Init}\label{Alt2FastDataLoaderInit}
-	\begin{algorithmic}[1] % uncomment [1] for line numbers
-		\Class{FastTensorDataloader}
-			\Function{Init}{\textit{self}, \textit{tensors}, \textit{batch\_size}, \textit{shuffle}, \textit{num\_workers}, ...}
-				\State \textit{self.tensors} $\gets$ \textit{tensors}
-				\State \textit{self.batch\_size} $\gets$ \textit{batch\_size}
-				\State \textit{self.shuffle} $\gets$ \textit{shuffle}
-				\State \textit{self.num\_workers} $\gets$ \textit{num\_workers}
-				\State \textit{self.dataset\_len} $\gets$ \textit{tensors}[0].\textit{shape}[0]
-				%\textcolor{codegreen}{\Comment{Get dataset total length}}
-				\State
-				\If{\textit{num\_workers} $> 1$}
-					\State \textit{self.async\_results} $\gets$ [ ]					%\textcolor{codegreen}{\Comment{Initialize async results list}}
-					\State \textit{self.pool} $\gets$ \textbf{ThreadPool}()
-					%\textcolor{codegreen}{\Comment{Initialize Thread pool}}
-				\EndIf
-				\State
-				\State \textit{self.n\_batches} $\gets \lceil$\textit{self.dataset\_len} / \textit{self.batch\_size}$\rceil$
-				%\textcolor{codegreen}{\Comment{Compute number of batches}}
-			\EndFunction
-		\algstore{bkbreak}
+	\caption{Alt1/Alt2 FastDataLoader class, Init function}\label{alg:Alt1_2FastDataLoaderInit}
+	\begin{algorithmic}[1]
+		\Function{Init}{\textit{self}, \textit{tensors}, \textit{batch\_size}, \textit{shuffle}, \textit{num\_workers}, ...}
+			\State \textit{self.tensors} $\gets$ \textit{tensors}
+			\State \textit{self.batch\_size} $\gets$ \textit{batch\_size}
+			\State \textit{self.shuffle} $\gets$ \textit{shuffle}
+			\State \textit{self.num\_workers} $\gets$ \textit{num\_workers}
+			\State \textit{self.dataset\_len} $\gets$ \textit{tensors}[0].\textbf{shape}[0]
+			\State
+			\If{\textit{num\_workers} $> 1$}
+				\State \textit{self.async\_results} $\gets$ [ ]
+				\State \textit{self.pool} $\gets$ \textbf{ThreadPool}()
+			\EndIf
+			\State
+			\State \textit{self.n\_batches} $\gets \lceil$\textit{self.dataset\_len} / \textit{self.batch\_size}$\rceil$
+		\EndFunction
 	\end{algorithmic}
 \end{algorithm}
 
 \begin{algorithm}[h]
-	\caption{Alt2 FastDataLoader class, Iter}\label{Alt2FastDataLoaderIter}
+	\caption{Alt1 FastDataLoader class, Iter function}\label{alg:Alt1FastDataLoaderIter}
 	\begin{algorithmic}[1]
-		\algrestore{bkbreak}
-			\Function{Iter}{\textit{self}}
-				\If{\textit{self.shuffle} $=$ \textit{true}}
-					\State \textit{r} $\gets$ \textbf{randperm}(\textit{self.dataset\_len})
-					%\textcolor{codegreen}{\Comment{Randomly create indices}}
-					\For{\textit{i}, \textit{t} $\in$ \textbf{enumerate}(\textit{self.tensors})}
-						\State \textit{self.tensors}[\textit{i}] $\gets$ \textit{t}[\textit{r}]
-						%\textcolor{codegreen}{\Comment{Permute (in-place) the data in tensors}}
-					\EndFor
-				\EndIf
-				\State
-				\State \textit{self.i} $\gets$ 0
-				%\textcolor{codegreen}{\Comment{Set current index to 0}}
-				\State \textbf{return} \textit{self}			
-			\EndFunction
-		\algstore{bkbreak}
+		\Function{Iter}{\textit{self}}
+			\If{\textit{self.shuffle} $=$ \textit{true}}
+				\State \textit{self.indices} $\gets$ \textbf{randperm}(\textit{self.dataset\_len})
+			\Else
+				\State \textit{self.indices} $\gets$ None
+			\EndIf
+			\State
+			\State \textit{self.i} $\gets$ 0
+			\State \textbf{return} \textit{self}			
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+	\caption{Alt2 FastDataLoader class, Iter function}\label{alg:Alt2FastDataLoaderIter}
+	\begin{algorithmic}[1]
+		\Function{Iter}{\textit{self}}
+			\If{\textit{self.shuffle} $=$ \textit{true}}
+				\State \textit{r} $\gets$ \textbf{randperm}(\textit{self.dataset\_len})
+				\For{\textit{i}, \textit{t} $\in$ \textbf{enumerate}(\textit{self.tensors})}
+					\State \textit{self.tensors}[\textit{i}] $\gets$ \textit{t}[\textit{r}]
+				\EndFor
+			\EndIf
+			\State
+			\State \textit{self.i} $\gets$ 0
+			\State \textbf{return} \textit{self}			
+		\EndFunction
 	\end{algorithmic}
 \end{algorithm}
 
 \begin{algorithm}[h]
-	\caption{Alt2 FastDataLoader class, Next}\label{Alt2FastDataLoaderNext}
+	\caption{Alt1/Alt2 FastDataLoader class, Next function}\label{alg:Alt1_2FastDataLoaderNext}
 	\begin{algorithmic}[1]
-		\algrestore{bkbreak}
-			\Function{Next}{\textit{self}}
-				\If{\textit{self.i} $\ge$ \textit{self.dataset\_len}}
-				%\textcolor{codegreen}{\Comment{If we are at the end of the dataset}}
-					\If{(\textit{self.num\_workers} $= 1$ \textbf{or} \textbf{len}(\textit{self.async\_results}) $= 0$)}
-					%\textcolor{codegreen}{\Comment{If just 1 worker was used or there are no async results to wait for in case of multiple workers}}
-						\State \textbf{raise} \textit{StopIteration}
-						%\textcolor{codegreen}{\Comment{Stop iteration}}
-					\EndIf
+		\Function{Next}{\textit{self}}
+			\If{\textit{self.i} $\ge$ \textit{self.dataset\_len}}
+				\If{(\textit{self.num\_workers} $= 1$ \textbf{or} \textbf{len}(\textit{self.async\_results}) $= 0$)}
+					\State \textbf{raise} \textit{StopIteration}
 				\EndIf
-				\State
-				\If{\textit{self.num\_workers} $= 1$}
-					\State \textit{batch} $\gets$ \textbf{get\_batch}(\textit{self.tensors}, \textit{self.batch\_size}, \textit{self.i})
-					%\textcolor{codegreen}{\Comment{Get batch of data}}
+			\EndIf
+			\State
+			\If{\textit{self.num\_workers} $= 1$}
+				\State \textit{batch} $\gets$ \textbf{get\_batch}(\textit{self.tensors}, \textit{self.batch\_size}, \textit{self.i}, (\textit{self.indices}))
+				\State \textit{self.i} $\gets$ \textit{self.i} + \textit{self.batch\_size}
+				\State \textbf{return} \textit{batch}
+			\Else
+				\While{\textit{self.i} $<$ \textit{self.dataset\_len} \textbf{and} \textbf{len}(\textit{self.async\_results}) $<$ \textit{self.num\_workers}}
+					\State \textit{arguments} $\gets$ (\textit{self.tensors}, \textit{self.batch\_size}, \textit{self.i}, (\textit{self.indices}))
+					\State \textit{async\_task} $\gets$ \textit{self.pool}.\textbf{apply\_async}(\textbf{get\_batch}, \textit{arguments})
+					\State \textit{self.async\_results}.\textbf{append}(\textit{async\_task})
 					\State \textit{self.i} $\gets$ \textit{self.i} + \textit{self.batch\_size}
-					%\textcolor{codegreen}{\Comment{Update current index}}
-					\State \textbf{return} \textit{batch}
-				\Else
-				%\textcolor{codegreen}{\Comment{Until there is data in the dataset and there is space in the \textit{async\_results} list}}
-					\While{\textit{self.i} $<$ \textit{self.dataset\_len} \textbf{and} \textbf{len}(\textit{self.async\_results}) $<$ \textit{self.num\_workers}}
-						\State \textit{arguments} $\gets$ (\textit{self.tensors}, \textit{self.batch\_size}, \textit{self.i})
-						%\textcolor{codegreen}{\Comment{Set \textit{get\_batch} arguments}}
-						\State \textit{async\_task} $\gets$ \textit{self.pool}.\textbf{apply\_async}(\textbf{get\_batch}, \textit{arguments})
-						%\textcolor{codegreen}{\Comment{Asynchronously call \textbf{get\_batch} function}}
-						\State \textit{self.async\_results}.\textbf{append}(\textit{async\_task})
-						%\textcolor{codegreen}{\Comment{Append async task to \textit{async\_results}}}
-						\State \textit{self.i} $\gets$ \textit{self.i} + \textit{self.batch\_size}
-						%\textcolor{codegreen}{\Comment{Update current index}}
-					\EndWhile
-					\State
-					\State \textit{current\_result} $\gets$ \textit{self.async\_results}.\textbf{pop}(0)
-					%\textcolor{codegreen}{\Comment{Pop first element of \textit{async\_results}}}
-					\State \textbf{return} \textit{current\_result}.\textbf{get}()
-					%\textcolor{codegreen}{\Comment{Wait for task completion and return its value}}
-				\EndIf
-			\EndFunction
-		\EndClass
+				\EndWhile
+				\State
+				\State \textit{current\_result} $\gets$ \textit{self.async\_results}.\textbf{pop}(0)
+				\State \textbf{return} \textit{current\_result}.\textbf{get}()
+			\EndIf
+		\EndFunction
 	\end{algorithmic}
 \end{algorithm}
 

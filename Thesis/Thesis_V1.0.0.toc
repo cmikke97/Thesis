@@ -124,17 +124,16 @@
 \contentsline {subsubsection}{Dataset Pre-Processing}{65}{section*.87}%
 \contentsline {subsubsection}{Generator (Dataloader) versions}{66}{section*.88}%
 \contentsline {paragraph}{Pytorch Dataloader}{66}{section*.89}%
-\contentsline {paragraph}{Generator alt1}{67}{section*.90}%
-\contentsline {paragraph}{Generator alt2}{67}{section*.91}%
-\contentsline {paragraph}{Generator alt3}{67}{section*.92}%
-\contentsline {subparagraph}{Generator parameters optimization}{71}{section*.93}%
-\contentsline {section}{\numberline {4.2}Fresh Dataset}{74}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Model Evaluation with Fresh Dataset}{74}{subsection.4.2.1}%
-\contentsline {chapter}{\numberline {5}Experimenting with ML based Malware Detection/Description methods}{77}{chapter.5}%
-\contentsline {chapter}{\numberline {6}Proposed Tool}{78}{chapter.6}%
-\contentsline {chapter}{\numberline {7}Experiments with the proposed tool}{79}{chapter.7}%
-\contentsline {chapter}{\numberline {8}Results}{80}{chapter.8}%
-\contentsline {chapter}{\numberline {9}Conclusions}{81}{chapter.9}%
-\contentsline {chapter}{\numberline {10}Appendix}{82}{chapter.10}%
-\contentsline {section}{\numberline {10.1}Notable Examples of Malware in Recent History}{82}{section.10.1}%
-\contentsline {chapter}{Bibliography}{85}{section.10.1}%
+\contentsline {paragraph}{Generator alt1/alt2}{67}{section*.90}%
+\contentsline {paragraph}{Generator alt3}{67}{section*.91}%
+\contentsline {subparagraph}{Generator parameters optimization}{69}{section*.92}%
+\contentsline {section}{\numberline {4.2}Fresh Dataset}{70}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Model Evaluation with Fresh Dataset}{73}{subsection.4.2.1}%
+\contentsline {chapter}{\numberline {5}Experimenting with ML based Malware Detection/Description methods}{75}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Proposed Tool}{76}{chapter.6}%
+\contentsline {chapter}{\numberline {7}Experiments with the proposed tool}{77}{chapter.7}%
+\contentsline {chapter}{\numberline {8}Results}{78}{chapter.8}%
+\contentsline {chapter}{\numberline {9}Conclusions}{79}{chapter.9}%
+\contentsline {chapter}{\numberline {10}Appendix}{80}{chapter.10}%
+\contentsline {section}{\numberline {10.1}Notable Examples of Malware in Recent History}{80}{section.10.1}%
+\contentsline {chapter}{Bibliography}{83}{section.10.1}%
