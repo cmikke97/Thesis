@@ -2148,35 +2148,65 @@ In order to speed up the dataset loading code the dataset is therefore pre-proce
 
 When using an instance with limited disk size the amount of space occupied by the dataset is a concern. In particular, the instance used for this project had up to 130 GB of disk space and this made it possible to train the models with only approximately half of the samples provided by Sorel20M. In fact for all the experiments only the first $6.000.000$ of the $12.699.013$ training samples, the first $1.153.846$ of $2.495.822$ validation samples and the first $1.846.154$ of $4.195.042$ test samples of Sorel20M dataset were considered. The models presented in this document therefore suffered from the smaller dataset size meaning that they cannot be directly compared with other models which used Sorel20M as base dataset. However, the code was designed to work with any dataset size so additional experimentations with more powerful instances can easily be made in the future.
 
-\subsubsection{Alternative Generators (Dataloaders)}
-\color{Red}
+\subsubsection{Generator (Dataloader) versions}
+\paragraph{Pytorch Dataloader}
+In the first implementation of the data loading code the original \textit{Pytorch} Dataloader class was used by passing it a specially crafted class called '\textit{Dataset}' (derived from \textit{Pytorch} 'torch.utils.data.Dataset' class) which is responsible for loading the pre-processed version of the dataset and for retrieving the data (features, labels and sha256) for a specific sample '\textit{i}'.
+
+In particular, as it can be seen in algorithm \ref{alg:DatasetInit} and \ref{alg:DatasetGetItem}, the \textit{Dataset} class consists of 2 main member functions (although other less important member functions such as the \textit{Len} function are also implemented): \textit{Init} and \textit{GetItem}. In the \textit{Init} constructor function (\ref{alg:DatasetInit}) the dataset, consisting of features (\textit{X}), labels (\textit{y}) and sha256 hashes (\textit{S}), gets loaded into a set of 3 parallel memory mapped arrays. In the \textit{GetItem} member function (\ref{alg:DatasetGetItem}), instead, the data (features, labels and/or sha256) corresponding to a specific sample with index '\textit{index}' is retrieved and returned to the function caller (that will be the Pytorch original Dataloader itself).
 
 \begin{algorithm}
-	\caption{Dataset class}\label{Dataset}
-	\begin{algorithmic}[1] % uncomment [1] for line numbers
-		\Class{FastTensorDataloader}
-			\Function{Init}{self, ds\_root, mode, n\_samples, ...}
-			...
-			\State \textit{X\_path} $\gets$ \textit{os.}\textbf{path.join}(\textit{ds\_root}, "\textit{X\_{}\_{}.dat}".\textbf{format}(\textit{mode}, \textit{n\_samples}))
-			\State \textit{y\_path} $\gets$ \textit{os.}\textbf{path.join}(\textit{ds\_root}, "\textit{y\_{}\_{}.dat}".\textbf{format}(\textit{mode}, \textit{n\_samples}))
-			\State \textit{S\_path} $\gets$ \textit{os.}\textbf{path.join}(\textit{ds\_root}, "\textit{S\_{}\_{}.dat}".\textbf{format}(\textit{mode}, \textit{n\_samples}))
+	\caption{Dataset class, Init}\label{alg:DatasetInit}
+	\begin{algorithmic}[1]
+		\Class{Dataset}
+			\Function{Init}{\textit{self}, \textit{ds\_root}, \textit{mode}, \textit{n\_samples}, \textit{return\_shas}, ...}
+			\State \textit{self.return\_shas} $\gets$ \textit{return\_shas}
+			\State ...
+			\State \textit{X\_path} $\gets$ \textit{os.}\textbf{path.join}(\textit{ds\_root}, '\textit{X\_\{\}\_\{\}.dat}'.\textbf{format}(\textit{mode}, \textit{n\_samples}))
+			\State \textit{y\_path} $\gets$ \textit{os.}\textbf{path.join}(\textit{ds\_root},  '\textit{y\_\{\}\_\{\}.dat}'.\textbf{format}(\textit{mode}, \textit{n\_samples}))
+			\State \textit{S\_path} $\gets$ \textit{os.}\textbf{path.join}(\textit{ds\_root},  '\textit{S\_\{\}\_\{\}.dat}'.\textbf{format}(\textit{mode}, \textit{n\_samples}))
 			\State
-			\State \textit{self.S} $\gets$ \textbf{np.memmap}(\textit{S\_path}, \textit{dtype}=\textbf{np.dtype}('\textit{U64}'), \textit{mode="r+"})
-			
-			\State \textit{self.N} $\gets$ \textit{self.S}.\textbf{shape}[0]
-			\State
-			\State \textit{self.y} = \textbf{np.memmap}(\textit{y\_path}, \textit{dtype}=\textbf{np.float32}, \textit{mode="r+"}, \textit{shape}=(\textit{self.N}, \textit{labels\_dim}))
-			\State
-			\State \textit{self.X} $\gets$ \textbf{np.memmap}(\textit{X\_path}, \textit{dtype}=\textbf{np.float32}, \textit{mode="r+"}, \textit{shape}=(\textit{self.N}, \textit{ndim}))		
+			\State \textit{self.S} $\gets$ \textbf{load\_as\_memmap}(\textit{S\_path}, \textit{dtype}=\textbf{np.dtype}('\textit{U64}'), \textit{mode="r+"})
+			\State \textit{self.y} $\gets$ \textbf{load\_as\_memmap}(\textit{y\_path}, \textit{dtype}=\textbf{np.float32}, \textit{mode="r+"})
+			\State \textit{self.X} $\gets$ \textbf{load\_as\_memmap}(\textit{X\_path}, \textit{dtype}=\textbf{np.float32}, \textit{mode="r+"})		
 			\EndFunction
-			
-			\Function{GetItem}{self, index}
+			\algstore{bkbreak}
+	\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[h]
+	\caption{Dataset class, GetItem}\label{alg:DatasetGetItem}
+	\begin{algorithmic}[1]
+		\algrestore{bkbreak}
+			\Function{GetItem}{\textit{self}, \textit{index}}
+			\State \textit{features} $\gets$ \textit{self.X}[\textit{index}]
+			\State
+			\State \textit{labels} $\gets$ \{\}
+			\State \textit{labels}['\textit{malware}'] $\gets$ \textit{self.y}[\textit{index}][0]
+			\State \textit{labels}['\textit{count}'] $\gets$ \textit{self.y}[\textit{index}][1]
+			\State \textit{labels}['\textit{tags}'] $\gets$ \textit{self.y}[\textit{index}][2:]
+			\State
+			\If{\textit{self.return\_shas}}
+				\State \textit{sha} $\gets$ \textit{self.S}[\textit{index}]
+				\State \textbf{return} \textit{sha}, \textit{features}, \textit{labels}
+			\Else
+				\State \textbf{return} \textit{features}, \textit{labels}
+			\EndIf
 			\EndFunction
 		\EndClass
 	\end{algorithmic}
 \end{algorithm}
 
-As a further optimization I tried implementing 2 new dataloader variants which could have been more efficient:
+Before model training/evaluation the dataset generator (dataloader) is defined by passing this dataset class to the \textit{Pytorch} Dataloader implementation (\textit{torch.utils.data.Dataloader}) together with additional arguments specifying the batch size, the number of workers and whether to shuffle the data during loading (\ref{alg:PytorchDataloader}). Then, during training, the \textit{Pytorch} Dataloader class will load the batches of data by iteratively calling the \textit{Dataset}'s \textit{GetItem} function \textit{batch\_size} times for each batch concatenating the extracted samples together using the \textit{torch.cat} function.
+
+As previously mentioned, this implementation is faster than the original Sorel20M dataloader code while being also relatively simple, however given how the pre-processed dataset is saved (consecutive samples are saved on consecutive locations on disk) it is still somewhat inefficient. In fact, the time needed for completing 10 epochs training on a less powerful instance is still unreasonable. One possible optimization would be to read batches in one go as big chunks rather than calling the \textit{GetItem} function on the Dataset once per sample and then concatenating the resulting data. However, random sampling during model training introduces a regularization effect which generally improves model generalization on unseen samples, therefore it would be better to find an optimization combining both data loading efficiency and random sampling.
+
+\begin{algorithm}
+	\caption{Pytorch Dataloader definition}\label{alg:PytorchDataloader}
+	\begin{algorithmic}[1]
+		\State \textit{ds} $\gets$ \textbf{Dataset}(\textit{ds\_root}, \textit{mode}, \textit{n\_samples}, \textit{return\_shas}, ...)
+		\State \textit{generator} $\gets$ \textbf{Pytorch\_DataLoader}(\textit{ds}, \textit{batch\_size}, \textit{shuffle}, \textit{num\_workers})
+	\end{algorithmic}
+\end{algorithm}
 
 \color{Black}
 \paragraph{Generator alt1}
