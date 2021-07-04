@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  4 JUL 2021 18:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  4 JUL 2021 18:36
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -833,7 +833,7 @@ File: lstlang2.sty 2020/03/24 1.8d listings language file
 File: lstlang3.sty 2020/03/24 1.8d listings language file
 )
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 555.
+nput line 563.
  [21] [22] [23]
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
@@ -846,27 +846,27 @@ Chapter 3.
 
 ] [39]
 LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 
-1199.
+1227.
 
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/base\ts1cmtt.fd
 File: ts1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 [40] [41] [42] [43] [44] [45] [46] [47] [48] [49] [50] [51] [52] [53] [54]
 
-LaTeX Warning: Reference `' on page 55 undefined on input line 1849.
+LaTeX Warning: Reference `' on page 55 undefined on input line 1877.
 
 [55]
 
-LaTeX Warning: Citation `accuracyEq' on page 56 undefined on input line 1894.
+LaTeX Warning: Citation `accuracyEq' on page 56 undefined on input line 1922.
 
 
-LaTeX Warning: Citation `precisionEq' on page 56 undefined on input line 1894.
+LaTeX Warning: Citation `precisionEq' on page 56 undefined on input line 1922.
 
 
-LaTeX Warning: Citation `recallEq' on page 56 undefined on input line 1894.
+LaTeX Warning: Citation `recallEq' on page 56 undefined on input line 1922.
 
 
-LaTeX Warning: Citation `fBetaScoreEq' on page 56 undefined on input line 1894.
+LaTeX Warning: Citation `fBetaScoreEq' on page 56 undefined on input line 1922.
 
 
 [56] [57] [58] [59]
@@ -880,7 +880,7 @@ File: ./images/Portable_Executable_32_bit_Structure.png Graphic file (type png)
 
 <use ./images/Portable_Executable_32_bit_Structure.png>
 Package pdftex.def Info: ./images/Portable_Executable_32_bit_Structure.png  use
-d on input line 2051.
+d on input line 2079.
 (pdftex.def)             Requested size: 422.50232pt x 597.25443pt.
 
 
@@ -914,24 +914,24 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 \addpenalty ...e \ifdim \lastskip =\z@ \penalty #1
                                                   \relax \else \@tempskipb \...
 ...
-l.2078 	\item \textit
+l.2106 	\item \textit
                      {Data sections, \textbf{.bss}, \textbf{.rdata}, \textbf...
  <./images/Portable_Executable_32_bit_Structure.png>] [64]
 LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 2
-123.
+151.
 
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/base\omscmr.fd
 File: omscmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2123.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2151.
 
 
 [65]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 2144.
+put line 2172.
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2169.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2197.
 
 
 
@@ -954,19 +954,19 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 <./images/speeds_heatmap.png, id=1305, 722.7pt x 650.43pt>
 File: ./images/speeds_heatmap.png Graphic file (type png)
 <use ./images/speeds_heatmap.png>
-Package pdftex.def Info: ./images/speeds_heatmap.png  used on input line 2502.
+Package pdftex.def Info: ./images/speeds_heatmap.png  used on input line 2530.
 (pdftex.def)             Requested size: 422.50232pt x 380.25685pt.
 <./images/times_heatmap.png, id=1306, 722.7pt x 650.43pt>
 File: ./images/times_heatmap.png Graphic file (type png)
 <use ./images/times_heatmap.png>
-Package pdftex.def Info: ./images/times_heatmap.png  used on input line 2509.
+Package pdftex.def Info: ./images/times_heatmap.png  used on input line 2537.
 (pdftex.def)             Requested size: 422.50232pt x 380.25685pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Overfull \hbox (2.88963pt too wide) in paragraph at lines 2514--2515
+Overfull \hbox (2.88963pt too wide) in paragraph at lines 2542--2543
 []\OT1/cmr/m/n/10 Given the re-sult-ing heatmaps ([][]4.2[][], [][]4.3[][]), \O
 T1/cmr/bx/it/10 chunk[]size \OT1/cmr/m/n/10 was per-ma-nently set to \OT1/cmr/b
 x/n/10 256 \OT1/cmr/m/n/10 and \OT1/cmr/bx/it/10 n[]chunks
@@ -992,7 +992,7 @@ x/n/10 256 \OT1/cmr/m/n/10 and \OT1/cmr/bx/it/10 n[]chunks
                                                   \fi \global \@mparbottom \...
 <output> ...specialoutput \else \@makecol \@opcol 
                                                   \@startcolumn \@whilesw \i...
-l.2517 
+l.2545 
         <./images/speeds_heatmap.png>] [75pdfTeX warning (ext4): destination wi
 th the same identifier (name{figure.4.3}) has been already used, duplicate igno
 red
@@ -1019,7 +1019,7 @@ red
 \addpenalty ...e \ifdim \lastskip =\z@ \penalty #1
                                                   \relax \else \@tempskipb \...
 ...
-l.2532 \subsection
+l.2560 \subsection
                   {Model Evaluation with Fresh Dataset} <./images/times_heatmap
 .png>] [76]
 Chapter 5.
@@ -1172,7 +1172,7 @@ LaTeX Warning: There were undefined references.
 Here is how much of TeX's memory you used:
  18873 strings out of 481296
  308895 string characters out of 2908369
- 958935 words of memory out of 3000000
+ 959831 words of memory out of 3000000
  35076 multiletter control sequences out of 15000+600000
  419183 words of font info for 86 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
@@ -1206,7 +1206,7 @@ ichele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
 <C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmtt8.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
 sfonts/symbols/msbm10.pfb>
-Output written on Thesis_V1.0.0.pdf (85 pages, 1770606 bytes).
+Output written on Thesis_V1.0.0.pdf (85 pages, 1770937 bytes).
 PDF statistics:
  1643 PDF objects out of 1728 (max. 8388607)
  626 named destinations out of 1000 (max. 500000)

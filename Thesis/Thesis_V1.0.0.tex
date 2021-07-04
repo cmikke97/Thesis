@@ -263,6 +263,10 @@ More generally malware serves a variety of purposes. For example, the most commo
 Obviously there are also reasons for non-malicious actors to create and/or deploy some types of malware too - for example they can be used to test a system's security, to spy on someone as part of a legal act/police operation, etc.
 
 \subsection{Common Malware types}
+\color{Green}
+Summarize this part.
+\color{Black}
+
 There are numerous different ways of categorizing malware; one way is by \textit{how} the malicious software spreads. Another one is by what it \textit{does} once it has successfully infected its victim's computers (i.e. what is its payload, how it exploits or makes the system vulnerable).
 
 \subsubsection{By how they spread}
@@ -512,6 +516,10 @@ Recently anti-reversing techniques are, however, extensively used also by malwar
 There exist several anti-reversing approaches, each with its own advantages and disadvantages. However it is common practice to use a combination of more than one of them. In the next sections some of the more common anti-reversing techniques are discussed.
 
 \subsection{Anti-disassembly}
+\color{Green}
+Summarize this part.
+\color{Black}
+
 \textit{Anti-disassembly} techniques use specially crafted code and/or data in a program to cause disassembly analysis tools to generate an incorrect program listing \cite{SikorskiPMA}. The attackers' usage of these techniques thus implies a time-consuming analysis for malware analysts, ultimately preventing the retrieval of the source code in a reasonable time.
 
 Any executable code can be reverse engineered, but by armouring their code with anti-disassembly and anti-debugging techniques, attackers increase the skill level required by analysts.
@@ -638,6 +646,10 @@ Exception handling is used in almost all programs and exceptions happen regularl
 This can be done at runtime simply pushing some specific values on the stack, effectively adding a new entry in the Exception handling chain. This procedure, however, is subject to the constraints imposed by the Software Data Execution Prevention (\textbf{Software DEP}), which is a security feature that prevents the addition of third-party exception handlers at runtime. However various workarounds to this protection can be used in the case of handwritten assembly code.
 
 \subsection{Anti-debugging}
+\color{Green}
+Summarize this part.
+\color{Black}
+
 Another popular anti-analysis technique, besides anti-disassembly, is \textit{anti-debugging}. Malware authors use anti-debugging techniques to recognise when their malicious program is under the control of a debugger or to interfere with the debugger behaviour. This is done in an attempt to slow down the malware analysts who use debuggers to understand how the malware operates. A malware using these techniques usually alter its normal control flow paths or causes crashes if it detects it is running in a debugger, thus interfering with analysis \cite{SikorskiPMA}.
 
 \subsubsection{Windows Debugger Detection}
@@ -763,6 +775,10 @@ Anti-debugging though the use of timing checks can be discovered by malware anal
 This implies that, to counter this technique, malware analysts could avoid setting breakpoints and single-stepping in those regions of code, or modify the result of the timestamps comparison as needed.
 
 \subsection{Anti-virtual machine}
+\color{Green}
+Summarize this part.
+\color{Black}
+
 Malware analysts often use virtual machines (VMs) or other isolated environments like sandboxes, to analyse malware samples. With the purpose of evading analysis and bypassing security systems malware authors often design their code to detect isolated environments. The techniques used with such purpose are called \textit{Anti-virtual machine} techniques (Anti-VM). Once a virtual machine is detected the evasion mechanism may alter the malware?s behaviour, or it may even prevent the malicious code from running altogether \cite{SikorskiPMA}.
 
 \subsubsection{VMware Artefacts}
@@ -791,6 +807,10 @@ The virtual machine monitor program, which monitors the virtual machine executio
 However, those instructions previously mentioned are not typically used within a malicious program unless it is specifically performing VMware detection, because they are useless if executed in user mode. Therefore avoiding this type of anti-VM technique can be as easy as patching the malicious code to prevent it calling these instructions.
 
 \subsection{Packers and unpacking}
+\color{Green}
+Summarize this part.
+\color{Black}
+
 Packing programs, commonly known as \textit{packers}, are software programs that take an \textit{executable file} or \textit{dynamic link library (DLL)}, compresses and/or encrypts its contents and then packs it into a new executable file \cite{SikorskiPMA}.
 
 When packers are used on malicious programs, the malicious code appearance is changed as a consequence of the compression and/or encryption. The packed file will thus hinder basic static analysis and malware detection. Moreover, a packer specifically designed to make the file difficult to analyse may even employ anti-reverse-engineering techniques, such as anti-disassembly, anti-debugging or anti-VM on the resulting compressed version; on top of that some packers, using randomization, are also able to generate different variants of a single file every time it is packed \cite{LiPRTCMP}.
@@ -843,6 +863,10 @@ Most often security researchers prefer to perform manual unpacking. The two most
 \end{itemize}
 
 \subsection{Code Obfuscation}
+\color{Green}
+Summarize this part.
+\color{Black}
+
 Obfuscation is a technique that generally makes programs harder to understand \cite{Balakrishnan2005CodeOL}, both for humans and automatic tools. To do so, it transforms a program into a new (structurally different) and more difficult to analyse version while retaining the same functionality as the original (the new version of the program is said to be \textit{computationally equivalent} to the original one) \cite{YouMOT}.
 
 Originally, this technology was conceived for legitimate purposes to protect the intellectual property of software developers; however it has been widely exploited by malware authors to evade detection \cite{KonstantinouMV}. Particularly, in order to elude anti-malware scanners, malware can, using obfuscation techniques, evolve their body into new generations \cite{YouMalwareOT}, which eventually can be even harder to disassemble and analyse.
@@ -1080,6 +1104,10 @@ Some examples of code virtualization tools include \href{https://vmpsoft.com/}{V
 \textit{Code integration}, one of the most sophisticated obfuscation techniques, was first introduced by \textit{Win97/Zmist} malware. A malware using this technique first decompiles the target program into a set of manageable objects, it then inserts itself between them and finally it reassembles the code \cite{YouMalwareOT}.
 
 \subsection{Obfuscated Malware}
+\color{Green}
+Summarize this part.
+\color{Black}
+
 The huge amount of malware released in the wild since the creation of the first virus in 1960s can be split into two generations. More specifically, the first generation malwares were static, their code and behaviour did not change. The more sophisticated second generation malwares, on the other hand, change their internal structure between one variant and the other maintaining the same malicious behaviour in order to avoid detection.
 
 \subsubsection{Encrypted Malwares}
