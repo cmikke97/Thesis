@@ -2064,10 +2064,10 @@ The Portable Executable (PE) format is a file format for executables, object cod
 	\centering
 	\includegraphics[width=\textwidth]{./images/Portable_Executable_32_bit_Structure.png}
 	\caption{PE file structure}
-	\label{fig:mesh1}
+	\label{fig:PEFileStructure}
 \end{figure}
 
-The PE format structure consists of a number of standard headers (\ref{fig:mesh1}) followed by one or more sections and it encapsulates the information necessary for the Windows OS loader to manage the wrapped executable code: for example, among other things, it tells the dynamic linker how to map the file into memory. In particular, the PE structure usually consist of the following 3 headers:
+The PE format structure consists of a number of standard headers (\ref{fig:PEFileStructure}) followed by one or more sections and it encapsulates the information necessary for the Windows OS loader to manage the wrapped executable code: for example, among other things, it tells the dynamic linker how to map the file into memory. In particular, the PE structure usually consist of the following 3 headers:
 \begin{itemize}
 	\item \textit{Common Object File Format (COFF)} file header: it contains important information about the file such as the type of machine for which it is intended, its nature (DLL, EXE, OBJ), the number of sections, the number of symbols, etc.
 	
@@ -2142,7 +2142,7 @@ The next 3 groups of features are instead format agnostic, meaning that they do 
 
 \color{Black}
 \subsubsection{Dataset Pre-Processing}
-Harang et al. \cite{HarangSOREL20M} provided, together with the Sorel20M dataset, the python/pytorch code they used to load it in memory and pass it as input to their model. This code, however, is particularly I/O bounded. In fact, in order to load the data related to a single sample $i$ it first gets the corresponding sha256 hash from the Sqlite3 database (which is already loaded in memory) and then uses it as key to access the LMDB database of features. The extracted features are then decompressed and deserialized. To load the entire dataset, one batch of data of size $batch\_size$ ($=8192$ by default) is loaded at a time, repeating this process for $batch\_size$ randomly chosen samples $i$ for each batch until the end of the epoch. The code is therefore especially dependant to the hard disk random access speed. The authors of \cite{HarangSOREL20M} managed to train their model for 10 epochs in under 90 minutes, by training it on an AWS instance with high I/O speeds (exploiting a NVMe SSD), not suffering from any bottleneck. However, when using a less powerful instance not optimized for I/O performance the time needed for loading the dataset and subsequentially for training the model increased excessively. This made the use of the original data loading code for the purposes of this project unfeasible.
+Harang et al. \cite{HarangSOREL20M} provided, together with the Sorel20M dataset, the python/pytorch code they used to load it in memory and pass it as input to their model. This code, however, is particularly I/O bounded. In fact, in order to load the data related to a single sample $i$ it first gets the corresponding sha256 hash from the Sqlite3 database (which is already loaded in memory) and then uses it as key to access the LMDB database of features. The extracted features are then decompressed and deserialized. To load the entire dataset, one batch of data of size \textit{\textbf{batch\_size}} ($=8192$ by default) is loaded at a time, repeating this process for \textit{\textbf{batch\_size}} randomly chosen samples $i$ for each batch until the end of the epoch. The code is therefore especially dependant to the hard disk random access speed. The authors of \cite{HarangSOREL20M} managed to train their model for 10 epochs in under 90 minutes, by training it on an AWS instance with high I/O speeds (exploiting a NVMe SSD), not suffering from any bottleneck. However, when using a less powerful instance not optimized for I/O performance the time needed for loading the dataset and subsequentially for training the model increased excessively. This made the use of the original data loading code for the purposes of this project unfeasible.
 
 In order to speed up the dataset loading code the dataset is therefore pre-processed and saved in a easier (and faster) to read format. In particular the entire dataset is sequentially loaded into a set of 3 parallel memory mapped \textit{numpy} array (for the features, labels and sha256 hashes respectively) using the original data loading code after being pre-processed (the features are decompressed and deserialized), similarly to what was done in the original code every cycle. The resulting \textit{numpy} arrays are then saved 'as-is' to file. During training (or evaluation) the pre-processed dataset files are read back into memory mapped \textit{numpy} arrays 'as-is' and then used in conjunction with the default Pytorch Dataloader class, with no additional processing needed. This greatly speeded up the overall training. The main drawback of this approach is that the dataset is saved with its features being decompressed, thus taking up a much larger disk portion.
 
@@ -2211,7 +2211,7 @@ As previously mentioned, this implementation is faster than the original Sorel20
 \paragraph{Generator alt1/alt2}
 The first attempts at optimizing the generator were inspired by the '\textit{\textbf{index select}}' and '\textit{\textbf{shuffle in-place}}' versions of \textit{\textbf{FastTensorDataLoader}} suggested in \cite{FastTensorDataloader}.
 
-In particular, the alternative generator 1 ('\textit{\textbf{alt1}}'), again loads the pre-processed dataset as a set of memory mapped arrays and assigns them to a set of tensors (\textit{X}, \textit{y} and \textit{S}) from which batches of data are randomly sampled using the \textit{Pytorch} '$index\_select$' function in \textit{multithreading}.
+In particular, the alternative generator 1 ('\textit{\textbf{alt1}}'), again loads the pre-processed dataset as a set of memory mapped arrays and assigns them to a set of tensors (\textit{X}, \textit{y} and \textit{S}) from which batches of data are randomly sampled using the \textit{Pytorch} '\textit{\textbf{index\_select}}' function in \textit{multithreading}.
 
 In the alternative generator 2 ('\textit{\textbf{alt2}}'), on the other hand, the tensors created by loading the dataset as was done in \textit{\textbf{alt1}} are randomly shuffled in place at each iteration. Then the batches of data are sampled (in order) from them in \textit{multithreading}.
 
@@ -2504,18 +2504,31 @@ The \textbf{GetBatch} function used in generator \textit{\textbf{alt3}} is the s
 
 As it can be seen from the algorithms provided, this version of the generator depends on the value a number of parameters among which the most important are \textit{\textbf{chunk\_size}} and \textit{\textbf{n\_chunks}}. Selecting different values for \textit{\textbf{chunk\_size}} and \textit{\textbf{n\_chunks}}, in fact, has an impact on the speed of the generator and on the samples dispersion. In fact the samples are not anymore randomly chosen from the whole dataset, but from a random sub-part of it (the \textit{\textbf{chunk\_aggregate}}). This effectively decreases the amount of dispersion (and randomness) of batches, possibly affecting the final model generalization. It is therefore better to consider a higher value for \textit{\textbf{n\_chunks}} possibly decreasing \textit{\textbf{chunk\_size}}. Furhtermore, the values for \textit{\textbf{chunk\_size}} and \textit{\textbf{n\_chunks}}) should be chosen in conjunction since their product results in the number of samples loaded into memory (RAM) at once for a single worker thread. Increasing too much this number (together with the number of workers used) can potentially saturate main memory (RAM) of the instance used.
 
-\color{Black}
 \subparagraph{Generator parameters optimization}
-To understand the behaviour of the FastTensorDataLoader \textit{\textbf{alt3}} and choose the best combination of \textit{\textbf{chunk\_size}} and \textit{\textbf{n\_chunks}} values possible using 8 threads (which is double the amount of cores available disposal in the instance used for this project) the code speed was cross validated using powers of 2 for both values.
+To understand the behaviour of the FastTensorDataLoader \textit{\textbf{alt3}} on the target instance and choose the best combination of values for the parameters \textit{\textbf{chunk\_size}} and \textit{\textbf{n\_chunks}} when using 8 threads (which is double the amount of cores available in the instance used for this project), the code speed was cross evaluated on using powers of 2 for both values. In particular the data loading code was evaluated using values for \textit{\textbf{chunk\_size}} and \textit{\textbf{n\_chunks}} got from two intervals and the corresponding average \textit{speed} and average \textit{elapsed time} heatmap plots were generated.
 
-\color{Red}
-In particular I developed a function to be used to evaluate the new alternative generator on the target machine. This function performs 'epochs' model training epochs using values for $chunk\_size$ and $n\_chunks$ got from two intervals and plots 2 heatmaps: the first containing the average elapsed times and the second the average speeds.
-In my evaluation run I hard-coded for $chunk\_size$ the powers of 2 ranging from $2^{4}$ to $2^{14}$ (included) and for $n\_chunks$ the powers of 2 ranging from $2^{3}$ to $2^{13}$.
-Moreover, two further parameters have to be set in order to constrain the evaluation to meaningful values: $min\_mul$ and $max\_mul$. In fact, as previously mentioned, the product of $chunk\_size \times n\_chunks$ gives the total number of samples in one $chunk\_aggregate$ (which resides in main memory). $min\_mul$ and $max\_mul$ indicate the minimum and maximum number of batches retrievable from the resulting $chunk\_aggregate$.
-In my run I considered for $min\_mul$ the value 1 and for $max\_mul$ the value 32. This was done in order to be able to retrieve at least one batch from the $chunk\_aggregate$ without saturating the available RAM (having for $max\_mul$ a value greater than $32 * batch\_size$ would be too mutch for my instance).
-Given the results I got (available at the end of this document), I decided to stick with the following values for all the model training runs since they seemed to be a good compromise between loading speed and samples dispersion: $chunk\_size = 256$ and $n\_chunks = 256$.
+In practice \textit{\textbf{chunk\_size}} and \textit{\textbf{n\_chunks}} values were chosen to be the powers of 2 ranging from $2^{4}$ to $2^{14}$ (included) and from $2^{3}$ to $2^{13}$, respectively. Moreover, in order to constrain the evaluation to meaningful values only, two additional parameters have to be set: \textit{\textbf{min\_mul}} and \textit{\textbf{max\_mul}}. In fact, as previously mentioned, the product of \textit{\textbf{chunk\_size}} $\times$ \textit{\textbf{n\_chunks}} gives the total number of samples in one \textit{\textbf{chunk\_aggregate}} residing in main memory; this quantity must be constrained to a certain range to avoid using too much main memory while being able to retrieve at least one \textit{batch} of data from the \textit{chunk aggregate}. The parameters \textit{\textbf{min\_mul}} and \textit{\textbf{max\_mul}} are used exactly to indicate the minimum and maximum number of batches retrievable from the resulting \textit{\textbf{chunk\_aggregates}} and therefore indirectly pose a constrain on the product \textit{\textbf{chunk\_size}} $\times$ \textit{\textbf{n\_chunks}}.
 
-\color{Black}
+While effectively evaluating the data loading code (\textit{\textbf{alt3}}) performance the \textit{\textbf{min\_mul}} was set to a value of 1, while \textit{\textbf{max\_mul}} to 32. Those values were chosen in order to always be able to retrieve at least one \textit{batch} from the \textit{\textbf{chunk\_aggregate}} without saturating the RAM available on the instance used for this project (in fact, having for \textit{\textbf{max\_mul}} a value greater than $32 \times$ \textit{\textbf{batch\_size}} was too much).
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\textwidth]{./images/speeds_heatmap.png}
+	\caption{Speeds Heatmap, Higher is Better}
+	\label{fig:speeds_heatmap}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\textwidth]{./images/times_heatmap.png}
+	\caption{Elapsed Times Heatmap, Lower is Better}
+	\label{fig:times_heatmap}
+\end{figure}
+
+Given the resulting heatmaps (\ref{fig:speeds_heatmap}, \ref{fig:times_heatmap}), \textit{\textbf{chunk\_size}} was permanently set to \textbf{256} and \textit{\textbf{n\_chunks}} to \textbf{256} for all the experiments conducted for this project since these values seemed to be a good compromise between data loading speed and samples dispersion.
+
+In any case, with respect to the previous solutions (original \textit{Pytorch} dataloader and the generators \textit{\textbf{alt1}} and \textit{\textbf{alt2}}) the speed up was huge. This new version took, in fact, approximately 15 minutes, on average, to complete 1 training epoch while the previous solution took, at best, $\sim6$ hours. Therefore this was the generator used for loading the dataset in all the experiments done for this project. However, it has to be reiterated that this generator version works by approximating the random sampling step during training which in turn may hinder the model generalization on unseen samples. The results presented in this document may therefore be slightly lower than what could be achieved on a more powerful instance using the original \textit{Pytorch} dataloader.
+
 \section{Fresh Dataset}
 \color{Red}
 
