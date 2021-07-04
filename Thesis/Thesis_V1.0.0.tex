@@ -2544,19 +2544,19 @@ Given the resulting heatmaps (\ref{fig:speeds_heatmap}, \ref{fig:times_heatmap})
 In any case, with respect to the previous solutions (original \textit{Pytorch} dataloader and the generators \textit{\textbf{alt1}} and \textit{\textbf{alt2}}) the speed up was huge. This new version took, in fact, approximately 15 minutes, on average, to complete 1 training epoch while the previous solution took, at best, $\sim6$ hours. Therefore this was the generator used for loading the dataset in all the experiments done for this project. However, it has to be reiterated that this generator version works by approximating the random sampling step during training which in turn may hinder the model generalization on unseen samples. The results presented in this document may therefore be slightly lower than what could be achieved on a more powerful instance using the original \textit{Pytorch} dataloader.
 
 \section{Fresh Dataset}
-\color{Red}
+In order to evaluate the learned representation of PE files (embedding) of the proposed model on the sample family prediction task a further dataset, also referred to \textit{\textbf{fresh\_dataset}} throughout this document (and in the code), was created. It consists of a number of sample files' feature vectors along with the corresponding family labels and the sha256 hashes of the original files.
 
-To properly evaluate the model there is the need of a dataset with malware family labels. Malware Bazaar provides examples of malware executables for different malware families and it could therefore be a good source for creating a new (fresh) dataset. I therefore created a function which, given:
+More specifically, a number '$m$' of PE malware families were selected from the list of the most prominent ones present in Italy at the time of writing (as reported by CERT-AGID summary \cite{CERTAGID}). Then, '$x$' sample files per family were downloaded by Malware Bazaar \cite{MalwareBazaar} along with their metadata information (label, sha256 hash etc.). Malware Bazaar, in fact, is a malware sample database maintained by malware analysts which provides examples of malware executables for different malware families and it is therefore a good source for creating the new (fresh) dataset.
+
+A function was therefore specifically created to download from Malware Bazaar '$x$' samples per malware family (if possible, otherwise it skips the malware family and considers the next), extract the features from each sample and creates the new dataset containing '$n = x * m$' (default: 1000) samples which are then stored on disk as (\textit{numpy}) memory mapped array (as it was done with the pre-processed Sorel20M dataset). This function takes as input the following arguments:
 \begin{itemize}
-	\item a series of malware families in order of importance
+	\item a series of malware families (more than '$m$') in order of importance
 	
 	\item the number '$x$' (default: 100) of samples per family to download
 	
 	\item the number '$m$' (default: 10) of families to consider
 \end{itemize}
-downloads from Malware Bazaar '$x$' samples per malware family (if possible, otherwise it skips the malware family and considers the next), extracts the features from each sample and creates the new dataset (which I call '$fresh\_dataset$' in the code) with '$n = x * m$' (default: 1000) samples compatible with the model.
 
-\color{Black}
 \subsection{Model Evaluation with Fresh Dataset}
 \color{Red}
 

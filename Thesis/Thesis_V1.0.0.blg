@@ -15,15 +15,15 @@ Warning--empty booktitle in NguyenSPVD
 Warning--empty booktitle in MarcosAVclass
 You've used 52 entries,
             1924 wiz_defined-function locations,
-            810 strings with 12324 characters,
-and the built_in function-call counts, 9366 in all, are:
-= -- 771
-> -- 396
+            810 strings with 12265 characters,
+and the built_in function-call counts, 9334 in all, are:
+= -- 767
+> -- 393
 < -- 0
-+ -- 159
-- -- 107
-* -- 576
-:= -- 1318
++ -- 158
+- -- 106
+* -- 572
+:= -- 1307
 add.period$ -- 0
 call.type$ -- 52
 change.case$ -- 55
@@ -31,18 +31,18 @@ chr.to.int$ -- 0
 cite$ -- 56
 duplicate$ -- 408
 empty$ -- 1136
-format.name$ -- 107
-if$ -- 2330
+format.name$ -- 106
+if$ -- 2325
 int.to.chr$ -- 0
 int.to.str$ -- 52
 missing$ -- 24
 newline$ -- 159
-num.names$ -- 51
-pop$ -- 307
+num.names$ -- 50
+pop$ -- 305
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 337
+skip$ -- 343
 stack$ -- 0
 substring$ -- 295
 swap$ -- 84
@@ -51,7 +51,7 @@ text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 4
-while$ -- 73
+while$ -- 72
 width$ -- 54
-write$ -- 454
+write$ -- 450
 (There were 8 warnings)

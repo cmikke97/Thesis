@@ -80,16 +80,6 @@ Comtact, ``What are the different types of malware?.''
   \url{https://comtact.co.uk/blog/what-are-the-different-types-of-malware},
   2019, Accessed: 2021-03-15
 
-\bibitem{ReganWIM}
-J.~Regan, ``What is malware? how malware works and how to prevent it.''
-  \url{https://www.avg.com/en/signal/what-is-malware}, 2019, Accessed:
-  2021-03-15
-
-\bibitem{LutkevichM}
-B.~Lutkevich, ``malware.''
-  \url{https://searchsecurity.techtarget.com/definition/malware}, Accessed:
-  2021-03-15
-
 \bibitem{Szor_P}
 P.~Szor, ``The art of computer virus and defence'', Symantec press, 1st~ed.,
   2005, ISBN: 978-0-321-30454-4
@@ -244,5 +234,12 @@ K.~Weinberger, A.~Dasgupta, J.~Attenberg, J.~Langford, and A.~Smola, ``Feature
 \bibitem{FastTensorDataloader}
 J.~Mu, ``Fasttensordataloader.''
   \url{https://discuss.pytorch.org/t/dataloader-much-slower-than-manual-batching/27014/6}
+
+\bibitem{CERTAGID}
+CERT-AGID, ``Cert-agid threat summary.''
+  \url{https://cert-agid.gov.it/tag/riepilogo/}
+
+\bibitem{MalwareBazaar}
+``Malware bazaar.'' \url{https://bazaar.abuse.ch/browse/}
 
 \end{thebibliography}
