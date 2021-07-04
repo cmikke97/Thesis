@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  5 JUL 2021 01:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  5 JUL 2021 01:30
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -1014,15 +1014,11 @@ red
                                                   \fi \global \@mparbottom \...
 <output> ...specialoutput \else \@makecol \@opcol 
                                                   \@startcolumn \@whilesw \i...
-
-\@trivlist ...epadd \partopsep \else \unskip \par 
-                                                  \fi \if@inlabel \@noparite...
-
-\list ...klab \@nmbrlistfalse #2\relax \@trivlist 
-                                                  \parskip \parsep \parinden...
-...
-l.2552 \begin{itemize}
-                       <./images/times_heatmap.png>] [76]
+<to be read again> 
+                   A
+l.2551 A
+         function called \textit{\textbf{build\_fresh\_dataset}} was specifi...
+ <./images/times_heatmap.png>] [76]
 Chapter 5.
 [77
 
@@ -1201,9 +1197,9 @@ ichele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
 <C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmtt8.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
 sfonts/symbols/msbm10.pfb>
-Output written on Thesis_V1.0.0.pdf (85 pages, 1771784 bytes).
+Output written on Thesis_V1.0.0.pdf (85 pages, 1772424 bytes).
 PDF statistics:
- 1643 PDF objects out of 1728 (max. 8388607)
+ 1644 PDF objects out of 1728 (max. 8388607)
  626 named destinations out of 1000 (max. 500000)
  349 words of extra memory for PDF output out of 10000 (max. 10000000)
 
