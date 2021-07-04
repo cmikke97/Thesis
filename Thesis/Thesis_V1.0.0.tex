@@ -2216,7 +2216,7 @@ In particular, the alternative generator 1 ('\textit{\textbf{alt1}}'), again loa
 In the alternative generator 2 ('\textit{\textbf{alt2}}'), on the other hand, the tensors created by loading the dataset as was done in \textit{\textbf{alt1}} are randomly shuffled in place at each iteration. Then the batches of data are sampled (in order) from them in \textit{multithreading}.
 
 \begin{algorithm}
-	\caption{Alt1/Alt2 FastDataLoader class, Init function}\label{alg:Alt1_2FastDataLoaderInit}
+	\caption{Alt1/Alt2 FastTensorDataLoader class, Init function}\label{alg:Alt1_2FastDataLoaderInit}
 	\begin{algorithmic}[1]
 		\Function{Init}{\textit{self}, \textit{tensors}, \textit{batch\_size}, \textit{shuffle}, \textit{num\_workers}, ...}
 		\State \textit{self.tensors} $\gets$ \textit{tensors}
@@ -2236,7 +2236,7 @@ In the alternative generator 2 ('\textit{\textbf{alt2}}'), on the other hand, th
 \end{algorithm}
 
 \begin{algorithm}
-	\caption{Alt1 FastDataLoader class, Iter function}\label{alg:Alt1FastDataLoaderIter}
+	\caption{Alt1 FastTensorDataLoader class, Iter function}\label{alg:Alt1FastDataLoaderIter}
 	\begin{algorithmic}[1]
 		\Function{Iter}{\textit{self}}
 		\If{\textit{self.shuffle} $=$ \textit{true}}
@@ -2252,7 +2252,7 @@ In the alternative generator 2 ('\textit{\textbf{alt2}}'), on the other hand, th
 \end{algorithm}
 
 \begin{algorithm}
-	\caption{Alt2 FastDataLoader class, Iter function}\label{alg:Alt2FastDataLoaderIter}
+	\caption{Alt2 FastTensorDataLoader class, Iter function}\label{alg:Alt2FastDataLoaderIter}
 	\begin{algorithmic}[1]
 		\Function{Iter}{\textit{self}}
 		\If{\textit{self.shuffle} $=$ \textit{true}}
@@ -2269,7 +2269,7 @@ In the alternative generator 2 ('\textit{\textbf{alt2}}'), on the other hand, th
 \end{algorithm}
 
 \begin{algorithm}
-	\caption{Alt1/Alt2 FastDataLoader class, Next function}\label{alg:Alt1_2FastDataLoaderNext}
+	\caption{Alt1/Alt2 FastTensorDataLoader class, Next function}\label{alg:Alt1_2FastDataLoaderNext}
 	\begin{algorithmic}[1]
 		\Function{Next}{\textit{self}}
 		\If{\textit{self.i} $\ge$ \textit{self.dataset\_len}}
@@ -2349,142 +2349,60 @@ Finally, in algorithm \ref{alg:Alt1GetBatch} is shown the \textit{get\_batch} fu
 Unfortunately, the presented two generator alternatives did not improve the data loading process enough. More specifically, when considering $6M$ samples, generator \textit{\textbf{alt1}} was only slightly faster than the original Pytorch Dataloader, while \textit{\textbf{alt2}} was even significantly slower. Generator \textit{\textbf{alt1}}, in fact, was still fairly similar to the Pytorch Dataloader implementation having used the \textit{index\_select} function instead of the slower \textit{torch.cat}. On the other hand, generator \textit{\textbf{alt2}} worked by shuffling the entire dataset tensors prior to batch extraction. If this solution surely can be more efficient for small to moderately sized dataset, it can become a bottleneck in case of huge datasets.
 
 \paragraph{Generator alt3}
-\color{Red}
+The generator alternative 3 ('\textit{\textbf{alt3}}') managed to considerably speed up the dataset loading process making a tradeoff between loading speed and samples dispersion. In fact, the time needed for 1 training epoch (considering 6M samples) passed from being of approximately 6 hours to $\sim15$ minutes.
 
-Since using a Google Cloud instance did not provide a significant speed-up, and since the model needed $\sim60$ hours to complete 1 training run, I had to think of another dataloader optimization. I thus developed a further alternative dataloader ('$alt3$') that managed to reduce the time needed for 1 training epoch (considering 6M samples) from $\sim6$ hours to $\sim15$ minutes. The time needed to complete a full training run is thus now $\sim2.5$ hours ($\sim3$ hours considering also model evaluation).
-The optimization consists of a tradeoff between loading speed and samples dispersion. In fact, the new dataloader uses a pool of threads to asynchronously load the dataset into memory in chunks. In particular each thread loads into memory '$n\_chunks$' randomly chosen chunks. Each thread then proceeds to concatenate together its '$n\_chunks$' chunks, which contain '$chunk\_size$' malware samples each, generating each a '$chunk\_aggregate$', which is then randomly shuffled and returned by the thread. The $chunk\_aggregates$ are asynchronously inserted in a queue (the order depends on the threads instantiation order) of fixed length equal to the number of workers used. The main dataloader thread manages the $chunk\_aggregate$ queue, instantiating the parallel threads such that the queue is always full. Moreover, the main dataloader thread sequentially extracts, when possible, one $chunk\_aggregate$ at a time from the queue and then proceeds to return one batch of data at a time from it, when required.
-Selecting different values for $chunk\_size$ and $n\_chunks$ has an impact on the speed of the dataloader and on the samples dispersion. In fact the samples are not anymore randomly chosen from the whole dataset, but from a random sub-part of it. This effectively decreases the amount of dispersion (and randomness) of batches possibly affecting the final model generalization. It is therefore better to consider a higher value for $n\_chunks$ possibly decreasing $chunk\_size$. Furhtermore, the values for $chunk\_size$ and $n\_chunks$) should be chosed carefully since their product results in the number of samples loaded into memory (RAM) at once for a single worker thread. Increasing too much this number (together with the number of workers used) will quickly saturate the available RAM.
+This optimization uses a new FastTensorDataLoader class which exploits a pool of threads to asynchronously load the dataset into memory in chunks of consecutive data. In particular each thread loads into memory '\textit{\textbf{n\_chunks}}' randomly chosen chunks. Each thread then proceeds to concatenate together its '\textit{\textbf{n\_chunks}}' chunks, which contain '\textit{\textbf{chunk\_size}}' malware samples each, generating each a '\textit{\textbf{chunk\_aggregate}}', which is then randomly shuffled and returned by the thread. The \textit{\textbf{chunk\_aggregates}} are asynchronously inserted in a queue (the order depends on the threads instantiation order) of fixed length equal to the number of workers used. The main dataloader thread manages the \textit{\textbf{chunk\_aggregate}} queue, instantiating the parallel threads such that the queue is always full. Moreover, the main dataloader thread sequentially extracts, when possible, one \textit{\textbf{chunk\_aggregate}} at a time from the queue and then proceeds to return one batch of data at a time from it, when required.
 
-\begin{algorithm}
-	\caption{Alt3 get\_batch function}\label{Alt3GetBatch}
-	\begin{algorithmic}[1] % uncomment [1] for line numbers
-		\Function{get\_batch}{\textit{tensors}, \textit{batch\_size}, \textit{i}, ...}
-			\State \textit{batch} $\gets$ [ ]
-			%\textcolor{codegreen}{\Comment{Get the data in order}}
-			\ForAll{\textit{t} $\in$ \textit{tensors}}
-				%\textcolor{codegreen}{\Comment{For all tensors in \textit{chunk\_agg}}}
-				\State \textit{batch\_data} $\gets$ \textit{t}[\textit{i}:(\textit{i} + \textit{batch\_size})]
-				%\textcolor{codegreen}{\Comment{Select data from the current tensor \textit{t}}}
-				\State \textit{batch}.\textbf{append}(\textit{batch\_data})
-				%\textcolor{codegreen}{\Comment{Append selected \textit{batch\_data} to \textit{batch} array}}
-			\EndFor
-			\State
-			\State \textbf{return} \textit{batch}
-		\EndFunction
-	\end{algorithmic}
-\end{algorithm}
+More specifically, in algorithm \ref{alg:Alt3FastDataLoaderInit} ..
 
 \begin{algorithm}
-	\caption{Alt3 get\_chunks function}\label{Alt3GetChunks}
-	\begin{algorithmic}[1] % uncomment [1] for line numbers
-		\Function{get\_chunks}{\textit{tensors}, \textit{chunk\_indices}, \textit{chunk\_size}, \textit{last\_chunk\_size}, \textit{n\_chunks}, \textit{shuffle}}
-			\If{\textit{n\_chunks} $- 1$ \textbf{in} \textit{chunk\_indices}}
-				\State \textit{chunk\_agg\_size} $\gets$ (\textbf{len}(\textit{chunk\_indices}) $- 1$) $\cdot$ \textit{chunk\_size} + \textit{last\_chunk\_size}
-			\Else
-				\State \textit{chunk\_agg\_size} $\gets$ \textbf{len}(\textit{chunk\_indices}) $\cdot$ \textit{chunk\_size}
-			\EndIf
-			\State
-			\State \textit{chunk\_agg} $\gets$ [ ]
-			\If {len(\textit{tensors}) = 3}
-				%\textcolor{codegreen}{\Comment{if \textit{tensors} contains also \textit{S} (shas) data}}
-				\State \textit{chunk\_agg}.\textbf{append}(\textbf{emptyNumpyArray})
-				\ForAll{\textit{t} $\in$ \textit{tensors}[$-2$:]}
-					\State \textit{chunk\_agg}.\textbf{append}(\textbf{emptyTensor})
-				\EndFor
-			\Else
-				\ForAll{\textit{t} $\in$ \textit{tensors}}
-					\State \textit{chunk\_agg}.\textbf{append}(\textbf{emptyTensor})
-				\EndFor
-			\EndIf
-			\State
-			\State \textit{c\_start} $\gets$ 0
-			\ForAll{\textit{idx} $\in$ [0, ..., \textbf{len}(\textit{chunk\_indices})]}
-				\State \textit{t\_start} $\gets$ \textit{chunk\_indices}[\textit{idx}] $\cdot$ \textit{chunk\_size}
-				\If{\textit{chunk\_indices}[\textit{idx}] $\neq$ \textit{n\_chunks} $- 1$}
-					\State \textit{c\_end} $\gets$ \textit{c\_start} + \textit{chunk\_size}
-					\State \textit{t\_end} $\gets$ \textit{t\_start} + \textit{chunk\_size}
-				\Else
-					\State \textit{c\_end} $\gets$ \textit{c\_start} + \textit{last\_chunk\_size}
-					\State \textit{t\_end} $\gets$ \textit{t\_start} + \textit{last\_chunk\_size}
-				\EndIf
-				
-				\For{\textit{i}, \textit{t} $\in$ \textbf{enumerate}(\textit{tensors})}
-					\State \textit{chunk\_agg}[\textit{i}][\textit{c\_start}:\textit{c\_end}] $\gets$ \textit{t}[\textit{t\_start}:\textit{t\_end}]
-				\EndFor
-				\State \textit{c\_start} $=$ \textit{c\_end}
-			\EndFor
-			\State
-			\If{\textit{shuffle} $=$ \textit{true}}
-				\State \textit{r} $=$ \textbf{randperm}(\textit{chunk\_agg\_size})
-				\For{\textit{i}, \textit{t} $\in$ \textbf{enumerate}(\textit{chunk\_agg})}
-					\State \textit{chunk\_agg}[\textit{i}] $=$ \textit{t}[\textit{r}]
-				\EndFor
-			\EndIf
-			\State
-			\State \textbf{return} \textit{chunk\_agg}, \textit{chunk\_agg\_size}
-		\EndFunction
-	\end{algorithmic}
-\end{algorithm}
-
-\begin{algorithm}
-	\caption{Alt3 FastDataLoader class, Init}\label{Alt3FastDataLoaderInit}
-	\begin{algorithmic}[1] % uncomment [1] for line numbers
+	\caption{Alt3 FastTensorDataLoader class, Init}\label{alg:Alt3FastDataLoaderInit}
+	\begin{algorithmic}[1]
 		\Class{FastTensorDataloader}
-			\Function{Init}{\textit{self}, \textit{tensors}, \textit{batch\_size}, \textit{chunk\_size}, \textit{chunks}, \textit{shuffle}, \textit{num\_workers}, ...}
-				\State \textit{self.tensors} $\gets$ \textit{tensors}
-				\State \textit{self.batch\_size} $\gets$ \textit{batch\_size}
-				\State \textit{self.chunk\_size} $\gets$ \textit{chunk\_size}
-				\State \textit{self.chunks} $\gets$ \textit{chunks}
-				\State \textit{self.shuffle} $\gets$ \textit{shuffle}
-				\State \textit{self.num\_workers} $\gets$ \textit{num\_workers}
-				\State \textit{self.dataset\_len} $\gets$ \textit{tensors}[0].\textit{shape}[0]
-				%\textcolor{codegreen}{\Comment{Get dataset total length}}
-				\State
-				\If{\textit{num\_workers} $> 1$}
-					\State \textit{self.async\_results} $\gets$ [ ]
-					%\textcolor{codegreen}{\Comment{Initialize async results list}}
-					\State \textit{self.pool} $\gets$ \textbf{ThreadPool}()
-					%\textcolor{codegreen}{\Comment{Initialize Thread pool}}
-				\EndIf
-				\State
-				\State \textit{self.n\_batches} $\gets \lceil$\textit{self.dataset\_len} / \textit{self.batch\_size}$\rceil$
-				%\textcolor{codegreen}{\Comment{Compute number of batches}}
-				\State \textit{self.n\_chunks} $\gets \lceil$\textit{self.dataset\_len} / \textit{self.chunk\_size}$\rceil$
-				%\textcolor{codegreen}{\Comment{Compute number of chunks}}
-				\State \textit{self.last\_chunk\_size} $\gets$ \textit{self.dataset\_len} $\%$ \textit{self.chunk\_size}
-				%\textcolor{codegreen}{\Comment{Compute last chunk size}}
-			\EndFunction
+		\Function{Init}{\textit{self}, \textit{tensors}, \textit{batch\_size}, \textit{chunk\_size}, \textit{chunks}, \textit{shuffle}, \textit{num\_workers}, ...}
+		\State \textit{self.tensors} $\gets$ \textit{tensors}
+		\State \textit{self.batch\_size} $\gets$ \textit{batch\_size}
+		\State \textit{self.chunk\_size} $\gets$ \textit{chunk\_size}
+		\State \textit{self.chunks} $\gets$ \textit{chunks}
+		\State \textit{self.shuffle} $\gets$ \textit{shuffle}
+		\State \textit{self.num\_workers} $\gets$ \textit{num\_workers}
+		\State \textit{self.dataset\_len} $\gets$ \textit{tensors}[0].\textit{shape}[0]
+		\State
+		\If{\textit{num\_workers} $> 1$}
+		\State \textit{self.async\_results} $\gets$ [ ]
+		\State \textit{self.pool} $\gets$ \textbf{ThreadPool}()
+		\EndIf
+		\State
+		\State \textit{self.n\_batches} $\gets \lceil$\textit{self.dataset\_len} / \textit{self.batch\_size}$\rceil$
+		\State \textit{self.n\_chunks} $\gets \lceil$\textit{self.dataset\_len} / \textit{self.chunk\_size}$\rceil$
+		\State \textit{self.last\_chunk\_size} $\gets$ \textit{self.dataset\_len} $\%$ \textit{self.chunk\_size}
+		\EndFunction
 		\algstore{bkbreak}
 	\end{algorithmic}
 \end{algorithm}
 
 \begin{algorithm}
-	\caption{Alt3 FastDataLoader class, Iter}\label{Alt3FastDataLoaderIter}
+	\caption{Alt3 FastTensorDataLoader class, Iter}\label{Alt3FastDataLoaderIter}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
-			\Function{Iter}{\textit{self}}
-				\If{\textit{self.shuffle} $=$ \textit{true}}
-					\State \textit{self.chunk\_indices} $\gets$ \textbf{randperm}(\textit{self.dataset\_len})
-					%\textcolor{codegreen}{\Comment{Randomly create indices}}
-				\Else
-					\State \textit{self.chunk\_indices} $\gets$ \textbf{arange}(\textit{self.n\_chunks})
-					%\textcolor{codegreen}{\Comment{Create chunk indices linearly}}
-				\EndIf
-				\State
-				\State \textit{self.chunk\_agg} $\gets$ None
-				%\textcolor{codegreen}{\Comment{Initialize current \textit{chunk\_agg} to Null value}}
-				\State \textit{self.chunk\_agg\_size} $\gets$ 0
-				%\textcolor{codegreen}{\Comment{Set current \textit{chunk\_agg} size to 0}}
-				\State \textit{self.chunk\_i} $\gets$ 0
-				%\textcolor{codegreen}{\Comment{Set current index to 0}}
-				\State \textbf{return} \textit{self}			
-			\EndFunction
+		\Function{Iter}{\textit{self}}
+		\If{\textit{self.shuffle} $=$ \textit{true}}
+		\State \textit{self.chunk\_indices} $\gets$ \textbf{randperm}(\textit{self.dataset\_len})
+		\Else
+		\State \textit{self.chunk\_indices} $\gets$ \textbf{arange}(\textit{self.n\_chunks})
+		\EndIf
+		\State
+		\State \textit{self.chunk\_agg} $\gets$ None
+		\State \textit{self.chunk\_agg\_size} $\gets$ 0
+		\State \textit{self.chunk\_i} $\gets$ 0
+		\State \textbf{return} \textit{self}			
+		\EndFunction
 		\algstore{bkbreak}
 	\end{algorithmic}
 \end{algorithm}
 
 \begin{algorithm}
-	\caption{Alt3 FastDataLoader class, Next}\label{Alt3FastDataLoaderNext}
+	\caption{Alt3 FastTensorDataLoader class, Next}\label{Alt3FastDataLoaderNext}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 			\Function{Next}{\textit{self}}
@@ -2528,6 +2446,79 @@ Selecting different values for $chunk\_size$ and $n\_chunks$ has an impact on th
 		\EndClass
 	\end{algorithmic}
 \end{algorithm}
+
+\begin{algorithm}
+	\caption{Alt3 get\_batch function}\label{Alt3GetBatch}
+	\begin{algorithmic}[1] % uncomment [1] for line numbers
+		\Function{get\_batch}{\textit{tensors}, \textit{batch\_size}, \textit{i}, ...}
+		\State \textit{batch} $\gets$ [ ]
+		%\textcolor{codegreen}{\Comment{Get the data in order}}
+		\ForAll{\textit{t} $\in$ \textit{tensors}}
+		%\textcolor{codegreen}{\Comment{For all tensors in \textit{chunk\_agg}}}
+		\State \textit{batch\_data} $\gets$ \textit{t}[\textit{i}:(\textit{i} + \textit{batch\_size})]
+		%\textcolor{codegreen}{\Comment{Select data from the current tensor \textit{t}}}
+		\State \textit{batch}.\textbf{append}(\textit{batch\_data})
+		%\textcolor{codegreen}{\Comment{Append selected \textit{batch\_data} to \textit{batch} array}}
+		\EndFor
+		\State
+		\State \textbf{return} \textit{batch}
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+	\caption{Alt3 get\_chunks function}\label{Alt3GetChunks}
+	\begin{algorithmic}[1] % uncomment [1] for line numbers
+		\Function{get\_chunks}{\textit{tensors}, \textit{chunk\_indices}, \textit{chunk\_size}, \textit{last\_chunk\_size}, \textit{n\_chunks}, \textit{shuffle}}
+		\If{\textit{n\_chunks} $- 1$ \textbf{in} \textit{chunk\_indices}}
+		\State \textit{chunk\_agg\_size} $\gets$ (\textbf{len}(\textit{chunk\_indices}) $- 1$) $\cdot$ \textit{chunk\_size} + \textit{last\_chunk\_size}
+		\Else
+		\State \textit{chunk\_agg\_size} $\gets$ \textbf{len}(\textit{chunk\_indices}) $\cdot$ \textit{chunk\_size}
+		\EndIf
+		\State
+		\State \textit{chunk\_agg} $\gets$ [ ]
+		\If {len(\textit{tensors}) = 3}
+		%\textcolor{codegreen}{\Comment{if \textit{tensors} contains also \textit{S} (shas) data}}
+		\State \textit{chunk\_agg}.\textbf{append}(\textbf{emptyNumpyArray})
+		\ForAll{\textit{t} $\in$ \textit{tensors}[$-2$:]}
+		\State \textit{chunk\_agg}.\textbf{append}(\textbf{emptyTensor})
+		\EndFor
+		\Else
+		\ForAll{\textit{t} $\in$ \textit{tensors}}
+		\State \textit{chunk\_agg}.\textbf{append}(\textbf{emptyTensor})
+		\EndFor
+		\EndIf
+		\State
+		\State \textit{c\_start} $\gets$ 0
+		\ForAll{\textit{idx} $\in$ [0, ..., \textbf{len}(\textit{chunk\_indices})]}
+		\State \textit{t\_start} $\gets$ \textit{chunk\_indices}[\textit{idx}] $\cdot$ \textit{chunk\_size}
+		\If{\textit{chunk\_indices}[\textit{idx}] $\neq$ \textit{n\_chunks} $- 1$}
+		\State \textit{c\_end} $\gets$ \textit{c\_start} + \textit{chunk\_size}
+		\State \textit{t\_end} $\gets$ \textit{t\_start} + \textit{chunk\_size}
+		\Else
+		\State \textit{c\_end} $\gets$ \textit{c\_start} + \textit{last\_chunk\_size}
+		\State \textit{t\_end} $\gets$ \textit{t\_start} + \textit{last\_chunk\_size}
+		\EndIf
+		
+		\For{\textit{i}, \textit{t} $\in$ \textbf{enumerate}(\textit{tensors})}
+		\State \textit{chunk\_agg}[\textit{i}][\textit{c\_start}:\textit{c\_end}] $\gets$ \textit{t}[\textit{t\_start}:\textit{t\_end}]
+		\EndFor
+		\State \textit{c\_start} $=$ \textit{c\_end}
+		\EndFor
+		\State
+		\If{\textit{shuffle} $=$ \textit{true}}
+		\State \textit{r} $=$ \textbf{randperm}(\textit{chunk\_agg\_size})
+		\For{\textit{i}, \textit{t} $\in$ \textbf{enumerate}(\textit{chunk\_agg})}
+		\State \textit{chunk\_agg}[\textit{i}] $=$ \textit{t}[\textit{r}]
+		\EndFor
+		\EndIf
+		\State
+		\State \textbf{return} \textit{chunk\_agg}, \textit{chunk\_agg\_size}
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}
+
+Selecting different values for \textit{\textbf{chunk\_size}} and \textit{\textbf{n\_chunks}} has an impact on the speed of the dataloader and on the samples dispersion. In fact the samples are not anymore randomly chosen from the whole dataset, but from a random sub-part of it (the \textit{\textbf{chunk\_aggregate}}). This effectively decreases the amount of dispersion (and randomness) of batches possibly affecting the final model generalization. It is therefore better to consider a higher value for \textit{\textbf{n\_chunks}} possibly decreasing \textit{\textbf{chunk\_size}}. Furhtermore, the values for \textit{\textbf{chunk\_size}} and \textit{\textbf{n\_chunks}}) should be chosen carefully since their product results in the number of samples loaded into memory (RAM) at once for a single worker thread. Increasing too much this number (together with the number of workers used) will quickly saturate the available RAM.
 
 \color{Black}
 \subparagraph{Generator parameters optimization}

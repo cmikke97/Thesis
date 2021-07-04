@@ -126,7 +126,7 @@
 \contentsline {paragraph}{Pytorch Dataloader}{66}{section*.89}%
 \contentsline {paragraph}{Generator alt1/alt2}{67}{section*.90}%
 \contentsline {paragraph}{Generator alt3}{70}{section*.91}%
-\contentsline {subparagraph}{Generator parameters optimization}{70}{section*.92}%
+\contentsline {subparagraph}{Generator parameters optimization}{74}{section*.92}%
 \contentsline {section}{\numberline {4.2}Fresh Dataset}{74}{section.4.2}%
 \contentsline {subsection}{\numberline {4.2.1}Model Evaluation with Fresh Dataset}{74}{subsection.4.2.1}%
 \contentsline {chapter}{\numberline {5}Experimenting with ML based Malware Detection/Description methods}{76}{chapter.5}%
