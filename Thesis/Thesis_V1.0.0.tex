@@ -2353,8 +2353,6 @@ The generator alternative 3 ('\textit{\textbf{alt3}}') managed to considerably s
 
 This optimization uses a new FastTensorDataLoader class which exploits a pool of threads to asynchronously load the dataset into memory in chunks of consecutive data. In particular each thread loads into memory '\textit{\textbf{n\_chunks}}' randomly chosen chunks. Each thread then proceeds to concatenate together its '\textit{\textbf{n\_chunks}}' chunks, which contain '\textit{\textbf{chunk\_size}}' malware samples each, generating each a '\textit{\textbf{chunk\_aggregate}}', which is then randomly shuffled and returned by the thread. The \textit{\textbf{chunk\_aggregates}} are asynchronously inserted in a queue (the order depends on the threads instantiation order) of fixed length equal to the number of workers used. The main dataloader thread manages the \textit{\textbf{chunk\_aggregate}} queue, instantiating the parallel threads such that the queue is always full. Moreover, the main dataloader thread sequentially extracts, when possible, one \textit{\textbf{chunk\_aggregate}} at a time from the queue and then proceeds to return one batch of data at a time from it, when required.
 
-More specifically, in algorithm \ref{alg:Alt3FastDataLoaderInit} ..
-
 \begin{algorithm}
 	\caption{Alt3 FastTensorDataLoader class, Init}\label{alg:Alt3FastDataLoaderInit}
 	\begin{algorithmic}[1]
@@ -2382,7 +2380,7 @@ More specifically, in algorithm \ref{alg:Alt3FastDataLoaderInit} ..
 \end{algorithm}
 
 \begin{algorithm}
-	\caption{Alt3 FastTensorDataLoader class, Iter}\label{Alt3FastDataLoaderIter}
+	\caption{Alt3 FastTensorDataLoader class, Iter}\label{alg:Alt3FastDataLoaderIter}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 		\Function{Iter}{\textit{self}}
@@ -2402,7 +2400,7 @@ More specifically, in algorithm \ref{alg:Alt3FastDataLoaderInit} ..
 \end{algorithm}
 
 \begin{algorithm}
-	\caption{Alt3 FastTensorDataLoader class, Next}\label{Alt3FastDataLoaderNext}
+	\caption{Alt3 FastTensorDataLoader class, Next}\label{alg:Alt3FastDataLoaderNext}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 			\Function{Next}{\textit{self}}
@@ -2414,7 +2412,10 @@ More specifically, in algorithm \ref{alg:Alt3FastDataLoaderInit} ..
 						\State
 						\State \textit{start\_i} $\gets$ \textit{self.chunk\_i}
 						\State \textit{end\_i} $\gets$ \textit{start\_i} + \textit{self.chunks}
-						\State \textit{self.chunk\_agg}, \textit{self.chunk\_agg\_size} $\gets$ \textbf{get\_chunks}(\textit{self.tensor}, \textit{self.chunk\_indices}[\textit{start\_i}:\textit{end\_i}], \textit{self.chunk\_size}, \textit{self.last\_chunk\_size}, \textit{self.n\_chunks}, \textit{self.shuffle})
+						\State \textit{arguments} $\gets$ (\textit{self.tensors}, \textit{self.chunk\_indices}[\textit{start\_i}:\textit{end\_i}],
+						\State \hskip6.5em \textit{self.chunk\_size}, \textit{self.last\_chunk\_size},
+						\State \hskip6.5em \textit{self.n\_chunks}, \textit{self.shuffle})
+						\State \textit{self.chunk\_agg}, \textit{self.chunk\_agg\_size} $\gets$ \textbf{get\_chunks}(\textit{arguments})
 						\State \textit{self.chunk\_i} $\gets$ \textit{end\_i}
 						\State \textit{self.i} $\gets$ 0
 					\EndIf
@@ -2422,8 +2423,10 @@ More specifically, in algorithm \ref{alg:Alt3FastDataLoaderInit} ..
 					\While{\textit{self.chunk\_i} $<$ \textit{self.n\_chunks} \textbf{and} \textbf{len}(\textit{self.async\_results}) $<$ \textit{self.num\_workers}}
 						\State \textit{start\_i} $\gets$ \textit{self.chunk\_i}
 						\State \textit{end\_i} $\gets$ \textit{start\_i} + \textit{self.chunks}
-						\State \textit{arguments} $\gets$ (\textit{self.tensors}, \textit{self.chunk\_indices}[\textit{start\_i}:\textit{end\_i}], \textit{self.chunk\_size}, \textit{self.last\_chunk\_size}, \textit{self.n\_chunks}, \textit{self.shuffle})
-						\State \textit{async\_task} $\gets$ \textit{self.pool}.\textbf{apply\_async}(\textit{get\_chunks}, \textit{arguments})
+						\State \textit{arguments} $\gets$ (\textit{self.tensors}, \textit{self.chunk\_indices}[\textit{start\_i}:\textit{end\_i}],
+						\State \hskip6.5em \textit{self.chunk\_size}, \textit{self.last\_chunk\_size},
+						\State \hskip6.5em \textit{self.n\_chunks}, \textit{self.shuffle})
+						\State \textit{async\_task} $\gets$ \textit{self.pool}.\textbf{apply\_async}(\textbf{get\_chunks}, \textit{arguments})
 						\State \textit{self.async\_results}.\textbf{append}(\textit{async\_task})
 						\State \textit{self.chunk\_i} = \textit{end\_i}
 					\EndWhile
@@ -2448,17 +2451,13 @@ More specifically, in algorithm \ref{alg:Alt3FastDataLoaderInit} ..
 \end{algorithm}
 
 \begin{algorithm}
-	\caption{Alt3 get\_batch function}\label{Alt3GetBatch}
-	\begin{algorithmic}[1] % uncomment [1] for line numbers
+	\caption{Alt3 get\_batch function}\label{alg:Alt3GetBatch}
+	\begin{algorithmic}[1]
 		\Function{get\_batch}{\textit{tensors}, \textit{batch\_size}, \textit{i}, ...}
 		\State \textit{batch} $\gets$ [ ]
-		%\textcolor{codegreen}{\Comment{Get the data in order}}
 		\ForAll{\textit{t} $\in$ \textit{tensors}}
-		%\textcolor{codegreen}{\Comment{For all tensors in \textit{chunk\_agg}}}
 		\State \textit{batch\_data} $\gets$ \textit{t}[\textit{i}:(\textit{i} + \textit{batch\_size})]
-		%\textcolor{codegreen}{\Comment{Select data from the current tensor \textit{t}}}
 		\State \textit{batch}.\textbf{append}(\textit{batch\_data})
-		%\textcolor{codegreen}{\Comment{Append selected \textit{batch\_data} to \textit{batch} array}}
 		\EndFor
 		\State
 		\State \textbf{return} \textit{batch}
@@ -2467,8 +2466,8 @@ More specifically, in algorithm \ref{alg:Alt3FastDataLoaderInit} ..
 \end{algorithm}
 
 \begin{algorithm}
-	\caption{Alt3 get\_chunks function}\label{Alt3GetChunks}
-	\begin{algorithmic}[1] % uncomment [1] for line numbers
+	\caption{Alt3 get\_chunks function}\label{alg:Alt3GetChunks}
+	\begin{algorithmic}[1]
 		\Function{get\_chunks}{\textit{tensors}, \textit{chunk\_indices}, \textit{chunk\_size}, \textit{last\_chunk\_size}, \textit{n\_chunks}, \textit{shuffle}}
 		\If{\textit{n\_chunks} $- 1$ \textbf{in} \textit{chunk\_indices}}
 		\State \textit{chunk\_agg\_size} $\gets$ (\textbf{len}(\textit{chunk\_indices}) $- 1$) $\cdot$ \textit{chunk\_size} + \textit{last\_chunk\_size}
@@ -2478,7 +2477,6 @@ More specifically, in algorithm \ref{alg:Alt3FastDataLoaderInit} ..
 		\State
 		\State \textit{chunk\_agg} $\gets$ [ ]
 		\If {len(\textit{tensors}) = 3}
-		%\textcolor{codegreen}{\Comment{if \textit{tensors} contains also \textit{S} (shas) data}}
 		\State \textit{chunk\_agg}.\textbf{append}(\textbf{emptyNumpyArray})
 		\ForAll{\textit{t} $\in$ \textit{tensors}[$-2$:]}
 		\State \textit{chunk\_agg}.\textbf{append}(\textbf{emptyTensor})
@@ -2517,6 +2515,10 @@ More specifically, in algorithm \ref{alg:Alt3FastDataLoaderInit} ..
 		\EndFunction
 	\end{algorithmic}
 \end{algorithm}
+
+More specifically, in the \textit{Init} function (alg. \ref{alg:Alt3FastDataLoaderInit}), which is similar to the \textit{Init} of the previous alternatives, some \textit{\textbf{FastTensorDataLoader}} variables are set/computed, and a \textit{\textbf{ThreadPool}} is initialized if necessary.
+
+The \textit{Iter} function (alg. \ref{alg:Alt3FastDataLoaderIter}), instead, is used to reset the current \textit{chunk aggregate} (and its size) and the number of already processed chunks for the current cycle (or \textit{epoch}) at the beginning of each \textit{epoch}. Moreover, it also initializes the \textit{chunk indices}, which define the order in which the data chunks are retrieved, randomly or sequentially (linearly) depending on whether shuffling is required.
 
 Selecting different values for \textit{\textbf{chunk\_size}} and \textit{\textbf{n\_chunks}} has an impact on the speed of the dataloader and on the samples dispersion. In fact the samples are not anymore randomly chosen from the whole dataset, but from a random sub-part of it (the \textit{\textbf{chunk\_aggregate}}). This effectively decreases the amount of dispersion (and randomness) of batches possibly affecting the final model generalization. It is therefore better to consider a higher value for \textit{\textbf{n\_chunks}} possibly decreasing \textit{\textbf{chunk\_size}}. Furhtermore, the values for \textit{\textbf{chunk\_size}} and \textit{\textbf{n\_chunks}}) should be chosen carefully since their product results in the number of samples loaded into memory (RAM) at once for a single worker thread. Increasing too much this number (together with the number of workers used) will quickly saturate the available RAM.
 
