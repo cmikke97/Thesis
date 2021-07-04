@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  4 JUL 2021 18:13
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  4 JUL 2021 18:22
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -785,7 +785,7 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 102
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<logopolito.pdf, id=174, 526.79488pt x 523.45164pt>
+<logopolito.pdf, id=166, 526.79488pt x 523.45164pt>
 File: logopolito.pdf Graphic file (type pdf)
 <use logopolito.pdf>
 Package pdftex.def Info: logopolito.pdf  used on input line 143.
@@ -833,40 +833,40 @@ File: lstlang2.sty 2020/03/24 1.8d listings language file
 File: lstlang3.sty 2020/03/24 1.8d listings language file
 )
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 569.
- [21] [22] [23] [24]
+nput line 555.
+ [21] [22] [23]
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 )
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
 File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
-) [25] [26] [27] [28] [29] [30] [31] [32] [33] [34] [35] [36] [37]
+) [24] [25] [26] [27] [28] [29] [30] [31] [32] [33] [34] [35] [36] [37]
 Chapter 3.
 [38
 
 ] [39]
 LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 
-1213.
+1199.
 
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/base\ts1cmtt.fd
 File: ts1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 [40] [41] [42] [43] [44] [45] [46] [47] [48] [49] [50] [51] [52] [53] [54]
 
-LaTeX Warning: Reference `' on page 55 undefined on input line 1863.
+LaTeX Warning: Reference `' on page 55 undefined on input line 1849.
 
 [55]
 
-LaTeX Warning: Citation `accuracyEq' on page 56 undefined on input line 1908.
+LaTeX Warning: Citation `accuracyEq' on page 56 undefined on input line 1894.
 
 
-LaTeX Warning: Citation `precisionEq' on page 56 undefined on input line 1908.
+LaTeX Warning: Citation `precisionEq' on page 56 undefined on input line 1894.
 
 
-LaTeX Warning: Citation `recallEq' on page 56 undefined on input line 1908.
+LaTeX Warning: Citation `recallEq' on page 56 undefined on input line 1894.
 
 
-LaTeX Warning: Citation `fBetaScoreEq' on page 56 undefined on input line 1908.
+LaTeX Warning: Citation `fBetaScoreEq' on page 56 undefined on input line 1894.
 
 
 [56] [57] [58] [59]
@@ -874,13 +874,13 @@ Chapter 4.
 [60
 
 ] [61]
-<./images/Portable_Executable_32_bit_Structure.png, id=1215, 2991.175pt x 4228.
+<./images/Portable_Executable_32_bit_Structure.png, id=1198, 2991.175pt x 4228.
 79875pt>
 File: ./images/Portable_Executable_32_bit_Structure.png Graphic file (type png)
 
 <use ./images/Portable_Executable_32_bit_Structure.png>
 Package pdftex.def Info: ./images/Portable_Executable_32_bit_Structure.png  use
-d on input line 2065.
+d on input line 2051.
 (pdftex.def)             Requested size: 422.50232pt x 597.25443pt.
 
 
@@ -914,24 +914,24 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 \addpenalty ...e \ifdim \lastskip =\z@ \penalty #1
                                                   \relax \else \@tempskipb \...
 ...
-l.2092 	\item \textit
+l.2078 	\item \textit
                      {Data sections, \textbf{.bss}, \textbf{.rdata}, \textbf...
  <./images/Portable_Executable_32_bit_Structure.png>] [64]
 LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 2
-137.
+123.
 
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/base\omscmr.fd
 File: omscmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2137.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2123.
 
 
 [65]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 2158.
+put line 2144.
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2183.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2169.
 
 
 
@@ -951,22 +951,22 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [70] [71] [72] [73]
-<./images/speeds_heatmap.png, id=1322, 722.7pt x 650.43pt>
+<./images/speeds_heatmap.png, id=1305, 722.7pt x 650.43pt>
 File: ./images/speeds_heatmap.png Graphic file (type png)
 <use ./images/speeds_heatmap.png>
-Package pdftex.def Info: ./images/speeds_heatmap.png  used on input line 2516.
+Package pdftex.def Info: ./images/speeds_heatmap.png  used on input line 2502.
 (pdftex.def)             Requested size: 422.50232pt x 380.25685pt.
-<./images/times_heatmap.png, id=1323, 722.7pt x 650.43pt>
+<./images/times_heatmap.png, id=1306, 722.7pt x 650.43pt>
 File: ./images/times_heatmap.png Graphic file (type png)
 <use ./images/times_heatmap.png>
-Package pdftex.def Info: ./images/times_heatmap.png  used on input line 2523.
+Package pdftex.def Info: ./images/times_heatmap.png  used on input line 2509.
 (pdftex.def)             Requested size: 422.50232pt x 380.25685pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Overfull \hbox (2.88963pt too wide) in paragraph at lines 2528--2529
+Overfull \hbox (2.88963pt too wide) in paragraph at lines 2514--2515
 []\OT1/cmr/m/n/10 Given the re-sult-ing heatmaps ([][]4.2[][], [][]4.3[][]), \O
 T1/cmr/bx/it/10 chunk[]size \OT1/cmr/m/n/10 was per-ma-nently set to \OT1/cmr/b
 x/n/10 256 \OT1/cmr/m/n/10 and \OT1/cmr/bx/it/10 n[]chunks
@@ -992,7 +992,7 @@ x/n/10 256 \OT1/cmr/m/n/10 and \OT1/cmr/bx/it/10 n[]chunks
                                                   \fi \global \@mparbottom \...
 <output> ...specialoutput \else \@makecol \@opcol 
                                                   \@startcolumn \@whilesw \i...
-l.2531 
+l.2517 
         <./images/speeds_heatmap.png>] [75pdfTeX warning (ext4): destination wi
 th the same identifier (name{figure.4.3}) has been already used, duplicate igno
 red
@@ -1019,7 +1019,7 @@ red
 \addpenalty ...e \ifdim \lastskip =\z@ \penalty #1
                                                   \relax \else \@tempskipb \...
 ...
-l.2546 \subsection
+l.2532 \subsection
                   {Model Evaluation with Fresh Dataset} <./images/times_heatmap
 .png>] [76]
 Chapter 5.
@@ -1043,9 +1043,9 @@ Chapter 9.
 
 ]
 Chapter 10.
-[82
+(Thesis_V1.0.0.bbl [82
 
-] [83] (Thesis_V1.0.0.bbl [84]
+]
 Underfull \hbox (badness 1242) in paragraph at lines 10--12
 []\OT1/cmr/m/n/10 R. Sharp, ``An in-tro-duc-tion to mal-ware.'' [][]$\OT1/cmtt/
 m/n/10 https : / / orbit . dtu . dk / en / publications /
@@ -1129,7 +1129,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 89--92
 / searchsecurity . techtarget . com / definition /
  []
 
-[85
+[83
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 164--166
@@ -1155,25 +1155,25 @@ Underfull \hbox (badness 1371) in paragraph at lines 199--202
 t/m/n/10 https : / / www . forcepoint . com / cyber-[]edu /
  []
 
-[86]
+[84]
 Underfull \hbox (badness 10000) in paragraph at lines 245--247
 []\OT1/cmr/m/n/10 J. Mu, ``Fast-ten-sor-dat-aloader.'' [][]$\OT1/cmtt/m/n/10 ht
 tps : / / discuss . pytorch . org / t /
  []
 
-) [87] (Thesis_V1.0.0.aux)
+) [85] (Thesis_V1.0.0.aux)
 Package rerunfilecheck Info: File `Thesis_V1.0.0.out' has not changed.
-(rerunfilecheck)             Checksum: D80001D6E237F0AB1F7F39B8D54ACC0B;7732.
+(rerunfilecheck)             Checksum: 431621BA6B0968D8D065436AB5B506ED;7292.
 
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 18880 strings out of 481296
- 308993 string characters out of 2908369
- 957377 words of memory out of 3000000
- 35079 multiletter control sequences out of 15000+600000
+ 18873 strings out of 481296
+ 308895 string characters out of 2908369
+ 958935 words of memory out of 3000000
+ 35076 multiletter control sequences out of 15000+600000
  419183 words of font info for 86 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  134i,17n,137p,2138b,2558s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1206,9 +1206,9 @@ ichele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
 <C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmtt8.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
 sfonts/symbols/msbm10.pfb>
-Output written on Thesis_V1.0.0.pdf (87 pages, 1788046 bytes).
+Output written on Thesis_V1.0.0.pdf (85 pages, 1770703 bytes).
 PDF statistics:
- 1670 PDF objects out of 1728 (max. 8388607)
- 630 named destinations out of 1000 (max. 500000)
- 365 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1643 PDF objects out of 1728 (max. 8388607)
+ 626 named destinations out of 1000 (max. 500000)
+ 349 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -459,22 +459,8 @@ Furthermore, in recent years, targeted attacks on mobile devices have also becom
 In fact, among the huge amount of available apps, an increasing quantity is not desirable; the problem is even worse when considering third-party app stores. Even when app store providers impose filters and manual checks to prevent the malicious apps from being available, some inevitably slip through.
 These mobile malware threats are as various as those targeting desktops and include Trojans, Ransomware, Advertising click fraud and more. They are mostly distributed through phishing and malicious downloads and are a particular problem for jail-broken phones, which tend to lack the default protections that were part of those devices' original operating systems.
 
-\subsection{Malware History}
-Malware history began in the 1960s. Then, hackers used to design computer viruses mainly for fun, as an exciting prank/experiment; their creations would generally display harmless messages and then spread to other computers \cite{ReganWIM}.
-There are numerous examples of malware created at that time within a laboratory setting: for example the \textbf{\textit{Darwing game}} in 1962, \textbf{\textit{Creeper}} in 1971, \textbf{\textit{Rabbit Virus}} in 1974 and \textbf{\textit{Pervading Animal}} in 1975.
-
-In particular, the malware called \textbf{\textit{Creeper}} was designed to infect mainframes on ARPANET. The program did not alter the machines' functions, nor it stole or deleted data. It only displayed the message "I'm the creeper: Catch me if you can" while illegitimately spreading from one mainframe to another. This malware was later upgraded with the ability to self-replicate and became the first known computer worm \cite{LutkevichM}.
-
-In the early 1980s, the concept of malware caught on in the technology industry, and numerous examples of viruses and worms appeared both on Apple and IBM personal computers. With the introduction of the World Wide Web and the commercial internet in the 1990s it eventually became widely popularized, so much that Yisreal Radai coined the term \textbf{malware} in 1990.
-
-The previously mentioned 1960s and 1970s malware were all kept within a laboratory environment and never managed to escape to the wild. \textbf{\textit{Elk Cloner}} (1981) was the first known virus to have been able to escape its creation environment. Then, following the success of that prank gone wild, the first Microsoft PC virus, called \textbf{\textit{Brain}}, was created in 1986. Again, like \textit{Elk Cloner}, Brain was mostly annoying rather than harmful, but it was also the first known virus capable of concealing its presence on the disk thus evading detection. In 1988 the first worm, called \textbf{\textit{Morris}} worm, an experimental, self-propagating, self-replicating program was released on the internet \cite{NamanyaTWM}. In 1988 made its appearance also the first example of intentionally harmful virus, the \textbf{\textit{Vienna}} virus, which encrypted data and destroyed files. This led to the creation of the first antivirus tool ever \cite{ReganWIM}.
-
-In the following decades malware has evolved both regarding its complexity and malware sample numbers.
-
-In the appendix, section \ref{NotableMalwareExamples}, a list of the most famous examples of malware attacks/incidents of recent history can be found.
-
 \section{Detection evasion}
-From the creation of the first malware in 1970 \cite{Szor_P}, there has been a strong competition between attackers and defenders. To defend from malware attacks, anti-malware groups have been developing increasingly complex (and clever) new techniques. On the other hand, malware developers have conceived and adopted new tactics/methods to avoid the malware detectors.
+From the creation of the first malwares in 1960s, when hackers used to design computer viruses mainly for fun, a strong competition between attackers and defenders has risen. To defend from malware attacks, anti-malware groups have been developing increasingly complex (and clever) new techniques. On the other hand, malware developers have conceived and adopted new tactics/methods to avoid the malware detectors \cite{Szor_P}.
 
 The first type of anti-malware tools were mostly based on the assumption that malware structures do not change appreciably during time. In fact, initially, the malware machine code was completely unprotected. This allowed analysts to exploit opcode sequences to recognise specific malware families. 
 Recently, however, a big advancement led to the so-called "second generation" malware \cite{Sharma_2014} which, to evade such opcode signatures, employs several obfuscation techniques and can create variants of itself. This posed a challenge to anti-malware developers.
@@ -2591,51 +2577,6 @@ Si possono evidenziare i punti di forza e quelli di debolezza, nonché i possibil
 
 \color{Black}
 \chapter{Appendix}
-\section{Notable Examples of Malware in Recent History}\label{NotableMalwareExamples}
-
-Here is an overview of the most famous malware or malware-related events in recent history:
-\begin{itemize}
-	\item \textbf{\textit{Melissa}} (1999) - Considered to be one of the first cases of social engineering in history, the Melissa mass-mailing macro virus infected thousands of computers worldwide by the end of 1999. The virus was spread via e-mail, using a malicious Word attachment named "list.doc" and as subject: "Important message from", followed by the victim's username. Once opened, the attachment would execute a macro that mass-mailed the virus to the first 50 people in the user's contact list and disabled multiple security features on Microsoft Word and Microsoft Outlook.
-	
-	\item \textbf{\textit{ILOVEYOU}} (2000) - \textit{ILOVEYOU}, sometimes referred to as \textit{Love Bug} or \textit{Love Letter for you}, was a computer worm that infected over ten million Windows personal computers in 2000. It spread as an email message with the subject line "ILOVEYOU" and the attachment "LOVE-LETTER-FOR-YOU.txt.vbs". Opening the attachment would activate the Visual Basic script which caused damages on the local machine, overwriting random files. Finally, the worm sent a copy of itself to all addresses in the Windows Address Book used by Microsoft Outlook.
-	
-	\item \textbf{\textit{SQL Slammer}} (2003) - This malware exploited a buffer overflow bug in Microsoft's SQL Server and Desktop Engine database products, causing a denial of service on some Internet hosts and dramatically slowing general Internet traffic. It spread rapidly, infecting most of its 75,000 victims within ten minutes.
-	
-	\item \textbf{\textit{MyDoom}} (2004) - Also known as \textit{W32.MyDoom@mm}, \textit{Novarg}, \textit{Mimail.R} and \textit{Shimgapi}, it was a computer worm which affected Microsoft Windows systems. It became known mostly because it tried hitting major technology companies, such as Google and Microsoft. It spread by email using attention-grabbing subjects, such as ?Error?, ?Test? and ?Mail Delivery System?. It became the fastest-spreading e-mail worm ever, exceeding previous records set by the Sobig worm and ILOVEYOU, a record which as of 2021 has yet to be surpassed.
-	
-	\item \textbf{\textit{Conficker}} (2008) - Also known as \textit{Downup}, \textit{Downadup} and \textit{Kido}, this computer worm targeted the Microsoft Windows operating system. It used flaws in Windows OS software and dictionary attacks on administrator passwords to propagate while forming a botnet. The Conficker worm infected over 15 million Windows systems including government, business and home computers in more than 190 countries. This made it the largest known computer worm infection since the 2003 \textit{Welchia}.
-	
-	\item \textbf{\textit{Zeus}} (2007-2009) - Also known as \textit{ZeuS}, or \textit{Zbot}, \textit{Zeus} was a Trojan horse malware that ran on Microsoft Windows. It was able to carry out many malicious and criminal tasks. However, it was most often used to steal banking information through the use of man-in-the-browser keystroke logging and form grabbing. It was also often used to install the \textit{CryptoLocker} ransomware. Zeus spread mainly through drive-by downloads and phishing mails. First identified in mid 2007, it became more widespread in 2009.
-	
-	\item \textbf{\textit{Stuxnet Worm}} (2010) - \textit{Stuxnet} was an extremely sophisticated worm that infected computers worldwide. It was allegedly developed by US and Israeli intelligence to hinder the Iranian nuclear program. It was introduced into the target environment (Iran's nuclear power plant) via a flash drive. Stuxnet's escape from the target environment, which was air-gapped, was not expected. Once in the wild, Stuxnet spread aggressively but mostly harmed the target Iranian nuclear facility, where it damaged uranium-enrichment centrifuges, causing little damage outside of its intended target environment \cite{BakerMCTM}.
-	
-	\item \textbf{\textit{CryptoLocker}} (2013) - It is considered to be one of the first widespread ransomware attacks. It targeted computers running Microsoft Windows and it propagated via infected email attachments. When activated, it encrypted certain types of files stored on local and mounted network drives using RSA public-key cryptography. The private key was stored only on the malware's control servers. A message was then displayed offering to decrypt the data if a payment (through either bitcoin or other means) was made before a certain deadline. After such deadline the private key was deleted. However, paying the ransom did not always lead to the files being decrypted.
-	
-	Its code now keeps getting repurposed in similar malware projects.
-	
-	\item \textbf{\textit{Mirai}} (2016) - \textit{Mirai} is an infamous malware which compromised vulnerable IoT (Internet of Things) devices - such as IP cameras and home routers - turning them into remotely controlled bots.
-	
-	The Mirai botnet, one of the biggest (and worse) botnets in existence, was first found in August 2016 and has been used in some of the largest and most disruptive distributed denial of service (DDoS) attacks, including an attack on computer security journalist Brian Krebs' web site. The source code for Mirai has been published on Hack Forums as open-source, as a result its techniques have been adapted in many other malware projects.
-	
-	\item \textit{\textbf{Petya} and \textbf{NotPetya}} (2016-2017) - These malware attacks spread globally, however their damages particularly targeted Ukraine, where the national bank was hit. The Petya ransomware family caused an estimated \$10 billion in damages worldwide \cite{ReganWIM}. \textit{Petya} targeted Microsoft Windows-based systems, infecting the Master Boot Record (MBR) to execute a payload that encrypted the hard drive's file system table preventing Windows from booting. It subsequently demanded a ransom in Bitcoin to the user in order to regain access to the system.
-	
-	Many variants of Petya were created in the subsequent months. In mid 2017, a new variant of Petya was used for a global cyber-attack, again primarily targeting Ukraine. The new variant spread using the EternalBlue exploit, the same one used by the WannaCry ransomware. This new version was called \textit{NotPetya} to distinguish it from the 2016 variants.
-	
-	\item \textbf{\textit{WannaCry}} (2017) - WannaCry is considered to be one of largest ransomware attacks in history. It targeted computers running Microsoft Windows by encrypting data and demanding ransom payments in Bitcoin. It mainly propagated through EternalBlue, an exploit developed by the U.S. National Security Agency (NSA) for older Windows systems. This exploit was stolen from NSA and leaked approximately one year before the attack. While Microsoft had released security patches against this exploit, some organizations had not applied them, or were using older Windows systems when the attack occurred.
-	
-	The attack was stopped within a few days of its discovery thanks to emergency patches released by Microsoft and the discovery of a kill switch. Before being stopped, WannaCry was spread infecting systems at a terrifying rate of 10,000 PCs per hour \cite{ReganWIM}. In the end, the attack was estimated to have affected more than 200,000 computers across 150 countries, with total damages ranging from hundreds of millions to billions of dollars.
-	
-	\item \textbf{\textit{Emotet}} (2018) - This malware, also known as \textit{Heodo}, was first detected in 2014 as a banking trojan aimed at stealing banking credentials from infected hosts. Throughout 2016 and 2017, its creators updated and reconfigured it to work primarily as a "loader" - a type of malware that gains access to a system, and then allows its operators to download and execute additional payloads. These payloads can be any type of executable code, from Emotet's own modules to malware developed by other cybercriminals.
-	
-	This malware usually makes its way on target systems via a macro virus attached to an email. The infected email appears to be a legitimate reply to an earlier message sent by the victim. When on the system, it is particularly difficult to combat because it evades signature-based detection, is persistent, and includes advanced spreader modules used to propagate effectively. 
-	Emotet authors have often used the malware to create a botnet of infected computers to which they sell access in Malware-as-a-Service to other cybercriminals, such as the Ryuk gang.
-	
-	In 2020, Emotet spread again globally, infecting its victims with TrickBot and Qbot, which are used to steal banking credentials and spread inside networks. In January 2021, Europol and Eurojust coordinated international actions allowed investigators to take control of and disrupt the Emotet infrastructure.
-	
-	\item \textbf{\textit{COVID-19 related attacks}} (2020) - In 2020, many cybercriminals shamelessly took advantage of the people's fear of coronavirus during the COVID-19 pandemic through COVID-19 related phishing scams. Using fake communications, for example spoofing the World Health Organization, attackers deployed malware and got access to targets' sensitive information among other nefarious actions \cite{ReganWIM}.
-	
-	Another COVID-19 attack was that of a malicious Android app called \textit{CovidLock}, which claimed to be a real-time coronavirus outbreak tracker but instead was a ransomware that attempted to trick the user into providing administrative access on their device and then locked it requesting a ransom.
-\end{itemize}
 
 % bibliografia scritta "a mano"
 %\input{biblio.tex}
