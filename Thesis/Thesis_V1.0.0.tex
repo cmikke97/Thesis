@@ -2513,9 +2513,10 @@ Selecting different values for \textit{\textbf{chunk\_size}} and \textit{\textbf
 
 \color{Black}
 \subparagraph{Generator parameters optimization}
-\color{Red}
+To understand the behaviour of the FastTensorDataLoader \textit{\textbf{alt3}} and choose the best combination of \textit{\textbf{chunk\_size}} and \textit{\textbf{n\_chunks}} values possible using 8 threads (which is double the amount of cores available disposal in the instance used for this project) the code speed was cross validated using powers of 2 for both values.
 
-To understand the behaviour of the new dataloader and choose the best combination of values possible using 8 threads (which is double the amount of cores I have at my disposal in the Colab instance and I found is a good number of threads to use) I cross evaluated it using powers of 2 for both values. In particular I developed a function to be used to evaluate the new alternative generator on the target machine. This function performs 'epochs' model training epochs using values for $chunk\_size$ and $n\_chunks$ got from two intervals and plots 2 heatmaps: the first containing the average elapsed times and the second the average speeds.
+\color{Red}
+In particular I developed a function to be used to evaluate the new alternative generator on the target machine. This function performs 'epochs' model training epochs using values for $chunk\_size$ and $n\_chunks$ got from two intervals and plots 2 heatmaps: the first containing the average elapsed times and the second the average speeds.
 In my evaluation run I hard-coded for $chunk\_size$ the powers of 2 ranging from $2^4$ to $2^14$ (included) and for $n\_chunks$ the powers of 2 ranging from $2^3$ to $2^13$.
 Moreover, two further parameters have to be set in order to constrain the evaluation to meaningful values: $min\_mul$ and $max\_mul$. In fact, as previously mentioned, the product of $chunk\_size \times n\_chunks$ gives the total number of samples in one $chunk\_aggregate$ (which resides in main memory). $min\_mul$ and $max\_mul$ indicate the minimum and maximum number of batches retrievable from the resulting $chunk\_aggregate$.
 In my run I considered for $min\_mul$ the value 1 and for $max\_mul$ the value 32. This was done in order to be able to retrieve at least one batch from the $chunk\_aggregate$ without saturating the available RAM (having for $max\_mul$ a value greater than $32 * batch\_size$ would be too mutch for my instance).
