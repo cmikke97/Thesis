@@ -2461,16 +2461,9 @@ This optimization uses a new FastTensorDataLoader class which exploits a pool of
 		\EndIf
 		\State
 		\State \textit{chunk\_agg} $\gets$ [ ]
-		\If {len(\textit{tensors}) = 3}
-		\State \textit{chunk\_agg}.\textbf{append}(\textbf{emptyNumpyArray})
-		\ForAll{\textit{t} $\in$ \textit{tensors}[$-2$:]}
-		\State \textit{chunk\_agg}.\textbf{append}(\textbf{emptyTensor})
-		\EndFor
-		\Else
 		\ForAll{\textit{t} $\in$ \textit{tensors}}
 		\State \textit{chunk\_agg}.\textbf{append}(\textbf{emptyTensor})
 		\EndFor
-		\EndIf
 		\State
 		\State \textit{c\_start} $\gets$ 0
 		\ForAll{\textit{idx} $\in$ [0, ..., \textbf{len}(\textit{chunk\_indices})]}
@@ -2482,17 +2475,17 @@ This optimization uses a new FastTensorDataLoader class which exploits a pool of
 		\State \textit{c\_end} $\gets$ \textit{c\_start} + \textit{last\_chunk\_size}
 		\State \textit{t\_end} $\gets$ \textit{t\_start} + \textit{last\_chunk\_size}
 		\EndIf
-		
+		\State
 		\For{\textit{i}, \textit{t} $\in$ \textbf{enumerate}(\textit{tensors})}
 		\State \textit{chunk\_agg}[\textit{i}][\textit{c\_start}:\textit{c\_end}] $\gets$ \textit{t}[\textit{t\_start}:\textit{t\_end}]
 		\EndFor
-		\State \textit{c\_start} $=$ \textit{c\_end}
+		\State \textit{c\_start} $\gets$ \textit{c\_end}
 		\EndFor
 		\State
-		\If{\textit{shuffle} $=$ \textit{true}}
-		\State \textit{r} $=$ \textbf{randperm}(\textit{chunk\_agg\_size})
+		\If{\textit{shuffle}}
+		\State \textit{r} $\gets$ \textbf{randperm}(\textit{chunk\_agg\_size})
 		\For{\textit{i}, \textit{t} $\in$ \textbf{enumerate}(\textit{chunk\_agg})}
-		\State \textit{chunk\_agg}[\textit{i}] $=$ \textit{t}[\textit{r}]
+		\State \textit{chunk\_agg}[\textit{i}] $\gets$ \textit{t}[\textit{r}]
 		\EndFor
 		\EndIf
 		\State
