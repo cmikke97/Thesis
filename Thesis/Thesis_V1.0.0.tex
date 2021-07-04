@@ -2204,7 +2204,7 @@ As previously mentioned, this implementation is faster than the original Sorel20
 	\caption{Pytorch Dataloader definition}\label{alg:PytorchDataloader}
 	\begin{algorithmic}[1]
 		\State \textit{ds} $\gets$ \textbf{Dataset}(\textit{ds\_root}, \textit{mode}, \textit{n\_samples}, \textit{return\_shas}, ...)
-		\State \textit{generator} $\gets$ \textbf{Pytorch\_DataLoader}(\textit{ds}, \textit{batch\_size}, \textit{shuffle}, \textit{num\_workers})
+		\State \textit{generator} $\gets$ \textbf{Pytorch\_DataLoader}(\textit{ds}, \textit{batch\_size}, \textit{shuffle}, \textit{n\_workers})
 	\end{algorithmic}
 \end{algorithm}
 
@@ -2218,11 +2218,11 @@ In the alternative generator 2 ('\textit{\textbf{alt2}}'), on the other hand, th
 \begin{algorithm}
 	\caption{Alt1/Alt2 FastTensorDataLoader class, Init function}\label{alg:Alt1_2FastDataLoaderInit}
 	\begin{algorithmic}[1]
-		\Function{Init}{\textit{self}, \textit{tensors}, \textit{batch\_size}, \textit{shuffle}, \textit{num\_workers}, ...}
+		\Function{Init}{\textit{self}, \textit{tensors}, \textit{batch\_size}, \textit{shuffle}, \textit{n\_workers}, ...}
 		\State \textit{self.tensors} $\gets$ \textit{tensors}
 		\State \textit{self.batch\_size} $\gets$ \textit{batch\_size}
 		\State \textit{self.shuffle} $\gets$ \textit{shuffle}
-		\State \textit{self.num\_workers} $\gets$ \textit{num\_workers}
+		\State \textit{self.n\_workers} $\gets$ \textit{n\_workers}
 		\State \textit{self.dataset\_len} $\gets$ \textit{tensors}[0].\textbf{shape}[0]
 		\State
 		\If{\textit{num\_workers} $> 1$}
@@ -2273,7 +2273,7 @@ In the alternative generator 2 ('\textit{\textbf{alt2}}'), on the other hand, th
 	\begin{algorithmic}[1]
 		\Function{Next}{\textit{self}}
 		\If{\textit{self.i} $\ge$ \textit{self.dataset\_len}}
-		\If{(\textit{self.num\_workers} $= 1$ \textbf{or} \textbf{len}(\textit{self.async\_results}) $= 0$)}
+		\If{(\textit{self.n\_workers} $= 1$ \textbf{or} \textbf{len}(\textit{self.async\_results}) $= 0$)}
 		\State \textbf{raise} \textit{StopIteration}
 		\EndIf
 		\EndIf
@@ -2283,7 +2283,7 @@ In the alternative generator 2 ('\textit{\textbf{alt2}}'), on the other hand, th
 		\State \textit{self.i} $\gets$ \textit{self.i} + \textit{self.batch\_size}
 		\State \textbf{return} \textit{batch}
 		\Else
-		\While{\textit{self.i} $<$ \textit{self.dataset\_len} \textbf{and} \textbf{len}(\textit{self.async\_results}) $<$ \textit{self.num\_workers}}
+		\While{\textit{self.i} $<$ \textit{self.dataset\_len} \textbf{and} \textbf{len}(\textit{self.async\_results}) $<$ \textit{self.n\_workers}}
 		\State \textit{arguments} $\gets$ (\textit{self.tensors}, \textit{self.batch\_size}, \textit{self.i}, (\textit{self.indices}))
 		\State \textit{async\_task} $\gets$ \textit{self.pool}.\textbf{apply\_async}(\textbf{get\_batch}, \textit{arguments})
 		\State \textit{self.async\_results}.\textbf{append}(\textit{async\_task})
@@ -2353,17 +2353,17 @@ The generator alternative 3 ('\textit{\textbf{alt3}}') managed to considerably s
 
 This optimization uses a new FastTensorDataLoader class which exploits a pool of threads to asynchronously load the dataset into memory in chunks of consecutive data. In particular each thread loads into memory '\textit{\textbf{n\_chunks}}' randomly chosen chunks. Each thread then proceeds to concatenate together its '\textit{\textbf{n\_chunks}}' chunks, which contain '\textit{\textbf{chunk\_size}}' malware samples each, generating each a '\textit{\textbf{chunk\_aggregate}}', which is then randomly shuffled and returned by the thread. The \textit{\textbf{chunk\_aggregates}} are asynchronously inserted in a queue (the order depends on the threads instantiation order) of fixed length equal to the number of workers used. The main dataloader thread manages the \textit{\textbf{chunk\_aggregate}} queue, instantiating the parallel threads such that the queue is always full. Moreover, the main dataloader thread sequentially extracts, when possible, one \textit{\textbf{chunk\_aggregate}} at a time from the queue and then proceeds to return one batch of data at a time from it, when required.
 
-\begin{algorithm}
+\begin{algorithm} [h]
 	\caption{Alt3 FastTensorDataLoader class, Init}\label{alg:Alt3FastDataLoaderInit}
 	\begin{algorithmic}[1]
 		\Class{FastTensorDataloader}
-		\Function{Init}{\textit{self}, \textit{tensors}, \textit{batch\_size}, \textit{chunk\_size}, \textit{chunks}, \textit{shuffle}, \textit{num\_workers}, ...}
+		\Function{Init}{\textit{self}, \textit{tensors}, \textit{batch\_size}, \textit{chunk\_size}, \textit{chunks}, \textit{shuffle}, \textit{n\_workers}, ...}
 		\State \textit{self.tensors} $\gets$ \textit{tensors}
 		\State \textit{self.batch\_size} $\gets$ \textit{batch\_size}
 		\State \textit{self.chunk\_size} $\gets$ \textit{chunk\_size}
 		\State \textit{self.chunks} $\gets$ \textit{chunks}
 		\State \textit{self.shuffle} $\gets$ \textit{shuffle}
-		\State \textit{self.num\_workers} $\gets$ \textit{num\_workers}
+		\State \textit{self.n\_workers} $\gets$ \textit{n\_workers}
 		\State \textit{self.dataset\_len} $\gets$ \textit{tensors}[0].\textit{shape}[0]
 		\State
 		\If{\textit{num\_workers} $> 1$}
@@ -2379,7 +2379,7 @@ This optimization uses a new FastTensorDataLoader class which exploits a pool of
 	\end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}
+\begin{algorithm}[h]
 	\caption{Alt3 FastTensorDataLoader class, Iter}\label{alg:Alt3FastDataLoaderIter}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
@@ -2404,7 +2404,7 @@ This optimization uses a new FastTensorDataLoader class which exploits a pool of
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 			\Function{Next}{\textit{self}}
-				\If{\textit{self.num\_workers} $= 1$}
+				\If{\textit{self.n\_workers} $= 1$}
 					\If{\textit{self.chunk\_agg} \textbf{is} None \textbf{or} \textit{self.i} $\ge$ \textit{self.chunk\_agg\_size}}
 						\If{\textit{self.chunk\_i} $\ge$ \textit{self.n\_chunks}}
 							\State \textbf{raise} \textit{StopIteration}
@@ -2420,7 +2420,7 @@ This optimization uses a new FastTensorDataLoader class which exploits a pool of
 						\State \textit{self.i} $\gets$ 0
 					\EndIf
 				\Else
-					\While{\textit{self.chunk\_i} $<$ \textit{self.n\_chunks} \textbf{and} \textbf{len}(\textit{self.async\_results}) $<$ \textit{self.num\_workers}}
+					\While{\textit{self.chunk\_i} $<$ \textit{self.n\_chunks} \textbf{and} \textbf{len}(\textit{self.async\_results}) $<$ \textit{self.n\_workers}}
 						\State \textit{start\_i} $\gets$ \textit{self.chunk\_i}
 						\State \textit{end\_i} $\gets$ \textit{start\_i} + \textit{self.chunks}
 						\State \textit{arguments} $\gets$ (\textit{self.tensors}, \textit{self.chunk\_indices}[\textit{start\_i}:\textit{end\_i}],
@@ -2428,7 +2428,7 @@ This optimization uses a new FastTensorDataLoader class which exploits a pool of
 						\State \hskip6.5em \textit{self.n\_chunks}, \textit{self.shuffle})
 						\State \textit{async\_task} $\gets$ \textit{self.pool}.\textbf{apply\_async}(\textbf{get\_chunks}, \textit{arguments})
 						\State \textit{self.async\_results}.\textbf{append}(\textit{async\_task})
-						\State \textit{self.chunk\_i} = \textit{end\_i}
+						\State \textit{self.chunk\_i} $\gets$ \textit{end\_i}
 					\EndWhile
 					\State
 					\If{\textit{self.chunk\_agg} \textbf{is} None \textbf{or} \textit{self.i} $>=$ \textit{self.chunk\_agg\_size}}
@@ -2436,7 +2436,7 @@ This optimization uses a new FastTensorDataLoader class which exploits a pool of
 							\State \textbf{raise} \textit{StopIteration}
 						\EndIf
 						\State
-						\State \textit{current\_result} = \textit{self.async\_results}.\textbf{pop}(0)
+						\State \textit{current\_result} $\gets$ \textit{self.async\_results}.\textbf{pop}(0)
 						\State \textit{self.chunk\_agg}, \textit{self.chunk\_agg\_size} $\gets$ \textit{current\_result}.\textbf{get}()
 						\State \textit{self.i} $\gets$ 0
 					\EndIf
@@ -2447,21 +2447,6 @@ This optimization uses a new FastTensorDataLoader class which exploits a pool of
 				\State \textbf{return} \textit{batch}
 			\EndFunction
 		\EndClass
-	\end{algorithmic}
-\end{algorithm}
-
-\begin{algorithm}
-	\caption{Alt3 get\_batch function}\label{alg:Alt3GetBatch}
-	\begin{algorithmic}[1]
-		\Function{get\_batch}{\textit{tensors}, \textit{batch\_size}, \textit{i}, ...}
-		\State \textit{batch} $\gets$ [ ]
-		\ForAll{\textit{t} $\in$ \textit{tensors}}
-		\State \textit{batch\_data} $\gets$ \textit{t}[\textit{i}:(\textit{i} + \textit{batch\_size})]
-		\State \textit{batch}.\textbf{append}(\textit{batch\_data})
-		\EndFor
-		\State
-		\State \textbf{return} \textit{batch}
-		\EndFunction
 	\end{algorithmic}
 \end{algorithm}
 
@@ -2519,6 +2504,10 @@ This optimization uses a new FastTensorDataLoader class which exploits a pool of
 More specifically, in the \textit{Init} function (alg. \ref{alg:Alt3FastDataLoaderInit}), which is similar to the \textit{Init} of the previous alternatives, some \textit{\textbf{FastTensorDataLoader}} variables are set/computed, and a \textit{\textbf{ThreadPool}} is initialized if necessary.
 
 The \textit{Iter} function (alg. \ref{alg:Alt3FastDataLoaderIter}), instead, is used to reset the current \textit{chunk aggregate} (and its size) and the number of already processed chunks for the current cycle (or \textit{epoch}) at the beginning of each \textit{epoch}. Moreover, it also initializes the \textit{chunk indices}, which define the order in which the data chunks are retrieved, randomly or sequentially (linearly) depending on whether shuffling is required.
+
+In algorithm \ref{alg:Alt3FastDataLoaderNext} is presented the \textit{\textbf{FastTensorDataLoader}} \textit{\textbf{alt3}} \textit{Next} member function, which is used for managing the asynchronous extraction of chunks of consecutive samples from the dataset and for returning a single batch of data. In particular, when the selected number of workers is 1 then if all the data of the current \textit{chunk aggregate} has been cycled through (or it is the first function call) the function simply extracts a single new \textit{chunk aggregate} (which is a concatenation of multiple chunks selected randomly or linearly depending on the value of \textit{self.shuffle} variable) through the \textbf{get\_chunks} function and updates the number of already processed chunks for the current \textit{epoch} and the number of extracted samples from that specific \textit{chunk aggregate}. This is however done only if the number of chunks already processed is less than the total amount of chunks, otherwise the \textit{StopIteration} exception is raised. When the number of workers is greater than 1, on the other hand, until the number of extracted chunks is less than the total amount the function prepares a number of asynchronous tasks of \textit{chunk aggregate} extraction such that the queue (of size equal to the number of selected number of workers) in which they are inserted is always full, and also updates the number of extracted chunks appropriately. Then when the current \textit{chunk aggregate} data has been explored completely (or when it is the first function call), if the async task queue is empty it raises the \textit{StopIteration} exception because it means there are no more \textit{chunk aggregates} for the current \textit{epoch}; otherwise the function gets the first async task from the queue and waits for its result (which is the extracted \textit{chunk aggregate}). Independently from the number of workers used, the function then proceeds to efficiently get a single batch of data from the current already-in-memory \textit{chunk aggregate} and returns it.
+
+The \textbf{GetBatch} function used in generator \textit{\textbf{alt3}} is the same one already exploited in version \textit{\textbf{alt2}} (\ref{alg:Alt2GetBatch}), however, \textit{\textbf{alt3}} sees the addition of the \textbf{GetChunks} function (\ref{alg:Alt3GetChunks}).
 
 Selecting different values for \textit{\textbf{chunk\_size}} and \textit{\textbf{n\_chunks}} has an impact on the speed of the dataloader and on the samples dispersion. In fact the samples are not anymore randomly chosen from the whole dataset, but from a random sub-part of it (the \textit{\textbf{chunk\_aggregate}}). This effectively decreases the amount of dispersion (and randomness) of batches possibly affecting the final model generalization. It is therefore better to consider a higher value for \textit{\textbf{n\_chunks}} possibly decreasing \textit{\textbf{chunk\_size}}. Furhtermore, the values for \textit{\textbf{chunk\_size}} and \textit{\textbf{n\_chunks}}) should be chosen carefully since their product results in the number of samples loaded into memory (RAM) at once for a single worker thread. Increasing too much this number (together with the number of workers used) will quickly saturate the available RAM.
 
