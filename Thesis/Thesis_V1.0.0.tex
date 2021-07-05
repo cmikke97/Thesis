@@ -2621,6 +2621,7 @@ The \textit{\textbf{evaluate\_fresh}} function provides, together with the \text
 In practice, for all the experiments presented in this document the number of query samples $q$ was set to 100.
 
 \chapter{ML-based Malware Detection/Description Methods Implementation}
+The state of the art malware detection/description methods presented above, namely \textit{Auxiliary Loss Optimization for Hypothesis Augmentation} (\textbf{ALOHA} model, \cite{ruddALOHA}), \textit{Automatic Malware Description via Attribute Tagging and Similarity Embedding} (\textbf{Joint Embedding} model, \cite{DucauAMDATSE}) and \textit{Learning from Context: Exploiting and Interpreting File Path Information for Better Malware Detection} (\textbf{File content + contextual file path (PE + FP)} model, \cite{KyadigeLFCEIFPIBMD}), represent a good starting point for further research in this topic. Moreover, the models used in those methods can easily be modified to work with Sorel20M dataset, with the exception of the \textbf{PE + FP} model \cite{KyadigeLFCEIFPIBMD} since the mentioned dataset provides no file path information (and it is unfeasible to extend it with the needed additional information).
 
 \begin{figure}[h]
 	\centering
