@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  5 JUL 2021 16:48
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  5 JUL 2021 19:09
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -852,11 +852,11 @@ LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line
 File: ts1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 [40] [41] [42] [43] [44] [45] [46] [47] [48] [49] [50]
-<./images/ALOHA.png, id=1060, 537.6888pt x 336.0555pt>
+<./images/ALOHA.png, id=1060, 530.4618pt x 336.0555pt>
 File: ./images/ALOHA.png Graphic file (type png)
 <use ./images/ALOHA.png>
 Package pdftex.def Info: ./images/ALOHA.png  used on input line 1775.
-(pdftex.def)             Requested size: 422.50232pt x 264.07591pt.
+(pdftex.def)             Requested size: 422.50232pt x 267.67049pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -888,18 +888,18 @@ e.3.1}) has been already used, duplicate ignored
 ...
 l.1811 \end{equation}
                       <./images/ALOHA.png>] [53] [54]
-<./images/Multi_Head.png, id=1120, 450.2421pt x 191.5155pt>
+<./images/Multi_Head.png, id=1120, 456.0237pt x 191.5155pt>
 File: ./images/Multi_Head.png Graphic file (type png)
 <use ./images/Multi_Head.png>
 Package pdftex.def Info: ./images/Multi_Head.png  used on input line 1888.
-(pdftex.def)             Requested size: 422.50232pt x 179.72357pt.
+(pdftex.def)             Requested size: 422.50232pt x 177.4442pt.
  [55]
-<./images/Joint_Embedding.png, id=1133, 421.3341pt x 258.7266pt>
+<./images/Joint_Embedding.png, id=1133, 412.6617pt x 244.2726pt>
 File: ./images/Joint_Embedding.png Graphic file (type png)
 <use ./images/Joint_Embedding.png>
 Package pdftex.def Info: ./images/Joint_Embedding.png  used on input line 1897.
 
-(pdftex.def)             Requested size: 422.50232pt x 259.45628pt.
+(pdftex.def)             Requested size: 422.50232pt x 250.09776pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -951,13 +951,13 @@ plicate ignored
                                                   \fi \global \@mparbottom \...
 <output> ...specialoutput \else \@makecol \@opcol 
                                                   \@startcolumn \@whilesw \i...
-l.1939 
-        <./images/Joint_Embedding.png>] [58] [59] [60] [61]
+l.1942 
+        <./images/Joint_Embedding.png>] [58] [59] [60]
 Chapter 4.
-[62
+[61
 
-] [63]
-<./images/Portable_Executable_32_bit_Structure.png, id=1227, 2991.175pt x 4228.
+] [62]
+<./images/Portable_Executable_32_bit_Structure.png, id=1223, 2991.175pt x 4228.
 79875pt>
 File: ./images/Portable_Executable_32_bit_Structure.png Graphic file (type png)
 
@@ -969,10 +969,10 @@ d on input line 2100.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[64]
+[63]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [65pdfTeX warning (ext4): destination with the same identifier (name{figure.4.
+ [64pdfTeX warning (ext4): destination with the same identifier (name{figure.4.
 1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
@@ -999,7 +999,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 ...
 l.2127 	\item \textit
                      {Data sections, \textbf{.bss}, \textbf{.rdata}, \textbf...
- <./images/Portable_Executable_32_bit_Structure.png>] [66]
+ <./images/Portable_Executable_32_bit_Structure.png>] [65]
 LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 2
 172.
 
@@ -1010,7 +1010,7 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2172.
 
 
-[67]
+[66]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
 put line 2193.
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
@@ -1020,7 +1020,7 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[68] [69] [70] [71]
+[67] [68] [69] [70]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
@@ -1033,13 +1033,13 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[72] [73] [74] [75]
-<./images/speeds_heatmap.png, id=1333, 722.7pt x 650.43pt>
+[71] [72] [73] [74]
+<./images/speeds_heatmap.png, id=1329, 722.7pt x 650.43pt>
 File: ./images/speeds_heatmap.png Graphic file (type png)
 <use ./images/speeds_heatmap.png>
 Package pdftex.def Info: ./images/speeds_heatmap.png  used on input line 2551.
 (pdftex.def)             Requested size: 422.50232pt x 380.25685pt.
-<./images/times_heatmap.png, id=1334, 722.7pt x 650.43pt>
+<./images/times_heatmap.png, id=1330, 722.7pt x 650.43pt>
 File: ./images/times_heatmap.png Graphic file (type png)
 <use ./images/times_heatmap.png>
 Package pdftex.def Info: ./images/times_heatmap.png  used on input line 2558.
@@ -1055,7 +1055,7 @@ T1/cmr/bx/it/10 chunk[]size \OT1/cmr/m/n/10 was per-ma-nently set to \OT1/cmr/b
 x/n/10 256 \OT1/cmr/m/n/10 and \OT1/cmr/bx/it/10 n[]chunks
  []
 
-[76pdfTeX warning (ext4): destination with the same identifier (name{figure.4.2
+[75pdfTeX warning (ext4): destination with the same identifier (name{figure.4.2
 }) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
@@ -1076,7 +1076,7 @@ x/n/10 256 \OT1/cmr/m/n/10 and \OT1/cmr/bx/it/10 n[]chunks
 <output> ...specialoutput \else \@makecol \@opcol 
                                                   \@startcolumn \@whilesw \i...
 l.2566 
-        <./images/speeds_heatmap.png>] [77pdfTeX warning (ext4): destination wi
+        <./images/speeds_heatmap.png>] [76pdfTeX warning (ext4): destination wi
 th the same identifier (name{figure.4.3}) has been already used, duplicate igno
 red
 <argument> ...shipout:D \box_use:N \l_shipout_box 
@@ -1101,15 +1101,118 @@ red
                    A
 l.2572 A
          function called \textit{\textbf{build\_fresh\_dataset}} was specifi...
- <./images/times_heatmap.png>] [78] [79]
+ <./images/times_heatmap.png>] [77] [78]
 Chapter 5.
-[80
+<./images/ALOHA_Implementation.png, id=1366, 575.2692pt x 234.8775pt>
+File: ./images/ALOHA_Implementation.png Graphic file (type png)
+<use ./images/ALOHA_Implementation.png>
+Package pdftex.def Info: ./images/ALOHA_Implementation.png  used on input line 
+2627.
+(pdftex.def)             Requested size: 422.50232pt x 172.50923pt.
+<./images/Joint_Embedding_Implementation.png, id=1367, 481.3182pt x 257.2812pt>
 
-]
+File: ./images/Joint_Embedding_Implementation.png Graphic file (type png)
+<use ./images/Joint_Embedding_Implementation.png>
+Package pdftex.def Info: ./images/Joint_Embedding_Implementation.png  used on i
+nput line 2634.
+(pdftex.def)             Requested size: 422.50232pt x 225.84285pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[79
+
+pdfTeX warning (ext4): destination with the same identifier (name{figure.5.1}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+\use_ii:nn #1#2->#2
+                   
+<argument> ...ipout:D \box_use:N \l_shipout_box }}
+                                                  \cs_set_eq:NN \protect \__...
+
+\use_ii:nn #1#2->#2
+                   
+<to be read again> \__shipout_execute_cont: 
+                                            \endgroup \set@typeset@protect 
+\@outputpage ...width {\@thefoot }\color@endbox }}
+                                                  \global \let \if@newlist \...
+
+\@opcol ...lumn \@outputdblcol \else \@outputpage 
+                                                  \fi \global \@mparbottom \...
+<output> ...specialoutput \else \@makecol \@opcol 
+                                                  \@startcolumn \@whilesw \i...
+
+\newpage ...prevdepth \fi \fi \vfil \penalty -\@M 
+                                                  
+\clearpage ...opskip \hbox {}\fi \fi \fi \newpage 
+                                                  \write \m@ne {}\vbox {}\pe...
+...
+l.2640 
+        <./images/ALOHA_Implementation.png>] [80pdfTeX warning (ext4): destinat
+ion with the same identifier (name{figure.5.2}) has been already used, duplicat
+e ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+\use_ii:nn #1#2->#2
+                   
+<argument> ...ipout:D \box_use:N \l_shipout_box }}
+                                                  \cs_set_eq:NN \protect \__...
+
+\use_ii:nn #1#2->#2
+                   
+<to be read again> \__shipout_execute_cont: 
+                                            \endgroup \set@typeset@protect 
+\@outputpage ...width {\@thefoot }\color@endbox }}
+                                                  \global \let \if@newlist \...
+
+\@opcol ...lumn \@outputdblcol \else \@outputpage 
+                                                  \fi \global \@mparbottom \...
+<argument> \@opcol 
+                   \@makefcolumn \@deferlist 
+\@whilesw #1\fi #2->#1#2
+                        \@iwhilesw {#1#2}\fi \fi 
+\@doclearpage ...opcol \@makefcolumn \@deferlist }
+                                                  \if@twocolumn \if@firstcol...
+...
+l.2640 
+        <./images/Joint_Embedding_Implementation.png>]
 Chapter 6.
+<./images/Proposed_Joint_Embedding.png, id=1381, 570.2103pt x 297.7524pt>
+File: ./images/Proposed_Joint_Embedding.png Graphic file (type png)
+<use ./images/Proposed_Joint_Embedding.png>
+Package pdftex.def Info: ./images/Proposed_Joint_Embedding.png  used on input l
+ine 2643.
+(pdftex.def)             Requested size: 422.50232pt x 220.62863pt.
 [81
 
-]
+pdfTeX warning (ext4): destination with the same identifier (name{figure.6.1}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+\use_ii:nn #1#2->#2
+                   
+<argument> ...ipout:D \box_use:N \l_shipout_box }}
+                                                  \cs_set_eq:NN \protect \__...
+
+\use_ii:nn #1#2->#2
+                   
+<to be read again> \__shipout_execute_cont: 
+                                            \endgroup \set@typeset@protect 
+\@outputpage ...width {\@thefoot }\color@endbox }}
+                                                  \global \let \if@newlist \...
+
+\@opcol ...lumn \@outputdblcol \else \@outputpage 
+                                                  \fi \global \@mparbottom \...
+<output> ...specialoutput \else \@makecol \@opcol 
+                                                  \@startcolumn \@whilesw \i...
+
+\newpage ...prevdepth \fi \fi \vfil \penalty -\@M 
+                                                  
+\clearpage ...opskip \hbox {}\fi \fi \fi \newpage 
+                                                  \write \m@ne {}\vbox {}\pe...
+...
+l.2649 
+        <./images/Proposed_Joint_Embedding.png>]
 Chapter 7.
 [82
 
@@ -1240,10 +1343,10 @@ Package rerunfilecheck Info: File `Thesis_V1.0.0.out' has not changed.
 (rerunfilecheck)             Checksum: 1757CBAB411C880CCE39DB32B0700310;7230.
  ) 
 Here is how much of TeX's memory you used:
- 18916 strings out of 481296
- 309927 string characters out of 2908369
- 960453 words of memory out of 3000000
- 35104 multiletter control sequences out of 15000+600000
+ 18940 strings out of 481296
+ 310775 string characters out of 2908369
+ 960626 words of memory out of 3000000
+ 35122 multiletter control sequences out of 15000+600000
  420599 words of font info for 90 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  134i,17n,137p,2138b,2558s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1276,9 +1379,9 @@ ichele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
 <C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmtt8.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
 sfonts/symbols/msbm10.pfb>
-Output written on Thesis_V1.0.0.pdf (88 pages, 2056683 bytes).
+Output written on Thesis_V1.0.0.pdf (88 pages, 2373824 bytes).
 PDF statistics:
- 1686 PDF objects out of 1728 (max. 8388607)
- 637 named destinations out of 1000 (max. 500000)
- 364 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1695 PDF objects out of 1728 (max. 8388607)
+ 640 named destinations out of 1000 (max. 500000)
+ 379 words of extra memory for PDF output out of 10000 (max. 10000000)
 
