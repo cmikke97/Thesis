@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  5 JUL 2021 11:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  5 JUL 2021 11:47
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -1139,22 +1139,17 @@ tps : / / discuss . pytorch . org / t /
  []
 
 ) [86] (Thesis_V1.0.0.aux)
+Package rerunfilecheck Info: File `Thesis_V1.0.0.out' has not changed.
+(rerunfilecheck)             Checksum: 1757CBAB411C880CCE39DB32B0700310;7230.
 
-Package rerunfilecheck Warning: File `Thesis_V1.0.0.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `Thesis_V1.0.0.out':
-(rerunfilecheck)             Before: 431621BA6B0968D8D065436AB5B506ED;7292
-(rerunfilecheck)             After:  1757CBAB411C880CCE39DB32B0700310;7230.
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
  18891 strings out of 481296
- 309149 string characters out of 2908369
- 960294 words of memory out of 3000000
+ 309375 string characters out of 2908369
+ 960324 words of memory out of 3000000
  35087 multiletter control sequences out of 15000+600000
  420599 words of font info for 90 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
@@ -1188,7 +1183,7 @@ ichele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
 <C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmtt8.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
 sfonts/symbols/msbm10.pfb>
-Output written on Thesis_V1.0.0.pdf (86 pages, 1779576 bytes).
+Output written on Thesis_V1.0.0.pdf (86 pages, 1779508 bytes).
 PDF statistics:
  1663 PDF objects out of 1728 (max. 8388607)
  632 named destinations out of 1000 (max. 500000)

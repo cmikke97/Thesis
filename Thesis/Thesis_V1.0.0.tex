@@ -560,7 +560,7 @@ Particularly, in the case of conditional branches, the disassembler needs to fol
 One of the most used anti-disassembly techniques consists of two consecutive conditional \textit{jump} instructions both pointing to the same target \cite{SikorskiPMA}.
 
 Here is an example:
-\begin{lstlisting}[caption={Jump Instructions with the Same Target}, label=JumpSameTarget, language={[x86masm]Assembler}, style=mystyle]
+\begin{lstlisting}[caption={Jump Instructions with the Same Target}, label=code:JumpSameTarget, language={[x86masm]Assembler}, style=mystyle]
 	74 03		jz 	loc
 	75 01		jnz	loc
 	
@@ -574,7 +574,7 @@ Consequently, the combination of \textbf{jz} with \textbf{jnz} acts, in this cas
 Another common anti-disassembly technique is composed of a single conditional \textit{jump} instruction with an always true (or false) condition \cite{SikorskiPMA}.
 
 Example:
-\begin{lstlisting}[caption={Jump Instructions with a Constant Condition example}, label=JumpConstant, language={[x86masm]Assembler}, style=mystyle]
+\begin{lstlisting}[caption={Jump Instructions with a Constant Condition example}, label=code:JumpConstant, language={[x86masm]Assembler}, style=mystyle]
 	33 C0		xor	eax, eax
 	74 01		jz 	loc
 	
@@ -593,7 +593,7 @@ However, there are some conditions in which no traditional assembly listing can 
 The core idea behind these techniques is to make the \textit{rogue byte} part of a legitimate instruction that is executed at runtime. This way the \textit{rogue byte} becomes not ignorable during disassembly. In this scenario any given byte may be a part of multiple instructions that are executed. This is done using \textit{jump} instructions. The processor, while running the code, will interpret and execute the bytes following the logical flow of the program, so there is no limitation on the number of instructions the same byte can be part of; a disassembler, however, has such limitations since it will usually represent a single byte as being part of a single instruction.
 
 Example:
-\begin{lstlisting}[caption={Impossible Disassembly example}, label=ImpossibleDisassembly, language={[x86masm]Assembler}, style=mystyle]
+\begin{lstlisting}[caption={Impossible Disassembly example}, label=code:ImpossibleDisassembly, language={[x86masm]Assembler}, style=mystyle]
 	EB 
 				JMP -1
 	FF
@@ -675,7 +675,7 @@ Here are some examples of common Windows API functions used for \textit{anti-deb
 	\item \textbf{OutputDebugString}
 	This function, originally designed to just send a string to a debugger for display, can be used to detect the presence of a debugger. In fact, in there is no debugger attached, the function will internally set the last-error code. In a few lines of code it is thus possible to know if a debugger is present or not:
 	
-	\begin{lstlisting}[caption={OutputDebugString debugger detection}, label=OutputDebugString, language=C, style=mystyle]
+	\begin{lstlisting}[caption={OutputDebugString debugger detection}, label=code:OutputDebugString, language=C, style=mystyle]
 	DWORD errorValue = 12345;
 	// set custom last error code
 	SetLastError(errorValue);
@@ -707,7 +707,7 @@ Malware authors usually don't exploit the Windows API functions for detecting th
 	Malware can 'manually' check the \textit{BeingDebugged} flag within the PEB structure to understand if a debugger is attached its process. More precisely if this flag is zero it means that no debugger is attached.
 	
 	Example of code listing performing 'manual' \textit{BeingDebugged} check:
-	\begin{lstlisting}[caption={BeingDebugged manual check}, label=BeingDebuggedManual, language={[x86masm]Assembler}, style=mystyle]
+	\begin{lstlisting}[caption={BeingDebugged manual check}, label=code:BeingDebuggedManual, language={[x86masm]Assembler}, style=mystyle]
 	mov		eax,	dword ptr fs:[30h]	; get PEB address
 	mov		ebx,	byte ptr [eax+2]		; get BeingDebugged flag value
 	test	ebx,	ebx									; test if the value is 0
@@ -885,23 +885,23 @@ Data-based obfuscation techniques focus on modifying data values and non-control
 \paragraph{Constant Unfolding}
 \textit{Constant folding} is a technique commonly used by compilers to optimize a program's code. It does so by replacing expressions with results known at compile time with the results themselves \cite{DangPRE}.
 
-For example, a compiler usually transforms the following expression \ref{ConstantFoldingBefore}, into \ref{ConstantFoldingAfter}.
-\begin{lstlisting}[caption={Before constant folding}, label=ConstantFoldingBefore, language=C, style=mystyle]
+For example, a compiler usually transforms the following expression \ref{code:ConstantFoldingBefore}, into \ref{code:ConstantFoldingAfter}.
+\begin{lstlisting}[caption={Before constant folding}, label=code:ConstantFoldingBefore, language=C, style=mystyle]
 	x = 4 * 5;
 \end{lstlisting}
 
-\begin{lstlisting}[caption={After constant folding}, label=ConstantFoldingAfter, language=C, style=mystyle]
+\begin{lstlisting}[caption={After constant folding}, label=code:ConstantFoldingAfter, language=C, style=mystyle]
 	x = 20;
 \end{lstlisting}
 
 \textit{Constant unfolding} is, instead, an obfuscation technique that performs the exact inverse operation: it replaces the constants in the program's code with some expressions having the constant as a result.
 
-For example, the listing \ref{ConstantUnfoldingBefore}, after \textit{Constant unfolding} may become \ref{ConstantUnfoldingAfter}. The two listings are equivalent. Moreover, there is an infinite amount of listings equivalent to \ref{ConstantUnfoldingBefore} that can be generated following this principle.
-\begin{lstlisting}[caption={Before constant unfolding}, label=ConstantUnfoldingBefore, language={[x86masm]Assembler}, style=mystyle]
+For example, the listing \ref{code:ConstantUnfoldingBefore}, after \textit{Constant unfolding} may become \ref{code:ConstantUnfoldingAfter}. The two listings are equivalent. Moreover, there is an infinite amount of listings equivalent to \ref{code:ConstantUnfoldingBefore} that can be generated following this principle.
+\begin{lstlisting}[caption={Before constant unfolding}, label=code:ConstantUnfoldingBefore, language={[x86masm]Assembler}, style=mystyle]
 	push	0h
 \end{lstlisting}
 
-\begin{lstlisting}[caption={After constant unfolding}, label=ConstantUnfoldingAfter, language={[x86masm]Assembler}, style=mystyle]
+\begin{lstlisting}[caption={After constant unfolding}, label=code:ConstantUnfoldingAfter, language={[x86masm]Assembler}, style=mystyle]
 	push	0F9CBE47Ah
 	add		dword ptr [esp],	6341B86h
 \end{lstlisting}
@@ -912,8 +912,8 @@ The previously described technique is, however, easily defeated by simply applyi
 \paragraph{Dead Code Insertion}
 \textit{Dead code elimination} is another common compiler optimization technique. Its objective is to remove program statements/expressions that nave no real effects on the program operation and final results \cite{DangPRE}.
 
-For example, the listing \ref{DeadCodeEliminationBefore}, using \textit{dead code elimination} would become \ref{DeadCodeEliminationAfter}.
-\begin{lstlisting}[caption={Before dead code elimination}, label=DeadCodeEliminationBefore, language=C, style=mystyle]
+For example, the listing \ref{code:DeadCodeEliminationBefore}, using \textit{dead code elimination} would become \ref{code:DeadCodeEliminationAfter}.
+\begin{lstlisting}[caption={Before dead code elimination}, label=code:DeadCodeEliminationBefore, language=C, style=mystyle]
 	int f(){
 		int x, y;
 		x = 1;		// this assignement is useless, here x is dead
@@ -923,7 +923,7 @@ For example, the listing \ref{DeadCodeEliminationBefore}, using \textit{dead cod
 	}
 \end{lstlisting}
 
-\begin{lstlisting}[caption={After dead code elimination}, label=DeadCodeEliminationAfter, language=C, style=mystyle]
+\begin{lstlisting}[caption={After dead code elimination}, label=code:DeadCodeEliminationAfter, language=C, style=mystyle]
 	int f(){
 		return 3;
 	}
@@ -936,7 +936,7 @@ However, when used alone, this techniques produces an obfuscated program that ca
 \paragraph{Arithmetic Substitution via Identities}
 This technique aims at replacing certain operators with combinations of other operators with equal net result. Exploiting the equivalence between different combinations of different operators the code can be changed arbitrarily without changing the effective program operation and final result \cite{DangPRE}. Here are some examples of operators equivalences:
 
-\begin{lstlisting}[caption={Operators equivalences}, label=OperatorEquivalences, language=C, style=mystyle]
+\begin{lstlisting}[caption={Operators equivalences}, label=code:OperatorEquivalences, language=C, style=mystyle]
 	-x == ~x + 1
 	
 	x-1 == ~-x
@@ -959,34 +959,34 @@ An analyst/attacker using wildcard searching, however, easily defeats this techn
 \paragraph{Pattern-Based Obfuscation}
 \textit{Pattern-based} obfuscation is another commonly used technique similar in principle to \textit{instruction substitution}, but more complex. It consists in constructing \textit{patterns} (transformations) that map single or multiple adjacent instructions into a more complex, computationally equivalent, sequence of instructions \cite{DangPRE}.
 
-For example, the sequence \ref{PatternObfuscationOriginalSequence} might be converted into \ref{PatternObfuscationPattern1}, as well as into \ref{PatternObfuscationPattern2} or even \ref{PatternObfuscationPattern3}.
+For example, the sequence \ref{code:PatternObfuscationOriginalSequence} might be converted into \ref{code:PatternObfuscationPattern1}, as well as into \ref{code:PatternObfuscationPattern2} or even \ref{code:PatternObfuscationPattern3}.
 
-\begin{lstlisting}[caption={Original sequence}, label=PatternObfuscationOriginalSequence, language={[x86masm]Assembler}, style=mystyle]
+\begin{lstlisting}[caption={Original sequence}, label=code:PatternObfuscationOriginalSequence, language={[x86masm]Assembler}, style=mystyle]
 	push	reg32
 \end{lstlisting}
 
-\begin{lstlisting}[caption={Obfuscation using pattern 1}, label=PatternObfuscationPattern1, language={[x86masm]Assembler}, style=mystyle]
+\begin{lstlisting}[caption={Obfuscation using pattern 1}, label=code:PatternObfuscationPattern1, language={[x86masm]Assembler}, style=mystyle]
 	push	imm32
 	mov		dword ptr [esp],	reg32
 \end{lstlisting}
 
-\begin{lstlisting}[caption={Obfuscation using pattern 2}, label=PatternObfuscationPattern2, language={[x86masm]Assembler}, style=mystyle]
+\begin{lstlisting}[caption={Obfuscation using pattern 2}, label=code:PatternObfuscationPattern2, language={[x86masm]Assembler}, style=mystyle]
 	lea		esp,	[esp-4]
 	mov		dword ptr [esp],	reg32
 \end{lstlisting}
 
-\begin{lstlisting}[caption={Obfuscation using pattern 3}, label=PatternObfuscationPattern3, language={[x86masm]Assembler}, style=mystyle]
+\begin{lstlisting}[caption={Obfuscation using pattern 3}, label=code:PatternObfuscationPattern3, language={[x86masm]Assembler}, style=mystyle]
 	sub		esp,	4
 	mov		dword ptr [esp],	reg32
 \end{lstlisting}
 
-Moreover, patterns can be arbitrarily complicated. For example a listing such as \ref{PatternObfuscationOriginalSequence2}, could be substituted by the more complex \ref{PatternObfuscation2Pattern}.
+Moreover, patterns can be arbitrarily complicated. For example a listing such as \ref{code:PatternObfuscationOriginalSequence2}, could be substituted by the more complex \ref{code:PatternObfuscation2Pattern}.
 
-\begin{lstlisting}[caption={Original sequence \#2}, label=PatternObfuscationOriginalSequence2, language={[x86masm]Assembler}, style=mystyle]
+\begin{lstlisting}[caption={Original sequence \#2}, label=code:PatternObfuscationOriginalSequence2, language={[x86masm]Assembler}, style=mystyle]
 	sub		esp,	4
 \end{lstlisting}
 
-\begin{lstlisting}[caption={Obfuscation of sequence \#2}, label=PatternObfuscation2Pattern, language={[x86masm]Assembler}, style=mystyle]
+\begin{lstlisting}[caption={Obfuscation of sequence \#2}, label=code:PatternObfuscation2Pattern, language={[x86masm]Assembler}, style=mystyle]
 	push	reg32
 	mov		reg32,	esp
 	xchg	[esp],	reg32
@@ -1038,13 +1038,13 @@ Violating this assumption introducing unconditional branches that break sequenti
 \paragraph{Processor-Based Control Indirection}
 Instructions like \textit{JMP} (branch) and \textit{CALL} (save instruction pointer and branch) are, for most processors, the 2 essential control flow transfer primitives. In order to make analysis more difficult, one could obfuscate these primitives for example using dynamically computed branch addresses or by emulating them.
 
-For example the instruction \textit{JMP} instruction \ref{ProcessorBasedControlIndirectionBefore}, can be replaced by the (almost) semantically equivalent listing \ref{ProcessorBasedControlIndirectionAfter}.
+For example the instruction \textit{JMP} instruction \ref{code:ProcessorBasedControlIndirectionBefore}, can be replaced by the (almost) semantically equivalent listing \ref{code:ProcessorBasedControlIndirectionAfter}.
 
-\begin{lstlisting}[caption={Processor-based control indirection before}, label=ProcessorBasedControlIndirectionBefore, language={[x86masm]Assembler}, style=mystyle]
+\begin{lstlisting}[caption={Processor-based control indirection before}, label=code:ProcessorBasedControlIndirectionBefore, language={[x86masm]Assembler}, style=mystyle]
 	jmp		target_addr
 \end{lstlisting}
 
-\begin{lstlisting}[caption={Processor-based control indirection after}, label=ProcessorBasedControlIndirectionAfter, language={[x86masm]Assembler}, style=mystyle]
+\begin{lstlisting}[caption={Processor-based control indirection after}, label=code:ProcessorBasedControlIndirectionAfter, language={[x86masm]Assembler}, style=mystyle]
 	push	target_addr
 	ret
 \end{lstlisting}
@@ -1064,7 +1064,7 @@ An \textit{opaque predicate} is a non-trivial boolean expressions with a constan
 \paragraph{Inserting Junk Code}
 This technique consists in introducing a dead code block (meaning that it will never be executed at runtime) between two other code blocks. Typically used in conjunction with \textit{opaque predicates}, this technique is used to hinder a disassembler that is disassembling an invalid path. Moreover, the junk code typically contains partially invalid instructions, or branches to invalid addresses with the objective of over-complicating the CFG \cite{DangPRE}.
 
-\begin{lstlisting}[caption={Junk Code example}, label=JunkCodeExample, language={[x86masm]Assembler}, style=mystyle]
+\begin{lstlisting}[caption={Junk Code example}, label=code:JunkCodeExample, language={[x86masm]Assembler}, style=mystyle]
 	push	eax
 	xor		eax,	eax
 	jz		9
@@ -1076,7 +1076,7 @@ This technique consists in introducing a dead code block (meaning that it will n
 	pop		eax
 \end{lstlisting}
 
-The listing \ref{JunkCodeExample} presents an example of this technique. More precisely the instruction at line 2 (\textit{xor eax, eax}) zeroes the \textit{EAX} register setting clearing the zero flag (it is set to 0); therefore the conditional jump (\textit{jz 9}) at line 3 is always taken at runtime. The immediately next instructions are therefore junk code.
+The listing \ref{code:JunkCodeExample} presents an example of this technique. More precisely the instruction at line 2 (\textit{xor eax, eax}) zeroes the \textit{EAX} register setting clearing the zero flag (it is set to 0); therefore the conditional jump (\textit{jz 9}) at line 3 is always taken at runtime. The immediately next instructions are therefore junk code.
 
 \paragraph{Control-Flow Graph Flattening}
 \textit{Control-flow graph flattening} consists in replacing all control structures within a sub-part of the control flow graph with a single switch statement commonly called \textit{dispatcher}. This is done to hide the true basic blocks relationships within the dispatcher. When using this technique, first a subpart of the program's control flow graph is selected to be substituted by the dispatcher. Some transformations may then be applied to the basic blocks inside the chosen sub-graph (they split or merged) to further complicate analysis and finally each basic block updates the dispatcher's context to reflect the relative basic block relationships. The final resulting graph offers no clues about the structure of the algorithm, but has the same logic \cite{DangPRE}.
@@ -1212,9 +1212,9 @@ This approach is fast, easy to use and has a high positive rate, however, since 
 Malware analysts typically create \textit{Yara rules} manually by reverse engineering malware samples looking for common \textit{Indicator of Compromise (IoC)} strings. This is followed by the development and iterative refinement of the rules which are considered effective based on their coverage and false positive rate on a dataset of malicious, benign and out-of-family samples. Developing effective \textit{Yara rules} can therefore be challenging and very time consuming, even for expert users with years of experience \cite{RaffAYRGUB}.
 
 \subsubsection{Yara Rules syntax}
-Listing \ref{YaraSyntax} presents an example of the syntax of a simple \textit{Yara rule}.
+Listing \ref{code:YaraSyntax} presents an example of the syntax of a simple \textit{Yara rule}.
 
-\begin{lstlisting}[caption={YARA Rules Syntax}, label=YaraSyntax, language=YARA, style=mystyle]
+\begin{lstlisting}[caption={YARA Rules Syntax}, label=code:YaraSyntax, language=YARA, style=mystyle]
 	rule RuleName
 	{
 		meta:
@@ -1255,7 +1255,7 @@ This section contains the strings/patterns/signatures that a file must contain t
 \begin{itemize}
 	\item \textit{Hexadecimal Strings}: \textit{Hexadecimal Strings} will match hexadecimal characters/sequences of raw bytes in the file being analysed.
 	Example:
-	\begin{lstlisting}[caption={YARA Hexadecimal}, label=YaraHex, language=YARA, style=mystyle]
+	\begin{lstlisting}[caption={YARA Hexadecimal}, label=code:YaraHex, language=YARA, style=mystyle]
 	rule ExampleRule
 	{
 		strings:
@@ -1271,7 +1271,7 @@ This section contains the strings/patterns/signatures that a file must contain t
 	Three special flexible formats, namely \textit{wildcards}, \textit{jumps} and \textit{alternatives}, can be used to complement the search.
 	\begin{itemize}
 		\item \textit{\textbf{Wildcards}} are represented by the '\textbf{?}' symbol. They indicate that some bytes in the pattern are unknown and should match anything. For example:
-		\begin{lstlisting}[caption={YARA Hexadecimal Wildcard}, label=YaraWildcard, language=YARA, style=mystyle]
+		\begin{lstlisting}[caption={YARA Hexadecimal Wildcard}, label=code:YaraWildcard, language=YARA, style=mystyle]
 	rule WildcardExample
 	{
 		strings:
@@ -1283,7 +1283,7 @@ This section contains the strings/patterns/signatures that a file must contain t
 		\end{lstlisting}
 		
 		\item \textit{\textbf{Jumps}} are used in circumstances when the values of the pattern are known but their length varies. For example:
-		\begin{lstlisting}[caption={YARA Hexadecimal Jump}, label=YaraJump, language=YARA, style=mystyle]
+		\begin{lstlisting}[caption={YARA Hexadecimal Jump}, label=code:YaraJump, language=YARA, style=mystyle]
 	rule JumpExample
 	{
 		strings:
@@ -1293,10 +1293,10 @@ This section contains the strings/patterns/signatures that a file must contain t
 		$hex_string
 	}
 		\end{lstlisting}
-		In particular, in listing \ref{YaraJump}, the value '\textit{[2-3]}' indicates that any arbitrary sequence from 2 bytes to 3 bytes long can occupy the sequence at that position.
+		In particular, in listing \ref{code:YaraJump}, the value '\textit{[2-3]}' indicates that any arbitrary sequence from 2 bytes to 3 bytes long can occupy the sequence at that position.
 		
 		\item \textit{\textbf{Alternatives}}, whose syntax resembles regular expressions, are used in situations in which the author wants to provide different alternatives for a given fragment of the hex string. For example:
-		\begin{lstlisting}[caption={YARA Hexadecimal Alternatives}, label=YaraAlternatives, language=YARA, style=mystyle]
+		\begin{lstlisting}[caption={YARA Hexadecimal Alternatives}, label=code:YaraAlternatives, language=YARA, style=mystyle]
 	rule AlternativesExample
 	{
 		strings:
@@ -1306,14 +1306,14 @@ This section contains the strings/patterns/signatures that a file must contain t
 		$hex_string
 	}
 		\end{lstlisting}
-	In particular, in listing \ref{YaraAlternatives}, the value '\textit{(62 B4 $\vert$ 56)}' indicates that one sequence between '\textit{62 B4}' and '\textit{56}' can occupy the sequence at that position.
+	In particular, in listing \ref{code:YaraAlternatives}, the value '\textit{(62 B4 $\vert$ 56)}' indicates that one sequence between '\textit{62 B4}' and '\textit{56}' can occupy the sequence at that position.
 	\end{itemize}
 	
 	\item \textit{Text Strings}:		
 	Text strings are generally readable sequences of ASCII characters which are then matched in the condition section \cite{SimonWIY}.
 	
 	Example of an ASCII-encoded, case-sensitive string:
-	\begin{lstlisting}[caption={YARA Text Strings example}, label=YaraTextStrings, language=YARA, style=mystyle]
+	\begin{lstlisting}[caption={YARA Text Strings example}, label=code:YaraTextStrings, language=YARA, style=mystyle]
 		rule TextExample
 	{
 		strings:
@@ -1327,7 +1327,7 @@ This section contains the strings/patterns/signatures that a file must contain t
 	Additionally, to specify how \textit{YARA} should search for strings, some modifiers can be added at the end of a string definition. Moreover, even more than one modifier can be used in combination to keep rule as simple and readable as possible. Here are described some of the available modifiers:
 	\begin{itemize}			
 		\item \textit{nocase}: Text strings in YARA are, by default, case-sensitive. However it is possible to search for strings in case-insensitive mode by appending the modifier '\textit{nocase}' at the end of the string definition, in the same line. Example:
-		\begin{lstlisting}[caption={YARA nocase example}, label=YaraNocase, language=YARA, style=mystyle]
+		\begin{lstlisting}[caption={YARA nocase example}, label=code:YaraNocase, language=YARA, style=mystyle]
 	rule CaseInsensitiveTextExample
 	{
 		strings:
@@ -1341,7 +1341,7 @@ This section contains the strings/patterns/signatures that a file must contain t
 		\item \textit{wide}: The '\textit{wide}' modifier can be used to search for strings encoded with two bytes per character (also known as \textit{wide character strings}), something which is typical in many executable binaries.
 		
 		For example, if the string "Borland" appears in the file encoded as two bytes per character, then the following rule will match:
-		\begin{lstlisting}[caption={YARA Wide Character Strings}, label=YaraWideCharacter, language=YARA, style=mystyle]
+		\begin{lstlisting}[caption={YARA Wide Character Strings}, label=code:YaraWideCharacter, language=YARA, style=mystyle]
 	rule WideCharTextExample1
 	{
 		strings:
@@ -1355,7 +1355,7 @@ This section contains the strings/patterns/signatures that a file must contain t
 		\item \textit{xor}: \textit{YARA} can also encode text before searching it in the analysed file. The '\textit{xor}' modifier, for example, can be used to search for strings with a single byte XOR applied to them.
 		
 		The following rule will search for every string resulting from a single-byte XOR applied to the string "This program cannot":
-		\begin{lstlisting}[caption={YARA XOR-ed Strings}, label=YaraXOR, language=YARA, style=mystyle]
+		\begin{lstlisting}[caption={YARA XOR-ed Strings}, label=code:YaraXOR, language=YARA, style=mystyle]
 	rule XorExample1
 	{
 		strings:
@@ -1369,7 +1369,7 @@ This section contains the strings/patterns/signatures that a file must contain t
 		\item \textit{base64}: The '\textit{base64}' modifier can be used to search for strings that have been base64 encoded.
 		
 		The following rule will search for all the possible base64 permutations of the string "This program cannot":
-		\begin{lstlisting}[caption={YARA Base64 encoded Strings}, label=YaraBase64, language=YARA, style=mystyle]
+		\begin{lstlisting}[caption={YARA Base64 encoded Strings}, label=code:YaraBase64, language=YARA, style=mystyle]
 	rule Base64Example1
 	{
 		strings:
@@ -1385,7 +1385,7 @@ This section contains the strings/patterns/signatures that a file must contain t
 	Starting from version 2.0 YARA has its own regular expression engine, which is one of its most powerful features. \textit{Regular expressions} are defined in the same way as text strings, but enclosed in forward slashes instead of double-quotes \cite{NaikEAGYRETE}.
 	
 	Example:		
-	\begin{lstlisting}[caption={YARA Regular Expression}, label=YaraRegex, language=YARA, style=mystyle]
+	\begin{lstlisting}[caption={YARA Regular Expression}, label=code:YaraRegex, language=YARA, style=mystyle]
 	rule RegExpExample
 	{
 		strings:
@@ -1407,7 +1407,7 @@ Inside the \textit{Conditions} section, among other things, it is possible to:
 	Sometimes it is necessary to know how many times a string appears in the analysed file, not only if it is present or not. The number of occurrences of each string defined in the string section can be retrieved by using a variable whose name is the string identifier but with a \# character in place of the initial \$ character.
 	
 	For example:
-	\begin{lstlisting}[caption={YARA Count Example}, label=YaraCount, language=YARA, style=mystyle]
+	\begin{lstlisting}[caption={YARA Count Example}, label=code:YaraCount, language=YARA, style=mystyle]
 	rule CountExample
 	{
 		strings:
@@ -1425,9 +1425,9 @@ Inside the \textit{Conditions} section, among other things, it is possible to:
 	
 	Examples:
 	\begin{itemize}
-		\item The rule in listing \ref{YaraAt} will find whether the '\textit{a}' string is located at offset 100 and '\textit{b}' at offset 200 of the running process.
+		\item The rule in listing \ref{code:YaraAt} will find whether the '\textit{a}' string is located at offset 100 and '\textit{b}' at offset 200 of the running process.
 		
-		\begin{lstlisting}[caption={YARA At Example}, label=YaraAt, language=YARA, style=mystyle]
+		\begin{lstlisting}[caption={YARA At Example}, label=code:YaraAt, language=YARA, style=mystyle]
 	rule AtExample
 	{
 		strings:
@@ -1439,9 +1439,9 @@ Inside the \textit{Conditions} section, among other things, it is possible to:
 	}
 		\end{lstlisting}
 		
-		\item The rule in listing \ref{YaraIn} will find the '\textit{a}' in the memory location between \textit{0} and \textit{100} and '\textit{b}' between \textit{100} and \textit{filesize} of the running process.
+		\item The rule in listing \ref{code:YaraIn} will find the '\textit{a}' in the memory location between \textit{0} and \textit{100} and '\textit{b}' between \textit{100} and \textit{filesize} of the running process.
 		
-		\begin{lstlisting}[caption={YARA In Example}, label=YaraIn, language=YARA, style=mystyle]
+		\begin{lstlisting}[caption={YARA In Example}, label=code:YaraIn, language=YARA, style=mystyle]
 	rule InExample
 	{
 		strings:
@@ -1457,7 +1457,7 @@ Inside the \textit{Conditions} section, among other things, it is possible to:
 	\item \textbf{Check file size}: '\textit{filesize}' is a special variable that can be used in rules conditions, which holds the size of the file being scanned in bytes.
 	
 	Example:
-	\begin{lstlisting}[caption={YARA Filesize Example}, label=YaraFilesize, language=YARA, style=mystyle]
+	\begin{lstlisting}[caption={YARA Filesize Example}, label=code:YaraFilesize, language=YARA, style=mystyle]
 	rule FileSizeExample
 	{
 		condition:
@@ -1468,7 +1468,7 @@ Inside the \textit{Conditions} section, among other things, it is possible to:
 	\item \textbf{Check a set of strings}: When it is necessary to know if a file contains a certain number of strings from a given set the '\textit{of}' operator can be used.
 	
 	Example:
-	\begin{lstlisting}[caption={YARA Of Example}, label=YaraOf, language=YARA, style=mystyle]
+	\begin{lstlisting}[caption={YARA Of Example}, label=code:YaraOf, language=YARA, style=mystyle]
 	rule OfExample
 	{
 		strings:
@@ -1488,9 +1488,9 @@ Inside the \textit{Conditions} section, among other things, it is possible to:
 Here are mentioned some useful (in this document context) Yara modules:
 \begin{itemize}
 	\item \textbf{YARA with PE}
-	Starting with version 3.0, YARA can parse Portable Executable (PE) files \cite{NinjaYSEWDM}. For example, the rule in listing \ref{YaraPE} will check for the string "abc", will parse the PE file and look for "\textit{CreateProcess}" and "\textit{httpsendrequest}" function names in the import sections '\textit{Kernel32.dll}' and '\textit{wininet.dll}', respectively.
+	Starting with version 3.0, YARA can parse Portable Executable (PE) files \cite{NinjaYSEWDM}. For example, the rule in listing \ref{code:YaraPE} will check for the string "abc", will parse the PE file and look for "\textit{CreateProcess}" and "\textit{httpsendrequest}" function names in the import sections '\textit{Kernel32.dll}' and '\textit{wininet.dll}', respectively.
 	
-	\begin{lstlisting}[caption={YARA with PE}, label=YaraPE, language=YARA, style=mystyle]
+	\begin{lstlisting}[caption={YARA with PE}, label=code:YaraPE, language=YARA, style=mystyle]
 	Import "PE"
 	
 	rule PE_Parse_Check
@@ -1772,7 +1772,7 @@ The output for the main malware/benign prediction task - $f_{mal}(\textbf{x})$ -
 
 \paragraph{Malware Loss}
 The task of predicting if a given binary file, represented by its features $\textbf{x}^{(i)}$, is malicious or benign is optimized by minimizing the binary cross-entropy loss between the malware/benign output of the network $\hat{y}^{(i)} = f_{mal}(\textbf{x}^{(i)})$ and the malicious label $y^{(i)}$. This results in the following loss for a dataset with \textit{M} samples:
-\begin{equation} \label{alohaMalwareLoss}
+\begin{equation} \label{eq:alohaMalwareLoss}
 	\begin{split}
 		L_{mal}(X,Y) & = \frac{1}{M} \sum_{i=1}^{M} l_{mal} (f_{mal}(\textbf{x}^{(i)}), y^{(i)}) \\ & = -\frac{1}{M} \sum_{i=1}^{M} y^{(i)} \log(\hat{y}^{(i)}) + (1-y^{(i)}) \log(1-\hat{y}^{(i)}).
 	\end{split}
@@ -1781,14 +1781,14 @@ A "1-/5+" criterion was used for labelling a given file as malicious or benign \
 
 \paragraph{Vendor Count Loss}
 The first additional target the authors of \cite{ruddALOHA} tried using is the count of 'malicious' reports for a given sample from the vendor aggregation service. This is based on the assumption that the more a sample gets reported by vendors, the more likely it is to be malicious. To model count data, the authors used the Poisson noise model parametrized by the parameter $\mu$, where $\mu$ is the mean and variance of the Poisson distribution. The probability of an observation of $y$ counts is therefore:
-\begin{equation} \label{alohaPoisson}
+\begin{equation} \label{eq:alohaPoisson}
 	P(y|\mu) = \mu^y e^{-\mu}/y!.
 \end{equation}
 
 The model is then trained to \textit{estimate} $\mu$ for each sample $\textbf{x}^{(i)}$ such that the likelihood of $y^{(i)}|\mu^{(i)}$ is maximized (or, equivalently, the negative log-likelihood is minimized). The output of the model vendor count head, for sample \textit{i}, is denoted as $f_{cnt}(\textbf{x}^{(i)})$. Thereafter, an activation function $a(\cdot)$, which maps $f_{cnt}(\textbf{x}^{(i)})$ to the non-negative real numbers, is used so the final approximation for parameter $\mu$ is: $\mu^{(i)} = a(f_{cnt}(\textbf{x}^{(i)}))$. In particular, the activation function used in \cite{ruddALOHA} is an exponential linear unit activation (ELU).
 
 Letting $y^{(i)}$ denote the actual number of vendors that deemed sample $\textbf{x}^{(i)}$ malicious, the corresponding negative log-likelihood loss over the dataset is:
-\begin{equation} \label{alohaVendorCountLoss}
+\begin{equation} \label{eq:alohaVendorCountLoss}
 	\begin{split}
 		L_p(X,Y) & = \frac{1}{M} \sum_{i=1}^{M} l_p (a(f_{cnt}(\textbf{x}^{(i)})), y^{(i)}) \\ & = \frac{1}{M} \sum_{i=1}^{M} \mu^{(i)} - y^{(i)} \log(\mu^{(i)}) + \log(y^{(i)}!),
 	\end{split}
@@ -1797,7 +1797,7 @@ which is referred to in \cite{ruddALOHA} as the \textit{Poisson} or \textit{vend
 
 \paragraph{Per-Vendor Malware Loss}
 The authors of \cite{ruddALOHA} identified a subset $\mathcal{V} = \{v_1, ..., v_V\}$ of $9$ vendors that each produced a result for (nearly) every sample in their data. Each vendor result was added as additional target by adding an extra fully connected layer per vendor followed by a sigmoid activation function to the end of the shared baseline architecture. A binary cross-entropy loss per vendor was then employed during training. The aggregate \textit{vendors} loss $L_{vdr}$ for the $V = 9$ selected vendors is simply the sum of the individual vendor losses:
-\begin{equation} \label{alohaPerVendorMalwareLoss}
+\begin{equation} \label{eq:alohaPerVendorMalwareLoss}
 	\begin{split}
 		L_{vdr}(X,Y) & = \frac{1}{M} \sum_{i = 1}^{M} \sum_{j = 1}^{V} l_{vdr}(f_{vdr_j}(\textbf{x}^{(i)}), y_{v_j}^{(i)}) \\ & = - \frac{1}{M} \sum_{i = 1}^{M} \sum_{j = 1}^{V} y_{v_j}^{(i)} \log(\hat{y}_{v_j}^{(i)}) + (1 - y_{v_j}^{(i)}) \log{(1 - \hat{y}_{v_j}^{(i)})},
 	\end{split}
@@ -1810,7 +1810,7 @@ Further additional targets were provided in the form of malicious tags. This was
 These tags were created by parsing individual vendor detection names, using a set of 10 vendors which provided high quality detection names. After having extracted the most common tokens, the tokens not related to well-known malware family names were filtered out. Finally, a mapping between tokens and tags was created based on the authors experience.
 
 The tag prediction task was then defined as a multi-label binary classification, since zero or more tags from the set of possible tags $\mathcal{T} = \{t_1, ..., t_T\}$ can be present at the same time for a given sample. This was implemented as a \textit{multi-headed} architecture: two additional layers per tag were added to the end of the shared baseline architecture, a fully connected layer of size 512-to-256, followed by a sigmoid activation function. Each of the possible $T=11$ tags has its own loss term computed with binary cross-entropy. Finally, the aggregate tag loss is the sum of the individual tag losses \cite{ruddALOHA}. For the dataset with $M$ samples the loss is:
-\begin{equation} \label{alohaMalwareTagLoss}
+\begin{equation} \label{eq:alohaMalwareTagLoss}
 	\begin{split}
 		L_{tag}(X,Y) & = \frac{1}{M} \sum_{i = 1}^{M} \sum_{j = 1}^{T} l_{tag}(f_{tag_j}(\textbf{x}^{(i)}), y_{t_j}^{(i)}) \\ & = - \frac{1}{M} \sum_{i = 1}^{M} \sum_{j = 1}^{T} y_{t_j}^{(i)} \log(\hat{y}_{t_j}^{(i)}) + (1 - y_{t_j}^{(i)}) \log(1 - \hat{y}_{t_j}^{(i)}),
 	\end{split}
@@ -1819,7 +1819,7 @@ where $y_{t_j}^{(i)}$ indicates if sample $i$ is annotated with tag $j$, and $\h
 
 \paragraph{Final Loss + Experiment Evaluation}
 Finally, in \cite{ruddALOHA} each model used a loss weight of 0.1 on the aggregate malicious/benign loss and 0.1 on each auxiliary loss. Therefore, when adding $K$ targets to the main loss, the final loss that gets back-propagated through the model becomes:
-\begin{equation} \label{alohaFinalLoss}
+\begin{equation} \label{eq:alohaFinalLoss}
 	L(X,Y) = L_{mal}(X,Y) + 0.1 \sum_{k=1}^{K} L_k(X,Y).
 \end{equation}
 
@@ -1881,12 +1881,12 @@ In particular, the \textit{Multi-Head} consisted of a base topology common to th
 The \textit{Joint Embedding} model, instead, mapped both the labels (malware tags) and the binary file features $\textbf{x}$ to vectors in a joint Euclidean latent-space in such a way that, for a given similarity function, the transformations of semantically similar labels are close to each other, and the embedding of a binary file should be close to that of its associated labels in the same space. In practice, the \textit{Joint Embedding} model consisted on a PE \textit{embedding} network, a \textit{tag embedding} matrix $\textbf{E}$, and a \textit{prediction layer}.
 
 The PE embedding network, using the same base topology as the Multi-Head model, learns a non-linear function $\phi_\theta(\cdot)$, with parameters $\theta$ that maps the input binary representation of the PE executable file $\textbf{x} \in \mathbb{R}^d$ into a vector $\textbf{h} \in \mathbb{R}^D$ in low dimensional Euclidean space (with $D=32$),
-\begin{equation} \label{jointEmbeddingPEEmbedding}
+\begin{equation} \label{eq:jointEmbeddingPEEmbedding}
 	\phi_\theta(\textbf{x}) : \mathbb{R}^d \rightarrow \mathbb{R}^D.
 \end{equation}
 
 The tag embedding matrix $\textbf{E} \in \mathbb{R}^{T \times D}$ of learnable parameters learns a mapping from a tag $t_n \in \mathcal{T} = \{t_1, ..., t_T\}$, to a distributed representation $\textbf{e} \in \mathbb{R}^D$ in the joint embedding space (with $D=32$).
-\begin{equation} \label{jointEmbeddingTagEmbedding}
+\begin{equation} \label{eq:jointEmbeddingTagEmbedding}
 	\phi_E(t) : \{t_1, ..., t_T\} \rightarrow \mathbb{R}^D.
 \end{equation}
 
@@ -1894,7 +1894,7 @@ In practice, the embedding vector for the tag $t_n$ is simply the $n$-th row of 
 
 Finally, the prediction layer compares both the tag and the sample embeddings ($\textbf{e}$ and $\textbf{h}$ respectively) and produces a similarity score. This is later run through a sigmoid non-linearity to estimate the probability that sample $\textbf{x}$ is associated with tag $t$ for each $t \in \mathcal{T}$. In the final model implementation, the similarity score is the dot product between the embedding vectors. The output of the network $f_n(\textbf{x} | \theta, \textbf{E})$ then becomes,
 \begin{equation}
-	\begin{split} \label{jointEmbeddingProbability}
+	\begin{split} \label{eq:jointEmbeddingProbability}
 		\hat{y}_n = f_n(\textbf{x} | \theta, \textbf{E}) & = \sigma(\langle\phi_E(n), \phi_\theta(\textbf{x})\rangle) \\ & = \sigma(\langle\textbf{E}_n, \textbf{h}\rangle),
 	\end{split}
 \end{equation}
@@ -1907,7 +1907,7 @@ Furthermore, the authors of \cite{DucauAMDATSE} constrained the embedding vector
 which has a regularizing effect and they fixed the value of $C$ to 1.
 
 During training, the parameters of both embedding functions $\phi_\theta(\cdot)$ and $\phi_E(\cdot)$ are jointly optimized to minimize the binary cross-entropy loss for the prediction of each tag via back-propagation and stochastic gradient descent. The loss function to minimize for a mini-batch of $M$ samples is:
-\begin{equation} \label{jointEmbeddingLoss}
+\begin{equation} \label{eq:jointEmbeddingLoss}
 	\begin{split}
 		\mathcal{L} & = -\frac{1}{M} \sum_{i = 1}^{M} \sum_{n = 1}^{T} f_n(\textbf{x}^{(i)} | \theta, \textbf{E}) \log(t_n^{(i)}) + (1 - f_n(\textbf{x}^{(i)} | \theta, \textbf{E})) \log(1 - t_n^{(i)}) \\ & = -\frac{1}{M} \sum_{i = 1}^{M} \sum_{n = 1}^{T} \hat{y}_n^{(i)} \log(t_n^{(i)}) + (1 - \hat{y}_n^{(i)}) \log(1 - t_n^{(i)})
 	\end{split}
@@ -1992,12 +1992,12 @@ Finally, the outputs from the two base sub-networks are then concatenated and pa
 The PE-only model can be easily derived from the PE+FP model removing the FP arm, taking input $\textbf{x}_{PE}$ and fitting parameters $\theta_{PE}$ and $\theta_{O}$. Similarly, the FP-only model can be constructed by using the PE+FP model but without the PE sub-network, taking input $\textbf{x}_{FP}$ and fitting parameters $\theta_{FP}$ and $\theta_{O}$. Obviously the first layer of the output sub-network needs to be modified to match the output from the previous layer.
 
 In \cite{KyadigeLFCEIFPIBMD}, the authors fit all models using a binary cross entropy loss function. Therefore, denoting the output of the model as $f(\textbf{x}; \theta)$, where $\textbf{x}$ is the model input, $\theta$ are the model parameters and $y \in \{0,1\}$ are the ground truth labels, the loss is:
-\begin{equation} \label{LearningFromContextLoss}
+\begin{equation} \label{eq:LearningFromContextLoss}
 	L(\textbf{x}, y; \theta) = - y \log{(f(\textbf{x}; \theta))} + (1 - y) \log{(1 - f(\textbf{x}; \theta))}.
 \end{equation}
 
 During training, the equation is optimized for $\hat{\theta}$: the optimal set of parameters that minimize the combined loss over the dataset.
-\begin{equation} \label{LearningFromContextParameters}
+\begin{equation} \label{eq:LearningFromContextParameters}
 	\hat{\theta} =  \argmax_{\theta} \sum_{i = 1}^{M} L(\textbf{x}^{(i)}, y_i; \theta),
 \end{equation}
 where $M$ is the number of samples in the dataset, and $y_i$ and $\textbf{x}^{(i)}$ are the label and the feature vector of the \textit{i}th training sample respectively \cite{KyadigeLFCEIFPIBMD}.
