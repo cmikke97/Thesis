@@ -1766,9 +1766,16 @@ However, this metadata is, in many cases, not available at deployment time thus 
 In practice, in their work \cite{ruddALOHA} the authors fit a deep neural network with multiple additional targets derived from metadata in a threat intelligence feed for Portable Executable (PE) malware and benignware. The additional losses include a multi-source malicious/benign loss, a count loss on multi-source detections, and a semantic malware attribute tag loss. The authors ultimately stated that this approach yielded a considerable improvement in performance on the main detection task.
 
 \paragraph{Implementation Details}
-The model presented in \cite{ruddALOHA} is composed of a base feed-forward neural network consisting of 5 blocks, each composed of Dropout, a dense layer, batch normalization, and an exponential linear unit (ELU) activation, with 1024, 768, 512, 512, and 512 hidden units respectively. This base topology applies the function $f(\cdot)$ to the input vector to produce an intermediate 512 dimensional representation of the input file $\textbf{h} = f(\textbf{x})$. An additional block for each output of the model, consisting of one or more dense layers and activation functions, is then appended on top of the base net. This composition of the base topology and the target-specific 'heads' is denoted as $f_{target}(\textbf{x})$.
+The model presented in \cite{ruddALOHA} (fig. \ref{fig:ALOHA_model}) is composed of a base feed-forward neural network consisting of 5 blocks, each composed of Dropout, a dense layer, batch normalization, and an exponential linear unit (ELU) activation, with 1024, 768, 512, 512, and 512 hidden units respectively. This base topology applies the function $f(\cdot)$ to the input feature vector \textbf{x} (of size 1024 in this case) to produce an intermediate 512 dimensional representation of the input file $\textbf{h} = f(\textbf{x})$. An additional block for each output of the model, consisting of one or more dense layers and activation functions, is then appended on top of the base net. This composition of the base topology and the target-specific 'heads' is denoted as $f_{target}(\textbf{x})$.
 
 The output for the main malware/benign prediction task - $f_{mal}(\textbf{x})$ - is always present (it constitutes the baseline model) and consists of a single dense layer followed by a sigmoid activation function on top of the base shared network. On top of that one or more auxiliary outputs are added with similar structure as described above: one fully connected layer (two for the \textit{tag} prediction task) with a task-specific activation function. Finally, multi-task losses are produced by computing the sum, across all tasks, of the per-task loss multiplied by a task-specific weight (1.0 for the malware/benign task and 0.1 for all other tasks) \cite{ruddALOHA}.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\textwidth]{./images/ALOHA.png}
+	\caption{ALOHA model}
+	\label{fig:ALOHA_model}
+\end{figure}
 
 \paragraph{Malware Loss}
 The task of predicting if a given binary file, represented by its features $\textbf{x}^{(i)}$, is malicious or benign is optimized by minimizing the binary cross-entropy loss between the malware/benign output of the network $\hat{y}^{(i)} = f_{mal}(\textbf{x}^{(i)})$ and the malicious label $y^{(i)}$. This results in the following loss for a dataset with \textit{M} samples:
@@ -1809,7 +1816,7 @@ Further additional targets were provided in the form of malicious tags. This was
 
 These tags were created by parsing individual vendor detection names, using a set of 10 vendors which provided high quality detection names. After having extracted the most common tokens, the tokens not related to well-known malware family names were filtered out. Finally, a mapping between tokens and tags was created based on the authors experience.
 
-The tag prediction task was then defined as a multi-label binary classification, since zero or more tags from the set of possible tags $\mathcal{T} = \{t_1, ..., t_T\}$ can be present at the same time for a given sample. This was implemented as a \textit{multi-headed} architecture: two additional layers per tag were added to the end of the shared baseline architecture, a fully connected layer of size 512-to-256, followed by a sigmoid activation function. Each of the possible $T=11$ tags has its own loss term computed with binary cross-entropy. Finally, the aggregate tag loss is the sum of the individual tag losses \cite{ruddALOHA}. For the dataset with $M$ samples the loss is:
+The tag prediction task was then defined as a multi-label binary classification, since zero or more tags from the set of possible tags $\mathcal{T} = \{t_1, ..., t_T\}$ can be present at the same time for a given sample. This was implemented as a \textit{multi-headed} architecture: two additional layers per tag were added to the end of the shared baseline architecture, a fully connected layer of size 512-to-256, followed by a fully connected layer of size 256-to-1, followed by a sigmoid activation function. Each of the possible $T=11$ tags has its own loss term computed with binary cross-entropy. Finally, the aggregate tag loss is the sum of the individual tag losses \cite{ruddALOHA}. For the dataset with $M$ samples the loss is:
 \begin{equation} \label{eq:alohaMalwareTagLoss}
 	\begin{split}
 		L_{tag}(X,Y) & = \frac{1}{M} \sum_{i = 1}^{M} \sum_{j = 1}^{T} l_{tag}(f_{tag_j}(\textbf{x}^{(i)}), y_{t_j}^{(i)}) \\ & = - \frac{1}{M} \sum_{i = 1}^{M} \sum_{j = 1}^{T} y_{t_j}^{(i)} \log(\hat{y}_{t_j}^{(i)}) + (1 - y_{t_j}^{(i)}) \log(1 - \hat{y}_{t_j}^{(i)}),
@@ -1892,7 +1899,7 @@ The tag embedding matrix $\textbf{E} \in \mathbb{R}^{T \times D}$ of learnable p
 
 In practice, the embedding vector for the tag $t_n$ is simply the $n$-th row of the tag embedding matrix, i.e. $\phi_E(t_n) = \textbf{E}_n$.
 
-Finally, the prediction layer compares both the tag and the sample embeddings ($\textbf{e}$ and $\textbf{h}$ respectively) and produces a similarity score. This is later run through a sigmoid non-linearity to estimate the probability that sample $\textbf{x}$ is associated with tag $t$ for each $t \in \mathcal{T}$. In the final model implementation, the similarity score is the dot product between the embedding vectors. The output of the network $f_n(\textbf{x} | \theta, \textbf{E})$ then becomes,
+Finally, the prediction layer compares both tag and sample embeddings ($\textbf{e}$ and $\textbf{h}$ respectively) and produces a similarity score. This is later run through a sigmoid non-linearity to estimate the probability that sample $\textbf{x}$ is associated with tag $t$ for each $t \in \mathcal{T}$. In the final model implementation, the similarity score is the dot product between the embedding vectors. The output of the network $f_n(\textbf{x} | \theta, \textbf{E})$ then becomes,
 \begin{equation}
 	\begin{split} \label{eq:jointEmbeddingProbability}
 		\hat{y}_n = f_n(\textbf{x} | \theta, \textbf{E}) & = \sigma(\langle\phi_E(n), \phi_\theta(\textbf{x})\rangle) \\ & = \sigma(\langle\textbf{E}_n, \textbf{h}\rangle),
