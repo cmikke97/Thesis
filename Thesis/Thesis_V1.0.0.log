@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  5 JUL 2021 14:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  5 JUL 2021 16:48
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -852,11 +852,11 @@ LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line
 File: ts1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 [40] [41] [42] [43] [44] [45] [46] [47] [48] [49] [50]
-<./images/ALOHA.png, id=1060, 513.8397pt x 325.9377pt>
+<./images/ALOHA.png, id=1060, 537.6888pt x 336.0555pt>
 File: ./images/ALOHA.png Graphic file (type png)
 <use ./images/ALOHA.png>
 Package pdftex.def Info: ./images/ALOHA.png  used on input line 1775.
-(pdftex.def)             Requested size: 422.50232pt x 268.01167pt.
+(pdftex.def)             Requested size: 422.50232pt x 264.07591pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -888,30 +888,91 @@ e.3.1}) has been already used, duplicate ignored
 ...
 l.1811 \end{equation}
                       <./images/ALOHA.png>] [53] [54]
+<./images/Multi_Head.png, id=1120, 450.2421pt x 191.5155pt>
+File: ./images/Multi_Head.png Graphic file (type png)
+<use ./images/Multi_Head.png>
+Package pdftex.def Info: ./images/Multi_Head.png  used on input line 1888.
+(pdftex.def)             Requested size: 422.50232pt x 179.72357pt.
+ [55]
+<./images/Joint_Embedding.png, id=1133, 421.3341pt x 258.7266pt>
+File: ./images/Joint_Embedding.png Graphic file (type png)
+<use ./images/Joint_Embedding.png>
+Package pdftex.def Info: ./images/Joint_Embedding.png  used on input line 1897.
 
-LaTeX Warning: Reference `' on page 55 undefined on input line 1884.
+(pdftex.def)             Requested size: 422.50232pt x 259.45628pt.
 
-[55] [56] [57] [58] [59] [60]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[56pdfTeX warning (ext4): destination with the same identifier (name{figure.3.2
+}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+\use_ii:nn #1#2->#2
+                   
+<argument> ...ipout:D \box_use:N \l_shipout_box }}
+                                                  \cs_set_eq:NN \protect \__...
+
+\use_ii:nn #1#2->#2
+                   
+<to be read again> \__shipout_execute_cont: 
+                                            \endgroup \set@typeset@protect 
+\@outputpage ...width {\@thefoot }\color@endbox }}
+                                                  \global \let \if@newlist \...
+
+\@opcol ...lumn \@outputdblcol \else \@outputpage 
+                                                  \fi \global \@mparbottom \...
+<output> ...specialoutput \else \@makecol \@opcol 
+                                                  \@startcolumn \@whilesw \i...
+<everydisplay> 
+               \conditionally@traceoff \check@mathfonts \conditionally@trace...
+
+\mathdisplay #1->\ifmmode \@badmath \else $$
+                                            \def \@currenvir {#1}\let \dspbr...
+l.1917 \begin{equation}
+                        <./images/Multi_Head.png>] [57pdfTeX warning (ext4): de
+stination with the same identifier (name{figure.3.3}) has been already used, du
+plicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+\use_ii:nn #1#2->#2
+                   
+<argument> ...ipout:D \box_use:N \l_shipout_box }}
+                                                  \cs_set_eq:NN \protect \__...
+
+\use_ii:nn #1#2->#2
+                   
+<to be read again> \__shipout_execute_cont: 
+                                            \endgroup \set@typeset@protect 
+\@outputpage ...width {\@thefoot }\color@endbox }}
+                                                  \global \let \if@newlist \...
+
+\@opcol ...lumn \@outputdblcol \else \@outputpage 
+                                                  \fi \global \@mparbottom \...
+<output> ...specialoutput \else \@makecol \@opcol 
+                                                  \@startcolumn \@whilesw \i...
+l.1939 
+        <./images/Joint_Embedding.png>] [58] [59] [60] [61]
 Chapter 4.
-[61
+[62
 
-] [62]
-<./images/Portable_Executable_32_bit_Structure.png, id=1213, 2991.175pt x 4228.
+] [63]
+<./images/Portable_Executable_32_bit_Structure.png, id=1227, 2991.175pt x 4228.
 79875pt>
 File: ./images/Portable_Executable_32_bit_Structure.png Graphic file (type png)
 
 <use ./images/Portable_Executable_32_bit_Structure.png>
 Package pdftex.def Info: ./images/Portable_Executable_32_bit_Structure.png  use
-d on input line 2086.
+d on input line 2100.
 (pdftex.def)             Requested size: 422.50232pt x 597.25443pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[63]
+[64]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [64pdfTeX warning (ext4): destination with the same identifier (name{figure.4.
+ [65pdfTeX warning (ext4): destination with the same identifier (name{figure.4.
 1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
@@ -936,33 +997,30 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 \addpenalty ...e \ifdim \lastskip =\z@ \penalty #1
                                                   \relax \else \@tempskipb \...
 ...
-l.2113 	\item \textit
+l.2127 	\item \textit
                      {Data sections, \textbf{.bss}, \textbf{.rdata}, \textbf...
- <./images/Portable_Executable_32_bit_Structure.png>] [65]
+ <./images/Portable_Executable_32_bit_Structure.png>] [66]
 LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 2
-158.
+172.
 
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/base\omscmr.fd
 File: omscmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2158.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2172.
 
 
-[66]
+[67]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 2179.
+put line 2193.
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2204.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2218.
 
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[67] [68] [69] [70]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
+[68] [69] [70] [71]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
@@ -972,29 +1030,32 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[71] [72] [73] [74]
-<./images/speeds_heatmap.png, id=1319, 722.7pt x 650.43pt>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[72] [73] [74] [75]
+<./images/speeds_heatmap.png, id=1333, 722.7pt x 650.43pt>
 File: ./images/speeds_heatmap.png Graphic file (type png)
 <use ./images/speeds_heatmap.png>
-Package pdftex.def Info: ./images/speeds_heatmap.png  used on input line 2537.
+Package pdftex.def Info: ./images/speeds_heatmap.png  used on input line 2551.
 (pdftex.def)             Requested size: 422.50232pt x 380.25685pt.
-<./images/times_heatmap.png, id=1320, 722.7pt x 650.43pt>
+<./images/times_heatmap.png, id=1334, 722.7pt x 650.43pt>
 File: ./images/times_heatmap.png Graphic file (type png)
 <use ./images/times_heatmap.png>
-Package pdftex.def Info: ./images/times_heatmap.png  used on input line 2544.
+Package pdftex.def Info: ./images/times_heatmap.png  used on input line 2558.
 (pdftex.def)             Requested size: 422.50232pt x 380.25685pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Overfull \hbox (2.88963pt too wide) in paragraph at lines 2549--2550
+Overfull \hbox (2.88963pt too wide) in paragraph at lines 2563--2564
 []\OT1/cmr/m/n/10 Given the re-sult-ing heatmaps ([][]4.2[][], [][]4.3[][]), \O
 T1/cmr/bx/it/10 chunk[]size \OT1/cmr/m/n/10 was per-ma-nently set to \OT1/cmr/b
 x/n/10 256 \OT1/cmr/m/n/10 and \OT1/cmr/bx/it/10 n[]chunks
  []
 
-[75pdfTeX warning (ext4): destination with the same identifier (name{figure.4.2
+[76pdfTeX warning (ext4): destination with the same identifier (name{figure.4.2
 }) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
@@ -1014,8 +1075,8 @@ x/n/10 256 \OT1/cmr/m/n/10 and \OT1/cmr/bx/it/10 n[]chunks
                                                   \fi \global \@mparbottom \...
 <output> ...specialoutput \else \@makecol \@opcol 
                                                   \@startcolumn \@whilesw \i...
-l.2552 
-        <./images/speeds_heatmap.png>] [76pdfTeX warning (ext4): destination wi
+l.2566 
+        <./images/speeds_heatmap.png>] [77pdfTeX warning (ext4): destination wi
 th the same identifier (name{figure.4.3}) has been already used, duplicate igno
 red
 <argument> ...shipout:D \box_use:N \l_shipout_box 
@@ -1038,31 +1099,31 @@ red
                                                   \@startcolumn \@whilesw \i...
 <to be read again> 
                    A
-l.2558 A
+l.2572 A
          function called \textit{\textbf{build\_fresh\_dataset}} was specifi...
- <./images/times_heatmap.png>] [77] [78]
+ <./images/times_heatmap.png>] [78] [79]
 Chapter 5.
-[79
-
-]
-Chapter 6.
 [80
 
 ]
-Chapter 7.
+Chapter 6.
 [81
 
 ]
-Chapter 8.
+Chapter 7.
 [82
 
 ]
-Chapter 9.
+Chapter 8.
 [83
 
 ]
+Chapter 9.
+[84
+
+]
 Chapter 10.
-(Thesis_V1.0.0.bbl [84
+(Thesis_V1.0.0.bbl [85
 
 ]
 Underfull \hbox (badness 1242) in paragraph at lines 10--12
@@ -1142,7 +1203,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 69--72
 ?sh = 4c267d34414b$[][]\OT1/cmr/m/n/10 , 2020,
  []
 
-[85
+[86
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 154--156
@@ -1168,25 +1229,21 @@ Underfull \hbox (badness 1371) in paragraph at lines 189--192
 t/m/n/10 https : / / www . forcepoint . com / cyber-[]edu /
  []
 
-[86]
+[87]
 Underfull \hbox (badness 10000) in paragraph at lines 235--237
 []\OT1/cmr/m/n/10 J. Mu, ``Fast-ten-sor-dat-aloader.'' [][]$\OT1/cmtt/m/n/10 ht
 tps : / / discuss . pytorch . org / t /
  []
 
-) [87] (Thesis_V1.0.0.aux)
+) [88] (Thesis_V1.0.0.aux)
 Package rerunfilecheck Info: File `Thesis_V1.0.0.out' has not changed.
 (rerunfilecheck)             Checksum: 1757CBAB411C880CCE39DB32B0700310;7230.
-
-
-LaTeX Warning: There were undefined references.
-
  ) 
 Here is how much of TeX's memory you used:
- 18900 strings out of 481296
- 309527 string characters out of 2908369
- 960362 words of memory out of 3000000
- 35093 multiletter control sequences out of 15000+600000
+ 18916 strings out of 481296
+ 309927 string characters out of 2908369
+ 960453 words of memory out of 3000000
+ 35104 multiletter control sequences out of 15000+600000
  420599 words of font info for 90 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  134i,17n,137p,2138b,2558s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1219,9 +1276,9 @@ ichele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
 <C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmtt8.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
 sfonts/symbols/msbm10.pfb>
-Output written on Thesis_V1.0.0.pdf (87 pages, 1875682 bytes).
+Output written on Thesis_V1.0.0.pdf (88 pages, 2056683 bytes).
 PDF statistics:
- 1671 PDF objects out of 1728 (max. 8388607)
- 634 named destinations out of 1000 (max. 500000)
- 354 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1686 PDF objects out of 1728 (max. 8388607)
+ 637 named destinations out of 1000 (max. 500000)
+ 364 words of extra memory for PDF output out of 10000 (max. 10000000)
 
