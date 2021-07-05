@@ -106,32 +106,31 @@
 \contentsline {paragraph}{Tags Prediction - Implementation Details}{56}{section*.77}%
 \contentsline {subparagraph}{Evaluation of Tagging Algorithms}{58}{section*.78}%
 \contentsline {subsection}{\numberline {3.6.3}Learning from Context: Exploiting and Interpreting File Path Information for Better Malware Detection}{58}{subsection.3.6.3}%
-\contentsline {paragraph}{Background and Related work (Static ML Malware Detection)}{59}{section*.79}%
-\contentsline {paragraph}{Feature Engineering}{59}{section*.80}%
-\contentsline {paragraph}{Implementation details}{60}{section*.81}%
-\contentsline {section}{\numberline {3.7}Malware Normalization}{60}{section.3.7}%
-\contentsline {chapter}{\numberline {4}Datasets}{61}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Sorel 20M Dataset}{61}{section.4.1}%
-\contentsline {subsection}{\numberline {4.1.1}Sorel 20M Dataset Description}{62}{subsection.4.1.1}%
-\contentsline {paragraph}{LMDB database, what is it?}{62}{section*.82}%
-\contentsline {subsection}{\numberline {4.1.2}Ember Features}{62}{subsection.4.1.2}%
-\contentsline {subsubsection}{PE File Format}{63}{section*.83}%
-\contentsline {subsubsection}{Feature Set Description}{65}{section*.84}%
-\contentsline {paragraph}{Parsed features}{65}{section*.85}%
-\contentsline {paragraph}{Format-agnostic features}{66}{section*.86}%
-\contentsline {subsection}{\numberline {4.1.3}Trying to improve Dataset Loading Speed}{66}{subsection.4.1.3}%
-\contentsline {subsubsection}{Dataset Pre-Processing}{66}{section*.87}%
-\contentsline {subsubsection}{Generator (Dataloader) versions}{67}{section*.88}%
-\contentsline {paragraph}{Pytorch Dataloader}{67}{section*.89}%
-\contentsline {paragraph}{Generator alt1/alt2}{68}{section*.90}%
-\contentsline {paragraph}{Generator alt3}{71}{section*.91}%
-\contentsline {subparagraph}{Generator parameters optimization}{74}{section*.92}%
-\contentsline {section}{\numberline {4.2}Fresh Dataset}{76}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Model Evaluation with Fresh Dataset}{77}{subsection.4.2.1}%
-\contentsline {chapter}{\numberline {5}ML-based Malware Detection/Description Methods Implementation}{79}{chapter.5}%
-\contentsline {chapter}{\numberline {6}Proposed Tool}{81}{chapter.6}%
-\contentsline {chapter}{\numberline {7}Proposed Tool Implementation}{82}{chapter.7}%
-\contentsline {chapter}{\numberline {8}Results}{83}{chapter.8}%
-\contentsline {chapter}{\numberline {9}Conclusions}{84}{chapter.9}%
-\contentsline {chapter}{\numberline {10}Appendix}{85}{chapter.10}%
-\contentsline {chapter}{Bibliography}{86}{chapter.10}%
+\contentsline {paragraph}{Feature Engineering}{59}{section*.79}%
+\contentsline {paragraph}{Implementation details}{60}{section*.80}%
+\contentsline {section}{\numberline {3.7}Malware Normalization}{61}{section.3.7}%
+\contentsline {chapter}{\numberline {4}Datasets}{62}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Sorel 20M Dataset}{62}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Sorel 20M Dataset Description}{63}{subsection.4.1.1}%
+\contentsline {paragraph}{LMDB database, what is it?}{63}{section*.81}%
+\contentsline {subsection}{\numberline {4.1.2}Ember Features}{63}{subsection.4.1.2}%
+\contentsline {subsubsection}{PE File Format}{64}{section*.82}%
+\contentsline {subsubsection}{Feature Set Description}{66}{section*.83}%
+\contentsline {paragraph}{Parsed features}{66}{section*.84}%
+\contentsline {paragraph}{Format-agnostic features}{67}{section*.85}%
+\contentsline {subsection}{\numberline {4.1.3}Trying to improve Dataset Loading Speed}{67}{subsection.4.1.3}%
+\contentsline {subsubsection}{Dataset Pre-Processing}{67}{section*.86}%
+\contentsline {subsubsection}{Generator (Dataloader) versions}{68}{section*.87}%
+\contentsline {paragraph}{Pytorch Dataloader}{68}{section*.88}%
+\contentsline {paragraph}{Generator alt1/alt2}{69}{section*.89}%
+\contentsline {paragraph}{Generator alt3}{72}{section*.90}%
+\contentsline {subparagraph}{Generator parameters optimization}{75}{section*.91}%
+\contentsline {section}{\numberline {4.2}Fresh Dataset}{77}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Model Evaluation with Fresh Dataset}{78}{subsection.4.2.1}%
+\contentsline {chapter}{\numberline {5}ML-based Malware Detection/Description Methods Implementation}{80}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Proposed Tool}{82}{chapter.6}%
+\contentsline {chapter}{\numberline {7}Proposed Tool Implementation}{83}{chapter.7}%
+\contentsline {chapter}{\numberline {8}Results}{84}{chapter.8}%
+\contentsline {chapter}{\numberline {9}Conclusions}{85}{chapter.9}%
+\contentsline {chapter}{\numberline {10}Appendix}{86}{chapter.10}%
+\contentsline {chapter}{Bibliography}{87}{chapter.10}%
