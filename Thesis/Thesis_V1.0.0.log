@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  5 JUL 2021 02:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  5 JUL 2021 11:38
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -855,26 +855,12 @@ File: ts1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 
 LaTeX Warning: Reference `' on page 55 undefined on input line 1877.
 
-[55]
-
-LaTeX Warning: Citation `accuracyEq' on page 56 undefined on input line 1922.
-
-
-LaTeX Warning: Citation `precisionEq' on page 56 undefined on input line 1922.
-
-
-LaTeX Warning: Citation `recallEq' on page 56 undefined on input line 1922.
-
-
-LaTeX Warning: Citation `fBetaScoreEq' on page 56 undefined on input line 1922.
-
-
-[56] [57] [58] [59]
+[55] [56] [57] [58] [59]
 Chapter 4.
 [60
 
 ] [61]
-<./images/Portable_Executable_32_bit_Structure.png, id=1198, 2991.175pt x 4228.
+<./images/Portable_Executable_32_bit_Structure.png, id=1204, 2991.175pt x 4228.
 79875pt>
 File: ./images/Portable_Executable_32_bit_Structure.png Graphic file (type png)
 
@@ -951,12 +937,12 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [70] [71] [72] [73]
-<./images/speeds_heatmap.png, id=1305, 722.7pt x 650.43pt>
+<./images/speeds_heatmap.png, id=1311, 722.7pt x 650.43pt>
 File: ./images/speeds_heatmap.png Graphic file (type png)
 <use ./images/speeds_heatmap.png>
 Package pdftex.def Info: ./images/speeds_heatmap.png  used on input line 2530.
 (pdftex.def)             Requested size: 422.50232pt x 380.25685pt.
-<./images/times_heatmap.png, id=1306, 722.7pt x 650.43pt>
+<./images/times_heatmap.png, id=1312, 722.7pt x 650.43pt>
 File: ./images/times_heatmap.png Graphic file (type png)
 <use ./images/times_heatmap.png>
 Package pdftex.def Info: ./images/times_heatmap.png  used on input line 2537.
@@ -1153,18 +1139,23 @@ tps : / / discuss . pytorch . org / t /
  []
 
 ) [86] (Thesis_V1.0.0.aux)
-Package rerunfilecheck Info: File `Thesis_V1.0.0.out' has not changed.
-(rerunfilecheck)             Checksum: 431621BA6B0968D8D065436AB5B506ED;7292.
 
+Package rerunfilecheck Warning: File `Thesis_V1.0.0.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `Thesis_V1.0.0.out':
+(rerunfilecheck)             Before: 431621BA6B0968D8D065436AB5B506ED;7292
+(rerunfilecheck)             After:  1757CBAB411C880CCE39DB32B0700310;7230.
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 18889 strings out of 481296
- 309085 string characters out of 2908369
- 960164 words of memory out of 3000000
- 35085 multiletter control sequences out of 15000+600000
+ 18891 strings out of 481296
+ 309149 string characters out of 2908369
+ 960294 words of memory out of 3000000
+ 35087 multiletter control sequences out of 15000+600000
  420599 words of font info for 90 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  134i,17n,137p,2138b,2558s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1197,9 +1188,9 @@ ichele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
 <C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmtt8.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
 sfonts/symbols/msbm10.pfb>
-Output written on Thesis_V1.0.0.pdf (86 pages, 1778513 bytes).
+Output written on Thesis_V1.0.0.pdf (86 pages, 1779576 bytes).
 PDF statistics:
- 1657 PDF objects out of 1728 (max. 8388607)
+ 1663 PDF objects out of 1728 (max. 8388607)
  632 named destinations out of 1000 (max. 500000)
  349 words of extra memory for PDF output out of 10000 (max. 10000000)
 

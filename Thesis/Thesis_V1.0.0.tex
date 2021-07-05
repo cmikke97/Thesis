@@ -1919,26 +1919,26 @@ In order to get a vector of tag similarities for a given sample $\textbf{x}$ wit
 \subparagraph{Evaluation of Tagging Algorithms}
 The performance evaluation of tagging algorithms can be done along two orthogonal dimensions: \textit{per-tag} or a \textit{per-sample}. The former aims at quantifying the tagging algorithm performance at identifying each tag, while the latter focuses on evaluating the tagging algorithm performance for a given sample, across all tags.
 
-One suitable way to evaluate the \textit{per-tag} performance of a model is by measuring the \textit{Area Under the Receiver Operating Characteristic} curve (\textit{AUC-ROC}, or simply \textit{AUC}) for each of the tags being predicted. A \textit{ROC} curve is created by plotting the \textit{True Positive Rate} (\textit{TPR}) against the \textit{False Positive Rate} (\textit{FPR}). Furthermore, given the binary True/False nature of the target value for the $n$-th tag of a given sample ($t_n \in \{0, 1\}$), the typical binary classification evaluation metrics such as 'Accuracy' \cite{accuracyEq}, 'Precision' \cite{precisionEq}, 'Recall' \cite{recallEq}, and 'F-score' \cite{fBetaScoreEq} can also be computed. However, in order to compute these metrics, the output probability prediction needs to be binarized first. This can be done simply choosing a threshold independently for each tag so that the \textit{FPR} on the validation set is $0.01$ and then using the resulting 0/1 predictions.
-\begin{equation} \label{accuracyEq}
+One suitable way to evaluate the \textit{per-tag} performance of a model is by measuring the \textit{Area Under the Receiver Operating Characteristic} curve (\textit{AUC-ROC}, or simply \textit{AUC}) for each of the tags being predicted. A \textit{ROC} curve is created by plotting the \textit{True Positive Rate} (\textit{TPR}) against the \textit{False Positive Rate} (\textit{FPR}). Furthermore, given the binary True/False nature of the target value for the $n$-th tag of a given sample ($t_n \in \{0, 1\}$), the typical binary classification evaluation metrics such as 'Accuracy' (eq. \ref{eq:accuracyEq}), 'Precision' (eq. \ref{eq:precisionEq}), 'Recall' (eq. \ref{eq:recallEq}), and 'F-score' (eq. \ref{eq:fBetaScoreEq}) can also be computed. However, in order to compute these metrics, the output probability prediction needs to be binarized first. This can be done simply choosing a threshold independently for each tag so that the \textit{FPR} on the validation set is $0.01$ and then using the resulting 0/1 predictions.
+\begin{equation} \label{eq:accuracyEq}
 	accuracy = \frac{TP + TN}{TP + FP + TN + FN}
 \end{equation}
-\begin{equation} \label{precisionEq}
+\begin{equation} \label{eq:precisionEq}
 	precision = \frac{TP}{TP + FP}
 \end{equation}
-\begin{equation} \label{recallEq}
+\begin{equation} \label{eq:recallEq}
 	recall = \frac{TP}{TP + FN}
 \end{equation}
-\begin{equation} \label{fBetaScoreEq}
+\begin{equation} \label{eq:fBetaScoreEq}
 	f_\beta\-score = (1 + \beta^2) \cdot \frac{precision \times recall}{\beta^2 \cdot precision + recall}
 \end{equation}
 where $TP$, $TN$, $FP$ and $FN$ are the number of \textit{True Positives}, \textit{True Negatives}, \textit{False Positives} and \textit{False Negatives} respectively.
 
-On the other hand, the \textit{Mean Jaccard} similarity and \textit{Mean per-sample Accuracy} metrics can be used to assess the per-sample performance of a tagging algorithm. In particular, the Jaccard similarity (or index) can be used as a figure of how similar the set of tags associated with a specific sample is with respect to the set of tags predicted for the same sample after binarizing the predictions. The per-sample accuracy is instead defined as the percentage of samples for which the target vector is equal to the prediction vector, i.e. all tags correctly predicted. For an evaluation dataset with $M$ samples the equations of the per-sample evaluation metrics are:
-\begin{equation}
+On the other hand, the \textit{Mean Jaccard} similarity (eq. \ref{eq:meanJaccardSimilarity}) and \textit{Mean per-sample Accuracy} (eq. \ref{eq:meanPerSampleAccuracy}) metrics can be used to assess the per-sample performance of a tagging algorithm. In particular, the Jaccard similarity (or index) can be used as a figure of how similar the set of tags associated with a specific sample is with respect to the set of tags predicted for the same sample after binarizing the predictions. The per-sample accuracy is instead defined as the percentage of samples for which the target vector is equal to the prediction vector, i.e. all tags correctly predicted. For an evaluation dataset with $M$ samples the equations of the per-sample evaluation metrics are:
+\begin{equation}\label{eq:meanJaccardSimilarity}
 	\textrm{Mean Jaccard similarity} = J(T^{(i)}, \hat{T^{(i)}}) = \frac{1}{M} \sum_{i=1}^{M} J(T^{(i)}, \hat{T}^{(i)}) = \frac{1}{M} \sum_{i=1}^{M} \frac{T^{(i)} \cap \hat{T}^{(i)}} {T^{(i)} \cup \hat{T}^{(i)}}
 \end{equation}
-\begin{equation}
+\begin{equation}\label{eq:meanPerSampleAccuracy}
 	\textrm{Mean per-sample accuracy} = \frac{1}{M} \sum_{i=1}^{M} \mathbb{I}(\textbf{y}^{(i)} = \hat{\textbf{y}}^{(i)})
 \end{equation}
 where $T^{(i)}$ is the set of tags associated with sample $i$, $\hat{T}^{(i)}$ is the set of tags predicted for the same sample after binarizing the predictions, $\textbf{y} \in \{0, 1\}^T$ is the binary target vector for a PE file (where $\textbf{y}_n$ indicates whether the $n$-th tag applies to the file), $\hat{\textbf{y}}$ is the binarized prediction vector from a given tagging model and $\mathbb{I}$ is the indicator function which is 1 if the condition in the argument is true, and 0 otherwise.
@@ -2599,26 +2599,14 @@ The \textit{\textbf{evaluate\_fresh}} function provides, together with the \text
 
 In practice, for all the experiments presented in this document the number of query samples $q$ was set to 100.
 
-\chapter{Experimenting with ML based Malware Detection/Description methods}
-\color{Red}
+\chapter{ML-based Malware Detection/Description Methods Implementation}
 
-\color{Black}
 \chapter{Proposed Tool}
-\color{Red}
 
-Description of the proposed tool..
+\chapter{Proposed Tool Implementation}
 
-\color{Black}
-\chapter{Experiments with the proposed tool}
-\color{Red}
-
-\color{Black}
 \chapter{Results}
-\color{Red}
 
-Results analysis..
-
-\color{Black}
 \chapter{Conclusions}
 \color{Red}
 
