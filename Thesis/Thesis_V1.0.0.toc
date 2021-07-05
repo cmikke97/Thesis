@@ -128,10 +128,10 @@
 \contentsline {subparagraph}{Generator parameters optimization}{73}{section*.92}%
 \contentsline {section}{\numberline {4.2}Fresh Dataset}{75}{section.4.2}%
 \contentsline {subsection}{\numberline {4.2.1}Model Evaluation with Fresh Dataset}{76}{subsection.4.2.1}%
-\contentsline {chapter}{\numberline {5}Experimenting with ML based Malware Detection/Description methods}{77}{chapter.5}%
-\contentsline {chapter}{\numberline {6}Proposed Tool}{78}{chapter.6}%
-\contentsline {chapter}{\numberline {7}Experiments with the proposed tool}{79}{chapter.7}%
-\contentsline {chapter}{\numberline {8}Results}{80}{chapter.8}%
-\contentsline {chapter}{\numberline {9}Conclusions}{81}{chapter.9}%
-\contentsline {chapter}{\numberline {10}Appendix}{82}{chapter.10}%
-\contentsline {chapter}{Bibliography}{83}{chapter.10}%
+\contentsline {chapter}{\numberline {5}Experimenting with ML based Malware Detection/Description methods}{78}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Proposed Tool}{79}{chapter.6}%
+\contentsline {chapter}{\numberline {7}Experiments with the proposed tool}{80}{chapter.7}%
+\contentsline {chapter}{\numberline {8}Results}{81}{chapter.8}%
+\contentsline {chapter}{\numberline {9}Conclusions}{82}{chapter.9}%
+\contentsline {chapter}{\numberline {10}Appendix}{83}{chapter.10}%
+\contentsline {chapter}{Bibliography}{84}{chapter.10}%

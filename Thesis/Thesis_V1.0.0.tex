@@ -2552,33 +2552,53 @@ A function called \textit{\textbf{build\_fresh\_dataset}} was specifically imple
 \begin{itemize}
 	\item a list of malware families (more than '\textit{\textbf{m}}') in order of importance;
 	
-	\item the number '\textit{\textbf{x}}' (default: 100) of samples per family to download;
+	\item the number '\textit{\textbf{x}}' of samples per family to download;
 	
-	\item the number '\textit{\textbf{m}}' (default: 10) of families to consider.
+	\item the number '\textit{\textbf{m}}' of families to consider.
 \end{itemize}
-More specifically, the function downloads '\textit{\textbf{x}}' samples per malware family from Malware Bazaar (if possible, otherwise it skips the malware family and considers the next in order of importance between the ones selected), extract the features from each sample and create the new dataset containing '\textit{\textbf{n}} $=$ \textit{\textbf{x}} $\times$ \textit{\textbf{m}}' (default: 1000) samples which are then stored on disk as (\textit{numpy}) memory mapped array (as it was done with the pre-processed Sorel20M dataset). Therefore, between the $\ge$ \textit{\textbf{m}} malware families provided to the function, only the first \textit{\textbf{m}} for which \textit{\textbf{x}} PE samples can be retrieved from Malware Bazaar are considered.
+More specifically, the function downloads '\textit{\textbf{x}}' samples per malware family from Malware Bazaar (if possible, otherwise it skips the malware family and considers the next in order of importance between the ones selected), extract the features from each sample and create the new dataset containing '\textit{\textbf{n}} $=$ \textit{\textbf{x}} $\times$ \textit{\textbf{m}}' samples which are then stored on disk as (\textit{numpy}) memory mapped array (as it was done with the pre-processed Sorel20M dataset). Therefore, between the $\ge$ \textit{\textbf{m}} malware families provided to the function, only the first \textit{\textbf{m}} for which \textit{\textbf{x}} PE samples can be retrieved from Malware Bazaar are considered.
 
 For all the model evaluations on the \textit{\textbf{fresh dataset}} done for this project the \textit{\textbf{fresh dataset}} was composed of \textit{\textbf{x}} $= 100$ samples per family, considering the following \textit{\textbf{m}} $= 10$ families: \textit{heodo}, \textit{agenttesla}, \textit{formbook}, \textit{masslogger}, \textit{loki}, \textit{avemariarat}, \textit{njrat}, \textit{remcosrat}, \textit{netwire} and \textit{azorult}. Therefore the \textit{\textbf{fresh dataset}} consists of 1000 PE samples.
 
 \subsection{Model Evaluation with Fresh Dataset}
-\color{Red}
+The actual model representation evaluation on the \textit{\textbf{fresh dataset}} is computed by another function called \textit{\textbf{evaluate\_fresh}}. This function first randomly samples '\textit{\textbf{q}}' query samples among the ones in the $fresh\_dataset$. Then, it computes the similarity between each query sample with the other '$n-1$' samples present in the $fresh\_dataset$ ordering the latter by similarity. At this point, for each query sample there is the ranking of all the other $n-1$ samples sorted by similarity. Using those rankings the function finally calculates the \textbf{MRR} (\textit{Mean Reciprocal Rank}) and \textbf{MAP} (\textit{Mean Average Precision}) scores for the model learned representation.
 
-I implemented a model evaluation function using the $fresh\_dataset$. This function randomly samples '$q$' (default: 100) query samples among the ones in the $fresh\_dataset$, it computes the similarity between each of these samples with the other '$n-1$' (default: 999), and orders these '$n-1$' samples by similarity. It then calcluates the \textit{MRR} (Mean Reciprocal Rank) and \textit{MAP} (Mean Average Precision) scores for the model. The rankings for the '$q$' (100) query samples are saved as a single json file. Moreover, 5 particular rankings are saved as csv files. These 5 rankings are those that produced:
+The Mean Reciprocal Rank (\textbf{MRR}, \ref{eq:MRR}) is the average of the Reciprocal Ranks (\textbf{RR}, \ref{eq:RR}) of a series of queries. In particular, the Reciprocal Rank (\textbf{RR}) of a query response is the multiplicative inverse of the rank (position in the ranking) of the single sample belonging to the family of interest which classified with the highest rank (it is the closest).
+\begin{equation}\label{eq:RR}
+	RR(i) = \frac{1}{rank_i}
+\end{equation}
+\begin{equation}\label{eq:MRR}
+	MRR = \frac{1} {q}\sum_{i=1}^{q} RR(i) = \frac{1} {q}\sum_{i=1}^{q} \frac{1}{rank_i}
+\end{equation}
+where $\textit{\textbf{rank}}_\textit{\textbf{i}}$ refers to the rank position of the first relevant sample (meaning the first sample with the same family as the current query sample) for the \textit{\textbf{i}}-th query and \textit{\textbf{q}} is the number of queries.
+
+The \textbf{MAP} score (\ref{eq:MAP}), on the other hand, takes into account all the samples in the family of interest, with proper weights, instead of considering just the best classified one. Therefore, a model will have a higher \textbf{MRR} score if it classifies a single sample of the family of interest higher in the ranking; by contrast, it will have a higher \textbf{MAP} score if it classifies all the samples belonging to the family of interest higher in the ranking.
+\begin{equation}\label{eq:PatK}
+	P(k) = \frac{|\text{Relevant Samples Retrieved @} k|}{k}
+\end{equation}
+\begin{equation}\label{eq:AvgPatK}
+	AvgP(k) = \sum_{k=1}^{n} \frac{P(k) \times rel(k)}{\text{Number of Relevant Samples}}
+\end{equation}
+\begin{equation}\label{eq:MAP}
+	MAP = \frac{1}{q} \sum_{i=1}^{q} AvgP(i)
+\end{equation}
+where \textit{\textbf{P}}(\textit{\textbf{k}}) denotes the \textit{precision} at position k in the ranking, \textit{\textbf{AvgP}}(\textit{\textbf{k}}) indicates the \textit{average precision} at position k in the ranking, \textit{\textbf{n}} is the number of samples in the \textit{\textbf{fresh\_dataset}}, \textit{\textbf{rel}}(\textit{\textbf{k}}) is an indicator function which equals 1 if the sample item at rank \textit{\textbf{k}} is a relevant sample for the current query, zero otherwise, and finally \textit{\textbf{q}} is the number of queries. Moreover, a sample is considered relevant if its family is the same as the current query sample.
+
+The \textit{\textbf{evaluate\_fresh}} provides, together with the \textbf{MRR} and \textbf{MAP} scores, the complete rankings for the $q$ query samples in a single \textit{json} file. Moreover, for convenience, 5 particular rankings are also saved as \textit{csv} files. These 5 rankings are those that produced:
 \begin{itemize}
-	\item the maximum \textit{RR} (Reciprocal Rank)
+	\item the maximum \textbf{RR} (Reciprocal Rank);
 	
-	\item the minimum \textit{RR} (Reciprocal Rank)
+	\item the minimum \textbf{RR} (Reciprocal Rank);
 	
-	\item the maximum \textit{AP} (Average Precision)
+	\item the maximum \textbf{AP} (Average Precision);
 	
-	\item the minimum \textit{AP} (Average Precision)
+	\item the minimum \textbf{AP} (Average Precision);
 	
-	\item the last ranking is randomly sampled between all the other rankings
+	\item the last ranking is randomly sampled between all the other rankings.
 \end{itemize}
 
-The model fresh dataset evaluation computes both the \textit{MRR} and \textit{MAP} scores. The Mean Reciprocal Rank (\textit{MRR}) is the average of the Reciprocal Ranks (\textit{RR}) of a series of queries. The Reciprocal Rank (\textit{RR}) of a query response is the multiplicative inverse of the rank (position in the ranking) of the single sample, belonging to the family of interest, which calssified as closest (highest rank). The \textit{MAP} score instead takes into account, with proper weights, all the sampels in the family of interest. Therefore a model will have a higher \textit{MRR} score if it classifies a single sample belonging to the family of interest higher in the ranking; and it will have a higher \textit{MAP} score if it classifies all the samples belonging to the family of interest higher in the ranking.
+In practice, for all the experiments presented in this document the number of query samples $q$ was set to 100.
 
-\color{Black}
 \chapter{Experimenting with ML based Malware Detection/Description methods}
 \color{Red}
 
