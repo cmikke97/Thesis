@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  6 JUL 2021 11:33
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  6 JUL 2021 12:08
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -785,7 +785,7 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 102
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<logopolito.pdf, id=182, 526.79488pt x 523.45164pt>
+<logopolito.pdf, id=186, 526.79488pt x 523.45164pt>
 File: logopolito.pdf Graphic file (type pdf)
 <use logopolito.pdf>
 Package pdftex.def Info: logopolito.pdf  used on input line 143.
@@ -852,7 +852,7 @@ LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line
 File: ts1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 [40] [41] [42] [43] [44] [45] [46] [47] [48] [49] [50]
-<./images/ALOHA.png, id=1080, 530.4618pt x 336.0555pt>
+<./images/ALOHA.png, id=1085, 530.4618pt x 336.0555pt>
 File: ./images/ALOHA.png Graphic file (type png)
 <use ./images/ALOHA.png>
 Package pdftex.def Info: ./images/ALOHA.png  used on input line 1775.
@@ -888,13 +888,13 @@ e.3.1}) has been already used, duplicate ignored
 ...
 l.1811 \end{equation}
                       <./images/ALOHA.png>] [53] [54]
-<./images/Multi_Head.png, id=1140, 456.0237pt x 191.5155pt>
+<./images/Multi_Head.png, id=1145, 456.0237pt x 191.5155pt>
 File: ./images/Multi_Head.png Graphic file (type png)
 <use ./images/Multi_Head.png>
 Package pdftex.def Info: ./images/Multi_Head.png  used on input line 1888.
 (pdftex.def)             Requested size: 422.50232pt x 177.4442pt.
  [55]
-<./images/Joint_Embedding.png, id=1153, 467.5869pt x 237.0456pt>
+<./images/Joint_Embedding.png, id=1158, 467.5869pt x 237.0456pt>
 File: ./images/Joint_Embedding.png Graphic file (type png)
 <use ./images/Joint_Embedding.png>
 Package pdftex.def Info: ./images/Joint_Embedding.png  used on input line 1897.
@@ -953,7 +953,7 @@ plicate ignored
                                                   \@startcolumn \@whilesw \i...
 l.1942 
         <./images/Joint_Embedding.png>] [58] [59]
-<./images/PE_plus_FP.png, id=1212, 549.9747pt x 375.804pt>
+<./images/PE_plus_FP.png, id=1217, 549.9747pt x 375.804pt>
 File: ./images/PE_plus_FP.png Graphic file (type png)
 <use ./images/PE_plus_FP.png>
 Package pdftex.def Info: ./images/PE_plus_FP.png  used on input line 2007.
@@ -987,7 +987,7 @@ Chapter 4.
 [62
 
 ] [63]
-<./images/Portable_Executable_32_bit_Structure.png, id=1250, 2991.175pt x 4228.
+<./images/Portable_Executable_32_bit_Structure.png, id=1255, 2991.175pt x 4228.
 79875pt>
 File: ./images/Portable_Executable_32_bit_Structure.png Graphic file (type png)
 
@@ -1064,12 +1064,12 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [72] [73] [74] [75]
-<./images/speeds_heatmap.png, id=1356, 722.7pt x 650.43pt>
+<./images/speeds_heatmap.png, id=1361, 722.7pt x 650.43pt>
 File: ./images/speeds_heatmap.png Graphic file (type png)
 <use ./images/speeds_heatmap.png>
 Package pdftex.def Info: ./images/speeds_heatmap.png  used on input line 2556.
 (pdftex.def)             Requested size: 422.50232pt x 380.25685pt.
-<./images/times_heatmap.png, id=1357, 722.7pt x 650.43pt>
+<./images/times_heatmap.png, id=1362, 722.7pt x 650.43pt>
 File: ./images/times_heatmap.png Graphic file (type png)
 <use ./images/times_heatmap.png>
 Package pdftex.def Info: ./images/times_heatmap.png  used on input line 2563.
@@ -1133,16 +1133,13 @@ l.2577 A
          function called \textit{\textbf{build\_fresh\_dataset}} was specifi...
  <./images/times_heatmap.png>] [78] [79]
 Chapter 5.
-<./images/ALOHA_Implementation.png, id=1400, 575.2692pt x 234.8775pt>
+<./images/ALOHA_Implementation.png, id=1406, 575.2692pt x 234.8775pt>
 File: ./images/ALOHA_Implementation.png Graphic file (type png)
 <use ./images/ALOHA_Implementation.png>
 Package pdftex.def Info: ./images/ALOHA_Implementation.png  used on input line 
 2638.
 (pdftex.def)             Requested size: 422.50232pt x 172.50923pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<./images/Joint_Embedding_Implementation.png, id=1401, 536.2434pt x 250.0542pt>
+<./images/Joint_Embedding_Implementation.png, id=1407, 536.2434pt x 250.0542pt>
 
 File: ./images/Joint_Embedding_Implementation.png Graphic file (type png)
 <use ./images/Joint_Embedding_Implementation.png>
@@ -1154,8 +1151,8 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 [80
 
-] [81pdfTeX warning (ext4): destination with the same identifier (name{figure.5
-.1}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{figure.5.1}) 
+has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
 \use_ii:nn #1#2->#2
@@ -1172,16 +1169,12 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 \@opcol ...lumn \@outputdblcol \else \@outputpage 
                                                   \fi \global \@mparbottom \...
-<argument> \@opcol 
-                   \@makefcolumn \@deferlist 
-\@whilesw #1\fi #2->#1#2
-                        \@iwhilesw {#1#2}\fi \fi 
-\@doclearpage ...opcol \@makefcolumn \@deferlist }
-                                                  \if@twocolumn \if@firstcol...
-...
-l.2657 
-       pdfTeX warning (ext4): destination with the same identifier (name{figure
-.5.2}) has been already used, duplicate ignored
+<output> ...specialoutput \else \@makecol \@opcol 
+                                                  \@startcolumn \@whilesw \i...
+l.2653 
+        <./images/ALOHA_Implementation.png>] [81pdfTeX warning (ext4): destinat
+ion with the same identifier (name{figure.5.2}) has been already used, duplicat
+e ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
 \use_ii:nn #1#2->#2
@@ -1198,22 +1191,22 @@ l.2657
 
 \@opcol ...lumn \@outputdblcol \else \@outputpage 
                                                   \fi \global \@mparbottom \...
-<argument> \@opcol 
-                   \@makefcolumn \@deferlist 
-\@whilesw #1\fi #2->#1#2
-                        \@iwhilesw {#1#2}\fi \fi 
-\@doclearpage ...opcol \@makefcolumn \@deferlist }
-                                                  \if@twocolumn \if@firstcol...
+<output> ...specialoutput \else \@makecol \@opcol 
+                                                  \@startcolumn \@whilesw \i...
+
+\newpage ...prevdepth \fi \fi \vfil \penalty -\@M 
+                                                  
+\clearpage ...opskip \hbox {}\fi \fi \fi \newpage 
+                                                  \write \m@ne {}\vbox {}\pe...
 ...
-l.2657 
-        <./images/ALOHA_Implementation.png> <./images/Joint_Embedding_Implement
-ation.png>]
+l.2659 
+        <./images/Joint_Embedding_Implementation.png>]
 Chapter 6.
-<./images/Proposed_Joint_Embedding.png, id=1414, 570.2103pt x 297.7524pt>
+<./images/Proposed_Joint_Embedding.png, id=1420, 570.2103pt x 297.7524pt>
 File: ./images/Proposed_Joint_Embedding.png Graphic file (type png)
 <use ./images/Proposed_Joint_Embedding.png>
 Package pdftex.def Info: ./images/Proposed_Joint_Embedding.png  used on input l
-ine 2660.
+ine 2662.
 (pdftex.def)             Requested size: 422.50232pt x 220.62863pt.
 [82
 
@@ -1243,7 +1236,7 @@ has been already used, duplicate ignored
 \clearpage ...opskip \hbox {}\fi \fi \fi \newpage 
                                                   \write \m@ne {}\vbox {}\pe...
 ...
-l.2666 
+l.2672 
         <./images/Proposed_Joint_Embedding.png>]
 Chapter 7.
 [83
@@ -1254,11 +1247,7 @@ Chapter 8.
 
 ]
 Chapter 9.
-[85
-
-]
-Chapter 10.
-(Thesis_V1.0.0.bbl [86
+(Thesis_V1.0.0.bbl [85
 
 ]
 Underfull \hbox (badness 1242) in paragraph at lines 10--12
@@ -1338,7 +1327,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 69--72
 ?sh = 4c267d34414b$[][]\OT1/cmr/m/n/10 , 2020,
  []
 
-[87
+[86
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 154--156
@@ -1364,21 +1353,21 @@ Underfull \hbox (badness 1371) in paragraph at lines 189--192
 t/m/n/10 https : / / www . forcepoint . com / cyber-[]edu /
  []
 
-[88]
+[87]
 Underfull \hbox (badness 10000) in paragraph at lines 235--237
 []\OT1/cmr/m/n/10 J. Mu, ``Fast-ten-sor-dat-aloader.'' [][]$\OT1/cmtt/m/n/10 ht
 tps : / / discuss . pytorch . org / t /
  []
 
-) [89] (Thesis_V1.0.0.aux)
+) [88] (Thesis_V1.0.0.aux)
 Package rerunfilecheck Info: File `Thesis_V1.0.0.out' has not changed.
-(rerunfilecheck)             Checksum: DEB46D292DF6C9EB6877B6632107945C;7884.
+(rerunfilecheck)             Checksum: 08160CE0F89BA72BB882CE1B04D102FB;7695.
  ) 
 Here is how much of TeX's memory you used:
- 18956 strings out of 481296
- 311077 string characters out of 2908369
- 960672 words of memory out of 3000000
- 35132 multiletter control sequences out of 15000+600000
+ 18958 strings out of 481296
+ 311107 string characters out of 2908369
+ 960719 words of memory out of 3000000
+ 35134 multiletter control sequences out of 15000+600000
  420599 words of font info for 90 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  134i,17n,137p,2138b,2558s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1411,9 +1400,9 @@ ichele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
 <C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmtt8.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
 sfonts/symbols/msbm10.pfb>
-Output written on Thesis_V1.0.0.pdf (89 pages, 2512443 bytes).
+Output written on Thesis_V1.0.0.pdf (88 pages, 2511975 bytes).
 PDF statistics:
- 1729 PDF objects out of 2073 (max. 8388607)
+ 1731 PDF objects out of 2073 (max. 8388607)
  645 named destinations out of 1000 (max. 500000)
- 416 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 424 words of extra memory for PDF output out of 10000 (max. 10000000)
 
