@@ -2628,6 +2628,11 @@ In practice, for all the experiments presented in this document the number of qu
 \chapter{ML-based Malware Detection/Description Methods Implementation}
 The state of the art malware detection/description methods presented above, namely \textit{Auxiliary Loss Optimization for Hypothesis Augmentation} (\textbf{ALOHA} model, \cite{ruddALOHA}), \textit{Automatic Malware Description via Attribute Tagging and Similarity Embedding} (\textbf{Joint Embedding} model, \cite{DucauAMDATSE}) and \textit{Learning from Context: Exploiting and Interpreting File Path Information for Better Malware Detection} (\textbf{File content + contextual file path (PE + FP)} model, \cite{KyadigeLFCEIFPIBMD}), represent a good starting point for further research in this topic. Moreover, the models used in those methods can easily be modified to work with Sorel20M dataset, with the exception of the \textbf{PE + FP} model \cite{KyadigeLFCEIFPIBMD} since the mentioned dataset provides no file path information (and it is unfeasible to extend it with the needed additional information).
 
+Both the \textbf{ALOHA} \cite{ruddALOHA} and \textbf{Joint Embedding}, \cite{DucauAMDATSE} models were therefore implemented in \textit{Python}/\textit{Pytroch} following the descriptions in the respective papers and having as a starting point the example code of Sorel20M dataset.
+
+\section{Implementation}
+
+\subsection{ALOHA model Implementation}
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=\textwidth]{./images/ALOHA_Implementation.png}
@@ -2635,12 +2640,18 @@ The state of the art malware detection/description methods presented above, name
 	\label{fig:ALOHA_Implementation_model}
 \end{figure}
 
+\subsection{Joint Embedding Implementation}
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=\textwidth]{./images/Joint_Embedding_Implementation.png}
 	\caption{Joint Embedding model implementation}
 	\label{fig:Joint_Embedding_Implementation_model}
 \end{figure}
+
+\subsection{Experiments}
+Both the models were trained (and validated) each for 12 \textit{epochs} on the first $6M$ training and $1.153.846$ validation samples of the pre-processed Sorel20M dataset (loaded with generator \textit{\textbf{alt3}}) using different number of layers, number of nodes per layer (layer sizes), activation functions and dropout value for the model base topology, different optimizers (\textbf{Adam} or \textbf{SGD}), learning rates (LR), momentum, weight decay and loss weights. The resulting models were then evaluated on the first $1.846.154$ test samples of Sorel20M dataset looking for their tag and/or malicious/benign label (present only in the ALOHA model implementation) prediction \textit{TPR}, \textit{accuracy}, \textit{recall}, \textit{precision}, \textit{f1} score, \textit{jaccard similarity} and \textit{mean-per-sample-accuracy} at a FPR of 1\%, as well as the resulting tag and/or malicious/benign \textit{ROC} curves and \textit{AUC} scores.
+
+The final ALOHA architecture, consisting of 5 layers of sizes 1024, 768, 512, 512, and 512 respectively, with dropout probability $p_d=5\%$ and \textbf{ELU} activation function, in particular, was trained with a learning rate $LR = 10^{-3}$, \textbf{Adam} optimizer, no momentum nor weight decay and loss weights set to 1.0 for the malicious/benign head, 0.1 for the count head and 1.0 for the tag head.
 
 \chapter{Proposed Tool}
 
