@@ -2702,9 +2702,16 @@ The final \textbf{ALOHA} architecture, which had a base topology consisting of 3
 On the other hand, the base topology of final \textbf{Joint Embedding} architecture consisted of 3 layers of sizes 512, 512, and 128 respectively, with dropout probability $p_d=5\%$ and \textbf{ELU} activation function. The overall model was trained with a learning rate $LR = 10^{-3}$, \textbf{Adam} optimizer, no momentum nor weight decay and loss weights set to 1.0 for the malicious/benign head, 0.1 for the count head and 1.0 for the tag head. Moreover, the final model uses the dot product as similarity score between tags' and samples' embeddings.
 
 \section{Results}
-\subsection{ALOHA}
-
-\subsection{Joint Embedding}
+\begin{tabular}{|p{3cm}||p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|}
+	\hline
+	\multicolumn{7}{|c|}{Malware label (at FPR $=1\%$)} \\
+	\hline
+	Model & TPR & Accuracy & Precision & Recall & F1 score & AUC \\
+	\hline
+	ALOHA & 0,955483 & 0,976642 & 0,983697 & 0,955483 & 0,969385 & 0,994223 \\
+	Joint Embedding & - & - & - & - & - & - \\
+	\hline
+\end{tabular}
 
 \subsection{Considerations}
 
