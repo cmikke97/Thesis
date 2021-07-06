@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  6 JUL 2021 16:03
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  6 JUL 2021 16:19
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -1142,20 +1142,25 @@ Package pdftex.def Info: ./images/ALOHA_Implementation.png  used on input line
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<./images/Joint_Embedding_Implementation.png, id=1428, 536.2434pt x 250.0542pt>
+
+Overfull \hbox (2.50146pt too wide) in paragraph at lines 2648--2649
+[]\OT1/cmr/m/n/10 More specif-i-cally, for the \OT1/cmr/m/it/10 Ma-li-cious/Be-
+nign \OT1/cmr/m/n/10 la-bel pre-dic-tion head which ap-plies func-tion $\OML/cm
+m/m/it/10 f[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 )$
+ []
+
+[80
+
+]
+<./images/Joint_Embedding_Implementation.png, id=1435, 536.2434pt x 250.0542pt>
 
 File: ./images/Joint_Embedding_Implementation.png Graphic file (type png)
 <use ./images/Joint_Embedding_Implementation.png>
 Package pdftex.def Info: ./images/Joint_Embedding_Implementation.png  used on i
-nput line 2649.
+nput line 2653.
 (pdftex.def)             Requested size: 422.50232pt x 197.02173pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[80
-
-] [81pdfTeX warning (ext4): destination with the same identifier (name{figure.5
-.1}) has been already used, duplicate ignored
+ [81pdfTeX warning (ext4): destination with the same identifier (name{figure.5.
+1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
 \use_ii:nn #1#2->#2
@@ -1199,11 +1204,11 @@ l.2660
         <./images/ALOHA_Implementation.png> <./images/Joint_Embedding_Implement
 ation.png>] [82]
 Chapter 6.
-<./images/Proposed_Joint_Embedding.png, id=1445, 570.2103pt x 297.7524pt>
+<./images/Proposed_Joint_Embedding.png, id=1447, 570.2103pt x 297.7524pt>
 File: ./images/Proposed_Joint_Embedding.png Graphic file (type png)
 <use ./images/Proposed_Joint_Embedding.png>
 Package pdftex.def Info: ./images/Proposed_Joint_Embedding.png  used on input l
-ine 2673.
+ine 2677.
 (pdftex.def)             Requested size: 422.50232pt x 220.62863pt.
 [83
 
@@ -1233,7 +1238,7 @@ has been already used, duplicate ignored
 \clearpage ...opskip \hbox {}\fi \fi \fi \newpage 
                                                   \write \m@ne {}\vbox {}\pe...
 ...
-l.2681 
+l.2685 
         <./images/Proposed_Joint_Embedding.png>]
 Chapter 7.
 [84
@@ -1397,9 +1402,9 @@ ichele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
 <C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmtt8.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
 sfonts/symbols/msbm10.pfb>
-Output written on Thesis_V1.0.0.pdf (89 pages, 2516529 bytes).
+Output written on Thesis_V1.0.0.pdf (89 pages, 2518072 bytes).
 PDF statistics:
- 1759 PDF objects out of 2073 (max. 8388607)
+ 1761 PDF objects out of 2073 (max. 8388607)
  650 named destinations out of 1000 (max. 500000)
  456 words of extra memory for PDF output out of 10000 (max. 10000000)
 

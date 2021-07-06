@@ -2643,6 +2643,10 @@ Both the implementations developed for this project only loosely followed the or
 
 The implementation of ALOHA model (fig. \ref{fig:ALOHA_Implementation_model}) consists of a shared model base topology composed of 3 blocks, each composed of Dropout, a dense layer, layer normalization, and an exponential linear unit (ELU) activation, with 512, 512, and 128 hidden units respectively. The exact number of layers, along with the layers' dimensions, the dropout probability and the activation function used, however, can be set dynamically in the code at network definition providing a good amount of customizability. The shared model base, given an input sample feature vector \textbf{x} (of size 2381) got from Sorel20M dataset, outputs an intermediate representation $h=f(\textbf{x})$ of size 512 which is then used as input to the different parallel output heads.
 
+The output heads used in this implementation are similar to those described in the original ALOHA paper (\cite{ruddALOHA}) with the exclusion of the \textit{Per-Vendor Malicious/Benign} prediction head which could not be reproduced given the lack of the needed information (namely the per-vendor malicious/benign labels) in the Sorel20M dataset. In particular, for each output head (\textit{Malicious/Benign label}, \textit{Vendor Count} and \textit{Malicious tags} prediction heads) an additional block, consisting of one or more dense layers and activation functions was appended to the shared base topology.
+
+More specifically, for the \textit{Malicious/Benign} label prediction head which applies function $f_{mal}(x)$ to each sample feature vector $\textbf{x}$, a single dense layer followed by the \textit{sigmoid} activation function was used. The loss $L_{mal}$ between the resulting $f_{mal}(x)$ and the ground truth $y_{mal}$ is then computed exactly as described in paper \cite{ruddALOHA}.
+
 \subsection{Joint Embedding Implementation}
 \begin{figure}[h]
 	\centering
