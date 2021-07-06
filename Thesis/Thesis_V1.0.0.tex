@@ -2667,7 +2667,7 @@ The model \textit{base topology} consists of a series of 3 dense blocks, each co
 
 The \textit{Tag Embedding} matrix $\textbf{E} \in \mathcal{R}$, on the other hand, which is the same as the original implementation \cite{DucauAMDATSE}, maps a each tag $t_n$ to the corresponding representation in the Joint Embedding space and is therefore used as second input to the \textit{Prediction Layer}.
 
-Finally, the \textit{Prediction Layer} combines the sample (PE) and tags embeddings producing a similarity score matrix that is run through a \textit{sigmoid} activation function (by value) resulting in the probabilities of each tag $t$ being associated to sample $\textbf{x}$. The function used to compute the similarity score between the two embedding vectors can be chosen dynamically at network definition between: the \textit{dot product}, the \textit{cosine similarity} and the inverse of the \textit{Euclidean distance}. In particular, when the inverted \textit{Euclidean distance} is selected the inversion function used can be: \textit{exp}, \textit{inv} or \textit{inv\_pow}.
+Finally, the \textit{Prediction Layer} combines the sample (PE) and tags embeddings producing a similarity score matrix that is run through a \textit{sigmoid} activation function (by value) resulting in the probabilities of each tag $t$ being associated to sample $\textbf{x}$. The function used to compute the similarity score between the two embedding vectors can be chosen dynamically at network definition between: the \textit{dot product} (eq. \ref{eq:DotProduct}), the \textit{cosine similarity} (eq. \ref{eq:CosineSimilarity}) and the inverse of the \textit{Euclidean distance}. In particular, there are 3 versions of inverted \textit{Euclidean distance} that can be selected at network definition: \textit{exp} (eq. \ref{eq:EuclideanExpSimilarity}), \textit{inv} (eq. \ref{eq:EuclideanInvSimilarity}) or \textit{inv\_pow} (eq. \ref{eq:EuclideanInvPowSimilarity}).
 
 \begin{equation}\label{eq:DotProduct}
 	\text{dot product}(\textbf{a}, \textbf{b}) = \textbf{a} \cdot \textbf{b} = \sum_{i=1}^{D} a_i b_i
@@ -2686,11 +2686,13 @@ Finally, the \textit{Prediction Layer} combines the sample (PE) and tags embeddi
 \begin{equation}\label{eq:EuclideanInvPowSimilarity}
 	\text{euclidean similarity inv\_pow}(\textbf{a}, \textbf{b}) = \frac{1}{1+\frac{d(\textbf{a}, \textbf{b})^2}{\alpha}}
 \end{equation}
-where $d(\textbf{a}, \textbf{b})$ is the Euclidean distance between points $\textbf{a}$ and $\textbf{b}$ as defined in eq. \ref{eq:EuclideanDistance} and $\alpha$ is a multiplicative factor set at network definition if using inverted \textit{Euclidean distance} as similarity function.
+where $d(\textbf{a}, \textbf{b})$ is the Euclidean distance between points $\textbf{a}$ and $\textbf{b}$ as defined in eq. \ref{eq:EuclideanDistance} and $\alpha$ is a multiplicative factor that cab be arbitrarily set at network definition when using one of the inverted \textit{Euclidean distance} functions. In the final Joint Embedding model implementation $\alpha$ is set to $1.0$.
 
 \begin{equation}\label{eq:EuclideanDistance}
 	d(\textbf{a}, \textbf{b})=\sqrt{\sum_{i=1}^{D} (a_i - b_i)^2}
 \end{equation}
+
+The tags predicted probabilities outputted by the \textit{Prediction Layer} are then used to compute the respective losses with respect to the ground truth tags $y_{t_i}, \forall i \in 1,..,11$, exactly as described in paper \cite{DucauAMDATSE}, which are combined together to form the final loss $L(\textbf{x}, y)$.
 
 \section{Experiments}
 Both the models were trained (and validated) each for 12 \textit{epochs} on the first $6M$ training and $1.153.846$ validation samples of the pre-processed Sorel20M dataset (loaded with generator \textit{\textbf{alt3}}) using different number of layers, number of nodes per layer (layer sizes), activation functions and dropout value for the model base topology, different optimizers (\textbf{Adam} or \textbf{SGD}), learning rates (LR), momentum, weight decay and loss weights. Moreover, in the case of the \textbf{Joint Embedding} model also different similarity score functions such as the cosine similarity and the inverse of the Euclidean distance were tested instead of the dot product. The resulting models were then evaluated on the first $1.846.154$ test samples of Sorel20M dataset looking for their tag and/or malicious/benign label (present only in the ALOHA model implementation) prediction \textit{TPR}, \textit{accuracy}, \textit{recall}, \textit{precision}, \textit{f1} score, \textit{jaccard similarity} and \textit{mean-per-sample-accuracy} at a FPR of 1\%, as well as the resulting tag and/or malicious/benign \textit{ROC} curves and \textit{AUC} scores.
