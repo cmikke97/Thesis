@@ -2631,6 +2631,7 @@ The state of the art malware detection/description methods presented above (sect
 Both the \textbf{ALOHA} \cite{ruddALOHA} and \textbf{Joint Embedding}, \cite{DucauAMDATSE} models were therefore implemented in \textit{Python}/\textit{Pytroch} following the descriptions in the respective papers and having as a starting point the example code of Sorel20M dataset.
 
 \section{Implementation}
+Both the implementations developed for this project only loosely followed the original models' structure as described in the respective papers. Therefore here are presented the implementation details.
 
 \subsection{ALOHA model Implementation}
 \begin{figure}[h]
@@ -2639,6 +2640,8 @@ Both the \textbf{ALOHA} \cite{ruddALOHA} and \textbf{Joint Embedding}, \cite{Duc
 	\caption{ALOHA model implementation}
 	\label{fig:ALOHA_Implementation_model}
 \end{figure}
+
+The implementation of ALOHA model (fig. \ref{fig:ALOHA_Implementation_model}) consists of a shared model base topology composed of 3 blocks, each composed of Dropout, a dense layer, layer normalization, and an exponential linear unit (ELU) activation, with 512, 512, and 128 hidden units respectively. The exact number of layers, along with the layers' dimensions, the dropout probability and the activation function used, however, can be set dynamically in the code at network definition providing a good amount of customizability. The shared model base, given an input sample feature vector \textbf{x} (of size 2381) got from Sorel20M dataset, outputs an intermediate representation $h=f(\textbf{x})$ of size 512 which is then used as input to the different parallel output heads.
 
 \subsection{Joint Embedding Implementation}
 \begin{figure}[h]
@@ -2651,9 +2654,9 @@ Both the \textbf{ALOHA} \cite{ruddALOHA} and \textbf{Joint Embedding}, \cite{Duc
 \section{Experiments}
 Both the models were trained (and validated) each for 12 \textit{epochs} on the first $6M$ training and $1.153.846$ validation samples of the pre-processed Sorel20M dataset (loaded with generator \textit{\textbf{alt3}}) using different number of layers, number of nodes per layer (layer sizes), activation functions and dropout value for the model base topology, different optimizers (\textbf{Adam} or \textbf{SGD}), learning rates (LR), momentum, weight decay and loss weights. Moreover, in the case of the \textbf{Joint Embedding} model also different similarity score functions such as the cosine similarity and the inverse of the Euclidean distance were tested instead of the dot product. The resulting models were then evaluated on the first $1.846.154$ test samples of Sorel20M dataset looking for their tag and/or malicious/benign label (present only in the ALOHA model implementation) prediction \textit{TPR}, \textit{accuracy}, \textit{recall}, \textit{precision}, \textit{f1} score, \textit{jaccard similarity} and \textit{mean-per-sample-accuracy} at a FPR of 1\%, as well as the resulting tag and/or malicious/benign \textit{ROC} curves and \textit{AUC} scores.
 
-The final \textbf{ALOHA} architecture, which had a base topology consisting of 5 layers of sizes 1024, 768, 512, 512, and 512 respectively, with dropout probability $p_d=5\%$ and \textbf{ELU} activation function, in particular, was trained with a learning rate $LR = 10^{-3}$, \textbf{Adam} optimizer, no momentum nor weight decay and loss weights set to 1.0 for the malicious/benign head, 0.1 for the count head and 1.0 for the tag head.
+The final \textbf{ALOHA} architecture, which had a base topology consisting of 3 layers of sizes 512, 512 and 128 respectively, with dropout probability $p_d=5\%$ and \textbf{ELU} activation function, in particular, was trained with a learning rate $LR = 10^{-3}$, \textbf{Adam} optimizer, no momentum nor weight decay and loss weights set to 1.0 for the malicious/benign head, 0.1 for the count head and 1.0 for the tag head.
 
-On the other hand, the base topology of final \textbf{Joint Embedding} architecture consisted of 5 layers of sizes 1024, 768, 512, 512, and 512 respectively, with dropout probability $p_d=5\%$ and \textbf{ELU} activation function. The overall model was trained with a learning rate $LR = 10^{-3}$, \textbf{Adam} optimizer, no momentum nor weight decay and loss weights set to 1.0 for the malicious/benign head, 0.1 for the count head and 1.0 for the tag head. Moreover, the final model uses the dot product as similarity score between tags' and samples' embeddings.
+On the other hand, the base topology of final \textbf{Joint Embedding} architecture consisted of 3 layers of sizes 512, 512, and 128 respectively, with dropout probability $p_d=5\%$ and \textbf{ELU} activation function. The overall model was trained with a learning rate $LR = 10^{-3}$, \textbf{Adam} optimizer, no momentum nor weight decay and loss weights set to 1.0 for the malicious/benign head, 0.1 for the count head and 1.0 for the tag head. Moreover, the final model uses the dot product as similarity score between tags' and samples' embeddings.
 
 \section{Results}
 \subsection{ALOHA}

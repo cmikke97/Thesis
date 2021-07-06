@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  6 JUL 2021 12:13
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  6 JUL 2021 16:03
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -1137,22 +1137,25 @@ Chapter 5.
 File: ./images/ALOHA_Implementation.png Graphic file (type png)
 <use ./images/ALOHA_Implementation.png>
 Package pdftex.def Info: ./images/ALOHA_Implementation.png  used on input line 
-2638.
+2639.
 (pdftex.def)             Requested size: 422.50232pt x 172.50923pt.
-<./images/Joint_Embedding_Implementation.png, id=1427, 536.2434pt x 250.0542pt>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<./images/Joint_Embedding_Implementation.png, id=1428, 536.2434pt x 250.0542pt>
 
 File: ./images/Joint_Embedding_Implementation.png Graphic file (type png)
 <use ./images/Joint_Embedding_Implementation.png>
 Package pdftex.def Info: ./images/Joint_Embedding_Implementation.png  used on i
-nput line 2646.
+nput line 2649.
 (pdftex.def)             Requested size: 422.50232pt x 197.02173pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [80
 
-pdfTeX warning (ext4): destination with the same identifier (name{figure.5.1}) 
-has been already used, duplicate ignored
+] [81pdfTeX warning (ext4): destination with the same identifier (name{figure.5
+.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
 \use_ii:nn #1#2->#2
@@ -1171,10 +1174,9 @@ has been already used, duplicate ignored
                                                   \fi \global \@mparbottom \...
 <output> ...specialoutput \else \@makecol \@opcol 
                                                   \@startcolumn \@whilesw \i...
-l.2653 
-        <./images/ALOHA_Implementation.png>] [81pdfTeX warning (ext4): destinat
-ion with the same identifier (name{figure.5.2}) has been already used, duplicat
-e ignored
+l.2660 
+       pdfTeX warning (ext4): destination with the same identifier (name{figure
+.5.2}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
 \use_ii:nn #1#2->#2
@@ -1193,22 +1195,17 @@ e ignored
                                                   \fi \global \@mparbottom \...
 <output> ...specialoutput \else \@makecol \@opcol 
                                                   \@startcolumn \@whilesw \i...
-
-\newpage ...prevdepth \fi \fi \vfil \penalty -\@M 
-                                                  
-\clearpage ...opskip \hbox {}\fi \fi \fi \newpage 
-                                                  \write \m@ne {}\vbox {}\pe...
-...
-l.2666 
-        <./images/Joint_Embedding_Implementation.png>]
+l.2660 
+        <./images/ALOHA_Implementation.png> <./images/Joint_Embedding_Implement
+ation.png>] [82]
 Chapter 6.
-<./images/Proposed_Joint_Embedding.png, id=1440, 570.2103pt x 297.7524pt>
+<./images/Proposed_Joint_Embedding.png, id=1445, 570.2103pt x 297.7524pt>
 File: ./images/Proposed_Joint_Embedding.png Graphic file (type png)
 <use ./images/Proposed_Joint_Embedding.png>
 Package pdftex.def Info: ./images/Proposed_Joint_Embedding.png  used on input l
-ine 2670.
+ine 2673.
 (pdftex.def)             Requested size: 422.50232pt x 220.62863pt.
-[82
+[83
 
 pdfTeX warning (ext4): destination with the same identifier (name{figure.6.1}) 
 has been already used, duplicate ignored
@@ -1236,18 +1233,18 @@ has been already used, duplicate ignored
 \clearpage ...opskip \hbox {}\fi \fi \fi \newpage 
                                                   \write \m@ne {}\vbox {}\pe...
 ...
-l.2678 
+l.2681 
         <./images/Proposed_Joint_Embedding.png>]
 Chapter 7.
-[83
-
-]
-Chapter 8.
 [84
 
 ]
+Chapter 8.
+[85
+
+]
 Chapter 9.
-(Thesis_V1.0.0.bbl [85
+(Thesis_V1.0.0.bbl [86
 
 ]
 Underfull \hbox (badness 1242) in paragraph at lines 10--12
@@ -1327,7 +1324,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 69--72
 ?sh = 4c267d34414b$[][]\OT1/cmr/m/n/10 , 2020,
  []
 
-[86
+[87
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 154--156
@@ -1353,19 +1350,19 @@ Underfull \hbox (badness 1371) in paragraph at lines 189--192
 t/m/n/10 https : / / www . forcepoint . com / cyber-[]edu /
  []
 
-[87]
+[88]
 Underfull \hbox (badness 10000) in paragraph at lines 235--237
 []\OT1/cmr/m/n/10 J. Mu, ``Fast-ten-sor-dat-aloader.'' [][]$\OT1/cmtt/m/n/10 ht
 tps : / / discuss . pytorch . org / t /
  []
 
-) [88] (Thesis_V1.0.0.aux)
+) [89] (Thesis_V1.0.0.aux)
 Package rerunfilecheck Info: File `Thesis_V1.0.0.out' has not changed.
 (rerunfilecheck)             Checksum: 8451720643A589F5D0648F070A82D00E;8140.
  ) 
 Here is how much of TeX's memory you used:
- 18966 strings out of 481296
- 311233 string characters out of 2908369
+ 18967 strings out of 481296
+ 311240 string characters out of 2908369
  960722 words of memory out of 3000000
  35138 multiletter control sequences out of 15000+600000
  420599 words of font info for 90 fonts, out of 8000000 for 9000
@@ -1400,9 +1397,9 @@ ichele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
 <C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmtt8.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
 sfonts/symbols/msbm10.pfb>
-Output written on Thesis_V1.0.0.pdf (88 pages, 2514845 bytes).
+Output written on Thesis_V1.0.0.pdf (89 pages, 2516529 bytes).
 PDF statistics:
- 1754 PDF objects out of 2073 (max. 8388607)
- 649 named destinations out of 1000 (max. 500000)
+ 1759 PDF objects out of 2073 (max. 8388607)
+ 650 named destinations out of 1000 (max. 500000)
  456 words of extra memory for PDF output out of 10000 (max. 10000000)
 
