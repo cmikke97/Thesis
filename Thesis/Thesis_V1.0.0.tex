@@ -88,6 +88,8 @@
 	morestring=[d]',
 }
 
+\renewcommand{\arraystretch}{1.5}
+
 \algdef{SE}% flags used internally to indicate we're defining a new block statement
 [CLASS]% new block type
 {Class}% "\Class{name}" will indicate the start of the class declaration
@@ -2702,27 +2704,200 @@ The final \textbf{ALOHA} architecture, which had a base topology consisting of 3
 On the other hand, the base topology of final \textbf{Joint Embedding} architecture consisted of 3 layers of sizes 512, 512, and 128 respectively, with dropout probability $p_d=5\%$ and \textbf{ELU} activation function. The overall model was trained with a learning rate $LR = 10^{-3}$, \textbf{Adam} optimizer, no momentum nor weight decay and loss weights set to 1.0 for the malicious/benign head, 0.1 for the count head and 1.0 for the tag head. Moreover, the final model uses the dot product as similarity score between tags' and samples' embeddings.
 
 \section{Results}
-\begin{tabular}{|p{3cm}||p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|}
-	\hline
-	\multicolumn{7}{|c|}{Malware label (at FPR $=1\%$)} \\
-	\hline
-	Model & TPR & Accuracy & Precision & Recall & F1 score & AUC \\
-	\hline
-	ALOHA & 0,955483 & 0,976642 & 0,983697 & 0,955483 & 0,969385 & 0,994223 \\
-	Joint Embedding & - & - & - & - & - & - \\
-	\hline
-\end{tabular}
+\subsection{Malware label results}
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|p{3cm}||p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|}
+		\hline
+		\multicolumn{7}{|c|}{Malware label (at FPR $=1\%$)} \\
+		\hline
+		Model & TPR & Accuracy & Precision & Recall & F1 score & AUC \\
+		\hline
+		ALOHA & \textbf{0,955483} & \textbf{0,976642} & \textbf{0,983697} & \textbf{0,955483} & \textbf{0,969385} & \textbf{0,994223} \\
+		Joint Embedding & - & - & - & - & - & - \\
+		\hline
+	\end{tabular}
+\end{table}
 
-\begin{tabular}{|p{3cm}||p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|}
-	\hline
-	\multicolumn{7}{|c|}{Malware label (at FPR $=1\%$)} \\
-	\hline
-	Model & TPR & Accuracy & Precision & Recall & F1 score & AUC \\
-	\hline
-	ALOHA & 0,955483 & 0,976642 & 0,983697 & 0,955483 & 0,969385 & 0,994223 \\
-	Joint Embedding & - & - & - & - & - & - \\
-	\hline
-\end{tabular}
+\subsection{Adware tag results}
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|p{3cm}||p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|}
+		\hline
+		\multicolumn{7}{|c|}{Adware tag (at FPR $=1\%$)} \\
+		\hline
+		Model & TPR & Accuracy & Precision & Recall & F1 score & AUC \\
+		\hline
+		ALOHA & 0,667029 & 0,971413 & 0,802893 & 0,667029 & 0,728682 & \textbf{0,969776} \\
+		Joint Embedding & \textbf{0,674237} & \textbf{0,971827} & \textbf{0,804589} & \textbf{0,674237} & \textbf{0,733668} & 0,964693 \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\subsection{Crypto-miner tag results}
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|p{3cm}||p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|}
+		\hline
+		\multicolumn{7}{|c|}{Crypto-miner tag (at FPR $=1\%$)} \\
+		\hline
+		Model & TPR & Accuracy & Precision & Recall & F1 score & AUC \\
+		\hline
+		ALOHA & 0,880128 & 0,988483 & 0,552073 & 0,880128 & 0,678529 & 0,980590 \\
+		Joint Embedding & \textbf{0,893202} & \textbf{0,988664} & \textbf{0,555730} & \textbf{0,893202} & \textbf{0,685166} & \textbf{0,986034} \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\subsection{Downloader tag results}
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|p{3cm}||p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|}
+		\hline
+		\multicolumn{7}{|c|}{Downloader tag (at FPR $=1\%$)} \\
+		\hline
+		Model & TPR & Accuracy & Precision & Recall & F1 score & AUC \\
+		\hline
+		ALOHA & \textbf{0,622224} & \textbf{0,959254} & \textbf{0,850217} & \textbf{0,622224} & \textbf{0,718569} & \textbf{0,974264} \\
+		Joint Embedding & 0,605259 & 0,957836 & 0,846670 & 0,605259 & 0,705895 & 0,973810 \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\subsection{Dropper tag results}
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|p{3cm}||p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|}
+		\hline
+		\multicolumn{7}{|c|}{Dropper tag (at FPR $=1\%$)} \\
+		\hline
+		Model & TPR & Accuracy & Precision & Recall & F1 score & AUC \\
+		\hline
+		ALOHA & 0,693257 & 0,952120 & 0,910273 & 0,693257 & 0,787080 & \textbf{0,972347} \\
+		Joint Embedding & \textbf{0,731457} & \textbf{0,956997} & \textbf{0,914564} & \textbf{0,731457} & \textbf{0,812826} & 0,969605 \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\subsection{File-infector tag results}
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|p{3cm}||p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|}
+		\hline
+		\multicolumn{7}{|c|}{File-infector tag (at FPR $=1\%$)} \\
+		\hline
+		Model & TPR & Accuracy & Precision & Recall & F1 score & AUC \\
+		\hline
+		ALOHA & \textbf{0,863338} & \textbf{0,969537} & \textbf{0,943298} & \textbf{0,863338} & \textbf{0,901548} & \textbf{0,981291} \\
+		Joint Embedding & 0,845677 & 0,966683 & 0,942178 & 0,845677 & 0,891323 & 0,979642 \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\subsection{Flooder tag results}
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|p{3cm}||p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|}
+		\hline
+		\multicolumn{7}{|c|}{Flooder tag (at FPR $=1\%$)} \\
+		\hline
+		Model & TPR & Accuracy & Precision & Recall & F1 score & AUC \\
+		\hline
+		ALOHA & 0,891511 & 0,989828 & 0,139040 & 0,891511 & 0,240562 & \textbf{0,985615} \\
+		Joint Embedding & \textbf{0,905915} & \textbf{0,989846} & \textbf{0,140876} & \textbf{0,905915} & \textbf{0,243834} & 0,982012 \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\subsection{Installer tag results}
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|p{3cm}||p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|}
+		\hline
+		\multicolumn{7}{|c|}{Installer tag (at FPR $=1\%$)} \\
+		\hline
+		Model & TPR & Accuracy & Precision & Recall & F1 score & AUC \\
+		\hline
+		ALOHA & 0,729779 & 0,985375 & 0,569100 & 0,729779 & 0,639501 & \textbf{0,973206} \\
+		Joint Embedding & \textbf{0,739438} & \textbf{0,985546} & \textbf{0,572321} & \textbf{0,739438} & \textbf{0,645234} & 0,969592 \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\subsection{Packed tag results}
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|p{3cm}||p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|}
+		\hline
+		\multicolumn{7}{|c|}{Packed tag (at FPR $=1\%$)} \\
+		\hline
+		Model & TPR & Accuracy & Precision & Recall & F1 score & AUC \\
+		\hline
+		ALOHA & 0,695981 & 0,949865 & 0,916687 & 0,695981 & 0,791231 & 0,978469 \\
+		Joint Embedding & \textbf{0,773711} & \textbf{0,960476} & \textbf{0,924429} & \textbf{0,773711} & \textbf{0,842381} & \textbf{0,978678} \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\subsection{Ransomware tag results}
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|p{3cm}||p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|}
+		\hline
+		\multicolumn{7}{|c|}{Ransomware tag (at FPR $=1\%$)} \\
+		\hline
+		Model & TPR & Accuracy & Precision & Recall & F1 score & AUC \\
+		\hline
+		ALOHA & 0,853121 & 0,982846 & 0,824796 & 0,853121 & 0,838719 & 0,972115 \\
+		Joint Embedding & \textbf{0,856171} & \textbf{0,983003} & \textbf{0,825277} & \textbf{0,856171} & \textbf{0,840440} & \textbf{0,980650} \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\subsection{Spyware tag results}
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|p{3cm}||p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|}
+		\hline
+		\multicolumn{7}{|c|}{Spyware tag (at FPR $=1\%$)} \\
+		\hline
+		Model & TPR & Accuracy & Precision & Recall & F1 score & AUC \\
+		\hline
+		ALOHA & 0,612292 & 0,949644 & 0,879868 & 0,612292 & 0,722089 & 0,959670 \\
+		Joint Embedding & \textbf{0,667107} & \textbf{0,955501} & \textbf{0,888646} & \textbf{0,667107} & \textbf{0,762103} & \textbf{0,965487} \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\subsection{Worm tag results}
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|p{3cm}||p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|}
+		\hline
+		\multicolumn{7}{|c|}{Worm tag (at FPR $=1\%$)} \\
+		\hline
+		Model & TPR & Accuracy & Precision & Recall & F1 score & AUC \\
+		\hline
+		ALOHA & 0,579624 & 0,925008 & 0,916021 & 0,579624 & 0,709992 & \textbf{0,965917} \\
+		Joint Embedding & \textbf{0,648632} & \textbf{0,935937} & \textbf{0,924279} & \textbf{0,648632} & \textbf{0,762302} & 0,951480 \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\subsection{Mean per-sample scores}
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|p{4cm}||p{3cm}|p{3cm}|}
+		\hline
+		\multicolumn{3}{|c|}{Mean per sample scores (at FPR $=1\%$)} \\
+		\hline
+		Model & Jaccard Similarity & Mean-per-sample Accuracy \\
+		\hline
+		ALOHA & 0,864428 & 0,788886 \\
+		Joint Embedding & \textbf{0,874371} & \textbf{0,799156} \\
+		\hline
+	\end{tabular}
+\end{table}
 
 \subsection{Considerations}
 
