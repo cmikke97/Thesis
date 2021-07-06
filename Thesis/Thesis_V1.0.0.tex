@@ -2647,6 +2647,8 @@ The output heads used in this implementation are similar to those described in t
 
 More specifically, for the \textit{Malicious/Benign} label prediction head which applies function $f_{mal}(x)$ to each sample feature vector $\textbf{x}$, a single dense layer followed by the \textit{sigmoid} activation function was used. The loss $L_{mal}$ between the resulting $f_{mal}(x)$ and the ground truth $y_{mal}$ is then computed exactly as described in paper \cite{ruddALOHA}.
 
+The \textit{Vendor Count} output head, on the other hand, is composed of a single dense layer which outputs $f_{cnt}(x)$. Again, the loss $L_{cnt}$ with respect to the ground truth value $y_{cnt}$ is computed as described by Rudd et al. \cite{ruddALOHA}.
+
 \subsection{Joint Embedding Implementation}
 \begin{figure}[h]
 	\centering
