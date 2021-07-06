@@ -2641,7 +2641,7 @@ Both the implementations developed for this project only loosely followed the or
 	\label{fig:ALOHA_Implementation_model}
 \end{figure}
 
-The implementation of ALOHA model (fig. \ref{fig:ALOHA_Implementation_model}) consists of a shared model base topology composed of 3 blocks, each composed of Dropout, a dense layer, layer normalization, and an exponential linear unit (ELU) activation, with 512, 512, and 128 hidden units respectively. The exact number of layers, along with the layers' dimensions, the dropout probability and the activation function used, however, can be set dynamically in the code at network definition providing a good amount of customizability. The shared model base, given an input sample feature vector \textbf{x} (of size 2381) got from Sorel20M dataset, outputs an intermediate representation $h=f(\textbf{x})$ of size 512 which is then used as input to the different parallel output heads.
+The implementation of ALOHA model (fig. \ref{fig:ALOHA_Implementation_model}) consists of a shared model base topology and a number of output heads. The shared base topology is composed of 3 blocks, each consisting of Dropout, a dense layer, layer normalization, and an exponential linear unit (ELU) activation function, with 512, 512, and 128 hidden units respectively. The exact number of layers, along with the layers' dimensions, the dropout probability and the activation function used, however, can be set dynamically in the code at network definition providing a good amount of customizability. The shared model base, given an input sample feature vector \textbf{x} (of size 2381) got from Sorel20M dataset, outputs an intermediate representation $h=f(\textbf{x})$ of size 512 which is then used as input to the different parallel output heads.
 
 The output heads used in this implementation are similar to those described in the original ALOHA paper (\cite{ruddALOHA}) with the exclusion of the \textit{Per-Vendor Malicious/Benign} prediction head which could not be reproduced given the lack of the needed information (namely the per-vendor malicious/benign labels) in the Sorel20M dataset. In particular, for each output head (\textit{Malicious/Benign label}, \textit{Vendor Count} and \textit{Malicious tags} prediction heads) an additional block, consisting of one or more dense layers and activation functions was appended to the shared base topology. Moreover, the \textit{Vendor Count} and \textit{Malicious tags} prediction heads are optional, meaning that they can be turned on or off dynamically at network definition.
 
@@ -2660,6 +2660,37 @@ The final aggregate loss $L(\textbf{x}, y)$ is again computed as the weighted su
 	\caption{Joint Embedding model implementation}
 	\label{fig:Joint_Embedding_Implementation_model}
 \end{figure}
+
+The implementation of the Joint Embedding model (fig. \ref{fig:Joint_Embedding_Implementation_model}) is composed of 3 main parts: the \textit{Model Base/PE Embedding} topology, the \textit{Tag Embedding} and the \textit{Prediction Layer}.
+
+The model \textit{base topology} consists of a series of 3 dense blocks, each composed by dropout, a linear layer, layer normalization and ELU activation function, of output sizes 512, 512 and 128 respectively. Similarly to the ALOHA implementation, at network definition it is again possible to dynamically set the exact number of layers, together with the linear layers' sizes, the dropout probability and the activation used for the base topology. Anyway, the base PE embedding topology outputs an intermediate representation $h$ of size 512 given an input sample feature vector \textbf{x} (of size 2381). This intermediate representation is then used as input to a further linear layer with output size equal to the chosen \textit{\textbf{Joint Embedding}} size (set to 32 throughout all the experiments). The output of this further layer is the one used as input to the \textit{Prediction Layer} and corresponds to the representation of the input file features $x$ in the Joint Embedding space.
+
+The \textit{Tag Embedding} matrix $\textbf{E} \in \mathcal{R}$, on the other hand, which is the same as the original implementation \cite{DucauAMDATSE}, maps a each tag $t_n$ to the corresponding representation in the Joint Embedding space and is therefore used as second input to the \textit{Prediction Layer}.
+
+Finally, the \textit{Prediction Layer} combines the sample (PE) and tags embeddings producing a similarity score matrix that is run through a \textit{sigmoid} activation function (by value) resulting in the probabilities of each tag $t$ being associated to sample $\textbf{x}$. The function used to compute the similarity score between the two embedding vectors can be chosen dynamically at network definition between: the \textit{dot product}, the \textit{cosine similarity} and the inverse of the \textit{Euclidean distance}. In particular, when the inverted \textit{Euclidean distance} is selected the inversion function used can be: \textit{exp}, \textit{inv} or \textit{inv\_pow}.
+
+\begin{equation}\label{eq:DotProduct}
+	\text{dot product}(\textbf{a}, \textbf{b}) = \textbf{a} \cdot \textbf{b} = \sum_{i=1}^{D} a_i b_i
+\end{equation}
+
+\begin{equation}\label{eq:CosineSimilarity}
+	\text{cosine similarity}(\textbf{a}, \textbf{b}) = \frac{\textbf{a} \cdot \textbf{b}}{\|\textbf{a}\| \|\textbf{b}\|} = \frac{\sum_{i=1}^{D} a_i b_i}{\sqrt{\sum_{i=1}^{D} a_{i}^2} \text{ } \sqrt{\sum_{i=1}^{D} b_{i}^2}}
+\end{equation}
+
+\begin{equation}\label{eq:EuclideanExpSimilarity}
+	\text{euclidean similarity exp}(\textbf{a}, \textbf{b}) = e^{(\frac{-d(\textbf{a}, \textbf{b})}{\alpha})}
+\end{equation}
+\begin{equation}\label{eq:EuclideanInvSimilarity}
+	\text{euclidean similarity inv}(\textbf{a}, \textbf{b}) = \frac{1}{1+\frac{d(\textbf{a}, \textbf{b})}{\alpha}}
+\end{equation}
+\begin{equation}\label{eq:EuclideanInvPowSimilarity}
+	\text{euclidean similarity inv\_pow}(\textbf{a}, \textbf{b}) = \frac{1}{1+\frac{d(\textbf{a}, \textbf{b})^2}{\alpha}}
+\end{equation}
+where $d(\textbf{a}, \textbf{b})$ is the Euclidean distance between points $\textbf{a}$ and $\textbf{b}$ as defined in eq. \ref{eq:EuclideanDistance} and $\alpha$ is a multiplicative factor set at network definition if using inverted \textit{Euclidean distance} as similarity function.
+
+\begin{equation}\label{eq:EuclideanDistance}
+	d(\textbf{a}, \textbf{b})=\sqrt{\sum_{i=1}^{D} (a_i - b_i)^2}
+\end{equation}
 
 \section{Experiments}
 Both the models were trained (and validated) each for 12 \textit{epochs} on the first $6M$ training and $1.153.846$ validation samples of the pre-processed Sorel20M dataset (loaded with generator \textit{\textbf{alt3}}) using different number of layers, number of nodes per layer (layer sizes), activation functions and dropout value for the model base topology, different optimizers (\textbf{Adam} or \textbf{SGD}), learning rates (LR), momentum, weight decay and loss weights. Moreover, in the case of the \textbf{Joint Embedding} model also different similarity score functions such as the cosine similarity and the inverse of the Euclidean distance were tested instead of the dot product. The resulting models were then evaluated on the first $1.846.154$ test samples of Sorel20M dataset looking for their tag and/or malicious/benign label (present only in the ALOHA model implementation) prediction \textit{TPR}, \textit{accuracy}, \textit{recall}, \textit{precision}, \textit{f1} score, \textit{jaccard similarity} and \textit{mean-per-sample-accuracy} at a FPR of 1\%, as well as the resulting tag and/or malicious/benign \textit{ROC} curves and \textit{AUC} scores.
