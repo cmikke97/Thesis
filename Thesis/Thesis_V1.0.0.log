@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  6 JUL 2021 16:23
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  6 JUL 2021 16:50
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -1142,25 +1142,22 @@ Package pdftex.def Info: ./images/ALOHA_Implementation.png  used on input line
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-
-Overfull \hbox (2.50146pt too wide) in paragraph at lines 2648--2649
-[]\OT1/cmr/m/n/10 More specif-i-cally, for the \OT1/cmr/m/it/10 Ma-li-cious/Be-
-nign \OT1/cmr/m/n/10 la-bel pre-dic-tion head which ap-plies func-tion $\OML/cm
-m/m/it/10 f[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 )$
- []
-
 [80
 
 ]
-<./images/Joint_Embedding_Implementation.png, id=1436, 536.2434pt x 250.0542pt>
+<./images/Joint_Embedding_Implementation.png, id=1440, 536.2434pt x 250.0542pt>
 
 File: ./images/Joint_Embedding_Implementation.png Graphic file (type png)
 <use ./images/Joint_Embedding_Implementation.png>
 Package pdftex.def Info: ./images/Joint_Embedding_Implementation.png  used on i
-nput line 2655.
+nput line 2659.
 (pdftex.def)             Requested size: 422.50232pt x 197.02173pt.
- [81pdfTeX warning (ext4): destination with the same identifier (name{figure.5.
-1}) has been already used, duplicate ignored
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[81pdfTeX warning (ext4): destination with the same identifier (name{figure.5.1
+}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
 \use_ii:nn #1#2->#2
@@ -1179,9 +1176,13 @@ nput line 2655.
                                                   \fi \global \@mparbottom \...
 <output> ...specialoutput \else \@makecol \@opcol 
                                                   \@startcolumn \@whilesw \i...
-l.2662 
-       pdfTeX warning (ext4): destination with the same identifier (name{figure
-.5.2}) has been already used, duplicate ignored
+<to be read again> 
+                   O
+l.2669 O
+        n the other hand, the base topology of final \textbf{Joint Embedding...
+ <./images/ALOHA_Implementation.png>] [82pdfTeX warning (ext4): destination wit
+h the same identifier (name{figure.5.2}) has been already used, duplicate ignor
+ed
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
 \use_ii:nn #1#2->#2
@@ -1200,15 +1201,20 @@ l.2662
                                                   \fi \global \@mparbottom \...
 <output> ...specialoutput \else \@makecol \@opcol 
                                                   \@startcolumn \@whilesw \i...
-l.2662 
-        <./images/ALOHA_Implementation.png> <./images/Joint_Embedding_Implement
-ation.png>] [82]
+
+\newpage ...prevdepth \fi \fi \vfil \penalty -\@M 
+                                                  
+\clearpage ...opskip \hbox {}\fi \fi \fi \newpage 
+                                                  \write \m@ne {}\vbox {}\pe...
+...
+l.2679 
+        <./images/Joint_Embedding_Implementation.png>]
 Chapter 6.
-<./images/Proposed_Joint_Embedding.png, id=1448, 570.2103pt x 297.7524pt>
+<./images/Proposed_Joint_Embedding.png, id=1452, 570.2103pt x 297.7524pt>
 File: ./images/Proposed_Joint_Embedding.png Graphic file (type png)
 <use ./images/Proposed_Joint_Embedding.png>
 Package pdftex.def Info: ./images/Proposed_Joint_Embedding.png  used on input l
-ine 2679.
+ine 2683.
 (pdftex.def)             Requested size: 422.50232pt x 220.62863pt.
 [83
 
@@ -1238,7 +1244,7 @@ has been already used, duplicate ignored
 \clearpage ...opskip \hbox {}\fi \fi \fi \newpage 
                                                   \write \m@ne {}\vbox {}\pe...
 ...
-l.2687 
+l.2691 
         <./images/Proposed_Joint_Embedding.png>]
 Chapter 7.
 [84
@@ -1363,13 +1369,13 @@ tps : / / discuss . pytorch . org / t /
 
 ) [89] (Thesis_V1.0.0.aux)
 Package rerunfilecheck Info: File `Thesis_V1.0.0.out' has not changed.
-(rerunfilecheck)             Checksum: 8451720643A589F5D0648F070A82D00E;8140.
+(rerunfilecheck)             Checksum: 7B4F921F21057FABBB21079628BCB3A9;7984.
  ) 
 Here is how much of TeX's memory you used:
- 18967 strings out of 481296
- 311240 string characters out of 2908369
- 960722 words of memory out of 3000000
- 35138 multiletter control sequences out of 15000+600000
+ 18970 strings out of 481296
+ 311300 string characters out of 2908369
+ 960860 words of memory out of 3000000
+ 35141 multiletter control sequences out of 15000+600000
  420599 words of font info for 90 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  134i,17n,137p,2138b,2558s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1402,9 +1408,9 @@ ichele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
 <C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmtt8.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
 sfonts/symbols/msbm10.pfb>
-Output written on Thesis_V1.0.0.pdf (89 pages, 2518460 bytes).
+Output written on Thesis_V1.0.0.pdf (89 pages, 2520717 bytes).
 PDF statistics:
- 1762 PDF objects out of 2073 (max. 8388607)
+ 1766 PDF objects out of 2073 (max. 8388607)
  650 named destinations out of 1000 (max. 500000)
  456 words of extra memory for PDF output out of 10000 (max. 10000000)
 

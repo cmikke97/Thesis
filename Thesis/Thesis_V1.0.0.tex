@@ -1777,7 +1777,7 @@ The output for the main malware/benign prediction task - $f_{mal}(\textbf{x})$ -
 	\label{fig:ALOHA_model}
 \end{figure}
 
-\paragraph{Malware Loss}
+\paragraph{Malware Loss}\label{par:MalwareLoss}
 The task of predicting if a given binary file, represented by its features $\textbf{x}^{(i)}$, is malicious or benign is optimized by minimizing the binary cross-entropy loss between the malware/benign output of the network $\hat{y}^{(i)} = f_{mal}(\textbf{x}^{(i)})$ and the malicious label $y^{(i)}$. This results in the following loss for a dataset with \textit{M} samples:
 \begin{equation} \label{eq:alohaMalwareLoss}
 	\begin{split}
@@ -1786,7 +1786,7 @@ The task of predicting if a given binary file, represented by its features $\tex
 \end{equation}
 A "1-/5+" criterion was used for labelling a given file as malicious or benign \cite{ruddALOHA}.
 
-\paragraph{Vendor Count Loss}
+\paragraph{Vendor Count Loss}\label{par:VendorCountLoss}
 The first additional target the authors of \cite{ruddALOHA} tried using is the count of 'malicious' reports for a given sample from the vendor aggregation service. This is based on the assumption that the more a sample gets reported by vendors, the more likely it is to be malicious. To model count data, the authors used the Poisson noise model parametrized by the parameter $\mu$, where $\mu$ is the mean and variance of the Poisson distribution. The probability of an observation of $y$ counts is therefore:
 \begin{equation} \label{eq:alohaPoisson}
 	P(y|\mu) = \mu^y e^{-\mu}/y!.
@@ -1811,7 +1811,7 @@ The authors of \cite{ruddALOHA} identified a subset $\mathcal{V} = \{v_1, ..., v
 \end{equation}
 where $l_{vdr}$ is the per-sample binary cross-entropy function and $f_{vdr_j}(\textbf{x}^{(i)}) = \hat{y}_{v_j}^{(i)}$ is the output of the network that is trained to predict the label $y_{v_j}^{(i)}$ assigned by vendor $j$ to input sample $\textbf{x}^{(i)}$ \cite{ruddALOHA}.
 
-\paragraph{Malicious Tags Loss}
+\paragraph{Malicious Tags Loss}\label{par:MaliciouTagsLoss}
 Further additional targets were provided in the form of malicious tags. This was done in an attempt to exploit information contained in family detection names provided by different vendors. In particular, the tags used as auxiliary targets in \cite{ruddALOHA} are: \textit{flooder}, \textit{downloader}, \textit{dropper}, \textit{ransomware}, \textit{crypto-miner}, \textit{worm}, \textit{adware}, \textit{spyware}, \textit{packed}, \textit{file-infector} and \textit{installer}.
 
 These tags were created by parsing individual vendor detection names, using a set of 10 vendors which provided high quality detection names. After having extracted the most common tokens, the tokens not related to well-known malware family names were filtered out. Finally, a mapping between tokens and tags was created based on the authors experience.
@@ -2633,7 +2633,7 @@ Both the \textbf{ALOHA} \cite{ruddALOHA} and \textbf{Joint Embedding}, \cite{Duc
 \section{Implementation}
 Both the implementations developed for this project only loosely followed the original models' structure as described in the respective papers. Therefore here are presented the implementation details.
 
-\subsection{ALOHA model Implementation}
+\subsection{ALOHA model}
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=\textwidth]{./images/ALOHA_Implementation.png}
@@ -2643,13 +2643,17 @@ Both the implementations developed for this project only loosely followed the or
 
 The implementation of ALOHA model (fig. \ref{fig:ALOHA_Implementation_model}) consists of a shared model base topology composed of 3 blocks, each composed of Dropout, a dense layer, layer normalization, and an exponential linear unit (ELU) activation, with 512, 512, and 128 hidden units respectively. The exact number of layers, along with the layers' dimensions, the dropout probability and the activation function used, however, can be set dynamically in the code at network definition providing a good amount of customizability. The shared model base, given an input sample feature vector \textbf{x} (of size 2381) got from Sorel20M dataset, outputs an intermediate representation $h=f(\textbf{x})$ of size 512 which is then used as input to the different parallel output heads.
 
-The output heads used in this implementation are similar to those described in the original ALOHA paper (\cite{ruddALOHA}) with the exclusion of the \textit{Per-Vendor Malicious/Benign} prediction head which could not be reproduced given the lack of the needed information (namely the per-vendor malicious/benign labels) in the Sorel20M dataset. In particular, for each output head (\textit{Malicious/Benign label}, \textit{Vendor Count} and \textit{Malicious tags} prediction heads) an additional block, consisting of one or more dense layers and activation functions was appended to the shared base topology.
+The output heads used in this implementation are similar to those described in the original ALOHA paper (\cite{ruddALOHA}) with the exclusion of the \textit{Per-Vendor Malicious/Benign} prediction head which could not be reproduced given the lack of the needed information (namely the per-vendor malicious/benign labels) in the Sorel20M dataset. In particular, for each output head (\textit{Malicious/Benign label}, \textit{Vendor Count} and \textit{Malicious tags} prediction heads) an additional block, consisting of one or more dense layers and activation functions was appended to the shared base topology. Moreover, the \textit{Vendor Count} and \textit{Malicious tags} prediction heads are optional, meaning that they can be turned on or off dynamically at network definition.
 
-More specifically, for the \textit{Malicious/Benign} label prediction head which applies function $f_{mal}(x)$ to each sample feature vector $\textbf{x}$, a single dense layer followed by the \textit{sigmoid} activation function was used. The loss $L_{mal}$ between the resulting $f_{mal}(x)$ and the ground truth $y_{mal}$ is then computed exactly as described in paper \cite{ruddALOHA}.
+More specifically, for the \textit{Malicious/Benign} label prediction head, which overall applies function $f_{mal}(x)$ to each sample feature vector $\textbf{x}$, a single dense layer followed by the \textit{sigmoid} activation function was used. The loss $L_{mal}$ between the resulting $f_{mal}(x)$ and the ground truth $y_{mal}$ is then computed exactly as described in paper \cite{ruddALOHA} (and as presented in paragraph \ref{par:MalwareLoss}).
 
-The \textit{Vendor Count} output head, on the other hand, is composed of a single dense layer which outputs $f_{cnt}(x)$. Again, the loss $L_{cnt}$ with respect to the ground truth value $y_{cnt}$ is computed as described by Rudd et al. \cite{ruddALOHA}.
+The \textit{Vendor Count} output head, on the other hand, is composed of a single dense layer which outputs $f_{cnt}(x)$. Again, the loss $L_{cnt}$ with respect to the ground truth value $y_{cnt}$ is computed as described by Rudd et al. \cite{ruddALOHA} (and as presented in paragraph \ref{par:VendorCountLoss}).
 
-\subsection{Joint Embedding Implementation}
+Finally, the \textit{Malicious (SMART) tags} output head consists of two additional dense layers of size 64 and 1 respectively, followed by a \textit{sigmoid} activation function, per tag. The resulting structure therefore has $T=11$ parallel paths, one for each tag, that combined compute the functions $f_{tag_i}(\textbf{x}), \forall i \in 1,..,11$. The aggregate tag loss $L_{tag}$ is then computed, as described in paper \cite{ruddALOHA} (and as presented in paragraph \ref{par:MaliciouTagsLoss}), as the sum of the individual tag losses $L_{tag_i}, \forall i \in 1,..,11$ with respect to each individual ground truth tag $y_{tag_i}$.
+
+The final aggregate loss $L(\textbf{x}, y)$ is again computed as the weighted sum of all the output heads losses.
+
+\subsection{Joint Embedding}
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=\textwidth]{./images/Joint_Embedding_Implementation.png}
