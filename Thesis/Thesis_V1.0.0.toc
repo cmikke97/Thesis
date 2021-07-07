@@ -29,7 +29,7 @@
 \contentsline {paragraph}{The Function Pointer Problem}{22}{section*.15}%
 \contentsline {paragraph}{Return Pointer Abuse}{23}{section*.16}%
 \contentsline {paragraph}{Misusing Structured Exception Handlers}{23}{section*.17}%
-\contentsline {subsection}{\numberline {2.2.5}Anti-debugging}{23}{subsection.2.2.5}%
+\contentsline {subsection}{\numberline {2.2.5}Anti-debugging}{24}{subsection.2.2.5}%
 \contentsline {subsubsection}{Windows Debugger Detection}{24}{section*.18}%
 \contentsline {paragraph}{Using the Windows API}{24}{section*.19}%
 \contentsline {paragraph}{Manually Checking Structures}{25}{section*.20}%
@@ -58,13 +58,13 @@
 \contentsline {paragraph}{Functions In/Out-Lining}{33}{section*.40}%
 \contentsline {paragraph}{Destruction of Sequential and Temporal Locality}{33}{section*.41}%
 \contentsline {paragraph}{Processor-Based Control Indirection}{33}{section*.42}%
-\contentsline {paragraph}{Operating System-Based Control Indirection}{33}{section*.43}%
+\contentsline {paragraph}{Operating System-Based Control Indirection}{34}{section*.43}%
 \contentsline {paragraph}{Subroutine Reordering}{34}{section*.44}%
 \contentsline {paragraph}{Opaque Predicated}{34}{section*.45}%
 \contentsline {subsubsection}{Simultaneous Control-Flow and Data-Flow Obfuscation}{34}{section*.46}%
 \contentsline {paragraph}{Inserting Junk Code}{34}{section*.47}%
 \contentsline {paragraph}{Control-Flow Graph Flattening}{34}{section*.48}%
-\contentsline {paragraph}{Code Transposition}{34}{section*.49}%
+\contentsline {paragraph}{Code Transposition}{35}{section*.49}%
 \contentsline {paragraph}{Code Virtualization}{35}{section*.50}%
 \contentsline {paragraph}{Code Integration}{35}{section*.51}%
 \contentsline {subsection}{\numberline {2.2.9}Obfuscated Malware}{35}{subsection.2.2.9}%
@@ -94,37 +94,37 @@
 \contentsline {section}{\numberline {3.6}Machine Learning}{49}{section.3.6}%
 \contentsline {subsection}{\numberline {3.6.1}AlOHA: Auxiliary Loss Optimization for Hypothesis Augmentation}{51}{subsection.3.6.1}%
 \contentsline {paragraph}{Implementation Details}{51}{section*.68}%
-\contentsline {paragraph}{Malware Loss}{51}{section*.69}%
-\contentsline {paragraph}{Vendor Count Loss}{51}{section*.70}%
-\contentsline {paragraph}{Per-Vendor Malware Loss}{52}{section*.71}%
-\contentsline {paragraph}{Malicious Tags Loss}{53}{section*.72}%
-\contentsline {paragraph}{Final Loss + Experiment Evaluation}{53}{section*.73}%
+\contentsline {paragraph}{Malware Loss}{51}{section*.70}%
+\contentsline {paragraph}{Vendor Count Loss}{51}{section*.71}%
+\contentsline {paragraph}{Per-Vendor Malware Loss}{52}{section*.72}%
+\contentsline {paragraph}{Malicious Tags Loss}{53}{section*.73}%
+\contentsline {paragraph}{Final Loss + Experiment Evaluation}{53}{section*.74}%
 \contentsline {subsection}{\numberline {3.6.2}Automatic Malware Description via Attribute Tagging and Similarity Embedding}{53}{subsection.3.6.2}%
-\contentsline {paragraph}{Malware Family Categorization}{54}{section*.74}%
-\contentsline {paragraph}{Multi-Label Classification}{55}{section*.75}%
-\contentsline {paragraph}{Tag Distillation from Detection Names}{55}{section*.76}%
-\contentsline {paragraph}{Tags Prediction - Implementation Details}{56}{section*.77}%
-\contentsline {subparagraph}{Evaluation of Tagging Algorithms}{58}{section*.78}%
+\contentsline {paragraph}{Malware Family Categorization}{54}{section*.75}%
+\contentsline {paragraph}{Multi-Label Classification}{55}{section*.76}%
+\contentsline {paragraph}{Tag Distillation from Detection Names}{55}{section*.77}%
+\contentsline {paragraph}{Tags Prediction - Implementation Details}{56}{section*.78}%
+\contentsline {subparagraph}{Evaluation of Tagging Algorithms}{58}{section*.81}%
 \contentsline {subsection}{\numberline {3.6.3}Learning from Context: Exploiting and Interpreting File Path Information for Better Malware Detection}{58}{subsection.3.6.3}%
-\contentsline {paragraph}{Feature Engineering}{59}{section*.79}%
-\contentsline {paragraph}{Implementation details}{60}{section*.80}%
+\contentsline {paragraph}{Feature Engineering}{59}{section*.82}%
+\contentsline {paragraph}{Implementation details}{60}{section*.83}%
 \contentsline {section}{\numberline {3.7}Malware Normalization}{61}{section.3.7}%
 \contentsline {chapter}{\numberline {4}Datasets}{62}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Sorel 20M Dataset}{62}{section.4.1}%
 \contentsline {subsection}{\numberline {4.1.1}Sorel 20M Dataset Description}{63}{subsection.4.1.1}%
-\contentsline {paragraph}{LMDB database, what is it?}{63}{section*.81}%
+\contentsline {paragraph}{LMDB database, what is it?}{63}{section*.85}%
 \contentsline {subsection}{\numberline {4.1.2}Ember Features}{63}{subsection.4.1.2}%
-\contentsline {subsubsection}{PE File Format}{64}{section*.82}%
-\contentsline {subsubsection}{Feature Set Description}{66}{section*.83}%
-\contentsline {paragraph}{Parsed features}{66}{section*.84}%
-\contentsline {paragraph}{Format-agnostic features}{67}{section*.85}%
+\contentsline {subsubsection}{PE File Format}{64}{section*.86}%
+\contentsline {subsubsection}{Feature Set Description}{66}{section*.88}%
+\contentsline {paragraph}{Parsed features}{66}{section*.89}%
+\contentsline {paragraph}{Format-agnostic features}{67}{section*.90}%
 \contentsline {subsection}{\numberline {4.1.3}Trying to improve Dataset Loading Speed}{67}{subsection.4.1.3}%
-\contentsline {subsubsection}{Dataset Pre-Processing}{67}{section*.86}%
-\contentsline {subsubsection}{Generator (Dataloader) versions}{68}{section*.87}%
-\contentsline {paragraph}{Pytorch Dataloader}{68}{section*.88}%
-\contentsline {paragraph}{Generator alt1/alt2}{69}{section*.89}%
-\contentsline {paragraph}{Generator alt3}{72}{section*.90}%
-\contentsline {subparagraph}{Generator parameters optimization}{75}{section*.91}%
+\contentsline {subsubsection}{Dataset Pre-Processing}{67}{section*.91}%
+\contentsline {subsubsection}{Generator (Dataloader) versions}{68}{section*.92}%
+\contentsline {paragraph}{Pytorch Dataloader}{68}{section*.93}%
+\contentsline {paragraph}{Generator alt1/alt2}{69}{section*.94}%
+\contentsline {paragraph}{Generator alt3}{72}{section*.95}%
+\contentsline {subparagraph}{Generator parameters optimization}{75}{section*.96}%
 \contentsline {section}{\numberline {4.2}Fresh Dataset}{77}{section.4.2}%
 \contentsline {subsection}{\numberline {4.2.1}Model Evaluation with Fresh Dataset}{78}{subsection.4.2.1}%
 \contentsline {chapter}{\numberline {5}Previous Methods}{80}{chapter.5}%

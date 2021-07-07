@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  7 JUL 2021 15:23
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  7 JUL 2021 19:32
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -583,7 +583,28 @@ Package: longtable 2020/01/07 v4.13 Multi-page Table package (DPC)
 \c@LT@tables=\count303
 \c@LT@chunks=\count304
 \LT@p@ftn=\toks29
-) (commands.tex
+) (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption.sty
+Package: caption 2020/10/26 v3.5g Customizing captions (AR)
+(C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption3.sty
+Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
+\captionmargin=\dimen159
+\captionmargin@=\dimen160
+\captionwidth=\dimen161
+\caption@tempdima=\dimen162
+\caption@indent=\dimen163
+\caption@parindent=\dimen164
+\caption@hangindent=\dimen165
+Package caption Info: Standard document class detected.
+)
+\c@caption@flags=\count305
+\c@continuedfloat=\count306
+Package caption Info: float package is loaded.
+Package caption Info: hyperref package is loaded.
+Package caption Info: longtable package is loaded.
+
+(C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/caption\ltcaption.sty
+Package: ltcaption 2020/05/30 v1.4b longtable captions (AR)
+)) (commands.tex
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/doi\doi.sty
 Package: doi 2018/09/09 handle doi numbers
 )
@@ -592,9 +613,9 @@ Package: siunitx 2021-04-09 v2.8d A comprehensive (SI) units package
 
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/tools\array.sty
 Package: array 2019/08/31 v2.4l Tabular extension package (FMi)
-\col@sep=\dimen159
+\col@sep=\dimen166
 \ar@mcellbox=\box60
-\extrarowheight=\dimen160
+\extrarowheight=\dimen167
 \NC@list=\toks30
 \extratabsurround=\skip62
 \backup@length=\skip63
@@ -605,39 +626,39 @@ Package: array 2019/08/31 v2.4l Tabular extension package (FMi)
 Package: l3keys2e 2021-03-12 LaTeX2e option processing using LaTeX3 keys
 )
 \l__siunitx_tmp_box=\box62
-\l__siunitx_tmp_dim=\dimen161
-\l__siunitx_tmp_int=\count305
-\l__siunitx_number_mantissa_length_int=\count306
-\l__siunitx_number_uncert_length_int=\count307
-\l__siunitx_round_int=\count308
-\l__siunitx_process_decimal_int=\count309
-\l__siunitx_process_uncertainty_int=\count310
-\l__siunitx_process_fixed_int=\count311
-\l__siunitx_process_integer_min_int=\count312
-\l__siunitx_process_precision_int=\count313
-\l__siunitx_group_min_int=\count314
+\l__siunitx_tmp_dim=\dimen168
+\l__siunitx_tmp_int=\count307
+\l__siunitx_number_mantissa_length_int=\count308
+\l__siunitx_number_uncert_length_int=\count309
+\l__siunitx_round_int=\count310
+\l__siunitx_process_decimal_int=\count311
+\l__siunitx_process_uncertainty_int=\count312
+\l__siunitx_process_fixed_int=\count313
+\l__siunitx_process_integer_min_int=\count314
+\l__siunitx_process_precision_int=\count315
+\l__siunitx_group_min_int=\count316
 \l__siunitx_angle_marker_box=\box63
 \l__siunitx_angle_unit_box=\box64
-\l__siunitx_angle_marker_dim=\dimen162
-\l__siunitx_angle_unit_dim=\dimen163
-\l__siunitx_unit_int=\count315
-\l__siunitx_unit_denominator_int=\count316
-\l__siunitx_unit_numerator_int=\count317
-\l__siunitx_unit_prefix_int=\count318
-\l__siunitx_unit_prefix_base_int=\count319
-\l__siunitx_unit_prefix_gram_int=\count320
-\l__siunitx_number_product_int=\count321
+\l__siunitx_angle_marker_dim=\dimen169
+\l__siunitx_angle_unit_dim=\dimen170
+\l__siunitx_unit_int=\count317
+\l__siunitx_unit_denominator_int=\count318
+\l__siunitx_unit_numerator_int=\count319
+\l__siunitx_unit_prefix_int=\count320
+\l__siunitx_unit_prefix_base_int=\count321
+\l__siunitx_unit_prefix_gram_int=\count322
+\l__siunitx_number_product_int=\count323
 \c__siunitx_one_fill_skip=\skip64
 \l__siunitx_table_unit_align_skip=\skip65
-\l__siunitx_table_exponent_dim=\dimen164
-\l__siunitx_table_integer_dim=\dimen165
-\l__siunitx_table_mantissa_dim=\dimen166
-\l__siunitx_table_marker_dim=\dimen167
-\l__siunitx_table_result_dim=\dimen168
-\l__siunitx_table_uncert_dim=\dimen169
-\l__siunitx_table_fill_pre_dim=\dimen170
-\l__siunitx_table_fill_post_dim=\dimen171
-\l__siunitx_table_fill_mid_dim=\dimen172
+\l__siunitx_table_exponent_dim=\dimen171
+\l__siunitx_table_integer_dim=\dimen172
+\l__siunitx_table_mantissa_dim=\dimen173
+\l__siunitx_table_marker_dim=\dimen174
+\l__siunitx_table_result_dim=\dimen175
+\l__siunitx_table_uncert_dim=\dimen176
+\l__siunitx_table_fill_pre_dim=\dimen177
+\l__siunitx_table_fill_post_dim=\dimen178
+\l__siunitx_table_fill_mid_dim=\dimen179
 \l__siunitx_table_pre_box=\box65
 \l__siunitx_table_post_box=\box66
 \l__siunitx_table_mantissa_box=\box67
@@ -650,22 +671,22 @@ Package: l3keys2e 2021-03-12 LaTeX2e option processing using LaTeX3 keys
 Package: translator 2020-08-03 v1.12c Easy translation of strings in LaTeX
 ))
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.sty
-\lst@mode=\count322
+\lst@mode=\count324
 \lst@gtempboxa=\box69
 \lst@token=\toks31
-\lst@length=\count323
-\lst@currlwidth=\dimen173
-\lst@column=\count324
-\lst@pos=\count325
-\lst@lostspace=\dimen174
-\lst@width=\dimen175
-\lst@newlines=\count326
-\lst@lineno=\count327
-\lst@maxwidth=\dimen176
+\lst@length=\count325
+\lst@currlwidth=\dimen180
+\lst@column=\count326
+\lst@pos=\count327
+\lst@lostspace=\dimen181
+\lst@width=\dimen182
+\lst@newlines=\count328
+\lst@lineno=\count329
+\lst@maxwidth=\dimen183
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
 File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
-\c@lstnumber=\count328
-\lst@skipnumbers=\count329
+\c@lstnumber=\count330
+\lst@skipnumbers=\count331
 \lst@framebox=\box70
 )
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.cfg
@@ -677,26 +698,26 @@ Package: listings 2020/03/24 1.8d (Carsten Heinz)
  (Thesis_V1.0.0.aux)
 \openout1 = `Thesis_V1.0.0.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Info: Redefining \it@ocap on input line 110.
-LaTeX Info: Redefining \it@ccap on input line 110.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Info: Redefining \it@ocap on input line 111.
+LaTeX Info: Redefining \it@ccap on input line 111.
 
 
 File italian.ldf warning: 
@@ -704,22 +725,22 @@ italian.ldf    With OT1 encoding guillemets are poorly faked
 italian.ldf    Use T1 encoding
 italian.ldf    or specify a font with command \CaporaliFrom
 italian.ldf    See the documentation concerning the babel-italian typesetting 
-italian.ldf    on input line 110.
+italian.ldf    on input line 111.
 
 
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.
 mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count330
-\scratchdimen=\dimen177
+\scratchcounter=\count332
+\scratchdimen=\dimen184
 \scratchbox=\box72
-\nofMPsegments=\count331
-\nofMParguments=\count332
+\nofMPsegments=\count333
+\nofMParguments=\count334
 \everyMPshowfont=\toks32
-\MPscratchCnt=\count333
-\MPscratchDim=\dimen178
-\MPnumerator=\count334
-\makeMPintoPDFobject=\count335
+\MPscratchCnt=\count335
+\MPscratchDim=\dimen185
+\MPnumerator=\count336
+\makeMPintoPDFobject=\count337
 \everyMPtoPDFconversion=\toks33
 )
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf
@@ -732,21 +753,19 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 .cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-Package TOPtesi Info: Margin width recalculation on input line 110.
+Package TOPtesi Info: Margin width recalculation on input line 111.
 Package TOPtesi Info: Before:
 (TOPtesi)             oddsidemargin  15.23279pt
-(TOPtesi)             evensidemargin 15.23279pt on input line 110.
+(TOPtesi)             evensidemargin 15.23279pt on input line 111.
 Package TOPtesi Info: After:
 (TOPtesi)             oddsidemargin  35.1497pt
-(TOPtesi)             evensidemargin -4.68413pt on input line 110.
-\captionwidth=\dimen179
-\fullwidth=\dimen180
+(TOPtesi)             evensidemargin -4.68413pt on input line 111.
 
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/toptesi\topfront.sty
 Package: topfront 2020-09-06 v.6.4.06 Title page for TOPtesi and other classes
 \TPT@logospace=\skip68
 \TPT@logobox=\box73
-\TPT@logoheight=\dimen181
+\TPT@logoheight=\dimen186
 \T@Tlogoheight=\skip69
 
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/toptesi\toptesi.cfg))
@@ -757,7 +776,7 @@ e
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/base\textcomp.sty
 Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
 ))
-Package hyperref Info: Link coloring ON on input line 110.
+Package hyperref Info: Link coloring ON on input line 111.
 
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
@@ -769,15 +788,18 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 itlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count336
+\c@section@level=\count338
 )
-LaTeX Info: Redefining \ref on input line 110.
-LaTeX Info: Redefining \pageref on input line 110.
-LaTeX Info: Redefining \nameref on input line 110.
+LaTeX Info: Redefining \ref on input line 111.
+LaTeX Info: Redefining \pageref on input line 111.
+LaTeX Info: Redefining \nameref on input line 111.
  (Thesis_V1.0.0.out) (Thesis_V1.0.0.out)
 \@outlinefile=\write4
 \openout4 = `Thesis_V1.0.0.out'.
 
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: listings package is loaded.
+Package caption Info: End \AtBeginDocument code.
 
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/siunitx\siunitx-abbre
 viations.cfg
@@ -791,14 +813,14 @@ File: siunitx-binary.cfg 2021-04-09 v2.8d siunitx: Binary units
 -basic-dictionary-English.dict
 Dictionary: translator-basic-dictionary, Language: English 
 )
-\c@lstlisting=\count337
-LaTeX Font Info:    Trying to load font information for U+msa on input line 110
+\c@lstlisting=\count339
+LaTeX Font Info:    Trying to load font information for U+msa on input line 111
 .
 
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 110
+LaTeX Font Info:    Trying to load font information for U+msb on input line 111
 .
 
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
@@ -807,7 +829,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 <logopolito.pdf, id=250, 526.79488pt x 523.45164pt>
 File: logopolito.pdf Graphic file (type pdf)
 <use logopolito.pdf>
-Package pdftex.def Info: logopolito.pdf  used on input line 151.
+Package pdftex.def Info: logopolito.pdf  used on input line 152.
 (pdftex.def)             Requested size: 70.44707pt x 70.00249pt.
 
 [1{C:/Users/michele/AppData/Local/MiKTeX/pdftex/config/pdftex.map}
@@ -852,7 +874,7 @@ File: lstlang2.sty 2020/03/24 1.8d listings language file
 File: lstlang3.sty 2020/03/24 1.8d listings language file
 )
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 571.
+nput line 572.
  [21] [22] [23]
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
@@ -865,154 +887,53 @@ Chapter 3.
 
 ] [39]
 LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 
-1235.
+1236.
 
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/base\ts1cmtt.fd
 File: ts1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 [40] [41] [42] [43] [44] [45] [46] [47] [48] [49] [50]
-<./images/ALOHA.png, id=1165, 530.4618pt x 336.0555pt>
+<./images/ALOHA.png, id=1164, 530.4618pt x 336.0555pt>
 File: ./images/ALOHA.png Graphic file (type png)
 <use ./images/ALOHA.png>
-Package pdftex.def Info: ./images/ALOHA.png  used on input line 1783.
+Package pdftex.def Info: ./images/ALOHA.png  used on input line 1784.
 (pdftex.def)             Requested size: 422.50232pt x 267.67049pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[51] [52pdfTeX warning (ext4): destination with the same identifier (name{figur
-e.3.1}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  
-\use_ii:nn #1#2->#2
-                   
-<argument> ...ipout:D \box_use:N \l_shipout_box }}
-                                                  \cs_set_eq:NN \protect \__...
-
-\use_ii:nn #1#2->#2
-                   
-<to be read again> \__shipout_execute_cont: 
-                                            \endgroup \set@typeset@protect 
-\@outputpage ...width {\@thefoot }\color@endbox }}
-                                                  \global \let \if@newlist \...
-
-\@opcol ...lumn \@outputdblcol \else \@outputpage 
-                                                  \fi \global \@mparbottom \...
-<output> ...specialoutput \else \@makecol \@opcol 
-                                                  \@startcolumn \@whilesw \i...
-<to be read again> 
-                   \global 
-\endmathdisplay ...fi \endmathdisplay@a $$\global 
-                                                  \let \df@label \@empty \gl...
-...
-l.1819 \end{equation}
-                      <./images/ALOHA.png>] [53] [54]
-<./images/Multi_Head.png, id=1225, 456.0237pt x 191.5155pt>
+[51] [52 <./images/ALOHA.png>] [53] [54]
+<./images/Multi_Head.png, id=1224, 456.0237pt x 191.5155pt>
 File: ./images/Multi_Head.png Graphic file (type png)
 <use ./images/Multi_Head.png>
-Package pdftex.def Info: ./images/Multi_Head.png  used on input line 1896.
+Package pdftex.def Info: ./images/Multi_Head.png  used on input line 1897.
 (pdftex.def)             Requested size: 422.50232pt x 177.4442pt.
  [55]
-<./images/Joint_Embedding.png, id=1238, 467.5869pt x 237.0456pt>
+<./images/Joint_Embedding.png, id=1237, 467.5869pt x 237.0456pt>
 File: ./images/Joint_Embedding.png Graphic file (type png)
 <use ./images/Joint_Embedding.png>
-Package pdftex.def Info: ./images/Joint_Embedding.png  used on input line 1905.
+Package pdftex.def Info: ./images/Joint_Embedding.png  used on input line 1906.
 
 (pdftex.def)             Requested size: 422.50232pt x 214.19989pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[56pdfTeX warning (ext4): destination with the same identifier (name{figure.3.2
-}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  
-\use_ii:nn #1#2->#2
-                   
-<argument> ...ipout:D \box_use:N \l_shipout_box }}
-                                                  \cs_set_eq:NN \protect \__...
-
-\use_ii:nn #1#2->#2
-                   
-<to be read again> \__shipout_execute_cont: 
-                                            \endgroup \set@typeset@protect 
-\@outputpage ...width {\@thefoot }\color@endbox }}
-                                                  \global \let \if@newlist \...
-
-\@opcol ...lumn \@outputdblcol \else \@outputpage 
-                                                  \fi \global \@mparbottom \...
-<output> ...specialoutput \else \@makecol \@opcol 
-                                                  \@startcolumn \@whilesw \i...
-<everydisplay> 
-               \conditionally@traceoff \check@mathfonts \conditionally@trace...
-
-\mathdisplay #1->\ifmmode \@badmath \else $$
-                                            \def \@currenvir {#1}\let \dspbr...
-l.1925 \begin{equation}
-                        <./images/Multi_Head.png>] [57pdfTeX warning (ext4): de
-stination with the same identifier (name{figure.3.3}) has been already used, du
-plicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  
-\use_ii:nn #1#2->#2
-                   
-<argument> ...ipout:D \box_use:N \l_shipout_box }}
-                                                  \cs_set_eq:NN \protect \__...
-
-\use_ii:nn #1#2->#2
-                   
-<to be read again> \__shipout_execute_cont: 
-                                            \endgroup \set@typeset@protect 
-\@outputpage ...width {\@thefoot }\color@endbox }}
-                                                  \global \let \if@newlist \...
-
-\@opcol ...lumn \@outputdblcol \else \@outputpage 
-                                                  \fi \global \@mparbottom \...
-<output> ...specialoutput \else \@makecol \@opcol 
-                                                  \@startcolumn \@whilesw \i...
-l.1950 
-        <./images/Joint_Embedding.png>] [58] [59]
-<./images/PE_plus_FP.png, id=1297, 549.9747pt x 375.804pt>
+ [56 <./images/Multi_Head.png> <./images/Joint_Embedding.png>] [57] [58] [59]
+<./images/PE_plus_FP.png, id=1296, 549.9747pt x 375.804pt>
 File: ./images/PE_plus_FP.png Graphic file (type png)
 <use ./images/PE_plus_FP.png>
-Package pdftex.def Info: ./images/PE_plus_FP.png  used on input line 2015.
+Package pdftex.def Info: ./images/PE_plus_FP.png  used on input line 2016.
 (pdftex.def)             Requested size: 422.50232pt x 288.69907pt.
- [60pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
-4}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  
-\use_ii:nn #1#2->#2
-                   
-<argument> ...ipout:D \box_use:N \l_shipout_box }}
-                                                  \cs_set_eq:NN \protect \__...
-
-\use_ii:nn #1#2->#2
-                   
-<to be read again> \__shipout_execute_cont: 
-                                            \endgroup \set@typeset@protect 
-\@outputpage ...width {\@thefoot }\color@endbox }}
-                                                  \global \let \if@newlist \...
-
-\@opcol ...lumn \@outputdblcol \else \@outputpage 
-                                                  \fi \global \@mparbottom \...
-<output> ...specialoutput \else \@makecol \@opcol 
-                                                  \@startcolumn \@whilesw \i...
-<to be read again> 
-                   T
-l.2026 T
-        he PE-only model can be easily derived from the PE+FP model removing...
- <./images/PE_plus_FP.png>] [61]
+ [60 <./images/PE_plus_FP.png>]
+[61]
 Chapter 4.
 [62
 
 ] [63]
-<./images/Portable_Executable_32_bit_Structure.png, id=1335, 2991.175pt x 4228.
+<./images/Portable_Executable_32_bit_Structure.png, id=1334, 2991.175pt x 4228.
 79875pt>
 File: ./images/Portable_Executable_32_bit_Structure.png Graphic file (type png)
 
 <use ./images/Portable_Executable_32_bit_Structure.png>
 Package pdftex.def Info: ./images/Portable_Executable_32_bit_Structure.png  use
-d on input line 2113.
+d on input line 2114.
 (pdftex.def)             Requested size: 422.50232pt x 597.25443pt.
 
 
@@ -1021,49 +942,22 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 [64]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [65pdfTeX warning (ext4): destination with the same identifier (name{figure.4.
-1}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  
-\use_ii:nn #1#2->#2
-                   
-<argument> ...ipout:D \box_use:N \l_shipout_box }}
-                                                  \cs_set_eq:NN \protect \__...
-
-\use_ii:nn #1#2->#2
-                   
-<to be read again> \__shipout_execute_cont: 
-                                            \endgroup \set@typeset@protect 
-\@outputpage ...width {\@thefoot }\color@endbox }}
-                                                  \global \let \if@newlist \...
-
-\@opcol ...lumn \@outputdblcol \else \@outputpage 
-                                                  \fi \global \@mparbottom \...
-<output> ...specialoutput \else \@makecol \@opcol 
-                                                  \@startcolumn \@whilesw \i...
-<argument> \@itempenalty 
-                         
-\addpenalty ...e \ifdim \lastskip =\z@ \penalty #1
-                                                  \relax \else \@tempskipb \...
-...
-l.2140 	\item \textit
-                     {Data sections, \textbf{.bss}, \textbf{.rdata}, \textbf...
- <./images/Portable_Executable_32_bit_Structure.png>] [66]
+ [65 <./images/Portable_Executable_32_bit_Structure.png>] [66]
 LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 2
-185.
+186.
 
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/base\omscmr.fd
 File: omscmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2185.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2186.
 
 
 [67]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 2206.
+put line 2207.
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2231.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2232.
 
 
 
@@ -1083,182 +977,60 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [72] [73] [74] [75]
-<./images/speeds_heatmap.png, id=1441, 722.7pt x 650.43pt>
+<./images/speeds_heatmap.png, id=1440, 722.7pt x 650.43pt>
 File: ./images/speeds_heatmap.png Graphic file (type png)
 <use ./images/speeds_heatmap.png>
-Package pdftex.def Info: ./images/speeds_heatmap.png  used on input line 2564.
+Package pdftex.def Info: ./images/speeds_heatmap.png  used on input line 2565.
 (pdftex.def)             Requested size: 422.50232pt x 380.25685pt.
-<./images/times_heatmap.png, id=1442, 722.7pt x 650.43pt>
+<./images/times_heatmap.png, id=1441, 722.7pt x 650.43pt>
 File: ./images/times_heatmap.png Graphic file (type png)
 <use ./images/times_heatmap.png>
-Package pdftex.def Info: ./images/times_heatmap.png  used on input line 2571.
+Package pdftex.def Info: ./images/times_heatmap.png  used on input line 2572.
 (pdftex.def)             Requested size: 422.50232pt x 380.25685pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Overfull \hbox (2.88963pt too wide) in paragraph at lines 2576--2577
+Overfull \hbox (2.88963pt too wide) in paragraph at lines 2577--2578
 []\OT1/cmr/m/n/10 Given the re-sult-ing heatmaps ([][]4.2[][], [][]4.3[][]), \O
 T1/cmr/bx/it/10 chunk[]size \OT1/cmr/m/n/10 was per-ma-nently set to \OT1/cmr/b
 x/n/10 256 \OT1/cmr/m/n/10 and \OT1/cmr/bx/it/10 n[]chunks
  []
 
-[76pdfTeX warning (ext4): destination with the same identifier (name{figure.4.2
-}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  
-\use_ii:nn #1#2->#2
-                   
-<argument> ...ipout:D \box_use:N \l_shipout_box }}
-                                                  \cs_set_eq:NN \protect \__...
-
-\use_ii:nn #1#2->#2
-                   
-<to be read again> \__shipout_execute_cont: 
-                                            \endgroup \set@typeset@protect 
-\@outputpage ...width {\@thefoot }\color@endbox }}
-                                                  \global \let \if@newlist \...
-
-\@opcol ...lumn \@outputdblcol \else \@outputpage 
-                                                  \fi \global \@mparbottom \...
-<output> ...specialoutput \else \@makecol \@opcol 
-                                                  \@startcolumn \@whilesw \i...
-l.2579 
-        <./images/speeds_heatmap.png>] [77pdfTeX warning (ext4): destination wi
-th the same identifier (name{figure.4.3}) has been already used, duplicate igno
-red
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  
-\use_ii:nn #1#2->#2
-                   
-<argument> ...ipout:D \box_use:N \l_shipout_box }}
-                                                  \cs_set_eq:NN \protect \__...
-
-\use_ii:nn #1#2->#2
-                   
-<to be read again> \__shipout_execute_cont: 
-                                            \endgroup \set@typeset@protect 
-\@outputpage ...width {\@thefoot }\color@endbox }}
-                                                  \global \let \if@newlist \...
-
-\@opcol ...lumn \@outputdblcol \else \@outputpage 
-                                                  \fi \global \@mparbottom \...
-<output> ...specialoutput \else \@makecol \@opcol 
-                                                  \@startcolumn \@whilesw \i...
-<to be read again> 
-                   A
-l.2585 A
-         function called \textit{\textbf{build\_fresh\_dataset}} was specifi...
- <./images/times_heatmap.png>] [78] [79]
+[76 <./images/speeds_heatmap.png>] [77 <./images/times_heatmap.png>] [78]
+[79]
 Chapter 5.
-<./images/ALOHA_Implementation.png, id=1486, 575.2692pt x 234.8775pt>
+<./images/ALOHA_Implementation.png, id=1485, 575.2692pt x 234.8775pt>
 File: ./images/ALOHA_Implementation.png Graphic file (type png)
 <use ./images/ALOHA_Implementation.png>
 Package pdftex.def Info: ./images/ALOHA_Implementation.png  used on input line 
-2647.
+2648.
 (pdftex.def)             Requested size: 422.50232pt x 172.50923pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
 [80
 
-]
+ <./images/ALOHA_Implementation.png>]
 <./images/Joint_Embedding_Implementation.png, id=1500, 536.2434pt x 250.0542pt>
 
 File: ./images/Joint_Embedding_Implementation.png Graphic file (type png)
 <use ./images/Joint_Embedding_Implementation.png>
 Package pdftex.def Info: ./images/Joint_Embedding_Implementation.png  used on i
-nput line 2667.
+nput line 2668.
 (pdftex.def)             Requested size: 422.50232pt x 197.02173pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[81pdfTeX warning (ext4): destination with the same identifier (name{figure.5.1
-}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  
-\use_ii:nn #1#2->#2
-                   
-<argument> ...ipout:D \box_use:N \l_shipout_box }}
-                                                  \cs_set_eq:NN \protect \__...
-
-\use_ii:nn #1#2->#2
-                   
-<to be read again> \__shipout_execute_cont: 
-                                            \endgroup \set@typeset@protect 
-\@outputpage ...width {\@thefoot }\color@endbox }}
-                                                  \global \let \if@newlist \...
-
-\@opcol ...lumn \@outputdblcol \else \@outputpage 
-                                                  \fi \global \@mparbottom \...
-<output> ...specialoutput \else \@makecol \@opcol 
-                                                  \@startcolumn \@whilesw \i...
-l.2679 
-        <./images/ALOHA_Implementation.png>] [82pdfTeX warning (ext4): destinat
-ion with the same identifier (name{figure.5.2}) has been already used, duplicat
-e ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  
-\use_ii:nn #1#2->#2
-                   
-<argument> ...ipout:D \box_use:N \l_shipout_box }}
-                                                  \cs_set_eq:NN \protect \__...
-
-\use_ii:nn #1#2->#2
-                   
-<to be read again> \__shipout_execute_cont: 
-                                            \endgroup \set@typeset@protect 
-\@outputpage ...width {\@thefoot }\color@endbox }}
-                                                  \global \let \if@newlist \...
-
-\@opcol ...lumn \@outputdblcol \else \@outputpage 
-                                                  \fi \global \@mparbottom \...
-<output> ...specialoutput \else \@makecol \@opcol 
-                                                  \@startcolumn \@whilesw \i...
-l.2707 
-        <./images/Joint_Embedding_Implementation.png>] [83]
+ [81 <./images/Joint_Embedding_Implementation.png>] [82] [83]
 Chapter 6.
-<./images/Proposed_Joint_Embedding.png, id=1534, 570.2103pt x 297.7524pt>
+<./images/Proposed_Joint_Embedding.png, id=1533, 570.2103pt x 297.7524pt>
 File: ./images/Proposed_Joint_Embedding.png Graphic file (type png)
 <use ./images/Proposed_Joint_Embedding.png>
 Package pdftex.def Info: ./images/Proposed_Joint_Embedding.png  used on input l
-ine 2719.
+ine 2720.
 (pdftex.def)             Requested size: 422.50232pt x 220.62863pt.
 [84
 
-pdfTeX warning (ext4): destination with the same identifier (name{figure.6.1}) 
-has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  
-\use_ii:nn #1#2->#2
-                   
-<argument> ...ipout:D \box_use:N \l_shipout_box }}
-                                                  \cs_set_eq:NN \protect \__...
-
-\use_ii:nn #1#2->#2
-                   
-<to be read again> \__shipout_execute_cont: 
-                                            \endgroup \set@typeset@protect 
-\@outputpage ...width {\@thefoot }\color@endbox }}
-                                                  \global \let \if@newlist \...
-
-\@opcol ...lumn \@outputdblcol \else \@outputpage 
-                                                  \fi \global \@mparbottom \...
-<output> ...specialoutput \else \@makecol \@opcol 
-                                                  \@startcolumn \@whilesw \i...
-
-\newpage ...prevdepth \fi \fi \vfil \penalty -\@M 
-                                                  
-\clearpage ...opskip \hbox {}\fi \fi \fi \newpage 
-                                                  \write \m@ne {}\vbox {}\pe...
-...
-l.2727 \section
-               {Malware Label results} <./images/Proposed_Joint_Embedding.png>]
+ <./images/Proposed_Joint_Embedding.png>]
 Chapter 7.
 
-Overfull \hbox (0.22159pt too wide) in alignment at lines 2741--2747
+Overfull \hbox (0.22159pt too wide) in alignment at lines 2742--2747
  [] [] [] [] [] [] 
  []
 
@@ -1273,53 +1045,28 @@ Overfull \hbox (0.22159pt too wide) in alignment at lines 2754--2757
  []
 
 
-Overfull \hbox (0.22159pt too wide) in alignment at lines 2757--2758
+Overfull \hbox (0.22159pt too wide) in alignment at lines 2757--2760
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 2762--2762
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 2764--2764
 []|\OT1/cmr/m/n/10 0.478$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
  []
 
 
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 2762--2762
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 2764--2764
 []|\OT1/cmr/m/n/10 0.746$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
  []
 
 
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 2762--2762
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 2764--2764
 []|\OT1/cmr/m/n/10 0.885$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
  []
 
 
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 2762--2762
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 2764--2764
 []|\OT1/cmr/m/n/10 0.955$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 2762--2763
-[]|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 2764--2764
-[]|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 2764--2764
-[]|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 2764--2764
-[]|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 2764--2764
-[]|[]| 
  []
 
 
@@ -1328,43 +1075,43 @@ Overfull \hbox (2.12003pt too wide) in paragraph at lines 2764--2765
  []
 
 
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 2771--2771
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 2766--2766
+[]|[]| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 2766--2766
+[]|[]| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 2766--2766
+[]|[]| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 2766--2766
+[]|[]| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 2766--2767
+[]|[]| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 2773--2773
 []|\OT1/cmr/m/n/10 0.798$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
  []
 
 
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 2771--2771
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 2773--2773
 []|\OT1/cmr/m/n/10 0.902$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
  []
 
 
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 2771--2771
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 2773--2773
 []|\OT1/cmr/m/n/10 0.955$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 2771--2771
-[]|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 2771--2772
-[]|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 2773--2773
-[]|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 2773--2773
-[]|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 2773--2773
-[]|[]| 
  []
 
 
@@ -1378,48 +1125,48 @@ Overfull \hbox (2.12003pt too wide) in paragraph at lines 2773--2774
  []
 
 
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 2777--2777
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 2775--2775
+[]|[]| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 2775--2775
+[]|[]| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 2775--2775
+[]|[]| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 2775--2775
+[]|[]| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 2775--2776
+[]|[]| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 2779--2779
 []|\OT1/cmr/m/n/10 0.478$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
  []
 
 
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 2777--2777
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 2779--2779
 []|\OT1/cmr/m/n/10 0.746$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
  []
 
 
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 2777--2777
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 2779--2779
 []|\OT1/cmr/m/n/10 0.885$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
  []
 
 
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 2777--2777
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 2779--2779
 []|\OT1/cmr/m/n/10 0.955$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 2777--2778
-[]|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 2779--2779
-[]|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 2779--2779
-[]|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 2779--2779
-[]|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 2779--2779
-[]|[]| 
  []
 
 
@@ -1428,27 +1175,27 @@ Overfull \hbox (2.12003pt too wide) in paragraph at lines 2779--2780
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 2783--2783
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 2781--2781
 []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 2783--2783
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 2781--2781
 []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 2783--2783
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 2781--2781
 []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 2783--2783
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 2781--2781
 []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 2783--2784
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 2781--2782
 []|[]| 
  []
 
@@ -1478,48 +1225,43 @@ Overfull \hbox (2.12003pt too wide) in paragraph at lines 2785--2786
  []
 
 
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 2789--2789
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 2787--2787
+[]|[]| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 2787--2787
+[]|[]| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 2787--2787
+[]|[]| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 2787--2787
+[]|[]| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 2787--2788
+[]|[]| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 2791--2791
 []|\OT1/cmr/m/n/10 0.646$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
  []
 
 
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 2789--2789
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 2791--2791
 []|\OT1/cmr/m/n/10 0.855$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
  []
 
 
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 2789--2789
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 2791--2791
 []|\OT1/cmr/m/n/10 0.938$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 2789--2789
-[]|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 2789--2790
-[]|[]| 
- []
-
-
-Overfull \hbox (0.22159pt too wide) in alignment at lines 2758--2790
- [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 2791--2791
-[]|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 2791--2791
-[]|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 2791--2791
-[]|[]| 
  []
 
 
@@ -1533,351 +1275,337 @@ Overfull \hbox (2.12003pt too wide) in paragraph at lines 2791--2792
  []
 
 
-Overfull \hbox (0.22159pt too wide) in alignment at lines 2790--2793
+Overfull \hbox (0.22159pt too wide) in alignment at lines 2760--2792
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 2793--2793
+[]|[]| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 2793--2793
+[]|[]| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 2793--2793
+[]|[]| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 2793--2793
+[]|[]| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 2793--2794
+[]|[]| 
+ []
+
+
+Overfull \hbox (0.22159pt too wide) in alignment at lines 2792--2795
  [] [] [] [] [] [] 
  []
 
 [85
 
-pdfTeX warning (ext4): destination with the same identifier (name{table.7.1}) h
-as been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  
-\use_ii:nn #1#2->#2
-                   
-<argument> ...ipout:D \box_use:N \l_shipout_box }}
-                                                  \cs_set_eq:NN \protect \__...
-
-\use_ii:nn #1#2->#2
-                   
-<to be read again> \__shipout_execute_cont: 
-                                            \endgroup \set@typeset@protect 
-\@outputpage ...width {\@thefoot }\color@endbox }}
-                                                  \global \let \if@newlist \...
-
-\LT@output ...T@foot \vss }\@makecol \@outputpage 
-                                                  \global \vsize \@colroom \...
-<output> {\LT@output 
-                     }
-\endlongtable ...@save@row }}\LT@echunk \LT@start 
-                                                  \unvbox \z@ \LT@get@widths...
-
-\end  ...ook {env/#1/end}}\csname end#1\endcsname 
-                                                  \@checkend {#1}\expandafte...
-l.2793 	\end{longtable}
-                       ]
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 2806--2806
+]
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 2807--2807
 []|\OT1/cmr/m/n/10 0,955$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 2806--2806
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 2807--2807
 []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 2806--2806
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 2807--2807
 []|[]| 
  []
 
 
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 2806--2806
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 2807--2807
 []|\OT1/cmr/m/n/10 0,955$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 2806--2807
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 2807--2808
 []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 2808--2808
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 2809--2809
 []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 2808--2808
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 2809--2809
 []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 2808--2808
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 2809--2809
 []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 2808--2808
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 2809--2809
 []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 2808--2809
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 2809--2810
 []|[]| 
  []
 
 
-Overfull \hbox (0.74973pt too wide) in paragraph at lines 2821--2821
+Overfull \hbox (0.74973pt too wide) in paragraph at lines 2823--2823
 []|\OT1/cmr/m/n/10 Accuracy| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2823--2824
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2825--2826
 []|\OT1/cmr/bx/n/10 0,969776| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2824--2824
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2826--2826
 []|\OT1/cmr/bx/n/10 0,674237| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2824--2824
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2826--2826
 []|\OT1/cmr/bx/n/10 0,971827| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2824--2824
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2826--2826
 []|\OT1/cmr/bx/n/10 0,804589| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2824--2824
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2826--2826
 []|\OT1/cmr/bx/n/10 0,674237| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2824--2824
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2826--2826
 []|\OT1/cmr/bx/n/10 0,733668| 
  []
 
 
-Overfull \hbox (0.74973pt too wide) in paragraph at lines 2836--2836
+Overfull \hbox (0.74973pt too wide) in paragraph at lines 2838--2838
 []|\OT1/cmr/m/n/10 Accuracy| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2839--2839
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2841--2841
 []|\OT1/cmr/bx/n/10 0,893202| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2839--2839
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2841--2841
 []|\OT1/cmr/bx/n/10 0,988664| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2839--2839
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2841--2841
 []|\OT1/cmr/bx/n/10 0,555730| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2839--2839
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2841--2841
 []|\OT1/cmr/bx/n/10 0,893202| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2839--2839
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2841--2841
 []|\OT1/cmr/bx/n/10 0,685166| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2839--2840
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2841--2842
 []|\OT1/cmr/bx/n/10 0,986034| 
  []
 
-[86pdfTeX warning (ext4): destination with the same identifier (name{table.7.3}
-) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  
-\use_ii:nn #1#2->#2
-                   
-<argument> ...ipout:D \box_use:N \l_shipout_box }}
-                                                  \cs_set_eq:NN \protect \__...
 
-\use_ii:nn #1#2->#2
-                   
-<to be read again> \__shipout_execute_cont: 
-                                            \endgroup \set@typeset@protect 
-\@outputpage ...width {\@thefoot }\color@endbox }}
-                                                  \global \let \if@newlist \...
+Underfull \vbox (badness 2600) has occurred while \output is active []
 
-\@opcol ...lumn \@outputdblcol \else \@outputpage 
-                                                  \fi \global \@mparbottom \...
-<output> ...specialoutput \else \@makecol \@opcol 
-                                                  \@startcolumn \@whilesw \i...
-l.2843 
-       ]
-Overfull \hbox (0.74973pt too wide) in paragraph at lines 2851--2851
+ [86]
+Overfull \hbox (0.74973pt too wide) in paragraph at lines 2853--2853
 []|\OT1/cmr/m/n/10 Accuracy| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2853--2853
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2855--2855
 []|\OT1/cmr/bx/n/10 0,622224| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2853--2853
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2855--2855
 []|\OT1/cmr/bx/n/10 0,959254| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2853--2853
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2855--2855
 []|\OT1/cmr/bx/n/10 0,850217| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2853--2853
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2855--2855
 []|\OT1/cmr/bx/n/10 0,622224| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2853--2853
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2855--2855
 []|\OT1/cmr/bx/n/10 0,718569| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2853--2854
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2855--2856
 []|\OT1/cmr/bx/n/10 0,974264| 
  []
 
 
-Overfull \hbox (0.74973pt too wide) in paragraph at lines 2866--2866
+Overfull \hbox (0.74973pt too wide) in paragraph at lines 2868--2868
 []|\OT1/cmr/m/n/10 Accuracy| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2868--2869
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2870--2871
 []|\OT1/cmr/bx/n/10 0,972347| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2869--2869
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2871--2871
 []|\OT1/cmr/bx/n/10 0,731457| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2869--2869
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2871--2871
 []|\OT1/cmr/bx/n/10 0,956997| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2869--2869
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2871--2871
 []|\OT1/cmr/bx/n/10 0,914564| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2869--2869
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2871--2871
 []|\OT1/cmr/bx/n/10 0,731457| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2869--2869
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2871--2871
 []|\OT1/cmr/bx/n/10 0,812826| 
  []
 
 
-Overfull \hbox (0.74973pt too wide) in paragraph at lines 2881--2881
+Overfull \hbox (0.74973pt too wide) in paragraph at lines 2883--2883
 []|\OT1/cmr/m/n/10 Accuracy| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2883--2883
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2885--2885
 []|\OT1/cmr/bx/n/10 0,863338| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2883--2883
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2885--2885
 []|\OT1/cmr/bx/n/10 0,969537| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2883--2883
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2885--2885
 []|\OT1/cmr/bx/n/10 0,943298| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2883--2883
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2885--2885
 []|\OT1/cmr/bx/n/10 0,863338| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2883--2883
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2885--2885
 []|\OT1/cmr/bx/n/10 0,901548| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2883--2884
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2885--2886
 []|\OT1/cmr/bx/n/10 0,981291| 
  []
 
 
-Overfull \hbox (0.74973pt too wide) in paragraph at lines 2896--2896
+Overfull \hbox (0.74973pt too wide) in paragraph at lines 2898--2898
 []|\OT1/cmr/m/n/10 Accuracy| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2898--2899
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2900--2901
 []|\OT1/cmr/bx/n/10 0,985615| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2899--2899
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2901--2901
 []|\OT1/cmr/bx/n/10 0,905915| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2899--2899
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2901--2901
 []|\OT1/cmr/bx/n/10 0,989846| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2899--2899
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2901--2901
 []|\OT1/cmr/bx/n/10 0,140876| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2899--2899
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2901--2901
 []|\OT1/cmr/bx/n/10 0,905915| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2899--2899
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2901--2901
 []|\OT1/cmr/bx/n/10 0,243834| 
  []
 
 
-Overfull \hbox (0.74973pt too wide) in paragraph at lines 2911--2911
+Overfull \hbox (0.74973pt too wide) in paragraph at lines 2913--2913
 []|\OT1/cmr/m/n/10 Accuracy| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2913--2914
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2915--2916
 []|\OT1/cmr/bx/n/10 0,973206| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2914--2914
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2916--2916
 []|\OT1/cmr/bx/n/10 0,739438| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2914--2914
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2916--2916
 []|\OT1/cmr/bx/n/10 0,985546| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2914--2914
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2916--2916
 []|\OT1/cmr/bx/n/10 0,572321| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2914--2914
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2916--2916
 []|\OT1/cmr/bx/n/10 0,739438| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2914--2914
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2916--2916
 []|\OT1/cmr/bx/n/10 0,645234| 
  []
 
@@ -1885,147 +1613,147 @@ Overfull \hbox (3.61053pt too wide) in paragraph at lines 2914--2914
 Underfull \vbox (badness 1694) has occurred while \output is active []
 
  [87]
-Overfull \hbox (0.74973pt too wide) in paragraph at lines 2926--2926
+Overfull \hbox (0.74973pt too wide) in paragraph at lines 2928--2928
 []|\OT1/cmr/m/n/10 Accuracy| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2929--2929
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2931--2931
 []|\OT1/cmr/bx/n/10 0,773711| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2929--2929
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2931--2931
 []|\OT1/cmr/bx/n/10 0,960476| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2929--2929
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2931--2931
 []|\OT1/cmr/bx/n/10 0,924429| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2929--2929
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2931--2931
 []|\OT1/cmr/bx/n/10 0,773711| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2929--2929
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2931--2931
 []|\OT1/cmr/bx/n/10 0,842381| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2929--2930
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2931--2932
 []|\OT1/cmr/bx/n/10 0,978678| 
  []
 
 
-Overfull \hbox (0.74973pt too wide) in paragraph at lines 2941--2941
+Overfull \hbox (0.74973pt too wide) in paragraph at lines 2943--2943
 []|\OT1/cmr/m/n/10 Accuracy| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2944--2944
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2946--2946
 []|\OT1/cmr/bx/n/10 0,856171| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2944--2944
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2946--2946
 []|\OT1/cmr/bx/n/10 0,983003| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2944--2944
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2946--2946
 []|\OT1/cmr/bx/n/10 0,825277| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2944--2944
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2946--2946
 []|\OT1/cmr/bx/n/10 0,856171| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2944--2944
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2946--2946
 []|\OT1/cmr/bx/n/10 0,840440| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2944--2945
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2946--2947
 []|\OT1/cmr/bx/n/10 0,980650| 
  []
 
 
-Overfull \hbox (0.74973pt too wide) in paragraph at lines 2956--2956
+Overfull \hbox (0.74973pt too wide) in paragraph at lines 2958--2958
 []|\OT1/cmr/m/n/10 Accuracy| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2959--2959
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2961--2961
 []|\OT1/cmr/bx/n/10 0,667107| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2959--2959
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2961--2961
 []|\OT1/cmr/bx/n/10 0,955501| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2959--2959
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2961--2961
 []|\OT1/cmr/bx/n/10 0,888646| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2959--2959
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2961--2961
 []|\OT1/cmr/bx/n/10 0,667107| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2959--2959
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2961--2961
 []|\OT1/cmr/bx/n/10 0,762103| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2959--2960
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2961--2962
 []|\OT1/cmr/bx/n/10 0,965487| 
  []
 
 
-Overfull \hbox (0.74973pt too wide) in paragraph at lines 2971--2971
+Overfull \hbox (0.74973pt too wide) in paragraph at lines 2973--2973
 []|\OT1/cmr/m/n/10 Accuracy| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2973--2974
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2975--2976
 []|\OT1/cmr/bx/n/10 0,965917| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2974--2974
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2976--2976
 []|\OT1/cmr/bx/n/10 0,648632| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2974--2974
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2976--2976
 []|\OT1/cmr/bx/n/10 0,935937| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2974--2974
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2976--2976
 []|\OT1/cmr/bx/n/10 0,924279| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2974--2974
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2976--2976
 []|\OT1/cmr/bx/n/10 0,648632| 
  []
 
 
-Overfull \hbox (3.61053pt too wide) in paragraph at lines 2974--2974
+Overfull \hbox (3.61053pt too wide) in paragraph at lines 2976--2976
 []|\OT1/cmr/bx/n/10 0,762302| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2986--2987
+Underfull \hbox (badness 10000) in paragraph at lines 2988--2989
 []|\OT1/cmr/m/n/10 Mean-per-sample
  []
 
@@ -2156,13 +1884,13 @@ Package rerunfilecheck Info: File `Thesis_V1.0.0.out' has not changed.
 (rerunfilecheck)             Checksum: 216F6846FE5E1D865CCE69318A0397E0;10087.
  ) 
 Here is how much of TeX's memory you used:
- 19116 strings out of 481296
- 313173 string characters out of 2908369
- 963042 words of memory out of 3000000
- 35252 multiletter control sequences out of 15000+600000
- 422626 words of font info for 98 fonts, out of 8000000 for 9000
+ 20352 strings out of 481296
+ 337716 string characters out of 2908369
+ 977559 words of memory out of 3000000
+ 36474 multiletter control sequences out of 15000+600000
+ 420300 words of font info for 89 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 134i,17n,137p,2138b,2558s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 134i,17n,137p,2138b,2546s stack positions out of 5000i,500n,10000p,200000b,80000s
  <C:\Users\michele\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tc
 tt0800.pk> <C:\Users\michele\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/d
 pi600\tcrm1000.pk><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/p
@@ -2170,35 +1898,33 @@ ublic/amsfonts/cm/cmbx10.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fo
 nts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/michele/AppData/Local/Program
 s/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx5.pfb><C:/Users/michele/AppData/Loc
 al/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx7.pfb><C:/Users/michele/A
-ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Users
-/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbxti10.
-pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
-/cm/cmcsc10.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/pub
-lic/amsfonts/cm/cmex10.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/font
-s/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/michele/AppData/Local/Programs/
-MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/michele/AppData/Local
-/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/michele/App
-Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/m
-ichele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><
+ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Us
+ers/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc1
+0.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
+ts/cm/cmex10.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/pu
+blic/amsfonts/cm/cmmi10.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fon
+ts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/michele/AppData/Local/Programs/
+MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/michele/AppData/Local
+/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/michele/App
+Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/m
+ichele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><
 C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
-mr17.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
-fonts/cm/cmr5.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/p
-ublic/amsfonts/cm/cmr7.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/font
-s/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/michele/AppData/Local/Programs/Mi
-KTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/michele/AppData/Local/Pr
-ograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmsl8.pfb><C:/Users/michele/AppDat
-a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/mic
-hele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:
-/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cms
-y7.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfo
-nts/cm/cmti10.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/p
-ublic/amsfonts/cm/cmti12.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fo
-nts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/michele/AppData/Local/Program
-s/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt8.pfb><C:/Users/michele/AppData/Loc
-al/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Thesis_V1.0.0.pdf (94 pages, 2583243 bytes).
+mr5.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsf
+onts/cm/cmr7.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/pu
+blic/amsfonts/cm/cmr8.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts
+/type1/public/amsfonts/cm/cmsl8.pfb><C:/Users/michele/AppData/Local/Programs/Mi
+KTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/michele/AppData/Local/
+Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/michele/AppD
+ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/mi
+chele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><
+C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
+mti12.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
+sfonts/cm/cmtt10.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type
+1/public/amsfonts/cm/cmtt8.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/
+fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on Thesis_V1.0.0.pdf (94 pages, 2552985 bytes).
 PDF statistics:
- 1885 PDF objects out of 2073 (max. 8388607)
- 676 named destinations out of 1000 (max. 500000)
+ 1892 PDF objects out of 2073 (max. 8388607)
+ 688 named destinations out of 1000 (max. 500000)
  552 words of extra memory for PDF output out of 10000 (max. 10000000)
 
