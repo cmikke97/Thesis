@@ -90,6 +90,9 @@
 
 \renewcommand{\arraystretch}{1.5}
 
+\newsavebox\CBox
+\def\textBF#1{\sbox\CBox{#1}\resizebox{\wd\CBox}{\ht\CBox}{\textbf{#1}}}
+
 \algdef{SE}% flags used internally to indicate we're defining a new block statement
 [CLASS]% new block type
 {Class}% "\Class{name}" will indicate the start of the class declaration
@@ -2703,22 +2706,118 @@ The final \textbf{ALOHA} architecture, which had a base topology consisting of 3
 
 On the other hand, the base topology of final \textbf{Joint Embedding} architecture consisted of 3 layers of sizes 512, 512, and 128 respectively, with dropout probability $p_d=5\%$ and \textbf{ELU} activation function. The overall model was trained with a learning rate $LR = 10^{-3}$, \textbf{Adam} optimizer, no momentum nor weight decay and loss weights set to 1.0 for the malicious/benign head, 0.1 for the count head and 1.0 for the tag head. Moreover, the final model uses the dot product as similarity score between tags' and samples' embeddings.
 
-\section{Results}
-\subsection{Malware label results}
+\subsection{Considerations}
+
+\chapter{Proposed Method}
+
+\section{Implementation}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\textwidth]{./images/Proposed_Joint_Embedding.png}
+	\caption{Proposed Joint Embedding model}
+	\label{fig:Proposed_Joint_Embedding_model}
+\end{figure}
+
+\section{Experiments}
+
+\chapter{Results}
+\section{Malware label results}
 \begin{table}[H]
 	\centering
-	\begin{tabular}{|p{3cm}||p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|p{1,4cm}|}
+	\begin{tabular}{|p{3,2cm}||p{1,8cm}|p{1,8cm}|p{1,8cm}|p{1,8cm}|p{1,8cm}|}
 		\hline
-		\multicolumn{7}{|c|}{Malware label (at FPR $=1\%$)} \\
+		Malware label & \multicolumn{5}{|c|}{FPR} \\
+		\textbf{TPR} & $10^{-5}$ & $10^{-4}$ & $10^{-3}$ & $10^{-2}$ & $10^{-1}$ \\
 		\hline
-		Model & TPR & Accuracy & Precision & Recall & F1 score & AUC \\
 		\hline
-		ALOHA & \textbf{0,955483} & \textbf{0,976642} & \textbf{0,983697} & \textbf{0,955483} & \textbf{0,969385} & \textbf{0,994223} \\
-		Joint Embedding & - & - & - & - & - & - \\
+		ALOHA & 0.478$\pm$0.000 & 0.746$\pm$0.000 & 0.885$\pm$0.000 & 0.955$\pm$0.000 & \textBF{0.987$\pm$0.000} \\
+		Joint Embedding & - & - & - & - & - \\
+		Proposed Model & \textBF{0.524$\pm$0.000} & \textBF{0.752$\pm$0.000} & \textBF{0.889$\pm$0.000} & \textBF{0.956$\pm$0.000} & \textBF{0.987$\pm$0.000} \\
+		\hline
+		\hline
+		Error Reduction wrt \newline ALOHA & 8.8\% & 2.4\% & 3.5\% & 2.2\% & 0.0\% \\
+		Error Reduction wrt \newline Joint Embedding & - & - & - & - & - \\
 		\hline
 	\end{tabular}
 \end{table}
 
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|p{3,2cm}||p{1,8cm}|p{1,8cm}|p{1,8cm}|p{1,8cm}|p{1,8cm}|}
+		\hline
+		Malware label & \multicolumn{5}{|c|}{FPR} \\
+		\textbf{Accuracy} & $10^{-5}$ & $10^{-4}$ & $10^{-3}$ & $10^{-2}$ & $10^{-1}$ \\
+		\hline
+		\hline
+		ALOHA & 0.798$\pm$0.000 & 0.902$\pm$0.000 & 0.955$\pm$0.000 & \textBF{0.977$\pm$0.000} & \textBF{0.934$\pm$0.000} \\
+		Joint Embedding & - & - & - & - & - \\
+		Proposed Model & \textBF{0.816$\pm$0.000} & \textBF{0.904$\pm$0.000} & \textBF{0.957$\pm$0.000} & \textBF{0.977$\pm$0.000} & \textBF{0.934$\pm$0.000} \\
+		\hline
+		\hline
+		Error Reduction wrt \newline ALOHA & 8.9\% & 2.0\% & 4.4\% & 0.0\% & 0.0\% \\
+		Error Reduction wrt \newline Joint Embedding & - & - & - & - & - \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|p{3,2cm}||p{1,8cm}|p{1,8cm}|p{1,8cm}|p{1,8cm}|p{1,8cm}|}
+		\hline
+		Malware label & \multicolumn{5}{|c|}{FPR} \\
+		\textbf{Recall} & $10^{-5}$ & $10^{-4}$ & $10^{-3}$ & $10^{-2}$ & $10^{-1}$ \\
+		\hline
+		\hline
+		ALOHA & 0.478$\pm$0.000 & 0.746$\pm$0.000 & 0.885$\pm$0.000 & 0.955$\pm$0.000 & \textBF{0.987$\pm$0.000} \\
+		Joint Embedding & - & - & - & - & - \\
+		Proposed Model & \textBF{0.524$\pm$0.000} & \textBF{0.752$\pm$0.000} & \textBF{0.889$\pm$0.000} & \textBF{0.956$\pm$0.000} & \textBF{0.987$\pm$0.000} \\
+		\hline
+		\hline
+		Error Reduction wrt \newline ALOHA & 8.8\% & 2.4\% & 3.5\% & 2.2\% & 0.0\% \\
+		Error Reduction wrt \newline Joint Embedding & - & - & - & - & - \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|p{3,2cm}||p{1,8cm}|p{1,8cm}|p{1,8cm}|p{1,8cm}|p{1,8cm}|}
+		\hline
+		Malware label & \multicolumn{5}{|c|}{FPR} \\
+		\textbf{Precision} & $10^{-5}$ & $10^{-4}$ & $10^{-3}$ & $10^{-2}$ & $10^{-1}$ \\
+		\hline
+		\hline
+		ALOHA & 1.000$\pm$0.000 & 1.000$\pm$0.000 & 0.998$\pm$0.000 & 0.984$\pm$0.000 & 0.862$\pm$0.000 \\
+		Joint Embedding & - & - & - & - & - \\
+		Proposed Model & $\pm$0.000 & $\pm$0.000 & $\pm$0.000 & $\pm$0.000 & $\pm$0.000 \\
+		\hline
+		\hline
+		Error Reduction wrt \newline ALOHA & - & - & - & - & - \\
+		Error Reduction wrt \newline Joint Embedding & - & - & - & - & - \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|p{3,2cm}||p{1,8cm}|p{1,8cm}|p{1,8cm}|p{1,8cm}|p{1,8cm}|}
+		\hline
+		Malware label & \multicolumn{5}{|c|}{FPR} \\
+		\textbf{F1 Score} & $10^{-5}$ & $10^{-4}$ & $10^{-3}$ & $10^{-2}$ & $10^{-1}$ \\
+		\hline
+		\hline
+		ALOHA & 0.646$\pm$0.000 & 0.855$\pm$0.000 & 0.938$\pm$0.000 & 0.969$\pm$0.000 & 0.920$\pm$0.000 \\
+		Joint Embedding & - & - & - & - & - \\
+		Proposed Model & $\pm$0.000 & $\pm$0.000 & $\pm$0.000 & $\pm$0.000 & $\pm$0.000 \\
+		\hline
+		\hline
+		Error Reduction wrt \newline ALOHA & - & - & - & - & - \\
+		Error Reduction wrt \newline Joint Embedding & - & - & - & - & - \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\section{Per-tag results}
 \subsection{Adware tag results}
 \begin{table}[H]
 	\centering
@@ -2884,7 +2983,7 @@ On the other hand, the base topology of final \textbf{Joint Embedding} architect
 	\end{tabular}
 \end{table}
 
-\subsection{Mean per-sample scores}
+\section{Mean per-sample scores}
 \begin{table}[H]
 	\centering
 	\begin{tabular}{|p{4cm}||p{3cm}|p{3cm}|}
@@ -2898,22 +2997,6 @@ On the other hand, the base topology of final \textbf{Joint Embedding} architect
 		\hline
 	\end{tabular}
 \end{table}
-
-\subsection{Considerations}
-
-\chapter{Proposed Method}
-
-\section{Implementation}
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=\textwidth]{./images/Proposed_Joint_Embedding.png}
-	\caption{Proposed Joint Embedding model}
-	\label{fig:Proposed_Joint_Embedding_model}
-\end{figure}
-
-\section{Experiments}
-
-\chapter{Results}
 
 \chapter{Conclusions}
 \color{Red}

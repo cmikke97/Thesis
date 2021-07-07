@@ -132,25 +132,25 @@
 \contentsline {subsection}{\numberline {5.1.1}ALOHA model}{80}{subsection.5.1.1}%
 \contentsline {subsection}{\numberline {5.1.2}Joint Embedding}{81}{subsection.5.1.2}%
 \contentsline {section}{\numberline {5.2}Experiments}{83}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Results}{83}{section.5.3}%
-\contentsline {subsection}{\numberline {5.3.1}Malware label results}{83}{subsection.5.3.1}%
-\contentsline {subsection}{\numberline {5.3.2}Adware tag results}{83}{subsection.5.3.2}%
-\contentsline {subsection}{\numberline {5.3.3}Crypto-miner tag results}{84}{subsection.5.3.3}%
-\contentsline {subsection}{\numberline {5.3.4}Downloader tag results}{84}{subsection.5.3.4}%
-\contentsline {subsection}{\numberline {5.3.5}Dropper tag results}{84}{subsection.5.3.5}%
-\contentsline {subsection}{\numberline {5.3.6}File-infector tag results}{84}{subsection.5.3.6}%
-\contentsline {subsection}{\numberline {5.3.7}Flooder tag results}{84}{subsection.5.3.7}%
-\contentsline {subsection}{\numberline {5.3.8}Installer tag results}{85}{subsection.5.3.8}%
-\contentsline {subsection}{\numberline {5.3.9}Packed tag results}{85}{subsection.5.3.9}%
-\contentsline {subsection}{\numberline {5.3.10}Ransomware tag results}{85}{subsection.5.3.10}%
-\contentsline {subsection}{\numberline {5.3.11}Spyware tag results}{85}{subsection.5.3.11}%
-\contentsline {subsection}{\numberline {5.3.12}Worm tag results}{85}{subsection.5.3.12}%
-\contentsline {subsection}{\numberline {5.3.13}Mean per-sample scores}{86}{subsection.5.3.13}%
-\contentsline {subsection}{\numberline {5.3.14}Considerations}{86}{subsection.5.3.14}%
-\contentsline {chapter}{\numberline {6}Proposed Method}{87}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Implementation}{87}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Experiments}{87}{section.6.2}%
-\contentsline {chapter}{\numberline {7}Results}{88}{chapter.7}%
-\contentsline {chapter}{\numberline {8}Conclusions}{89}{chapter.8}%
-\contentsline {chapter}{\numberline {9}Appendix}{90}{chapter.9}%
-\contentsline {chapter}{Bibliography}{91}{chapter.9}%
+\contentsline {subsection}{\numberline {5.2.1}Considerations}{83}{subsection.5.2.1}%
+\contentsline {chapter}{\numberline {6}Proposed Method}{84}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Implementation}{84}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Experiments}{84}{section.6.2}%
+\contentsline {chapter}{\numberline {7}Results}{85}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Malware label results}{85}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Per-tag results}{86}{section.7.2}%
+\contentsline {subsection}{\numberline {7.2.1}Adware tag results}{86}{subsection.7.2.1}%
+\contentsline {subsection}{\numberline {7.2.2}Crypto-miner tag results}{87}{subsection.7.2.2}%
+\contentsline {subsection}{\numberline {7.2.3}Downloader tag results}{87}{subsection.7.2.3}%
+\contentsline {subsection}{\numberline {7.2.4}Dropper tag results}{87}{subsection.7.2.4}%
+\contentsline {subsection}{\numberline {7.2.5}File-infector tag results}{87}{subsection.7.2.5}%
+\contentsline {subsection}{\numberline {7.2.6}Flooder tag results}{87}{subsection.7.2.6}%
+\contentsline {subsection}{\numberline {7.2.7}Installer tag results}{88}{subsection.7.2.7}%
+\contentsline {subsection}{\numberline {7.2.8}Packed tag results}{88}{subsection.7.2.8}%
+\contentsline {subsection}{\numberline {7.2.9}Ransomware tag results}{88}{subsection.7.2.9}%
+\contentsline {subsection}{\numberline {7.2.10}Spyware tag results}{88}{subsection.7.2.10}%
+\contentsline {subsection}{\numberline {7.2.11}Worm tag results}{88}{subsection.7.2.11}%
+\contentsline {section}{\numberline {7.3}Mean per-sample scores}{89}{section.7.3}%
+\contentsline {chapter}{\numberline {8}Conclusions}{90}{chapter.8}%
+\contentsline {chapter}{\numberline {9}Appendix}{91}{chapter.9}%
+\contentsline {chapter}{Bibliography}{92}{chapter.9}%
