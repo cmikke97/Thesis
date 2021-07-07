@@ -1,0 +1,118 @@
+\newcommand{\MrrAndMapResultsTable}{
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{|p{2,8cm}||p{2,8cm} p{2,8cm} p{2,8cm}|}
+			\hline
+			& ALOHA & Joint Embedding & Proposed Model \\
+			\hline
+			MRR & - & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
+			MAP & - & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
+			\hline
+		\end{tabular}
+		\caption{Mean and standard deviation MRR (Mean Reciprocal Rank) and MAP (Mean Average Precision) results for the different models on the Family Ranking task. Best results are shown in \textbf{bold}.} \label{tab:MrrAndMapResults}
+	\end{table}
+}
+
+\newcommand{\maxApExampleRankTable}{
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{|p{1,5cm}||p{1,5cm} p{1cm} p{1,8cm}|p{1,5cm} p{1cm} p{1,8cm}|}
+			\hline
+			Max AP & \multicolumn{3}{c|}{Joint Embedding} & \multicolumn{3}{c|}{Proposed Model} \\
+			& Sha256 & Label & Family & Sha256 & Label & Family \\
+			\hline
+			Query & C51924.. & 2 & formbook & 684a5f.. & 6 & njrat \\
+			\hline
+			0 & \textBF{4917a1..} & \textBF{2} & \textBF{formbook} & a7167a.. & 9 & azorult \\
+			1 & \textBF{6de7dc..} & \textBF{2} & \textBF{formbook} & 3416c2.. & 5 & avemariarat \\
+			2 & 963553.. & 0 & heodo & 2d7238.. & 3 & masslogger \\
+			3 & \textBF{456614..} & \textBF{2} & \textBF{formbook} & \textBF{1bce23..} & \textBF{6} & \textBF{njrat} \\
+			4 & 007b98.. & 9 & azorult & 8ab6ed.. & 8 & netwire \\
+			5 & c657a6.. & 8 & netwire & \textBF{30b322..} & \textBF{6} & \textBF{njrat} \\
+			6 & \textBF{975d26..} & \textBF{2} & \textBF{formbook} & 4c93d9.. & 9 & azorult \\
+			7 & 9b33aa.. & 4 & loki & \textBF{d9872c..} & \textBF{6} & \textBF{njrat} \\
+			8 & \textBF{1b9706..} & \textBF{2} & \textBF{formbook} & 68b9fd.. & 0 & heodo \\
+			9 & e26850.. & 6 & njrat & 273c4a.. & 4 & loki \\
+			\hline
+		\end{tabular}
+		\caption{Joint Embedding and Proposed Model example rankings (limited to the first 10 samples) having the maximum Average Precision (max AP). The elements matching the query sample are shown in \textbf{bold}.} \label{tab:maxApExampleRank}
+	\end{table}
+}
+
+\newcommand{\maxRRExampleRankTable}{
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{|p{1,5cm}||p{1,5cm} p{1cm} p{1,8cm}|p{1,5cm} p{1cm} p{1,8cm}|}
+			\hline
+			Max RR & \multicolumn{3}{c|}{Joint Embedding} & \multicolumn{3}{c|}{Proposed Model} \\
+			& Sha256 & Label & Family & Sha256 & Label & Family \\
+			\hline
+			Query & C51924.. & 2 & formbook & 684a5f.. & 6 & njrat \\
+			\hline
+			0 & \textBF{4917a1..} & \textBF{2} & \textBF{formbook} & a7167a.. & 9 & azorult \\
+			1 & \textBF{6de7dc..} & \textBF{2} & \textBF{formbook} & 3416c2.. & 5 & avemariarat \\
+			2 & 963553.. & 0 & heodo & 2d7238.. & 3 & masslogger \\
+			3 & \textBF{456614..} & \textBF{2} & \textBF{formbook} & \textBF{1bce23..} & \textBF{6} & \textBF{njrat} \\
+			4 & 007b98.. & 9 & azorult & 8ab6ed.. & 8 & netwire \\
+			5 & c657a6.. & 8 & netwire & \textBF{30b322..} & \textBF{6} & \textBF{njrat} \\
+			6 & \textBF{975d26..} & \textBF{2} & \textBF{formbook} & 4c93d9.. & 9 & azorult \\
+			7 & 9b33aa.. & 4 & loki & \textBF{d9872c..} & \textBF{6} & \textBF{njrat} \\
+			8 & \textBF{1b9706..} & \textBF{2} & \textBF{formbook} & 68b9fd.. & 0 & heodo \\
+			9 & e26850.. & 6 & njrat & 273c4a.. & 4 & loki \\
+			\hline
+		\end{tabular}
+		\caption{Joint Embedding and Proposed Model example rankings (limited to the first 10 samples) having the maximum Reciprocal Rank (max RR). The elements matching the query sample are shown in \textbf{bold}.} \label{tab:maxRRExampleRank}
+	\end{table}
+}
+
+\newcommand{\minApExampleRankTable}{
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{|p{1,5cm}||p{1,5cm} p{1cm} p{1,8cm}|p{1,5cm} p{1cm} p{1,8cm}|}
+			\hline
+			Min AP & \multicolumn{3}{c|}{Joint Embedding} & \multicolumn{3}{c|}{Proposed Model} \\
+			& Sha256 & Label & Family & Sha256 & Label & Family \\
+			\hline
+			Query & C51924.. & 2 & formbook & 684a5f.. & 6 & njrat \\
+			\hline
+			0 & \textBF{4917a1..} & \textBF{2} & \textBF{formbook} & a7167a.. & 9 & azorult \\
+			1 & \textBF{6de7dc..} & \textBF{2} & \textBF{formbook} & 3416c2.. & 5 & avemariarat \\
+			2 & 963553.. & 0 & heodo & 2d7238.. & 3 & masslogger \\
+			3 & \textBF{456614..} & \textBF{2} & \textBF{formbook} & \textBF{1bce23..} & \textBF{6} & \textBF{njrat} \\
+			4 & 007b98.. & 9 & azorult & 8ab6ed.. & 8 & netwire \\
+			5 & c657a6.. & 8 & netwire & \textBF{30b322..} & \textBF{6} & \textBF{njrat} \\
+			6 & \textBF{975d26..} & \textBF{2} & \textBF{formbook} & 4c93d9.. & 9 & azorult \\
+			7 & 9b33aa.. & 4 & loki & \textBF{d9872c..} & \textBF{6} & \textBF{njrat} \\
+			8 & \textBF{1b9706..} & \textBF{2} & \textBF{formbook} & 68b9fd.. & 0 & heodo \\
+			9 & e26850.. & 6 & njrat & 273c4a.. & 4 & loki \\
+			\hline
+		\end{tabular}
+		\caption{Joint Embedding and Proposed Model example rankings (limited to the first 10 samples) having the minimum Average Precision (min AP). The elements matching the query sample are shown in \textbf{bold}.} \label{tab:minApExampleRank}
+	\end{table}
+}
+
+\newcommand{\minRRExampleRankTable}{
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{|p{1,5cm}||p{1,5cm} p{1cm} p{1,8cm}|p{1,5cm} p{1cm} p{1,8cm}|}
+			\hline
+			Min RR & \multicolumn{3}{c|}{Joint Embedding} & \multicolumn{3}{c|}{Proposed Model} \\
+			& Sha256 & Label & Family & Sha256 & Label & Family \\
+			\hline
+			Query & C51924.. & 2 & formbook & 684a5f.. & 6 & njrat \\
+			\hline
+			0 & \textBF{4917a1..} & \textBF{2} & \textBF{formbook} & a7167a.. & 9 & azorult \\
+			1 & \textBF{6de7dc..} & \textBF{2} & \textBF{formbook} & 3416c2.. & 5 & avemariarat \\
+			2 & 963553.. & 0 & heodo & 2d7238.. & 3 & masslogger \\
+			3 & \textBF{456614..} & \textBF{2} & \textBF{formbook} & \textBF{1bce23..} & \textBF{6} & \textBF{njrat} \\
+			4 & 007b98.. & 9 & azorult & 8ab6ed.. & 8 & netwire \\
+			5 & c657a6.. & 8 & netwire & \textBF{30b322..} & \textBF{6} & \textBF{njrat} \\
+			6 & \textBF{975d26..} & \textBF{2} & \textBF{formbook} & 4c93d9.. & 9 & azorult \\
+			7 & 9b33aa.. & 4 & loki & \textBF{d9872c..} & \textBF{6} & \textBF{njrat} \\
+			8 & \textBF{1b9706..} & \textBF{2} & \textBF{formbook} & 68b9fd.. & 0 & heodo \\
+			9 & e26850.. & 6 & njrat & 273c4a.. & 4 & loki \\
+			\hline
+		\end{tabular}
+		\caption{Joint Embedding and Proposed Model example rankings (limited to the first 10 samples) having the minimum Reciprocal Rank (min RR). The elements matching the query sample are shown in \textbf{bold}.} \label{tab:minRRExampleRank}
+	\end{table}
+}

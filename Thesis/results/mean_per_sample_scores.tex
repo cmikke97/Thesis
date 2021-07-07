@@ -1,0 +1,24 @@
+\newcommand{\meanPerSampleScores}{
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{|p{3,2cm}||p{1,8cm} p{1,8cm} p{1,8cm} p{1,8cm} p{1,8cm}|}
+			\hline
+			Mean per-sample & \multicolumn{5}{c|}{\textbf{FPR}} \\
+			tagging scores & $10^{-5}$ & $10^{-4}$ & $10^{-3}$ & $10^{-2}$ & $10^{-1}$ \\
+			\hline
+			\multicolumn{6}{|c|}{\textbf{Jaccard Similarity}} \\
+			\hline
+			ALOHA & 0.798$\pm$0.000 & 0.902$\pm$0.000 & 0.955$\pm$0.000 & \textBF{0.977$\pm$0.000} & \textBF{0.934$\pm$0.000} \\
+			Joint Embedding & - & - & - & - & - \\
+			Proposed Model & \textBF{0.816$\pm$0.000} & \textBF{0.904$\pm$0.000} & \textBF{0.957$\pm$0.000} & \textBF{0.977$\pm$0.000} & \textBF{0.934$\pm$0.000} \\
+			\hline
+			\multicolumn{6}{|c|}{\textbf{Mean per-Sample Accuracy}} \\
+			\hline
+			ALOHA & 0.798$\pm$0.000 & 0.902$\pm$0.000 & 0.955$\pm$0.000 & \textBF{0.977$\pm$0.000} & \textBF{0.934$\pm$0.000} \\
+			Joint Embedding & - & - & - & - & - \\
+			Proposed Model & \textBF{0.816$\pm$0.000} & \textBF{0.904$\pm$0.000} & \textBF{0.957$\pm$0.000} & \textBF{0.977$\pm$0.000} & \textBF{0.934$\pm$0.000} \\
+			\hline
+		\end{tabular}
+		\caption{Mean and standard deviation of mean per-sample tagging results (\textit{Jaccard simialrity} and \textit{mean per-sample accuracy}) for the different models. Best results are shown in \textbf{bold}.} \label{tab:meanPerSampleScores}
+	\end{table}
+}
