@@ -2746,7 +2746,7 @@ Similarly to the \textit{ALOHA} model implementation (\ref{sec:alohaModelImpleme
 
 In particular, the \textit{Malicious/Benign} label prediction head is composed of a single dense layer followed by the \textit{sigmoid} non-linearity. The loss between the malware/benign output of the network $f_{mal}(x)$ and the ground truth label $y_{mal}$ is computed using the binary cross-entropy loss function.
 
-(vendor count head)
+The \textit{Vendor Count} prediction head, instead, consists of a single linear layer whose parameters are updated in order to optimize the negative log-likelihood loss, as described in \ref{par:VendorCountLoss} (and \cite{ruddALOHA}), between the predicted and the ground truth counts.
 
 (tag prediction / joint embedding head - similarity score - loss)
 
