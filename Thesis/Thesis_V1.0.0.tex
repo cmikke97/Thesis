@@ -53,7 +53,20 @@
 \usepackage{caption}
 
 \input{commands.tex}
+
 \input{results/malware_label_results.tex}
+\input{results/adware_tag_results.tex}
+\input{results/crypto_miner_tag_results.tex}
+\input{results/downloader_tag_results.tex}
+\input{results/dropper_tag_results.tex}
+\input{results/file_infector_tag_results.tex}
+\input{results/flooder_tag_results.tex}
+\input{results/installer_tag_results.tex}
+\input{results/packed_tag_results.tex}
+\input{results/ransomware_tag_results.tex}
+\input{results/spyware_tag_results.tex}
+\input{results/worm_tag_results.tex}
+
 \input{results/mean_per_sample_scores.tex}
 \input{results/family_ranking_results.tex}
 
@@ -2734,8 +2747,6 @@ On the other hand, the base topology of final \textbf{Joint Embedding} architect
 
 \malwareRocAloha
 
-\malwareRocJointEmbedding
-
 \malwareRocProposedMethod
 
 \subsection{Summary}
@@ -2743,26 +2754,59 @@ On the other hand, the base topology of final \textbf{Joint Embedding} architect
 
 \section{Per-tag results}
 \subsection{Adware tag results}
+\adwareTagResultsAucTable
+
+\adwareTagResultsSummaryTable
 
 \subsection{Crypto-miner tag results}
+\cryptoMinerTagResultsAucTable
+
+\cryptoMinerTagResultsSummaryTable
 
 \subsection{Downloader tag results}
+\downloaderTagResultsAucTable
+
+\downloaderTagResultsSummaryTable
 
 \subsection{Dropper tag results}
+\dropperTagResultsAucTable
+
+\dropperTagResultsSummaryTable
 
 \subsection{File-infector tag results}
+\fileInfectorTagResultsAucTable
+
+\fileInfectorTagResultsSummaryTable
 
 \subsection{Flooder tag results}
+\flooderTagResultsAucTable
+
+\flooderTagResultsSummaryTable
 
 \subsection{Installer tag results}
+\installerTagResultsAucTable
+
+\installerTagResultsSummaryTable
 
 \subsection{Packed tag results}
+\packedTagResultsAucTable
+
+\packedTagResultsSummaryTable
 
 \subsection{Ransomware tag results}
+\ransomwareTagResultsAucTable
+
+\ransomwareTagResultsSummaryTable
 
 \subsection{Spyware tag results}
+\spywareTagResultsAucTable
+
+\spywareTagResultsSummaryTable
 
 \subsection{Worm tag results}
+\wormTagResultsAucTable
+
+\wormTagResultsSummaryTable
 
 \section{Mean per-sample tagging scores}
 \meanPerSampleScores
@@ -2773,11 +2817,11 @@ On the other hand, the base topology of final \textbf{Joint Embedding} architect
 \subsection{Example rankings}
 \maxApExampleRankTable
 
-\maxRRExampleRankTable
+\maxRrExampleRankTable
 
 \minApExampleRankTable
 
-\minRRExampleRankTable
+\minRrExampleRankTable
 
 \chapter{Conclusions}
 \color{Red}
@@ -2788,6 +2832,106 @@ Si possono evidenziare i punti di forza e quelli di debolezza, nonché i possibil
 
 \color{Black}
 \chapter{Appendix}
+
+\section{More Detailed Per-Tag Results}
+\subsection{Adware tag results}
+\adwareTagResultsAtFprTable
+
+\adwareTagRocAloha
+
+\adwareTagRocJointEmbedding
+
+\adwareTagRocProposedMethod
+
+\subsection{Crypto-miner tag results}
+\cryptoMinerTagResultsAtFprTable
+
+\cryptoMinerTagRocAloha
+
+\cryptoMinerTagRocJointEmbedding
+
+\cryptoMinerTagRocProposedMethod
+
+\subsection{Downloader tag results}
+\downloaderTagResultsAtFprTable
+
+\downloaderTagRocAloha
+
+\downloaderTagRocJointEmbedding
+
+\downloaderTagRocProposedMethod
+
+\subsection{Dropper tag results}
+\dropperTagResultsAtFprTable
+
+\dropperTagRocAloha
+
+\dropperTagRocJointEmbedding
+
+\dropperTagRocProposedMethod
+
+\subsection{File-infector tag results}
+\fileInfectorTagResultsAtFprTable
+
+\fileInfectorTagRocAloha
+
+\fileInfectorTagRocJointEmbedding
+
+\fileInfectorTagRocProposedMethod
+
+\subsection{Flooder tag results}
+\flooderTagResultsAtFprTable
+
+\flooderTagRocAloha
+
+\flooderTagRocJointEmbedding
+
+\flooderTagRocProposedMethod
+
+\subsection{Installer tag results}
+\installerTagResultsAtFprTable
+
+\installerTagRocAloha
+
+\installerTagRocJointEmbedding
+
+\installerTagRocProposedMethod
+
+\subsection{Packed tag results}
+\packedTagResultsAtFprTable
+
+\packedTagRocAloha
+
+\packedTagRocJointEmbedding
+
+\packedTagRocProposedMethod
+
+\subsection{Ransomware tag results}
+\ransomwareTagResultsAtFprTable
+
+\ransomwareTagRocAloha
+
+\ransomwareTagRocJointEmbedding
+
+\ransomwareTagRocProposedMethod
+
+\subsection{Spyware tag results}
+\spywareTagResultsAtFprTable
+
+\spywareTagRocAloha
+
+\spywareTagRocJointEmbedding
+
+\spywareTagRocProposedMethod
+
+\subsection{Worm tag results}
+\wormTagResultsAtFprTable
+
+\wormTagRocAloha
+
+\wormTagRocJointEmbedding
+
+\wormTagRocProposedMethod
 
 % bibliografia scritta "a mano"
 %\input{biblio.tex}
