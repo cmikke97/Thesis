@@ -55,6 +55,7 @@
 \input{commands.tex}
 
 \input{results/malware_label_results.tex}
+\input{results/tag_results.tex}
 \input{results/adware_tag_results.tex}
 \input{results/crypto_miner_tag_results.tex}
 \input{results/downloader_tag_results.tex}
@@ -69,6 +70,7 @@
 
 \input{results/mean_per_sample_scores.tex}
 \input{results/family_ranking_results.tex}
+\input{results/fresh_results.tex}
 
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
@@ -287,7 +289,7 @@ Obviously there are also reasons for non-malicious actors to create and/or deplo
 
 \subsection{Common Malware types}
 \color{Green}
-Summarize this part.
+This part needs to be summarized since it is too long and too specific.
 \color{Black}
 
 There are numerous different ways of categorizing malware; one way is by \textit{how} the malicious software spreads. Another one is by what it \textit{does} once it has successfully infected its victim's computers (i.e. what is its payload, how it exploits or makes the system vulnerable).
@@ -540,7 +542,7 @@ There exist several anti-reversing approaches, each with its own advantages and 
 
 \subsection{Anti-disassembly}
 \color{Green}
-Summarize this part.
+This part needs to be summarized since it is too long and too specific.
 \color{Black}
 
 \textit{Anti-disassembly} techniques use specially crafted code and/or data in a program to cause disassembly analysis tools to generate an incorrect program listing \cite{SikorskiPMA}. The attackers' usage of these techniques thus implies a time-consuming analysis for malware analysts, ultimately preventing the retrieval of the source code in a reasonable time.
@@ -670,7 +672,7 @@ This can be done at runtime simply pushing some specific values on the stack, ef
 
 \subsection{Anti-debugging}
 \color{Green}
-Summarize this part.
+This part needs to be summarized since it is too long and too specific.
 \color{Black}
 
 Another popular anti-analysis technique, besides anti-disassembly, is \textit{anti-debugging}. Malware authors use anti-debugging techniques to recognise when their malicious program is under the control of a debugger or to interfere with the debugger behaviour. This is done in an attempt to slow down the malware analysts who use debuggers to understand how the malware operates. A malware using these techniques usually alter its normal control flow paths or causes crashes if it detects it is running in a debugger, thus interfering with analysis \cite{SikorskiPMA}.
@@ -799,7 +801,7 @@ This implies that, to counter this technique, malware analysts could avoid setti
 
 \subsection{Anti-virtual machine}
 \color{Green}
-Summarize this part.
+This part needs to be summarized since it is too long and too specific.
 \color{Black}
 
 Malware analysts often use virtual machines (VMs) or other isolated environments like sandboxes, to analyse malware samples. With the purpose of evading analysis and bypassing security systems malware authors often design their code to detect isolated environments. The techniques used with such purpose are called \textit{Anti-virtual machine} techniques (Anti-VM). Once a virtual machine is detected the evasion mechanism may alter the malware?s behaviour, or it may even prevent the malicious code from running altogether \cite{SikorskiPMA}.
@@ -831,7 +833,7 @@ However, those instructions previously mentioned are not typically used within a
 
 \subsection{Packers and unpacking}
 \color{Green}
-Summarize this part.
+This part needs to be summarized since it is too long and too specific.
 \color{Black}
 
 Packing programs, commonly known as \textit{packers}, are software programs that take an \textit{executable file} or \textit{dynamic link library (DLL)}, compresses and/or encrypts its contents and then packs it into a new executable file \cite{SikorskiPMA}.
@@ -887,7 +889,7 @@ Most often security researchers prefer to perform manual unpacking. The two most
 
 \subsection{Code Obfuscation}
 \color{Green}
-Summarize this part.
+This part needs to be summarized since it is too long and too specific.
 \color{Black}
 
 Obfuscation is a technique that generally makes programs harder to understand \cite{Balakrishnan2005CodeOL}, both for humans and automatic tools. To do so, it transforms a program into a new (structurally different) and more difficult to analyse version while retaining the same functionality as the original (the new version of the program is said to be \textit{computationally equivalent} to the original one) \cite{YouMOT}.
@@ -1127,10 +1129,6 @@ Some examples of code virtualization tools include \href{https://vmpsoft.com/}{V
 \textit{Code integration}, one of the most sophisticated obfuscation techniques, was first introduced by \textit{Win97/Zmist} malware. A malware using this technique first decompiles the target program into a set of manageable objects, it then inserts itself between them and finally it reassembles the code \cite{YouMalwareOT}.
 
 \subsection{Obfuscated Malware}
-\color{Green}
-Summarize this part.
-\color{Black}
-
 The huge amount of malware released in the wild since the creation of the first virus in 1960s can be split into two generations. More specifically, the first generation malwares were static, their code and behaviour did not change. The more sophisticated second generation malwares, on the other hand, change their internal structure between one variant and the other maintaining the same malicious behaviour in order to avoid detection.
 
 \subsubsection{Encrypted Malwares}
@@ -1228,6 +1226,10 @@ Some \textit{signature-based} algorithms require an exact match between the sign
 This approach is fast, easy to use and has a high positive rate, however, since the number of known malwares is increasing so fast, it is quickly becoming time-consuming, expensive and impractical. Moreover, this is a completely reactive technique which is unable to counter threats/attacks from new malwares families/variants until they cause damages. Additionally, most second-generation malwares are able to escape this type of detection \cite{Sharma_2014}.
 
 \subsection{Yara Rules}
+\color{Green}
+This part needs to be summarized since it is too long and too specific.
+\color{Black}
+
 \textit{YARA} is a widely accepted open-source \textit{signature-based} malware analysis tool which has emerged in recent years thanks to its flexible and customisable nature. It allows malware analysts/researchers to develop malware "descriptions" based on text or binary patterns, commonly referred to as \textit{Yara rules}. \textit{Yara rules}, which combine simple regular expressions matching with logic rules, can be used to identify specific malware families, the presence of \textit{CVE}s, specific functionality signatures or even generic maliciousness indicators. Given the success obtained by this technique, many commercial malware analysis tools nowadays support \textit{Yara rules} natively \cite{SimonWIY}.
 
 \textit{Yara rules} can be generated either manually or automatically. Generating rules manually obviously requires high expertise, whereas generating them automatically using tools is a relatively easy task. However, automatically generated rules are not guaranteed to be effective and may require post-processing operations for their optimization \cite{NaikEAGYRETE}.
@@ -1788,7 +1790,7 @@ However, this metadata is, in many cases, not available at deployment time thus 
 
 In practice, in their work \cite{ruddALOHA} the authors fit a deep neural network with multiple additional targets derived from metadata in a threat intelligence feed for Portable Executable (PE) malware and benignware. The additional losses include a multi-source malicious/benign loss, a count loss on multi-source detections, and a semantic malware attribute tag loss. The authors ultimately stated that this approach yielded a considerable improvement in performance on the main detection task.
 
-\paragraph{Implementation Details}
+\subsubsection{Inner Workings}
 The model presented in \cite{ruddALOHA} (fig. \ref{fig:ALOHA_model}) is composed of a base feed-forward neural network consisting of 5 blocks, each composed of Dropout, a dense layer, batch normalization, and an exponential linear unit (ELU) activation, with 1024, 768, 512, 512, and 512 hidden units respectively. This base topology applies the function $f(\cdot)$ to the input feature vector \textbf{x} (of size 1024 in this case) to produce an intermediate 512 dimensional representation of the input file $\textbf{h} = f(\textbf{x})$. An additional block for each output of the model, consisting of one or more dense layers and activation functions, is then appended on top of the base net. This composition of the base topology and the target-specific 'heads' is denoted as $f_{target}(\textbf{x})$.
 
 The output for the main malware/benign prediction task - $f_{mal}(\textbf{x})$ - is always present (it constitutes the baseline model) and consists of a single dense layer followed by a sigmoid activation function on top of the base shared network. On top of that one or more auxiliary outputs are added with similar structure as described above: one fully connected layer (two for the \textit{tag} prediction task) with a task-specific activation function. Finally, multi-task losses are produced by computing the sum, across all tasks, of the per-task loss multiplied by a task-specific weight (1.0 for the malware/benign task and 0.1 for all other tasks) \cite{ruddALOHA}.
@@ -1847,7 +1849,7 @@ The tag prediction task was then defined as a multi-label binary classification,
 \end{equation}
 where $y_{t_j}^{(i)}$ indicates if sample $i$ is annotated with tag $j$, and $\hat{y}_{t_j}^{(i)} = f_{tag_j}(\textbf{x}^{(i)})$ is the prediction of the network for that value.
 
-\paragraph{Final Loss + Experiment Evaluation}
+\paragraph{Final Loss}
 Finally, in \cite{ruddALOHA} each model used a loss weight of 0.1 on the aggregate malicious/benign loss and 0.1 on each auxiliary loss. Therefore, when adding $K$ targets to the main loss, the final loss that gets back-propagated through the model becomes:
 \begin{equation} \label{eq:alohaFinalLoss}
 	L(X,Y) = L_{mal}(X,Y) + 0.1 \sum_{k=1}^{K} L_k(X,Y).
@@ -1903,7 +1905,7 @@ The labelling process consisted of the following three main stages:
 
 The token extraction phase consisted of normalizing and parsing the multiple detection names and converting them in sets of sub-strings. In a similar way to what the malware labelling tool AVClass, which was proposed by Marcos et al. in \cite{MarcosAVclass}, does, the token-to-tag mapping stage uses rules created from expert knowledge by a group of malware analysts, that associate relevant tokens with the set of tags of interest. Finally, this mapping is extended by mining statistical relationships between tokens to improve tagging stability and coverage.
 
-\paragraph{Tags Prediction - Implementation Details}\label{par:tagPredictionImplementation}
+\paragraph{Tags Prediction - Inner Workings}\label{par:tagPredictionImplementation}
 In \cite{DucauAMDATSE}, in order to predict, in a multi-label classification manner, zero or more tags per sample from the set of $T$ possible tags $\mathcal{T} = \{t_1, t_2, ..., t_T\}$, the authors proposed two different neural network architectures, represented in \ref{fig:Multi_Head_model} and \ref{fig:Joint_Embedding_model}, which they referred to as \textit{Multi-Head} (top) and \textit{Joint Embedding} (bottom).
 
 \begin{figure}[h]
@@ -2022,7 +2024,7 @@ As features for the content of the PE files, they used floating point 1024-dimen
 \end{enumerate}
 In total, they represented each sample as two feature vectors: A PE-content feature vector of 1024 dimensions and a contextual file-path feature vector of 100 dimensions \cite{KyadigeLFCEIFPIBMD}.
 
-\paragraph{Implementation details}
+\paragraph{Inner Workings}
 The model proposed in \cite{KyadigeLFCEIFPIBMD} (fig. \ref{fig:PE_plus_FP_model}) has two inputs, the 1024 element PE-content feature vector, $\textbf{x}_{PE}$, and the 100 element file-path integer vector, $\textbf{x}_{FP}$. The two distinct inputs are fed to two different base sub-networks, each composed by a series of layers with input-specific parameters: $\theta_{PE}$ for the PE content part and $\theta_{FP}$ parameters for file-path part. The two sets of parameters ($\theta_{PE}$ and $\theta_{FP}$) are jointly optimized during training. The outputs of these base sub-networks are then concatenated and passed through a series of final hidden layers - a joint output sub-network with parameters $\theta_{O}$ terminating with a final dense layer followed by a sigmoid activation function. The final sigmoid activation is used to have as output a detection score between 0 (benign) and 1 (malicious). However, the threshold for determining if a samples is malicious or benign can be set anywhere along the $(0.0, 1.0)$ range according to false positive rate (FPR) and detection rate (TPR) trade-offs for the application at hand - a reasonable threshold is typically at or below $10^{-3}$ FPR.
 
 \begin{figure}[h]
@@ -2610,7 +2612,22 @@ More specifically, the function downloads '\textit{\textbf{x}}' samples per malw
 For all the model evaluations on the \textit{\textbf{fresh dataset}} done for this project the \textit{\textbf{fresh dataset}} was composed of \textit{\textbf{x}} $= 100$ samples per family, considering the following \textit{\textbf{m}} $= 10$ families: \textit{heodo}, \textit{agenttesla}, \textit{formbook}, \textit{masslogger}, \textit{loki}, \textit{avemariarat}, \textit{njrat}, \textit{remcosrat}, \textit{netwire} and \textit{azorult}. Therefore the \textit{\textbf{fresh dataset}} consists of 1000 PE samples.
 
 \subsection{Model Evaluation with Fresh Dataset}
-The actual model evaluation on the \textit{\textbf{fresh dataset}} is computed by another function called \textit{\textbf{evaluate\_fresh}}. This function first randomly samples '\textit{\textbf{q}}' query samples among the ones in the $fresh\_dataset$. Then, it computes the similarity between each query sample with the other '$n-1$' samples present in the $fresh\_dataset$ ordering the latter by similarity. At this point, for each query sample there is the ranking of all the other $n-1$ samples sorted by similarity. Using those rankings the function finally calculates the \textbf{MRR} (\textit{Mean Reciprocal Rank}) and \textbf{MAP} (\textit{Mean Average Precision}) scores for the model learned representation.
+The actual model evaluation on the \textit{\textbf{fresh dataset}} is computed by another function called \textit{\textbf{evaluate\_fresh}}. This function evaluates the model learned representation in both the malware family prediction and malware family ranking tasks.
+
+\paragraph{Malware Family Prediction task evaluation}\label{par:FamilyPredictionEvaluation}
+For the malware family prediction task there are two similar solutions: one is called \textit{\textbf{soft-family prediction}} evaluation and the other \textit{\textbf{hard-family prediction}} evaluation. In both solutions the learned representation is tested by first selecting $n$ anchor samples per family (for a total of $n \times n_{families} = 100$ anchor samples). The other $n_{samples} - 100 = 900$ non-anchor samples are then assigned, for each family:
+\begin{itemize}
+	\item a probability score based on their Euclidean distance to the most similar anchor sample of that family for the \textit{\textbf{soft}} variant
+	
+	\item a value of 1 if the most similar anchor sample is of that family, 0 otherwise, for the \textit{\textbf{hard}} variant
+\end{itemize}
+notice that the \textit{\textbf{hard}} variant does not mean that exactly one single family label is assigned to each test sample. In fact, in case two (or more) anchor samples from different families are at the same distance to the test sample, then a value of 1 is assigned to the test sample for each of those families. In any case, this step results in having for each non-anchor sample a per-family binary prediction output.
+
+Finally, a number of common binary prediction statistics such as \textit{TPR} (True Positive Rate), \textit{Accuracy}, \textit{Recall}, \textit{Precision} and \textit{F1 Score} are computed for each family at different \textit{FPRs} (False Positive Rates) (particularly at $FPR=1\%$), as well as the corresponding ROC (Receiving Operating Characteristic) curves and AUC-ROC (Area Under Curve) scores.
+
+\paragraph{Malware Family Ranking task evaluation}\label{par:FamilyRankingEvaluation}
+On the other hand, to evaluate the model learned representation on the family ranking task the function
+first randomly selects '\textit{\textbf{q}}' query samples among the ones in the $fresh\_dataset$. Then, it computes the \textit{Euclidean distance} between each query sample with the other '$n-1$' samples present in the $fresh\_dataset$ ordering the latter by similarity. At this point, for each query sample there is a ranking of all the other $n-1$ samples sorted from the most to least similar. Using those rankings the function finally calculates the \textbf{MRR} (\textit{Mean Reciprocal Rank}) and \textbf{MAP} (\textit{Mean Average Precision}) scores for the model learned representation.
 
 The Mean Reciprocal Rank (\textbf{MRR}, \ref{eq:MRR}) is the average of the Reciprocal Ranks (\textbf{RR}, \ref{eq:RR}) of a series of queries. In particular, the Reciprocal Rank (\textbf{RR}) of a query response is the multiplicative inverse of the rank (position in the ranking) of the single sample belonging to the family of interest which classified with the highest rank (it is the closest).
 \begin{equation}\label{eq:RR}
@@ -2718,15 +2735,20 @@ where $d(\textbf{a}, \textbf{b})$ is the Euclidean distance between points $\tex
 The tags predicted probabilities outputted by the \textit{Prediction Layer} are then used to compute the respective losses with respect to the ground truth tags $y_{t_i}, \forall i \in 1,..,11$, exactly as described in paper \cite{DucauAMDATSE}, which are combined together to form the final loss $L(\textbf{x}, y)$.
 
 \section{Experiments}
-Both the models were trained (and validated) each for 12 \textit{epochs} on the first $6M$ training and $1.153.846$ validation samples of the pre-processed Sorel20M dataset (loaded with generator \textit{\textbf{alt3}}) using different number of layers, number of nodes per layer (layer sizes), activation functions and dropout value for the model base topology, different optimizers (\textbf{Adam} or \textbf{SGD}), learning rates (LR), momentum, weight decay and loss weights. Moreover, in the case of the \textbf{Joint Embedding} model also different similarity score functions such as the cosine similarity and the inverse of the Euclidean distance were tested instead of the dot product. The resulting models were then evaluated on the first $1.846.154$ test samples of Sorel20M dataset looking for their tag and/or malicious/benign label (present only in the ALOHA model implementation) prediction \textit{TPR}, \textit{accuracy}, \textit{recall}, \textit{precision}, \textit{f1} score, \textit{jaccard similarity} and \textit{mean-per-sample-accuracy} at a FPR of 1\%, as well as the resulting tag and/or malicious/benign \textit{ROC} curves and \textit{AUC} scores.
+Both the models were trained (and validated) each for 10 \textit{epochs} on the first $6M$ training and $1.153.846$ validation samples of the pre-processed Sorel20M dataset (loaded with generator \textit{\textbf{alt3}}) using different number of layers, number of nodes per layer (layer sizes), activation functions and dropout value for the model base topology, different optimizers (\textbf{Adam} or \textbf{SGD}), learning rates (LR), momentum, weight decay and loss weights. Moreover, in the case of the \textbf{Joint Embedding} model also different similarity score functions such as the cosine similarity and the inverse of the Euclidean distance were tested instead of the dot product. The resulting models were then evaluated on the first $1.846.154$ test samples of Sorel20M dataset looking for their tag and/or malicious/benign label (present only in the ALOHA model implementation) prediction \textit{TPR}, \textit{accuracy}, \textit{recall}, \textit{precision}, \textit{f1} score, \textit{jaccard similarity} and \textit{mean-per-sample-accuracy} at a FPR of 1\%, as well as the resulting tag and/or malicious/benign \textit{ROC} curves and \textit{AUC} scores.
 
-The final \textbf{ALOHA} architecture, which had a base topology consisting of 3 layers of sizes 512, 512 and 128 respectively, with dropout probability $p_d=5\%$ and \textbf{ELU} activation function, in particular, was trained with a learning rate $LR = 10^{-3}$, \textbf{Adam} optimizer, no momentum nor weight decay and loss weights set to 1.0 for the malicious/benign head, 0.1 for the count head and 1.0 for the tag head.
+The final \textbf{ALOHA} architecture, which had a base topology consisting of 3 layers of sizes 512, 512 and 128 respectively, with dropout probability $p_d=5\%$ and \textbf{ELU} activation function, in particular, was trained with a learning rate $LR = 10^{-3}$, \textbf{Adam} optimizer, no momentum nor weight decay and loss weights set to 1.0 for the malicious/benign head, 0.1 for the count head and 0.1 for the tag head (as described in the original paper \cite{ruddALOHA}).
 
-On the other hand, the base topology of final \textbf{Joint Embedding} architecture consisted of 3 layers of sizes 512, 512, and 128 respectively, with dropout probability $p_d=5\%$ and \textbf{ELU} activation function. The overall model was trained with a learning rate $LR = 10^{-3}$, \textbf{Adam} optimizer, no momentum nor weight decay and loss weights set to 1.0 for the malicious/benign head, 0.1 for the count head and 1.0 for the tag head. Moreover, the final model uses the dot product as similarity score between tags' and samples' embeddings.
+On the other hand, the base topology of the final \textbf{Joint Embedding} architecture consisted of 3 layers of sizes 512, 512, and 128 respectively, with dropout probability $p_d=5\%$ and \textbf{ELU} activation function. The overall model was trained with a learning rate $LR = 10^{-3}$, \textbf{Adam} optimizer, no momentum nor weight decay (the loss weights are not used since there is a single output head). Moreover, the final model uses the dot product as similarity score between tags' and samples' embeddings.
 
-\subsection{Considerations}
+The \textit{ALOHA} and \textit{Joint Embedding} model implementations results are reported in chapter \ref{chap:results}.
 
 \chapter{Proposed Method}
+\textit{ALOHA} model is based on the idea of enhancing the model performance and generalization on the task of \textit{Malicious/Benign} label prediction with respect to a more simple single task model by exploiting additional tasks (\textit{Vendor Count} prediction, \textit{SMART Tags} prediction, etc.) which are jointly optimized in a Multi-objective/multi-task learning fashion. Multi-objective learning has in fact proven to be beneficial for the model generalization and overall has a regularization effect providing better training curves and arguably better results.
+
+On the other hand, the \textit{Joint Embedding} model was designed with the idea of constructing an embedding space in which both the samples and tag labels can be mapped to, such that samples end up close to the tags they are associated to (and possibly far from the other unrelated tags). This also means that similar samples (sharing the same tags) should be close to each other in the learned embedding space. The \textit{Joint Embedding} model is trained by optimizing its parameters on the single task of tag prediction through tags' and samples' embeddings similarity, with no additional tasks.
+
+The natural follow-up to those models is a fusion between their two base ideas ultimately creating a model with the main objective of creating a joint embedding space as done by the \textit{Joint Embedding} model, while exploiting Multi-objective learning as done by the \textit{ALOHA} model.
 
 \section{Implementation}
 \begin{figure}[h]
@@ -2742,19 +2764,32 @@ The model \textit{shared base} topology is composed of 3 sequential dense blocks
 
 The \textit{Tag Embedding} matrix $\textbf{E} \in \mathbb{R}^{T \times 32}$, which maps the tags to their corresponding representation in the Joint Embedding space, is the same as the one used in the \textit{Joint Embedding} model implementation (\ref{sec:jointEmbeddingModelImplementation}) and is therefore also equal to the one used in the original implementation \cite{DucauAMDATSE}. This matrix is used as second input for the \textit{Prediction Layer} in the tag output head.
 
-Similarly to the \textit{ALOHA} model implementation (\ref{sec:alohaModelImplementation}), this model uses multiple parallel \textit{output heads}, each relative to a different task, whose values are jointly optimized during training by back-propagating the gradients computed from an aggregate loss. In particular, the tasks used in this case are: the \textit{Malicious/Benign label} prediction, the \textit{Vendor Count} estimation and the \textit{SMART Tag} prediction based on the similarity between samples' and tags' embeddings. The first two output heads (\textit{Malicious/Benign label} prediction head and \textit{Vendor Count} estimation head) are the same ones used in the \textit{ALOHA} model implementation (\ref{sec:alohaModelImplementation}).
+Similarly to the \textit{ALOHA} model implementation (\ref{sec:alohaModelImplementation}), this model uses multiple parallel \textit{output heads}, each relative to a different task, whose values are jointly optimized during training by back-propagating the gradients computed from an aggregate loss. In particular, the tasks used in this case are: the \textit{Malicious/Benign label} prediction (optional), the \textit{Vendor Count} estimation (optional) and the \textit{SMART Tag} prediction based on the similarity between samples' and tags' embeddings. The first two output heads (\textit{Malicious/Benign label} prediction head and \textit{Vendor Count} estimation head) are the same ones used in the \textit{ALOHA} model implementation (\ref{sec:alohaModelImplementation}) and can optionally be turned on or off at network definition.
 
 In particular, the \textit{Malicious/Benign} label prediction head is composed of a single dense layer followed by the \textit{sigmoid} non-linearity. The loss between the malware/benign output of the network $f_{mal}(x)$ and the ground truth label $y_{mal}$ is computed using the binary cross-entropy loss function.
 
 The \textit{Vendor Count} prediction head, instead, consists of a single linear layer whose parameters are updated in order to optimize the negative log-likelihood loss, as described in \ref{par:VendorCountLoss} (and \cite{ruddALOHA}), between the predicted and the ground truth counts.
 
-The \textit{Tag} prediction head, on the other hand, consists of the same components used in the \textit{Joint Embedding} model implementation (\ref{sec:jointEmbeddingModelImplementation}): the linear layer mapping a sample intermediate representation $h$ to its \textit{PE Embedding} in the \textbf{Joint Embedding space} and the \textit{Prediction Layer}, which produces a similarity score matrix between samples' and tags' embeddings. The resulting matrix is then run through a \textit{sigmoid} non-linearity (by value) to produce the tags probabilities for sample $\textbf{x}$. The similarity function used in this model can be chosen to be one of the following at network definition: \textit{dot product} (\ref{eq:DotProduct}), \textit{cosine similarity} (\ref{eq:CosineSimilarity}) or one of the \textit{inverse Euclidean distances} (\textit{exp} (\ref{eq:EuclideanExpSimilarity}), \textit{inv} (\ref{eq:EuclideanInvSimilarity}) or \textit{inv\_pow} (\ref{eq:EuclideanInvPowSimilarity})). The \textit{Tag prediction head} loss is computed as the sum over all tags of the individual cross entropy losses between the predicted tags and the ground truth ones, as described at \ref{par:tagPredictionImplementation} (and \cite{DucauAMDATSE}).
+The \textit{Tag} prediction head, on the other hand, is always used and consists of the same components used in the \textit{Joint Embedding} model implementation (\ref{sec:jointEmbeddingModelImplementation}): the linear layer mapping a sample intermediate representation $h$ to its \textit{PE Embedding} in the \textbf{Joint Embedding space} and the \textit{Prediction Layer}, which produces a similarity score matrix between samples' and tags' embeddings. The resulting matrix is then run through a \textit{sigmoid} non-linearity (by value) to produce the tags probabilities for sample $\textbf{x}$. The similarity function used in this model can be chosen to be one of the following at network definition: \textit{dot product} (\ref{eq:DotProduct}), \textit{cosine similarity} (\ref{eq:CosineSimilarity}) or one of the \textit{inverse Euclidean distances} (\textit{exp} (\ref{eq:EuclideanExpSimilarity}), \textit{inv} (\ref{eq:EuclideanInvSimilarity}) or \textit{inv\_pow} (\ref{eq:EuclideanInvPowSimilarity})). The \textit{Tag prediction head} loss is computed as the sum over all tags of the individual cross entropy losses between the predicted tags and the ground truth ones, as described at \ref{par:tagPredictionImplementation} (and \cite{DucauAMDATSE}).
 
 Finally the individual heads losses are aggregated together by computing their weighted sum. Different weights can be assigned to the distinct heads in order to tune 
 
 \section{Experiments}
+The proposed model was trained multiple times for 10 \textit{epochs} on the first $6M$ training and $1.153.846$ validation samples of the pre-processed Sorel20M dataset (loaded with generator \textit{\textbf{alt3}}) with both the optional output heads (\textit{Malicious/Benign} label prediction and \textit{Vendor Count} prediction) on, changing the network hyper-parameters like the number of layers, layers dimensions (number of hidden units per layer), activation functions and dropout value for the base topology. Other hyper-parameters that were iteratively changed were the used optimizer (\textbf{Adam} or \textbf{SGD}), learning rate (LR), momentum, weight decay, loss weights and the similarity score function used (chosen between the \textit{dot product}, the \textit{cosine similarity} and one of the \textit{inverted Euclidean Distances}: \textit{exp}, \textit{inv} or \textit{inv\_pow}).
 
-\chapter{Results}
+Then, for the evaluation of the resulting model the first $1.846.154$ test samples of the Sorel20M pre-processed dataset were used to asses the model \textit{TPR}, \textit{accuracy}, \textit{recall}, \textit{precision}, \textit{f1 score}, \textit{jaccard similarity}, and \textit{mean-per-sample accuracy} at different \textit{FPRs} of interest (particularly at $FPR=1\%$) for the tags and malicious/benign label prediction task, as well as the corresponding ROC curves and AUC scores.
+
+Moreover, this model learned samples' representation (embedding), together with the \textit{Joint Embedding} model implementation one, was also tested on the fresh dataset, which contains $1.000$ malicious samples belonging to $10$ different malware families to asses its performance in the malware family prediction and ranking tasks with respect to the mentioned previous method. The malware families represented by the fresh dataset were chosen among the most wide-spread PE malware families present in Italy at the time of writing (as reported by \cite{CERTAGID}) for which \textit{Malware Bazaar} \cite{MalwareBazaar} provided at least 100 samples.
+
+In particular, for the malware family prediction task the learned representation was tested, as previously described in \ref{par:FamilyPredictionEvaluation}, by selecting a number \textit{\textbf{n}} (10) of anchor samples per family (for a total of $n \times n_{families} = 100$ anchor samples) and assigning to the other $n_{samples} - 100 = 900$ non-anchor samples, for each family, a value $p\in[0,1]$ based on their Euclidean distance to the most similar anchor sample of that family. Finally, binary prediction statistics like \textit{TPR}, \textit{Accuracy}, \textit{Recall}, \textit{Precision} and \textit{F1 Score} are computed for each family at different \textit{FPRs} (most importantly at $FPR=1\%$). Moreover, also the corresponding ROC curves and AUC-ROC scores are computed.
+
+On the other hand, for the malware family ranking task the learned representation was tested (as described in \ref{par:FamilyRankingEvaluation}) by first selecting \textit{\textbf{q}} (100) query samples from the fresh dataset and, for each of them, computing the ranking of the other $n_{samples} - 1 = 999$ ordering them by similarity. Then, given the resulting rankings, the \textbf{MAP} and \textbf{MRR} scores were calculated.
+
+The final \textbf{Proposed Model} architecture consisted of 3 layers of sizes 512, 512, 128 respectively (keeping them consistent to the \textit{ALOHA} and \textit{Joint Embedding} model implementation in order to better compare the final results), with dropout probability $p_d=5\%$, \textbf{ELU} activation function and the \textit{dot product} as similarity score between tags' and samples' embeddings. The training was carried out with a learning rate $LR=10^{-3}$, \textbf{Adam} optimizer, no momentum nor weight decay, and loss weights set to 1.0 for the malicious/benign head, 0.1 for the count head and 1.0 for the tag head.
+
+The \textbf{Proposed Model} results are reported in chapter \ref{chap:results}.
+
+\chapter{Results}\label{chap:results}
 \section{Malware Label results}
 
 \malwareResultsAucTable
@@ -2769,72 +2804,29 @@ Finally the individual heads losses are aggregated together by computing their w
 \malwareResultsSummaryTable
 
 \section{Per-tag results}
+\tagResultsAucTable
+
+\tagResultsSummaryTable
+
 \allMeanRocAloha
 
 \allMeanRocJointEmbedding
 
 \allMeanRocProposedModel
 
-\subsection{Adware tag results}
-\adwareTagResultsAucTable
-
-\adwareTagResultsSummaryTable
-
-\subsection{Crypto-miner tag results}
-\cryptoMinerTagResultsAucTable
-
-\cryptoMinerTagResultsSummaryTable
-
-\subsection{Downloader tag results}
-\downloaderTagResultsAucTable
-
-\downloaderTagResultsSummaryTable
-
-\subsection{Dropper tag results}
-\dropperTagResultsAucTable
-
-\dropperTagResultsSummaryTable
-
-\subsection{File-infector tag results}
-\fileInfectorTagResultsAucTable
-
-\fileInfectorTagResultsSummaryTable
-
-\subsection{Flooder tag results}
-\flooderTagResultsAucTable
-
-\flooderTagResultsSummaryTable
-
-\subsection{Installer tag results}
-\installerTagResultsAucTable
-
-\installerTagResultsSummaryTable
-
-\subsection{Packed tag results}
-\packedTagResultsAucTable
-
-\packedTagResultsSummaryTable
-
-\subsection{Ransomware tag results}
-\ransomwareTagResultsAucTable
-
-\ransomwareTagResultsSummaryTable
-
-\subsection{Spyware tag results}
-\spywareTagResultsAucTable
-
-\spywareTagResultsSummaryTable
-
-\subsection{Worm tag results}
-\wormTagResultsAucTable
-
-\wormTagResultsSummaryTable
-
 \section{Mean per-sample tagging scores}
 \meanPerSampleScores
 
 \section{Family Ranking Evaluation}
 \MrrAndMapResultsTable
+
+\freshResultsAucTable
+
+\freshResultsSummaryTable
+
+\allMeanFreshRocJointEmbedding
+
+\allMeanFreshRocProposedModel
 
 \subsection{Example rankings}
 \maxApExampleRankTable

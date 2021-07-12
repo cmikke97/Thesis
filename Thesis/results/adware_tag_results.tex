@@ -5,7 +5,7 @@
             \hline
             Adware Tag & ALOHA & Joint Embedding & Proposed Model \\
             \hline
-            AUC-ROC & 0.531$\pm$0.054 & \textBF{0.541$\pm$0.006} & 0.516$\pm$0.007 \\
+            AUC-ROC & 0.665$\pm$0.018 & \textBF{0.677$\pm$0.028} & 0.637$\pm$0.024 \\
             \hline
         \end{tabular}
         \caption{AUC-ROC (Area Under Curve) of the different models for the \textbf{Adware Tag} prediction task. Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:adwareTag_auc}
@@ -36,39 +36,39 @@
 
             \multicolumn{6}{|c|}{\textbf{TPR}} \\
             \hline
-            ALOHA & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.012$\pm$0.009 & \textBF{0.124$\pm$0.023} \\
-            Joint Embedding & 0.000$\pm$0.000 & 0.000$\pm$0.000 & \textBF{0.003$\pm$0.002} & \textBF{0.014$\pm$0.006} & 0.098$\pm$0.015 \\
-            Proposed Model & \textBF{0.002$\pm$0.002} & \textBF{0.002$\pm$0.002} & 0.002$\pm$0.002 & 0.009$\pm$0.006 & 0.091$\pm$0.016 \\
+            ALOHA & \textBF{0.003$\pm$0.004} & \textBF{0.003$\pm$0.004} & 0.003$\pm$0.004 & 0.009$\pm$0.000 & \textBF{0.139$\pm$0.066} \\
+            Joint Embedding & 0.002$\pm$0.002 & 0.002$\pm$0.002 & \textBF{0.003$\pm$0.002} & \textBF{0.033$\pm$0.012} & 0.088$\pm$0.004 \\
+            Proposed Model & 0.002$\pm$0.002 & 0.002$\pm$0.002 & \textBF{0.003$\pm$0.002} & 0.024$\pm$0.012 & 0.095$\pm$0.013 \\
             \hline
-            Error Reduction wrt \newline ALOHA & 0.2\% & 0.2\% & 0.2\% & -0.3\% & -3.8\% \\
-            Error Reduction wrt \newline Joint Embedding & 0.2\% & 0.2\% & -0.1\% & -0.5\% & -0.8\% \\
+            Error Reduction wrt \newline ALOHA & -0.1\% & -0.1\% & 0.0\% & 1.5\% & -5.1\% \\
+            Error Reduction wrt \newline Joint Embedding & 0.0\% & 0.0\% & 0.0\% & -0.9\% & 0.8\% \\
             \hline
-            Std Reduction wrt \newline ALOHA & 0.0\% & 0.0\% & 0.0\% & 33.3\% & 30.4\% \\
-            Std Reduction wrt \newline Joint Embedding & 0.0\% & 0.0\% & 0.0\% & 0.0\% & -6.7\% \\
+            Std Reduction wrt \newline ALOHA & 50.0\% & 50.0\% & 50.0\% & 0.0\% & 80.3\% \\
+            Std Reduction wrt \newline Joint Embedding & 0.0\% & 0.0\% & 0.0\% & 0.0\% & -225.0\% \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Accuracy}} \\
             \hline
-            ALOHA & \textBF{0.910$\pm$0.000} & \textBF{0.910$\pm$0.000} & \textBF{0.910$\pm$0.000} & \textBF{0.904$\pm$0.002} & \textBF{0.831$\pm$0.002} \\
-            Joint Embedding & \textBF{0.910$\pm$0.000} & \textBF{0.910$\pm$0.000} & \textBF{0.910$\pm$0.000} & 0.903$\pm$0.001 & 0.828$\pm$0.001 \\
-            Proposed Model & \textBF{0.910$\pm$0.000} & \textBF{0.910$\pm$0.000} & \textBF{0.910$\pm$0.000} & 0.902$\pm$0.001 & 0.828$\pm$0.002 \\
+            ALOHA & \textBF{0.910$\pm$0.000} & \textBF{0.910$\pm$0.000} & 0.909$\pm$0.002 & 0.902$\pm$0.000 & \textBF{0.831$\pm$0.007} \\
+            Joint Embedding & \textBF{0.910$\pm$0.000} & \textBF{0.910$\pm$0.000} & \textBF{0.910$\pm$0.000} & \textBF{0.905$\pm$0.001} & 0.827$\pm$0.005 \\
+            Proposed Model & \textBF{0.910$\pm$0.000} & \textBF{0.910$\pm$0.000} & \textBF{0.910$\pm$0.000} & 0.904$\pm$0.001 & 0.826$\pm$0.004 \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Recall}} \\
             \hline
-            ALOHA & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.012$\pm$0.009 & \textBF{0.124$\pm$0.023} \\
-            Joint Embedding & 0.000$\pm$0.000 & 0.000$\pm$0.000 & \textBF{0.003$\pm$0.002} & \textBF{0.014$\pm$0.006} & 0.098$\pm$0.015 \\
-            Proposed Model & \textBF{0.002$\pm$0.002} & \textBF{0.002$\pm$0.002} & 0.002$\pm$0.002 & 0.009$\pm$0.006 & 0.091$\pm$0.016 \\
+            ALOHA & \textBF{0.003$\pm$0.004} & \textBF{0.003$\pm$0.004} & 0.003$\pm$0.004 & 0.009$\pm$0.000 & \textBF{0.139$\pm$0.066} \\
+            Joint Embedding & 0.002$\pm$0.002 & 0.002$\pm$0.002 & \textBF{0.003$\pm$0.002} & \textBF{0.033$\pm$0.012} & 0.088$\pm$0.004 \\
+            Proposed Model & 0.002$\pm$0.002 & 0.002$\pm$0.002 & \textBF{0.003$\pm$0.002} & 0.024$\pm$0.012 & 0.095$\pm$0.013 \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Precision}} \\
             \hline
-            ALOHA & \textBF{1.000$\pm$0.000} & \textBF{1.000$\pm$0.000} & 0.000$\pm$0.000 & 0.108$\pm$0.089 & \textBF{0.110$\pm$0.017} \\
-            Joint Embedding & \textBF{1.000$\pm$0.000} & \textBF{1.000$\pm$0.000} & 0.222$\pm$0.157 & \textBF{0.125$\pm$0.048} & 0.089$\pm$0.012 \\
-            Proposed Model & \textBF{1.000$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.333$\pm$0.471} & 0.082$\pm$0.051 & 0.083$\pm$0.014 \\
+            ALOHA & \textBF{1.000$\pm$0.000} & \textBF{1.000$\pm$0.000} & 0.333$\pm$0.471 & 0.086$\pm$0.002 & \textBF{0.118$\pm$0.049} \\
+            Joint Embedding & \textBF{1.000$\pm$0.000} & \textBF{1.000$\pm$0.000} & 0.333$\pm$0.236 & \textBF{0.262$\pm$0.066} & 0.080$\pm$0.005 \\
+            Proposed Model & \textBF{1.000$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.500$\pm$0.408} & 0.196$\pm$0.081 & 0.085$\pm$0.012 \\
             \hline
             \multicolumn{6}{|c|}{\textbf{F1 Score}} \\
             \hline
-            ALOHA & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.022$\pm$0.017 & \textBF{0.116$\pm$0.020} \\
-            Joint Embedding & 0.000$\pm$0.000 & 0.000$\pm$0.000 & \textBF{0.006$\pm$0.004} & \textBF{0.025$\pm$0.011} & 0.093$\pm$0.014 \\
-            Proposed Model & \textBF{0.003$\pm$0.004} & \textBF{0.003$\pm$0.004} & 0.003$\pm$0.004 & 0.016$\pm$0.011 & 0.087$\pm$0.015 \\
+            ALOHA & \textBF{0.006$\pm$0.008} & \textBF{0.006$\pm$0.008} & 0.006$\pm$0.008 & 0.016$\pm$0.000 & \textBF{0.128$\pm$0.056} \\
+            Joint Embedding & 0.003$\pm$0.004 & 0.003$\pm$0.004 & \textBF{0.006$\pm$0.004} & \textBF{0.059$\pm$0.020} & 0.084$\pm$0.004 \\
+            Proposed Model & 0.003$\pm$0.004 & 0.003$\pm$0.004 & \textBF{0.006$\pm$0.004} & 0.043$\pm$0.021 & 0.090$\pm$0.013 \\
             \hline
         \end{longtable}
     \end{center}
@@ -83,9 +83,9 @@
             \hline
             Model & TPR & Accuracy & Precision & Recall & F1 score \\
             \hline
-            ALOHA & 0.012$\pm$0.009 & \textBF{0.904$\pm$0.002} & 0.108$\pm$0.089 & 0.012$\pm$0.009 & 0.022$\pm$0.017 \\
-            Joint Embedding & \textBF{0.014$\pm$0.006} & 0.903$\pm$0.001 & \textBF{0.125$\pm$0.048} & \textBF{0.014$\pm$0.006} & \textBF{0.025$\pm$0.011} \\
-            Proposed Model & 0.009$\pm$0.006 & 0.902$\pm$0.001 & 0.082$\pm$0.051 & 0.009$\pm$0.006 & 0.016$\pm$0.011 \\
+            ALOHA & 0.009$\pm$0.000 & 0.902$\pm$0.000 & 0.086$\pm$0.002 & 0.009$\pm$0.000 & 0.016$\pm$0.000 \\
+            Joint Embedding & \textBF{0.033$\pm$0.012} & \textBF{0.905$\pm$0.001} & \textBF{0.262$\pm$0.066} & \textBF{0.033$\pm$0.012} & \textBF{0.059$\pm$0.020} \\
+            Proposed Model & 0.024$\pm$0.012 & 0.904$\pm$0.001 & 0.196$\pm$0.081 & 0.024$\pm$0.012 & 0.043$\pm$0.021 \\
             \hline
         \end{tabular}
         \caption{Summary of the mean and standard deviation results of the different models for the \textbf{Adware Tag} prediction task at \textbf{FPR} $=1\%$. Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:adwareTag_result_summary}

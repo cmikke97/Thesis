@@ -5,7 +5,7 @@
             \hline
             Crypto-miner Tag & ALOHA & Joint Embedding & Proposed Model \\
             \hline
-            AUC-ROC & \textBF{0.639$\pm$0.039} & 0.496$\pm$0.020 & 0.468$\pm$0.025 \\
+            AUC-ROC & \textBF{0.873$\pm$0.010} & 0.264$\pm$0.042 & 0.441$\pm$0.259 \\
             \hline
         \end{tabular}
         \caption{AUC-ROC (Area Under Curve) of the different models for the \textbf{Crypto-miner Tag} prediction task. Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:cryptoMinerTag_auc}
@@ -36,39 +36,39 @@
 
             \multicolumn{6}{|c|}{\textbf{TPR}} \\
             \hline
-            ALOHA & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.027$\pm$0.000 & \textBF{0.198$\pm$0.025} \\
-            Joint Embedding & \textBF{0.009$\pm$0.013} & \textBF{0.009$\pm$0.013} & \textBF{0.009$\pm$0.013} & \textBF{0.036$\pm$0.051} & 0.144$\pm$0.034 \\
-            Proposed Model & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.009$\pm$0.013 & 0.072$\pm$0.034 \\
+            ALOHA & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & 0.000$\pm$0.000 & 0.000$\pm$0.000 & \textBF{0.099$\pm$0.013} \\
+            Joint Embedding & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.009$\pm$0.013} & \textBF{0.018$\pm$0.013} & 0.018$\pm$0.013 \\
+            Proposed Model & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & 0.000$\pm$0.000 & 0.009$\pm$0.013 & 0.081$\pm$0.044 \\
             \hline
-            Error Reduction wrt \newline ALOHA & 0.0\% & 0.0\% & 0.0\% & -1.8\% & -15.7\% \\
-            Error Reduction wrt \newline Joint Embedding & -0.9\% & -0.9\% & -0.9\% & -2.8\% & -8.4\% \\
+            Error Reduction wrt \newline ALOHA & 0.0\% & 0.0\% & 0.0\% & 0.9\% & -2.0\% \\
+            Error Reduction wrt \newline Joint Embedding & 0.0\% & 0.0\% & -0.9\% & -0.9\% & 6.4\% \\
             \hline
-            Std Reduction wrt \newline ALOHA & 0.0\% & 0.0\% & 0.0\% & 0.0\% & -36.0\% \\
-            Std Reduction wrt \newline Joint Embedding & 100.0\% & 100.0\% & 100.0\% & 74.5\% & 0.0\% \\
+            Std Reduction wrt \newline ALOHA & 0.0\% & 0.0\% & 0.0\% & 0.0\% & -238.5\% \\
+            Std Reduction wrt \newline Joint Embedding & 0.0\% & 0.0\% & 100.0\% & 0.0\% & -238.5\% \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Accuracy}} \\
             \hline
-            ALOHA & \textBF{0.985$\pm$0.000} & \textBF{0.985$\pm$0.000} & 0.984$\pm$0.000 & 0.977$\pm$0.001 & 0.892$\pm$0.001 \\
-            Joint Embedding & \textBF{0.985$\pm$0.000} & \textBF{0.985$\pm$0.000} & \textBF{0.985$\pm$0.000} & 0.982$\pm$0.002 & 0.891$\pm$0.003 \\
-            Proposed Model & \textBF{0.985$\pm$0.000} & \textBF{0.985$\pm$0.000} & 0.984$\pm$0.000 & \textBF{0.983$\pm$0.002} & \textBF{0.894$\pm$0.009} \\
+            ALOHA & \textBF{0.985$\pm$0.000} & \textBF{0.985$\pm$0.000} & 0.983$\pm$0.001 & 0.977$\pm$0.003 & \textBF{0.889$\pm$0.002} \\
+            Joint Embedding & \textBF{0.985$\pm$0.000} & \textBF{0.985$\pm$0.000} & \textBF{0.984$\pm$0.000} & \textBF{0.979$\pm$0.004} & 0.887$\pm$0.002 \\
+            Proposed Model & \textBF{0.985$\pm$0.000} & \textBF{0.985$\pm$0.000} & 0.983$\pm$0.002 & 0.978$\pm$0.005 & 0.887$\pm$0.002 \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Recall}} \\
             \hline
-            ALOHA & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.027$\pm$0.000 & \textBF{0.198$\pm$0.025} \\
-            Joint Embedding & \textBF{0.009$\pm$0.013} & \textBF{0.009$\pm$0.013} & \textBF{0.009$\pm$0.013} & \textBF{0.036$\pm$0.051} & 0.144$\pm$0.034 \\
-            Proposed Model & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.009$\pm$0.013 & 0.072$\pm$0.034 \\
+            ALOHA & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & 0.000$\pm$0.000 & 0.000$\pm$0.000 & \textBF{0.099$\pm$0.013} \\
+            Joint Embedding & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.009$\pm$0.013} & \textBF{0.018$\pm$0.013} & 0.018$\pm$0.013 \\
+            Proposed Model & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & 0.000$\pm$0.000 & 0.009$\pm$0.013 & 0.081$\pm$0.044 \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Precision}} \\
             \hline
-            ALOHA & \textBF{1.000$\pm$0.000} & \textBF{1.000$\pm$0.000} & 0.000$\pm$0.000 & 0.048$\pm$0.008 & \textBF{0.030$\pm$0.004} \\
-            Joint Embedding & \textBF{1.000$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.333$\pm$0.471} & \textBF{0.067$\pm$0.094} & 0.022$\pm$0.006 \\
-            Proposed Model & \textBF{1.000$\pm$0.000} & \textBF{1.000$\pm$0.000} & 0.000$\pm$0.000 & 0.022$\pm$0.031 & 0.011$\pm$0.005 \\
+            ALOHA & \textBF{1.000$\pm$0.000} & \textBF{1.000$\pm$0.000} & 0.000$\pm$0.000 & 0.000$\pm$0.000 & \textBF{0.015$\pm$0.002} \\
+            Joint Embedding & \textBF{1.000$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.167$\pm$0.236} & \textBF{0.126$\pm$0.148} & 0.003$\pm$0.002 \\
+            Proposed Model & \textBF{1.000$\pm$0.000} & \textBF{1.000$\pm$0.000} & 0.000$\pm$0.000 & 0.013$\pm$0.018 & 0.012$\pm$0.007 \\
             \hline
             \multicolumn{6}{|c|}{\textbf{F1 Score}} \\
             \hline
-            ALOHA & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.034$\pm$0.002 & \textBF{0.052$\pm$0.007} \\
-            Joint Embedding & \textBF{0.018$\pm$0.025} & \textBF{0.018$\pm$0.025} & \textBF{0.018$\pm$0.025} & \textBF{0.047$\pm$0.066} & 0.039$\pm$0.010 \\
-            Proposed Model & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.013$\pm$0.018 & 0.019$\pm$0.008 \\
+            ALOHA & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & 0.000$\pm$0.000 & 0.000$\pm$0.000 & \textBF{0.026$\pm$0.003} \\
+            Joint Embedding & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.017$\pm$0.024} & \textBF{0.028$\pm$0.021} & 0.005$\pm$0.003 \\
+            Proposed Model & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & 0.000$\pm$0.000 & 0.011$\pm$0.015 & 0.021$\pm$0.012 \\
             \hline
         \end{longtable}
     \end{center}
@@ -83,9 +83,9 @@
             \hline
             Model & TPR & Accuracy & Precision & Recall & F1 score \\
             \hline
-            ALOHA & 0.027$\pm$0.000 & 0.977$\pm$0.001 & 0.048$\pm$0.008 & 0.027$\pm$0.000 & 0.034$\pm$0.002 \\
-            Joint Embedding & \textBF{0.036$\pm$0.051} & 0.982$\pm$0.002 & \textBF{0.067$\pm$0.094} & \textBF{0.036$\pm$0.051} & \textBF{0.047$\pm$0.066} \\
-            Proposed Model & 0.009$\pm$0.013 & \textBF{0.983$\pm$0.002} & 0.022$\pm$0.031 & 0.009$\pm$0.013 & 0.013$\pm$0.018 \\
+            ALOHA & 0.000$\pm$0.000 & 0.977$\pm$0.003 & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.000$\pm$0.000 \\
+            Joint Embedding & \textBF{0.018$\pm$0.013} & \textBF{0.979$\pm$0.004} & \textBF{0.126$\pm$0.148} & \textBF{0.018$\pm$0.013} & \textBF{0.028$\pm$0.021} \\
+            Proposed Model & 0.009$\pm$0.013 & 0.978$\pm$0.005 & 0.013$\pm$0.018 & 0.009$\pm$0.013 & 0.011$\pm$0.015 \\
             \hline
         \end{tabular}
         \caption{Summary of the mean and standard deviation results of the different models for the \textbf{Crypto-miner Tag} prediction task at \textbf{FPR} $=1\%$. Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:cryptoMinerTag_result_summary}
