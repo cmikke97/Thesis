@@ -2744,12 +2744,17 @@ On the other hand, the base topology of the final \textbf{Joint Embedding} archi
 The \textit{ALOHA} and \textit{Joint Embedding} model implementations results are reported in chapter \ref{chap:results}.
 
 \chapter{Proposed Method}
+\color{Orange}
 \textit{ALOHA} model is based on the idea of enhancing the model performance and generalization on the task of \textit{Malicious/Benign} label prediction with respect to a more simple single task model by exploiting additional tasks (\textit{Vendor Count} prediction, \textit{SMART Tags} prediction, etc.) which are jointly optimized in a Multi-objective/multi-task learning fashion. Multi-objective learning has in fact proven to be beneficial for the model generalization and overall has a regularization effect providing better training curves and arguably better results.
 
-On the other hand, the \textit{Joint Embedding} model was designed with the idea of constructing an embedding space in which both the samples and tag labels can be mapped to, such that samples end up close to the tags they are associated to (and possibly far from the other unrelated tags). This also means that similar samples (sharing the same tags) should be close to each other in the learned embedding space. The \textit{Joint Embedding} model is trained by optimizing its parameters on the single task of tag prediction through tags' and samples' embeddings similarity, with no additional tasks.
+On the other hand, the \textit{Joint Embedding} model was designed with the idea of constructing an embedding space in which both the samples and tag labels can be mapped to, such that samples end up close to the tags they are associated to (and possibly far from the other unrelated tags). The \textit{Joint Embedding} model is trained by optimizing its parameters on the single task of tag prediction through tags' and samples' embeddings similarity, with no additional tasks.
 
 The natural follow-up to those models is a fusion between their two base ideas ultimately creating a model with the main objective of creating a joint embedding space as done by the \textit{Joint Embedding} model, while exploiting Multi-objective learning as done by the \textit{ALOHA} model.
 
+
+The fact that the learned embedding should pull samples close to their associated tags (and far from the others) also means that similar samples (sharing the same tags) should be close to each other.
+
+\color{Black}
 \section{Implementation}
 \begin{figure}[h]
 	\centering
