@@ -2693,6 +2693,10 @@ Finally, the \textit{Malicious (SMART) tags} output head consists of two additio
 
 The final aggregate loss $L(\textbf{x}, y)$ is again computed as the weighted sum of all the output heads losses.
 
+\color{Green}
+Insert ALOHA network initialization, forward and compute loss algorithms.
+\color{Black}
+
 \subsection{Joint Embedding}\label{sec:jointEmbeddingModelImplementation}
 \begin{figure}[h]
 	\centering
@@ -2734,6 +2738,10 @@ where $d(\textbf{a}, \textbf{b})$ is the Euclidean distance between points $\tex
 
 The tags predicted probabilities outputted by the \textit{Prediction Layer} are then used to compute the respective losses with respect to the ground truth tags $y_{t_i}, \forall i \in 1,..,11$, exactly as described in paper \cite{DucauAMDATSE}, which are combined together to form the final loss $L(\textbf{x}, y)$.
 
+\color{Green}
+Insert Joint Embedding network initialization, forward and compute loss algorithms.
+\color{Black}
+
 \section{Experiments}
 Both the models were trained (and validated) each for 10 \textit{epochs} on the first $6M$ training and $1.153.846$ validation samples of the pre-processed Sorel20M dataset (loaded with generator \textit{\textbf{alt3}}) using different number of layers, number of nodes per layer (layer sizes), activation functions and dropout value for the model base topology, different optimizers (\textbf{Adam} or \textbf{SGD}), learning rates (LR), momentum, weight decay and loss weights. Moreover, in the case of the \textbf{Joint Embedding} model also different similarity score functions such as the cosine similarity and the inverse of the Euclidean distance were tested instead of the dot product. The resulting models were then evaluated on the first $1.846.154$ test samples of Sorel20M dataset looking for their tag and/or malicious/benign label (present only in the ALOHA model implementation) prediction \textit{TPR}, \textit{accuracy}, \textit{recall}, \textit{precision}, \textit{f1} score, \textit{jaccard similarity} and \textit{mean-per-sample-accuracy} at a FPR of 1\%, as well as the resulting tag and/or malicious/benign \textit{ROC} curves and \textit{AUC} scores.
 
@@ -2741,18 +2749,23 @@ The final \textbf{ALOHA} architecture, which had a base topology consisting of 3
 
 On the other hand, the base topology of the final \textbf{Joint Embedding} architecture consisted of 3 layers of sizes 512, 512, and 128 respectively, with dropout probability $p_d=5\%$ and \textbf{ELU} activation function. The overall model was trained with a learning rate $LR = 10^{-3}$, \textbf{Adam} optimizer, no momentum nor weight decay (the loss weights are not used since there is a single output head). Moreover, the final model uses the dot product as similarity score between tags' and samples' embeddings.
 
+\color{Green}
+Insert ALOHA and Joint Embedding training and evaluation algorithms.
+\color{Black}
+
 The \textit{ALOHA} and \textit{Joint Embedding} model implementations results are reported in chapter \ref{chap:results}.
 
 \chapter{Proposed Method}
 \color{Orange}
-\textit{ALOHA} model is based on the idea of enhancing the model performance and generalization on the task of \textit{Malicious/Benign} label prediction with respect to a more simple single task model by exploiting additional tasks (\textit{Vendor Count} prediction, \textit{SMART Tags} prediction, etc.) which are jointly optimized in a Multi-objective/multi-task learning fashion. Multi-objective learning has in fact proven to be beneficial for the model generalization and overall has a regularization effect providing better training curves and arguably better results.
+\textbf{ALOHA} model is based on the idea of enhancing the model performance and generalization on the task of \textit{Malicious/Benign} label prediction with respect to a more simple single-task model by exploiting additional tasks (\textit{Vendor Count} prediction, \textit{SMART Tags} prediction, etc.) which are jointly optimized in a Multi-objective/multi-task learning fashion. Multi-objective learning has in fact proven to be beneficial for the model generalization and overall has a regularization effect providing better training curves and arguably better results.
 
-On the other hand, the \textit{Joint Embedding} model was designed with the idea of constructing an embedding space in which both the samples and tag labels can be mapped to, such that samples end up close to the tags they are associated to (and possibly far from the other unrelated tags). The \textit{Joint Embedding} model is trained by optimizing its parameters on the single task of tag prediction through tags' and samples' embeddings similarity, with no additional tasks.
+On the other hand, the \textbf{Joint Embedding} model was designed with the idea of constructing an embedding space in which both the samples and tag labels can be mapped to, such that each sample ends up close to the tags it is associated to (and possibly far from the other unrelated tags). The \textit{Joint Embedding} model is trained by optimizing its parameters on the single task of tag prediction by means of tags' and samples' embeddings similarity, with no additional tasks.
 
-The natural follow-up to those models is a fusion between their two base ideas ultimately creating a model with the main objective of creating a joint embedding space as done by the \textit{Joint Embedding} model, while exploiting Multi-objective learning as done by the \textit{ALOHA} model.
+The natural follow-up to those models is a fusion between their two base ideas ultimately creating a model with the main objective of creating a joint embedding space, as done by the \textbf{Joint Embedding} model, while exploiting Multi-objective learning, as done by the \textbf{ALOHA} model. This model, which is called \textbf{Proposed Model} throughout this document, could potentially perform better in the SMART tag prediction task than the \textbf{Joint Embedding} model implementation since during the learning procedure its parameters' updates are 'guided' by the inclusion of additional targets. Moreover, it could also perform better than the \textbf{ALOHA} model implementation in the \textit{Malicious/Benign} label prediction task since one of its additional tasks - the SMART tag prediction through similarity embedding - is harder than the original one - multi-label binary classification with one head for each tag. Harder complementary tasks are often used when exploiting \textit{multi-task} learning because they help in finding a more informed latent representation of samples which in turn leads to better performances during testing/deployment.
 
+Moreover, the fact that the learned embedding should pull samples close to their associated tags (and far from the others) also means that samples which are similar or exhibit similar capabilities (sharing the same tags) should be close to each other in the latent space. In turn, the learned representation of PE files in the embedding space, along with the distance function used (Euclidean distance) in this space, enables the computation of file-to-file similarities. This makes it possible to measure how similar two malware samples are in terms of their capabilities. The \textbf{Joint Embedding} and \textbf{Proposed Model} approaches are therefore interesting from the perspective of predicting the specific malware family of PE files based on their distance with respect to known malware samples. Notice, however, that both the \textbf{Joint Embedding} and the \textbf{Proposed Model} network are trained with a different objective - that of predicting the SMART tags associated to each malware sample (and also the \textit{malicious/benign} label and \textit{vendor count} for the proposed model). It is not uncommon in the ML field to train a model on a specific task while then testing (or deploying) it on a different, but most probably related, task with little degradation in model performance. In particular this technique is generally referred to \textit{Transfer Learning}. Moreover, the models are trained on a dataset of malware samples which intrinsically belong to different malware families (although the effective family labels are not provided in the dataset), therefore the information of each sample's family is implicitly present.
 
-The fact that the learned embedding should pull samples close to their associated tags (and far from the others) also means that similar samples (sharing the same tags) should be close to each other.
+Therefore the \textbf{Proposed Model} and the \textbf{Joint Embedding} model implementation performance is not only evaluated on the tasks they ware trained for (\textit{Malicious/Benign} label and \textit{Vendor Count} prediction tasks and/or \textit{SMART tag} prediction task), but also on the \textbf{Malware Family prediction} task and on the \textbf{Malware Family Ranking} task.
 
 \color{Black}
 \section{Implementation}
@@ -2777,7 +2790,11 @@ The \textit{Vendor Count} prediction head, instead, consists of a single linear 
 
 The \textit{Tag} prediction head, on the other hand, is always used and consists of the same components used in the \textit{Joint Embedding} model implementation (\ref{sec:jointEmbeddingModelImplementation}): the linear layer mapping a sample intermediate representation $h$ to its \textit{PE Embedding} in the \textbf{Joint Embedding space} and the \textit{Prediction Layer}, which produces a similarity score matrix between samples' and tags' embeddings. The resulting matrix is then run through a \textit{sigmoid} non-linearity (by value) to produce the tags probabilities for sample $\textbf{x}$. The similarity function used in this model can be chosen to be one of the following at network definition: \textit{dot product} (\ref{eq:DotProduct}), \textit{cosine similarity} (\ref{eq:CosineSimilarity}) or one of the \textit{inverse Euclidean distances} (\textit{exp} (\ref{eq:EuclideanExpSimilarity}), \textit{inv} (\ref{eq:EuclideanInvSimilarity}) or \textit{inv\_pow} (\ref{eq:EuclideanInvPowSimilarity})). The \textit{Tag prediction head} loss is computed as the sum over all tags of the individual cross entropy losses between the predicted tags and the ground truth ones, as described at \ref{par:tagPredictionImplementation} (and \cite{DucauAMDATSE}).
 
-Finally the individual heads losses are aggregated together by computing their weighted sum. Different weights can be assigned to the distinct heads in order to tune 
+Finally the individual head losses are aggregated together by computing their weighted sum. Different weights can be assigned to the distinct heads in order to tune their importance in the final loss term in turn affecting how the model's parameters are updated during back-propagation.
+
+\color{Green}
+Insert Proposed Model network initialization, forward and compute loss algorithms.
+\color{Black}
 
 \section{Experiments}
 The proposed model was trained multiple times for 10 \textit{epochs} on the first $6M$ training and $1.153.846$ validation samples of the pre-processed Sorel20M dataset (loaded with generator \textit{\textbf{alt3}}) with both the optional output heads (\textit{Malicious/Benign} label prediction and \textit{Vendor Count} prediction) on, changing the network hyper-parameters like the number of layers, layers dimensions (number of hidden units per layer), activation functions and dropout value for the base topology. Other hyper-parameters that were iteratively changed were the used optimizer (\textbf{Adam} or \textbf{SGD}), learning rate (LR), momentum, weight decay, loss weights and the similarity score function used (chosen between the \textit{dot product}, the \textit{cosine similarity} and one of the \textit{inverted Euclidean Distances}: \textit{exp}, \textit{inv} or \textit{inv\_pow}).
@@ -2791,6 +2808,10 @@ In particular, for the malware family prediction task the learned representation
 On the other hand, for the malware family ranking task the learned representation was tested (as described in \ref{par:FamilyRankingEvaluation}) by first selecting \textit{\textbf{q}} (100) query samples from the fresh dataset and, for each of them, computing the ranking of the other $n_{samples} - 1 = 999$ ordering them by similarity. Then, given the resulting rankings, the \textbf{MAP} and \textbf{MRR} scores were calculated.
 
 The final \textbf{Proposed Model} architecture consisted of 3 layers of sizes 512, 512, 128 respectively (keeping them consistent to the \textit{ALOHA} and \textit{Joint Embedding} model implementation in order to better compare the final results), with dropout probability $p_d=5\%$, \textbf{ELU} activation function and the \textit{dot product} as similarity score between tags' and samples' embeddings. The training was carried out with a learning rate $LR=10^{-3}$, \textbf{Adam} optimizer, no momentum nor weight decay, and loss weights set to 1.0 for the malicious/benign head, 0.1 for the count head and 1.0 for the tag head.
+
+\color{Green}
+Cite Proposed Model training and evaluation algorithms. Insert Proposed Model evaluate fresh algorithm.
+\color{Black}
 
 The \textbf{Proposed Model} results are reported in chapter \ref{chap:results}.
 
