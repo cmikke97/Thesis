@@ -2694,12 +2694,17 @@ Finally, the \textit{Malicious (SMART) tags} output head consists of two additio
 The final aggregate loss $L(\textbf{x}, y)$ is again computed as the weighted sum of all the output heads losses.
 
 \subsubsection{Net Definition}
+\color{Orange}
 
 \begin{algorithm}[h]
 	\caption{ALOHA Net class, Init}\label{alg:alohaNetInit}
 	\begin{algorithmic}[1]
 		\Class{Net}
-		\Function{Init}{\textit{self}, \textit{use\_malware}, \textit{use\_counts}, \textit{use\_tags}, \textit{n\_tags}, \textit{feature\_dimension}, \textit{layer\_sizes}, \textit{dropout\_p}, \textit{activation\_function}}			
+		\Function{Init}{\textit{self}, \textit{use\_malware}, \textit{use\_counts}, \textit{use\_tags}, \textit{n\_tags}, \textit{feature\_dimension}, \textit{layer\_sizes}, \textit{dropout\_p}, \textit{activation\_function}}
+			\State \textit{self}.\textit{use\_malware} $\gets$ \textit{use\_malware}
+			\State \textit{self}.\textit{use\_counts} $\gets$ \textit{use\_counts}
+			\State \textit{self}.\textit{use\_tags} $\gets$ \textit{use\_tags}
+			\State \textit{self}.\textit{n\_tags} $\gets$ \textit{n\_tags}		
 			\State \textit{layers} $\gets$ [ ]
 			\State
 			\If{\textit{layer\_sizes} \textbf{is} None}
@@ -2721,17 +2726,10 @@ The final aggregate loss $L(\textbf{x}, y)$ is again computed as the weighted su
 			\State \textit{self}.\textit{model\_base} $\gets$ \textbf{nn.Sequential}(*tuple(\textit{layers}))
 			\State
 			\State \textit{self}.\textit{malware\_head} $\gets$ \textbf{nn.Sequential}(\textbf{nn.Linear}(\textit{layer\_sizes}[-1], 1), \textbf{nn.Sigmoid}())
-			\State
 			\State \textit{self}.\textit{count\_head} $\gets$ \textbf{nn.Linear}(\textit{layer\_sizes}[-1], 1)
-			\State
-			\State \textit{self}.\textit{sigmoid} $\gets$ \textbf{nn.Sigmoid}()
-			\State
-			\State \textit{self}.\textit{tag\_head} $\gets$ \textbf{nn.Sequential}(\textbf{nn.Linear}(\textit{layer\_sizes}[-1], 64),
-			\State \hskip14.3em \textbf{nn.ELU}(),
-			\State \hskip14.3em \textbf{nn.Linear}(64, 64),
-			\State \hskip14.3em \textbf{nn.ELU}(),
-			\State \hskip14.3em \textbf{nn.Linear}(64, \textit{n\_tags}),
-			\State \hskip14.3em \textbf{nn.Sigmoid}())
+			\State \textit{self}.\textit{tag\_head} $\gets$ \textbf{nn.Sequential}(\textbf{nn.Linear}(\textit{layer\_sizes}[-1], 64), \textbf{nn.ELU}(),
+			\State \hskip14.3em \textbf{nn.Linear}(64, 64), \textbf{nn.ELU}(),
+			\State \hskip14.3em \textbf{nn.Linear}(64, \textit{n\_tags}), \textbf{nn.Sigmoid}())
 		\EndFunction
 		\algstore{bkbreak}
 	\end{algorithmic}
@@ -2742,7 +2740,22 @@ The final aggregate loss $L(\textbf{x}, y)$ is again computed as the weighted su
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 		\Function{Forward}{\textit{self}, \textit{data}}
-		
+			\State \textit{rv} $\gets$ \{\}
+			\State \textit{base\_out} $\gets$ \textit{self}.\textit{model\_base}(\textit{data})
+			\State
+			\If{\textit{self}.\textit{use\_malware}}
+				\State \textit{rv}['malware'] $\gets$ \textit{self}.\textit{malware\_head}(\textit{base\_out})
+			\EndIf
+			\State
+			\If{\textit{self}.\textit{use\_counts}}
+				\State \textit{rv}['count'] $\gets$ \textit{self}.\textit{count\_head}(\textit{base\_out})
+			\EndIf
+			\State
+			\If{\textit{self}.\textit{use\_tags}}
+				\State \textit{rv}['tags'] $\gets$ \textit{self}.\textit{tag\_head}(\textit{base\_out})
+			\EndIf
+			\State
+			\State \textbf{return} \textit{rv}
 		\EndFunction
 		\algstore{bkbreak}
 	\end{algorithmic}
@@ -2753,7 +2766,51 @@ The final aggregate loss $L(\textbf{x}, y)$ is again computed as the weighted su
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 		\Function{Compute\_loss}{\textit{predictions}, \textit{labels}, \textit{loss\_wts}}
-		
+			\If{\textit{loss\_wts} \textbf{is} None}
+				\State \textit{loss\_wts} $\gets$ \{'malware': 1.0, 'count': 0.1, 'tags': 1.0\}
+			\EndIf
+			\State
+			\State \textit{loss\_dict} $\gets$ \{'total': 0.\}
+			\If{'malware' $\in$ \textit{labels}}
+				\State \textit{malware\_loss} $\gets$ \textbf{Binary\_cross\_entropy}(\textit{predictions}['malware']), \textit{labels}['malware'])
+				\State
+				\If{'malware' $\in$ \textit{loss\_wts}}
+					\State \textit{weight} $\gets$ \textit{loss\_wts}['malware']
+				\Else
+					\State \textit{weight} $\gets$ 1.0
+				\EndIf
+				\State
+				\State \textit{loss\_dict}['malware'] $\gets$ \textit{malware\_loss}
+				\State \textit{loss\_dict}['total'] $\gets$ \textit{loss\_dict}['total'] $+$ \textit{malware\_loss} $\times$ \textit{weight}
+			\EndIf
+			\State
+			\If{'count' $\in$ \textit{labels}}
+				\State \textit{count\_loss} $\gets$ \textbf{PoissonNLLLoss}(\textit{predictions}['count']), \textit{labels}['count'])
+				\State
+				\If{'count' $\in$ \textit{loss\_wts}}
+					\State \textit{weight} $\gets$ \textit{loss\_wts}['count']
+				\Else
+					\State \textit{weight} $\gets$ 1.0
+				\EndIf
+				\State
+				\State \textit{loss\_dict}['count'] $\gets$ \textit{count\_loss}
+				\State \textit{loss\_dict}['total'] $\gets$ \textit{loss\_dict}['total'] $+$ \textit{count\_loss} $\times$ \textit{weight}
+			\EndIf
+			\State
+			\If{'tags' $\in$ \textit{labels}}
+				\State \textit{tags\_loss} $\gets$ \textbf{Binary\_cross\_entropy}(\textit{predictions}['tags'], \textit{labels}['tags'])
+				\State
+				\If{'tags' $\in$ \textit{loss\_wts}}
+					\State \textit{weight} $\gets$ \textit{loss\_wts}['tags']
+				\Else
+					\State \textit{weight} $\gets$ 1.0
+				\EndIf
+				\State
+				\State \textit{loss\_dict}['tags'] $\gets$ \textit{tags\_loss}
+				\State \textit{loss\_dict}['total'] $\gets$ \textit{loss\_dict}['total'] $+$ \textit{tags\_loss} $\times$ \textit{weight}
+			\EndIf
+			\State
+			\State \textbf{return} \textit{loss\_dict}
 		\EndFunction
 		\EndClass
 	\end{algorithmic}
@@ -2800,9 +2857,102 @@ where $d(\textbf{a}, \textbf{b})$ is the Euclidean distance between points $\tex
 
 The tags predicted probabilities outputted by the \textit{Prediction Layer} are then used to compute the respective losses with respect to the ground truth tags $y_{t_i}, \forall i \in 1,..,11$, exactly as described in paper \cite{DucauAMDATSE}, which are combined together to form the final loss $L(\textbf{x}, y)$.
 
-\color{Green}
-Insert Joint Embedding network initialization, forward and compute loss algorithms.
-\color{Black}
+\subsubsection{Net Definition}
+\color{Orange}
+
+\begin{algorithm}[h]
+	\caption{Joint Embedding Net class, Init}\label{alg:jointEmbeddingNetInit}
+	\begin{algorithmic}[1]
+		\Class{Net}
+			\Function{Init}{\textit{self}, \textit{use\_malware}, \textit{use\_counts}, \textit{use\_tags}, \textit{n\_tags}, \textit{feature\_dimension}, \textit{embedding\_dimension}, \textit{embeddingmax\_embedding\_norm}, \textit{layer\_sizes}, \textit{dropout\_p}, \textit{activation\_function}}	
+			\State \textit{self}.\textit{use\_malware} $\gets$ \textit{use\_malware}
+			\State \textit{self}.\textit{use\_counts} $\gets$ \textit{use\_counts}
+			\State \textit{self}.\textit{n\_tags} $\gets$ \textit{n\_tags}
+			\State \textit{self}.\textit{embedding\_dimension} $\gets$ \textit{embedding\_dimension}
+			\State \textit{layers} $\gets$ [ ]
+			\State
+			\If{\textit{layer\_sizes} \textbf{is} None}
+				\State \textit{layer\_sizes} $\gets$ [512, 512, 128]
+			\EndIf
+			\State
+			\ForAll{\textit{i}, \textit{ls} $\in$ \textbf{enumerate}(\textit{layer\_sizes})}
+				\If{\textit{i} $=0$}
+					\State \textit{layers}.\textbf{append}(\textbf{nn.Linear}(\textit{feature\_dimension}, \textit{ls}))
+				\Else
+					\State \textit{layers}.\textbf{append}(\textbf{nn.Linear}(\textit{layer\_sizes}[\textit{i} $-1$], \textit{ls}))
+				\EndIf
+				\State
+				\State \textit{layers}.\textbf{append}(\textbf{nn.LayerNorm}(\textit{ls}))
+				\State \textit{layers}.\textbf{append}(\textit{activation\_function}())
+				\State \textit{layers}.\textbf{append}(\textbf{nn.Dropout}(\textit{dropout\_p}))
+			\EndFor
+			\State
+			\State \textit{self}.\textit{model\_base} $\gets$ \textbf{nn.Sequential}(*tuple(\textit{layers}))
+			\State \textit{self}.\textit{sigmoid} $\gets$ \textbf{nn.Sigmoid}()
+			\State		
+			\State \textit{self}.\textit{pe\_embedding} $\gets$ \textbf{nn.Sequential}(\textbf{nn.Linear}(\textit{layer\_sizes}[-1], 
+			\State \hskip16.4em \textit{self}.\textit{embedding\_dimension}))
+			\State \textit{self}.\textit{tags\_embedding} $\gets$ \textbf{nn.Embedding}(\textit{self}.\textit{n\_tags}, \textit{self}.\textit{embedding\_dimension},
+			\State \hskip17.7em \textit{max\_norm}=\textit{max\_embedding\_norm})
+		\EndFunction
+		\algstore{bkbreak}
+	\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[h]
+	\caption{Joint Embedding Net class, Forward}\label{alg:jointEmbeddingNetForward}
+	\begin{algorithmic}[1]
+		\algrestore{bkbreak}
+		\Function{Forward}{\textit{self}, \textit{data}}
+		\State \textit{rv} $\gets$ \{\}
+		\State \textit{base\_out} $\gets$ \textit{self}.\textit{model\_base}(\textit{data})
+		\State
+		\State \textit{pe\_embedding} $\gets$ \textit{self}.\textit{pe\_embedding}(\textit{base\_out})
+		\State \textit{tags\_embedding} $\gets$ \textit{self}.\textit{tags\_embedding}((\textbf{Dataset}.\textit{encoded\_tags}))
+		\State
+		\State \textit{rv}['similarity'] $\gets$ \textbf{torch.matmul}(\textit{pe\_embedding}, \textit{tags\_embedding}.\textbf{T})
+		\State \textit{rv}['probability'] $\gets$ \textit{self}.\textit{sigmoid}(\textit{similarity\_scores})
+		\State
+		\State \textbf{return} \textit{rv}
+		\EndFunction
+		\algstore{bkbreak}
+	\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[h]
+	\caption{Joint Embedding Net class, Get\_Embedding}\label{alg:jointEmbeddingNetGetEmbedding}
+	\begin{algorithmic}[1]
+		\algrestore{bkbreak}
+		\Function{Get\_Embedding}{\textit{self}, \textit{data}}
+		\State \textit{rv} $\gets$ \{\}
+		\State \textit{base\_out} $\gets$ \textit{self}.\textit{model\_base}(\textit{data})
+		\State \textit{pe\_embedding} $\gets$ \textit{self}.\textit{pe\_embedding}(\textit{base\_out})
+		\State \textit{rv}['embedding'] $\gets$ \textit{pe\_embedding}
+		\State \textbf{return} \textit{rv}
+		\EndFunction
+		\algstore{bkbreak}
+	\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[h]
+	\caption{Joint Embedding Net class, Compute Loss}\label{alg:jointEmbeddingNetComputeLoss}
+	\begin{algorithmic}[1]
+		\algrestore{bkbreak}
+		\Function{Compute\_loss}{\textit{predictions}, \textit{labels}, \textit{loss\_wts}}
+		\State \textit{loss\_dict} $\gets$ \{'total': 0.\}
+		\State
+		\State \textit{similarity\_loss} $\gets$ \textbf{Binary\_cross\_entropy\_with\_logits}(\textit{predictions}['similarity'],
+		\State \hskip7.5em \textit{labels}['tags'],
+		\State \hskip7.5em reduction='none').\textbf{sum}(dim=1).\textbf{mean}(dim=0)
+		\State
+		\State \textit{loss\_dict}['jointEmbedding'] $\gets$ \textit{similarity\_loss}
+		\State \textit{loss\_dict}['total'] $\gets$ \textit{similarity\_loss}
+		\State
+		\State \textbf{return} \textit{loss\_dict}
+		\EndFunction
+		\EndClass
+	\end{algorithmic}
+\end{algorithm}
 
 \section{Experiments}
 Both the models were trained (and validated) each for 10 \textit{epochs} on the first $6M$ training and $1.153.846$ validation samples of the pre-processed Sorel20M dataset (loaded with generator \textit{\textbf{alt3}}) using different number of layers, number of nodes per layer (layer sizes), activation functions and dropout value for the model base topology, different optimizers (\textbf{Adam} or \textbf{SGD}), learning rates (LR), momentum, weight decay and loss weights. Moreover, in the case of the \textbf{Joint Embedding} model also different similarity score functions such as the cosine similarity and the inverse of the Euclidean distance were tested instead of the dot product. The resulting models were then evaluated on the first $1.846.154$ test samples of Sorel20M dataset looking for their tag and/or malicious/benign label (present only in the ALOHA model implementation) prediction \textit{TPR}, \textit{accuracy}, \textit{recall}, \textit{precision}, \textit{f1} score, \textit{jaccard similarity} and \textit{mean-per-sample-accuracy} at a FPR of 1\%, as well as the resulting tag and/or malicious/benign \textit{ROC} curves and \textit{AUC} scores.
@@ -2817,6 +2967,7 @@ Insert ALOHA and Joint Embedding training and evaluation algorithms.
 
 The \textit{ALOHA} and \textit{Joint Embedding} model implementations results are reported in chapter \ref{chap:results}.
 
+\color{Black}
 \chapter{Proposed Method}
 \textbf{ALOHA} model is based on the idea of enhancing the model performance and generalization on the task of \textit{Malicious/Benign} label prediction with respect to a more simple single-task model by exploiting additional tasks (\textit{Vendor Count} prediction, \textit{SMART Tags} prediction, etc.) which are jointly optimized in a Multi-objective/multi-task learning fashion. Multi-objective learning has in fact proven to be beneficial for the model generalization and overall has a regularization effect providing better training curves and arguably better results.
 
