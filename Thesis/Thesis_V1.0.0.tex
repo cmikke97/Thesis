@@ -2693,9 +2693,71 @@ Finally, the \textit{Malicious (SMART) tags} output head consists of two additio
 
 The final aggregate loss $L(\textbf{x}, y)$ is again computed as the weighted sum of all the output heads losses.
 
-\color{Green}
-Insert ALOHA network initialization, forward and compute loss algorithms.
-\color{Black}
+\subsubsection{Net Definition}
+
+\begin{algorithm}[h]
+	\caption{ALOHA Net class, Init}\label{alg:alohaNetInit}
+	\begin{algorithmic}[1]
+		\Class{Net}
+		\Function{Init}{\textit{self}, \textit{use\_malware}, \textit{use\_counts}, \textit{use\_tags}, \textit{n\_tags}, \textit{feature\_dimension}, \textit{layer\_sizes}, \textit{dropout\_p}, \textit{activation\_function}}			
+			\State \textit{layers} $\gets$ [ ]
+			\State
+			\If{\textit{layer\_sizes} \textbf{is} None}
+				\State \textit{layer\_sizes} $\gets$ [512, 512, 128]
+			\EndIf
+			\State
+			\ForAll{\textit{i}, \textit{ls} $\in$ \textbf{enumerate}(\textit{layer\_sizes})}
+				\If{\textit{i} $=0$}
+					\State \textit{layers}.\textbf{append}(\textbf{nn.Linear}(\textit{feature\_dimension}, \textit{ls}))
+				\Else
+					\State \textit{layers}.\textbf{append}(\textbf{nn.Linear}(\textit{layer\_sizes}[\textit{i} $-1$], \textit{ls}))
+				\EndIf
+				\State
+				\State \textit{layers}.\textbf{append}(\textbf{nn.LayerNorm}(\textit{ls}))
+				\State \textit{layers}.\textbf{append}(\textit{activation\_function}())
+				\State \textit{layers}.\textbf{append}(\textbf{nn.Dropout}(\textit{dropout\_p}))
+			\EndFor
+			\State
+			\State \textit{self}.\textit{model\_base} $\gets$ \textbf{nn.Sequential}(*tuple(\textit{layers}))
+			\State
+			\State \textit{self}.\textit{malware\_head} $\gets$ \textbf{nn.Sequential}(\textbf{nn.Linear}(\textit{layer\_sizes}[-1], 1), \textbf{nn.Sigmoid}())
+			\State
+			\State \textit{self}.\textit{count\_head} $\gets$ \textbf{nn.Linear}(\textit{layer\_sizes}[-1], 1)
+			\State
+			\State \textit{self}.\textit{sigmoid} $\gets$ \textbf{nn.Sigmoid}()
+			\State
+			\State \textit{self}.\textit{tag\_head} $\gets$ \textbf{nn.Sequential}(\textbf{nn.Linear}(\textit{layer\_sizes}[-1], 64),
+			\State \hskip14.3em \textbf{nn.ELU}(),
+			\State \hskip14.3em \textbf{nn.Linear}(64, 64),
+			\State \hskip14.3em \textbf{nn.ELU}(),
+			\State \hskip14.3em \textbf{nn.Linear}(64, \textit{n\_tags}),
+			\State \hskip14.3em \textbf{nn.Sigmoid}())
+		\EndFunction
+		\algstore{bkbreak}
+	\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[h]
+	\caption{ALOHA Net class, Forward}\label{alg:alohaNetForward}
+	\begin{algorithmic}[1]
+		\algrestore{bkbreak}
+		\Function{Forward}{\textit{self}, \textit{data}}
+		
+		\EndFunction
+		\algstore{bkbreak}
+	\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[h]
+	\caption{ALOHA Net class, Compute Loss}\label{alg:alohaNetComputeLoss}
+	\begin{algorithmic}[1]
+		\algrestore{bkbreak}
+		\Function{Compute\_loss}{\textit{predictions}, \textit{labels}, \textit{loss\_wts}}
+		
+		\EndFunction
+		\EndClass
+	\end{algorithmic}
+\end{algorithm}
 
 \subsection{Joint Embedding}\label{sec:jointEmbeddingModelImplementation}
 \begin{figure}[h]
