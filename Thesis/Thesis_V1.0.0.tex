@@ -2849,7 +2849,7 @@ Finally, the \textit{Prediction Layer} combines the sample (PE) and tags embeddi
 \begin{equation}\label{eq:EuclideanInvPowSimilarity}
 	\text{euclidean similarity inv\_pow}(\textbf{a}, \textbf{b}) = \frac{1}{1+\frac{d(\textbf{a}, \textbf{b})^2}{\alpha}}
 \end{equation}
-where $d(\textbf{a}, \textbf{b})$ is the Euclidean distance between points $\textbf{a}$ and $\textbf{b}$ as defined in eq. \ref{eq:EuclideanDistance} and $\alpha$ is a multiplicative factor that cab be arbitrarily set at network definition when using one of the inverted \textit{Euclidean distance} functions. In the final Joint Embedding model implementation $\alpha$ is set to $1.0$.
+where $d(\textbf{a}, \textbf{b})$ is the Euclidean distance between points $\textbf{a}$ and $\textbf{b}$ as defined in eq. \ref{eq:EuclideanDistance} and $\alpha$ is a multiplicative factor that can be arbitrarily set at network definition when using one of the inverted \textit{Euclidean distance} functions. In the final Joint Embedding model implementation $\alpha$ is set to $1.0$.
 
 \begin{equation}\label{eq:EuclideanDistance}
 	d(\textbf{a}, \textbf{b})=\sqrt{\sum_{i=1}^{D} (a_i - b_i)^2}
@@ -2864,9 +2864,7 @@ The tags predicted probabilities outputted by the \textit{Prediction Layer} are 
 	\caption{Joint Embedding Net class, Init}\label{alg:jointEmbeddingNetInit}
 	\begin{algorithmic}[1]
 		\Class{Net}
-			\Function{Init}{\textit{self}, \textit{use\_malware}, \textit{use\_counts}, \textit{use\_tags}, \textit{n\_tags}, \textit{feature\_dimension}, \textit{embedding\_dimension}, \textit{embeddingmax\_embedding\_norm}, \textit{layer\_sizes}, \textit{dropout\_p}, \textit{activation\_function}}	
-			\State \textit{self}.\textit{use\_malware} $\gets$ \textit{use\_malware}
-			\State \textit{self}.\textit{use\_counts} $\gets$ \textit{use\_counts}
+			\Function{Init}{\textit{self}, \textit{use\_malware}, \textit{use\_counts}, \textit{use\_tags}, \textit{n\_tags}, \textit{feature\_dimension}, \textit{embedding\_dimension}, \textit{embeddingmax\_embedding\_norm}, \textit{layer\_sizes}, \textit{dropout\_p}, \textit{activation\_function}}
 			\State \textit{self}.\textit{n\_tags} $\gets$ \textit{n\_tags}
 			\State \textit{self}.\textit{embedding\_dimension} $\gets$ \textit{embedding\_dimension}
 			\State \textit{layers} $\gets$ [ ]
@@ -2900,22 +2898,74 @@ The tags predicted probabilities outputted by the \textit{Prediction Layer} are 
 \end{algorithm}
 
 \begin{algorithm}[h]
-	\caption{Joint Embedding Net class, Forward}\label{alg:jointEmbeddingNetForward}
+	\caption{Joint Embedding Net class, Forward (with \textit{Dot Product})}\label{alg:jointEmbeddingNetForward}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
-		\Function{Forward}{\textit{self}, \textit{data}}
-		\State \textit{rv} $\gets$ \{\}
-		\State \textit{base\_out} $\gets$ \textit{self}.\textit{model\_base}(\textit{data})
-		\State
-		\State \textit{pe\_embedding} $\gets$ \textit{self}.\textit{pe\_embedding}(\textit{base\_out})
-		\State \textit{tags\_embedding} $\gets$ \textit{self}.\textit{tags\_embedding}((\textbf{Dataset}.\textit{encoded\_tags}))
-		\State
-		\State \textit{rv}['similarity'] $\gets$ \textbf{torch.matmul}(\textit{pe\_embedding}, \textit{tags\_embedding}.\textbf{T})
-		\State \textit{rv}['probability'] $\gets$ \textit{self}.\textit{sigmoid}(\textit{similarity\_scores})
-		\State
-		\State \textbf{return} \textit{rv}
-		\EndFunction
+			\Function{Forward}{\textit{self}, \textit{data}}
+			\State \textit{rv} $\gets$ \{\}
+			\State \textit{base\_out} $\gets$ \textit{self}.\textit{model\_base}(\textit{data})
+			\State
+			\State \textit{pe\_embedding} $\gets$ \textit{self}.\textit{pe\_embedding}(\textit{base\_out})
+			\State \textit{tags\_embedding} $\gets$ \textit{self}.\textit{tags\_embedding}(\textbf{Dataset}.\textit{encoded\_tags})
+			\State
+			\State \textit{rv}['similarity'] $\gets$ \textbf{torch.matmul}(\textit{pe\_embedding}, \textit{tags\_embedding}.\textbf{T})
+			\State \textit{rv}['probability'] $\gets$ \textit{self}.\textit{sigmoid}(\textit{similarity\_scores})
+			\State \textbf{return} \textit{rv}
+			\EndFunction
 		\algstore{bkbreak}
+	\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[h]
+	\caption{Joint Embedding Net class, Forward (with \textit{Cosine similarity})}\label{alg:jointEmbeddingNetForwardCosine}
+	\begin{algorithmic}[1]
+		\algrestore{bkbreak}
+			\Function{Forward}{\textit{self}, \textit{data}}
+			\State ...
+			\State \textit{similarity\_scores} $\gets$ \textbf{torch.div}(\textbf{torch.add}(\textbf{Cosine\_similarity}(\textit{pe\_embedding}, 
+			\State \hskip8.8em \textit{tags\_embedding}, dim=2), 1.0), 2.0)
+			\State \textit{rv}['similarity'] $\gets$ \textit{similarity\_scores}
+			\State \textit{rv}['probability'] $\gets$ \textit{similarity\_scores}
+			\State \textbf{return} \textit{rv}
+			\EndFunction
+		\algstore{bkbreak}
+	\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[h]
+	\caption{Joint Embedding Net class, Forward (with \textit{Inverted Pairwise Euclidean Distance})}\label{alg:jointEmbeddingNetForwardPairwiseDistance}
+	\begin{algorithmic}[1]
+		\algrestore{bkbreak}
+			\Function{Forward}{\textit{self}, \textit{data}}
+			\State ...
+			\State \textit{distances} $\gets$ \textbf{torch.cdist}(\textit{pe\_embedding}, \textit{tags\_embedding}, p=2.0)
+			\State \textit{similarity\_scores} $\gets$ \textbf{distance\_to\_similarity}(\textit{distances}, a=\textit{sim\_function\_a}, 
+			\State \hskip8.9em function=\textit{sim\_function})
+			\State \textit{rv}['similarity'] $\gets$ \textit{similarity\_scores}
+			\State \textit{rv}['probability'] $\gets$ \textit{similarity\_scores}
+			\State \textbf{return} \textit{rv}
+			\EndFunction
+		\algstore{bkbreak}
+	\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[h]
+	\caption{Distance-to-Similarity function}\label{alg:distanceToSimilarityFunction}
+	\begin{algorithmic}[1]
+		\Function{Distance\_To\_Similarity}{\textit{distance}, \textit{a}, \textit{function}}
+			\If{\textit{function} $=$ 'exp'}
+				\State \textit{similarity} $\gets$ \textbf{torch.exp}(\textbf{torch.div}(\textit{distances}, $-$\textit{a}))
+			\ElsIf{\textit{function} $=$ 'inv'}
+				\State \textit{similarity} $\gets$ \textbf{torch.pow}(\textbf{torch.add}(\textbf{torch.div}(\textit{distances}, \textit{a}), 1.0), -1.0)
+			\ElsIf{\textit{function} $=$ 'inv\_pow'}
+				\State \textit{similarity} $\gets$ \textbf{torch.pow}(\textbf{torch.add}(\textbf{torch.div}(\textbf{torch.pow}(\textit{distances}, 2.0), \textit{a}),
+				\State \hskip5.9em 1.0), -1.0)
+			\Else
+				\State \textbf{raise} Exception
+			\EndIf
+			\State
+			\State \textbf{return} \textit{similarity}
+		\EndFunction
 	\end{algorithmic}
 \end{algorithm}
 
@@ -2923,13 +2973,13 @@ The tags predicted probabilities outputted by the \textit{Prediction Layer} are 
 	\caption{Joint Embedding Net class, Get\_Embedding}\label{alg:jointEmbeddingNetGetEmbedding}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
-		\Function{Get\_Embedding}{\textit{self}, \textit{data}}
-		\State \textit{rv} $\gets$ \{\}
-		\State \textit{base\_out} $\gets$ \textit{self}.\textit{model\_base}(\textit{data})
-		\State \textit{pe\_embedding} $\gets$ \textit{self}.\textit{pe\_embedding}(\textit{base\_out})
-		\State \textit{rv}['embedding'] $\gets$ \textit{pe\_embedding}
-		\State \textbf{return} \textit{rv}
-		\EndFunction
+			\Function{Get\_Embedding}{\textit{self}, \textit{data}}
+			\State \textit{rv} $\gets$ \{\}
+			\State \textit{base\_out} $\gets$ \textit{self}.\textit{model\_base}(\textit{data})
+			\State \textit{pe\_embedding} $\gets$ \textit{self}.\textit{pe\_embedding}(\textit{base\_out})
+			\State \textit{rv}['embedding'] $\gets$ \textit{pe\_embedding}
+			\State \textbf{return} \textit{rv}
+			\EndFunction
 		\algstore{bkbreak}
 	\end{algorithmic}
 \end{algorithm}
@@ -2938,18 +2988,37 @@ The tags predicted probabilities outputted by the \textit{Prediction Layer} are 
 	\caption{Joint Embedding Net class, Compute Loss}\label{alg:jointEmbeddingNetComputeLoss}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
-		\Function{Compute\_loss}{\textit{predictions}, \textit{labels}, \textit{loss\_wts}}
-		\State \textit{loss\_dict} $\gets$ \{'total': 0.\}
-		\State
-		\State \textit{similarity\_loss} $\gets$ \textbf{Binary\_cross\_entropy\_with\_logits}(\textit{predictions}['similarity'],
-		\State \hskip7.5em \textit{labels}['tags'],
-		\State \hskip7.5em reduction='none').\textbf{sum}(dim=1).\textbf{mean}(dim=0)
-		\State
-		\State \textit{loss\_dict}['jointEmbedding'] $\gets$ \textit{similarity\_loss}
-		\State \textit{loss\_dict}['total'] $\gets$ \textit{similarity\_loss}
-		\State
-		\State \textbf{return} \textit{loss\_dict}
-		\EndFunction
+			\Function{Compute\_loss}{\textit{predictions}, \textit{labels}, \textit{loss\_wts}}
+			\State \textit{loss\_dict} $\gets$ \{'total': 0.\}
+			\State
+			\State \textit{similarity\_loss} $\gets$ \textbf{Binary\_cross\_entropy\_with\_logits}(\textit{predictions}['similarity'],
+			\State \hskip7.9em \textit{labels}['tags'],
+			\State \hskip7.9em reduction='none').\textbf{sum}(dim=1).\textbf{mean}(dim=0)
+			\State
+			\State \textit{loss\_dict}['jointEmbedding'] $\gets$ \textit{similarity\_loss}
+			\State \textit{loss\_dict}['total'] $\gets$ \textit{similarity\_loss}
+			\State
+			\State \textbf{return} \textit{loss\_dict}
+			\EndFunction
+		\algstore{bkbreak}
+	\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[h]
+	\caption{Joint Embedding Net class, Compute Loss (with \textit{Cosine Similarity} or \textit{Inverted Pairwise Euclidean Distance})}\label{alg:jointEmbeddingNetComputeLossCosineOrDistance}
+	\begin{algorithmic}[1]
+		\algrestore{bkbreak}
+			\Function{Compute\_loss}{\textit{predictions}, \textit{labels}, \textit{loss\_wts}}
+			\State ...
+			\State \textit{similarity\_loss} $\gets$ \textbf{Binary\_cross\_entropy}(\textit{predictions}['similarity'],
+			\State \hskip7.9em \textit{labels}['tags'],
+			\State \hskip7.9em reduction='none').\textbf{sum}(dim=1).\textbf{mean}(dim=0)
+			\State
+			\State \textit{loss\_dict}['jointEmbedding'] $\gets$ \textit{similarity\_loss}
+			\State \textit{loss\_dict}['total'] $\gets$ \textit{similarity\_loss}
+			\State
+			\State \textbf{return} \textit{loss\_dict}
+			\EndFunction
 		\EndClass
 	\end{algorithmic}
 \end{algorithm}
@@ -3005,9 +3074,204 @@ The \textit{Tag} prediction head, on the other hand, is always used and consists
 
 Finally the individual head losses are aggregated together by computing their weighted sum. Different weights can be assigned to the distinct heads in order to tune their importance in the final loss term in turn affecting how the model's parameters are updated during back-propagation.
 
-\color{Green}
-Insert Proposed Model network initialization, forward and compute loss algorithms.
-\color{Black}
+\subsubsection{Net Definition}
+\color{Orange}
+
+\begin{algorithm}[h]
+	\caption{Proposed Model Net class, Init}\label{alg:ProposedModelNetInit}
+	\begin{algorithmic}[1]
+		\Class{Net}
+			\Function{Init}{\textit{self}, \textit{use\_malware}, \textit{use\_counts}, \textit{use\_tags}, \textit{n\_tags}, \textit{feature\_dimension}, \textit{embedding\_dimension}, \textit{embeddingmax\_embedding\_norm}, \textit{layer\_sizes}, \textit{dropout\_p}, \textit{activation\_function}}	
+			\State \textit{self}.\textit{use\_malware} $\gets$ \textit{use\_malware}
+			\State \textit{self}.\textit{use\_counts} $\gets$ \textit{use\_counts}
+			\State \textit{self}.\textit{n\_tags} $\gets$ \textit{n\_tags}
+			\State \textit{self}.\textit{embedding\_dimension} $\gets$ \textit{embedding\_dimension}
+			\State \textit{layers} $\gets$ [ ]
+			\State
+			\If{\textit{layer\_sizes} \textbf{is} None}
+				\State \textit{layer\_sizes} $\gets$ [512, 512, 128]
+			\EndIf
+			\State
+			\ForAll{\textit{i}, \textit{ls} $\in$ \textbf{enumerate}(\textit{layer\_sizes})}
+				\If{\textit{i} $=0$}
+					\State \textit{layers}.\textbf{append}(\textbf{nn.Linear}(\textit{feature\_dimension}, \textit{ls}))
+					\Else
+					\State \textit{layers}.\textbf{append}(\textbf{nn.Linear}(\textit{layer\_sizes}[\textit{i} $-1$], \textit{ls}))
+				\EndIf
+				\State
+				\State \textit{layers}.\textbf{append}(\textbf{nn.LayerNorm}(\textit{ls}))
+				\State \textit{layers}.\textbf{append}(\textit{activation\_function}())
+				\State \textit{layers}.\textbf{append}(\textbf{nn.Dropout}(\textit{dropout\_p}))
+			\EndFor
+			\State
+			\State \textit{self}.\textit{model\_base} $\gets$ \textbf{nn.Sequential}(*tuple(\textit{layers}))
+			\State \textit{self}.\textit{sigmoid} $\gets$ \textbf{nn.Sigmoid}()
+			\State		
+			\State \textit{self}.\textit{pe\_embedding} $\gets$ \textbf{nn.Sequential}(\textbf{nn.Linear}(\textit{layer\_sizes}[-1], 
+			\State \hskip16.4em \textit{self}.\textit{embedding\_dimension}))
+			\State \textit{self}.\textit{malware\_head} $\gets$ \textbf{nn.Sequential}(\textbf{nn.Linear}(\textit{layer\_sizes}[-1], 1),
+			\State \hskip16.5em \textbf{nn.Sigmoid}())
+			\State \textit{self}.\textit{count\_head} $\gets$ \textbf{nn.Linear}(\textit{layer\_sizes}[-1], 1)
+			\State \textit{self}.\textit{tags\_embedding} $\gets$ \textbf{nn.Embedding}(\textit{self}.\textit{n\_tags}, \textit{self}.\textit{embedding\_dimension},
+			\State \hskip17.7em \textit{max\_norm}=\textit{max\_embedding\_norm})
+		\EndFunction
+		\algstore{bkbreak}
+	\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[h]
+	\caption{Proposed Model Net class, Forward (with \textit{Dot Product})}\label{alg:ProposedModelNetForwardDotProduct}
+	\begin{algorithmic}[1]
+		\algrestore{bkbreak}
+		\Function{Forward}{\textit{self}, \textit{data}}
+			\State \textit{rv} $\gets$ \{\}
+			\State \textit{base\_out} $\gets$ \textit{self}.\textit{model\_base}(\textit{data})
+			\State
+			\If{\textit{self}.\textit{use\_malware}}
+				\State \textit{rv}['malware'] $\gets$ \textit{self}.\textit{malware\_head}(\textit{base\_out})
+			\EndIf
+			\State
+			\If{\textit{self}.\textit{use\_counts}}
+				\State \textit{rv}['count'] $\gets$ \textit{self}.\textit{count\_head}(\textit{base\_out})
+			\EndIf
+			\State
+			\State \textit{pe\_embedding} $\gets$ \textit{self}.\textit{pe\_embedding}(\textit{base\_out})
+			\State \textit{tags\_embedding} $\gets$ \textit{self}.\textit{tags\_embedding}((\textbf{Dataset}.\textit{encoded\_tags}))
+			\State
+			\State \textit{rv}['similarity'] $\gets$ \textbf{torch.matmul}(\textit{pe\_embedding}, \textit{tags\_embedding}.\textbf{T})
+			\State \textit{rv}['probability'] $\gets$ \textit{self}.\textit{sigmoid}(\textit{similarity\_scores})
+			\State
+			\State \textbf{return} \textit{rv}
+		\EndFunction
+		\algstore{bkbreak}
+	\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[h]
+	\caption{Proposed Model Net class, Forward (with \textit{Cosine similarity})}\label{alg:proposedModelNetForwardCosine}
+	\begin{algorithmic}[1]
+		\algrestore{bkbreak}
+		\Function{Forward}{\textit{self}, \textit{data}}
+			\State ...
+			\State \textit{similarity\_scores} $\gets$ \textbf{torch.div}(\textbf{torch.add}(\textbf{Cosine\_similarity}(\textit{pe\_embedding}, 
+			\State \hskip8.8em \textit{tags\_embedding}, dim=2), 1.0), 2.0)
+			\State \textit{rv}['similarity'] $\gets$ \textit{similarity\_scores}
+			\State \textit{rv}['probability'] $\gets$ \textit{similarity\_scores}
+			\State \textbf{return} \textit{rv}
+		\EndFunction
+		\algstore{bkbreak}
+	\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[h]
+	\caption{Proposed Model Net class, Forward (with \textit{Inverted Pairwise Euclidean Distance})}\label{alg:proposedModelNetForwardPairwiseDistance}
+	\begin{algorithmic}[1]
+		\algrestore{bkbreak}
+		\Function{Forward}{\textit{self}, \textit{data}}
+		\State ...
+		\State \textit{distances} $\gets$ \textbf{torch.cdist}(\textit{pe\_embedding}, \textit{tags\_embedding}, p=2.0)
+		\State \textit{similarity\_scores} $\gets$ \textbf{distance\_to\_similarity}(\textit{distances}, a=\textit{sim\_function\_a},
+		\State \hskip8.9em function=\textit{sim\_function})
+		\State \textit{rv}['similarity'] $\gets$ \textit{similarity\_scores}
+		\State \textit{rv}['probability'] $\gets$ \textit{similarity\_scores}
+		\State \textbf{return} \textit{rv}
+		\EndFunction
+		\algstore{bkbreak}
+	\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[h]
+	\caption{Proposed Model Net class, Get\_Embedding}\label{alg:ProposedModelNetGetEmbedding}
+	\begin{algorithmic}[1]
+		\algrestore{bkbreak}
+		\Function{Get\_Embedding}{\textit{self}, \textit{data}}
+			\State \textit{rv} $\gets$ \{\}
+			\State \textit{base\_out} $\gets$ \textit{self}.\textit{model\_base}(\textit{data})
+			\State \textit{pe\_embedding} $\gets$ \textit{self}.\textit{pe\_embedding}(\textit{base\_out})
+			\State \textit{rv}['embedding'] $\gets$ \textit{pe\_embedding}
+			\State \textbf{return} \textit{rv}
+		\EndFunction
+		\algstore{bkbreak}
+	\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[h]
+	\caption{Proposed Model Net class, Compute Loss}\label{alg:ProposedModelNetComputeLoss}
+	\begin{algorithmic}[1]
+		\algrestore{bkbreak}
+		\Function{Compute\_loss}{\textit{predictions}, \textit{labels}, \textit{loss\_wts}}
+			\If{\textit{loss\_wts} \textbf{is} None}
+				\State \textit{loss\_wts} $\gets$ \{'malware': 1.0, 'count': 0.1, 'tags': 1.0\}
+			\EndIf
+			\State \textit{loss\_dict} $\gets$ \{'total': 0.\}
+			\State
+			\If{'malware' $\in$ \textit{labels}}
+				\State \textit{malware\_loss} $\gets$ \textbf{Binary\_cross\_entropy}(\textit{predictions}['malware'], \textit{labels}['malware'])
+				\State
+				\If{'malware' $\in$ \textit{loss\_wts}}
+					\State \textit{weight} $\gets$ \textit{loss\_wts}['malware']
+				\Else
+					\State \textit{weight} $\gets$ 1.0
+				\EndIf
+				\State
+				\State \textit{loss\_dict}['malware'] $\gets$ \textit{malware\_loss}
+				\State \textit{loss\_dict}['total'] $\gets$ \textit{loss\_dict}['total'] $+$ \textit{malware\_loss} $\times$ \textit{weight}
+			\EndIf
+			\State			
+			\If{'count' $\in$ \textit{labels}}
+				\State \textit{count\_loss} $\gets$ \textbf{PoissonNLLLoss}(\textit{predictions}['count'], \textit{labels}['count'])
+				\State
+				\If{'count' $\in$ \textit{loss\_wts}}				
+					\State \textit{weight} $\gets$ \textit{loss\_wts}['count']
+				\Else
+					\State \textit{weight} $\gets$ 1.0
+				\EndIf
+				\State				
+				\State \textit{loss\_dict}['count'] $\gets$ \textit{count\_loss}				
+				\State \textit{loss\_dict}['total'] $\gets$ \textit{loss\_dict}['total'] $+$ \textit{count\_loss} $\times$ \textit{weight}
+			\EndIf
+			\State			
+			\If{'tags' $\in$ \textit{labels}}
+				\State \textit{similarity\_loss} $\gets$ \textbf{Binary\_cross\_entropy\_with\_logits}(\textit{predictions}['similarity'],
+				\State \hskip7.9em \textit{labels}['tags'],
+				\State \hskip7.9em reduction='none').\textbf{sum}(dim=1).\textbf{mean}(dim=0)
+				\State
+				\If{'tags' $\in$ \textit{loss\_wts}}
+					\State \textit{weight} $\gets$ \textit{loss\_wts}['tags']
+				\Else
+					\State \textit{weight} $\gets$ 1.0
+				\EndIf
+				\State				
+				\State \textit{loss\_dict}['jointEmbedding'] $\gets$ \textit{similarity\_loss}
+				\State \textit{loss\_dict}['total'] $\gets$ \textit{loss\_dict}['total'] $+$ \textit{similarity\_loss} $\times$ \textit{weight}
+			\EndIf
+			\State
+			\State \textbf{return} \textit{loss\_dict}
+		\EndFunction
+		\algstore{bkbreak}
+	\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[h]
+	\caption{Proposed Model Net class, Compute Loss (with \textit{Cosine Similarity} or \textit{Inverted Pairwise Euclidean Distance})}\label{alg:proposedModelNetComputeLossCosineOrDistance}
+	\begin{algorithmic}[1]
+		\algrestore{bkbreak}
+			\Function{Compute\_loss}{\textit{predictions}, \textit{labels}, \textit{loss\_wts}}
+			\State ...
+			\If{'tags' $\in$ \textit{labels}}
+				\State \textit{similarity\_loss} $\gets$ \textbf{Binary\_cross\_entropy}(\textit{predictions}['similarity'],
+				\State \hskip7.9em \textit{labels}['tags'],
+				\State \hskip7.9em reduction='none').\textbf{sum}(dim=1).\textbf{mean}(dim=0)
+				\State
+				\State \textit{loss\_dict}['jointEmbedding'] $\gets$ \textit{similarity\_loss}
+				\State \textit{loss\_dict}['total'] $\gets$ \textit{similarity\_loss}
+			\EndIf
+			\State
+			\State \textbf{return} \textit{loss\_dict}
+		\EndFunction
+		\EndClass
+	\end{algorithmic}
+\end{algorithm}
 
 \section{Experiments}
 The proposed model was trained multiple times for 10 \textit{epochs} on the first $6M$ training and $1.153.846$ validation samples of the pre-processed Sorel20M dataset (loaded with generator \textit{\textbf{alt3}}) with both the optional output heads (\textit{Malicious/Benign} label prediction and \textit{Vendor Count} prediction) on, changing the network hyper-parameters like the number of layers, layers dimensions (number of hidden units per layer), activation functions and dropout value for the base topology. Other hyper-parameters that were iteratively changed were the used optimizer (\textbf{Adam} or \textbf{SGD}), learning rate (LR), momentum, weight decay, loss weights and the similarity score function used (chosen between the \textit{dot product}, the \textit{cosine similarity} and one of the \textit{inverted Euclidean Distances}: \textit{exp}, \textit{inv} or \textit{inv\_pow}).
