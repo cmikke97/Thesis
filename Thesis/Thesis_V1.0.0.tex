@@ -3020,7 +3020,7 @@ Alg. \ref{alg:jointEmbeddingNetGetEmbedding} (\textbf{\textit{JointEmbedding} mo
 Finally, in algorithm \ref{alg:jointEmbeddingNetComputeLoss} is described how the loss which guides the training procedure is computed. In particular, it corresponds to the \textbf{binary cross entropy loss} between the predicted tag probabilities and the actual tag labels, as depicted by the formulas mentioned in par. \ref{par:tagPredictionImplementation}.
 
 \section{Training and Evaluation algorithms}
-\begin{algorithm}[h]
+\begin{algorithm}[h!]
 	\caption{Train Network function}\label{alg:trainNetworkFunction}
 	\begin{algorithmic}[1]
 		\Function{Train\_Network}{\textit{ds\_path}, \textit{net\_type}, \textit{gen\_type}, \textit{batch\_size}, \textit{epochs}, \textit{use\_malicious\_labels}, \textit{use\_count\_labels}, \textit{use\_tag\_labels}, \textit{feature\_dimension}, \textit{workers}, ...}
@@ -3069,7 +3069,7 @@ Finally, in algorithm \ref{alg:jointEmbeddingNetComputeLoss} is described how th
 	\end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}[h]
+\begin{algorithm}[h!]
 	\caption{Evaluate Network function}\label{alg:evaluateNetworkFunction}
 	\begin{algorithmic}[1]
 		\Function{Train\_Network}{\textit{ds\_path}, \textit{checkpoint\_file}, \textit{net\_type}, \textit{gen\_type}, \textit{batch\_size}, \textit{evaluate\_malware}, \textit{evaluate\_count}, \textit{evaluate\_tags}, ...}
@@ -3142,10 +3142,8 @@ The \textit{Tag} prediction head, on the other hand, is always used and consists
 Finally the individual head losses are aggregated together by computing their weighted sum. Different weights can be assigned to the distinct heads in order to tune their importance in the final loss term in turn affecting how the model's parameters are updated during back-propagation.
 
 \subsubsection{Net Definition}
-\color{Orange}
-
-\begin{algorithm}[h]
-	\caption{Proposed Model Net class, Init}\label{alg:ProposedModelNetInit}
+\begin{algorithm}[h!]
+	\caption{Proposed Model Net class, Init}\label{alg:proposedModelNetInit}
 	\begin{algorithmic}[1]
 		\Class{Net}
 			\Function{Init}{\textit{self}, \textit{use\_malware}, \textit{use\_counts}, \textit{use\_tags}, \textit{n\_tags}, \textit{feature\_dimension}, \textit{embedding\_dimension}, \textit{embeddingmax\_embedding\_norm}, \textit{layer\_sizes}, \textit{dropout\_p}, \textit{activation\_function}}	
@@ -3186,8 +3184,8 @@ Finally the individual head losses are aggregated together by computing their we
 	\end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}[h]
-	\caption{Proposed Model Net class, Forward (with \textit{Dot Product})}\label{alg:ProposedModelNetForwardDotProduct}
+\begin{algorithm}[h!]
+	\caption{Proposed Model Net class, Forward (with \textit{Dot Product})}\label{alg:proposedModelNetForwardDotProduct}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 		\Function{Forward}{\textit{self}, \textit{data}}
@@ -3214,7 +3212,7 @@ Finally the individual head losses are aggregated together by computing their we
 	\end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}[h]
+\begin{algorithm}[h!]
 	\caption{Proposed Model Net class, Forward (with \textit{Cosine similarity})}\label{alg:proposedModelNetForwardCosine}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
@@ -3230,7 +3228,7 @@ Finally the individual head losses are aggregated together by computing their we
 	\end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}[h]
+\begin{algorithm}[h!]
 	\caption{Proposed Model Net class, Forward (with \textit{Inverted Pairwise Euclidean Distance})}\label{alg:proposedModelNetForwardPairwiseDistance}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
@@ -3247,8 +3245,8 @@ Finally the individual head losses are aggregated together by computing their we
 	\end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}[h]
-	\caption{Proposed Model Net class, Get\_Embedding}\label{alg:ProposedModelNetGetEmbedding}
+\begin{algorithm}[h!]
+	\caption{Proposed Model Net class, Get\_Embedding}\label{alg:proposedModelNetGetEmbedding}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 		\Function{Get\_Embedding}{\textit{self}, \textit{data}}
@@ -3262,8 +3260,8 @@ Finally the individual head losses are aggregated together by computing their we
 	\end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}[h]
-	\caption{Proposed Model Net class, Compute Loss}\label{alg:ProposedModelNetComputeLoss}
+\begin{algorithm}[h!]
+	\caption{Proposed Model Net class, Compute Loss}\label{alg:proposedModelNetComputeLoss}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 		\Function{Compute\_loss}{\textit{predictions}, \textit{labels}, \textit{loss\_wts}}
@@ -3299,8 +3297,7 @@ Finally the individual head losses are aggregated together by computing their we
 			\EndIf
 			\State			
 			\If{'tags' $\in$ \textit{labels}}
-				\State \textit{similarity\_loss} $\gets$ \textbf{Binary\_cross\_entropy\_with\_logits}(\textit{predictions}['similarity'],
-				\State \hskip7.9em \textit{labels}['tags'],
+				\State \textit{similarity\_loss} $\gets$ \textbf{Binary\_cross\_entropy}(\textit{predictions}['probability'], \textit{labels}['tags'],
 				\State \hskip7.9em reduction='none').\textbf{sum}(dim=1).\textbf{mean}(dim=0)
 				\State
 				\If{'tags' $\in$ \textit{loss\_wts}}
@@ -3315,35 +3312,16 @@ Finally the individual head losses are aggregated together by computing their we
 			\State
 			\State \textbf{return} \textit{loss\_dict}
 		\EndFunction
-		\algstore{bkbreak}
-	\end{algorithmic}
-\end{algorithm}
-
-\begin{algorithm}[h]
-	\caption{Proposed Model Net class, Compute Loss (with \textit{Cosine Similarity} or \textit{Inverted Pairwise Euclidean Distance})}\label{alg:proposedModelNetComputeLossCosineOrDistance}
-	\begin{algorithmic}[1]
-		\algrestore{bkbreak}
-			\Function{Compute\_loss}{\textit{predictions}, \textit{labels}, \textit{loss\_wts}}
-			\State ...
-			\If{'tags' $\in$ \textit{labels}}
-				\State \textit{similarity\_loss} $\gets$ \textbf{Binary\_cross\_entropy}(\textit{predictions}['similarity'],
-				\State \hskip7.9em \textit{labels}['tags'],
-				\State \hskip7.9em reduction='none').\textbf{sum}(dim=1).\textbf{mean}(dim=0)
-				\State
-				\State \textit{loss\_dict}['jointEmbedding'] $\gets$ \textit{similarity\_loss}
-				\State \textit{loss\_dict}['total'] $\gets$ \textit{similarity\_loss}
-			\EndIf
-			\State
-			\State \textbf{return} \textit{loss\_dict}
-		\EndFunction
 		\EndClass
 	\end{algorithmic}
 \end{algorithm}
 
+In algorithm \ref{alg:proposedModelNetInit} ..
+
 \section{Training and Evaluation algorithms}
 
 \section{Evaluate Fresh algorithm}
-\begin{algorithm}[h]
+\begin{algorithm}[h!]
 	\caption{Evaluate Fresh function}\label{alg:evaluateFreshFunction}
 	\begin{algorithmic}[1]
 		\Function{Evaluate\_Fresh}{\textit{ds\_path}, \textit{checkpoint\_file}, \textit{net\_type}, \textit{n\_anchor\_samples\_per\_family}, \textit{hard}, \textit{n\_queries}, \textit{batch\_size}}
@@ -3355,7 +3333,7 @@ Finally the individual head losses are aggregated together by computing their we
 	\end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}[h]
+\begin{algorithm}[h!]
 	\caption{Evaluate Fresh Predictions function}\label{alg:evaluateFreshPredictionsFunction}
 	\begin{algorithmic}[1]
 		\Function{Evaluate\_Fresh\_Predictions}{\textit{ds\_path}, \textit{checkpoint\_file}, \textit{net\_type}, \textit{n\_anchor\_samples\_per\_family}, \textit{hard}, \textit{batch\_size}}
@@ -3411,7 +3389,7 @@ Finally the individual head losses are aggregated together by computing their we
 	\end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}[h]
+\begin{algorithm}[h!]
 	\caption{Evaluate Fresh Rankings function}\label{alg:evaluateFreshRankingsFunction}
 	\begin{algorithmic}[1]
 		\Function{Evaluate\_Fresh\_Rankings}{\textit{ds\_path}, \textit{checkpoint\_file}, \textit{net\_type}, \textit{n\_queries}, \textit{batch\_size}}
