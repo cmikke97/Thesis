@@ -2862,8 +2862,6 @@ where $d(\textbf{a}, \textbf{b})$ is the Euclidean distance between points $\tex
 The tags predicted probabilities outputted by the \textit{Prediction Layer} are then used to compute the respective losses with respect to the ground truth tags $y_{t_i}, \forall i \in 1,..,11$, exactly as described in paper \cite{DucauAMDATSE}, which are combined together to form the final loss $L(\textbf{x}, y)$.
 
 \subsubsection{Net Definition}
-\color{Orange}
-
 \begin{algorithm}[h]
 	\caption{Joint Embedding Net class, Init}\label{alg:jointEmbeddingNetInit}
 	\begin{algorithmic}[1]
@@ -2912,7 +2910,8 @@ The tags predicted probabilities outputted by the \textit{Prediction Layer} are 
 			\State \textit{pe\_embedding} $\gets$ \textit{self}.\textit{pe\_embedding}(\textit{base\_out})
 			\State \textit{tags\_embedding} $\gets$ \textit{self}.\textit{tags\_embedding}(\textbf{Dataset}.\textit{encoded\_tags})
 			\State
-			\State \textit{rv}['similarity'] $\gets$ \textbf{torch.matmul}(\textit{pe\_embedding}, \textit{tags\_embedding}.\textbf{T})
+			\State \textit{similarity\_scores} $\gets$ \textbf{torch.matmul}(\textit{pe\_embedding}, \textit{tags\_embedding}.\textbf{T})
+			\State \textit{rv}['similarity'] $\gets$ \textit{similarity\_scores}
 			\State \textit{rv}['probability'] $\gets$ \textit{self}.\textit{sigmoid}(\textit{similarity\_scores})
 			\State \textbf{return} \textit{rv}
 			\EndFunction
@@ -2950,26 +2949,6 @@ The tags predicted probabilities outputted by the \textit{Prediction Layer} are 
 			\State \textbf{return} \textit{rv}
 			\EndFunction
 		\algstore{bkbreak}
-	\end{algorithmic}
-\end{algorithm}
-
-\begin{algorithm}[h]
-	\caption{Distance-to-Similarity function}\label{alg:distanceToSimilarityFunction}
-	\begin{algorithmic}[1]
-		\Function{Distance\_To\_Similarity}{\textit{distance}, \textit{a}, \textit{function}}
-			\If{\textit{function} $=$ 'exp'}
-				\State \textit{similarity} $\gets$ \textbf{torch.exp}(\textbf{torch.div}(\textit{distances}, $-$\textit{a}))
-			\ElsIf{\textit{function} $=$ 'inv'}
-				\State \textit{similarity} $\gets$ \textbf{torch.pow}(\textbf{torch.add}(\textbf{torch.div}(\textit{distances}, \textit{a}), 1.0), -1.0)
-			\ElsIf{\textit{function} $=$ 'inv\_pow'}
-				\State \textit{similarity} $\gets$ \textbf{torch.pow}(\textbf{torch.add}(\textbf{torch.div}(\textbf{torch.pow}(\textit{distances}, 2.0), \textit{a}),
-				\State \hskip5.9em 1.0), -1.0)
-			\Else
-				\State \textbf{raise} Exception
-			\EndIf
-			\State
-			\State \textbf{return} \textit{similarity}
-		\EndFunction
 	\end{algorithmic}
 \end{algorithm}
 
@@ -3026,6 +3005,34 @@ The tags predicted probabilities outputted by the \textit{Prediction Layer} are 
 		\EndClass
 	\end{algorithmic}
 \end{algorithm}
+
+\begin{algorithm}[h]
+	\caption{Distance-to-Similarity function}\label{alg:distanceToSimilarityFunction}
+	\begin{algorithmic}[1]
+		\Function{Distance\_To\_Similarity}{\textit{distance}, \textit{a}, \textit{function}}
+			\If{\textit{function} $=$ 'exp'}
+				\State \textit{similarity} $\gets$ \textbf{torch.exp}(\textbf{torch.div}(\textit{distances}, $-$\textit{a}))
+			\ElsIf{\textit{function} $=$ 'inv'}
+				\State \textit{similarity} $\gets$ \textbf{torch.pow}(\textbf{torch.add}(\textbf{torch.div}(\textit{distances}, \textit{a}), 1.0), -1.0)
+			\ElsIf{\textit{function} $=$ 'inv\_pow'}
+				\State \textit{similarity} $\gets$ \textbf{torch.pow}(\textbf{torch.add}(\textbf{torch.div}(\textbf{torch.pow}(\textit{distances}, 2.0), \textit{a}),
+				\State \hskip5.9em 1.0), -1.0)
+			\Else
+				\State \textbf{raise} Exception
+			\EndIf
+			\State
+			\State \textbf{return} \textit{similarity}
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}
+
+Algorithm \ref{alg:jointEmbeddingNetInit} (\textbf{\textit{Joint Embedding} model init function}) shows how the \textbf{\textit{Joint Embedding}} model was implemented in \textit{Python}/\textit{Pytorch} code. More specifically, it describes how the model network is initialized/defined: first a \textbf{base topology} is defined similarly to the one used in the \textbf{\textit{ALOHA}} model implementation previously described (a series of linear layers interleaved by layer normalization, an activation function and dropout). The \textbf{\textit{PE embedding}} sub-network is, on the other hand, defined as a simple linear layer with output size equal to the chosen \textit{embedding\_dimension}. Finally, the \textbf{\textit{Tags embedding}} is defined as an embedding matrix of size (\textit{n\_tags}, \textit{embedding\_dimension}), constraining the maximum norm of each tag embedding to \textit{max\_embedding\_norm} (set to 1 throughout the experiments).
+
+Alg. \ref{alg:jointEmbeddingNetForward} (\textbf{\textit{Joint Embedding} model forward function}), instead, describes how the input data (the PE files' numerical feature vectors) is forwarded through the network to produce the final tag predictions. In particular, the input data is first fed into the model base topology to produce an intermediate representation \textbf{\textit{base\_out}}. This transient output is then used as input for the \textbf{\textit{PE Embedding}} topology to produce the samples' representation in the joint embedding space (\textit{pe\_embedding}). On the other hand, the tags embeddings (one per tag) are extracted from the \textit{tags\_embedding} matrix. The \textbf{similarity scores} between the samples' and tags' embeddings is computed via a simple \textbf{\textit{dot product}} (implemented through a matrix multiplication) between the embeddings. Finally the tags probabilities are obtained by mapping the similarity scores to the range $[0,1]$ through the \textit{sigmoid} function.
+
+In alg. \ref{alg:jointEmbeddingNetForwardCosine} (\textbf{\textit{Joint Embedding} model forward function with \textit{cosine similarity}}) is presented an alternative to the aforementioned \textbf{Model forward function} that uses the \textbf{\textit{Cosine similarity}} instead of the \textbf{\textit{dot product}} to compute the similarity scores. For the most part this version is equal to the previous one but for how the similarity scores are computed. In fact, in this case they correspond to the \textbf{\textit{Cosine similarity}} between the \textbf{\textit{pe\_embedding}} and \textbf{\textit{tags\_embedding}}, which is a value in the range $[-1, 1]$, mapped to values in the $[0, 1]$ range. Moreover, in this case, since the similarity scores are already in the $[0, 1]$ range, the tags probabilities coincide with the similarity scores.
+
+A further alternative to the \textbf{Model forward function} is presented in alg. \ref{alg:distanceToSimilarityFunction} (\textbf{\textit{Joint Embedding} model forward function with \textit{Inverted Pairwise Euclidean Distance}})
 
 \section{Training and Evaluation algorithms}
 \begin{algorithm}[h]
