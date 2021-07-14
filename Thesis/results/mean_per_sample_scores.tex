@@ -8,15 +8,15 @@
             \hline
             \multicolumn{6}{|c|}{\textbf{Jaccard Similarity}} \\
             \hline
-            ALOHA & 0.719$\pm$0.001 & 0.719$\pm$0.001 & 0.719$\pm$0.000 & \textBF{0.711$\pm$0.002} & \textBF{0.512$\pm$0.044} \\
-            Joint Embedding & \textBF{0.724$\pm$0.002} & \textBF{0.724$\pm$0.002} & 0.724$\pm$0.002 & 0.702$\pm$0.003 & 0.362$\pm$0.008 \\
-            Proposed Model & 0.723$\pm$0.001 & 0.723$\pm$0.001 & \textBF{0.726$\pm$0.001} & 0.707$\pm$0.006 & 0.417$\pm$0.061 \\
+            ALOHA & 0.699$\pm$0.007 & 0.733$\pm$0.018 & 0.806$\pm$0.005 & 0.867$\pm$0.002 & 0.791$\pm$0.004 \\
+            Joint Embedding & 0.709$\pm$0.014 & 0.758$\pm$0.021 & 0.819$\pm$0.003 & 0.872$\pm$0.002 & 0.758$\pm$0.003 \\
+            Proposed Model & \textBF{0.711$\pm$0.009} & \textBF{0.763$\pm$0.016} & \textBF{0.832$\pm$0.007} & \textBF{0.874$\pm$0.007} & \textBF{0.802$\pm$0.004} \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Mean per-Sample Accuracy}} \\
             \hline
-            ALOHA & 0.718$\pm$0.000 & 0.718$\pm$0.000 & 0.718$\pm$0.001 & \textBF{0.705$\pm$0.001} & \textBF{0.494$\pm$0.049} \\
-            Joint Embedding & \textBF{0.722$\pm$0.000} & \textBF{0.722$\pm$0.000} & 0.719$\pm$0.002 & 0.687$\pm$0.006 & 0.326$\pm$0.010 \\
-            Proposed Model & 0.720$\pm$0.002 & 0.720$\pm$0.002 & \textBF{0.720$\pm$0.003} & 0.694$\pm$0.009 & 0.384$\pm$0.066 \\
+            ALOHA & 0.643$\pm$0.007 & 0.669$\pm$0.020 & 0.744$\pm$0.010 & 0.797$\pm$0.002 & 0.692$\pm$0.007 \\
+            Joint Embedding & 0.651$\pm$0.006 & \textBF{0.699$\pm$0.022} & 0.763$\pm$0.006 & 0.796$\pm$0.004 & 0.660$\pm$0.001 \\
+            Proposed Model & \textBF{0.651$\pm$0.004} & 0.695$\pm$0.013 & \textBF{0.770$\pm$0.008} & \textBF{0.801$\pm$0.005} & \textBF{0.709$\pm$0.004} \\
             \hline
         \end{tabular}
         \caption{Mean and standard deviation of mean per-sample tagging results (\textit{Jaccard simialrity} and \textit{mean per-sample accuracy}) for the different models. Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:meanPerSampleScores}
