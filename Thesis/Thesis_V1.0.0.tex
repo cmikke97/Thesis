@@ -2862,7 +2862,7 @@ where $d(\textbf{a}, \textbf{b})$ is the Euclidean distance between points $\tex
 The tags predicted probabilities outputted by the \textit{Prediction Layer} are then used to compute the respective losses with respect to the ground truth tags $y_{t_i}, \forall i \in 1,..,11$, exactly as described in paper \cite{DucauAMDATSE}, which are combined together to form the final loss $L(\textbf{x}, y)$.
 
 \subsubsection{Net Definition}
-\begin{algorithm}[h]
+\begin{algorithm}[h!]
 	\caption{Joint Embedding Net class, Init}\label{alg:jointEmbeddingNetInit}
 	\begin{algorithmic}[1]
 		\Class{Net}
@@ -2899,7 +2899,7 @@ The tags predicted probabilities outputted by the \textit{Prediction Layer} are 
 	\end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}[h]
+\begin{algorithm}[h!]
 	\caption{Joint Embedding Net class, Forward (with \textit{Dot Product})}\label{alg:jointEmbeddingNetForward}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
@@ -2919,7 +2919,7 @@ The tags predicted probabilities outputted by the \textit{Prediction Layer} are 
 	\end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}[h]
+\begin{algorithm}[h!]
 	\caption{Joint Embedding Net class, Forward (with \textit{Cosine similarity})}\label{alg:jointEmbeddingNetForwardCosine}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
@@ -2935,7 +2935,7 @@ The tags predicted probabilities outputted by the \textit{Prediction Layer} are 
 	\end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}[h]
+\begin{algorithm}[h!]
 	\caption{Joint Embedding Net class, Forward (with \textit{Inverted Pairwise Euclidean Distance})}\label{alg:jointEmbeddingNetForwardPairwiseDistance}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
@@ -2952,7 +2952,7 @@ The tags predicted probabilities outputted by the \textit{Prediction Layer} are 
 	\end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}[h]
+\begin{algorithm}[h!]
 	\caption{Joint Embedding Net class, Get\_Embedding}\label{alg:jointEmbeddingNetGetEmbedding}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
@@ -2967,33 +2967,14 @@ The tags predicted probabilities outputted by the \textit{Prediction Layer} are 
 	\end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}[h]
+\begin{algorithm}[h!]
 	\caption{Joint Embedding Net class, Compute Loss}\label{alg:jointEmbeddingNetComputeLoss}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 			\Function{Compute\_loss}{\textit{predictions}, \textit{labels}, \textit{loss\_wts}}
 			\State \textit{loss\_dict} $\gets$ \{'total': 0.\}
 			\State
-			\State \textit{similarity\_loss} $\gets$ \textbf{Binary\_cross\_entropy\_with\_logits}(\textit{predictions}['similarity'],
-			\State \hskip7.9em \textit{labels}['tags'],
-			\State \hskip7.9em reduction='none').\textbf{sum}(dim=1).\textbf{mean}(dim=0)
-			\State
-			\State \textit{loss\_dict}['jointEmbedding'] $\gets$ \textit{similarity\_loss}
-			\State \textit{loss\_dict}['total'] $\gets$ \textit{similarity\_loss}
-			\State
-			\State \textbf{return} \textit{loss\_dict}
-			\EndFunction
-		\algstore{bkbreak}
-	\end{algorithmic}
-\end{algorithm}
-
-\begin{algorithm}[h]
-	\caption{Joint Embedding Net class, Compute Loss (with \textit{Cosine Similarity} or \textit{Inverted Pairwise Euclidean Distance})}\label{alg:jointEmbeddingNetComputeLossCosineOrDistance}
-	\begin{algorithmic}[1]
-		\algrestore{bkbreak}
-			\Function{Compute\_loss}{\textit{predictions}, \textit{labels}, \textit{loss\_wts}}
-			\State ...
-			\State \textit{similarity\_loss} $\gets$ \textbf{Binary\_cross\_entropy}(\textit{predictions}['similarity'],
+			\State \textit{similarity\_loss} $\gets$ \textbf{Binary\_cross\_entropy}(\textit{predictions}['probability'],
 			\State \hskip7.9em \textit{labels}['tags'],
 			\State \hskip7.9em reduction='none').\textbf{sum}(dim=1).\textbf{mean}(dim=0)
 			\State
@@ -3006,7 +2987,7 @@ The tags predicted probabilities outputted by the \textit{Prediction Layer} are 
 	\end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}[h]
+\begin{algorithm}[h!]
 	\caption{Distance-to-Similarity function}\label{alg:distanceToSimilarityFunction}
 	\begin{algorithmic}[1]
 		\Function{Distance\_To\_Similarity}{\textit{distance}, \textit{a}, \textit{function}}
@@ -3032,7 +3013,11 @@ Alg. \ref{alg:jointEmbeddingNetForward} (\textbf{\textit{Joint Embedding} model 
 
 In alg. \ref{alg:jointEmbeddingNetForwardCosine} (\textbf{\textit{Joint Embedding} model forward function with \textit{cosine similarity}}) is presented an alternative to the aforementioned \textbf{Model forward function} that uses the \textbf{\textit{Cosine similarity}} instead of the \textbf{\textit{dot product}} to compute the similarity scores. For the most part this version is equal to the previous one but for how the similarity scores are computed. In fact, in this case they correspond to the \textbf{\textit{Cosine similarity}} between the \textbf{\textit{pe\_embedding}} and \textbf{\textit{tags\_embedding}}, which is a value in the range $[-1, 1]$, mapped to values in the $[0, 1]$ range. Moreover, in this case, since the similarity scores are already in the $[0, 1]$ range, the tags probabilities coincide with the similarity scores.
 
-A further alternative to the \textbf{Model forward function} is presented in alg. \ref{alg:distanceToSimilarityFunction} (\textbf{\textit{Joint Embedding} model forward function with \textit{Inverted Pairwise Euclidean Distance}})
+A further alternative to the \textbf{Model forward function} which uses one of the \textit{Inverted Pairwise Euclidean Distances} proposed in sec. \ref{sec:jointEmbeddingModelImplementation} instead of the \textit{dot product}, is presented in alg. \ref{alg:jointEmbeddingNetForwardPairwiseDistance} (\textbf{\textit{Joint Embedding} model forward function with \textit{Inverted Pairwise Euclidean Distance}}). Again, this alternative is pretty much equal to the original forward function (alg. \ref{alg:jointEmbeddingNetForward}). In this case, however, the similarity scores are produced by inverting, through the use of the specially crafted \textbf{distance\_to\_similarity} function presented in alg. \ref{alg:distanceToSimilarityFunction} (which simply applies the selected distance inversion formula among the ones mentioned in sec. \ref{sec:jointEmbeddingModelImplementation}), the euclidean distances between the samples' and the tags' embeddings in the joint latent space.
+
+Alg. \ref{alg:jointEmbeddingNetGetEmbedding} (\textbf{\textit{JointEmbedding} model get embedding function}) presents the \textit{get\_embedding} function which is used to extract the PE embedding representation from input data. This is particularly useful when performing different kinds of model performance evaluations.
+
+Finally, in algorithm \ref{alg:jointEmbeddingNetComputeLoss} is described how the loss which guides the training procedure is computed. In particular, it corresponds to the \textbf{binary cross entropy loss} between the predicted tag probabilities and the actual tag labels, as depicted by the formulas mentioned in par. \ref{par:tagPredictionImplementation}.
 
 \section{Training and Evaluation algorithms}
 \begin{algorithm}[h]
