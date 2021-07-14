@@ -2694,8 +2694,6 @@ Finally, the \textit{Malicious (SMART) tags} output head consists of two additio
 The final aggregate loss $L(\textbf{x}, y)$ is again computed as the weighted sum of all the output heads losses.
 
 \subsubsection{Net Definition}
-\color{Orange}
-
 \begin{algorithm}[h]
 	\caption{ALOHA Net class, Init}\label{alg:alohaNetInit}
 	\begin{algorithmic}[1]
@@ -2815,6 +2813,12 @@ The final aggregate loss $L(\textbf{x}, y)$ is again computed as the weighted su
 		\EndClass
 	\end{algorithmic}
 \end{algorithm}
+
+Algorithms \ref{alg:alohaNetInit}, \ref{alg:alohaNetForward} and \ref{alg:alohaNetComputeLoss} shows some pseudo-code describing how the \textit{ALOHA} model was actually implemented using \textit{Python} language and \textit{Pytorch} library. In particular alg. \ref{alg:alohaNetInit} describes how the the model is constructed/initialized: first the model shared base topology is defined as a sequence of layers composed each of a \textit{Pytorch} linear layer, layer normalization, an activation function dynamically chosen at network instantiation among the ones provided by \textit{Pytorch} library, and Dropout. Then the \textit{malware} (\textit{Malicious/Benign}) head is defined as a single \textit{Pytorch} linear layer followed by a \textit{Sigmoid} activation. The \textit{Vendor Count} head, on the other hand is simply composed of a single linear layer. Finally, the \textit{SMART Tag} prediction head consists of a sequence of 3 linear layers interleaved by \textit{ELU} activations and trailed by a final \textit{Sigmoid} activation function.
+
+Alg. \ref{alg:alohaNetForward}, instead, describes how the data (PE file numerical feature vectors of size $=2381$) is forwarded through the network to produce the final predictions. In particular, the data first passes through the shared base topology to produce an intermediate representation \textit{base\_out}, which is then used as input for all the output heads to produce their predictions.
+
+Finally, in alg. \ref{alg:alohaNetComputeLoss} it is shown how the loss between the model predictions and the actual labels gets computed. In particular, the final total loss is the weighted sum of the losses of the different output heads which are enabled for the current run. Both the \textit{Malicious/Benign} and the \textit{SMART tags} prediction heads use the binary cross entropy loss function to compute the loss between their predictions and the ground truth labels. On the other hand, the \textit{Vendor Count} prediction head uses the PoissonNLLLoss (Negative log likelihood loss with Poisson distribution) function.
 
 \subsection{Joint Embedding}\label{sec:jointEmbeddingModelImplementation}
 \begin{figure}[h]
