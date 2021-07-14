@@ -2,163 +2,166 @@
 \babel@toc {italian}{}
 \babel@toc {italian}{}
 \babel@toc {english}{}
-\contentsline {chapter}{\numberline {1}Introduction}{8}{chapter.1}%
-\contentsline {chapter}{\numberline {2}Background}{9}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Malware}{9}{section.2.1}%
-\contentsline {subsection}{\numberline {2.1.1}Why is Malware used}{10}{subsection.2.1.1}%
-\contentsline {subsection}{\numberline {2.1.2}Common Malware types}{10}{subsection.2.1.2}%
-\contentsline {subsubsection}{By how they spread}{10}{section*.1}%
-\contentsline {subsubsection}{By what they do}{11}{section*.2}%
-\contentsline {subsubsection}{Other cyber-threats}{15}{section*.3}%
-\contentsline {subsubsection}{General considerations on malware types}{17}{section*.4}%
-\contentsline {section}{\numberline {2.2}Detection evasion}{17}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}Reverse-Engineering}{17}{subsection.2.2.1}%
-\contentsline {subsection}{\numberline {2.2.2}Malware analysis}{18}{subsection.2.2.2}%
-\contentsline {subsubsection}{Static analysis}{18}{section*.5}%
-\contentsline {subsubsection}{Dynamic analysis}{18}{section*.6}%
-\contentsline {subsubsection}{Hybrid analysis}{19}{section*.7}%
-\contentsline {subsection}{\numberline {2.2.3}Anti-reversing}{19}{subsection.2.2.3}%
-\contentsline {subsection}{\numberline {2.2.4}Anti-disassembly}{20}{subsection.2.2.4}%
-\contentsline {subsubsection}{Linear Disassemblers}{20}{section*.8}%
-\contentsline {subsubsection}{Flow-Oriented Disassemblers}{20}{section*.9}%
-\contentsline {subsubsection}{Anti-Disassembly Techniques}{21}{section*.10}%
-\contentsline {paragraph}{Jump Instructions with the Same Target}{21}{section*.11}%
-\contentsline {paragraph}{Jump Instructions with a Constant Condition}{21}{section*.12}%
-\contentsline {paragraph}{Impossible Disassembly}{21}{section*.13}%
-\contentsline {subsubsection}{Obscuring Flow Control}{22}{section*.14}%
-\contentsline {paragraph}{The Function Pointer Problem}{22}{section*.15}%
-\contentsline {paragraph}{Return Pointer Abuse}{23}{section*.16}%
-\contentsline {paragraph}{Misusing Structured Exception Handlers}{23}{section*.17}%
-\contentsline {subsection}{\numberline {2.2.5}Anti-debugging}{24}{subsection.2.2.5}%
-\contentsline {subsubsection}{Windows Debugger Detection}{24}{section*.18}%
-\contentsline {paragraph}{Using the Windows API}{24}{section*.19}%
-\contentsline {paragraph}{Manually Checking Structures}{25}{section*.20}%
-\contentsline {paragraph}{Checking for System Residue}{25}{section*.21}%
-\contentsline {subsubsection}{Identifying Debugger Behaviour}{26}{section*.22}%
-\contentsline {paragraph}{INT Scanning}{26}{section*.23}%
-\contentsline {paragraph}{Performing Code Checksums}{26}{section*.24}%
-\contentsline {paragraph}{Timing Checks}{26}{section*.25}%
-\contentsline {subsection}{\numberline {2.2.6}Anti-virtual machine}{27}{subsection.2.2.6}%
-\contentsline {subsubsection}{VMware Artefacts}{27}{section*.26}%
-\contentsline {subsubsection}{Vulnerable Instructions}{28}{section*.27}%
-\contentsline {subsection}{\numberline {2.2.7}Packers and unpacking}{28}{subsection.2.2.7}%
-\contentsline {subsubsection}{Packer types}{28}{section*.28}%
-\contentsline {subsubsection}{Packers detection}{29}{section*.29}%
-\contentsline {subsubsection}{Unpacking}{29}{section*.30}%
-\contentsline {subsection}{\numberline {2.2.8}Code Obfuscation}{30}{subsection.2.2.8}%
-\contentsline {subsubsection}{Data-Based Obfuscation}{30}{section*.31}%
-\contentsline {paragraph}{Constant Unfolding}{30}{section*.32}%
-\contentsline {paragraph}{Data-Encoding Schemes}{31}{section*.33}%
-\contentsline {paragraph}{Dead Code Insertion}{31}{section*.34}%
-\contentsline {paragraph}{Arithmetic Substitution via Identities}{31}{section*.35}%
-\contentsline {paragraph}{Register Reassignment}{31}{section*.36}%
-\contentsline {paragraph}{Instruction Substitution}{31}{section*.37}%
-\contentsline {paragraph}{Pattern-Based Obfuscation}{32}{section*.38}%
-\contentsline {subsubsection}{Control-Based Obfuscation}{32}{section*.39}%
-\contentsline {paragraph}{Functions In/Out-Lining}{33}{section*.40}%
-\contentsline {paragraph}{Destruction of Sequential and Temporal Locality}{33}{section*.41}%
-\contentsline {paragraph}{Processor-Based Control Indirection}{33}{section*.42}%
-\contentsline {paragraph}{Operating System-Based Control Indirection}{34}{section*.43}%
-\contentsline {paragraph}{Subroutine Reordering}{34}{section*.44}%
-\contentsline {paragraph}{Opaque Predicated}{34}{section*.45}%
-\contentsline {subsubsection}{Simultaneous Control-Flow and Data-Flow Obfuscation}{34}{section*.46}%
-\contentsline {paragraph}{Inserting Junk Code}{34}{section*.47}%
-\contentsline {paragraph}{Control-Flow Graph Flattening}{34}{section*.48}%
-\contentsline {paragraph}{Code Transposition}{35}{section*.49}%
-\contentsline {paragraph}{Code Virtualization}{35}{section*.50}%
-\contentsline {paragraph}{Code Integration}{35}{section*.51}%
-\contentsline {subsection}{\numberline {2.2.9}Obfuscated Malware}{35}{subsection.2.2.9}%
-\contentsline {subsubsection}{Encrypted Malwares}{35}{section*.52}%
-\contentsline {subsubsection}{Packed Malwares}{36}{section*.53}%
-\contentsline {subsubsection}{Oligomorphic Malwares}{36}{section*.54}%
-\contentsline {subsubsection}{Polymorphic Malwares}{36}{section*.55}%
-\contentsline {subsubsection}{Metamorphic Malwares}{37}{section*.56}%
-\contentsline {chapter}{\numberline {3}Detection Techniques}{38}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Integrity Checker}{38}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Signature-based Detection}{39}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Yara Rules}{39}{subsection.3.2.1}%
-\contentsline {subsubsection}{Yara Rules syntax}{40}{section*.57}%
-\contentsline {paragraph}{Meta section}{40}{section*.58}%
-\contentsline {paragraph}{Strings section}{40}{section*.59}%
-\contentsline {paragraph}{Conditions section}{43}{section*.60}%
-\contentsline {paragraph}{Additional modules}{45}{section*.61}%
-\contentsline {subsubsection}{Yara Rules Advantages and Disadvantages}{45}{section*.62}%
-\contentsline {subsubsection}{Yara Rules Automatic Generators}{46}{section*.63}%
-\contentsline {paragraph}{\textit {YarGen} Tool}{46}{section*.64}%
-\contentsline {paragraph}{\textit {YaraGenerator} Tool}{46}{section*.65}%
-\contentsline {paragraph}{\textit {Yabin} Tool}{47}{section*.66}%
-\contentsline {paragraph}{\textit {AutoYara} Tool}{48}{section*.67}%
-\contentsline {section}{\numberline {3.3}Semantic Based Detection}{48}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Behavioural Based Detection}{49}{section.3.4}%
-\contentsline {section}{\numberline {3.5}Heuristics-based Detection}{49}{section.3.5}%
-\contentsline {section}{\numberline {3.6}Machine Learning}{49}{section.3.6}%
-\contentsline {subsection}{\numberline {3.6.1}AlOHA: Auxiliary Loss Optimization for Hypothesis Augmentation}{51}{subsection.3.6.1}%
-\contentsline {subsubsection}{Inner Workings}{51}{section*.68}%
-\contentsline {paragraph}{Malware Loss}{51}{section*.70}%
-\contentsline {paragraph}{Vendor Count Loss}{52}{section*.71}%
-\contentsline {paragraph}{Per-Vendor Malware Loss}{52}{section*.72}%
-\contentsline {paragraph}{Malicious Tags Loss}{53}{section*.73}%
-\contentsline {paragraph}{Final Loss}{53}{section*.74}%
-\contentsline {subsection}{\numberline {3.6.2}Automatic Malware Description via Attribute Tagging and Similarity Embedding}{53}{subsection.3.6.2}%
-\contentsline {paragraph}{Malware Family Categorization}{54}{section*.75}%
-\contentsline {paragraph}{Multi-Label Classification}{55}{section*.76}%
-\contentsline {paragraph}{Tag Distillation from Detection Names}{55}{section*.77}%
-\contentsline {paragraph}{Tags Prediction - Inner Workings}{56}{section*.78}%
-\contentsline {subparagraph}{Evaluation of Tagging Algorithms}{58}{section*.81}%
-\contentsline {subsection}{\numberline {3.6.3}Learning from Context: Exploiting and Interpreting File Path Information for Better Malware Detection}{58}{subsection.3.6.3}%
-\contentsline {paragraph}{Feature Engineering}{59}{section*.82}%
-\contentsline {paragraph}{Inner Workings}{60}{section*.83}%
-\contentsline {section}{\numberline {3.7}Malware Normalization}{61}{section.3.7}%
-\contentsline {chapter}{\numberline {4}Datasets}{62}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Sorel 20M Dataset}{62}{section.4.1}%
-\contentsline {subsection}{\numberline {4.1.1}Sorel 20M Dataset Description}{63}{subsection.4.1.1}%
-\contentsline {paragraph}{LMDB database, what is it?}{63}{section*.85}%
-\contentsline {subsection}{\numberline {4.1.2}Ember Features}{63}{subsection.4.1.2}%
-\contentsline {subsubsection}{PE File Format}{64}{section*.86}%
-\contentsline {subsubsection}{Feature Set Description}{66}{section*.88}%
-\contentsline {paragraph}{Parsed features}{66}{section*.89}%
-\contentsline {paragraph}{Format-agnostic features}{67}{section*.90}%
-\contentsline {subsection}{\numberline {4.1.3}Trying to improve Dataset Loading Speed}{67}{subsection.4.1.3}%
-\contentsline {subsubsection}{Dataset Pre-Processing}{67}{section*.91}%
-\contentsline {subsubsection}{Generator (Dataloader) versions}{68}{section*.92}%
-\contentsline {paragraph}{Pytorch Dataloader}{68}{section*.93}%
-\contentsline {paragraph}{Generator alt1/alt2}{69}{section*.94}%
-\contentsline {paragraph}{Generator alt3}{72}{section*.95}%
-\contentsline {subparagraph}{Generator parameters optimization}{75}{section*.96}%
-\contentsline {section}{\numberline {4.2}Fresh Dataset}{77}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Model Evaluation with Fresh Dataset}{78}{subsection.4.2.1}%
-\contentsline {paragraph}{Malware Family Prediction task evaluation}{78}{section*.99}%
-\contentsline {paragraph}{Malware Family Ranking task evaluation}{78}{section*.100}%
-\contentsline {chapter}{\numberline {5}Previous Methods}{80}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Implementation}{80}{section.5.1}%
-\contentsline {subsection}{\numberline {5.1.1}ALOHA model}{80}{subsection.5.1.1}%
-\contentsline {subsubsection}{Net Definition}{81}{section*.102}%
-\contentsline {subsection}{\numberline {5.1.2}Joint Embedding}{81}{subsection.5.1.2}%
-\contentsline {subsubsection}{Net Definition}{84}{section*.104}%
-\contentsline {section}{\numberline {5.2}Experiments}{84}{section.5.2}%
-\contentsline {chapter}{\numberline {6}Proposed Method}{88}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Implementation}{89}{section.6.1}%
-\contentsline {subsubsection}{Net Definition}{90}{section*.106}%
-\contentsline {section}{\numberline {6.2}Experiments}{90}{section.6.2}%
-\contentsline {chapter}{\numberline {7}Results}{96}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Malware Label results}{96}{section.7.1}%
-\contentsline {subsection}{\numberline {7.1.1}Summary}{98}{subsection.7.1.1}%
-\contentsline {section}{\numberline {7.2}Per-tag results}{98}{section.7.2}%
-\contentsline {section}{\numberline {7.3}Mean per-sample tagging scores}{102}{section.7.3}%
-\contentsline {section}{\numberline {7.4}Family Ranking Evaluation}{103}{section.7.4}%
-\contentsline {subsection}{\numberline {7.4.1}Example rankings}{106}{subsection.7.4.1}%
-\contentsline {chapter}{\numberline {8}Conclusions}{108}{chapter.8}%
-\contentsline {chapter}{\numberline {9}Appendix}{109}{chapter.9}%
-\contentsline {section}{\numberline {9.1}More Detailed Per-Tag Results}{109}{section.9.1}%
-\contentsline {subsection}{\numberline {9.1.1}Adware tag results}{109}{subsection.9.1.1}%
-\contentsline {subsection}{\numberline {9.1.2}Crypto-miner tag results}{111}{subsection.9.1.2}%
-\contentsline {subsection}{\numberline {9.1.3}Downloader tag results}{114}{subsection.9.1.3}%
-\contentsline {subsection}{\numberline {9.1.4}Dropper tag results}{116}{subsection.9.1.4}%
-\contentsline {subsection}{\numberline {9.1.5}File-infector tag results}{119}{subsection.9.1.5}%
-\contentsline {subsection}{\numberline {9.1.6}Flooder tag results}{121}{subsection.9.1.6}%
-\contentsline {subsection}{\numberline {9.1.7}Installer tag results}{124}{subsection.9.1.7}%
-\contentsline {subsection}{\numberline {9.1.8}Packed tag results}{126}{subsection.9.1.8}%
-\contentsline {subsection}{\numberline {9.1.9}Ransomware tag results}{129}{subsection.9.1.9}%
-\contentsline {subsection}{\numberline {9.1.10}Spyware tag results}{131}{subsection.9.1.10}%
-\contentsline {subsection}{\numberline {9.1.11}Worm tag results}{134}{subsection.9.1.11}%
-\contentsline {chapter}{Bibliography}{137}{figure.caption.154}%
+\contentsline {chapter}{\numberline {1}Introduction}{9}{chapter.1}%
+\contentsline {chapter}{\numberline {2}Background}{10}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Malware}{10}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Why is Malware used}{11}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Common Malware types}{11}{subsection.2.1.2}%
+\contentsline {subsubsection}{By how they spread}{11}{section*.1}%
+\contentsline {subsubsection}{By what they do}{12}{section*.2}%
+\contentsline {subsubsection}{Other cyber-threats}{16}{section*.3}%
+\contentsline {subsubsection}{General considerations on malware types}{18}{section*.4}%
+\contentsline {section}{\numberline {2.2}Detection evasion}{18}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Reverse-Engineering}{18}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Malware analysis}{19}{subsection.2.2.2}%
+\contentsline {subsubsection}{Static analysis}{19}{section*.5}%
+\contentsline {subsubsection}{Dynamic analysis}{19}{section*.6}%
+\contentsline {subsubsection}{Hybrid analysis}{20}{section*.7}%
+\contentsline {subsection}{\numberline {2.2.3}Anti-reversing}{20}{subsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.4}Anti-disassembly}{21}{subsection.2.2.4}%
+\contentsline {subsubsection}{Linear Disassemblers}{21}{section*.8}%
+\contentsline {subsubsection}{Flow-Oriented Disassemblers}{21}{section*.9}%
+\contentsline {subsubsection}{Anti-Disassembly Techniques}{22}{section*.10}%
+\contentsline {paragraph}{Jump Instructions with the Same Target}{22}{section*.11}%
+\contentsline {paragraph}{Jump Instructions with a Constant Condition}{22}{section*.12}%
+\contentsline {paragraph}{Impossible Disassembly}{22}{section*.13}%
+\contentsline {subsubsection}{Obscuring Flow Control}{23}{section*.14}%
+\contentsline {paragraph}{The Function Pointer Problem}{23}{section*.15}%
+\contentsline {paragraph}{Return Pointer Abuse}{24}{section*.16}%
+\contentsline {paragraph}{Misusing Structured Exception Handlers}{24}{section*.17}%
+\contentsline {subsection}{\numberline {2.2.5}Anti-debugging}{25}{subsection.2.2.5}%
+\contentsline {subsubsection}{Windows Debugger Detection}{25}{section*.18}%
+\contentsline {paragraph}{Using the Windows API}{25}{section*.19}%
+\contentsline {paragraph}{Manually Checking Structures}{26}{section*.20}%
+\contentsline {paragraph}{Checking for System Residue}{26}{section*.21}%
+\contentsline {subsubsection}{Identifying Debugger Behaviour}{27}{section*.22}%
+\contentsline {paragraph}{INT Scanning}{27}{section*.23}%
+\contentsline {paragraph}{Performing Code Checksums}{27}{section*.24}%
+\contentsline {paragraph}{Timing Checks}{27}{section*.25}%
+\contentsline {subsection}{\numberline {2.2.6}Anti-virtual machine}{28}{subsection.2.2.6}%
+\contentsline {subsubsection}{VMware Artefacts}{28}{section*.26}%
+\contentsline {subsubsection}{Vulnerable Instructions}{29}{section*.27}%
+\contentsline {subsection}{\numberline {2.2.7}Packers and unpacking}{29}{subsection.2.2.7}%
+\contentsline {subsubsection}{Packer types}{29}{section*.28}%
+\contentsline {subsubsection}{Packers detection}{30}{section*.29}%
+\contentsline {subsubsection}{Unpacking}{30}{section*.30}%
+\contentsline {subsection}{\numberline {2.2.8}Code Obfuscation}{31}{subsection.2.2.8}%
+\contentsline {subsubsection}{Data-Based Obfuscation}{31}{section*.31}%
+\contentsline {paragraph}{Constant Unfolding}{31}{section*.32}%
+\contentsline {paragraph}{Data-Encoding Schemes}{32}{section*.33}%
+\contentsline {paragraph}{Dead Code Insertion}{32}{section*.34}%
+\contentsline {paragraph}{Arithmetic Substitution via Identities}{32}{section*.35}%
+\contentsline {paragraph}{Register Reassignment}{32}{section*.36}%
+\contentsline {paragraph}{Instruction Substitution}{32}{section*.37}%
+\contentsline {paragraph}{Pattern-Based Obfuscation}{33}{section*.38}%
+\contentsline {subsubsection}{Control-Based Obfuscation}{33}{section*.39}%
+\contentsline {paragraph}{Functions In/Out-Lining}{34}{section*.40}%
+\contentsline {paragraph}{Destruction of Sequential and Temporal Locality}{34}{section*.41}%
+\contentsline {paragraph}{Processor-Based Control Indirection}{34}{section*.42}%
+\contentsline {paragraph}{Operating System-Based Control Indirection}{35}{section*.43}%
+\contentsline {paragraph}{Subroutine Reordering}{35}{section*.44}%
+\contentsline {paragraph}{Opaque Predicated}{35}{section*.45}%
+\contentsline {subsubsection}{Simultaneous Control-Flow and Data-Flow Obfuscation}{35}{section*.46}%
+\contentsline {paragraph}{Inserting Junk Code}{35}{section*.47}%
+\contentsline {paragraph}{Control-Flow Graph Flattening}{35}{section*.48}%
+\contentsline {paragraph}{Code Transposition}{36}{section*.49}%
+\contentsline {paragraph}{Code Virtualization}{36}{section*.50}%
+\contentsline {paragraph}{Code Integration}{36}{section*.51}%
+\contentsline {subsection}{\numberline {2.2.9}Obfuscated Malware}{36}{subsection.2.2.9}%
+\contentsline {subsubsection}{Encrypted Malwares}{36}{section*.52}%
+\contentsline {subsubsection}{Packed Malwares}{37}{section*.53}%
+\contentsline {subsubsection}{Oligomorphic Malwares}{37}{section*.54}%
+\contentsline {subsubsection}{Polymorphic Malwares}{37}{section*.55}%
+\contentsline {subsubsection}{Metamorphic Malwares}{38}{section*.56}%
+\contentsline {chapter}{\numberline {3}Detection Techniques}{39}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Integrity Checker}{39}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Signature-based Detection}{40}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Yara Rules}{40}{subsection.3.2.1}%
+\contentsline {subsubsection}{Yara Rules syntax}{41}{section*.57}%
+\contentsline {paragraph}{Meta section}{41}{section*.58}%
+\contentsline {paragraph}{Strings section}{41}{section*.59}%
+\contentsline {paragraph}{Conditions section}{44}{section*.60}%
+\contentsline {paragraph}{Additional modules}{46}{section*.61}%
+\contentsline {subsubsection}{Yara Rules Advantages and Disadvantages}{46}{section*.62}%
+\contentsline {subsubsection}{Yara Rules Automatic Generators}{47}{section*.63}%
+\contentsline {paragraph}{\textit {YarGen} Tool}{47}{section*.64}%
+\contentsline {paragraph}{\textit {YaraGenerator} Tool}{47}{section*.65}%
+\contentsline {paragraph}{\textit {Yabin} Tool}{48}{section*.66}%
+\contentsline {paragraph}{\textit {AutoYara} Tool}{49}{section*.67}%
+\contentsline {section}{\numberline {3.3}Semantic Based Detection}{49}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Behavioural Based Detection}{50}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Heuristics-based Detection}{50}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Machine Learning}{50}{section.3.6}%
+\contentsline {subsection}{\numberline {3.6.1}AlOHA: Auxiliary Loss Optimization for Hypothesis Augmentation}{52}{subsection.3.6.1}%
+\contentsline {subsubsection}{Inner Workings}{52}{section*.68}%
+\contentsline {paragraph}{Malware Loss}{52}{section*.70}%
+\contentsline {paragraph}{Vendor Count Loss}{53}{section*.71}%
+\contentsline {paragraph}{Per-Vendor Malware Loss}{53}{section*.72}%
+\contentsline {paragraph}{Malicious Tags Loss}{54}{section*.73}%
+\contentsline {paragraph}{Final Loss}{54}{section*.74}%
+\contentsline {subsection}{\numberline {3.6.2}Automatic Malware Description via Attribute Tagging and Similarity Embedding}{54}{subsection.3.6.2}%
+\contentsline {paragraph}{Malware Family Categorization}{55}{section*.75}%
+\contentsline {paragraph}{Multi-Label Classification}{56}{section*.76}%
+\contentsline {paragraph}{Tag Distillation from Detection Names}{56}{section*.77}%
+\contentsline {paragraph}{Tags Prediction - Inner Workings}{57}{section*.78}%
+\contentsline {subparagraph}{Evaluation of Tagging Algorithms}{59}{section*.81}%
+\contentsline {subsection}{\numberline {3.6.3}Learning from Context: Exploiting and Interpreting File Path Information for Better Malware Detection}{59}{subsection.3.6.3}%
+\contentsline {paragraph}{Feature Engineering}{60}{section*.82}%
+\contentsline {paragraph}{Inner Workings}{61}{section*.83}%
+\contentsline {section}{\numberline {3.7}Malware Normalization}{62}{section.3.7}%
+\contentsline {chapter}{\numberline {4}Datasets}{63}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Sorel 20M Dataset}{63}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Sorel 20M Dataset Description}{64}{subsection.4.1.1}%
+\contentsline {paragraph}{LMDB database, what is it?}{64}{section*.85}%
+\contentsline {subsection}{\numberline {4.1.2}Ember Features}{64}{subsection.4.1.2}%
+\contentsline {subsubsection}{PE File Format}{65}{section*.86}%
+\contentsline {subsubsection}{Feature Set Description}{67}{section*.88}%
+\contentsline {paragraph}{Parsed features}{67}{section*.89}%
+\contentsline {paragraph}{Format-agnostic features}{68}{section*.90}%
+\contentsline {subsection}{\numberline {4.1.3}Trying to improve Dataset Loading Speed}{68}{subsection.4.1.3}%
+\contentsline {subsubsection}{Dataset Pre-Processing}{68}{section*.91}%
+\contentsline {subsubsection}{Generator (Dataloader) versions}{69}{section*.92}%
+\contentsline {paragraph}{Pytorch Dataloader}{69}{section*.93}%
+\contentsline {paragraph}{Generator alt1/alt2}{70}{section*.94}%
+\contentsline {paragraph}{Generator alt3}{73}{section*.95}%
+\contentsline {subparagraph}{Generator parameters optimization}{76}{section*.96}%
+\contentsline {section}{\numberline {4.2}Fresh Dataset}{78}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Model Evaluation with Fresh Dataset}{79}{subsection.4.2.1}%
+\contentsline {paragraph}{Malware Family Prediction task evaluation}{79}{section*.99}%
+\contentsline {paragraph}{Malware Family Ranking task evaluation}{79}{section*.100}%
+\contentsline {chapter}{\numberline {5}Previous Methods}{81}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Implementation}{81}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}ALOHA model}{81}{subsection.5.1.1}%
+\contentsline {subsubsection}{Net Definition}{82}{section*.102}%
+\contentsline {subsection}{\numberline {5.1.2}Joint Embedding}{82}{subsection.5.1.2}%
+\contentsline {subsubsection}{Net Definition}{85}{section*.104}%
+\contentsline {section}{\numberline {5.2}Training and Evaluation algorithms}{85}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Experiments}{86}{section.5.3}%
+\contentsline {chapter}{\numberline {6}Proposed Method}{91}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Implementation}{92}{section.6.1}%
+\contentsline {subsubsection}{Net Definition}{93}{section*.106}%
+\contentsline {section}{\numberline {6.2}Training and Evaluation algorithms}{93}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Evaluate Fresh algorithm}{93}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Experiments}{93}{section.6.4}%
+\contentsline {chapter}{\numberline {7}Results}{101}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Malware Label results}{101}{section.7.1}%
+\contentsline {subsection}{\numberline {7.1.1}Summary}{103}{subsection.7.1.1}%
+\contentsline {section}{\numberline {7.2}Per-tag results}{103}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Mean per-sample tagging scores}{107}{section.7.3}%
+\contentsline {section}{\numberline {7.4}Family Ranking Evaluation}{108}{section.7.4}%
+\contentsline {subsection}{\numberline {7.4.1}Example rankings}{111}{subsection.7.4.1}%
+\contentsline {chapter}{\numberline {8}Conclusions}{113}{chapter.8}%
+\contentsline {chapter}{\numberline {9}Appendix}{114}{chapter.9}%
+\contentsline {section}{\numberline {9.1}More Detailed Per-Tag Results}{114}{section.9.1}%
+\contentsline {subsection}{\numberline {9.1.1}Adware tag results}{114}{subsection.9.1.1}%
+\contentsline {subsection}{\numberline {9.1.2}Crypto-miner tag results}{116}{subsection.9.1.2}%
+\contentsline {subsection}{\numberline {9.1.3}Downloader tag results}{119}{subsection.9.1.3}%
+\contentsline {subsection}{\numberline {9.1.4}Dropper tag results}{121}{subsection.9.1.4}%
+\contentsline {subsection}{\numberline {9.1.5}File-infector tag results}{124}{subsection.9.1.5}%
+\contentsline {subsection}{\numberline {9.1.6}Flooder tag results}{126}{subsection.9.1.6}%
+\contentsline {subsection}{\numberline {9.1.7}Installer tag results}{129}{subsection.9.1.7}%
+\contentsline {subsection}{\numberline {9.1.8}Packed tag results}{131}{subsection.9.1.8}%
+\contentsline {subsection}{\numberline {9.1.9}Ransomware tag results}{134}{subsection.9.1.9}%
+\contentsline {subsection}{\numberline {9.1.10}Spyware tag results}{136}{subsection.9.1.10}%
+\contentsline {subsection}{\numberline {9.1.11}Worm tag results}{139}{subsection.9.1.11}%
+\contentsline {chapter}{Bibliography}{142}{figure.caption.154}%
