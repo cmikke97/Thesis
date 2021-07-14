@@ -133,10 +133,10 @@
 \contentsline {section}{\numberline {5.1}Implementation}{81}{section.5.1}%
 \contentsline {subsection}{\numberline {5.1.1}ALOHA model}{81}{subsection.5.1.1}%
 \contentsline {subsubsection}{Net Definition}{82}{section*.102}%
-\contentsline {subsection}{\numberline {5.1.2}Joint Embedding}{84}{subsection.5.1.2}%
+\contentsline {subsection}{\numberline {5.1.2}Joint Embedding}{85}{subsection.5.1.2}%
 \contentsline {subsubsection}{Net Definition}{86}{section*.104}%
 \contentsline {section}{\numberline {5.2}Training and Evaluation algorithms}{89}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Experiments}{89}{section.5.3}%
+\contentsline {section}{\numberline {5.3}Experiments}{90}{section.5.3}%
 \contentsline {chapter}{\numberline {6}Proposed Method}{91}{chapter.6}%
 \contentsline {section}{\numberline {6.1}Implementation}{92}{section.6.1}%
 \contentsline {subsubsection}{Net Definition}{93}{section*.106}%
