@@ -140,9 +140,9 @@
 \contentsline {chapter}{\numberline {6}Proposed Method}{91}{chapter.6}%
 \contentsline {section}{\numberline {6.1}Implementation}{92}{section.6.1}%
 \contentsline {subsubsection}{Net Definition}{93}{section*.106}%
-\contentsline {section}{\numberline {6.2}Training and Evaluation algorithms}{93}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Evaluate Fresh algorithm}{93}{section.6.3}%
-\contentsline {section}{\numberline {6.4}Experiments}{93}{section.6.4}%
+\contentsline {section}{\numberline {6.2}Training and Evaluation algorithms}{96}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Evaluate Fresh algorithm}{96}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Experiments}{97}{section.6.4}%
 \contentsline {chapter}{\numberline {7}Results}{100}{chapter.7}%
 \contentsline {section}{\numberline {7.1}Malware Label results}{100}{section.7.1}%
 \contentsline {subsection}{\numberline {7.1.1}Summary}{102}{subsection.7.1.1}%
