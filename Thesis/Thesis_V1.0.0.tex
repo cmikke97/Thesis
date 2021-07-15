@@ -3094,6 +3094,8 @@ Finally, in algorithm \ref{alg:jointEmbeddingNetComputeLoss} is described how th
 	\end{algorithmic}
 \end{algorithm}
 
+Both the \textbf{\textit{ALOHA}} and the \textbf{\textit{Joint Embedding}} model implementations (and also the \textbf{\textit{Proposed Model}} that will be defined in next chapter) are trained and evaluated following the procedure depicted by algorithms \ref{alg:trainNetworkFunction} (\textbf{Train network function}) and \ref{alg:evaluateNetworkFunction} (\textbf{Evaluate network function}).
+
 \section{Experiments}
 Both the models were trained (and validated) each for 10 \textit{epochs} on the first $6M$ training and $1.153.846$ validation samples of the pre-processed Sorel20M dataset (loaded with generator \textit{\textbf{alt3}}) using different number of layers, number of nodes per layer (layer sizes), activation functions and dropout value for the model base topology, different optimizers (\textbf{Adam} or \textbf{SGD}), learning rates (LR), momentum, weight decay and loss weights. Moreover, in the case of the \textbf{Joint Embedding} model also different similarity score functions such as the cosine similarity and the inverse of the Euclidean distance were tested instead of the dot product. The resulting models were then evaluated on the first $1.846.154$ test samples of Sorel20M dataset looking for their tag and/or malicious/benign label (present only in the ALOHA model implementation) prediction \textit{TPR}, \textit{accuracy}, \textit{recall}, \textit{precision}, \textit{f1} score, \textit{jaccard similarity} and \textit{mean-per-sample-accuracy} at a FPR of 1\%, as well as the resulting tag and/or malicious/benign \textit{ROC} curves and \textit{AUC} scores.
 
