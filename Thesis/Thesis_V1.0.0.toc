@@ -136,7 +136,7 @@
 \contentsline {subsection}{\numberline {5.1.2}Joint Embedding}{85}{subsection.5.1.2}%
 \contentsline {subsubsection}{Net Definition}{86}{section*.104}%
 \contentsline {section}{\numberline {5.2}Training and Evaluation algorithms}{89}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Experiments}{90}{section.5.3}%
+\contentsline {section}{\numberline {5.3}Experiments}{91}{section.5.3}%
 \contentsline {chapter}{\numberline {6}Proposed Method}{92}{chapter.6}%
 \contentsline {section}{\numberline {6.1}Implementation}{93}{section.6.1}%
 \contentsline {subsubsection}{Net Definition}{94}{section*.106}%
