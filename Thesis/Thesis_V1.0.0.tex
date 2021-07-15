@@ -3019,7 +3019,16 @@ Alg. \ref{alg:jointEmbeddingNetGetEmbedding} (\textbf{\textit{JointEmbedding} mo
 
 Finally, in algorithm \ref{alg:jointEmbeddingNetComputeLoss} is described how the loss which guides the training procedure is computed. In particular, it corresponds to the \textbf{binary cross entropy loss} between the predicted tag probabilities and the actual tag labels, as depicted by the formulas mentioned in par. \ref{par:tagPredictionImplementation}.
 
-\section{Training and Evaluation algorithms}
+\section{Experiments}
+Both the models were trained (and validated) each for 10 \textit{epochs} on the first $6M$ training and $1.153.846$ validation samples of the pre-processed Sorel20M dataset (loaded with generator \textit{\textbf{alt3}}) using different number of layers, number of nodes per layer (layer sizes), activation functions and dropout value for the model base topology, different optimizers (\textbf{Adam} or \textbf{SGD}), learning rates (LR), momentum, weight decay and loss weights. Moreover, in the case of the \textbf{Joint Embedding} model also different similarity score functions such as the cosine similarity and the inverse of the Euclidean distance were tested instead of the dot product. The resulting models were then evaluated on the first $1.846.154$ test samples of Sorel20M dataset looking for their tag and/or malicious/benign label (present only in the ALOHA model implementation) prediction \textit{TPR}, \textit{accuracy}, \textit{recall}, \textit{precision}, \textit{f1} score, \textit{jaccard similarity} and \textit{mean-per-sample-accuracy} at a FPR of 1\%, as well as the resulting tag and/or malicious/benign \textit{ROC} curves and \textit{AUC} scores.
+
+The final \textbf{ALOHA} architecture, which had a base topology consisting of 3 layers of sizes 512, 512 and 128 respectively, with dropout probability $p_d=5\%$ and \textbf{ELU} activation function, in particular, was trained with a learning rate $LR = 10^{-3}$, \textbf{Adam} optimizer, no momentum nor weight decay and loss weights set to 1.0 for the malicious/benign head, 0.1 for the count head and 0.1 for the tag head (as described in the original paper \cite{ruddALOHA}).
+
+On the other hand, the base topology of the final \textbf{Joint Embedding} architecture consisted of 3 layers of sizes 512, 512, and 128 respectively, with dropout probability $p_d=5\%$ and \textbf{ELU} activation function. The overall model was trained with a learning rate $LR = 10^{-3}$, \textbf{Adam} optimizer, no momentum nor weight decay (the loss weights are not used since there is a single output head). Moreover, the final model uses the dot product as similarity score between tags' and samples' embeddings.
+
+The \textit{ALOHA} and \textit{Joint Embedding} model implementations results are reported in chapter \ref{chap:results}.
+
+\section{Training and Evaluation algorithms}\label{sec:alohaAndJointEmbeddingTrainAndEvaluate}
 \begin{algorithm}[h!]
 	\caption{Train Network function}\label{alg:trainNetworkFunction}
 	\begin{algorithmic}[1]
@@ -3101,15 +3110,6 @@ In particular, as shown in alg. \ref{alg:trainNetworkFunction}, the training fun
 The evaluation function, presented in \ref{alg:evaluateNetworkFunction}, begins in a similar way as the training function by importing the Net and Dataset generator along with some run parameters, by calling the model constructor function (\textit{init}) with all the needed parameters and by loading the model checkpoint chosen by the user. This function, however, continues by setting the model in \textit{evaluation} mode and defining the generator for the test dataset. Then, for all the mini-batches of data from the test set the samples input features are passed to the network and the corresponding predictions are produced and saved to file.
 
 The actual binary cross entropy statistics (such as \textit{TPR}, \textit{Accuracy}, \textit{Recall}, etc.. at different FPRs) and the resulting AUC-ROC score and ROC curves are computed by a distinct set of functions not presented in this document since they simply implement and apply the corresponding mathematical formulas and save the ROC curves to file.
-
-\section{Experiments}
-Both the models were trained (and validated) each for 10 \textit{epochs} on the first $6M$ training and $1.153.846$ validation samples of the pre-processed Sorel20M dataset (loaded with generator \textit{\textbf{alt3}}) using different number of layers, number of nodes per layer (layer sizes), activation functions and dropout value for the model base topology, different optimizers (\textbf{Adam} or \textbf{SGD}), learning rates (LR), momentum, weight decay and loss weights. Moreover, in the case of the \textbf{Joint Embedding} model also different similarity score functions such as the cosine similarity and the inverse of the Euclidean distance were tested instead of the dot product. The resulting models were then evaluated on the first $1.846.154$ test samples of Sorel20M dataset looking for their tag and/or malicious/benign label (present only in the ALOHA model implementation) prediction \textit{TPR}, \textit{accuracy}, \textit{recall}, \textit{precision}, \textit{f1} score, \textit{jaccard similarity} and \textit{mean-per-sample-accuracy} at a FPR of 1\%, as well as the resulting tag and/or malicious/benign \textit{ROC} curves and \textit{AUC} scores.
-
-The final \textbf{ALOHA} architecture, which had a base topology consisting of 3 layers of sizes 512, 512 and 128 respectively, with dropout probability $p_d=5\%$ and \textbf{ELU} activation function, in particular, was trained with a learning rate $LR = 10^{-3}$, \textbf{Adam} optimizer, no momentum nor weight decay and loss weights set to 1.0 for the malicious/benign head, 0.1 for the count head and 0.1 for the tag head (as described in the original paper \cite{ruddALOHA}).
-
-On the other hand, the base topology of the final \textbf{Joint Embedding} architecture consisted of 3 layers of sizes 512, 512, and 128 respectively, with dropout probability $p_d=5\%$ and \textbf{ELU} activation function. The overall model was trained with a learning rate $LR = 10^{-3}$, \textbf{Adam} optimizer, no momentum nor weight decay (the loss weights are not used since there is a single output head). Moreover, the final model uses the dot product as similarity score between tags' and samples' embeddings.
-
-The \textit{ALOHA} and \textit{Joint Embedding} model implementations results are reported in chapter \ref{chap:results}.
 
 \color{Black}
 \chapter{Proposed Method}
@@ -3319,135 +3319,6 @@ The \textbf{\textit{Proposed Model}} implementation also uses exactly the same \
 
 Finally, algorithm \ref{alg:proposedModelNetComputeLoss} (\textbf{\textit{Proposed Model} compute loss function}) describes how the \textbf{\textit{Proposed Model}} loss computation is implemented in \textit{Python}/\textit{Pytorch} code. In particular the final total loss corresponds to the weighted sum of the losses from each enabled output head. The weights used in this computation can be defined by the user at network definition. Both the \textit{Malicious/Benign} label prediction loss and the \textit{Vendor Count} prediction loss computations are taken from the \textbf{\textit{ALOHA}} model implementation and are therefore implemented as the \textbf{binary cross entropy loss} between the predicted malware label and the respective ground truth label and as the \textbf{Negative Log Likelihood with Poisson distribution} between the predicted count and the ground truth value, respectively. On the other hand, the \textit{Tags} prediction loss computation is taken from the \textbf{\textit{Joint Embedding}} model implementation and is therefore the per-sample mean of all tags losses, each of which is computed as the \textbf{binary cross entropy} loss between the predicted tag probability and the ground truth tag.
 
-\section{Training and Evaluation algorithms}
-
-\section{Evaluate Fresh algorithm}
-\begin{algorithm}[h!]
-	\caption{Evaluate Fresh function}\label{alg:evaluateFreshFunction}
-	\begin{algorithmic}[1]
-		\Function{Evaluate\_Fresh}{\textit{ds\_path}, \textit{checkpoint\_file}, \textit{net\_type}, \textit{n\_anchor\_samples\_per\_family}, \textit{hard}, \textit{n\_queries}, \textit{batch\_size}}
-			\State \textbf{evaluate\_fresh\_predictions}(\textit{ds\_path}, \textit{checkpoint\_path}, \textit{net\_type},
-			\State \hskip13.4em \textit{n\_anchor\_samples\_per\_family}, \textit{hard}, \textit{batch\_size})
-			\State
-			\State \textbf{evaluate\_fresh\_rankings}(\textit{ds\_path}, \textit{checkpoint\_path}, \textit{net\_type}, \textit{n\_queries}, \textit{batch\_size})		
-		\EndFunction
-	\end{algorithmic}
-\end{algorithm}
-
-\begin{algorithm}[h!]
-	\caption{Evaluate Fresh Predictions function}\label{alg:evaluateFreshPredictionsFunction}
-	\begin{algorithmic}[1]
-		\Function{Evaluate\_Fresh\_Predictions}{\textit{ds\_path}, \textit{checkpoint\_file}, \textit{net\_type}, \textit{n\_anchor\_samples\_per\_family}, \textit{hard}, \textit{batch\_size}}
-			\State \textit{Net} $\gets$ \textbf{import\_modules}(\textit{net\_type})
-			\State
-			\State \textit{model} $\gets$ \textit{Net}(use\_malware=False, use\_counts=False, n\_tags=\textbf{len}(\textit{Dataset}.\textit{tags}),
-			\State \hskip6.3em feature\_dimension=2381, embedding\_dimension=32,
-			\State \hskip6.3em layer\_sizes=\textit{run\_params}['layer\_sizes'], dropout\_p=\textit{run\_params}['dropout\_p'],
-			\State \hskip6.3em activation\_function=\textit{run\_params}['activation\_function'])
-			\State
-			\State \textit{model}.\textbf{load\_state\_dict}(\textit{checkpoint\_path})
-			\State \textit{model}.\textbf{eval}()
-			\State
-			\State \textit{generator} $\gets$ \textbf{get\_generator}(\textit{ds\_path}, \textit{batch\_size}, return\_shas=True, shuffle=True)
-			\State
-			\State \textit{anchors} $\gets$ \{\}
-			\ForAll{\textit{shas}, \textit{features}, \textit{labels} $\in$ \textit{generator}}
-				\State \textit{embeddings} $\gets$ \textit{model}.\textbf{get\_embedding}(\textit{features})['embedding']
-				\ForAll{\textit{n} $\in [0, $\textit{n\_families}$)$}
-					\State \textit{anchors}.\textbf{append}(\textbf{get\_anchor\_samples}(\textit{shas}, \textit{labels}, \textit{embeddings}, \textit{n},
-					\State \hskip17.6em \textit{n\_anchor\_samples\_per\_family}))
-				\EndFor
-			\EndFor
-			\State	
-			\ForAll{\textit{shas}, \textit{features}, \textit{labels} $\in$ \textit{generator}}
-				\State \textit{indices} $\gets$ [\textit{i}, $\forall$ \textit{i}, \textit{sha} $\in$ \textbf{enumerate}(\textit{shas}) \textbf{if} \textit{sha} \textbf{not in} \textit{anchors}['shas']]
-				\State
-				\State \textit{selected\_shas} $\gets$ [\textit{shas}[\textit{i}], $\forall$ \textit{i} $\in$ \textit{indices}]
-				\State \textit{selected\_features} $\gets$ \textit{features}[\textit{indices}]
-				\State \textit{selected\_labels} $\gets$ \textit{labels}[\textit{indices}]
-				\State \textit{embeddings} $\gets$ \textit{model}.\textbf{get\_embedding}(\textit{selected\_features})['embedding']
-				\State
-				\State \textit{distances} $\gets$ \textbf{torch.cdist}(\textit{embeddings}, \textit{anchors}['embeddings'], p=2.0)
-				\State \textit{similarity\_scores} $\gets$ \textbf{distance\_to\_similarity}(\textit{distances}, \textit{sim\_function\_a}, \textit{sim\_function})
-				\State
-				\State \textit{rv} $\gets$ \{\}
-				\ForAll{\textit{i} $\in [0, $\textit{n\_families}$)$}
-					\State \textit{rv}['label\_\{\}'.\textbf{format}(\textbf{label\_to\_sig}(\textit{i}))] $\gets$ [\textbf{int}(\textit{lab} $=$ \textit{i}), $\forall$ \textit{lab} $\in$ \textit{selected\_labels}]
-					\If{\textit{hard}}
-						\State \textit{rv}['pred\_\{\}'.\textbf{format}(\textbf{label\_to\_sig}(\textit{i}))] $\gets$ [\textbf{int}(\textbf{torch.max}(\textit{sims}[[\textit{j},
-						\State \hskip6.2em $\forall$ \textit{j} $\in [0, $\textbf{len}(\textit{sims})$)$ \textbf{if} \textit{anchors}['labels'][\textit{j}] == \textit{i}]])
-						\State \hskip6.2em $=$ \textbf{torch.max}(\textit{sims})), $\forall$ \textit{sims} $\in$ \textit{similarity\_scores}]
-					\Else
-						\State \textit{rv}['pred\_\{\}'.\textbf{format}(\textbf{label\_to\_sig}(\textit{i}))] $\gets$ [\textbf{torch.max}(\textit{sims}[[\textit{j},
-						\State \hskip6.2em $\forall$ \textit{j} $\in [0, $\textbf{len}(\textit{sims})$)$ \textbf{if} \textit{anchors}['labels'][\textit{j}] $=$ \textit{i}]]),
-						\State \hskip6.2em $\forall$ \textit{sims} $\in$ \textit{similarity\_scores}]
-					\EndIf
-				\EndFor
-				\State
-				\State \textbf{save\_to\_file}(\textit{rv})
-			\EndFor
-		\EndFunction
-	\end{algorithmic}
-\end{algorithm}
-
-\begin{algorithm}[h!]
-	\caption{Evaluate Fresh Rankings function}\label{alg:evaluateFreshRankingsFunction}
-	\begin{algorithmic}[1]
-		\Function{Evaluate\_Fresh\_Rankings}{\textit{ds\_path}, \textit{checkpoint\_file}, \textit{net\_type}, \textit{n\_queries}, \textit{batch\_size}}
-			\State \textit{Net} $\gets$ \textbf{import\_modules}(\textit{net\_type})
-			\State
-			\State \textit{model} $\gets$ \textit{Net}(use\_malware=False, use\_counts=False, n\_tags=\textbf{len}(\textit{Dataset}.\textit{tags}),
-			\State \hskip6.3em feature\_dimension=2381, embedding\_dimension=32,
-			\State \hskip6.3em layer\_sizes=\textit{run\_params}['layer\_sizes'], dropout\_p=\textit{run\_params}['dropout\_p'],
-			\State \hskip6.3em activation\_function=\textit{run\_params}['activation\_function'])
-			\State \textit{model}.\textbf{load\_state\_dict}(\textit{checkpoint\_path})
-			\State \textit{model}.\textbf{eval}()
-			\State
-			\State \textit{generator} $\gets$ \textit{get\_generator}(\textit{ds\_path}, \textit{batch\_size}, return\_shas=True, shuffle=True)
-			\State \textit{queries} $\gets$ None
-			\State \textit{rank\_per\_query} $\gets$ \{\}
-			\ForAll{\textit{shas}, \textit{features}, \textit{labels} $\in$ \textit{generator}}
-				\State \textit{embeddings} $\gets$ \textit{model}.\textbf{get\_embedding}(\textit{features})['embedding']
-				\State
-				\If{\textit{queries} \textbf{is} None}
-					\State \textit{queries} $\gets$ \{'shas': \textit{shas}[:\textit{n\_queries}], 'embeddings': \textit{embeddings}[:\textit{n\_queries}],
-					\State \hskip5.4em 'labels': \textit{labels}[:\textit{n\_queries}]\}
-				\EndIf
-				\State
-				\State \textit{distances} $\gets$ \textbf{torch.cdist}(\textit{queries}['embeddings'], \textit{embeddings}, p=2.0)
-				\State \textit{similarity\_scores} $\gets$ \textbf{distance\_to\_similarity}(\textit{distances}, \textit{sim\_function\_a}, \textit{sim\_function})
-				\State
-				\ForAll{\textit{i}, \textit{s} $\in$ \textbf{enumerate}(\textit{queries}['shas'])}
-				\State \textit{rank\_per\_query}.\textbf{update}(\{
-					\State \hskip2em \textit{i}: \{'query\_sha': \textit{s},
-						\State \hskip3.7em 'ground\_truth\_label': \textbf{int}(\textit{queries}['labels'][\textit{i}]),
-						\State \hskip3.7em 'ground\_truth\_family': \textbf{label\_to\_sig}(\textbf{int}(\textit{queries}['labels'][\textit{i}])), \State \hskip3.7em 'rank\_shas': shas[similarity\_scores[\textit{i}, [\textit{j}, $\forall$ \textit{j} $\in (0, $\textbf{len}(\textit{similarity\_scores}[\textit{i}])$]$
-						\State \hskip6em \textbf{if} \textit{shas}[\textit{j}] $\neq$ \textit{s}]].\textbf{argsort}()],
-						\State \hskip3.7em 'rank\_labels': [\textit{lab}, $\forall$ \textit{lab} $\in$ \textit{labels}[\textit{similarity\_scores}[\textit{i}, [\textit{j},
-						\State \hskip6em $\forall$ \textit{j} $\in (0, $\textbf{len}(\textit{similarity\_scores}[\textit{i}])$]$ \textbf{if} \textit{shas}[\textit{j}] $\neq$ \textit{s}]].\textbf{argsort}()]],
-						\State \hskip3.7em 'rank\_families': [\textbf{label\_to\_sig}(\textit{lab}), $\forall$ \textit{lab} $\in$ \textit{labels}[\textit{similarity\_scores}[\textit{i}, [\textit{j},
-						\State \hskip6em $\forall$ \textit{j} $\in (0, $\textbf{len}(\textit{similarity\_scores}[\textit{i}])$]$ \textbf{if} \textit{shas}[\textit{j}] $\neq$ \textit{s}]].\textbf{argsort}()]]\}\})
-				\EndFor
-			\EndFor
-			\State
-			\State \textit{rs} $\gets$ \textbf{binarize}(\textit{rank\_per\_query})
-			\State \textbf{log}(\textbf{mean\_reciprocal\_rank}(\textit{rs}))
-			\State \textbf{log}(\textbf{mean\_average\_precision}(\textit{rs}))
-			\State
-			\State \textit{queries\_indexes} $\gets$ \{'max\_rr': \textbf{max\_reciprocal\_rank\_index}(\textit{rs}),
-			\State \hskip2em 'min\_rr': \textbf{min\_reciprocal\_rank\_index}(\textit{rs}),
-			\State \hskip2em 'max\_ap': \textbf{max\_average\_precision\_index}(\textit{rs}),
-			\State \hskip2em 'min\_ap': \textbf{min\_average\_precision\_index}(\textit{rs}),
-			\State \hskip2em 'random': \textbf{random.choice}([\textit{v} $\forall$ \textit{v} $\in (0, $\textbf{len}(\textit{rank\_per\_query}.\textbf{keys}())$]$
-			\State \hskip4em \textbf{if} \textit{v} $\notin$ [\textbf{max\_reciprocal\_rank\_index}(\textit{rs}), \textbf{min\_reciprocal\_rank\_index}(\textit{rs}),
-			\State \hskip4em \textbf{max\_average\_precision\_index}(\textit{rs}), \textbf{min\_average\_precision\_index}(\textit{rs})]])\}
-			\State
-			\State \textit{ranks\_to\_save} $\gets$ \{\textit{key}: \textit{rank\_per\_query}[\textit{index}] $\forall$ \textit{key}, \textit{index} $\in$ \textit{queries\_indexes}.\textbf{items}()\}
-			\State \textbf{save\_to\_file}(\textit{ranks\_to\_save})
-		\EndFunction
-	\end{algorithmic}
-\end{algorithm}
-
 \section{Experiments}
 The proposed model was trained multiple times for 10 \textit{epochs} on the first $6M$ training and $1.153.846$ validation samples of the pre-processed Sorel20M dataset (loaded with generator \textit{\textbf{alt3}}) with both the optional output heads (\textit{Malicious/Benign} label prediction and \textit{Vendor Count} prediction) on, changing the network hyper-parameters like the number of layers, layers dimensions (number of hidden units per layer), activation functions and dropout value for the base topology. Other hyper-parameters that were iteratively changed were the used optimizer (\textbf{Adam} or \textbf{SGD}), learning rate (LR), momentum, weight decay, loss weights and the similarity score function used (chosen between the \textit{dot product}, the \textit{cosine similarity} and one of the \textit{inverted Euclidean Distances}: \textit{exp}, \textit{inv} or \textit{inv\_pow}).
 
@@ -3462,6 +3333,138 @@ On the other hand, for the malware family ranking task the learned representatio
 The final \textbf{Proposed Model} architecture consisted of 3 layers of sizes 512, 512, 128 respectively (keeping them consistent to the \textit{ALOHA} and \textit{Joint Embedding} model implementation in order to better compare the final results), with dropout probability $p_d=5\%$, \textbf{ELU} activation function and the \textit{dot product} as similarity score between tags' and samples' embeddings. The training was carried out with a learning rate $LR=10^{-3}$, \textbf{Adam} optimizer, no momentum nor weight decay, and loss weights set to 1.0 for the malicious/benign head, 0.1 for the count head and 1.0 for the tag head.
 
 The \textbf{Proposed Model} results are reported in chapter \ref{chap:results}.
+
+\section{Training and Evaluation algorithms}
+As previously mentioned in section \ref{sec:alohaAndJointEmbeddingTrainAndEvaluate}, the \textbf{\textit{Proposed Model}} training and evaluation procedures are the same as the ones used for the \textbf{\textit{ALOHA}} and \textbf{\textit{Joint Embedding}} model implementations. In particular, the training procedure is presented in alg. \ref{alg:trainNetworkFunction}, while the model evaluation is shown in alg. \ref{alg:evaluateNetworkFunction}.
+
+\section{Evaluate Fresh algorithm}
+\begin{algorithm}[h!]
+	\caption{Evaluate Fresh function}\label{alg:evaluateFreshFunction}
+	\begin{algorithmic}[1]
+		\Function{Evaluate\_Fresh}{\textit{ds\_path}, \textit{checkpoint\_file}, \textit{net\_type}, \textit{n\_anchor\_samples\_per\_family}, \textit{hard}, \textit{n\_queries}, \textit{batch\_size}}
+		\State \textbf{evaluate\_fresh\_predictions}(\textit{ds\_path}, \textit{checkpoint\_path}, \textit{net\_type},
+		\State \hskip13.4em \textit{n\_anchor\_samples\_per\_family}, \textit{hard}, \textit{batch\_size})
+		\State
+		\State \textbf{evaluate\_fresh\_rankings}(\textit{ds\_path}, \textit{checkpoint\_path}, \textit{net\_type}, \textit{n\_queries}, \textit{batch\_size})		
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[h!]
+	\caption{Evaluate Fresh Predictions function}\label{alg:evaluateFreshPredictionsFunction}
+	\begin{algorithmic}[1]
+		\Function{Evaluate\_Fresh\_Predictions}{\textit{ds\_path}, \textit{checkpoint\_file}, \textit{net\_type}, \textit{n\_anchor\_samples\_per\_family}, \textit{hard}, \textit{batch\_size}}
+		\State \textit{Net} $\gets$ \textbf{import\_modules}(\textit{net\_type})
+		\State
+		\State \textit{model} $\gets$ \textit{Net}(use\_malware=False, use\_counts=False, n\_tags=\textbf{len}(\textit{Dataset}.\textit{tags}),
+		\State \hskip6.3em feature\_dimension=2381, embedding\_dimension=32,
+		\State \hskip6.3em layer\_sizes=\textit{run\_params}['layer\_sizes'], dropout\_p=\textit{run\_params}['dropout\_p'],
+		\State \hskip6.3em activation\_function=\textit{run\_params}['activation\_function'])
+		\State
+		\State \textit{model}.\textbf{load\_state\_dict}(\textit{checkpoint\_path})
+		\State \textit{model}.\textbf{eval}()
+		\State
+		\State \textit{generator} $\gets$ \textbf{get\_generator}(\textit{ds\_path}, \textit{batch\_size}, return\_shas=True, shuffle=True)
+		\State
+		\State \textit{anchors} $\gets$ \{\}
+		\ForAll{\textit{shas}, \textit{features}, \textit{labels} $\in$ \textit{generator}}
+		\State \textit{embeddings} $\gets$ \textit{model}.\textbf{get\_embedding}(\textit{features})['embedding']
+		\ForAll{\textit{n} $\in [0, $\textit{n\_families}$)$}
+		\State \textit{anchors}.\textbf{append}(\textbf{get\_anchor\_samples}(\textit{shas}, \textit{labels}, \textit{embeddings}, \textit{n},
+		\State \hskip17.6em \textit{n\_anchor\_samples\_per\_family}))
+		\EndFor
+		\EndFor
+		\State	
+		\ForAll{\textit{shas}, \textit{features}, \textit{labels} $\in$ \textit{generator}}
+		\State \textit{indices} $\gets$ [\textit{i}, $\forall$ \textit{i}, \textit{sha} $\in$ \textbf{enumerate}(\textit{shas}) \textbf{if} \textit{sha} \textbf{not in} \textit{anchors}['shas']]
+		\State
+		\State \textit{selected\_shas} $\gets$ [\textit{shas}[\textit{i}], $\forall$ \textit{i} $\in$ \textit{indices}]
+		\State \textit{selected\_features} $\gets$ \textit{features}[\textit{indices}]
+		\State \textit{selected\_labels} $\gets$ \textit{labels}[\textit{indices}]
+		\State \textit{embeddings} $\gets$ \textit{model}.\textbf{get\_embedding}(\textit{selected\_features})['embedding']
+		\State
+		\State \textit{distances} $\gets$ \textbf{torch.cdist}(\textit{embeddings}, \textit{anchors}['embeddings'], p=2.0)
+		\State \textit{similarity\_scores} $\gets$ \textbf{distance\_to\_similarity}(\textit{distances}, \textit{sim\_function\_a}, \textit{sim\_function})
+		\State
+		\State \textit{rv} $\gets$ \{\}
+		\ForAll{\textit{i} $\in [0, $\textit{n\_families}$)$}
+		\State \textit{rv}['label\_\{\}'.\textbf{format}(\textbf{label\_to\_sig}(\textit{i}))] $\gets$ [\textbf{int}(\textit{lab} $=$ \textit{i}), $\forall$ \textit{lab} $\in$ \textit{selected\_labels}]
+		\If{\textit{hard}}
+		\State \textit{rv}['pred\_\{\}'.\textbf{format}(\textbf{label\_to\_sig}(\textit{i}))] $\gets$ [\textbf{int}(\textbf{torch.max}(\textit{sims}[[\textit{j},
+		\State \hskip6.2em $\forall$ \textit{j} $\in [0, $\textbf{len}(\textit{sims})$)$ \textbf{if} \textit{anchors}['labels'][\textit{j}] == \textit{i}]])
+		\State \hskip6.2em $=$ \textbf{torch.max}(\textit{sims})), $\forall$ \textit{sims} $\in$ \textit{similarity\_scores}]
+		\Else
+		\State \textit{rv}['pred\_\{\}'.\textbf{format}(\textbf{label\_to\_sig}(\textit{i}))] $\gets$ [\textbf{torch.max}(\textit{sims}[[\textit{j},
+		\State \hskip6.2em $\forall$ \textit{j} $\in [0, $\textbf{len}(\textit{sims})$)$ \textbf{if} \textit{anchors}['labels'][\textit{j}] $=$ \textit{i}]]),
+		\State \hskip6.2em $\forall$ \textit{sims} $\in$ \textit{similarity\_scores}]
+		\EndIf
+		\EndFor
+		\State
+		\State \textbf{save\_to\_file}(\textit{rv})
+		\EndFor
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[h!]
+	\caption{Evaluate Fresh Rankings function}\label{alg:evaluateFreshRankingsFunction}
+	\begin{algorithmic}[1]
+		\Function{Evaluate\_Fresh\_Rankings}{\textit{ds\_path}, \textit{checkpoint\_file}, \textit{net\_type}, \textit{n\_queries}, \textit{batch\_size}}
+		\State \textit{Net} $\gets$ \textbf{import\_modules}(\textit{net\_type})
+		\State
+		\State \textit{model} $\gets$ \textit{Net}(use\_malware=False, use\_counts=False, n\_tags=\textbf{len}(\textit{Dataset}.\textit{tags}),
+		\State \hskip6.3em feature\_dimension=2381, embedding\_dimension=32,
+		\State \hskip6.3em layer\_sizes=\textit{run\_params}['layer\_sizes'], dropout\_p=\textit{run\_params}['dropout\_p'],
+		\State \hskip6.3em activation\_function=\textit{run\_params}['activation\_function'])
+		\State \textit{model}.\textbf{load\_state\_dict}(\textit{checkpoint\_path})
+		\State \textit{model}.\textbf{eval}()
+		\State
+		\State \textit{generator} $\gets$ \textit{get\_generator}(\textit{ds\_path}, \textit{batch\_size}, return\_shas=True, shuffle=True)
+		\State \textit{queries} $\gets$ None
+		\State \textit{rank\_per\_query} $\gets$ \{\}
+		\ForAll{\textit{shas}, \textit{features}, \textit{labels} $\in$ \textit{generator}}
+		\State \textit{embeddings} $\gets$ \textit{model}.\textbf{get\_embedding}(\textit{features})['embedding']
+		\State
+		\If{\textit{queries} \textbf{is} None}
+		\State \textit{queries} $\gets$ \{'shas': \textit{shas}[:\textit{n\_queries}], 'embeddings': \textit{embeddings}[:\textit{n\_queries}],
+		\State \hskip5.4em 'labels': \textit{labels}[:\textit{n\_queries}]\}
+		\EndIf
+		\State
+		\State \textit{distances} $\gets$ \textbf{torch.cdist}(\textit{queries}['embeddings'], \textit{embeddings}, p=2.0)
+		\State \textit{similarity\_scores} $\gets$ \textbf{distance\_to\_similarity}(\textit{distances}, \textit{sim\_function\_a}, \textit{sim\_function})
+		\State
+		\ForAll{\textit{i}, \textit{s} $\in$ \textbf{enumerate}(\textit{queries}['shas'])}
+		\State \textit{rank\_per\_query}.\textbf{update}(\{
+		\State \hskip2em \textit{i}: \{'query\_sha': \textit{s},
+		\State \hskip3.7em 'ground\_truth\_label': \textbf{int}(\textit{queries}['labels'][\textit{i}]),
+		\State \hskip3.7em 'ground\_truth\_family': \textbf{label\_to\_sig}(\textbf{int}(\textit{queries}['labels'][\textit{i}])), \State \hskip3.7em 'rank\_shas': shas[similarity\_scores[\textit{i}, [\textit{j}, $\forall$ \textit{j} $\in (0, $\textbf{len}(\textit{similarity\_scores}[\textit{i}])$]$
+		\State \hskip6em \textbf{if} \textit{shas}[\textit{j}] $\neq$ \textit{s}]].\textbf{argsort}()],
+		\State \hskip3.7em 'rank\_labels': [\textit{lab}, $\forall$ \textit{lab} $\in$ \textit{labels}[\textit{similarity\_scores}[\textit{i}, [\textit{j},
+		\State \hskip6em $\forall$ \textit{j} $\in (0, $\textbf{len}(\textit{similarity\_scores}[\textit{i}])$]$ \textbf{if} \textit{shas}[\textit{j}] $\neq$ \textit{s}]].\textbf{argsort}()]],
+		\State \hskip3.7em 'rank\_families': [\textbf{label\_to\_sig}(\textit{lab}), $\forall$ \textit{lab} $\in$ \textit{labels}[\textit{similarity\_scores}[\textit{i}, [\textit{j},
+		\State \hskip6em $\forall$ \textit{j} $\in (0, $\textbf{len}(\textit{similarity\_scores}[\textit{i}])$]$ \textbf{if} \textit{shas}[\textit{j}] $\neq$ \textit{s}]].\textbf{argsort}()]]\}\})
+		\EndFor
+		\EndFor
+		\State
+		\State \textit{rs} $\gets$ \textbf{binarize}(\textit{rank\_per\_query})
+		\State \textbf{log}(\textbf{mean\_reciprocal\_rank}(\textit{rs}))
+		\State \textbf{log}(\textbf{mean\_average\_precision}(\textit{rs}))
+		\State
+		\State \textit{queries\_indexes} $\gets$ \{'max\_rr': \textbf{max\_reciprocal\_rank\_index}(\textit{rs}),
+		\State \hskip2em 'min\_rr': \textbf{min\_reciprocal\_rank\_index}(\textit{rs}),
+		\State \hskip2em 'max\_ap': \textbf{max\_average\_precision\_index}(\textit{rs}),
+		\State \hskip2em 'min\_ap': \textbf{min\_average\_precision\_index}(\textit{rs}),
+		\State \hskip2em 'random': \textbf{random.choice}([\textit{v} $\forall$ \textit{v} $\in (0, $\textbf{len}(\textit{rank\_per\_query}.\textbf{keys}())$]$
+		\State \hskip4em \textbf{if} \textit{v} $\notin$ [\textbf{max\_reciprocal\_rank\_index}(\textit{rs}), \textbf{min\_reciprocal\_rank\_index}(\textit{rs}),
+		\State \hskip4em \textbf{max\_average\_precision\_index}(\textit{rs}), \textbf{min\_average\_precision\_index}(\textit{rs})]])\}
+		\State
+		\State \textit{ranks\_to\_save} $\gets$ \{\textit{key}: \textit{rank\_per\_query}[\textit{index}] $\forall$ \textit{key}, \textit{index} $\in$ \textit{queries\_indexes}.\textbf{items}()\}
+		\State \textbf{save\_to\_file}(\textit{ranks\_to\_save})
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}
+
+As previously mentioned, both the \textbf{\textit{Proposed Model}} and the \textbf{\textit{Joint Embedding}} model implementations are also evaluated on the malware family prediction and ranking tasks. In particular the function presented in algorithm \ref{alg:evaluateFreshFunction} (\textbf{Evaluate fresh function}) is used to produce both the evaluation results mentioned. In particular, it calls both the following two functions in succession: \textbf{\textit{evaluate\_fresh\_predictions}} and \textbf{\textit{evaluate\_fresh\_rankings}}
 
 \color{Black}
 \chapter{Results}\label{chap:results}
