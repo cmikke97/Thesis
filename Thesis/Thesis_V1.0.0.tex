@@ -3265,7 +3265,6 @@ Finally the individual head losses are aggregated together by computing their we
 			\State
 			\If{'malware' $\in$ \textit{labels}}
 				\State \textit{malware\_loss} $\gets$ \textbf{Binary\_cross\_entropy}(\textit{predictions}['malware'], \textit{labels}['malware'])
-				\State
 				\If{'malware' $\in$ \textit{loss\_wts}}
 					\State \textit{weight} $\gets$ \textit{loss\_wts}['malware']
 				\Else
@@ -3278,7 +3277,6 @@ Finally the individual head losses are aggregated together by computing their we
 			\State			
 			\If{'count' $\in$ \textit{labels}}
 				\State \textit{count\_loss} $\gets$ \textbf{PoissonNLLLoss}(\textit{predictions}['count'], \textit{labels}['count'])
-				\State
 				\If{'count' $\in$ \textit{loss\_wts}}				
 					\State \textit{weight} $\gets$ \textit{loss\_wts}['count']
 				\Else
@@ -3292,7 +3290,6 @@ Finally the individual head losses are aggregated together by computing their we
 			\If{'tags' $\in$ \textit{labels}}
 				\State \textit{similarity\_loss} $\gets$ \textbf{Binary\_cross\_entropy}(\textit{predictions}['probability'], \textit{labels}['tags'],
 				\State \hskip7.9em reduction='none').\textbf{sum}(dim=1).\textbf{mean}(dim=0)
-				\State
 				\If{'tags' $\in$ \textit{loss\_wts}}
 					\State \textit{weight} $\gets$ \textit{loss\_wts}['tags']
 				\Else
@@ -3344,7 +3341,6 @@ As previously mentioned in section \ref{sec:alohaAndJointEmbeddingTrainAndEvalua
 		\Function{Evaluate\_Fresh}{\textit{ds\_path}, \textit{checkpoint\_file}, \textit{net\_type}, \textit{n\_anchor\_samples\_per\_family}, \textit{hard}, \textit{n\_queries}, \textit{batch\_size}}
 		\State \textbf{evaluate\_fresh\_predictions}(\textit{ds\_path}, \textit{checkpoint\_path}, \textit{net\_type},
 		\State \hskip13.4em \textit{n\_anchor\_samples\_per\_family}, \textit{hard}, \textit{batch\_size})
-		\State
 		\State \textbf{evaluate\_fresh\_rankings}(\textit{ds\_path}, \textit{checkpoint\_path}, \textit{net\_type}, \textit{n\_queries}, \textit{batch\_size})		
 		\EndFunction
 	\end{algorithmic}
@@ -3362,7 +3358,6 @@ As previously mentioned in section \ref{sec:alohaAndJointEmbeddingTrainAndEvalua
 		\State \hskip6.3em activation\_function=\textit{run\_params}['activation\_function'])
 		\State \textit{model}.\textbf{load\_state\_dict}(\textit{checkpoint\_path})
 		\State \textit{model}.\textbf{eval}()
-		\State
 		\State \textit{generator} $\gets$ \textbf{get\_generator}(\textit{ds\_path}, \textit{batch\_size}, return\_shas=True, shuffle=True)
 		\State
 		\State \textit{anchors} $\gets$ \{\}
@@ -3376,12 +3371,10 @@ As previously mentioned in section \ref{sec:alohaAndJointEmbeddingTrainAndEvalua
 		\State	
 		\ForAll{\textit{shas}, \textit{features}, \textit{labels} $\in$ \textit{generator}}
 		\State \textit{indices} $\gets$ [\textit{i}, $\forall$ \textit{i}, \textit{sha} $\in$ \textbf{enumerate}(\textit{shas}) \textbf{if} \textit{sha} \textbf{not in} \textit{anchors}['shas']]
-		\State
 		\State \textit{selected\_shas} $\gets$ [\textit{shas}[\textit{i}], $\forall$ \textit{i} $\in$ \textit{indices}]
 		\State \textit{selected\_features} $\gets$ \textit{features}[\textit{indices}]
 		\State \textit{selected\_labels} $\gets$ \textit{labels}[\textit{indices}]
 		\State \textit{embeddings} $\gets$ \textit{model}.\textbf{get\_embedding}(\textit{selected\_features})['embedding']
-		\State
 		\State \textit{distances} $\gets$ \textbf{torch.cdist}(\textit{embeddings}, \textit{anchors}['embeddings'], p=2.0)
 		\State \textit{similarity\_scores} $\gets$ \textbf{distance\_to\_similarity}(\textit{distances}, \textit{sim\_function\_a}, \textit{sim\_function})
 		\State
