@@ -123,10 +123,10 @@
 \contentsline {subsubsection}{Generator (Dataloader) versions}{69}{section*.94}%
 \contentsline {paragraph}{Pytorch Dataloader}{69}{section*.95}%
 \contentsline {paragraph}{Generator alt1/alt2}{71}{section*.96}%
-\contentsline {paragraph}{Generator alt3}{74}{section*.97}%
-\contentsline {subparagraph}{Generator parameters optimization}{76}{section*.98}%
-\contentsline {section}{\numberline {4.2}Fresh Dataset}{78}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Model Evaluation with Fresh Dataset}{80}{subsection.4.2.1}%
+\contentsline {paragraph}{Generator alt3}{73}{section*.97}%
+\contentsline {subparagraph}{Generator parameters optimization}{77}{section*.98}%
+\contentsline {section}{\numberline {4.2}Fresh Dataset}{79}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Model Evaluation with Fresh Dataset}{79}{subsection.4.2.1}%
 \contentsline {paragraph}{Malware Family Prediction task evaluation}{80}{section*.102}%
 \contentsline {paragraph}{Malware Family Ranking task evaluation}{80}{section*.103}%
 \contentsline {chapter}{\numberline {5}Previous Methods}{82}{chapter.5}%
@@ -138,15 +138,15 @@
 \contentsline {section}{\numberline {5.2}Experiments}{90}{section.5.2}%
 \contentsline {section}{\numberline {5.3}Training and Evaluation algorithms}{90}{section.5.3}%
 \contentsline {subsection}{\numberline {5.3.1}Training}{90}{subsection.5.3.1}%
-\contentsline {subsection}{\numberline {5.3.2}Evaluation}{91}{subsection.5.3.2}%
-\contentsline {subsection}{\numberline {5.3.3}Results Computation and plotting}{92}{subsection.5.3.3}%
+\contentsline {subsection}{\numberline {5.3.2}Evaluation}{92}{subsection.5.3.2}%
+\contentsline {subsection}{\numberline {5.3.3}Results Computation and plotting}{93}{subsection.5.3.3}%
 \contentsline {chapter}{\numberline {6}Proposed Method}{94}{chapter.6}%
 \contentsline {section}{\numberline {6.1}Implementation}{95}{section.6.1}%
 \contentsline {subsubsection}{Net Definition}{96}{section*.113}%
 \contentsline {section}{\numberline {6.2}Experiments}{99}{section.6.2}%
 \contentsline {section}{\numberline {6.3}Training and Evaluation algorithms}{100}{section.6.3}%
 \contentsline {section}{\numberline {6.4}Evaluate Fresh algorithm}{101}{section.6.4}%
-\contentsline {subsection}{\numberline {6.4.1}Model Evaluation on Malware Family Prediction/Ranking task}{101}{subsection.6.4.1}%
+\contentsline {subsection}{\numberline {6.4.1}Model Evaluation on Malware Family Prediction/Ranking tasks}{101}{subsection.6.4.1}%
 \contentsline {subsection}{\numberline {6.4.2}Fresh Results Computation and Plotting}{104}{subsection.6.4.2}%
 \contentsline {chapter}{\numberline {7}Results}{105}{chapter.7}%
 \contentsline {section}{\numberline {7.1}Malware Label results}{105}{section.7.1}%

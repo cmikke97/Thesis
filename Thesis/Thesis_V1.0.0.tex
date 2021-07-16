@@ -2225,7 +2225,7 @@ In the first implementation of the data loading code the original \textit{Pytorc
 
 In particular, as it can be seen in algorithms \ref{alg:DatasetInit} and \ref{alg:DatasetGetItem}, the \textit{Dataset} class consists of 2 main member functions (although other less important member functions such as the \textit{Len} function are also implemented): \textit{Init} and \textit{GetItem}. In the \textit{Init} constructor function (alg. \ref{alg:DatasetInit}) the dataset, consisting of features (\textit{X}), labels (\textit{y}) and sha256 hashes (\textit{S}), gets loaded into a set of 3 parallel memory mapped arrays. In the \textit{GetItem} member function (alg. \ref{alg:DatasetGetItem}), instead, the data (features, labels and/or sha256) corresponding to a specific sample with index '\textit{index}' is retrieved and returned to the function caller (that will be the Pytorch original Dataloader itself).
 
-\begin{algorithm}[h]
+\begin{algorithm}[h!]
 	\caption{Dataset class, Init}\label{alg:DatasetInit}
 	\begin{algorithmic}[1]
 		\Class{Dataset}
@@ -2244,7 +2244,7 @@ In particular, as it can be seen in algorithms \ref{alg:DatasetInit} and \ref{al
 	\end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}[h]
+\begin{algorithm}[h!]
 	\caption{Dataset class, GetItem}\label{alg:DatasetGetItem}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
@@ -2271,7 +2271,7 @@ Before model training/evaluation the dataset generator (dataloader) is defined b
 
 As previously mentioned, this implementation is faster than the original Sorel20M dataloader code while being also relatively simple, however given how the pre-processed dataset is saved (consecutive samples are saved on consecutive locations on disk) it is still somewhat inefficient. In fact, the time needed for completing 10 epochs training on a less powerful instance is still unreasonable. One possible optimization would be to read batches in one go as big chunks rather than calling the \textit{GetItem} function on the Dataset once per sample and then concatenating the resulting data. However, random sampling during model training introduces a regularization effect which generally improves model generalization on unseen samples, therefore it would be better to find an optimization combining both data loading efficiency and random sampling.
 
-\begin{algorithm}
+\begin{algorithm}[h!]
 	\caption{Pytorch Dataloader definition}\label{alg:PytorchDataloader}
 	\begin{algorithmic}[1]
 		\State \textit{ds} $\gets$ \textbf{Dataset}(\textit{ds\_root}, \textit{mode}, \textit{n\_samples}, \textit{return\_shas}, ...)
@@ -2286,7 +2286,7 @@ In particular, the alternative generator 1 ('\textit{\textbf{alt1}}'), again loa
 
 In the alternative generator 2 ('\textit{\textbf{alt2}}'), on the other hand, the tensors created by loading the dataset as was done in \textit{\textbf{alt1}} are randomly shuffled in place at each iteration. Then the batches of data are sampled (in order) from them in \textit{multithreading}.
 
-\begin{algorithm}
+\begin{algorithm}[h!]
 	\caption{Alt1/Alt2 FastTensorDataLoader class, Init function}\label{alg:Alt1_2FastDataLoaderInit}
 	\begin{algorithmic}[1]
 		\Function{Init}{\textit{self}, \textit{tensors}, \textit{batch\_size}, \textit{shuffle}, \textit{n\_workers}, ...}
@@ -2306,7 +2306,7 @@ In the alternative generator 2 ('\textit{\textbf{alt2}}'), on the other hand, th
 	\end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}
+\begin{algorithm}[h!]
 	\caption{Alt1 FastTensorDataLoader class, Iter function}\label{alg:Alt1FastDataLoaderIter}
 	\begin{algorithmic}[1]
 		\Function{Iter}{\textit{self}}
@@ -2322,7 +2322,7 @@ In the alternative generator 2 ('\textit{\textbf{alt2}}'), on the other hand, th
 	\end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}
+\begin{algorithm}[h!]
 	\caption{Alt2 FastTensorDataLoader class, Iter function}\label{alg:Alt2FastDataLoaderIter}
 	\begin{algorithmic}[1]
 		\Function{Iter}{\textit{self}}
@@ -2339,7 +2339,7 @@ In the alternative generator 2 ('\textit{\textbf{alt2}}'), on the other hand, th
 	\end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}
+\begin{algorithm}[h!]
 	\caption{Alt1/Alt2 FastTensorDataLoader class, Next function}\label{alg:Alt1_2FastDataLoaderNext}
 	\begin{algorithmic}[1]
 		\Function{Next}{\textit{self}}
@@ -2368,7 +2368,7 @@ In the alternative generator 2 ('\textit{\textbf{alt2}}'), on the other hand, th
 	\end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}
+\begin{algorithm}[h!]
 	\caption{Alt1 get\_batch function}\label{alg:Alt1GetBatch}
 	\begin{algorithmic}[1]
 		\Function{get\_batch}{\textit{tensors}, \textit{batch\_size}, \textit{i}, \textit{indices}, ...}
@@ -2392,7 +2392,7 @@ In the alternative generator 2 ('\textit{\textbf{alt2}}'), on the other hand, th
 	\end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}
+\begin{algorithm}[h!]
 	\caption{Alt2 get\_batch function}\label{alg:Alt2GetBatch}
 	\begin{algorithmic}[1]
 		\Function{get\_batch}{\textit{tensors}, \textit{batch\_size}, \textit{i}, ...}
@@ -2424,7 +2424,7 @@ The generator alternative 3 ('\textit{\textbf{alt3}}') managed to considerably s
 
 This optimization uses a new FastTensorDataLoader class which exploits a pool of threads to asynchronously load the dataset into memory in chunks of consecutive data. In particular each thread loads into memory '\textit{\textbf{n\_chunks}}' randomly chosen chunks. Each thread then proceeds to concatenate together its '\textit{\textbf{n\_chunks}}' chunks, which contain '\textit{\textbf{chunk\_size}}' malware samples each, generating each a '\textit{\textbf{chunk\_aggregate}}', which is then randomly shuffled and returned by the thread. The \textit{\textbf{chunk\_aggregates}} are asynchronously inserted in a queue (the order depends on the threads instantiation order) of fixed length equal to the number of workers used. The main dataloader thread manages the \textit{\textbf{chunk\_aggregate}} queue, instantiating the parallel threads such that the queue is always full. Moreover, the main dataloader thread sequentially extracts, when possible, one \textit{\textbf{chunk\_aggregate}} at a time from the queue and then proceeds to return one batch of data at a time from it, when required.
 
-\begin{algorithm} [h]
+\begin{algorithm}[h!]
 	\caption{Alt3 FastTensorDataLoader class, Init}\label{alg:Alt3FastDataLoaderInit}
 	\begin{algorithmic}[1]
 		\Class{FastTensorDataloader}
@@ -2450,7 +2450,7 @@ This optimization uses a new FastTensorDataLoader class which exploits a pool of
 	\end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}[h]
+\begin{algorithm}[h!]
 	\caption{Alt3 FastTensorDataLoader class, Iter}\label{alg:Alt3FastDataLoaderIter}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
@@ -2470,7 +2470,7 @@ This optimization uses a new FastTensorDataLoader class which exploits a pool of
 	\end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}[h]
+\begin{algorithm}[h!]
 	\caption{Alt3 FastTensorDataLoader class, Next}\label{alg:Alt3FastDataLoaderNext}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
@@ -2521,7 +2521,7 @@ This optimization uses a new FastTensorDataLoader class which exploits a pool of
 	\end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}[h]
+\begin{algorithm}[h!]
 	\caption{Alt3 get\_chunks function}\label{alg:Alt3GetChunks}
 	\begin{algorithmic}[1]
 		\Function{get\_chunks}{\textit{tensors}, \textit{chunk\_indices}, \textit{chunk\_size}, \textit{last\_chunk\_size}, \textit{n\_chunks}, \textit{shuffle}}
@@ -2578,10 +2578,6 @@ As it can be seen from the algorithms provided, this version of the generator de
 \subparagraph{Generator parameters optimization}
 To understand the behaviour of the FastTensorDataLoader \textit{\textbf{alt3}} on the target instance and choose the best combination of values for the parameters \textit{\textbf{chunk\_size}} and \textit{\textbf{n\_chunks}} when using 8 threads (which is double the amount of cores available in the instance used for this project), the code speed was cross evaluated on using powers of 2 for both values. In particular the data loading code was evaluated using values for \textit{\textbf{chunk\_size}} and \textit{\textbf{n\_chunks}} got from two intervals and the corresponding average \textit{speed} and average \textit{elapsed time} heatmap plots were generated.
 
-In practice \textit{\textbf{chunk\_size}} and \textit{\textbf{n\_chunks}} values were chosen to be the powers of 2 ranging from $2^{4}$ to $2^{14}$ (included) and from $2^{3}$ to $2^{13}$, respectively. Moreover, in order to constrain the evaluation to meaningful values only, two additional parameters have to be set: \textit{\textbf{min\_mul}} and \textit{\textbf{max\_mul}}. In fact, as previously mentioned, the product of \textit{\textbf{chunk\_size}} $\times$ \textit{\textbf{n\_chunks}} gives the total number of samples in one \textit{\textbf{chunk\_aggregate}} residing in main memory; this quantity must be constrained to a certain range to avoid using too much main memory while being able to retrieve at least one \textit{batch} of data from the \textit{chunk aggregate}. The parameters \textit{\textbf{min\_mul}} and \textit{\textbf{max\_mul}} are used exactly to indicate the minimum and maximum number of batches retrievable from the resulting \textit{\textbf{chunk\_aggregates}} and therefore indirectly pose a constrain on the product \textit{\textbf{chunk\_size}} $\times$ \textit{\textbf{n\_chunks}}.
-
-While effectively evaluating the data loading code (\textit{\textbf{alt3}}) performance the \textit{\textbf{min\_mul}} was set to a value of 1, while \textit{\textbf{max\_mul}} to 32. Those values were chosen in order to always be able to retrieve at least one \textit{batch} from the \textit{\textbf{chunk\_aggregate}} without saturating the RAM available on the instance used for this project (in fact, having for \textit{\textbf{max\_mul}} a value greater than $32 \times$ \textit{\textbf{batch\_size}} was too much).
-
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{./images/speeds_heatmap.png}
@@ -2596,6 +2592,10 @@ While effectively evaluating the data loading code (\textit{\textbf{alt3}}) perf
 	\label{fig:times_heatmap}
 \end{figure}
 
+In practice \textit{\textbf{chunk\_size}} and \textit{\textbf{n\_chunks}} values were chosen to be the powers of 2 ranging from $2^{4}$ to $2^{14}$ (included) and from $2^{3}$ to $2^{13}$, respectively. Moreover, in order to constrain the evaluation to meaningful values only, two additional parameters have to be set: \textit{\textbf{min\_mul}} and \textit{\textbf{max\_mul}}. In fact, as previously mentioned, the product of \textit{\textbf{chunk\_size}} $\times$ \textit{\textbf{n\_chunks}} gives the total number of samples in one \textit{\textbf{chunk\_aggregate}} residing in main memory; this quantity must be constrained to a certain range to avoid using too much main memory while being able to retrieve at least one \textit{batch} of data from the \textit{chunk aggregate}. The parameters \textit{\textbf{min\_mul}} and \textit{\textbf{max\_mul}} are used exactly to indicate the minimum and maximum number of batches retrievable from the resulting \textit{\textbf{chunk\_aggregates}} and therefore indirectly pose a constrain on the product \textit{\textbf{chunk\_size}} $\times$ \textit{\textbf{n\_chunks}}.
+
+While effectively evaluating the data loading code (\textit{\textbf{alt3}}) performance the \textit{\textbf{min\_mul}} was set to a value of 1, while \textit{\textbf{max\_mul}} to 32. Those values were chosen in order to always be able to retrieve at least one \textit{batch} from the \textit{\textbf{chunk\_aggregate}} without saturating the RAM available on the instance used for this project (in fact, having for \textit{\textbf{max\_mul}} a value greater than $32 \times$ \textit{\textbf{batch\_size}} was too much).
+
 Given the resulting heatmaps (\ref{fig:speeds_heatmap}, \ref{fig:times_heatmap}), \textit{\textbf{chunk\_size}} was permanently set to \textbf{256} and \textit{\textbf{n\_chunks}} to \textbf{256} for all the experiments conducted for this project since these values seemed to be a good compromise between data loading speed and samples dispersion.
 
 In any case, with respect to the previous solutions (original \textit{Pytorch} dataloader and the generators \textit{\textbf{alt1}} and \textit{\textbf{alt2}}) the speed up was huge. This new version took, in fact, approximately 15 minutes, on average, to complete 1 training epoch while the previous solution took, at best, $\sim6$ hours. Therefore this was the generator used for loading the dataset in all the experiments done for this project. However, it has to be reiterated that this generator version works by approximating the random sampling step during training which in turn may hinder the model generalization on unseen samples. The results presented in this document may therefore be slightly lower than what could be achieved on a more powerful instance using the original \textit{Pytorch} dataloader.
@@ -2608,7 +2608,7 @@ In any case, with respect to the previous solutions (original \textit{Pytorch} d
 	\label{fig:workflow_fresh_dataset}
 \end{figure}
 
-In order to evaluate the learned representation of PE files (embedding) of the proposed model on the sample family prediction task a further dataset, also referred to as \textit{\textbf{fresh\_dataset}} throughout this document (and in the code), was created. It consists of a number of sample files' feature vectors along with the corresponding family labels and the sha256 hashes of the original files.
+In order to evaluate the learned representation of PE files (embedding) of the proposed model on the sample family prediction task (fig. \ref{fig:workflow_fresh_dataset}), a further dataset, also referred to as \textit{\textbf{fresh\_dataset}} throughout this document (and in the code), was created. It consists of a number of sample files' feature vectors along with the corresponding family labels and the sha256 hashes of the original files.
 
 More specifically, a number '\textit{\textbf{m}}' of PE malware families were selected from the list of the most prominent ones present in Italy at the time of writing (as reported by CERT-AGID summary \cite{CERTAGID}) of which Malware Bazaar provided at least '\textit{\textbf{x}}' sample files. Then, '\textit{\textbf{x}}' sample files per family were downloaded by Malware Bazaar \cite{MalwareBazaar} along with their metadata information (label, sha256 hash etc.) and the corresponding numerical feature vectors were extracted using the EMBER feature extraction and numerical feature generation codes \cite{AndersonEMBER}. Malware Bazaar, in fact, is a malware sample database maintained by malware analysts which provides examples of malware executables and high-quality manually crafted classifications/descriptions for different malware families and it is therefore a good source for creating the new (fresh) dataset.
 
@@ -3049,7 +3049,7 @@ The \textit{ALOHA} and \textit{Joint Embedding} model implementations results ar
 	\label{fig:workflow_train_eval_plot}
 \end{figure}
 
-Both the \textbf{\textit{ALOHA}} and the \textbf{\textit{Joint Embedding}} model implementations (and also the \textbf{\textit{Proposed Model}} that will be defined in next chapter) are trained and evaluated following the procedure depicted by algorithms \ref{alg:trainNetworkFunction} (\textbf{Train network function}) and \ref{alg:evaluateNetworkFunction} (\textbf{Evaluate network function}).
+Both the \textbf{\textit{ALOHA}} and the \textbf{\textit{Joint Embedding}} model implementations (and also the \textbf{\textit{Proposed Model}} that will be defined in next chapter) are trained and evaluated following the procedures depicted by algorithms \ref{alg:trainNetworkFunction} (\textbf{Train network function}) and \ref{alg:evaluateNetworkFunction} (\textbf{Evaluate network function}).
 
 \subsection{Training}
 \begin{figure}[h!]
@@ -3068,7 +3068,6 @@ Both the \textbf{\textit{ALOHA}} and the \textbf{\textit{Joint Embedding}} model
 		\State \textit{model} $\gets$ \textit{Net}(\textit{use\_malicious\_labels}, \textit{use\_count\_labels}, \textit{use\_tag\_labels},
 		\State \hskip6.4em \textbf{len}(\textit{Dataset}.\textit{tags}), feature\_dimension, \textit{run\_params}['layer\_sizes'],
 		\State \hskip6.4em \textit{run\_params}['dropout\_p'], \textit{run\_params}['activation\_function'])
-		\State
 		\State \textit{opt} $\gets$ \textit{run\_params}['optimizer'](\textit{model}.\textbf{parameters}(), \textit{run\_params}['lr'],
 		\State \hskip13.9em \textit{run\_params}['weight\_decay'])
 		\State
@@ -3080,7 +3079,6 @@ Both the \textbf{\textit{ALOHA}} and the \textbf{\textit{Joint Embedding}} model
 		\State ...
 		\State \textit{model}.\textbf{load}(\textit{model\_checkpoint\_path})
 		\State \textit{opt} $\gets$ \textbf{load\_opt\_state}(\textit{opt}, \textit{opt\_checkpoint\_path})
-		\State
 		\ForAll{\textit{epoch} $\in$ \textbf{range}(\textit{epochs})}
 		\State \textit{model}.\textbf{train}()
 		\ForAll{\textit{i}, (\textit{features}, \textit{labels}) $\in$ \textbf{enumerate}(\textit{generator})}
@@ -3393,14 +3391,6 @@ As previously mentioned in section \ref{sec:alohaAndJointEmbeddingTrainAndEvalua
 	\label{fig:workflow_fresh_eval_all}
 \end{figure}
 
-\subsection{Model Evaluation on Malware Family Prediction/Ranking task}
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=\textwidth]{./images/workflow_fresh_eval.png}
-	\caption{Workflow Model Evaluation on Fresh Dataset step}
-	\label{fig:workflow_fresh_eval}
-\end{figure}
-
 \begin{algorithm}[h!]
 	\caption{Evaluate Fresh function}\label{alg:evaluateFreshFunction}
 	\begin{algorithmic}[1]
@@ -3411,6 +3401,16 @@ As previously mentioned in section \ref{sec:alohaAndJointEmbeddingTrainAndEvalua
 		\EndFunction
 	\end{algorithmic}
 \end{algorithm}
+
+As previously mentioned, both the \textbf{\textit{Proposed Model}} and the \textbf{\textit{Joint Embedding}} model implementations are also evaluated on the malware family prediction and ranking tasks. In particular the function presented in algorithm \ref{alg:evaluateFreshFunction} (\textbf{Evaluate fresh function}) is used to produce both the evaluation results mentioned. More specifically, it calls both the following two functions in succession: \textbf{\textit{evaluate\_fresh\_predictions}} and \textbf{\textit{evaluate\_fresh\_rankings}}.
+
+\subsection{Model Evaluation on Malware Family Prediction/Ranking tasks}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\textwidth]{./images/workflow_fresh_eval.png}
+	\caption{Workflow Model Evaluation on Fresh Dataset step}
+	\label{fig:workflow_fresh_eval}
+\end{figure}
 
 \begin{algorithm}[h!]
 	\caption{Evaluate Fresh Predictions function}\label{alg:evaluateFreshPredictionsFunction}
@@ -3521,8 +3521,6 @@ As previously mentioned in section \ref{sec:alohaAndJointEmbeddingTrainAndEvalua
 		\EndFunction
 	\end{algorithmic}
 \end{algorithm}
-
-As previously mentioned, both the \textbf{\textit{Proposed Model}} and the \textbf{\textit{Joint Embedding}} model implementations are also evaluated on the malware family prediction and ranking tasks. In particular the function presented in algorithm \ref{alg:evaluateFreshFunction} (\textbf{Evaluate fresh function}) is used to produce both the evaluation results mentioned. In particular, it calls both the following two functions in succession: \textbf{\textit{evaluate\_fresh\_predictions}} and \textbf{\textit{evaluate\_fresh\_rankings}}.
 
 The \textbf{\textit{evaluate\_fresh\_predictions}} function, shown in alg. \ref{alg:evaluateFreshPredictionsFunction}, begins by importing the Net class corresponding to the chosen \textit{net\_type} and then instantiates it using the needed arguments (such as the \textit{feature\_dimension}, the \textit{embedding\_dimension}, the \textit{layer\_sizes}, etc.). Next, the function loads the model state checkpoint corresponding to a previous training run into the model current state, sets the model use modality to \textit{evaluation} and instantiates the fresh dataset generator (dataloader). After these preliminary steps, in order to compute predict the family labels for the fresh dataset samples, a number of anchor samples is needed. Therefore, the function cycles through some of the mini-batches from the generator getting the \textit{shas}, \textit{labels} and \textit{embeddings} for \textbf{\textit{n\_anchor\_samples\_per\_family}} samples for each of the \textbf{\textit{n\_families}} families. At this point the actual family predictions can be made for all the other \textbf{non-anchor} samples. The function, in fact, cycles through all the mini-batches from the fresh dataset generator (from the beginning) and filters out all the \textbf{anchor} samples in order to have the \textit{shas}, \textit{labels} and \textit{features} of only \textbf{non-anchor} samples. Next, the \textbf{non-anchor} samples embeddings are obtained by passing the input features through the network. The similarity scores are computed by inverting the \textbf{pairwise Euclidean distances} between the \textbf{non-anchor} samples' embeddings and the \textbf{anchor} samples' ones. Finally, the similarities just computed are used to define the per-sample \textbf{hard} or \textbf{soft} family predictions. In particular, for each family, the resulting ground truth label vector (with one value per non-anchor sample) values are each set to 1.0 if the current \textbf{non-anchor} sample's label is equal to the current family label, 0.0 otherwise. Then, if the \textbf{hard} prediction mode is enabled, then, for each family, the resulting prediction vector (again with one value per sample) values are set to 1.0 if the maximum similarity between the current \textbf{non-anchor} sample and the \textbf{anchor} samples from the current family is equal to the overall maximum similarity between the current \textbf{non-anchor} sample and all \textbf{anchor} samples, to 0.0 otherwise. This is done in order to account for the case in which two malware families' anchor samples have the same minimum distance to the current \textbf{non-anchor} sample, in such instance this function assigns both families to the same \textbf{non-anchor} sample. On the other hand, if the \textbf{soft} prediction mode is enabled, then, for each family, the resulting prediction vector values are set to the maximum similarity between the current \textbf{non-anchor} sample and the \textbf{anchor} sample from the current family. Therefore, in this case, the prediction values can be values in the range $[0,1]$ instead of only the values 0 and 1. In any case, the function ends by saving the malware family predictions to file.
 
