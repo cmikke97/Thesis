@@ -2066,22 +2066,17 @@ After \textit{normalization}, the usual signature-based techniques can be applie
 	\label{fig:workflow}
 \end{figure}
 
-Throughout the experiments conducted and reported in this document, the following two datasets were used in order to train the different models and evaluate their relative performances:
-\begin{itemize}
-	\item The large-scale dataset called \textit{\textbf{Sorel 20M dataset}} \cite{HarangSOREL20M} was used to train and evaluate the models implemented on the task of sample SMART tagging and/or malicious/benign label prediction.
-	
-	\item A smaller dataset, referred to as '\textit{\textbf{Fresh dataset}}' in this document, was specifically crafted for the evaluation of the proposed framework on the task of predicting the malware family each specific sample belongs to.
-\end{itemize}
+The workflow presented in image \ref{fig:workflow} summarizes the steps taken throughout the experiments conducted and reported in this document. In particular, for each different model architecture and combination of parameters, the model is first trained and evaluated on the large-scale dataset called \textit{\textbf{Sorel 20M dataset}} \cite{HarangSOREL20M} on the task of SMART tagging and/or malicious/benign label prediction. Next, the model evaluation results are computed and plotted. Depending on the model type, the model is then optionally evaluated also using a smaller dataset, referred to as '\textit{\textbf{Fresh dataset}}' in this document, specifically crafted for the task of predicting the malware family each specific sample belongs to. The results of this second evaluation are computed and plotted in a separate step. The whole process presented until now is repeated for \textit{n\_runs} times and finally the mean results for both evaluation types are computed, aggregating the results of the single runs.
 
 \section{Sorel 20M Dataset}
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{./images/workflow_sorel.png}
-	\caption{Workflow steps using the Sorel20M dataset}
+	\caption{Workflow steps which use the Sorel20M dataset}
 	\label{fig:workflow_sorel}
 \end{figure}
 
-The \textit{\textbf{Sorel20M}}, released in 2020, large-scale dataset consists of nearly 20 million files, each represented by the corresponding pre-extracted features, metadata, malicious/benign label derived from multiple sources, vendor detections count information and additional SMART 'tags' to serve as additional targets \cite{HarangSOREL20M}.
+The \textit{\textbf{Sorel20M}} large-scale dataset, which was released in 2020 and is used in the workflow steps shown in image \ref{fig:workflow_sorel}, consists of nearly 20 million files, each represented by the corresponding pre-extracted features, metadata, malicious/benign label derived from multiple sources, vendor detections count information and additional SMART 'tags' to serve as additional targets \cite{HarangSOREL20M}.
 
 SOREL20M dataset builds upon EMBER dataset \cite{AndersonEMBER}, the first standard and open dataset specifically designed to be used for static malware detection, addressing some of its drawbacks that limited its utility as a malware benchmark set. In particular, EMBER contains $900,000$ training samples (300K malicious, 300K unlabelled) and $200,000$ test samples (100K malicious, 100K benign) and is therefore of limited size compared to the private/proprietary datasets containing from tens to hundreds of millions of samples commercial malware models are usually trained on. Additionally, the small number of validation samples makes it difficult to evaluate the model performance at low false positive rates due to high variance. Moreover, the EMBER dataset only provides a single binary malware/benignware label with no additional information.
 
