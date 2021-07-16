@@ -2058,7 +2058,7 @@ In order to improve the detection rate of existing anti-malware techniques also 
 
 After \textit{normalization}, the usual signature-based techniques can be applied on the normalized sample \cite{Sharma_2014}.
 
-\chapter{Datasets}
+\chapter{Workflow and Datasets used}
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{./images/workflow.png}
@@ -2074,6 +2074,13 @@ Throughout the experiments conducted and reported in this document, the followin
 \end{itemize}
 
 \section{Sorel 20M Dataset}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\textwidth]{./images/workflow_sorel.png}
+	\caption{Workflow steps using the Sorel20M dataset}
+	\label{fig:workflow_sorel}
+\end{figure}
+
 The \textit{\textbf{Sorel20M}}, released in 2020, large-scale dataset consists of nearly 20 million files, each represented by the corresponding pre-extracted features, metadata, malicious/benign label derived from multiple sources, vendor detections count information and additional SMART 'tags' to serve as additional targets \cite{HarangSOREL20M}.
 
 SOREL20M dataset builds upon EMBER dataset \cite{AndersonEMBER}, the first standard and open dataset specifically designed to be used for static malware detection, addressing some of its drawbacks that limited its utility as a malware benchmark set. In particular, EMBER contains $900,000$ training samples (300K malicious, 300K unlabelled) and $200,000$ test samples (100K malicious, 100K benign) and is therefore of limited size compared to the private/proprietary datasets containing from tens to hundreds of millions of samples commercial malware models are usually trained on. Additionally, the small number of validation samples makes it difficult to evaluate the model performance at low false positive rates due to high variance. Moreover, the EMBER dataset only provides a single binary malware/benignware label with no additional information.
@@ -2580,14 +2587,14 @@ In practice \textit{\textbf{chunk\_size}} and \textit{\textbf{n\_chunks}} values
 
 While effectively evaluating the data loading code (\textit{\textbf{alt3}}) performance the \textit{\textbf{min\_mul}} was set to a value of 1, while \textit{\textbf{max\_mul}} to 32. Those values were chosen in order to always be able to retrieve at least one \textit{batch} from the \textit{\textbf{chunk\_aggregate}} without saturating the RAM available on the instance used for this project (in fact, having for \textit{\textbf{max\_mul}} a value greater than $32 \times$ \textit{\textbf{batch\_size}} was too much).
 
-\begin{figure}[h]
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{./images/speeds_heatmap.png}
 	\caption{Speeds Heatmap, Higher is Better}
 	\label{fig:speeds_heatmap}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{./images/times_heatmap.png}
 	\caption{Elapsed Times Heatmap, Lower is Better}
@@ -2599,6 +2606,13 @@ Given the resulting heatmaps (\ref{fig:speeds_heatmap}, \ref{fig:times_heatmap})
 In any case, with respect to the previous solutions (original \textit{Pytorch} dataloader and the generators \textit{\textbf{alt1}} and \textit{\textbf{alt2}}) the speed up was huge. This new version took, in fact, approximately 15 minutes, on average, to complete 1 training epoch while the previous solution took, at best, $\sim6$ hours. Therefore this was the generator used for loading the dataset in all the experiments done for this project. However, it has to be reiterated that this generator version works by approximating the random sampling step during training which in turn may hinder the model generalization on unseen samples. The results presented in this document may therefore be slightly lower than what could be achieved on a more powerful instance using the original \textit{Pytorch} dataloader.
 
 \section{Fresh Dataset}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\textwidth]{./images/workflow_fresh_dataset.png}
+	\caption{Workflow steps using the Fresh dataset}
+	\label{fig:workflow_fresh_dataset}
+\end{figure}
+
 In order to evaluate the learned representation of PE files (embedding) of the proposed model on the sample family prediction task a further dataset, also referred to as \textit{\textbf{fresh\_dataset}} throughout this document (and in the code), was created. It consists of a number of sample files' feature vectors along with the corresponding family labels and the sha256 hashes of the original files.
 
 More specifically, a number '\textit{\textbf{m}}' of PE malware families were selected from the list of the most prominent ones present in Italy at the time of writing (as reported by CERT-AGID summary \cite{CERTAGID}) of which Malware Bazaar provided at least '\textit{\textbf{x}}' sample files. Then, '\textit{\textbf{x}}' sample files per family were downloaded by Malware Bazaar \cite{MalwareBazaar} along with their metadata information (label, sha256 hash etc.) and the corresponding numerical feature vectors were extracted using the EMBER feature extraction and numerical feature generation codes \cite{AndersonEMBER}. Malware Bazaar, in fact, is a malware sample database maintained by malware analysts which provides examples of malware executables and high-quality manually crafted classifications/descriptions for different malware families and it is therefore a good source for creating the new (fresh) dataset.
