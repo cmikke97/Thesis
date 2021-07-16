@@ -112,56 +112,61 @@
 \contentsline {chapter}{\numberline {4}Datasets}{63}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Sorel 20M Dataset}{63}{section.4.1}%
 \contentsline {subsection}{\numberline {4.1.1}Sorel 20M Dataset Description}{64}{subsection.4.1.1}%
-\contentsline {paragraph}{LMDB database, what is it?}{64}{section*.85}%
-\contentsline {subsection}{\numberline {4.1.2}Ember Features}{64}{subsection.4.1.2}%
-\contentsline {subsubsection}{PE File Format}{65}{section*.86}%
-\contentsline {subsubsection}{Feature Set Description}{67}{section*.88}%
-\contentsline {paragraph}{Parsed features}{67}{section*.89}%
-\contentsline {paragraph}{Format-agnostic features}{68}{section*.90}%
-\contentsline {subsection}{\numberline {4.1.3}Trying to improve Dataset Loading Speed}{68}{subsection.4.1.3}%
-\contentsline {subsubsection}{Dataset Pre-Processing}{68}{section*.91}%
-\contentsline {subsubsection}{Generator (Dataloader) versions}{69}{section*.92}%
-\contentsline {paragraph}{Pytorch Dataloader}{69}{section*.93}%
-\contentsline {paragraph}{Generator alt1/alt2}{70}{section*.94}%
-\contentsline {paragraph}{Generator alt3}{73}{section*.95}%
-\contentsline {subparagraph}{Generator parameters optimization}{76}{section*.96}%
+\contentsline {paragraph}{LMDB database, what is it?}{64}{section*.86}%
+\contentsline {subsection}{\numberline {4.1.2}Ember Features}{65}{subsection.4.1.2}%
+\contentsline {subsubsection}{PE File Format}{65}{section*.87}%
+\contentsline {subsubsection}{Feature Set Description}{67}{section*.89}%
+\contentsline {paragraph}{Parsed features}{67}{section*.90}%
+\contentsline {paragraph}{Format-agnostic features}{68}{section*.91}%
+\contentsline {subsection}{\numberline {4.1.3}Trying to improve Dataset Loading Speed}{69}{subsection.4.1.3}%
+\contentsline {subsubsection}{Dataset Pre-Processing}{69}{section*.92}%
+\contentsline {subsubsection}{Generator (Dataloader) versions}{69}{section*.93}%
+\contentsline {paragraph}{Pytorch Dataloader}{69}{section*.94}%
+\contentsline {paragraph}{Generator alt1/alt2}{70}{section*.95}%
+\contentsline {paragraph}{Generator alt3}{73}{section*.96}%
+\contentsline {subparagraph}{Generator parameters optimization}{77}{section*.97}%
 \contentsline {section}{\numberline {4.2}Fresh Dataset}{78}{section.4.2}%
 \contentsline {subsection}{\numberline {4.2.1}Model Evaluation with Fresh Dataset}{79}{subsection.4.2.1}%
-\contentsline {paragraph}{Malware Family Prediction task evaluation}{79}{section*.99}%
-\contentsline {paragraph}{Malware Family Ranking task evaluation}{79}{section*.100}%
+\contentsline {paragraph}{Malware Family Prediction task evaluation}{79}{section*.100}%
+\contentsline {paragraph}{Malware Family Ranking task evaluation}{80}{section*.101}%
 \contentsline {chapter}{\numberline {5}Previous Methods}{81}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Implementation}{81}{section.5.1}%
 \contentsline {subsection}{\numberline {5.1.1}ALOHA model}{81}{subsection.5.1.1}%
-\contentsline {subsubsection}{Net Definition}{82}{section*.102}%
+\contentsline {subsubsection}{Net Definition}{82}{section*.103}%
 \contentsline {subsection}{\numberline {5.1.2}Joint Embedding}{85}{subsection.5.1.2}%
-\contentsline {subsubsection}{Net Definition}{86}{section*.104}%
+\contentsline {subsubsection}{Net Definition}{86}{section*.105}%
 \contentsline {section}{\numberline {5.2}Experiments}{89}{section.5.2}%
 \contentsline {section}{\numberline {5.3}Training and Evaluation algorithms}{89}{section.5.3}%
-\contentsline {chapter}{\numberline {6}Proposed Method}{92}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Implementation}{93}{section.6.1}%
-\contentsline {subsubsection}{Net Definition}{94}{section*.106}%
-\contentsline {section}{\numberline {6.2}Experiments}{97}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Training and Evaluation algorithms}{98}{section.6.3}%
-\contentsline {section}{\numberline {6.4}Evaluate Fresh algorithm}{98}{section.6.4}%
-\contentsline {chapter}{\numberline {7}Results}{102}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Malware Label results}{102}{section.7.1}%
-\contentsline {subsection}{\numberline {7.1.1}Summary}{104}{subsection.7.1.1}%
-\contentsline {section}{\numberline {7.2}Per-tag results}{104}{section.7.2}%
-\contentsline {section}{\numberline {7.3}Mean per-sample tagging scores}{108}{section.7.3}%
-\contentsline {section}{\numberline {7.4}Family Ranking Evaluation}{109}{section.7.4}%
-\contentsline {subsection}{\numberline {7.4.1}Example rankings}{112}{subsection.7.4.1}%
-\contentsline {chapter}{\numberline {8}Conclusions}{114}{chapter.8}%
-\contentsline {chapter}{\numberline {9}Appendix}{115}{chapter.9}%
-\contentsline {section}{\numberline {9.1}More Detailed Per-Tag Results}{115}{section.9.1}%
-\contentsline {subsection}{\numberline {9.1.1}Adware tag results}{115}{subsection.9.1.1}%
-\contentsline {subsection}{\numberline {9.1.2}Crypto-miner tag results}{117}{subsection.9.1.2}%
-\contentsline {subsection}{\numberline {9.1.3}Downloader tag results}{120}{subsection.9.1.3}%
-\contentsline {subsection}{\numberline {9.1.4}Dropper tag results}{122}{subsection.9.1.4}%
-\contentsline {subsection}{\numberline {9.1.5}File-infector tag results}{125}{subsection.9.1.5}%
-\contentsline {subsection}{\numberline {9.1.6}Flooder tag results}{127}{subsection.9.1.6}%
-\contentsline {subsection}{\numberline {9.1.7}Installer tag results}{130}{subsection.9.1.7}%
-\contentsline {subsection}{\numberline {9.1.8}Packed tag results}{132}{subsection.9.1.8}%
-\contentsline {subsection}{\numberline {9.1.9}Ransomware tag results}{135}{subsection.9.1.9}%
-\contentsline {subsection}{\numberline {9.1.10}Spyware tag results}{137}{subsection.9.1.10}%
-\contentsline {subsection}{\numberline {9.1.11}Worm tag results}{140}{subsection.9.1.11}%
-\contentsline {chapter}{Bibliography}{143}{figure.caption.154}%
+\contentsline {subsection}{\numberline {5.3.1}Training}{89}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Evaluation}{90}{subsection.5.3.2}%
+\contentsline {subsection}{\numberline {5.3.3}Results Computation and plotting}{91}{subsection.5.3.3}%
+\contentsline {chapter}{\numberline {6}Proposed Method}{93}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Implementation}{94}{section.6.1}%
+\contentsline {subsubsection}{Net Definition}{95}{section*.111}%
+\contentsline {section}{\numberline {6.2}Experiments}{98}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Training and Evaluation algorithms}{99}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Evaluate Fresh algorithm}{100}{section.6.4}%
+\contentsline {subsection}{\numberline {6.4.1}Model Evaluation on Malware Family Prediction/Ranking task}{100}{subsection.6.4.1}%
+\contentsline {subsection}{\numberline {6.4.2}Fresh Results Computation and Plotting}{103}{subsection.6.4.2}%
+\contentsline {chapter}{\numberline {7}Results}{104}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Malware Label results}{104}{section.7.1}%
+\contentsline {subsection}{\numberline {7.1.1}Summary}{106}{subsection.7.1.1}%
+\contentsline {section}{\numberline {7.2}Per-tag results}{106}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Mean per-sample tagging scores}{110}{section.7.3}%
+\contentsline {section}{\numberline {7.4}Family Ranking Evaluation}{111}{section.7.4}%
+\contentsline {subsection}{\numberline {7.4.1}Example rankings}{114}{subsection.7.4.1}%
+\contentsline {chapter}{\numberline {8}Conclusions}{116}{chapter.8}%
+\contentsline {chapter}{\numberline {9}Appendix}{117}{chapter.9}%
+\contentsline {section}{\numberline {9.1}More Detailed Per-Tag Results}{117}{section.9.1}%
+\contentsline {subsection}{\numberline {9.1.1}Adware tag results}{117}{subsection.9.1.1}%
+\contentsline {subsection}{\numberline {9.1.2}Crypto-miner tag results}{119}{subsection.9.1.2}%
+\contentsline {subsection}{\numberline {9.1.3}Downloader tag results}{122}{subsection.9.1.3}%
+\contentsline {subsection}{\numberline {9.1.4}Dropper tag results}{124}{subsection.9.1.4}%
+\contentsline {subsection}{\numberline {9.1.5}File-infector tag results}{127}{subsection.9.1.5}%
+\contentsline {subsection}{\numberline {9.1.6}Flooder tag results}{129}{subsection.9.1.6}%
+\contentsline {subsection}{\numberline {9.1.7}Installer tag results}{132}{subsection.9.1.7}%
+\contentsline {subsection}{\numberline {9.1.8}Packed tag results}{134}{subsection.9.1.8}%
+\contentsline {subsection}{\numberline {9.1.9}Ransomware tag results}{137}{subsection.9.1.9}%
+\contentsline {subsection}{\numberline {9.1.10}Spyware tag results}{139}{subsection.9.1.10}%
+\contentsline {subsection}{\numberline {9.1.11}Worm tag results}{142}{subsection.9.1.11}%
+\contentsline {chapter}{Bibliography}{145}{figure.caption.163}%

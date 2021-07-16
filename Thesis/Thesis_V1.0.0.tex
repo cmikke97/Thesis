@@ -2059,7 +2059,14 @@ In order to improve the detection rate of existing anti-malware techniques also 
 After \textit{normalization}, the usual signature-based techniques can be applied on the normalized sample \cite{Sharma_2014}.
 
 \chapter{Datasets}
-Throughout the experiments conducted and reported in this document, two datasets were used in order to train the different models and evaluate their relative performances:
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\textwidth]{./images/workflow.png}
+	\caption{Overall workflow}
+	\label{fig:workflow}
+\end{figure}
+
+Throughout the experiments conducted and reported in this document, the following two datasets were used in order to train the different models and evaluate their relative performances:
 \begin{itemize}
 	\item The large-scale dataset called \textit{\textbf{Sorel 20M dataset}} \cite{HarangSOREL20M} was used to train and evaluate the models implemented on the task of sample SMART tagging and/or malicious/benign label prediction.
 	
@@ -2203,9 +2210,6 @@ The next 3 groups of features are instead format agnostic, meaning that they do 
 \end{itemize}
 
 \subsection{Trying to improve Dataset Loading Speed}
-\color{Red}
-
-\color{Black}
 \subsubsection{Dataset Pre-Processing}
 Harang et al. \cite{HarangSOREL20M} provided, together with the Sorel20M dataset, the python/pytorch code they used to load it in memory and pass it as input to their model. This code, however, is particularly I/O bounded. In fact, in order to load the data related to a single sample $i$ it first gets the corresponding sha256 hash from the Sqlite3 database (which is already loaded in memory) and then uses it as key to access the LMDB database of features. The extracted features are then decompressed and deserialized. To load the entire dataset, one batch of data of size \textit{\textbf{batch\_size}} ($=8192$ by default) is loaded at a time, repeating this process for \textit{\textbf{batch\_size}} randomly chosen samples $i$ for each batch until the end of the epoch. The code is therefore especially dependant to the hard disk random access speed. The authors of \cite{HarangSOREL20M} managed to train their model for 10 epochs in under 90 minutes, by training it on an AWS instance with high I/O speeds (exploiting a NVMe SSD), not suffering from any bottleneck. However, when using a less powerful instance not optimized for I/O performance the time needed for loading the dataset and subsequentially for training the model increased excessively. This made the use of the original data loading code for the purposes of this project unfeasible.
 
@@ -2821,7 +2825,7 @@ Alg. \ref{alg:alohaNetForward}, instead, describes how the data (PE file numeric
 Finally, in alg. \ref{alg:alohaNetComputeLoss} it is shown how the loss between the model predictions and the actual labels gets computed. In particular, the final total loss is the weighted sum of the losses of the different output heads which are enabled for the current run. Both the \textit{Malicious/Benign} and the \textit{SMART tags} prediction heads use the binary cross entropy loss function to compute the loss between their predictions and the ground truth labels. On the other hand, the \textit{Vendor Count} prediction head uses the PoissonNLLLoss (Negative log likelihood loss with Poisson distribution) function.
 
 \subsection{Joint Embedding}\label{sec:jointEmbeddingModelImplementation}
-\begin{figure}[h]
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{./images/Joint_Embedding_Implementation.png}
 	\caption{Joint Embedding model implementation}
@@ -3029,6 +3033,23 @@ On the other hand, the base topology of the final \textbf{Joint Embedding} archi
 The \textit{ALOHA} and \textit{Joint Embedding} model implementations results are reported in chapter \ref{chap:results}.
 
 \section{Training and Evaluation algorithms}\label{sec:alohaAndJointEmbeddingTrainAndEvaluate}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\textwidth]{./images/workflow_sorel.png}
+	\caption{Workflow Model Training and Evaluation steps}
+	\label{fig:workflow_train_eval_plot}
+\end{figure}
+
+Both the \textbf{\textit{ALOHA}} and the \textbf{\textit{Joint Embedding}} model implementations (and also the \textbf{\textit{Proposed Model}} that will be defined in next chapter) are trained and evaluated following the procedure depicted by algorithms \ref{alg:trainNetworkFunction} (\textbf{Train network function}) and \ref{alg:evaluateNetworkFunction} (\textbf{Evaluate network function}).
+
+\subsection{Training}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\textwidth]{./images/workflow_train.png}
+	\caption{Workflow Model Training step}
+	\label{fig:workflow_train}
+\end{figure}
+
 \begin{algorithm}[h!]
 	\caption{Train Network function}\label{alg:trainNetworkFunction}
 	\begin{algorithmic}[1]
@@ -3078,6 +3099,16 @@ The \textit{ALOHA} and \textit{Joint Embedding} model implementations results ar
 	\end{algorithmic}
 \end{algorithm}
 
+In particular, as shown in alg. \ref{alg:trainNetworkFunction}, the training function first imports the chosen Net and Dataset generator (dataloder) implementations and some run variables situated in a \textit{config} file, depending on the network and generator types selected by the user. Next, the model itself is defined calling the \textit{init} member function of the previously imported \textit{Net} class with all needed parameters (such as the number of tags, the input feature dimension, the layer sizes, the dropout probability, etc.). Then, the selected optimizer (\textbf{Adam} or \textbf{SGD}) is instantiated given the model parameters, chosen learning rate and weight decay. This is followed by the training and validation generators definition. Moreover, if the model has already been trained in a previous run and its state parameters checkpoints are available, both the model and optimizer states are restored. Next, the model is trained for '\textit{epochs}' epochs. Each epoch the model is first set in training mode, then for all the mini-batches randomly sampled from the training generator the input features are forwarded through the network to get the output predictions after having re-set the optimizer previously computed gradients. The loss for the current mini batch is then computed and logged. Finally the model parameters are update by computing the loss gradients and back-propagating them through the network. Moreover, after each epoch training the model is also evaluated on samples from the validation dataset provided by the validation generator. In particular, the model is first set in \textit{evaluation} mode, then for all the mini-batches of data from the validation generator the input features are passed through the net to produce the output predictions which are in turn used to compute the loss term. The aggregate loss, in this case, is simply logged (no gradients are computed). Finally, at the end of each epoch the model and optimizer state parameters are saved to file.
+
+\subsection{Evaluation}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\textwidth]{./images/workflow_eval.png}
+	\caption{Workflow Model Evaluation step}
+	\label{fig:workflow_eval}
+\end{figure}
+
 \begin{algorithm}[h!]
 	\caption{Evaluate Network function}\label{alg:evaluateNetworkFunction}
 	\begin{algorithmic}[1]
@@ -3103,11 +3134,15 @@ The \textit{ALOHA} and \textit{Joint Embedding} model implementations results ar
 	\end{algorithmic}
 \end{algorithm}
 
-Both the \textbf{\textit{ALOHA}} and the \textbf{\textit{Joint Embedding}} model implementations (and also the \textbf{\textit{Proposed Model}} that will be defined in next chapter) are trained and evaluated following the procedure depicted by algorithms \ref{alg:trainNetworkFunction} (\textbf{Train network function}) and \ref{alg:evaluateNetworkFunction} (\textbf{Evaluate network function}).
-
-In particular, as shown in alg. \ref{alg:trainNetworkFunction}, the training function first imports the chosen Net and Dataset generator (dataloder) implementations and some run variables situated in a \textit{config} file, depending on the network and generator types selected by the user. Next, the model itself is defined calling the \textit{init} member function of the previously imported \textit{Net} class with all needed parameters (such as the number of tags, the input feature dimension, the layer sizes, the dropout probability, etc.). Then, the selected optimizer (\textbf{Adam} or \textbf{SGD}) is instantiated given the model parameters, chosen learning rate and weight decay. This is followed by the training and validation generators definition. Moreover, if the model has already been trained in a previous run and its state parameters checkpoints are available, both the model and optimizer states are restored. Next, the model is trained for '\textit{epochs}' epochs. Each epoch the model is first set in training mode, then for all the mini-batches randomly sampled from the training generator the input features are forwarded through the network to get the output predictions after having re-set the optimizer previously computed gradients. The loss for the current mini batch is then computed and logged. Finally the model parameters are update by computing the loss gradients and back-propagating them through the network. Moreover, after each epoch training the model is also evaluated on samples from the validation dataset provided by the validation generator. In particular, the model is first set in \textit{evaluation} mode, then for all the mini-batches of data from the validation generator the input features are passed through the net to produce the output predictions which are in turn used to compute the loss term. The aggregate loss, in this case, is simply logged (no gradients are computed). Finally, at the end of each epoch the model and optimizer state parameters are saved to file.
-
 The evaluation function, presented in \ref{alg:evaluateNetworkFunction}, begins in a similar way as the training function by importing the Net and Dataset generator along with some run parameters, by calling the model constructor function (\textit{init}) with all the needed parameters and by loading the model checkpoint chosen by the user. This function, however, continues by setting the model in \textit{evaluation} mode and defining the generator for the test dataset. Then, for all the mini-batches of data from the test set the samples input features are passed to the network and the corresponding predictions are produced and saved to file.
+
+\subsection{Results Computation and plotting}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\textwidth]{./images/workflow_results.png}
+	\caption{Workflow Results Computation and Plotting step}
+	\label{fig:workflow_results}
+\end{figure}
 
 The actual binary cross entropy statistics (such as \textit{TPR}, \textit{Accuracy}, \textit{Recall}, etc.. at different FPRs) and the resulting AUC-ROC score and ROC curves are computed by a distinct set of functions not presented in this document since they simply implement and apply the corresponding mathematical formulas and save the ROC curves to file.
 
@@ -3126,7 +3161,7 @@ Therefore the \textbf{Proposed Model} and the \textbf{Joint Embedding} model imp
 Then, if the \textbf{Proposed Model} performs well enough on the malware family \textit{prediction} and \textit{ranking} tasks, it could be possible to use its learned embedding space to define implicit signatures - the corresponding representation in this space, a.k.a. the embedding - of malware samples belonging to a specific malware family. These signatures could then be used to craft Yara Rules - with the use of a specially crafted custom Yara module that dynamically extracts the embedding representation for new PE files and compares them to the known signatures - to detect similar samples as belonging to the specific family represented by each rule. Yara Rules created in this way could potentially inherit the good properties of ML methods such as being able to detect not only known malware strains but also novel variants, being less susceptible to obfuscation attempts, etc. while being compatible with the highly expressive approach that is Yara.
 
 \section{Implementation}
-\begin{figure}[h]
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{./images/Proposed_Model.png}
 	\caption{Proposed Model}
@@ -3332,9 +3367,31 @@ The final \textbf{Proposed Model} architecture consisted of 3 layers of sizes 51
 The \textbf{Proposed Model} results are reported in chapter \ref{chap:results}.
 
 \section{Training and Evaluation algorithms}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\textwidth]{./images/workflow_sorel.png}
+	\caption{Workflow Model Training and Evaluation steps}
+	\label{fig:workflow_train_eval_plot2}
+\end{figure}
+
 As previously mentioned in section \ref{sec:alohaAndJointEmbeddingTrainAndEvaluate}, the \textbf{\textit{Proposed Model}} training and evaluation procedures are the same as the ones used for the \textbf{\textit{ALOHA}} and \textbf{\textit{Joint Embedding}} model implementations. In particular, the training procedure is presented in alg. \ref{alg:trainNetworkFunction}, while the model evaluation is shown in alg. \ref{alg:evaluateNetworkFunction}.
 
 \section{Evaluate Fresh algorithm}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\textwidth]{./images/workflow_fresh_dataset.png}
+	\caption{Workflow Model Evaluation on Fresh Dataset steps}
+	\label{fig:workflow_fresh_eval_all}
+\end{figure}
+
+\subsection{Model Evaluation on Malware Family Prediction/Ranking task}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\textwidth]{./images/workflow_fresh_eval.png}
+	\caption{Workflow Model Evaluation on Fresh Dataset step}
+	\label{fig:workflow_fresh_eval}
+\end{figure}
+
 \begin{algorithm}[h!]
 	\caption{Evaluate Fresh function}\label{alg:evaluateFreshFunction}
 	\begin{algorithmic}[1]
@@ -3460,9 +3517,17 @@ As previously mentioned, both the \textbf{\textit{Proposed Model}} and the \text
 
 The \textbf{\textit{evaluate\_fresh\_predictions}} function, shown in alg. \ref{alg:evaluateFreshPredictionsFunction}, begins by importing the Net class corresponding to the chosen \textit{net\_type} and then instantiates it using the needed arguments (such as the \textit{feature\_dimension}, the \textit{embedding\_dimension}, the \textit{layer\_sizes}, etc.). Next, the function loads the model state checkpoint corresponding to a previous training run into the model current state, sets the model use modality to \textit{evaluation} and instantiates the fresh dataset generator (dataloader). After these preliminary steps, in order to compute predict the family labels for the fresh dataset samples, a number of anchor samples is needed. Therefore, the function cycles through some of the mini-batches from the generator getting the \textit{shas}, \textit{labels} and \textit{embeddings} for \textbf{\textit{n\_anchor\_samples\_per\_family}} samples for each of the \textbf{\textit{n\_families}} families. At this point the actual family predictions can be made for all the other \textbf{non-anchor} samples. The function, in fact, cycles through all the mini-batches from the fresh dataset generator (from the beginning) and filters out all the \textbf{anchor} samples in order to have the \textit{shas}, \textit{labels} and \textit{features} of only \textbf{non-anchor} samples. Next, the \textbf{non-anchor} samples embeddings are obtained by passing the input features through the network. The similarity scores are computed by inverting the \textbf{pairwise Euclidean distances} between the \textbf{non-anchor} samples' embeddings and the \textbf{anchor} samples' ones. Finally, the similarities just computed are used to define the per-sample \textbf{hard} or \textbf{soft} family predictions. In particular, for each family, the resulting ground truth label vector (with one value per non-anchor sample) values are each set to 1.0 if the current \textbf{non-anchor} sample's label is equal to the current family label, 0.0 otherwise. Then, if the \textbf{hard} prediction mode is enabled, then, for each family, the resulting prediction vector (again with one value per sample) values are set to 1.0 if the maximum similarity between the current \textbf{non-anchor} sample and the \textbf{anchor} samples from the current family is equal to the overall maximum similarity between the current \textbf{non-anchor} sample and all \textbf{anchor} samples, to 0.0 otherwise. This is done in order to account for the case in which two malware families' anchor samples have the same minimum distance to the current \textbf{non-anchor} sample, in such instance this function assigns both families to the same \textbf{non-anchor} sample. On the other hand, if the \textbf{soft} prediction mode is enabled, then, for each family, the resulting prediction vector values are set to the maximum similarity between the current \textbf{non-anchor} sample and the \textbf{anchor} sample from the current family. Therefore, in this case, the prediction values can be values in the range $[0,1]$ instead of only the values 0 and 1. In any case, the function ends by saving the malware family predictions to file.
 
-The actual binary cross entropy statistics for the malware family prediction task (such as \textit{TPR}, \textit{Accuracy}, \textit{Recall}, etc.. at different \textit{FPRs}) and the resulting \textit{AUC-ROC} scores and \textit{ROC} curves are computed by a distinct set of functions similar to the one mentioned in section \ref{sec:alohaAndJointEmbeddingTrainAndEvaluate} not presented in this document.
-
 The \textbf{\textit{evaluate\_fresh\_rankings}} function, presented in algorithm \ref{alg:evaluateFreshRankingsFunction}, again begins by importing the selected \textit{Net} class and instantiating the model with appropriate parameters; then it continues by loading the model state parameters from a checkpoint of a previous training run, setting the model use modality to \textit{evaluation} and defining the fresh dataset generator (dataloader). Next, the function cycles through all the mini-batches of data from the fresh dataset generator and gets the samples embeddings by feeding the model with their numerical feature vectors. Then, the function selects the first \textbf{\textit{n\_samples}} samples (their \textit{shas}, \textit{labels} and \textit{embeddings}) and uses them as \textbf{query} samples in order to compute family rankings. In particular, as first step for generating the family rankings, the function computes the similarity scores between the \textbf{query} samples' embeddings and all the mini-batch embeddings (which may contain also the \textbf{query} sample latent representation) by inverting their \textbf{pairwise Euclidean distances}. Next, for each \textbf{query} sample the function generated one ranking by ordering the samples' \textit{shas}, \textit{family labels} and \textit{family names} by their similarity with the current \textbf{query} sample (excluding the current \textbf{query} sample from the ranking). Finally, after having \textit{binarized} the ranks labels (essentially by assigning a 1.0 to all samples in the ranking that are of the same family as the current \textbf{query} sample, 0.0 to the rest), the function computes the \textbf{\textit{MRR}} and \textbf{\textit{MAP}} scores and saves to file a bunch of interesting rankings, namely the ones which produces the maximum RR (reciprocal rank), the maximum AP (average precision), the minimum RR and minimum AP, plus a random ranking chosen between all the other ones.
+
+\subsection{Fresh Results Computation and Plotting}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\textwidth]{./images/workflow_fresh_results.png}
+	\caption{Workflow Fresh Results Computation and Plotting step}
+	\label{fig:workflow_fresh_results}
+\end{figure}
+
+The actual binary cross entropy statistics for the malware family prediction task (such as \textit{TPR}, \textit{Accuracy}, \textit{Recall}, etc.. at different \textit{FPRs}) and the resulting \textit{AUC-ROC} scores and \textit{ROC} curves are computed by a distinct set of functions similar to the one mentioned in section \ref{sec:alohaAndJointEmbeddingTrainAndEvaluate} not presented in this document.
 
 \chapter{Results}\label{chap:results}
 \color{Green}
