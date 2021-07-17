@@ -51,6 +51,7 @@
 \usepackage{longtable}
 \usepackage{xcolor}
 \usepackage{caption}
+\usepackage{array}
 
 \input{commands.tex}
 
@@ -108,6 +109,7 @@
 	morestring=[d]',
 }
 
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
 \renewcommand{\arraystretch}{1.5}
 
 \newsavebox\CBox
@@ -3164,7 +3166,7 @@ Therefore the \textbf{Proposed Model} and the \textbf{Joint Embedding} model imp
 
 Then, if the \textbf{Proposed Model} performs well enough on the malware family \textit{prediction} and \textit{ranking} tasks, it could be possible to use its learned embedding space to define implicit signatures - the corresponding representation in this space, a.k.a. the embedding - of malware samples belonging to a specific malware family. These signatures could then be used to craft Yara Rules - with the use of a specially crafted custom Yara module that dynamically extracts the embedding representation for new PE files and compares them to the known signatures - to detect similar samples as belonging to the specific family represented by each rule. Yara Rules created in this way could potentially inherit the good properties of ML methods such as being able to detect not only known malware strains but also novel variants, being less susceptible to obfuscation attempts, etc. while being compatible with the highly expressive approach that is Yara.
 
-\section{Implementation}
+\section{Implementation}\label{sec:proposedModelImplementation}
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{./images/Proposed_Model.png}
@@ -3537,11 +3539,33 @@ The actual binary cross entropy statistics for the malware family prediction tas
 \color{Green}
 The following results are 'fake'. They were taken from a model trained on just $8.192$ training samples and are here presented only to show the tables structures.
 \color{Black}
-\section{Malware Label results}
+
+In this chapter the evaluation results of the following model implementations will be presented and compared:
+\begin{itemize}
+	\item \textbf{ALOHA (M/B only)}: \textit{ALOHA} model implementation described in section \ref{sec:alohaModelImplementation}, with only the \textit{Malicious/Benign} label prediction head enabled. This model thus represents a simple single task FNN designed exclusively for the malicious label prediction task.
+	
+	\item \textbf{ALOHA}: final \textit{ALOHA} model implementation described in section \ref{sec:alohaModelImplementation}, with all the additional output heads enabled.
+	
+	\item \textbf{Joint Embedding}: final \textit{Joint Embedding} model implementation described in section \ref{sec:jointEmbeddingModelImplementation}.
+	
+	\item \textbf{Proposed Model}: final \textit{Proposed Model} implementation described in section \ref{sec:proposedModelImplementation}.
+\end{itemize}
+
+In the first section (\ref{sec:malwareLabelResults}) of this chapter, the models' results concerning the \textbf{Malicious/Benign} label prediction task are presented. In particular for each model are shown the corresponding \textbf{AUC-ROC} (Area Under ROC Curve) score and the various binary cross entropy loss statistics (\textbf{TPR} (True Positive Rate), \textbf{Accuracy}, \textbf{Recall}, \textbf{Precision} and \textbf{F1 Score}) at different \textbf{FPRs} (False Positive Rates). Moreover, for the \textbf{TPR} statistic, also the \textbf{Proposed Model} Error and Standard Deviation Reductions with respect to the other (previous) models are presented, in percentage. Next, the \textbf{ROC} (Receiving Operating Characteristic) curves of the different models for the malicious label prediction task are presented. Finally, it is presented a brief summary of the different statistics for the different models at \textbf{FPR} $=1\%$.
+
+In the next section (\ref{sec:perTagResults}), the models' evaluation results for the SMART tagging prediction task are presented. More specifically, a table shows, for each predicted tag, the \textbf{AUC-ROC} scores relative to the different models. Another table presents the tag prediction per-tag binary cross entropy statistics at \textbf{FPR} $=1\%$. Finally, for each model it is presented a single graph showing the \textbf{ROC} curves of all predicted tags.
+
+A further section (\ref{sec:meanPerSampleTaggingScores}) is used for showing the models' \textit{Mean per-sample scores} corresponding to the different tags for each model. In particular, here are presented the \textbf{Jaccard Similarity} and \textbf{Mean per-Sample Accuracy} scores at different \textbf{FPRs} achieved by the models.
+
+A final section (\ref{sec:familyRankingEvaluation}), instead, contains some tables showing the different models' performance evaluations at the \textbf{Malware Family Prediction and Ranking} tasks. More specifically, a table shows the rankings' \textbf{MRR} (Mean Reciprocal Rank) and \textbf{MAP} (Mean Average Precision) for the \textbf{Joint Embedding} and \textbf{Proposed Model} implementations. The \textbf{ALOHA} implementation, in fact, does not generate the joint embedding space needed for the ranking task. Next, two more tables show the models' malware family prediction \textbf{AUC-ROC} scores and binary cross entropy statistics at \textbf{FPR} $=1\%$, similarly to what was done for the SMART tagging task. Finally, the actual family prediction \textbf{\textit{ROC}} curves for the 2 mentioned model implementations (\textbf{Joint Embedding} and \textbf{Proposed Model}) are presented, along with the 4 fresh dataset samples' rankings which produced the maximum and minimum AP (Average Precision) and RR (Reciprocal Rank) scores.
+
+\section{Malware Label results}\label{sec:malwareLabelResults}
 
 \malwareResultsAucTable
 
 \malwareResultsAtFprTable
+
+\malwareRocAlohaMB
 
 \malwareRocAloha
 
@@ -3550,7 +3574,7 @@ The following results are 'fake'. They were taken from a model trained on just $
 \subsection{Summary}
 \malwareResultsSummaryTable
 
-\section{Per-tag results}
+\section{Per-tag results}\label{sec:perTagResults}
 \tagResultsAucTable
 
 \tagResultsSummaryTable
@@ -3561,10 +3585,10 @@ The following results are 'fake'. They were taken from a model trained on just $
 
 \allMeanRocProposedModel
 
-\section{Mean per-sample tagging scores}
+\section{Mean per-sample tagging scores}\label{sec:meanPerSampleTaggingScores}
 \meanPerSampleScores
 
-\section{Family Ranking Evaluation}
+\section{Family Ranking Evaluation}\label{sec:familyRankingEvaluation}
 \MrrAndMapResultsTable
 
 \freshResultsAucTable
