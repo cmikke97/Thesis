@@ -2980,6 +2980,45 @@ The tags predicted probabilities outputted by the \textit{Prediction Layer} are 
 \end{algorithm}
 
 \begin{algorithm}[h!]
+	\caption{Joint Embedding Net class, Get\_Similarity (with \textit{Dot Product})}\label{alg:jointEmbeddingNetGetSimilarity}
+	\begin{algorithmic}[1]
+		\algrestore{bkbreak}
+			\Function{Get\_Similarity}{\textit{self}, \textit{first\_embedding}, \textit{second\_embedding}}
+				\State \textit{similarity\_scores} $\gets$ \textbf{torch.matmul}(\textit{first\_embedding}, \textit{second\_embedding}.\textbf{T})
+				\State \textbf{return} \{'similarity': \textit{similarity\_scores}, 'probability': \textit{self.sigmoid}(\textit{similarity\_scores})\}
+			\EndFunction
+		\algstore{bkbreak}
+	\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[h!]
+	\caption{Joint Embedding Net class, Get\_Similarity (with \textit{Cosine similarity})}\label{alg:jointEmbeddingNetGetSimilarityCosine}
+	\begin{algorithmic}[1]
+		\algrestore{bkbreak}
+			\Function{Get\_Similarity}{\textit{self}, \textit{first\_embedding}, \textit{second\_embedding}}
+				\State \textit{similarity\_scores} $\gets$ \textbf{torch.div}(\textbf{torch.add}(\textbf{F.cosine\_similarity}(\textit{first\_embedding},
+				\State \hskip8.9em \textit{second\_embedding}), 1.0), 2.0)
+				\State \textbf{return} \{'similarity': \textit{similarity\_scores}, 'probability': \textit{similarity\_scores}\}
+			\EndFunction
+		\algstore{bkbreak}
+	\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[h!]
+	\caption{Joint Embedding Net class, Get\_Similarity (with \textit{Inverted Pairwise Euclidean Distance})}\label{alg:jointEmbeddingNetGetSimilarityPairwiseDistance}
+	\begin{algorithmic}[1]
+		\algrestore{bkbreak}
+			\Function{Get\_Similarity}{\textit{self}, \textit{first\_embedding}, \textit{second\_embedding}}
+				\State \textit{distances} $\gets$ \textbf{torch.cdist}(\textit{first\_embedding}, \textit{second\_embedding}, p=2.0)
+				\State \textit{similarity\_scores} $\gets$ \textbf{distance\_to\_similarity}(\textit{distances}, a=\textit{self.embedding\_dimension},
+				\State \hskip9em function=\textit{sim\_function})
+				\State \textbf{return} \{'similarity': \textit{similarity\_scores}, 'probability': \textit{similarity\_scores}\}
+			\EndFunction
+		\algstore{bkbreak}
+	\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[h!]
 	\caption{Joint Embedding Net class, Compute Loss}\label{alg:jointEmbeddingNetComputeLoss}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
@@ -3027,7 +3066,7 @@ In alg. \ref{alg:jointEmbeddingNetForwardCosine} (\textbf{\textit{Joint Embeddin
 
 A further alternative to the \textbf{Model forward function} which uses one of the \textit{Inverted Pairwise Euclidean Distances} proposed in sec. \ref{sec:jointEmbeddingModelImplementation} instead of the \textit{dot product}, is presented in alg. \ref{alg:jointEmbeddingNetForwardPairwiseDistance} (\textbf{\textit{Joint Embedding} model forward function with \textit{Inverted Pairwise Euclidean Distance}}). Again, this alternative is pretty much equal to the original forward function (alg. \ref{alg:jointEmbeddingNetForward}). In this case, however, the similarity scores are produced by inverting, through the use of the specially crafted \textbf{distance\_to\_similarity} function presented in alg. \ref{alg:distanceToSimilarityFunction} (which simply applies the selected distance inversion formula among the ones mentioned in sec. \ref{sec:jointEmbeddingModelImplementation}), the euclidean distances between the samples' and the tags' embeddings in the joint latent space.
 
-Alg. \ref{alg:jointEmbeddingNetGetEmbedding} (\textbf{\textit{JointEmbedding} model get embedding function}) presents the \textit{get\_embedding} function which is used to extract the PE embedding representation from input data. This is particularly useful when performing different kinds of model performance evaluations.
+Alg. \ref{alg:jointEmbeddingNetGetEmbedding} (\textbf{\textit{JointEmbedding} model get embedding function}) presents the \textit{get\_embedding} function which is used to extract the PE embedding representation from input data. This is particularly useful when performing different kinds of model performance evaluations together with the \textbf{get\_similarity function}, which instead returns the similarity between two different input embeddings. Of course, depending on the similarity function selected at model definition the \textit{get\_similarity} function has to be different. In particular, if the \textbf{dot product} is selected the function, shown in algorithm \ref{alg:jointEmbeddingNetGetSimilarity} (\textbf{\textit{JointEmbedding} model get similarity function with Dot Product}), simply computes the similarity scores as the dot product between the two input embeddings and then defines the probabilities by further applying the sigmoid activation function on those scores. On the other hand, if the \textbf{cosine similarity} is selected, the function (\ref{alg:jointEmbeddingNetGetSimilarityCosine} - \textbf{\textit{JointEmbedding} model get similarity function with Cosine Similarity}) assigns to both similarity scores and resulting probabilities the normalized (to the $[0,1]$ range) cosine similarity between the two embeddings. Finally, in case the \textbf{Inverted Pairwise Euclidean Distance} is selected, the function (\ref{alg:jointEmbeddingNetGetSimilarityPairwiseDistance} - \textbf{\textit{JointEmbedding} model get similarity function with Inverted Pairwise Euclidean Distance}) first computes the euclidean distances between the two input embeddings and then assigns to both similarity scores and resulting probabilities the inversion of such distances computed through the \textit{distance\_to\_similarity} function.
 
 Finally, in algorithm \ref{alg:jointEmbeddingNetComputeLoss} is described how the loss which guides the training procedure is computed. In particular, it corresponds to the \textbf{binary cross entropy loss} between the predicted tag probabilities and the actual tag labels, as depicted by the formulas mentioned in par. \ref{par:tagPredictionImplementation}.
 
