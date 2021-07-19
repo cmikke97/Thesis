@@ -209,8 +209,15 @@ Thanks...
 \end{dedica}
 
 \sommario
+In most recent years the proliferation of malicious software, namely Malware, has had a massive increase: according to AV Atlas Dashboard the new malware samples (and PUA - Potentially Unwanted Application) currently detected every day are about 384.000 (at the time of writing), and this number is predicted to only keep growing. The total number of known malicious software (and PUA) passed from about 55 million in 2011, to about 400 million in 2016, and finally to nearly 800 million now. The huge number of malware samples out there in the wild renders the detection through manually generated signatures (patterns that identify malicious code) infeasible and consequently imposes the urgent need of tools able to automatically detect malware and possibly describe it in an human-interpretable way. Several methodologies have been proposed through the years, ranging from signature-based detection (especially with Yara Rules) to various Machine Learning approaches like Decision Trees, Naive Bayes models and Neural Networks.
 
-Summary...
+This thesis presents a novel model built upon previous works in \textbf{ML-based} (Machine Learning) automatic malware detection and description and introduces a new evaluation procedure on the learnt implicit representation/signature of malware samples that may prove the applicability of its usage in the Malicious family prediction and ranking tasks. The model is trained on an open source large scale dataset of malware and benignware samples with the aim of creating high quality implicit signatures capable of correctly detecting (and describing) unseen malware samples as well as obfuscated malware and new variants, with high True Positive Rate (TPR) and high Recall at low False Positive Rates (FPRs).
+
+The \textbf{Proposed Model}'s results in the different tasks (both the ones it was trained on - Malicious/Benign label and descriptive tags prediction - and the additional malware family prediction and ranking tasks) were compared to the previous models' ones. In particular, the \textbf{ALOHA} model proposed in \cite{ruddALOHA} and the \textbf{Joint Embedding} model described in \cite{DucauAMDATSE} were selected as reference models.
+
+The results show that the \textbf{Proposed Model} generates implicit signatures (samples embeddings) which provide comparable TPRs, Accuracies, Recalls, Precisions and F1 Scores at low false positive rates with respect to the ones produced by the mentioned previous methods. When tested on the Malware Family prediction and ranking tasks, however, the results were less promising. After more detailed analyses, it was apparent that malicious samples belonging to different families but with similar characteristics and behaviour were mapped close to each other in the model's learnt embedding space, resulting in the same family label being predicted for all those samples. This implies that unfortunately, for now, the proposed model lacks the capability to generalize over the more interesting task of malware family categorization.
+
+Nevertheless, future works capable of overcoming this limitation may be very useful to the IT-Security field in the current scenario and could even enable the generation of explicit (and thus more interpretable) signatures derived from the learnt implicit ones.
 
 \ringraziamenti
 
@@ -231,7 +238,7 @@ Aknowledgments...
 
 \chapter{Introduction}
 \color{Gray}
-While working on this document, I will mark with the colour \textcolor{Red}{red} the parts containing drafts and information got from outside sources. I will use the colour \textcolor{Orange}{orange} for parts under active modification, and the colour  \textcolor{Green}{green} for comments (apart from this one).
+While working on this document, I will mark with the colour \textcolor{Red}{red} the parts containing drafts and information got from outside sources. I will use the colour \textcolor{Orange}{orange} for parts under active modification, and the colour \textcolor{Green}{green} for comments (apart from this one).
 
 \color{Black}
 \chapter{Background}
