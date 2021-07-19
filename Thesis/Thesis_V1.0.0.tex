@@ -233,8 +233,11 @@ Aknowledgments...
 %\figurespagetrue % normalmente questa riga non serve ed e' commentata
 
 \indici
+\listoffigures
+\listoftables
 
 \mainmatter
+
 
 \chapter{Introduction}
 \color{Gray}
@@ -1804,7 +1807,7 @@ The output for the main malware/benign prediction task - $f_{mal}(\textbf{x})$ -
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=\textwidth]{./images/ALOHA.png}
-	\caption{ALOHA model}
+	\caption[ALOHA model architecture]{ALOHA model architecture}
 	\label{fig:ALOHA_model}
 \end{figure}
 
@@ -1917,7 +1920,7 @@ In \cite{DucauAMDATSE}, in order to predict, in a multi-label classification man
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=\textwidth]{./images/Multi_Head.png}
-	\caption{Multi Head model}
+	\caption[Multi Head model architecture]{Multi Head model architecture}
 	\label{fig:Multi_Head_model}
 \end{figure}
 
@@ -1926,7 +1929,7 @@ In particular, the \textit{Multi-Head} (fig. \ref{fig:Multi_Head_model}) consist
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=\textwidth]{./images/Joint_Embedding.png}
-	\caption{Joint Embedding model}
+	\caption[Joint Embedding model architecture]{Joint Embedding model architecture}
 	\label{fig:Joint_Embedding_model}
 \end{figure}
 
@@ -2036,7 +2039,7 @@ The model proposed in \cite{KyadigeLFCEIFPIBMD} (fig. \ref{fig:PE_plus_FP_model}
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=\textwidth]{./images/PE_plus_FP.png}
-	\caption{PE + FP model}
+	\caption[PE + FP model architecture]{PE + FP model architecture}
 	\label{fig:PE_plus_FP_model}
 \end{figure}
 
@@ -2068,7 +2071,7 @@ After \textit{normalization}, the usual signature-based techniques can be applie
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{./images/workflow.png}
-	\caption{Overall workflow}
+	\caption[Overall workflow]{Overall workflow}
 	\label{fig:workflow}
 \end{figure}
 
@@ -2078,7 +2081,7 @@ The workflow presented in image \ref{fig:workflow} summarizes the steps taken th
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{./images/workflow_sorel.png}
-	\caption{Workflow steps which use the Sorel20M dataset}
+	\caption[Sorel20M workflow steps]{Workflow steps which use the Sorel20M dataset}
 	\label{fig:workflow_sorel}
 \end{figure}
 
@@ -2143,7 +2146,7 @@ The Portable Executable (PE) format is a file format for executables, object cod
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=\textwidth]{./images/Portable_Executable_32_bit_Structure.png}
-	\caption{PE file structure}
+	\caption[PE file structure]{PE file structure}
 	\label{fig:PEFileStructure}
 \end{figure}
 
@@ -2587,14 +2590,14 @@ To understand the behaviour of the FastTensorDataLoader \textit{\textbf{alt3}} o
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{./images/speeds_heatmap.png}
-	\caption{Speeds Heatmap, Higher is Better}
+	\caption[Generator alt.3 speed heatmap]{Generator Alt.3 Speeds Heatmap, Higher is Better}
 	\label{fig:speeds_heatmap}
 \end{figure}
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{./images/times_heatmap.png}
-	\caption{Elapsed Times Heatmap, Lower is Better}
+	\caption[Generator alt.3 elapsed times heatmap]{Generator Alt.3 Elapsed Times Heatmap, Lower is Better}
 	\label{fig:times_heatmap}
 \end{figure}
 
@@ -2610,7 +2613,7 @@ In any case, with respect to the previous solutions (original \textit{Pytorch} d
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{./images/workflow_fresh_dataset.png}
-	\caption{Workflow steps using the Fresh dataset}
+	\caption[Fresh dataset workflow steps]{Workflow steps using the Fresh dataset}
 	\label{fig:workflow_fresh_dataset}
 \end{figure}
 
@@ -2696,7 +2699,7 @@ Both the implementations developed for this project only loosely followed the or
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=\textwidth]{./images/ALOHA_Implementation.png}
-	\caption{ALOHA model implementation}
+	\caption[ALOHA model implementation architecture]{ALOHA model implementation architecture}
 	\label{fig:ALOHA_Implementation_model}
 \end{figure}
 
@@ -2843,7 +2846,7 @@ Finally, in alg. \ref{alg:alohaNetComputeLoss} it is shown how the loss between 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{./images/Joint_Embedding_Implementation.png}
-	\caption{Joint Embedding model implementation}
+	\caption[Joint Embedding model implementation architecture]{Joint Embedding model implementation architecture}
 	\label{fig:Joint_Embedding_Implementation_model}
 \end{figure}
 
@@ -3090,7 +3093,7 @@ The \textit{ALOHA} and \textit{Joint Embedding} model implementations results ar
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{./images/workflow_sorel.png}
-	\caption{Workflow Model Training and Evaluation steps}
+	\caption[Training and evaluation workflow steps]{Workflow Model Training and Evaluation steps}
 	\label{fig:workflow_train_eval_plot}
 \end{figure}
 
@@ -3100,7 +3103,7 @@ Both the \textbf{\textit{ALOHA}} and the \textbf{\textit{Joint Embedding}} model
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{./images/workflow_train.png}
-	\caption{Workflow Model Training step}
+	\caption[Training workflow step]{Workflow Model Training step}
 	\label{fig:workflow_train}
 \end{figure}
 
@@ -3157,7 +3160,7 @@ In particular, as shown in alg. \ref{alg:trainNetworkFunction}, the training fun
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{./images/workflow_eval.png}
-	\caption{Workflow Model Evaluation step}
+	\caption[Evaluation workflow step]{Workflow Model Evaluation step}
 	\label{fig:workflow_eval}
 \end{figure}
 
@@ -3192,7 +3195,7 @@ The evaluation function, presented in \ref{alg:evaluateNetworkFunction}, begins 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{./images/workflow_results.png}
-	\caption{Workflow Results Computation and Plotting step}
+	\caption[Results Computation and plotting workflow step]{Workflow Results Computation and Plotting step}
 	\label{fig:workflow_results}
 \end{figure}
 
@@ -3216,7 +3219,7 @@ Then, if the \textbf{Proposed Model} performs well enough on the malware family 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{./images/Proposed_Model.png}
-	\caption{Proposed Model}
+	\caption[Proposed model architecture]{Proposed Model architecture}
 	\label{fig:Proposed_Model}
 \end{figure}
 
@@ -3422,7 +3425,7 @@ The \textbf{Proposed Model} results are reported in chapter \ref{chap:results}.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{./images/workflow_sorel.png}
-	\caption{Workflow Model Training and Evaluation steps}
+	\caption[Training and evaluation workflow steps]{Workflow Model Training and Evaluation steps}
 	\label{fig:workflow_train_eval_plot2}
 \end{figure}
 
@@ -3432,7 +3435,7 @@ As previously mentioned in section \ref{sec:alohaAndJointEmbeddingTrainAndEvalua
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{./images/workflow_fresh_dataset.png}
-	\caption{Workflow Model Evaluation on Fresh Dataset steps}
+	\caption[Fresh dataset model evaluation workflow steps]{Workflow Model Evaluation on Fresh Dataset steps}
 	\label{fig:workflow_fresh_eval_all}
 \end{figure}
 
@@ -3453,7 +3456,7 @@ As previously mentioned, both the \textbf{\textit{Proposed Model}} and the \text
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{./images/workflow_fresh_eval.png}
-	\caption{Workflow Model Evaluation on Fresh Dataset step}
+	\caption[Fresh dataset model evaluation workflow step]{Workflow Model Evaluation on Fresh Dataset step}
 	\label{fig:workflow_fresh_eval}
 \end{figure}
 
@@ -3580,7 +3583,7 @@ The \textbf{\textit{evaluate\_fresh\_rankings}} function, presented in algorithm
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{./images/workflow_fresh_results.png}
-	\caption{Workflow Fresh Results Computation and Plotting step}
+	\caption[Fresh results computation and plotting workflow step]{Workflow Fresh Results Computation and Plotting step}
 	\label{fig:workflow_fresh_results}
 \end{figure}
 

@@ -1,19 +1,19 @@
 \newcommand{\installerTagResultsAucTable}{
-    \begin{table}[H]
+    \begin{table}[h!]
         \centering
         \begin{tabular}{|p{2,8cm}||P{2,2cm} P{2,2cm} P{2,2cm} P{2,2cm}|}
             \hline
             Installer Tag & ALOHA\newline (M/B only) & ALOHA & Joint\newline Embedding & Proposed\newline Model \\
             \hline
-            AUC-ROC & - & \textBF{0.976$\pm$0.001} & 0.974$\pm$0.000 & \textBF{0.976$\pm$0.001} \\
+            AUC-ROC & - & \textBF{0.976$\pm$0.001} & 0.974$\pm$0.000 & 0.973$\pm$0.004 \\
             \hline
         \end{tabular}
-        \caption{AUC-ROC (Area Under Curve) of the different models for the \textbf{Installer Tag} prediction task. Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:installerTag_auc}
+        \caption[Installer Tag prediction task AUC-ROC results]{AUC-ROC (Area Under Curve) of the different models for the \textbf{Installer Tag} prediction task. Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:installerTag_auc}
     \end{table}
 }
 
 \newcommand{\installerTagResultsAtFprTable}{
-    \begin{center}
+    \begin{center}[h!]
         \begin{longtable}[c]{|P{3,2cm}||P{1,8cm} P{1,8cm} P{1,8cm} P{1,8cm} P{1,8cm}|}
             \hline
             Installer Tag & \multicolumn{5}{c|}{{FPR}} \\
@@ -31,58 +31,58 @@
             \caption*{\raggedleft ...continued on next page} \\
             \endfoot
 
-            \caption{Mean and standard deviation results (TPR, Accuracy, Recall, Precision and F1-Score) of the different models for the \textbf{Installer Tag} prediction task at different \textbf{FPR}s (\textit{False Positive Rates}). Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}. Under \textbf{TPR} results are also presented the percentage reduction in mean detection error and in ROC curve standard deviation introduced by the \textit{Proposed Model} with respect to both \textit{ALOHA} model and \textit{Joint Embedding}.} \label{tab:installerTag_results_at_fpr} \\
+            \caption[Installer Tag prediction task results]{Mean and standard deviation results (TPR, Accuracy, Recall, Precision and F1-Score) of the different models for the \textbf{Installer Tag} prediction task at different \textbf{FPR}s (\textit{False Positive Rates}). Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}. Under \textbf{TPR} results are also presented the percentage reduction in mean detection error and in ROC curve standard deviation introduced by the \textit{Proposed Model} with respect to both \textit{ALOHA} model and \textit{Joint Embedding}.} \label{tab:installerTag_results_at_fpr} \\
             \endlastfoot
 
             \multicolumn{6}{|c|}{\textbf{TPR}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.176$\pm$0.012 & 0.252$\pm$0.005 & 0.380$\pm$0.002 & 0.755$\pm$0.009 & \textBF{0.949$\pm$0.007} \\
-            Joint Embedding & 0.172$\pm$0.007 & 0.280$\pm$0.021 & 0.438$\pm$0.038 & 0.752$\pm$0.021 & 0.944$\pm$0.006 \\
-            Proposed Model & \textBF{0.206$\pm$0.025} & \textBF{0.341$\pm$0.031} & \textBF{0.504$\pm$0.008} & \textBF{0.759$\pm$0.052} & 0.945$\pm$0.004 \\
+            ALOHA & 0.176$\pm$0.012 & 0.252$\pm$0.005 & 0.380$\pm$0.002 & \textBF{0.755$\pm$0.009} & \textBF{0.949$\pm$0.007} \\
+            Joint Embedding & 0.172$\pm$0.007 & \textBF{0.280$\pm$0.021} & 0.438$\pm$0.038 & 0.752$\pm$0.021 & 0.944$\pm$0.006 \\
+            Proposed Model & \textBF{0.203$\pm$0.013} & 0.279$\pm$0.023 & \textBF{0.458$\pm$0.028} & 0.755$\pm$0.041 & 0.927$\pm$0.022 \\
             \hline
             Error Reduction wrt\newline ALOHA (M/B only) & - & - & - & - & - \\
-            Error Reduction wrt\newline ALOHA & 3.6\% & 11.9\% & 20.0\% & 1.6\% & -7.8\% \\
-            Error Reduction wrt\newline Joint Embedding & 4.1\% & 8.5\% & 11.7\% & 2.8\% & 1.8\% \\
+            Error Reduction wrt\newline ALOHA & 3.3\% & 3.6\% & 12.6\% & 0.0\% & -43.1\% \\
+            Error Reduction wrt\newline Joint Embedding & 3.7\% & -0.1\% & 3.6\% & 1.2\% & -30.4\% \\
             \hline
             Std Reduction wrt\newline ALOHA (M/B only) & - & - & - & - & - \\
-            Std Reduction wrt\newline ALOHA & -108.3\% & -520.0\% & -300.0\% & -477.8\% & 42.9\% \\
-            Std Reduction wrt\newline Joint Embedding & -257.1\% & -47.6\% & 78.9\% & -147.6\% & 33.3\% \\
+            Std Reduction wrt\newline ALOHA & -8.3\% & -360.0\% & -1300.0\% & -355.6\% & -214.3\% \\
+            Std Reduction wrt\newline Joint Embedding & -85.7\% & -9.5\% & 26.3\% & -95.2\% & -266.7\% \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Accuracy}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.985$\pm$0.000 & 0.987$\pm$0.000 & 0.988$\pm$0.000 & \textBF{0.986$\pm$0.000} & \textBF{0.901$\pm$0.000} \\
-            Joint Embedding & 0.985$\pm$0.000 & 0.987$\pm$0.000 & 0.989$\pm$0.001 & \textBF{0.986$\pm$0.000} & \textBF{0.901$\pm$0.000} \\
-            Proposed Model & \textBF{0.986$\pm$0.000} & \textBF{0.988$\pm$0.001} & \textBF{0.990$\pm$0.000} & 0.986$\pm$0.001 & \textBF{0.901$\pm$0.000} \\
+            ALOHA & 0.985$\pm$0.000 & \textBF{0.987$\pm$0.000} & 0.988$\pm$0.000 & \textBF{0.986$\pm$0.000} & \textBF{0.901$\pm$0.000} \\
+            Joint Embedding & 0.985$\pm$0.000 & \textBF{0.987$\pm$0.000} & 0.989$\pm$0.001 & \textBF{0.986$\pm$0.000} & \textBF{0.901$\pm$0.000} \\
+            Proposed Model & \textBF{0.986$\pm$0.000} & \textBF{0.987$\pm$0.000} & \textBF{0.989$\pm$0.000} & 0.986$\pm$0.001 & 0.900$\pm$0.000 \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Recall}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.176$\pm$0.012 & 0.252$\pm$0.005 & 0.380$\pm$0.002 & 0.755$\pm$0.009 & \textBF{0.949$\pm$0.007} \\
-            Joint Embedding & 0.172$\pm$0.007 & 0.280$\pm$0.021 & 0.438$\pm$0.038 & 0.752$\pm$0.021 & 0.944$\pm$0.006 \\
-            Proposed Model & \textBF{0.206$\pm$0.025} & \textBF{0.341$\pm$0.031} & \textBF{0.504$\pm$0.008} & \textBF{0.759$\pm$0.052} & 0.945$\pm$0.004 \\
+            ALOHA & 0.176$\pm$0.012 & 0.252$\pm$0.005 & 0.380$\pm$0.002 & \textBF{0.755$\pm$0.009} & \textBF{0.949$\pm$0.007} \\
+            Joint Embedding & 0.172$\pm$0.007 & \textBF{0.280$\pm$0.021} & 0.438$\pm$0.038 & 0.752$\pm$0.021 & 0.944$\pm$0.006 \\
+            Proposed Model & \textBF{0.203$\pm$0.013} & 0.279$\pm$0.023 & \textBF{0.458$\pm$0.028} & 0.755$\pm$0.041 & 0.927$\pm$0.022 \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Precision}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
             ALOHA & \textBF{0.997$\pm$0.000} & 0.979$\pm$0.000 & 0.874$\pm$0.001 & \textBF{0.578$\pm$0.003} & \textBF{0.147$\pm$0.001} \\
-            Joint Embedding & \textBF{0.997$\pm$0.000} & 0.981$\pm$0.002 & 0.887$\pm$0.008 & 0.576$\pm$0.007 & 0.146$\pm$0.001 \\
-            Proposed Model & \textBF{0.997$\pm$0.000} & \textBF{0.984$\pm$0.001} & \textBF{0.901$\pm$0.001} & 0.578$\pm$0.017 & 0.146$\pm$0.001 \\
+            Joint Embedding & \textBF{0.997$\pm$0.000} & \textBF{0.981$\pm$0.002} & 0.887$\pm$0.008 & 0.576$\pm$0.007 & 0.146$\pm$0.001 \\
+            Proposed Model & \textBF{0.997$\pm$0.000} & 0.980$\pm$0.002 & \textBF{0.892$\pm$0.006} & 0.577$\pm$0.014 & 0.144$\pm$0.003 \\
             \hline
             \multicolumn{6}{|c|}{\textbf{F1 Score}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.299$\pm$0.018 & 0.401$\pm$0.006 & 0.529$\pm$0.002 & 0.655$\pm$0.005 & \textBF{0.254$\pm$0.002} \\
-            Joint Embedding & 0.293$\pm$0.011 & 0.436$\pm$0.026 & 0.586$\pm$0.036 & 0.653$\pm$0.012 & 0.253$\pm$0.001 \\
-            Proposed Model & \textBF{0.341$\pm$0.034} & \textBF{0.506$\pm$0.034} & \textBF{0.647$\pm$0.007} & \textBF{0.656$\pm$0.030} & 0.253$\pm$0.001 \\
+            ALOHA & 0.299$\pm$0.018 & 0.401$\pm$0.006 & 0.529$\pm$0.002 & \textBF{0.655$\pm$0.005} & \textBF{0.254$\pm$0.002} \\
+            Joint Embedding & 0.293$\pm$0.011 & \textBF{0.436$\pm$0.026} & 0.586$\pm$0.036 & 0.653$\pm$0.012 & 0.253$\pm$0.001 \\
+            Proposed Model & \textBF{0.338$\pm$0.017} & 0.434$\pm$0.028 & \textBF{0.605$\pm$0.026} & 0.654$\pm$0.024 & 0.249$\pm$0.005 \\
             \hline
         \end{longtable}
     \end{center}
 }
 
 \newcommand{\installerTagResultsSummaryTable}{
-    \begin{table}[H]
+    \begin{table}[h!]
         \centering
         \begin{tabular}{|P{3,2cm}||P{1,8cm} P{1,8cm} P{1,8cm} P{1,8cm} P{1,8cm}|}
             \hline
@@ -91,55 +91,55 @@
             Model & TPR & Accuracy & Precision & Recall & F1 score \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.755$\pm$0.009 & \textBF{0.986$\pm$0.000} & \textBF{0.578$\pm$0.003} & 0.755$\pm$0.009 & 0.655$\pm$0.005 \\
+            ALOHA & \textBF{0.755$\pm$0.009} & \textBF{0.986$\pm$0.000} & \textBF{0.578$\pm$0.003} & \textBF{0.755$\pm$0.009} & \textBF{0.655$\pm$0.005} \\
             Joint Embedding & 0.752$\pm$0.021 & \textBF{0.986$\pm$0.000} & 0.576$\pm$0.007 & 0.752$\pm$0.021 & 0.653$\pm$0.012 \\
-            Proposed Model & \textBF{0.759$\pm$0.052} & 0.986$\pm$0.001 & 0.578$\pm$0.017 & \textBF{0.759$\pm$0.052} & \textBF{0.656$\pm$0.030} \\
+            Proposed Model & 0.755$\pm$0.041 & 0.986$\pm$0.001 & 0.577$\pm$0.014 & 0.755$\pm$0.041 & 0.654$\pm$0.024 \\
             \hline
         \end{tabular}
-        \caption{Summary of the mean and standard deviation results of the different models for the \textbf{Installer Tag} prediction task at \textbf{FPR} $=1\%$. Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:installerTag_result_summary}
+        \caption[Summary of Installer Tag prediction task results]{Summary of the mean and standard deviation results of the different models for the \textbf{Installer Tag} prediction task at \textbf{FPR} $=1\%$. Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:installerTag_result_summary}
     \end{table}
 }
 
 \newcommand{\installerTagRocAlohaMB}{
-    \begin{figure}[H]
+    \begin{figure}[h!]
         \vspace*{-0.5cm}
         \centering
         \includegraphics[width=0.6\textwidth]{./results/installer_tag_roc_alohaMB.png}
         \vspace*{-0.2cm}
-        \caption{ROC curve and AUC statistics of \textBF{ALOHA (M/B only)} model for the \textbf{Installer Tag}. The line represents the \textit{mean} TPR at a given FPR, while the shaded region represents the \textit{standard deviation}. Statistics were computed over \textBF{3} training runs, each with random parameter initialization.}
+        \caption[Installer Tag prediction task ALOHA (M/B only) ROC curve]{ROC curve and AUC statistics of \textBF{ALOHA (M/B only)} model for the \textbf{Installer Tag}. The line represents the \textit{mean} TPR at a given FPR, while the shaded region represents the \textit{standard deviation}. Statistics were computed over \textBF{3} training runs, each with random parameter initialization.}
         \label{fig:installerTagRocAlohaMB}
     \end{figure}
 }
 
 \newcommand{\installerTagRocAloha}{
-    \begin{figure}[H]
+    \begin{figure}[h!]
         \vspace*{-0.5cm}
         \centering
         \includegraphics[width=0.6\textwidth]{./results/installer_tag_roc_aloha.png}
         \vspace*{-0.2cm}
-        \caption{ROC curve and AUC statistics of \textBF{ALOHA} model for the \textbf{Installer Tag}. The line represents the \textit{mean} TPR at a given FPR, while the shaded region represents the \textit{standard deviation}. Statistics were computed over \textBF{3} training runs, each with random parameter initialization.}
+        \caption[Installer Tag prediction task ALOHA ROC curve]{ROC curve and AUC statistics of \textBF{ALOHA} model for the \textbf{Installer Tag}. The line represents the \textit{mean} TPR at a given FPR, while the shaded region represents the \textit{standard deviation}. Statistics were computed over \textBF{3} training runs, each with random parameter initialization.}
         \label{fig:installerTagRocAloha}
     \end{figure}
 }
 
 \newcommand{\installerTagRocJointEmbedding}{
-    \begin{figure}[H]
+    \begin{figure}[h!]
         \vspace*{-0.5cm}
         \centering
         \includegraphics[width=0.6\textwidth]{./results/installer_tag_roc_jointEmbedding.png}
         \vspace*{-0.2cm}
-        \caption{ROC curve and AUC statistics of \textBF{Joint Embedding} model for the \textbf{Installer Tag}. The line represents the \textit{mean} TPR at a given FPR, while the shaded region represents the \textit{standard deviation}. Statistics were computed over \textBF{3} training runs, each with random parameter initialization.}
+        \caption[Installer Tag prediction task Joint Embedding ROC curve]{ROC curve and AUC statistics of \textBF{Joint Embedding} model for the \textbf{Installer Tag}. The line represents the \textit{mean} TPR at a given FPR, while the shaded region represents the \textit{standard deviation}. Statistics were computed over \textBF{3} training runs, each with random parameter initialization.}
         \label{fig:installerTagRocJointEmbedding}
     \end{figure}
 }
 
 \newcommand{\installerTagRocProposedMethod}{
-    \begin{figure}[H]
+    \begin{figure}[h!]
         \vspace*{-0.5cm}
         \centering
         \includegraphics[width=0.6\textwidth]{./results/installer_tag_roc_proposedModel.png}
         \vspace*{-0.2cm}
-        \caption{ROC curve and AUC statistics of \textBF{Proposed Model} for the \textbf{Installer Tag}. The line represents the \textit{mean} TPR at a given FPR, while the shaded region represents the \textit{standard deviation}. Statistics were computed over \textBF{3} training runs, each with random parameter initialization.}
+        \caption[Installer Tag prediction task Proposed Model ROC curve]{ROC curve and AUC statistics of \textBF{Proposed Model} for the \textbf{Installer Tag}. The line represents the \textit{mean} TPR at a given FPR, while the shaded region represents the \textit{standard deviation}. Statistics were computed over \textBF{3} training runs, each with random parameter initialization.}
         \label{fig:installerTagRocProposedModel}
     \end{figure}
 }

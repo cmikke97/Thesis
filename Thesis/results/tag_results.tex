@@ -1,5 +1,5 @@
 \newcommand{\tagResultsAucTable}{
-    \begin{center}
+    \begin{center}[h!]
         \begin{longtable}[c]{|P{2,8cm}||P{2,2cm} P{2,2cm} P{2,2cm} P{2,2cm}|}
             \hline
             AUC-ROC & ALOHA\newline (M/B only) & ALOHA & Joint\newline Embedding & Proposed\newline Model \\
@@ -15,27 +15,27 @@
             \caption*{\raggedleft ...continued on next page} \\
             \endfoot
             
-            \caption{Mean and standard deviation AUC-ROC (Area Under Curve) of the different models for the the prediction of the different Tags. Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:tag_aucs}
+            \caption[Tags prediction task AUC-ROC results]{Mean and standard deviation AUC-ROC (Area Under Curve) of the different models for the the prediction of the different Tags. Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:tag_aucs}
             \endlastfoot
             
-            Adware Tag & - & \textBF{0.973$\pm$0.000} & 0.971$\pm$0.002 & 0.972$\pm$0.002 \\
-            Crypto-miner Tag & - & 0.985$\pm$0.002 & \textBF{0.990$\pm$0.001} & \textBF{0.990$\pm$0.001} \\
+            Adware Tag & - & \textBF{0.973$\pm$0.000} & 0.971$\pm$0.002 & 0.972$\pm$0.003 \\
+            Crypto-miner Tag & - & 0.985$\pm$0.002 & 0.990$\pm$0.001 & \textBF{0.991$\pm$0.001} \\
             Downloader Tag & - & 0.973$\pm$0.003 & \textBF{0.977$\pm$0.002} & 0.975$\pm$0.003 \\
-            Dropper Tag & - & 0.972$\pm$0.001 & 0.973$\pm$0.001 & \textBF{0.976$\pm$0.001} \\
-            File-infector Tag & - & 0.982$\pm$0.002 & 0.983$\pm$0.001 & \textBF{0.986$\pm$0.001} \\
-            Flooder Tag & - & 0.985$\pm$0.001 & 0.985$\pm$0.000 & \textBF{0.988$\pm$0.001} \\
-            Installer Tag & - & \textBF{0.976$\pm$0.001} & 0.974$\pm$0.000 & \textBF{0.976$\pm$0.001} \\
-            Packed Tag & - & 0.978$\pm$0.001 & 0.978$\pm$0.003 & \textBF{0.983$\pm$0.002} \\
-            Ransomware Tag & - & 0.979$\pm$0.003 & 0.979$\pm$0.004 & \textBF{0.984$\pm$0.005} \\
-            Spyware Tag & - & 0.960$\pm$0.002 & 0.970$\pm$0.002 & \textBF{0.970$\pm$0.000} \\
-            Worm Tag & - & \textBF{0.962$\pm$0.003} & 0.940$\pm$0.002 & 0.939$\pm$0.012 \\
+            Dropper Tag & - & 0.972$\pm$0.001 & 0.973$\pm$0.001 & \textBF{0.975$\pm$0.001} \\
+            File-infector Tag & - & 0.982$\pm$0.002 & \textBF{0.983$\pm$0.001} & 0.981$\pm$0.002 \\
+            Flooder Tag & - & 0.985$\pm$0.001 & \textBF{0.985$\pm$0.000} & \textBF{0.985$\pm$0.000} \\
+            Installer Tag & - & \textBF{0.976$\pm$0.001} & 0.974$\pm$0.000 & 0.973$\pm$0.004 \\
+            Packed Tag & - & 0.978$\pm$0.001 & 0.978$\pm$0.003 & \textBF{0.980$\pm$0.002} \\
+            Ransomware Tag & - & \textBF{0.979$\pm$0.003} & 0.979$\pm$0.004 & 0.978$\pm$0.004 \\
+            Spyware Tag & - & 0.960$\pm$0.002 & \textBF{0.970$\pm$0.002} & 0.959$\pm$0.008 \\
+            Worm Tag & - & \textBF{0.962$\pm$0.003} & 0.940$\pm$0.002 & 0.960$\pm$0.006 \\
             \hline
         \end{longtable}
     \end{center}
 }
 
 \newcommand{\tagResultsSummaryTable}{
-    \begin{center}
+    \begin{center}[h!]
         \begin{longtable}[c]{|P{3,2cm}||P{1,8cm} P{1,8cm} P{1,8cm} P{1,8cm} P{1,8cm}|}
             \hline
             & TPR & Accuracy & Precision & Recall & F1 score \\
@@ -51,7 +51,7 @@
             \caption*{\raggedleft ...continued on next page} \\
             \endfoot
             
-            \caption{Summary of the mean and standard deviation results of the different models for the prediction of the different tags at \textbf{FPR} $=1\%$. Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:tag_results_summary}
+            \caption[Tags prediction task results]{Summary of the mean and standard deviation results of the different models for the prediction of the different tags at \textbf{FPR} $=1\%$. Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:tag_results_summary}
             \endlastfoot
             
             \multicolumn{6}{|c|}{\textbf{Adware Tag} (at FPR $=1\%$)} \\
@@ -59,77 +59,77 @@
             ALOHA (M/B only) & - & - & - & - & - \\
             ALOHA & \textBF{0.719$\pm$0.006} & \textBF{0.974$\pm$0.000} & \textBF{0.814$\pm$0.001} & \textBF{0.719$\pm$0.006} & \textBF{0.764$\pm$0.004} \\
             Joint Embedding & 0.696$\pm$0.016 & 0.973$\pm$0.001 & 0.809$\pm$0.003 & 0.696$\pm$0.016 & 0.748$\pm$0.010 \\
-            Proposed Model & 0.684$\pm$0.013 & 0.972$\pm$0.001 & 0.807$\pm$0.003 & 0.684$\pm$0.013 & 0.741$\pm$0.009 \\
+            Proposed Model & 0.696$\pm$0.009 & 0.973$\pm$0.001 & 0.809$\pm$0.002 & 0.696$\pm$0.009 & 0.748$\pm$0.006 \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Crypto-miner Tag} (at FPR $=1\%$)} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
             ALOHA & 0.879$\pm$0.000 & 0.988$\pm$0.000 & 0.552$\pm$0.000 & 0.879$\pm$0.000 & 0.678$\pm$0.000 \\
             Joint Embedding & 0.901$\pm$0.006 & \textBF{0.989$\pm$0.000} & 0.558$\pm$0.002 & 0.901$\pm$0.006 & 0.689$\pm$0.003 \\
-            Proposed Model & \textBF{0.919$\pm$0.014} & \textBF{0.989$\pm$0.000} & \textBF{0.563$\pm$0.004} & \textBF{0.919$\pm$0.014} & \textBF{0.698$\pm$0.007} \\
+            Proposed Model & \textBF{0.908$\pm$0.023} & \textBF{0.989$\pm$0.000} & \textBF{0.560$\pm$0.006} & \textBF{0.908$\pm$0.023} & \textBF{0.692$\pm$0.011} \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Downloader Tag} (at FPR $=1\%$)} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
             ALOHA & 0.619$\pm$0.020 & 0.959$\pm$0.002 & 0.850$\pm$0.004 & 0.619$\pm$0.020 & 0.716$\pm$0.014 \\
             Joint Embedding & \textBF{0.638$\pm$0.008} & \textBF{0.961$\pm$0.001} & \textBF{0.853$\pm$0.002} & \textBF{0.638$\pm$0.008} & \textBF{0.730$\pm$0.006} \\
-            Proposed Model & 0.638$\pm$0.019 & 0.961$\pm$0.002 & 0.853$\pm$0.004 & 0.638$\pm$0.019 & 0.730$\pm$0.014 \\
+            Proposed Model & 0.635$\pm$0.014 & 0.960$\pm$0.001 & 0.853$\pm$0.003 & 0.635$\pm$0.014 & 0.728$\pm$0.011 \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Dropper Tag} (at FPR $=1\%$)} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
             ALOHA & 0.672$\pm$0.026 & 0.949$\pm$0.003 & 0.908$\pm$0.003 & 0.672$\pm$0.026 & 0.772$\pm$0.019 \\
             Joint Embedding & \textBF{0.730$\pm$0.011} & \textBF{0.957$\pm$0.001} & \textBF{0.914$\pm$0.001} & \textBF{0.730$\pm$0.011} & \textBF{0.812$\pm$0.007} \\
-            Proposed Model & 0.724$\pm$0.016 & 0.956$\pm$0.002 & 0.914$\pm$0.002 & 0.724$\pm$0.016 & 0.808$\pm$0.011 \\
+            Proposed Model & 0.727$\pm$0.006 & 0.956$\pm$0.001 & \textBF{0.914$\pm$0.001} & 0.727$\pm$0.006 & 0.810$\pm$0.004 \\
             \hline
             \multicolumn{6}{|c|}{\textbf{File-infector Tag} (at FPR $=1\%$)} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
             ALOHA & 0.851$\pm$0.008 & 0.968$\pm$0.001 & 0.943$\pm$0.000 & 0.851$\pm$0.008 & 0.894$\pm$0.004 \\
             Joint Embedding & 0.857$\pm$0.009 & 0.969$\pm$0.001 & 0.943$\pm$0.001 & 0.857$\pm$0.009 & 0.898$\pm$0.005 \\
-            Proposed Model & \textBF{0.872$\pm$0.011} & \textBF{0.971$\pm$0.002} & \textBF{0.944$\pm$0.001} & \textBF{0.872$\pm$0.011} & \textBF{0.907$\pm$0.006} \\
+            Proposed Model & \textBF{0.872$\pm$0.007} & \textBF{0.971$\pm$0.001} & \textBF{0.944$\pm$0.000} & \textBF{0.872$\pm$0.007} & \textBF{0.906$\pm$0.004} \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Flooder Tag} (at FPR $=1\%$)} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
             ALOHA & 0.897$\pm$0.013 & \textBF{0.990$\pm$0.000} & 0.140$\pm$0.002 & 0.897$\pm$0.013 & 0.242$\pm$0.003 \\
-            Joint Embedding & 0.910$\pm$0.006 & \textBF{0.990$\pm$0.000} & 0.141$\pm$0.001 & 0.910$\pm$0.006 & \textBF{0.245$\pm$0.001} \\
-            Proposed Model & \textBF{0.913$\pm$0.005} & \textBF{0.990$\pm$0.000} & \textBF{0.142$\pm$0.001} & \textBF{0.913$\pm$0.005} & \textBF{0.245$\pm$0.001} \\
+            Joint Embedding & 0.910$\pm$0.006 & \textBF{0.990$\pm$0.000} & 0.141$\pm$0.001 & 0.910$\pm$0.006 & 0.245$\pm$0.001 \\
+            Proposed Model & \textBF{0.916$\pm$0.003} & \textBF{0.990$\pm$0.000} & \textBF{0.142$\pm$0.000} & \textBF{0.916$\pm$0.003} & \textBF{0.246$\pm$0.001} \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Installer Tag} (at FPR $=1\%$)} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.755$\pm$0.009 & \textBF{0.986$\pm$0.000} & \textBF{0.578$\pm$0.003} & 0.755$\pm$0.009 & 0.655$\pm$0.005 \\
+            ALOHA & \textBF{0.755$\pm$0.009} & \textBF{0.986$\pm$0.000} & \textBF{0.578$\pm$0.003} & \textBF{0.755$\pm$0.009} & \textBF{0.655$\pm$0.005} \\
             Joint Embedding & 0.752$\pm$0.021 & \textBF{0.986$\pm$0.000} & 0.576$\pm$0.007 & 0.752$\pm$0.021 & 0.653$\pm$0.012 \\
-            Proposed Model & \textBF{0.759$\pm$0.052} & 0.986$\pm$0.001 & 0.578$\pm$0.017 & \textBF{0.759$\pm$0.052} & \textBF{0.656$\pm$0.030} \\
+            Proposed Model & 0.755$\pm$0.041 & 0.986$\pm$0.001 & 0.577$\pm$0.014 & 0.755$\pm$0.041 & 0.654$\pm$0.024 \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Packed Tag} (at FPR $=1\%$)} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
             ALOHA & 0.675$\pm$0.017 & 0.947$\pm$0.002 & 0.914$\pm$0.002 & 0.675$\pm$0.017 & 0.776$\pm$0.012 \\
             Joint Embedding & 0.731$\pm$0.019 & 0.955$\pm$0.003 & 0.920$\pm$0.002 & 0.731$\pm$0.019 & 0.815$\pm$0.012 \\
-            Proposed Model & \textBF{0.758$\pm$0.016} & \textBF{0.958$\pm$0.002} & \textBF{0.923$\pm$0.002} & \textBF{0.758$\pm$0.016} & \textBF{0.832$\pm$0.010} \\
+            Proposed Model & \textBF{0.750$\pm$0.022} & \textBF{0.957$\pm$0.003} & \textBF{0.922$\pm$0.002} & \textBF{0.750$\pm$0.022} & \textBF{0.827$\pm$0.014} \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Ransomware Tag} (at FPR $=1\%$)} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
             ALOHA & 0.849$\pm$0.001 & \textBF{0.983$\pm$0.000} & 0.824$\pm$0.000 & 0.849$\pm$0.001 & 0.836$\pm$0.001 \\
-            Joint Embedding & 0.855$\pm$0.002 & \textBF{0.983$\pm$0.000} & 0.825$\pm$0.000 & 0.855$\pm$0.002 & 0.840$\pm$0.001 \\
-            Proposed Model & \textBF{0.858$\pm$0.003} & \textBF{0.983$\pm$0.000} & \textBF{0.826$\pm$0.001} & \textBF{0.858$\pm$0.003} & \textBF{0.841$\pm$0.002} \\
+            Joint Embedding & 0.855$\pm$0.002 & \textBF{0.983$\pm$0.000} & \textBF{0.825$\pm$0.000} & 0.855$\pm$0.002 & \textBF{0.840$\pm$0.001} \\
+            Proposed Model & \textBF{0.855$\pm$0.001} & \textBF{0.983$\pm$0.000} & \textBF{0.825$\pm$0.000} & \textBF{0.855$\pm$0.001} & \textBF{0.840$\pm$0.001} \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Spyware Tag} (at FPR $=1\%$)} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
             ALOHA & 0.604$\pm$0.007 & 0.949$\pm$0.001 & 0.878$\pm$0.001 & 0.604$\pm$0.007 & 0.716$\pm$0.005 \\
-            Joint Embedding & \textBF{0.662$\pm$0.017} & \textBF{0.955$\pm$0.002} & \textBF{0.888$\pm$0.003} & \textBF{0.662$\pm$0.017} & \textBF{0.759$\pm$0.012} \\
-            Proposed Model & 0.651$\pm$0.007 & 0.954$\pm$0.001 & 0.886$\pm$0.001 & 0.651$\pm$0.007 & 0.751$\pm$0.005 \\
+            Joint Embedding & 0.662$\pm$0.017 & 0.955$\pm$0.002 & 0.888$\pm$0.003 & 0.662$\pm$0.017 & 0.759$\pm$0.012 \\
+            Proposed Model & \textBF{0.670$\pm$0.019} & \textBF{0.956$\pm$0.002} & \textBF{0.889$\pm$0.003} & \textBF{0.670$\pm$0.019} & \textBF{0.764$\pm$0.013} \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Worm Tag} (at FPR $=1\%$)} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & \textBF{0.652$\pm$0.014} & \textBF{0.936$\pm$0.002} & \textBF{0.925$\pm$0.002} & \textBF{0.652$\pm$0.014} & \textBF{0.764$\pm$0.010} \\
+            ALOHA & \textBF{0.652$\pm$0.014} & 0.936$\pm$0.002 & 0.925$\pm$0.002 & \textBF{0.652$\pm$0.014} & 0.764$\pm$0.010 \\
             Joint Embedding & 0.647$\pm$0.017 & 0.936$\pm$0.003 & 0.924$\pm$0.002 & 0.647$\pm$0.017 & 0.761$\pm$0.013 \\
-            Proposed Model & 0.641$\pm$0.021 & 0.935$\pm$0.003 & 0.923$\pm$0.002 & 0.641$\pm$0.021 & 0.757$\pm$0.016 \\
+            Proposed Model & 0.651$\pm$0.009 & \textBF{0.936$\pm$0.001} & \textBF{0.925$\pm$0.001} & 0.651$\pm$0.009 & \textBF{0.764$\pm$0.007} \\
             \hline
         \end{longtable}
     \end{center}

@@ -1,19 +1,19 @@
 \newcommand{\ransomwareTagResultsAucTable}{
-    \begin{table}[H]
+    \begin{table}[h!]
         \centering
         \begin{tabular}{|p{2,8cm}||P{2,2cm} P{2,2cm} P{2,2cm} P{2,2cm}|}
             \hline
             Ransomware Tag & ALOHA\newline (M/B only) & ALOHA & Joint\newline Embedding & Proposed\newline Model \\
             \hline
-            AUC-ROC & - & 0.979$\pm$0.003 & 0.979$\pm$0.004 & \textBF{0.984$\pm$0.005} \\
+            AUC-ROC & - & \textBF{0.979$\pm$0.003} & 0.979$\pm$0.004 & 0.978$\pm$0.004 \\
             \hline
         \end{tabular}
-        \caption{AUC-ROC (Area Under Curve) of the different models for the \textbf{Ransomware Tag} prediction task. Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:ransomwareTag_auc}
+        \caption[Ransomware Tag prediction task AUC-ROC results]{AUC-ROC (Area Under Curve) of the different models for the \textbf{Ransomware Tag} prediction task. Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:ransomwareTag_auc}
     \end{table}
 }
 
 \newcommand{\ransomwareTagResultsAtFprTable}{
-    \begin{center}
+    \begin{center}[h!]
         \begin{longtable}[c]{|P{3,2cm}||P{1,8cm} P{1,8cm} P{1,8cm} P{1,8cm} P{1,8cm}|}
             \hline
             Ransomware Tag & \multicolumn{5}{c|}{{FPR}} \\
@@ -31,58 +31,58 @@
             \caption*{\raggedleft ...continued on next page} \\
             \endfoot
 
-            \caption{Mean and standard deviation results (TPR, Accuracy, Recall, Precision and F1-Score) of the different models for the \textbf{Ransomware Tag} prediction task at different \textbf{FPR}s (\textit{False Positive Rates}). Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}. Under \textbf{TPR} results are also presented the percentage reduction in mean detection error and in ROC curve standard deviation introduced by the \textit{Proposed Model} with respect to both \textit{ALOHA} model and \textit{Joint Embedding}.} \label{tab:ransomwareTag_results_at_fpr} \\
+            \caption[Ransomware Tag prediction task results]{Mean and standard deviation results (TPR, Accuracy, Recall, Precision and F1-Score) of the different models for the \textbf{Ransomware Tag} prediction task at different \textbf{FPR}s (\textit{False Positive Rates}). Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}. Under \textbf{TPR} results are also presented the percentage reduction in mean detection error and in ROC curve standard deviation introduced by the \textit{Proposed Model} with respect to both \textit{ALOHA} model and \textit{Joint Embedding}.} \label{tab:ransomwareTag_results_at_fpr} \\
             \endlastfoot
 
             \multicolumn{6}{|c|}{\textbf{TPR}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
             ALOHA & 0.808$\pm$0.030 & 0.831$\pm$0.010 & 0.843$\pm$0.001 & 0.849$\pm$0.001 & 0.914$\pm$0.015 \\
-            Joint Embedding & \textBF{0.825$\pm$0.008} & \textBF{0.842$\pm$0.001} & 0.849$\pm$0.001 & 0.855$\pm$0.002 & 0.927$\pm$0.014 \\
-            Proposed Model & 0.818$\pm$0.012 & 0.840$\pm$0.002 & \textBF{0.850$\pm$0.001} & \textBF{0.858$\pm$0.003} & \textBF{0.944$\pm$0.024} \\
+            Joint Embedding & \textBF{0.825$\pm$0.008} & \textBF{0.842$\pm$0.001} & 0.849$\pm$0.001 & 0.855$\pm$0.002 & \textBF{0.927$\pm$0.014} \\
+            Proposed Model & 0.820$\pm$0.004 & 0.840$\pm$0.004 & \textBF{0.849$\pm$0.000} & \textBF{0.855$\pm$0.001} & 0.918$\pm$0.015 \\
             \hline
             Error Reduction wrt\newline ALOHA (M/B only) & - & - & - & - & - \\
-            Error Reduction wrt\newline ALOHA & 5.2\% & 5.3\% & 4.5\% & 6.0\% & 34.9\% \\
-            Error Reduction wrt\newline Joint Embedding & -4.0\% & -1.3\% & 0.7\% & 2.1\% & 23.3\% \\
+            Error Reduction wrt\newline ALOHA & 6.2\% & 5.3\% & 3.8\% & 4.0\% & 4.7\% \\
+            Error Reduction wrt\newline Joint Embedding & -2.9\% & -1.3\% & 0.0\% & 0.0\% & -12.3\% \\
             \hline
             Std Reduction wrt\newline ALOHA (M/B only) & - & - & - & - & - \\
-            Std Reduction wrt\newline ALOHA & 60.0\% & 80.0\% & 0.0\% & -200.0\% & -60.0\% \\
-            Std Reduction wrt\newline Joint Embedding & -50.0\% & -100.0\% & 0.0\% & -50.0\% & -71.4\% \\
+            Std Reduction wrt\newline ALOHA & 86.7\% & 60.0\% & 100.0\% & 0.0\% & 0.0\% \\
+            Std Reduction wrt\newline Joint Embedding & 50.0\% & -300.0\% & 100.0\% & 50.0\% & -7.1\% \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Accuracy}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.990$\pm$0.002 & 0.991$\pm$0.001 & \textBF{0.991$\pm$0.000} & \textBF{0.983$\pm$0.000} & 0.901$\pm$0.001 \\
-            Joint Embedding & \textBF{0.991$\pm$0.000} & \textBF{0.992$\pm$0.000} & \textBF{0.991$\pm$0.000} & \textBF{0.983$\pm$0.000} & 0.901$\pm$0.001 \\
-            Proposed Model & 0.990$\pm$0.001 & \textBF{0.992$\pm$0.000} & \textBF{0.991$\pm$0.000} & \textBF{0.983$\pm$0.000} & \textBF{0.902$\pm$0.001} \\
+            ALOHA & 0.990$\pm$0.002 & 0.991$\pm$0.001 & \textBF{0.991$\pm$0.000} & \textBF{0.983$\pm$0.000} & \textBF{0.901$\pm$0.001} \\
+            Joint Embedding & \textBF{0.991$\pm$0.000} & \textBF{0.992$\pm$0.000} & \textBF{0.991$\pm$0.000} & \textBF{0.983$\pm$0.000} & \textBF{0.901$\pm$0.001} \\
+            Proposed Model & \textBF{0.991$\pm$0.000} & \textBF{0.992$\pm$0.000} & \textBF{0.991$\pm$0.000} & \textBF{0.983$\pm$0.000} & \textBF{0.901$\pm$0.001} \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Recall}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
             ALOHA & 0.808$\pm$0.030 & 0.831$\pm$0.010 & 0.843$\pm$0.001 & 0.849$\pm$0.001 & 0.914$\pm$0.015 \\
-            Joint Embedding & \textBF{0.825$\pm$0.008} & \textBF{0.842$\pm$0.001} & 0.849$\pm$0.001 & 0.855$\pm$0.002 & 0.927$\pm$0.014 \\
-            Proposed Model & 0.818$\pm$0.012 & 0.840$\pm$0.002 & \textBF{0.850$\pm$0.001} & \textBF{0.858$\pm$0.003} & \textBF{0.944$\pm$0.024} \\
+            Joint Embedding & \textBF{0.825$\pm$0.008} & \textBF{0.842$\pm$0.001} & 0.849$\pm$0.001 & 0.855$\pm$0.002 & \textBF{0.927$\pm$0.014} \\
+            Proposed Model & 0.820$\pm$0.004 & 0.840$\pm$0.004 & \textBF{0.849$\pm$0.000} & \textBF{0.855$\pm$0.001} & 0.918$\pm$0.015 \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Precision}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & \textBF{1.000$\pm$0.000} & \textBF{0.998$\pm$0.000} & 0.979$\pm$0.000 & 0.824$\pm$0.000 & 0.335$\pm$0.004 \\
-            Joint Embedding & \textBF{1.000$\pm$0.000} & \textBF{0.998$\pm$0.000} & 0.979$\pm$0.000 & 0.825$\pm$0.000 & 0.338$\pm$0.003 \\
-            Proposed Model & \textBF{1.000$\pm$0.000} & \textBF{0.998$\pm$0.000} & \textBF{0.980$\pm$0.001} & \textBF{0.826$\pm$0.001} & \textBF{0.343$\pm$0.006} \\
+            ALOHA & \textBF{1.000$\pm$0.000} & \textBF{0.998$\pm$0.000} & \textBF{0.979$\pm$0.000} & 0.824$\pm$0.000 & 0.335$\pm$0.004 \\
+            Joint Embedding & \textBF{1.000$\pm$0.000} & \textBF{0.998$\pm$0.000} & \textBF{0.979$\pm$0.000} & \textBF{0.825$\pm$0.000} & \textBF{0.338$\pm$0.003} \\
+            Proposed Model & \textBF{1.000$\pm$0.000} & \textBF{0.998$\pm$0.000} & \textBF{0.979$\pm$0.000} & \textBF{0.825$\pm$0.000} & 0.336$\pm$0.004 \\
             \hline
             \multicolumn{6}{|c|}{\textbf{F1 Score}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
             ALOHA & 0.894$\pm$0.019 & 0.907$\pm$0.006 & 0.906$\pm$0.001 & 0.836$\pm$0.001 & 0.491$\pm$0.006 \\
-            Joint Embedding & \textBF{0.904$\pm$0.005} & \textBF{0.913$\pm$0.001} & 0.909$\pm$0.000 & 0.840$\pm$0.001 & 0.496$\pm$0.006 \\
-            Proposed Model & 0.900$\pm$0.007 & 0.912$\pm$0.001 & \textBF{0.910$\pm$0.000} & \textBF{0.841$\pm$0.002} & \textBF{0.503$\pm$0.010} \\
+            Joint Embedding & \textBF{0.904$\pm$0.005} & \textBF{0.913$\pm$0.001} & \textBF{0.909$\pm$0.000} & \textBF{0.840$\pm$0.001} & \textBF{0.496$\pm$0.006} \\
+            Proposed Model & 0.901$\pm$0.002 & 0.912$\pm$0.002 & \textBF{0.909$\pm$0.000} & \textBF{0.840$\pm$0.001} & 0.492$\pm$0.006 \\
             \hline
         \end{longtable}
     \end{center}
 }
 
 \newcommand{\ransomwareTagResultsSummaryTable}{
-    \begin{table}[H]
+    \begin{table}[h!]
         \centering
         \begin{tabular}{|P{3,2cm}||P{1,8cm} P{1,8cm} P{1,8cm} P{1,8cm} P{1,8cm}|}
             \hline
@@ -92,54 +92,54 @@
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
             ALOHA & 0.849$\pm$0.001 & \textBF{0.983$\pm$0.000} & 0.824$\pm$0.000 & 0.849$\pm$0.001 & 0.836$\pm$0.001 \\
-            Joint Embedding & 0.855$\pm$0.002 & \textBF{0.983$\pm$0.000} & 0.825$\pm$0.000 & 0.855$\pm$0.002 & 0.840$\pm$0.001 \\
-            Proposed Model & \textBF{0.858$\pm$0.003} & \textBF{0.983$\pm$0.000} & \textBF{0.826$\pm$0.001} & \textBF{0.858$\pm$0.003} & \textBF{0.841$\pm$0.002} \\
+            Joint Embedding & 0.855$\pm$0.002 & \textBF{0.983$\pm$0.000} & \textBF{0.825$\pm$0.000} & 0.855$\pm$0.002 & \textBF{0.840$\pm$0.001} \\
+            Proposed Model & \textBF{0.855$\pm$0.001} & \textBF{0.983$\pm$0.000} & \textBF{0.825$\pm$0.000} & \textBF{0.855$\pm$0.001} & \textBF{0.840$\pm$0.001} \\
             \hline
         \end{tabular}
-        \caption{Summary of the mean and standard deviation results of the different models for the \textbf{Ransomware Tag} prediction task at \textbf{FPR} $=1\%$. Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:ransomwareTag_result_summary}
+        \caption[Summary of Ransomware Tag prediction task results]{Summary of the mean and standard deviation results of the different models for the \textbf{Ransomware Tag} prediction task at \textbf{FPR} $=1\%$. Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:ransomwareTag_result_summary}
     \end{table}
 }
 
 \newcommand{\ransomwareTagRocAlohaMB}{
-    \begin{figure}[H]
+    \begin{figure}[h!]
         \vspace*{-0.5cm}
         \centering
         \includegraphics[width=0.6\textwidth]{./results/ransomware_tag_roc_alohaMB.png}
         \vspace*{-0.2cm}
-        \caption{ROC curve and AUC statistics of \textBF{ALOHA (M/B only)} model for the \textbf{Ransomware Tag}. The line represents the \textit{mean} TPR at a given FPR, while the shaded region represents the \textit{standard deviation}. Statistics were computed over \textBF{3} training runs, each with random parameter initialization.}
+        \caption[Ransomware Tag prediction task ALOHA (M/B only) ROC curve]{ROC curve and AUC statistics of \textBF{ALOHA (M/B only)} model for the \textbf{Ransomware Tag}. The line represents the \textit{mean} TPR at a given FPR, while the shaded region represents the \textit{standard deviation}. Statistics were computed over \textBF{3} training runs, each with random parameter initialization.}
         \label{fig:ransomwareTagRocAlohaMB}
     \end{figure}
 }
 
 \newcommand{\ransomwareTagRocAloha}{
-    \begin{figure}[H]
+    \begin{figure}[h!]
         \vspace*{-0.5cm}
         \centering
         \includegraphics[width=0.6\textwidth]{./results/ransomware_tag_roc_aloha.png}
         \vspace*{-0.2cm}
-        \caption{ROC curve and AUC statistics of \textBF{ALOHA} model for the \textbf{Ransomware Tag}. The line represents the \textit{mean} TPR at a given FPR, while the shaded region represents the \textit{standard deviation}. Statistics were computed over \textBF{3} training runs, each with random parameter initialization.}
+        \caption[Ransomware Tag prediction task ALOHA ROC curve]{ROC curve and AUC statistics of \textBF{ALOHA} model for the \textbf{Ransomware Tag}. The line represents the \textit{mean} TPR at a given FPR, while the shaded region represents the \textit{standard deviation}. Statistics were computed over \textBF{3} training runs, each with random parameter initialization.}
         \label{fig:ransomwareTagRocAloha}
     \end{figure}
 }
 
 \newcommand{\ransomwareTagRocJointEmbedding}{
-    \begin{figure}[H]
+    \begin{figure}[h!]
         \vspace*{-0.5cm}
         \centering
         \includegraphics[width=0.6\textwidth]{./results/ransomware_tag_roc_jointEmbedding.png}
         \vspace*{-0.2cm}
-        \caption{ROC curve and AUC statistics of \textBF{Joint Embedding} model for the \textbf{Ransomware Tag}. The line represents the \textit{mean} TPR at a given FPR, while the shaded region represents the \textit{standard deviation}. Statistics were computed over \textBF{3} training runs, each with random parameter initialization.}
+        \caption[Ransomware Tag prediction task Joint Embedding ROC curve]{ROC curve and AUC statistics of \textBF{Joint Embedding} model for the \textbf{Ransomware Tag}. The line represents the \textit{mean} TPR at a given FPR, while the shaded region represents the \textit{standard deviation}. Statistics were computed over \textBF{3} training runs, each with random parameter initialization.}
         \label{fig:ransomwareTagRocJointEmbedding}
     \end{figure}
 }
 
 \newcommand{\ransomwareTagRocProposedMethod}{
-    \begin{figure}[H]
+    \begin{figure}[h!]
         \vspace*{-0.5cm}
         \centering
         \includegraphics[width=0.6\textwidth]{./results/ransomware_tag_roc_proposedModel.png}
         \vspace*{-0.2cm}
-        \caption{ROC curve and AUC statistics of \textBF{Proposed Model} for the \textbf{Ransomware Tag}. The line represents the \textit{mean} TPR at a given FPR, while the shaded region represents the \textit{standard deviation}. Statistics were computed over \textBF{3} training runs, each with random parameter initialization.}
+        \caption[Ransomware Tag prediction task Proposed Model ROC curve]{ROC curve and AUC statistics of \textBF{Proposed Model} for the \textbf{Ransomware Tag}. The line represents the \textit{mean} TPR at a given FPR, while the shaded region represents the \textit{standard deviation}. Statistics were computed over \textBF{3} training runs, each with random parameter initialization.}
         \label{fig:ransomwareTagRocProposedModel}
     \end{figure}
 }
