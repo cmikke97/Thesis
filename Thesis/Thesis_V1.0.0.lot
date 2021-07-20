@@ -9,19 +9,19 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {7.1}{\ignorespaces Malware Label prediction task AUC-ROC results}}{112}{table.caption.120}%
+\contentsline {table}{\numberline {7.1}{\ignorespaces Malware Label prediction task AUC-ROC results}}{112}{table.caption.121}%
 \contentsline {table}{\numberline {7.2}{\ignorespaces Malware Label prediction task results}}{113}{table.7.2}%
-\contentsline {table}{\numberline {7.3}{\ignorespaces Summary of Malware Label prediction task results}}{113}{table.caption.124}%
+\contentsline {table}{\numberline {7.3}{\ignorespaces Summary of Malware Label prediction task results}}{113}{table.caption.125}%
 \contentsline {table}{\numberline {7.4}{\ignorespaces Tags prediction task AUC-ROC results}}{115}{table.7.4}%
 \contentsline {table}{\numberline {7.5}{\ignorespaces Tags prediction task results}}{117}{table.7.5}%
-\contentsline {table}{\numberline {7.6}{\ignorespaces Tags prediction task mean per-sample scores}}{117}{table.caption.128}%
-\contentsline {table}{\numberline {7.7}{\ignorespaces Family ranking MRR and MAP scores}}{117}{table.caption.129}%
+\contentsline {table}{\numberline {7.6}{\ignorespaces Tags prediction task mean per-sample scores}}{117}{table.caption.129}%
+\contentsline {table}{\numberline {7.7}{\ignorespaces Family ranking MRR and MAP scores}}{117}{table.caption.130}%
 \contentsline {table}{\numberline {7.8}{\ignorespaces Family prediction task AUC-ROC results}}{119}{table.7.8}%
 \contentsline {table}{\numberline {7.9}{\ignorespaces Family prediction task results}}{120}{table.7.9}%
-\contentsline {table}{\numberline {7.10}{\ignorespaces Family ranking max AP example}}{123}{table.caption.132}%
-\contentsline {table}{\numberline {7.11}{\ignorespaces Family ranking max RR example}}{123}{table.caption.133}%
-\contentsline {table}{\numberline {7.12}{\ignorespaces Family ranking min AP example}}{124}{table.caption.134}%
-\contentsline {table}{\numberline {7.13}{\ignorespaces Family ranking min RR example}}{124}{table.caption.135}%
+\contentsline {table}{\numberline {7.10}{\ignorespaces Family ranking max AP example}}{123}{table.caption.133}%
+\contentsline {table}{\numberline {7.11}{\ignorespaces Family ranking max RR example}}{123}{table.caption.134}%
+\contentsline {table}{\numberline {7.12}{\ignorespaces Family ranking min AP example}}{124}{table.caption.135}%
+\contentsline {table}{\numberline {7.13}{\ignorespaces Family ranking min RR example}}{124}{table.caption.136}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {9.1}{\ignorespaces Adware Tag prediction task results}}{127}{table.9.1}%

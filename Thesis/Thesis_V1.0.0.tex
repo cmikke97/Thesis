@@ -240,15 +240,18 @@ Aknowledgments...
 
 
 \chapter{Introduction}
-\color{Gray}
-While working on this document, I will mark with the colour \textcolor{Red}{red} the parts containing drafts and information got from outside sources. I will use the colour \textcolor{Orange}{orange} for parts under active modification, and the colour \textcolor{Green}{green} for comments (apart from this one).
-
-\color{Black}
 Malware first made its appearance in the 1960s. Then, hackers used to design computer viruses mainly for fun, as an exciting prank/experiment; their creations would generally display harmless messages and then spread to other computers \cite{ReganWIM}. There are numerous examples of malware created at that time within a laboratory setting: for example the \textbf{\textit{Darwing game}} in 1962 and \textbf{\textit{Creeper}} in 1971.
 
 In the early 1980s, the concept of malware caught on in the technology industry, and numerous examples of viruses and worms appeared both on Apple and IBM personal computers. With the introduction of the World Wide Web and the commercial internet in the 1990s it eventually became widely popularized, so much that Yisreal Radai coined the term \textbf{malware} in 1990.
 
 The previously mentioned 1960s and 1970s malware were all kept within a laboratory environment and never managed to escape to the wild. \textbf{\textit{Elk Cloner}} (1981) was the first known virus to have been able to escape its creation environment. Then, following the success of that prank gone wild, the first Microsoft PC virus, called \textbf{\textit{Brain}}, was created in 1986. Again, like \textit{Elk Cloner}, Brain was mostly annoying rather than harmful, but it was also the first known virus capable of concealing its presence on the disk thus evading detection. In 1988 the first worm, called \textbf{\textit{Morris}} worm, an experimental, self-propagating, self-replicating program was released on the internet \cite{NamanyaTWM}. In 1988 made its appearance also the first example of intentionally harmful virus, the \textbf{\textit{Vienna}} virus, which encrypted data and destroyed files. This led to the creation of the first antivirus tool ever \cite{ReganWIM}.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\textwidth]{./images/av_atlas_report_total_amount.png}
+	\caption[AV Atlas Total Malware and PUA Amount Report]{AV Atlas Total Malware and PUA Amount Report}
+	\label{fig:avAtlasReport}
+\end{figure}
 
 In the following decades malware has evolved both regarding its complexity and malware sample numbers. In particular, in 2019 and 2020 (and until mid 2021 - that is until the time of writing) the number of generated malware blew to the point that currently, according to AV Atlas, approximately 5.1 new Microsoft Windows malware samples are generated per second, $\sim18,500$ per hour \cite{AvAtlas}. Moreover, nowadays malware use obfuscation and other sophisticated techniques, such as Polymorphism and Metamorphism, to evolve their structure thus evading detection.
 
