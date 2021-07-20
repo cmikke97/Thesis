@@ -337,16 +337,12 @@ This part needs to be summarized since it is too long and too specific.
 There are different ways of categorizing malware; one way is by \textit{how} the malicious software spreads. Another one is by \textit{what} it \textit{does} once it has successfully infected its victim's computers (i.e. what is its payload, how it exploits the system or makes it vulnerable).
 
 \subsubsection{By how they spread}
-Terms like \textit{trojan}, \textit{virus} and \textit{worm} are commonly used interchangeably to indicate generic malware, but they actually describe three subtly different ways malware can infect target computers \cite{SymantecDVWT}:
+Terms like \textit{trojan}, \textit{virus} and \textit{worm} are commonly used interchangeably to indicate generic malware, but they actually describe three subtly different ways malicious software can infect target computers \cite{SymantecDVWT}:
 
 \begin{itemize}
-	\item \textbf{\textit{Trojan horse}}. Generally speaking, a \textit{Trojan Horse}, commonly referred to as a "Trojan", is any program that disguises itself as legitimate and invites the user to download and run it, concealing a malicious payload. When executed, the payload - malicious routines - may immediately take effect and cause many undesirable effects, such as deleting the user files or installing additional malware or PUAs (Potentially Unwanted Apps).
+	\item \textbf{\textit{Trojan horse}}. Generally speaking, a \textit{Trojan Horse}, commonly referred to as a "Trojan", is any program that disguises itself as legitimate and invites the user to download and run it, concealing a malicious payload. When executed, the payload - malicious routines - may immediately take effect and cause many undesirable effects, such as deleting the user files or installing additional malware or PUAs (Potentially Unwanted Apps), depending on the payload attached to them \cite{NamanyaTWM}.
 	
-	Trojans known as \textit{droppers} are often used to start a worm outbreak, by injecting the worm into users' local networks \cite{MullinsMT}.
-	
-	Trojans may hide in games, apps, or even software patches, or they may rely on social engineering and be embedded in attachments included in phishing emails.
-	
-	Trojan horses cannot self-replicate. They rely on the system operators to activate. However, they can grant the attacker remote access permitting him to then perform any malicious activity that is in their interest. Trojan horse programs can affect the host in many different ways, depending on the payload attached to them \cite{NamanyaTWM}.
+	Trojans may hide in games, apps, or even software patches, or they may rely on social engineering and be embedded in attachments included in phishing emails. However, they cannot self-replicate but rely on the system operators to activate.
 	
 	\item \textbf{\textit{Virus}}. The term "computer virus" is used for describing a passive self-replicating malicious program. Usually spread via infected websites, file sharing, or email attachment downloads, it will lie dormant until the infected host file or program is activated. At that point it spreads to other executables (and/or boot sectors) by embedding copies of itself into those files. A virus, in fact, in order to spread from one computer to another, usually relies on the infected files possibly ending up, by some means or another, in the target system. Viruses are therefore passive. The mean of transport (file, media file, network file, etc.) is often referred to as the virus \textit{vector}. Depending on how complex the virus code is, it may be able to modify its copies upon replication. For the transport of the infected files to the target system(s), the virus may rely on an unsuspecting human user (who for example uses a USB drive containing the infected file) or initiate itself the transfer (for example, it may send the infected files as an e-mail attachment) \cite{SharpAIM}.
 	
