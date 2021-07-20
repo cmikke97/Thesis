@@ -2672,7 +2672,7 @@ The actual model evaluation on the \textit{\textbf{fresh dataset}} is computed b
 \paragraph{Malware Family Prediction task evaluation}\label{par:FamilyPredictionEvaluation}
 For the malware family prediction task there are two similar solutions: one is called \textit{\textbf{soft-family prediction}} evaluation and the other \textit{\textbf{hard-family prediction}} evaluation. In both solutions the learned representation is tested by first selecting $n$ anchor samples per family (for a total of $n \times n_{families} = 100$ anchor samples). The other $n_{samples} - 100 = 900$ non-anchor samples are then assigned, for each family:
 \begin{itemize}
-	\item a probability score based on their Euclidean distance to the most similar anchor sample of that family for the \textit{\textbf{soft}} variant
+	\item a probability score based on their Euclidean distance or Cosine similarity (depending on the similarity function used by the model) to the most similar anchor sample of that family for the \textit{\textbf{soft}} variant
 	
 	\item a value of 1 if the most similar anchor sample is of that family, 0 otherwise, for the \textit{\textbf{hard}} variant
 \end{itemize}
@@ -2682,7 +2682,7 @@ Finally, a number of common binary prediction statistics such as \textit{TPR} (T
 
 \paragraph{Malware Family Ranking task evaluation}\label{par:FamilyRankingEvaluation}
 On the other hand, to evaluate the model learned representation on the family ranking task the function
-first randomly selects '\textit{\textbf{q}}' query samples among the ones in the $fresh\_dataset$. Then, it computes the \textit{Euclidean distance} between each query sample with the other '$n-1$' samples present in the $fresh\_dataset$ ordering the latter by similarity. At this point, for each query sample there is a ranking of all the other $n-1$ samples sorted from the most to least similar. Using those rankings the function finally calculates the \textbf{MRR} (\textit{Mean Reciprocal Rank}) and \textbf{MAP} (\textit{Mean Average Precision}) scores for the model learned representation.
+first randomly selects '\textit{\textbf{q}}' query samples among the ones in the $fresh\_dataset$. Then, it computes the similarity (using the model's \textit{get\_similarity} function) between each query sample with the other '$n-1$' samples present in the $fresh\_dataset$ ordering the latter by similarity. At this point, for each query sample there is a ranking of all the other $n-1$ samples sorted from the most to least similar. Using those rankings the function finally calculates the \textbf{MRR} (\textit{Mean Reciprocal Rank}) and \textbf{MAP} (\textit{Mean Average Precision}) scores for the model learned representation.
 
 The Mean Reciprocal Rank (\textbf{MRR}, \ref{eq:MRR}) is the average of the Reciprocal Ranks (\textbf{RR}, \ref{eq:RR}) of a series of queries. In particular, the Reciprocal Rank (\textbf{RR}) of a query response is the multiplicative inverse of the rank (position in the ranking) of the single sample belonging to the family of interest which classified with the highest rank (it is the closest).
 \begin{equation}\label{eq:RR}
