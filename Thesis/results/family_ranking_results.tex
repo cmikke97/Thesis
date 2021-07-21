@@ -5,8 +5,8 @@
             \hline
             & ALOHA\newline (M/B only) & ALOHA & Joint\newline Embedding & Proposed\newline Model \\
             \hline
-            MRR & - & - & \textBF{0.277$\pm$0.022} & 0.270$\pm$0.032 \\
-            MAP & - & - & \textBF{0.105$\pm$0.001} & 0.105$\pm$0.002 \\
+            MRR & - & - & \textBF{0.277$\pm$0.022} & 0.241$\pm$0.027 \\
+            MAP & - & - & \textBF{0.105$\pm$0.001} & \textBF{0.105$\pm$0.001} \\
             \hline
         \end{tabular}
         \caption[Family ranking MRR and MAP scores]{Mean and standard deviation MRR (Mean Reciprocal Rank) and MAP (Mean Average Precision) results for the different models on the Family Ranking task. Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:MrrAndMapResults}
@@ -21,21 +21,21 @@
             Max AP & \multicolumn{3}{c|}{Joint Embedding} & \multicolumn{3}{c|}{Proposed Model} \\
             & Sha256 & Label & Family & Sha256 & Label & Family \\
             \hline
-            Query & 6e169a.. & 4 & loki & 84ddbd.. & 1 & agenttesla \\
+            Query & 6e169a.. & 4 & loki & 06aba3.. & 6 & njrat \\
             \hline
-            0 & f60284.. & 0 & heodo & \textBF{579d75}.. & \textBF{1} & \textBF{agenttesla} \\
-			1 & e5ddc0.. & 0 & heodo & 39984e.. & 7 & remcosrat \\
-			2 & afe5f2.. & 1 & agenttesla & 8e24e1.. & 6 & njrat \\
-			3 & aeabce.. & 1 & agenttesla & \textBF{481e26}.. & \textBF{1} & \textBF{agenttesla} \\
-			4 & 2e47f4.. & 6 & njrat & 0fc2bd.. & 0 & heodo \\
-			5 & \textBF{a56b83}.. & \textBF{4} & \textBF{loki} & 5e5005.. & 9 & azorult \\
-			6 & f0a487.. & 3 & masslogger & 515918.. & 9 & azorult \\
-			7 & d1b9a4.. & 9 & azorult & e3edba.. & 8 & netwire \\
-			8 & 4c93d9.. & 9 & azorult & 2b62bf.. & 5 & avemariarat \\
-			9 & 2b62bf.. & 5 & avemariarat & 9f51a8.. & 2 & formbook \\
+            0 & f60284.. & 0 & heodo & \textBF{dce197}.. & \textBF{6} & \textBF{njrat} \\
+			1 & e5ddc0.. & 0 & heodo & 8bcb7a.. & 4 & loki \\
+			2 & afe5f2.. & 1 & agenttesla & 453a31.. & 1 & agenttesla \\
+			3 & aeabce.. & 1 & agenttesla & 0d838e.. & 3 & masslogger \\
+			4 & 2e47f4.. & 6 & njrat & f6d34b.. & 7 & remcosrat \\
+			5 & \textBF{a56b83}.. & \textBF{4} & \textBF{loki} & 4ce1f9.. & 2 & formbook \\
+			6 & f0a487.. & 3 & masslogger & 3ffc5d.. & 8 & netwire \\
+			7 & d1b9a4.. & 9 & azorult & 65d873.. & 9 & azorult \\
+			8 & 4c93d9.. & 9 & azorult & 5e2255.. & 2 & formbook \\
+			9 & 2b62bf.. & 5 & avemariarat & \textBF{d3aab8}.. & \textBF{6} & \textBF{njrat} \\
             \hline
         \end{tabular}
-        \caption[Family ranking max AP example]{\textBF{Joint Embedding} and \textBF{Proposed Model} example rankings (limited to the first 10 samples) having the maximum Average Precision (max AP). The elements matching the query sample are shown in \textbf{bold}. The next occurrence of family '\textBF{loki}' in the joint Embedding ranking is at positions \textBF{12}. On the other hand, the next occurrence of family '\textBF{agenttesla}' in the Proposed Model ranking is at position \textBF{10}.} \label{tab:maxApExampleRank}
+        \caption[Family ranking max AP example]{\textBF{Joint Embedding} and \textBF{Proposed Model} example rankings (limited to the first 10 samples) having the maximum Average Precision (max AP). The elements matching the query sample are shown in \textbf{bold}. The next occurrence of family '\textBF{loki}' in the joint Embedding ranking is at positions \textBF{12}. On the other hand, the next occurrence of family '\textBF{njrat}' in the Proposed Model ranking is at position \textBF{15}.} \label{tab:maxApExampleRank}
     \end{table}
 }
 
@@ -47,21 +47,21 @@
             Max RR & \multicolumn{3}{c|}{Joint Embedding} & \multicolumn{3}{c|}{Proposed Model} \\
             & Sha256 & Label & Family & Sha256 & Label & Family \\
             \hline
-            Query & bdfb90.. & 8 & netwire & 612152.. & 1 & agenttesla \\
+            Query & bdfb90.. & 8 & netwire & 6163f5.. & 6 & njrat \\
             \hline
-            0 & \textBF{58e859}.. & \textBF{8} & \textBF{netwire} & \textBF{579d75}.. & \textBF{1} & \textBF{agenttesla} \\
-			1 & e5ddc0.. & 0 & heodo & 39984e.. & 7 & remcosrat \\
-			2 & afe5f2.. & 1 & agenttesla & 8e24e1.. & 6 & njrat \\
-			3 & aeabce.. & 1 & agenttesla & \textBF{481e26}.. & \textBF{1} & \textBF{agenttesla} \\
-			4 & 2e47f4.. & 6 & njrat & 0fc2bd.. & 0 & heodo \\
-			5 & a56b83.. & 4 & loki & 5e5005.. & 9 & azorult \\
-			6 & f0a487.. & 3 & masslogger & 9f51a8.. & 2 & formbook \\
-			7 & d1b9a4.. & 9 & azorult & 515918.. & 9 & azorult \\
-			8 & 2b62bf.. & 5 & avemariarat & e3edba.. & 8 & netwire \\
-			9 & 4c93d9.. & 9 & azorult & 2b62bf.. & 5 & avemariarat \\
+            0 & \textBF{58e859}.. & \textBF{8} & \textBF{netwire} & \textBF{dce197}.. & \textBF{6} & \textBF{njrat} \\
+			1 & e5ddc0.. & 0 & heodo & 552dfc.. & 9 & azorult \\
+			2 & afe5f2.. & 1 & agenttesla & 453a31.. & 1 & agenttesla \\
+			3 & aeabce.. & 1 & agenttesla & f6d34b.. & 7 & remcosrat \\
+			4 & 2e47f4.. & 6 & njrat & 0d838e.. & 3 & masslogger \\
+			5 & a56b83.. & 4 & loki & 5e2255.. & 2 & formbook \\
+			6 & f0a487.. & 3 & masslogger & 4ce1f9.. & 2 & formbook \\
+			7 & d1b9a4.. & 9 & azorult & 3ffc5d.. & 8 & netwire \\
+			8 & 2b62bf.. & 5 & avemariarat & 65d873.. & 9 & azorult \\
+			9 & 4c93d9.. & 9 & azorult & \textBF{d3aab8}.. & \textBF{6} & \textBF{njrat} \\
             \hline
         \end{tabular}
-        \caption[Family ranking max RR example]{\textBF{Joint Embedding} and \textBF{Proposed Model} example rankings (limited to the first 10 samples) having the maximum Reciprocal Rank (max RR). The elements matching the query sample are shown in \textbf{bold}. The next occurrence of family '\textBF{netwire}' in the joint Embedding ranking is at positions \textBF{19}. On the other hand, the next occurrence of family '\textBF{agenttesla}' in the Proposed Model ranking is at position \textBF{12}.} \label{tab:maxRrExampleRank}
+        \caption[Family ranking max RR example]{\textBF{Joint Embedding} and \textBF{Proposed Model} example rankings (limited to the first 10 samples) having the maximum Reciprocal Rank (max RR). The elements matching the query sample are shown in \textbf{bold}. The next occurrence of family '\textBF{netwire}' in the joint Embedding ranking is at positions \textBF{19}. On the other hand, the next occurrence of family '\textBF{njrat}' in the Proposed Model ranking is at position \textBF{12}.} \label{tab:maxRrExampleRank}
     \end{table}
 }
 
@@ -73,21 +73,21 @@
             Min AP & \multicolumn{3}{c|}{Joint Embedding} & \multicolumn{3}{c|}{Proposed Model} \\
             & Sha256 & Label & Family & Sha256 & Label & Family \\
             \hline
-            Query & 47795e.. & 2 & formbook & 06aba3.. & 6 & njrat \\
+            Query & 47795e.. & 2 & formbook & 9286e1.. & 4 & loki \\
             \hline
-            0 & 58e859.. & 8 & netwire & 579d75.. & 1 & agenttesla \\
-			1 & e5ddc0.. & 0 & heodo & 39984e.. & 7 & remcosrat \\
-			2 & afe5f2.. & 1 & agenttesla & 481e26.. & 1 & agenttesla \\
-			3 & aeabce.. & 1 & agenttesla & \textBF{8e24e1}.. & \textBF{6} & \textBF{njrat} \\
-			4 & 2e47f4.. & 6 & njrat & 0fc2bd.. & 0 & heodo \\
-			5 & a56b83.. & 4 & loki & 515918.. & 9 & azorult \\
-			6 & f0a487.. & 3 & masslogger & 5e5005.. & 9 & azorult \\
-			7 & d1b9a4.. & 9 & azorult & e3edba.. & 8 & netwire \\
-			8 & 2b62bf.. & 5 & avemariarat & 2b62bf.. & 5 & avemariarat \\
-			9 & 4c93d9.. & 9 & azorult & 6e65c8.. & 1 & agenttesla \\
+            0 & 58e859.. & 8 & netwire & dce197.. & 6 & njrat \\
+			1 & e5ddc0.. & 0 & heodo & 552dfc.. & 9 & azorult \\
+			2 & afe5f2.. & 1 & agenttesla & 453a31.. & 1 & agenttesla \\
+			3 & aeabce.. & 1 & agenttesla & f6d34b.. & 7 & remcosrat \\
+			4 & 2e47f4.. & 6 & njrat & 0d838e.. & 3 & masslogger \\
+			5 & a56b83.. & 4 & loki & 5e2255.. & 2 & formbook \\
+			6 & f0a487.. & 3 & masslogger & 4ce1f9.. & 2 & formbook \\
+			7 & d1b9a4.. & 9 & azorult & 3ffc5d.. & 8 & netwire \\
+			8 & 2b62bf.. & 5 & avemariarat & 65d873.. & 9 & azorult \\
+			9 & 4c93d9.. & 9 & azorult & d3aab8.. & 6 & njrat \\
             \hline
         \end{tabular}
-        \caption[Family ranking min AP example]{\textBF{Joint Embedding} and \textBF{Proposed Model} example rankings (limited to the first 10 samples) having the minimum Average Precision (min AP). The elements matching the query sample are shown in \textbf{bold}. The next occurrence of family '\textBF{formbook}' in the joint Embedding ranking is at positions \textBF{13}. On the other hand, the next occurrence of family '\textBF{njrat}' in the Proposed Model ranking is at position \textBF{80}.} \label{tab:minApExampleRank}
+        \caption[Family ranking min AP example]{\textBF{Joint Embedding} and \textBF{Proposed Model} example rankings (limited to the first 10 samples) having the minimum Average Precision (min AP). The elements matching the query sample are shown in \textbf{bold}. The next occurrence of family '\textBF{formbook}' in the joint Embedding ranking is at positions \textBF{13}. On the other hand, the next occurrence of family '\textBF{loki}' in the Proposed Model ranking is at position \textBF{22}.} \label{tab:minApExampleRank}
     \end{table}
 }
 
@@ -99,20 +99,20 @@
             Min RR & \multicolumn{3}{c|}{Joint Embedding} & \multicolumn{3}{c|}{Proposed Model} \\
             & Sha256 & Label & Family & Sha256 & Label & Family \\
             \hline
-            Query & 5644ff.. & 7 & remcosrat & 5873ee.. & 3 & masslogger \\
+            Query & 5644ff.. & 7 & remcosrat & 9286e1.. & 4 & loki \\
             \hline
-            0 & f60284.. & 0 & heodo & 579d75.. & 1 & agenttesla \\
-			1 & e5ddc0.. & 0 & heodo & 39984e.. & 7 & remcosrat \\
-			2 & afe5f2.. & 1 & agenttesla & 8e24e1.. & 6 & njrat \\
-			3 & aeabce.. & 1 & agenttesla & 481e26.. & 1 & agenttesla \\
-			4 & 2e47f4.. & 6 & njrat & 0fc2bd.. & 0 & heodo \\
-			5 & 4c93d9.. & 9 & azorult & 5e5005.. & 9 & azorult \\
-			6 & a56b83.. & 4 & loki & 515918.. & 9 & azorult \\
-			7 & f0a487.. & 3 & masslogger & 9f51a8.. & 2 & formbook \\
-			8 & d1b9a4.. & 9 & azorult & e3edba.. & 8 & netwire \\
-			9 & 2b62bf.. & 5 & avemariarat & 2b62bf.. & 5 & avemariarat \\
+            0 & f60284.. & 0 & heodo & dce197.. & 6 & njrat \\
+			1 & e5ddc0.. & 0 & heodo & 552dfc.. & 9 & azorult \\
+			2 & afe5f2.. & 1 & agenttesla & 453a31.. & 1 & agenttesla \\
+			3 & aeabce.. & 1 & agenttesla & f6d34b.. & 7 & remcosrat \\
+			4 & 2e47f4.. & 6 & njrat & 0d838e.. & 3 & masslogger \\
+			5 & 4c93d9.. & 9 & azorult & 5e2255.. & 2 & formbook \\
+			6 & a56b83.. & 4 & loki & 4ce1f9.. & 2 & formbook \\
+			7 & f0a487.. & 3 & masslogger & 3ffc5d.. & 8 & netwire \\
+			8 & d1b9a4.. & 9 & azorult & 65d873.. & 9 & azorult \\
+			9 & 2b62bf.. & 5 & avemariarat & d3aab8.. & 6 & njrat \\
             \hline
         \end{tabular}
-        \caption[Family ranking min RR example]{\textBF{Joint Embedding} and \textBF{Proposed Model} example rankings (limited to the first 10 samples) having the minimum Reciprocal Rank (min RR). The elements matching the query sample are shown in \textbf{bold}. The next occurrence of family '\textBF{remcosrat}' in the joint Embedding ranking is at positions \textBF{22}. On the other hand, the next occurrence of family '\textBF{masslogger}' in the Proposed Model ranking is at position \textBF{25}.} \label{tab:minRrExampleRank}
+        \caption[Family ranking min RR example]{\textBF{Joint Embedding} and \textBF{Proposed Model} example rankings (limited to the first 10 samples) having the minimum Reciprocal Rank (min RR). The elements matching the query sample are shown in \textbf{bold}. The next occurrence of family '\textBF{remcosrat}' in the joint Embedding ranking is at positions \textBF{22}. On the other hand, the next occurrence of family '\textBF{loki}' in the Proposed Model ranking is at position \textBF{22}.} \label{tab:minRrExampleRank}
     \end{table}
 }
