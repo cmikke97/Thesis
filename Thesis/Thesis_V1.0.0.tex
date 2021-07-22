@@ -209,7 +209,7 @@ Thanks...
 \end{dedica}
 
 \sommario
-In most recent years the proliferation of malicious software, namely Malware, has had a massive increase: according to AV Atlas Dashboard (\cite{AvAtlas}) the new malware samples (and PUA - Potentially Unwanted Application) currently detected every day are about 440.000 (at the time of writing), and this number is predicted to only keep growing. The total number of known Microsoft Windows malicious software (and PUA) passed from about 55 million in 2011, to about 400 million in 2016, and finally to nearly 830 million now. The huge number of malware samples out there in the wild renders the detection through manually generated signatures (patterns that identify malicious code) infeasible and consequently imposes the urgent need of tools able to automatically detect malware and possibly describe it in an human-interpretable way. Several methodologies have been proposed through the years, ranging from signature-based detection (especially with Yara Rules) to various Machine Learning approaches like Decision Trees, Naive Bayes models and Neural Networks.
+In most recent years the proliferation of malicious software, namely Malware, has had a massive increase: according to AV Atlas Dashboard \cite{AvAtlas} the new malware samples (and PUA - Potentially Unwanted Application) currently detected every day are about 440.000 (at the time of writing), and this number is predicted to only keep growing. The total number of known Microsoft Windows malicious software (and PUA) passed from about 55 million in 2011, to about 400 million in 2016, and finally to nearly 830 million now. The huge number of malware samples out there in the wild renders the detection through manually generated signatures (patterns that identify malicious code) infeasible and consequently imposes the urgent need of tools able to automatically detect malware and possibly describe it in an human-interpretable way. Several methodologies have been proposed through the years, ranging from signature-based detection (especially with Yara Rules) to various Machine Learning approaches like Decision Trees, Naive Bayes models and Neural Networks.
 
 This thesis presents a novel model built upon previous works in \textbf{ML-based} (Machine Learning) automatic PE (Microsoft Windows Portable Executable) malware detection and description and introduces a new evaluation procedure on the learnt implicit representation/signature of malware samples that may prove the applicability of its usage in the Malicious family prediction and ranking tasks. The model is trained on an open source large scale dataset of malware and benignware samples with the aim of creating high quality implicit signatures capable of correctly detecting (and describing) unseen malware samples as well as obfuscated malware and new variants, with high True Positive Rate (TPR) and high Recall at low False Positive Rates (FPRs).
 
@@ -330,10 +330,6 @@ More generally malware serves a variety of purposes. For example, the most commo
 Obviously there are also reasons for \textbf{non}-malicious actors to create and/or deploy some types of malware too - for example they can be used to test a system's security, to spy on someone as part of a legal act/police operation, etc.
 
 \subsection{Common Malware types}
-\color{Green}
-This part needs to be summarized since it is too long and too specific.
-\color{Black}
-
 There are different ways of categorizing malware; one way is by \textit{how} the malicious software spreads. Another one is by \textit{what} it \textit{does} once it has successfully infected its victim's computers (i.e. what is its payload, how it exploits the system or makes it vulnerable).
 
 \subsubsection{By how they spread}
@@ -405,21 +401,17 @@ There is a wide range of potential attack techniques used by malware, here are b
 Other cyber threats which are not strictly, and should not be confused with, malware are, for example:
 
 \begin{itemize}
-	\item \textbf{\textit{Software Bug}}.
-	A software bug is an error, or flaw, in a computer program code or system that causes it to produce an incorrect or unexpected result, or to behave in unintended ways. Usually, most of these defects arise from human errors made in the program's source code.
-		
-	Some software bugs may qualify as security bugs. These are the most serious type of bugs since they can allow attackers to bypass access controls such as user authentication, override access privileges, or steal data \cite{DuPaulCMT}.
+	\item \textbf{\textit{Software Bug}}. A software bug is an error, or flaw, in a computer program code or system that causes it to produce an incorrect or unexpected result, or to behave in unintended ways. Usually, most of these defects arise from human errors made in the program's source code. Minor bugs only slightly affect the behaviour of a program and can therefore remain undiscovered for quite a long time. On the other hand, more significant bugs can cause crashes or freezes \cite{DuPaulCMT}.
+	
+	\item \textbf{\textit{Software Vulnerability}}. In computer security, a vulnerability is a hole or a weakness in an application, which can be a design flaw or an implementation bug, that can be exploited by a threat actor, such as an attacker to bypass access controls such as user authentication, override access privileges, steal data or perform other unauthorized actions within a computer system potentially causing harm to the stakeholders of an application. Stakeholders include the application owner, application users, and other entities that rely on the application \cite{OWASPV}.
 	
 	\item \textbf{\textit{Malvertising}}. Malvertising is the use of legitimate ads or ad networks to covertly deliver malware to unsuspecting users' computers. For example, a cybercriminal might pay to place a malicious ad on a legitimate website. When clicked, it either redirects the victims to a malicious website or installs malware on their computer. In some cases, the code embedded in an ad might even execute automatically without any action from the user, a technique referred to as a "drive-by-download".
 	
-	\item \textbf{\textit{Phishing}}. Phishing is a type of social engineering attack in which the attacker attempts, through email messages (or other means), to trick users into divulging passwords (or anyway personal and financial information), downloading a malicious attachment or visiting a website that installs malware on their systems.
+	\item \textbf{\textit{Phishing}}. Phishing is a type of social engineering attack in which the attacker attempts, through email messages (or other means), to trick users into divulging passwords or other personal and financial information, downloading a malicious attachment or visiting a website that installs malware on their systems.
 		
 	Some phishing emails are highly sophisticated and can deceive even experienced users, especially if the attacker has successfully compromised a known contact's email account and uses it to spread phishing attacks or malware such as worms. Others are less sophisticated and simply spam as many emails as possible with messages such as "Check your bank account details" \cite{ComtactWDYM}.
-	
-	There are different types of phishing, characterized by the means of attack (\textit{Phishing} (Email), \textit{Smishing} (SMS), etc.) and by the specificity of the targeted users (\textit{Spear Phishing} (targets specific users), \textit{whaling} (targets chief officers)).
 
-	\item \textbf{\textit{Spam}}. In cybersecurity, unsolicited emails are generally referred to as \textit{spam}. Typically, spam includes emails carrying unsolicited advertisements, fraud attempts, links to malicious websites or malicious attachments. Most spam emails contain one or more of the following \cite{IngallsTOM}:
-	
+	\item \textbf{\textit{Spam}}. In cybersecurity, unsolicited emails are generally referred to as \textit{spam}. Typically, spam includes emails carrying unwanted advertisements, fraud attempts, links to malicious websites or malicious attachments. Most spam emails contain one or more of the following characteristic traits \cite{IngallsTOM}:
 	\begin{itemize}
 		\item Poor spelling and grammar
 		\item Unusual sender address
@@ -429,13 +421,7 @@ Other cyber threats which are not strictly, and should not be confused with, mal
 \end{itemize}
 
 \subsubsection{General considerations on malware types}
-Malware samples are usually categorised both by a means of infection and a behavioural category: for instance, WannaCry is a ransomware worm.\\
-Moreover, a particular piece of malware may have various forms with different attack vectors: e.g., the banking malware called \textit{Emotet} has been spotted in the wild as both a trojan and a worm \cite{FruhlingerME}.\\
-Finally, many instances of malware fit into multiple categories: for example Stuxnet is both a worm, a virus and a rootkit.
-
-Furthermore, in recent years, targeted attacks on mobile devices have also become increasingly popular.
-In fact, among the huge amount of available apps, an increasing quantity is not desirable; the problem is even worse when considering third-party app stores. Even when app store providers impose filters and manual checks to prevent the malicious apps from being available, some inevitably slip through.
-These mobile malware threats are as various as those targeting desktops and include Trojans, Ransomware, Advertising click fraud and more. They are mostly distributed through phishing and malicious downloads and are a particular problem for jail-broken phones, which tend to lack the default protections that were part of those devices' original operating systems.
+Malware samples are usually categorised both by their means of infection and their behavioural category: for instance, \textit{WannaCry} is a ransomware worm. Moreover, a particular piece of malware may have various forms with different attack vectors: e.g., the banking malware called \textit{Emotet} has been spotted in the wild as both a trojan and a worm \cite{FruhlingerME}. Finally, many instances of malware fit into multiple categories: for example \textit{Stuxnet} is both a worm, a virus and a rootkit.
 
 \section{Detection evasion}
 From the creation of the first malwares in 1960s, when hackers used to design computer viruses mainly for fun, a strong competition between attackers and defenders has risen. To defend from malware attacks, anti-malware groups have been developing increasingly complex (and clever) new techniques. On the other hand, malware developers have conceived and adopted new tactics/methods to avoid the malware detectors \cite{Szor_P}.

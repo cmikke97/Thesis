@@ -23,10 +23,9 @@ A.~P. Namanya, A.~Cullen, I.~U. Awan, and J.~P. Disso, ``The world of malware:
   Things and Cloud (FiCloud), 2018, pp.~420--427,
   \doi{10.1109/FiCloud.2018.00067}
 
-\bibitem{ShijoISDAMD}
-P.~Shijo and A.~Salim, ``Integrated static and dynamic analysis for malware
-  detection'', Procedia Computer Science, vol.~46, 12 2015, pp.~804--811,
-  \doi{10.1016/j.procs.2015.02.149}
+\bibitem{HarangSOREL20M}
+R.~Harang and E.~M. Rudd, ``Sorel-20m: A large scale benchmark dataset for
+  malicious pe detection'', 2020
 
 \bibitem{SharpAIM}
 R.~Sharp, ``An introduction to malware.''
@@ -51,16 +50,16 @@ Symantec, ``Difference between viruses, worms, and trojans.''
   \url{https://knowledge.broadcom.com/external/article?legacyId=TECH98539},
   2019, Accessed: 2021-03-15
 
-\bibitem{MullinsMT}
-P.~Mullins, ``Malware and its types.''
-  \url{http://www.idc-online.com/technical_references/pdfs/information_technology/Malware%20and%20its%20types.pdf},
-  Accessed: 2021-03-15
-
 \bibitem{FruhlingerME}
 J.~Fruhlinger, ``Malware explained: How to prevent, detect and recover from
   it.''
   \url{https://www.csoonline.com/article/3295877/what-is-malware-viruses-worms-trojans-and-beyond.html},
   2019, Accessed: 2021-03-15
+
+\bibitem{MullinsMT}
+P.~Mullins, ``Malware and its types.''
+  \url{http://www.idc-online.com/technical_references/pdfs/information_technology/Malware%20and%20its%20types.pdf},
+  Accessed: 2021-03-15
 
 \bibitem{DuPaulCMT}
 N.~DuPaul, ``Common malware types: Cybersecurity 101.''
@@ -81,15 +80,14 @@ K.~Baker, ``The 11 most common types of malware.''
   \url{https://www.crowdstrike.com/cybersecurity-101/malware/types-of-malware/},
   2021, Accessed: 2021-03-15
 
-\bibitem{FemisterEHL}
-T.~Femister, ``Encryption happens last: The ransomware revolution.''
-  \url{https://www.forbes.com/sites/forbestechcouncil/2020/08/18/encryption-happens-last-the-ransomware-revolution/?sh=4c267d34414b},
-  2020, Accessed: 2021-03-15
-
 \bibitem{McAfeeWIM}
 McAfee, ``What is malware?.''
   \url{https://www.mcafee.com/en-us/antivirus/malware.html}, Accessed:
   2021-03-15
+
+\bibitem{OWASPV}
+OWASP, ``Owasp: Vulnerabilities.''
+  \url{https://owasp.org/www-community/vulnerabilities/}, Accessed: 2021-07-22
 
 \bibitem{ComtactWDYM}
 Comtact, ``What are the different types of malware?.''
@@ -224,10 +222,6 @@ M.~Sebastián, R.~Rivera, P.~Kotzias, and J.~Caballero, ``Avclass: A tool for
 \bibitem{saxeDNNBMDUTDBPF}
 J.~Saxe and K.~Berlin, ``Deep neural network based malware detection using two
   dimensional binary program features'', 2015
-
-\bibitem{HarangSOREL20M}
-R.~Harang and E.~M. Rudd, ``Sorel-20m: A large scale benchmark dataset for
-  malicious pe detection'', 2020
 
 \bibitem{AndersonEMBER}
 H.~S. Anderson and P.~Roth, ``Ember: An open dataset for training static pe
