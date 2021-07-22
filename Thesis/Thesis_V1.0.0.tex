@@ -406,43 +406,19 @@ Other cyber threats which are not strictly, and should not be confused with, mal
 
 \begin{itemize}
 	\item \textbf{\textit{Software Bug}}.
-	A software bug is an error, or flaw, in a computer program code or system that causes it to produce an incorrect or unexpected result, or to behave in unintended ways. Usually, most of these defects arise from human errors made in the program's source code. Some bugs may be caused by compilers or operating systems component used by the program.
+	A software bug is an error, or flaw, in a computer program code or system that causes it to produce an incorrect or unexpected result, or to behave in unintended ways. Usually, most of these defects arise from human errors made in the program's source code.
+		
+	Some software bugs may qualify as security bugs. These are the most serious type of bugs since they can allow attackers to bypass access controls such as user authentication, override access privileges, or steal data \cite{DuPaulCMT}.
 	
-	Minor bugs only slightly affect the behaviour of a program. Therefore it can be a long time before they are discovered. On the other hand, more significant bugs can cause crashes or freezes. It is safe to say that almost all software has bugs and most bugs go unnoticed or have a slight impact on the user.
+	\item \textbf{\textit{Malvertising}}. Malvertising is the use of legitimate ads or ad networks to covertly deliver malware to unsuspecting users' computers. For example, a cybercriminal might pay to place a malicious ad on a legitimate website. When clicked, it either redirects the victims to a malicious website or installs malware on their computer. In some cases, the code embedded in an ad might even execute automatically without any action from the user, a technique referred to as a "drive-by-download".
 	
-	However, other bugs qualify as security bugs. These are the most serious type of bugs since they can allow attackers to bypass access controls such as user authentication, override access privileges, or steal data.
-	
-	The frequency of bugs can be reduced through developer training, quality control, and code analysis tools \cite{DuPaulCMT}.
-	
-	\item \textbf{\textit{Malvertising}}. Malvertising is the use of legitimate ads or ad networks to covertly deliver malware to unsuspecting users' computers.
-	
-	For example, a cybercriminal might pay to place an ad on a legitimate website. When a user clicks on the ad, code in the ad either redirects them to a malicious website or installs malware on their computer.
-	
-	In some cases, the malware embedded in an ad might execute automatically without any action from the user, a technique referred to as a "drive-by-download".
-	
-	\item \textbf{\textit{Phishing}}. Phishing is a type of social engineering attack commonly used to perform cyber attacks. Particularly in a phishing attack, the attacker attempts, through email messages, to trick users into divulging passwords (or anyway personal and financial information), downloading a malicious attachment or visiting a website that installs malware on their systems.
+	\item \textbf{\textit{Phishing}}. Phishing is a type of social engineering attack in which the attacker attempts, through email messages (or other means), to trick users into divulging passwords (or anyway personal and financial information), downloading a malicious attachment or visiting a website that installs malware on their systems.
 		
 	Some phishing emails are highly sophisticated and can deceive even experienced users, especially if the attacker has successfully compromised a known contact's email account and uses it to spread phishing attacks or malware such as worms. Others are less sophisticated and simply spam as many emails as possible with messages such as "Check your bank account details" \cite{ComtactWDYM}.
-		
-	There are different types of Phishing. Here are mentioned some of them: \cite{IngallsTOM}
 	
-	\begin{itemize}
-		\item \textit{Deceptive Phishing} - The most common type. It uses an email headline with a sense of urgency from a know contact. This attack blends legitimate links with malicious code, modifies brand logos, and evades detection with minimal content.
-		
-		\item \textit{Spear Phishing} - Spear phishing targets specific users or organizations by researching the victim to maximise trick potential. For example the attacker may explore social media, record out-of-office notifications, compromise API tokens etc. in order to better fool the target user.
-		
-		\item \textit{Whaling} - Whaling is similar to spear phishing, but even more targeted. In fact, it targets chief officers of organizations using various social engineering tricks such as impersonating employees or co-workers and using phone calls - to name a few - to give a sense of legitimacy to malicious emails.
-		
-		\item \textit{Vishing} - Vishing targets phone users. It uses the Voice over Internet Protocol (VoIP), technical jargon, and ID spoofing to trick a caller into revealing sensitive information.
-		
-		\item \textit{Smishing} - Smishing also targets phone users. It uses, however malicious text messages (SMS).
-		
-		\item \textit{Pharming} - Pharming leverages cache poisoning against the DNS with the objective of redirecting users to fake websites.
-	\end{itemize}
+	There are different types of phishing, characterized by the means of attack (\textit{Phishing} (Email), \textit{Smishing} (SMS), etc.) and by the specificity of the targeted users (\textit{Spear Phishing} (targets specific users), \textit{whaling} (targets chief officers)).
 
-	\item \textbf{\textit{Spam}}.
-	
-	In cybersecurity, unsolicited emails are generally referred to as \textit{spam}. Typically, spam includes emails carrying unsolicited advertisements, fraud attempts, links to malicious websites or malicious attachments. Most spam emails contain one or more of the following: \cite{IngallsTOM}
+	\item \textbf{\textit{Spam}}. In cybersecurity, unsolicited emails are generally referred to as \textit{spam}. Typically, spam includes emails carrying unsolicited advertisements, fraud attempts, links to malicious websites or malicious attachments. Most spam emails contain one or more of the following \cite{IngallsTOM}:
 	
 	\begin{itemize}
 		\item Poor spelling and grammar
@@ -450,8 +426,6 @@ Other cyber threats which are not strictly, and should not be confused with, mal
 		\item Unrealistic claims
 		\item Suspicious links
 	\end{itemize}
-
-	Spam might be one of the most universally understood forms of malicious attacks. As billions of users enable email for their everyday lives, it makes sense that malicious actors try to sneak into their inbox. Some of the most common types of spam emails include fake responses, PayPal, returned mail, and social media. All of which are disguised as legitimate but contain malware.
 \end{itemize}
 
 \subsubsection{General considerations on malware types}
