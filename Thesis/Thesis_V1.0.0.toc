@@ -13,42 +13,42 @@
 \contentsline {subsubsection}{By what they do}{17}{section*.7}%
 \contentsline {subsubsection}{Other cyber-threats}{21}{section*.8}%
 \contentsline {subsubsection}{General considerations on malware types}{22}{section*.9}%
-\contentsline {section}{\numberline {2.2}Detection evasion}{23}{section.2.2}%
+\contentsline {section}{\numberline {2.2}Detection evasion}{22}{section.2.2}%
 \contentsline {subsection}{\numberline {2.2.1}Reverse-Engineering}{23}{subsection.2.2.1}%
 \contentsline {subsection}{\numberline {2.2.2}Malware analysis}{23}{subsection.2.2.2}%
-\contentsline {subsubsection}{Static analysis}{24}{section*.10}%
+\contentsline {subsubsection}{Static analysis}{23}{section*.10}%
 \contentsline {subsubsection}{Dynamic analysis}{24}{section*.11}%
 \contentsline {subsubsection}{Hybrid analysis}{25}{section*.12}%
 \contentsline {subsection}{\numberline {2.2.3}Anti-reversing}{25}{subsection.2.2.3}%
 \contentsline {subsection}{\numberline {2.2.4}Anti-disassembly}{25}{subsection.2.2.4}%
 \contentsline {subsubsection}{Linear Disassemblers}{26}{section*.13}%
 \contentsline {subsubsection}{Flow-Oriented Disassemblers}{26}{section*.14}%
-\contentsline {subsubsection}{Anti-Disassembly Techniques}{27}{section*.15}%
-\contentsline {paragraph}{Jump Instructions with the Same Target}{27}{section*.16}%
+\contentsline {subsubsection}{Anti-Disassembly Techniques}{26}{section*.15}%
+\contentsline {paragraph}{Jump Instructions with the Same Target}{26}{section*.16}%
 \contentsline {paragraph}{Jump Instructions with a Constant Condition}{27}{section*.17}%
 \contentsline {paragraph}{Impossible Disassembly}{27}{section*.18}%
 \contentsline {subsubsection}{Obscuring Flow Control}{28}{section*.19}%
 \contentsline {paragraph}{The Function Pointer Problem}{28}{section*.20}%
-\contentsline {paragraph}{Return Pointer Abuse}{29}{section*.21}%
+\contentsline {paragraph}{Return Pointer Abuse}{28}{section*.21}%
 \contentsline {paragraph}{Misusing Structured Exception Handlers}{29}{section*.22}%
 \contentsline {subsection}{\numberline {2.2.5}Anti-debugging}{29}{subsection.2.2.5}%
 \contentsline {subsubsection}{Windows Debugger Detection}{29}{section*.23}%
-\contentsline {paragraph}{Using the Windows API}{30}{section*.24}%
+\contentsline {paragraph}{Using the Windows API}{29}{section*.24}%
 \contentsline {paragraph}{Manually Checking Structures}{30}{section*.25}%
 \contentsline {paragraph}{Checking for System Residue}{31}{section*.26}%
 \contentsline {subsubsection}{Identifying Debugger Behaviour}{31}{section*.27}%
 \contentsline {paragraph}{INT Scanning}{31}{section*.28}%
-\contentsline {paragraph}{Performing Code Checksums}{32}{section*.29}%
+\contentsline {paragraph}{Performing Code Checksums}{31}{section*.29}%
 \contentsline {paragraph}{Timing Checks}{32}{section*.30}%
 \contentsline {subsection}{\numberline {2.2.6}Anti-virtual machine}{32}{subsection.2.2.6}%
-\contentsline {subsubsection}{VMware Artefacts}{33}{section*.31}%
+\contentsline {subsubsection}{VMware Artefacts}{32}{section*.31}%
 \contentsline {subsubsection}{Vulnerable Instructions}{33}{section*.32}%
-\contentsline {subsection}{\numberline {2.2.7}Packers and unpacking}{34}{subsection.2.2.7}%
+\contentsline {subsection}{\numberline {2.2.7}Packers and unpacking}{33}{subsection.2.2.7}%
 \contentsline {subsubsection}{Packer types}{34}{section*.33}%
-\contentsline {subsubsection}{Packers detection}{35}{section*.34}%
+\contentsline {subsubsection}{Packers detection}{34}{section*.34}%
 \contentsline {subsubsection}{Unpacking}{35}{section*.35}%
 \contentsline {subsection}{\numberline {2.2.8}Code Obfuscation}{35}{subsection.2.2.8}%
-\contentsline {subsubsection}{Data-Based Obfuscation}{36}{section*.36}%
+\contentsline {subsubsection}{Data-Based Obfuscation}{35}{section*.36}%
 \contentsline {paragraph}{Constant Unfolding}{36}{section*.37}%
 \contentsline {paragraph}{Data-Encoding Schemes}{36}{section*.38}%
 \contentsline {paragraph}{Dead Code Insertion}{36}{section*.39}%
@@ -57,24 +57,24 @@
 \contentsline {paragraph}{Instruction Substitution}{37}{section*.42}%
 \contentsline {paragraph}{Pattern-Based Obfuscation}{37}{section*.43}%
 \contentsline {subsubsection}{Control-Based Obfuscation}{38}{section*.44}%
-\contentsline {paragraph}{Functions In/Out-Lining}{39}{section*.45}%
+\contentsline {paragraph}{Functions In/Out-Lining}{38}{section*.45}%
 \contentsline {paragraph}{Destruction of Sequential and Temporal Locality}{39}{section*.46}%
 \contentsline {paragraph}{Processor-Based Control Indirection}{39}{section*.47}%
 \contentsline {paragraph}{Operating System-Based Control Indirection}{39}{section*.48}%
 \contentsline {paragraph}{Subroutine Reordering}{39}{section*.49}%
-\contentsline {paragraph}{Opaque Predicated}{40}{section*.50}%
-\contentsline {subsubsection}{Simultaneous Control-Flow and Data-Flow Obfuscation}{40}{section*.51}%
+\contentsline {paragraph}{Opaque Predicated}{39}{section*.50}%
+\contentsline {subsubsection}{Simultaneous Control-Flow and Data-Flow Obfuscation}{39}{section*.51}%
 \contentsline {paragraph}{Inserting Junk Code}{40}{section*.52}%
 \contentsline {paragraph}{Control-Flow Graph Flattening}{40}{section*.53}%
 \contentsline {paragraph}{Code Transposition}{40}{section*.54}%
-\contentsline {paragraph}{Code Virtualization}{41}{section*.55}%
+\contentsline {paragraph}{Code Virtualization}{40}{section*.55}%
 \contentsline {paragraph}{Code Integration}{41}{section*.56}%
 \contentsline {subsection}{\numberline {2.2.9}Obfuscated Malware}{41}{subsection.2.2.9}%
 \contentsline {subsubsection}{Encrypted Malwares}{41}{section*.57}%
 \contentsline {subsubsection}{Packed Malwares}{41}{section*.58}%
 \contentsline {subsubsection}{Oligomorphic Malwares}{42}{section*.59}%
 \contentsline {subsubsection}{Polymorphic Malwares}{42}{section*.60}%
-\contentsline {subsubsection}{Metamorphic Malwares}{43}{section*.61}%
+\contentsline {subsubsection}{Metamorphic Malwares}{42}{section*.61}%
 \contentsline {chapter}{\numberline {3}Detection Techniques}{44}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Integrity Checker}{44}{section.3.1}%
 \contentsline {section}{\numberline {3.2}Signature-based Detection}{45}{section.3.2}%
