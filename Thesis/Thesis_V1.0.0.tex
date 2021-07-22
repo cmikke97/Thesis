@@ -355,7 +355,7 @@ Terms like \textit{trojan}, \textit{virus} and \textit{worm} are commonly used i
 Moreover, attackers can also install malware "manually" on a computer, either by gaining physical access to the target system or by using privilege escalation methods to obtain remote administrator access \cite{FruhlingerME}.
 
 \subsubsection{By what they do}
-There is a wide range of potential attack techniques used by malware, here are some of them:
+There is a wide range of potential attack techniques used by malware, here are briefly described some of them:
 
 \begin{itemize}
 	\item \textbf{\textit{Adware}}. \textit{Adware} is any software package which automatically plays, displays, or downloads advertisements to a computer. These can be in the form of pop-up ads, ad banners in websites, or advertisements displayed by software, that lure the user into making a purchase. The goal of Adware is, in fact, to generate revenue for its author.
@@ -386,44 +386,23 @@ There is a wide range of potential attack techniques used by malware, here are s
 
 	\item \textbf{\textit{Rogue Security Software}}. \textit{Rogue Security Software} can be considered as a from of scareware. This type of malware programs presents itself as a security tool to remove risks from the user's system. In reality, this fake security software installs more malware onto the system \cite{IngallsTOM}.
 	
-	\item \textbf{\textit{Rootkit}}. A \textit{rootkit} is generally thought as a type of malicious software, or a collection of software tools, designed to remotely access or control a computer without being detected by users or security programs. An attacker who has installed a rootkit on a system is able to remotely execute files, log user activities, access/steal information, modify system configurations, alter software (including security software), install hidden malware, mount attacks on other systems or control the computer as part of a botnet. Since a rootkit operates stealthily and continually hides its presence, its prevention, detection and removal can be difficult; in fact, typical security product are often not effective in detecting rootkits. Rootkit detection therefore often relies on manual methods such as monitoring the computer's behaviour for irregular activity, scanning system file signatures, and analysing storage dumps \cite{DuPaulCMT}.
+	\item \textbf{\textit{Rootkit}}. A \textit{rootkit} is generally thought as a type of malicious software, or a collection of software tools, designed to remotely access or control a computer without being detected by users or security programs. An attacker who has installed a rootkit on a system is able to perform a wide range of malicious activities such as remotely executing files, logging user activities, installing hidden malware, etc. Since a rootkit operates stealthily and continually hides its presence, its prevention, detection and removal can be difficult and often relies manual methods \cite{DuPaulCMT}.
 	
-	More recently, the term "rootkit" has also often been used to refer to concealment routines in a malicious program. These routines are highly advanced and complex and are written to hide malware within legitimate processes on the infected computer. In fact, once a malicious program has been installed on a system, it is essential that it remains hidden, to avoid detection and disinfection. The same is true when a human attacker directly breaks into a computer. Techniques known as rootkits allow for this concealment by modifying the host's operating system so that malware is hidden from the user. They can prevent a malicious process from being visible in the system's process list or prevent its files from being read \cite{MullinsMT}.
-	
-	Traditionally, rootkits can install themselves in kernel level (ring 0), although some sources state that they can install themselves all the way up to user level (ring 3). This means that they can get as much (or as little) access as necessary.
-	
-	There are different types of rootkits, which are typically categorized by the reach of the system they affect: \cite{IngallsTOM}
-	
-	\begin{itemize}
-		\item \textbf{\textit{User-level/application level rootkits}} - User-mode rootkits run in Ring 3, along with other applications as user. They can alter security settings, allowing the attacker to replace executables and system libraries.
-		
-		\item \textbf{\textit{Kernel-level rootkits}} - Kernel-mode rootkits run in ring 0, the highest operating system privileges (Ring 0). They manage to do so by modifying the core functionality of the operating system - the kernel. They usually add code or replace portions of the core operating system, including both the kernel and associated device drivers.
-		
-		\item \textbf{\textit{Bootkit rootkits}} - A Bootkit rootkit is a type of kernel-mode rootkit which infects startup code like the Master Boot Record (MBR), Volume Boot Record (VBR), or boot sector, subverting the kernel upon computer start up.
-		
-		\item \textbf{\textit{Virtualization rootkits}} - This type of rootkit, also called \textit{Hypervisor rootkit}, runs in Ring -1 (before the kernel) and hosts the target operating system as a virtual machine. It manages to do so by exploiting hardware virtualization features. This in turn enables the rootkit to intercept hardware calls made by the original OS.
-		
-		\item \textbf{\textit{Hardware/firmware rootkits}} - A firmware rootkit uses device or platform firmware to create a persistent malware image in hardware. The rootkit hides in firmware, because the latter is not usually inspected for code integrity.
-	\end{itemize}
+	More recently, the term "rootkit" has often been used to refer also to concealment routines in a malicious program. These highly advanced and complex routines are  written to hide malware within legitimate processes on the infected computer. In fact, once a malicious program has been installed on a system, it is essential that it remains hidden, to avoid detection and disinfection \cite{MullinsMT}.
 
-	\item \textbf{\textit{Scareware}}. Scareware is a generic term for malware that uses social engineering to frighten and manipulate a user, inducing him into thinking their system is vulnerable or has been attacked.
-	However, in reality no danger has actually been detected: it is a scam.	The attack succeeds when the user purchases unwanted - and potentially dangerous - software in an attempt to eliminate the "threat". Generally, the suggested software is additional malware or allegedly protective software with no value whatsoever \cite{MyraSecurityWIM}.
-	
-	Both Rogue Security Software and Ransomware can be considered as scareware, together with other scam software.
+	\item \textbf{\textit{Scareware}}. Scareware is a generic term for malware that uses social engineering to frighten and manipulate users, inducing them into thinking their system is vulnerable or has been compromised. However, in reality no danger has actually been detected: it is a scam. The attack succeeds when the user purchases unwanted - and potentially dangerous - software in an attempt to eliminate the "threat". Generally, the suggested software is additional malware or allegedly protective software with no value whatsoever \cite{MyraSecurityWIM}.
 
-	Some versions of scareware act as a sort of shadow version of ransomware; they claim to have taken control of the victim's system and demand a ransom. However they are actually just using tricks - such as browser redirect loops - to fool the victim into thinking they have done more damage than they really have \cite{FruhlingerME}.
+	Some versions of scareware act as a sort of shadow version of ransomware; they claim to have taken control of the victim's system and demand a ransom. However they are actually just trying to fool the victim \cite{FruhlingerME}.
 	
-	\item \textbf{\textit{Spyware}}. 
-	
-	\textit{Spyware}, another name for \textit{privacy-invasive software}, is a type of malicious software that uses functions in the infected host's operating system with the aim of spying on the user activity. Specifically it can collect various types of personal information about users, such as Internet browsing habits, credit card details and passwords, without their knowledge. The information gathered is then sent back to the responsible cybercriminal(s). The presence of spyware is typically hidden from the user, and can be difficult to detect.
+	\item \textbf{\textit{Spyware}}. \textit{Spyware}, another name for \textit{privacy-invasive software}, is a type of malicious software that spies on the infected system's user activity. Specifically it can collect various types of personal information about users, such as Internet browsing habits, credit card details and passwords, without their knowledge. The information gathered is then sent back to the responsible cybercriminal(s).
 		
-	However, the functions of spyware often go far beyond simple activity monitoring and information gathering. In fact, they may also interfere with the user's control of the computer in other ways, such as installing additional software and redirecting web browser activity. Spyware is known to change computer settings, often resulting in slow connection speeds, different home pages, and/or loss of Internet connection or functionality of other programs. They spread by attaching themselves to legitimate software, Trojan horses, or even by exploiting known software vulnerabilities \cite{MullinsMT}.
+	However, the functions of spyware often go far beyond simple activity monitoring and information gathering. In fact, they may also interfere with the user's control of the computer in other ways, such as installing additional software, redirecting web browser activity and changing computer settings \cite{MullinsMT}.
 	
-	Law enforcement, government agencies and information security organizations often use spyware to monitor communications in a sensitive environment or during an investigation. Spyware is however also available to private consumers, allowing them to spy on their employees, spouse and children \cite{McAfeeWIM}.
+	Law enforcement, government agencies and information security organizations often use spyware to monitor communications in a sensitive environment or during an investigation \cite{McAfeeWIM}.
 \end{itemize}
 
 \subsubsection{Other cyber-threats}
-Other cyber threats which are not strictly malware are, for example:
+Other cyber threats which are not strictly, and should not be confused with, malware are, for example:
 
 \begin{itemize}
 	\item \textbf{\textit{Software Bug}}.
