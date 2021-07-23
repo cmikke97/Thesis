@@ -150,25 +150,25 @@
 \contentsline {section}{\numberline {6.4}Evaluate Fresh algorithm}{104}{section.6.4}%
 \contentsline {subsection}{\numberline {6.4.1}Model Evaluation on Malware Family Prediction/Ranking tasks}{104}{subsection.6.4.1}%
 \contentsline {subsection}{\numberline {6.4.2}Fresh Results Computation and Plotting}{107}{subsection.6.4.2}%
-\contentsline {chapter}{\numberline {7}Results}{109}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Malware Label results}{110}{section.7.1}%
-\contentsline {subsection}{\numberline {7.1.1}Summary}{113}{subsection.7.1.1}%
-\contentsline {section}{\numberline {7.2}Per-tag results}{113}{section.7.2}%
-\contentsline {section}{\numberline {7.3}Mean per-sample tagging scores}{117}{section.7.3}%
-\contentsline {section}{\numberline {7.4}Family Ranking Evaluation}{118}{section.7.4}%
-\contentsline {subsection}{\numberline {7.4.1}Example rankings}{121}{subsection.7.4.1}%
-\contentsline {chapter}{\numberline {8}Conclusions}{124}{chapter.8}%
-\contentsline {chapter}{\numberline {9}Appendix}{125}{chapter.9}%
-\contentsline {section}{\numberline {9.1}More Detailed Per-Tag Results}{125}{section.9.1}%
-\contentsline {subsection}{\numberline {9.1.1}Adware tag results}{125}{subsection.9.1.1}%
-\contentsline {subsection}{\numberline {9.1.2}Crypto-miner tag results}{128}{subsection.9.1.2}%
-\contentsline {subsection}{\numberline {9.1.3}Downloader tag results}{131}{subsection.9.1.3}%
-\contentsline {subsection}{\numberline {9.1.4}Dropper tag results}{134}{subsection.9.1.4}%
-\contentsline {subsection}{\numberline {9.1.5}File-infector tag results}{137}{subsection.9.1.5}%
-\contentsline {subsection}{\numberline {9.1.6}Flooder tag results}{140}{subsection.9.1.6}%
-\contentsline {subsection}{\numberline {9.1.7}Installer tag results}{143}{subsection.9.1.7}%
-\contentsline {subsection}{\numberline {9.1.8}Packed tag results}{146}{subsection.9.1.8}%
-\contentsline {subsection}{\numberline {9.1.9}Ransomware tag results}{149}{subsection.9.1.9}%
-\contentsline {subsection}{\numberline {9.1.10}Spyware tag results}{152}{subsection.9.1.10}%
-\contentsline {subsection}{\numberline {9.1.11}Worm tag results}{155}{subsection.9.1.11}%
-\contentsline {chapter}{Bibliography}{159}{figure.caption.171}%
+\contentsline {chapter}{\numberline {7}Results}{108}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Malware Label results}{109}{section.7.1}%
+\contentsline {subsection}{\numberline {7.1.1}Summary}{112}{subsection.7.1.1}%
+\contentsline {section}{\numberline {7.2}Per-tag results}{112}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Mean per-sample tagging scores}{116}{section.7.3}%
+\contentsline {section}{\numberline {7.4}Family Ranking Evaluation}{117}{section.7.4}%
+\contentsline {subsection}{\numberline {7.4.1}Example rankings}{120}{subsection.7.4.1}%
+\contentsline {chapter}{\numberline {8}Conclusions}{123}{chapter.8}%
+\contentsline {chapter}{\numberline {9}Appendix}{124}{chapter.9}%
+\contentsline {section}{\numberline {9.1}More Detailed Per-Tag Results}{124}{section.9.1}%
+\contentsline {subsection}{\numberline {9.1.1}Adware tag results}{124}{subsection.9.1.1}%
+\contentsline {subsection}{\numberline {9.1.2}Crypto-miner tag results}{127}{subsection.9.1.2}%
+\contentsline {subsection}{\numberline {9.1.3}Downloader tag results}{130}{subsection.9.1.3}%
+\contentsline {subsection}{\numberline {9.1.4}Dropper tag results}{133}{subsection.9.1.4}%
+\contentsline {subsection}{\numberline {9.1.5}File-infector tag results}{136}{subsection.9.1.5}%
+\contentsline {subsection}{\numberline {9.1.6}Flooder tag results}{139}{subsection.9.1.6}%
+\contentsline {subsection}{\numberline {9.1.7}Installer tag results}{142}{subsection.9.1.7}%
+\contentsline {subsection}{\numberline {9.1.8}Packed tag results}{145}{subsection.9.1.8}%
+\contentsline {subsection}{\numberline {9.1.9}Ransomware tag results}{148}{subsection.9.1.9}%
+\contentsline {subsection}{\numberline {9.1.10}Spyware tag results}{151}{subsection.9.1.10}%
+\contentsline {subsection}{\numberline {9.1.11}Worm tag results}{154}{subsection.9.1.11}%
+\contentsline {chapter}{Bibliography}{158}{figure.caption.171}%

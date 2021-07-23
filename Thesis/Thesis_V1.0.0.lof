@@ -31,48 +31,48 @@
 \contentsline {figure}{\numberline {6.2}{\ignorespaces Training and evaluation workflow steps}}{103}{figure.caption.119}%
 \contentsline {figure}{\numberline {6.3}{\ignorespaces Fresh dataset model evaluation workflow steps}}{104}{figure.caption.120}%
 \contentsline {figure}{\numberline {6.4}{\ignorespaces Fresh dataset model evaluation workflow step}}{104}{figure.caption.121}%
-\contentsline {figure}{\numberline {6.5}{\ignorespaces Fresh results computation and plotting workflow step}}{108}{figure.caption.122}%
+\contentsline {figure}{\numberline {6.5}{\ignorespaces Fresh results computation and plotting workflow step}}{107}{figure.caption.122}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {7.1}{\ignorespaces Malware Label prediction task ALOHA (M/B only) ROC curve}}{112}{figure.caption.124}%
-\contentsline {figure}{\numberline {7.2}{\ignorespaces Malware Label prediction task ALOHA ROC curve}}{112}{figure.caption.125}%
-\contentsline {figure}{\numberline {7.3}{\ignorespaces Malware Label prediction task Proposed Model ROC curve}}{113}{figure.caption.126}%
-\contentsline {figure}{\numberline {7.4}{\ignorespaces Tags prediction task ALOHA mean ROC curve}}{116}{figure.caption.128}%
-\contentsline {figure}{\numberline {7.5}{\ignorespaces Tags prediction task Joint Embedding mean ROC curve}}{116}{figure.caption.129}%
-\contentsline {figure}{\numberline {7.6}{\ignorespaces Tags prediction task Proposed Model mean ROC curve}}{117}{figure.caption.130}%
-\contentsline {figure}{\numberline {7.7}{\ignorespaces Family prediction task Joint Embedding ROC curve}}{120}{figure.caption.133}%
-\contentsline {figure}{\numberline {7.8}{\ignorespaces Family prediction task Proposed Model ROC curve}}{121}{figure.caption.134}%
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Malware Label prediction task ALOHA (M/B only) ROC curve}}{111}{figure.caption.124}%
+\contentsline {figure}{\numberline {7.2}{\ignorespaces Malware Label prediction task ALOHA ROC curve}}{111}{figure.caption.125}%
+\contentsline {figure}{\numberline {7.3}{\ignorespaces Malware Label prediction task Proposed Model ROC curve}}{112}{figure.caption.126}%
+\contentsline {figure}{\numberline {7.4}{\ignorespaces Tags prediction task ALOHA mean ROC curve}}{115}{figure.caption.128}%
+\contentsline {figure}{\numberline {7.5}{\ignorespaces Tags prediction task Joint Embedding mean ROC curve}}{115}{figure.caption.129}%
+\contentsline {figure}{\numberline {7.6}{\ignorespaces Tags prediction task Proposed Model mean ROC curve}}{116}{figure.caption.130}%
+\contentsline {figure}{\numberline {7.7}{\ignorespaces Family prediction task Joint Embedding ROC curve}}{119}{figure.caption.133}%
+\contentsline {figure}{\numberline {7.8}{\ignorespaces Family prediction task Proposed Model ROC curve}}{120}{figure.caption.134}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {9.1}{\ignorespaces Adware Tag prediction task ALOHA ROC curve}}{127}{figure.caption.139}%
-\contentsline {figure}{\numberline {9.2}{\ignorespaces Adware Tag prediction task Joint Embedding ROC curve}}{127}{figure.caption.140}%
-\contentsline {figure}{\numberline {9.3}{\ignorespaces Adware Tag prediction task Proposed Model ROC curve}}{128}{figure.caption.141}%
-\contentsline {figure}{\numberline {9.4}{\ignorespaces Crypto-miner Tag prediction task ALOHA ROC curve}}{130}{figure.caption.142}%
-\contentsline {figure}{\numberline {9.5}{\ignorespaces Crypto-miner Tag prediction task Joint Embedding ROC curve}}{130}{figure.caption.143}%
-\contentsline {figure}{\numberline {9.6}{\ignorespaces Crypto-miner Tag prediction task Proposed Model ROC curve}}{131}{figure.caption.144}%
-\contentsline {figure}{\numberline {9.7}{\ignorespaces Downloader Tag prediction task ALOHA ROC curve}}{133}{figure.caption.145}%
-\contentsline {figure}{\numberline {9.8}{\ignorespaces Downloader Tag prediction task Joint Embedding ROC curve}}{133}{figure.caption.146}%
-\contentsline {figure}{\numberline {9.9}{\ignorespaces Downloader Tag prediction task Proposed Model ROC curve}}{134}{figure.caption.147}%
-\contentsline {figure}{\numberline {9.10}{\ignorespaces Dropper Tag prediction task ALOHA ROC curve}}{136}{figure.caption.148}%
-\contentsline {figure}{\numberline {9.11}{\ignorespaces Dropper Tag prediction task Joint Embedding ROC curve}}{136}{figure.caption.149}%
-\contentsline {figure}{\numberline {9.12}{\ignorespaces Dropper Tag prediction task Proposed Model ROC curve}}{137}{figure.caption.150}%
-\contentsline {figure}{\numberline {9.13}{\ignorespaces File-infector Tag prediction task ALOHA ROC curve}}{139}{figure.caption.151}%
-\contentsline {figure}{\numberline {9.14}{\ignorespaces File-infector Tag prediction task Joint Embedding ROC curve}}{139}{figure.caption.152}%
-\contentsline {figure}{\numberline {9.15}{\ignorespaces File-infector Tag prediction task Proposed Model ROC curve}}{140}{figure.caption.153}%
-\contentsline {figure}{\numberline {9.16}{\ignorespaces Flooder Tag prediction task ALOHA ROC curve}}{142}{figure.caption.154}%
-\contentsline {figure}{\numberline {9.17}{\ignorespaces Flooder Tag prediction task Joint Embedding ROC curve}}{142}{figure.caption.155}%
-\contentsline {figure}{\numberline {9.18}{\ignorespaces Flooder Tag prediction task Proposed Model ROC curve}}{143}{figure.caption.156}%
-\contentsline {figure}{\numberline {9.19}{\ignorespaces Installer Tag prediction task ALOHA ROC curve}}{145}{figure.caption.157}%
-\contentsline {figure}{\numberline {9.20}{\ignorespaces Installer Tag prediction task Joint Embedding ROC curve}}{145}{figure.caption.158}%
-\contentsline {figure}{\numberline {9.21}{\ignorespaces Installer Tag prediction task Proposed Model ROC curve}}{146}{figure.caption.159}%
-\contentsline {figure}{\numberline {9.22}{\ignorespaces Packed Tag prediction task ALOHA ROC curve}}{148}{figure.caption.160}%
-\contentsline {figure}{\numberline {9.23}{\ignorespaces Packed Tag prediction task Joint Embedding ROC curve}}{148}{figure.caption.161}%
-\contentsline {figure}{\numberline {9.24}{\ignorespaces Packed Tag prediction task Proposed Model ROC curve}}{149}{figure.caption.162}%
-\contentsline {figure}{\numberline {9.25}{\ignorespaces Ransomware Tag prediction task ALOHA ROC curve}}{151}{figure.caption.163}%
-\contentsline {figure}{\numberline {9.26}{\ignorespaces Ransomware Tag prediction task Joint Embedding ROC curve}}{151}{figure.caption.164}%
-\contentsline {figure}{\numberline {9.27}{\ignorespaces Ransomware Tag prediction task Proposed Model ROC curve}}{152}{figure.caption.165}%
-\contentsline {figure}{\numberline {9.28}{\ignorespaces Spyware Tag prediction task ALOHA ROC curve}}{154}{figure.caption.166}%
-\contentsline {figure}{\numberline {9.29}{\ignorespaces Spyware Tag prediction task Joint Embedding ROC curve}}{154}{figure.caption.167}%
-\contentsline {figure}{\numberline {9.30}{\ignorespaces Spyware Tag prediction task Proposed Model ROC curve}}{155}{figure.caption.168}%
-\contentsline {figure}{\numberline {9.31}{\ignorespaces Worm Tag prediction task ALOHA ROC curve}}{157}{figure.caption.169}%
-\contentsline {figure}{\numberline {9.32}{\ignorespaces Worm Tag prediction task Joint Embedding ROC curve}}{157}{figure.caption.170}%
-\contentsline {figure}{\numberline {9.33}{\ignorespaces Worm Tag prediction task Proposed Model ROC curve}}{158}{figure.caption.171}%
+\contentsline {figure}{\numberline {9.1}{\ignorespaces Adware Tag prediction task ALOHA ROC curve}}{126}{figure.caption.139}%
+\contentsline {figure}{\numberline {9.2}{\ignorespaces Adware Tag prediction task Joint Embedding ROC curve}}{126}{figure.caption.140}%
+\contentsline {figure}{\numberline {9.3}{\ignorespaces Adware Tag prediction task Proposed Model ROC curve}}{127}{figure.caption.141}%
+\contentsline {figure}{\numberline {9.4}{\ignorespaces Crypto-miner Tag prediction task ALOHA ROC curve}}{129}{figure.caption.142}%
+\contentsline {figure}{\numberline {9.5}{\ignorespaces Crypto-miner Tag prediction task Joint Embedding ROC curve}}{129}{figure.caption.143}%
+\contentsline {figure}{\numberline {9.6}{\ignorespaces Crypto-miner Tag prediction task Proposed Model ROC curve}}{130}{figure.caption.144}%
+\contentsline {figure}{\numberline {9.7}{\ignorespaces Downloader Tag prediction task ALOHA ROC curve}}{132}{figure.caption.145}%
+\contentsline {figure}{\numberline {9.8}{\ignorespaces Downloader Tag prediction task Joint Embedding ROC curve}}{132}{figure.caption.146}%
+\contentsline {figure}{\numberline {9.9}{\ignorespaces Downloader Tag prediction task Proposed Model ROC curve}}{133}{figure.caption.147}%
+\contentsline {figure}{\numberline {9.10}{\ignorespaces Dropper Tag prediction task ALOHA ROC curve}}{135}{figure.caption.148}%
+\contentsline {figure}{\numberline {9.11}{\ignorespaces Dropper Tag prediction task Joint Embedding ROC curve}}{135}{figure.caption.149}%
+\contentsline {figure}{\numberline {9.12}{\ignorespaces Dropper Tag prediction task Proposed Model ROC curve}}{136}{figure.caption.150}%
+\contentsline {figure}{\numberline {9.13}{\ignorespaces File-infector Tag prediction task ALOHA ROC curve}}{138}{figure.caption.151}%
+\contentsline {figure}{\numberline {9.14}{\ignorespaces File-infector Tag prediction task Joint Embedding ROC curve}}{138}{figure.caption.152}%
+\contentsline {figure}{\numberline {9.15}{\ignorespaces File-infector Tag prediction task Proposed Model ROC curve}}{139}{figure.caption.153}%
+\contentsline {figure}{\numberline {9.16}{\ignorespaces Flooder Tag prediction task ALOHA ROC curve}}{141}{figure.caption.154}%
+\contentsline {figure}{\numberline {9.17}{\ignorespaces Flooder Tag prediction task Joint Embedding ROC curve}}{141}{figure.caption.155}%
+\contentsline {figure}{\numberline {9.18}{\ignorespaces Flooder Tag prediction task Proposed Model ROC curve}}{142}{figure.caption.156}%
+\contentsline {figure}{\numberline {9.19}{\ignorespaces Installer Tag prediction task ALOHA ROC curve}}{144}{figure.caption.157}%
+\contentsline {figure}{\numberline {9.20}{\ignorespaces Installer Tag prediction task Joint Embedding ROC curve}}{144}{figure.caption.158}%
+\contentsline {figure}{\numberline {9.21}{\ignorespaces Installer Tag prediction task Proposed Model ROC curve}}{145}{figure.caption.159}%
+\contentsline {figure}{\numberline {9.22}{\ignorespaces Packed Tag prediction task ALOHA ROC curve}}{147}{figure.caption.160}%
+\contentsline {figure}{\numberline {9.23}{\ignorespaces Packed Tag prediction task Joint Embedding ROC curve}}{147}{figure.caption.161}%
+\contentsline {figure}{\numberline {9.24}{\ignorespaces Packed Tag prediction task Proposed Model ROC curve}}{148}{figure.caption.162}%
+\contentsline {figure}{\numberline {9.25}{\ignorespaces Ransomware Tag prediction task ALOHA ROC curve}}{150}{figure.caption.163}%
+\contentsline {figure}{\numberline {9.26}{\ignorespaces Ransomware Tag prediction task Joint Embedding ROC curve}}{150}{figure.caption.164}%
+\contentsline {figure}{\numberline {9.27}{\ignorespaces Ransomware Tag prediction task Proposed Model ROC curve}}{151}{figure.caption.165}%
+\contentsline {figure}{\numberline {9.28}{\ignorespaces Spyware Tag prediction task ALOHA ROC curve}}{153}{figure.caption.166}%
+\contentsline {figure}{\numberline {9.29}{\ignorespaces Spyware Tag prediction task Joint Embedding ROC curve}}{153}{figure.caption.167}%
+\contentsline {figure}{\numberline {9.30}{\ignorespaces Spyware Tag prediction task Proposed Model ROC curve}}{154}{figure.caption.168}%
+\contentsline {figure}{\numberline {9.31}{\ignorespaces Worm Tag prediction task ALOHA ROC curve}}{156}{figure.caption.169}%
+\contentsline {figure}{\numberline {9.32}{\ignorespaces Worm Tag prediction task Joint Embedding ROC curve}}{156}{figure.caption.170}%
+\contentsline {figure}{\numberline {9.33}{\ignorespaces Worm Tag prediction task Proposed Model ROC curve}}{157}{figure.caption.171}%
