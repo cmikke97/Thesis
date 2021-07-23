@@ -1,5 +1,5 @@
 \newcommand{\meanPerSampleScores}{
-    \begin{table}[h!]
+    \begin{table}[H]
         \centering
         \begin{tabular}{|P{3,2cm}||P{1,8cm} P{1,8cm} P{1,8cm} P{1,8cm} P{1,8cm}|}
             \hline
@@ -9,16 +9,16 @@
             \multicolumn{6}{|c|}{\textbf{Jaccard Similarity}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & \textBF{0.699$\pm$0.007} & 0.733$\pm$0.018 & 0.806$\pm$0.005 & 0.867$\pm$0.002 & 0.791$\pm$0.004 \\
-            Joint Embedding & 0.699$\pm$0.009 & \textBF{0.753$\pm$0.009} & 0.822$\pm$0.017 & 0.875$\pm$0.002 & 0.757$\pm$0.009 \\
-            Proposed Model & 0.693$\pm$0.008 & 0.742$\pm$0.004 & \textBF{0.826$\pm$0.007} & \textBF{0.877$\pm$0.004} & \textBF{0.795$\pm$0.006} \\
+            ALOHA & 0.674$\pm$0.004 & 0.716$\pm$0.013 & 0.787$\pm$0.014 & 0.864$\pm$0.003 & 0.793$\pm$0.002 \\
+            Joint Embedding & \textBF{0.703$\pm$0.016} & \textBF{0.751$\pm$0.016} & 0.826$\pm$0.020 & \textBF{0.880$\pm$0.005} & 0.784$\pm$0.003 \\
+            Proposed Model & 0.693$\pm$0.017 & 0.748$\pm$0.017 & \textBF{0.830$\pm$0.007} & 0.877$\pm$0.002 & \textBF{0.797$\pm$0.005} \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Mean per-Sample Accuracy}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.643$\pm$0.007 & 0.669$\pm$0.020 & 0.744$\pm$0.010 & 0.797$\pm$0.002 & 0.692$\pm$0.007 \\
-            Joint Embedding & \textBF{0.645$\pm$0.003} & \textBF{0.679$\pm$0.007} & \textBF{0.761$\pm$0.017} & \textBF{0.803$\pm$0.001} & 0.654$\pm$0.009 \\
-            Proposed Model & 0.642$\pm$0.005 & 0.673$\pm$0.006 & 0.760$\pm$0.014 & 0.802$\pm$0.004 & \textBF{0.699$\pm$0.004} \\
+            ALOHA & 0.633$\pm$0.002 & 0.658$\pm$0.014 & 0.716$\pm$0.031 & 0.791$\pm$0.002 & \textBF{0.699$\pm$0.003} \\
+            Joint Embedding & 0.643$\pm$0.005 & 0.680$\pm$0.012 & 0.763$\pm$0.021 & 0.806$\pm$0.004 & 0.684$\pm$0.006 \\
+            Proposed Model & \textBF{0.645$\pm$0.005} & \textBF{0.682$\pm$0.006} & \textBF{0.764$\pm$0.013} & \textBF{0.806$\pm$0.002} & 0.699$\pm$0.004 \\
             \hline
         \end{tabular}
         \caption[Tags prediction task mean per-sample scores]{Mean and standard deviation of mean per-sample tagging results (\textit{Jaccard simialrity} and \textit{mean per-sample accuracy}) for the different models. Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:meanPerSampleScores}
@@ -26,7 +26,7 @@
 }
 
 \newcommand{\allMeanRocAlohaMB}{
-    \begin{figure}[h!]
+    \begin{figure}[H]
         \vspace*{-0.5cm}
         \centering
         \includegraphics[width=0.6\textwidth]{./results/all_mean_roc_alohaMB.png}
@@ -37,7 +37,7 @@
 }
 
 \newcommand{\allMeanRocAloha}{
-    \begin{figure}[h!]
+    \begin{figure}[H]
         \vspace*{-0.5cm}
         \centering
         \includegraphics[width=0.6\textwidth]{./results/all_mean_roc_aloha.png}
@@ -48,7 +48,7 @@
 }
 
 \newcommand{\allMeanRocJointEmbedding}{
-    \begin{figure}[h!]
+    \begin{figure}[H]
         \vspace*{-0.5cm}
         \centering
         \includegraphics[width=0.6\textwidth]{./results/all_mean_roc_jointEmbedding.png}
@@ -59,7 +59,7 @@
 }
 
 \newcommand{\allMeanRocProposedModel}{
-    \begin{figure}[h!]
+    \begin{figure}[H]
         \vspace*{-0.5cm}
         \centering
         \includegraphics[width=0.6\textwidth]{./results/all_mean_roc_proposedModel.png}

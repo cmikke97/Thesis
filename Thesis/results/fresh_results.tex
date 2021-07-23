@@ -18,16 +18,16 @@
             \caption[Family prediction task AUC-ROC results]{Mean and standard deviation AUC-ROC (Area Under Curve) of the different models for the the prediction of the different families on fresh dataset samples. Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:families_aucs}
             \endlastfoot
 
-            Agenttesla & - & - & \textBF{0.631$\pm$0.046} & 0.592$\pm$0.009 \\
-            Avemariarat & - & - & \textBF{0.555$\pm$0.022} & 0.527$\pm$0.027 \\
-            Azorult & - & - & \textBF{0.598$\pm$0.036} & 0.536$\pm$0.003 \\
-            Formbook & - & - & \textBF{0.555$\pm$0.056} & 0.550$\pm$0.049 \\
-            Heodo & - & - & \textBF{0.838$\pm$0.017} & 0.778$\pm$0.058 \\
-            Loki & - & - & \textBF{0.570$\pm$0.035} & 0.567$\pm$0.002 \\
-            Masslogger & - & - & \textBF{0.538$\pm$0.025} & 0.520$\pm$0.041 \\
-            Netwire & - & - & \textBF{0.527$\pm$0.005} & 0.504$\pm$0.020 \\
-            Njrat & - & - & \textBF{0.746$\pm$0.017} & 0.677$\pm$0.048 \\
-            Remcorsat & - & - & \textBF{0.560$\pm$0.016} & 0.501$\pm$0.029 \\
+            Agenttesla & - & - & 0.616$\pm$0.091 & \textBF{0.629$\pm$0.052} \\
+            Avemariarat & - & - & 0.495$\pm$0.046 & \textBF{0.510$\pm$0.029} \\
+            Azorult & - & - & 0.588$\pm$0.016 & \textBF{0.588$\pm$0.009} \\
+            Formbook & - & - & \textBF{0.533$\pm$0.026} & 0.513$\pm$0.035 \\
+            Heodo & - & - & \textBF{0.798$\pm$0.016} & 0.778$\pm$0.025 \\
+            Loki & - & - & \textBF{0.577$\pm$0.016} & 0.568$\pm$0.015 \\
+            Masslogger & - & - & 0.513$\pm$0.040 & \textBF{0.550$\pm$0.029} \\
+            Netwire & - & - & \textBF{0.503$\pm$0.008} & 0.486$\pm$0.024 \\
+            Njrat & - & - & \textBF{0.722$\pm$0.030} & 0.651$\pm$0.023 \\
+            Remcorsat & - & - & \textBF{0.545$\pm$0.077} & 0.531$\pm$0.055 \\
             \hline
         \end{longtable}
     \end{center}
@@ -57,78 +57,78 @@
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
             ALOHA & - & - & - & - & - \\
-            Joint Embedding & \textBF{0.020$\pm$0.005} & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
-            Proposed Model & 0.014$\pm$0.001 & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
+            Joint Embedding & 0.014$\pm$0.003 & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
+            Proposed Model & \textBF{0.015$\pm$0.003} & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Avemariarat} (at FPR $=1\%$)} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
             ALOHA & - & - & - & - & - \\
-            Joint Embedding & \textBF{0.016$\pm$0.003} & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
-            Proposed Model & 0.011$\pm$0.001 & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
+            Joint Embedding & 0.010$\pm$0.002 & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
+            Proposed Model & \textBF{0.010$\pm$0.001} & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Azorult} (at FPR $=1\%$)} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
             ALOHA & - & - & - & - & - \\
-            Joint Embedding & \textBF{0.016$\pm$0.001} & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
-            Proposed Model & 0.011$\pm$0.000 & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
+            Joint Embedding & \textBF{0.013$\pm$0.001} & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
+            Proposed Model & \textBF{0.013$\pm$0.001} & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Formbook} (at FPR $=1\%$)} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
             ALOHA & - & - & - & - & - \\
-            Joint Embedding & \textBF{0.015$\pm$0.005} & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
-            Proposed Model & 0.012$\pm$0.003 & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
+            Joint Embedding & \textBF{0.011$\pm$0.001} & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
+            Proposed Model & 0.010$\pm$0.001 & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Heodo} (at FPR $=1\%$)} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
             ALOHA & - & - & - & - & - \\
-            Joint Embedding & \textBF{0.045$\pm$0.012} & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
-            Proposed Model & 0.030$\pm$0.010 & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
+            Joint Embedding & \textBF{0.033$\pm$0.009} & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
+            Proposed Model & 0.026$\pm$0.005 & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Loki} (at FPR $=1\%$)} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
             ALOHA & - & - & - & - & - \\
-            Joint Embedding & \textBF{0.016$\pm$0.004} & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
-            Proposed Model & 0.013$\pm$0.001 & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
+            Joint Embedding & 0.012$\pm$0.001 & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
+            Proposed Model & \textBF{0.012$\pm$0.000} & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Masslogger} (at FPR $=1\%$)} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
             ALOHA & - & - & - & - & - \\
-            Joint Embedding & \textBF{0.013$\pm$0.002} & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
-            Proposed Model & 0.011$\pm$0.002 & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
+            Joint Embedding & 0.011$\pm$0.001 & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
+            Proposed Model & \textBF{0.012$\pm$0.001} & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Netwire} (at FPR $=1\%$)} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
             ALOHA & - & - & - & - & - \\
-            Joint Embedding & \textBF{0.012$\pm$0.001} & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
-            Proposed Model & 0.010$\pm$0.001 & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
+            Joint Embedding & \textBF{0.010$\pm$0.000} & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
+            Proposed Model & 0.009$\pm$0.001 & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Njrat} (at FPR $=1\%$)} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
             ALOHA & - & - & - & - & - \\
-            Joint Embedding & \textBF{0.030$\pm$0.002} & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
-            Proposed Model & 0.020$\pm$0.005 & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
+            Joint Embedding & \textBF{0.022$\pm$0.004} & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
+            Proposed Model & 0.017$\pm$0.002 & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Remcorsat} (at FPR $=1\%$)} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
             ALOHA & - & - & - & - & - \\
-            Joint Embedding & \textBF{0.015$\pm$0.002} & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
-            Proposed Model & 0.010$\pm$0.001 & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
+            Joint Embedding & \textBF{0.013$\pm$0.005} & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
+            Proposed Model & 0.011$\pm$0.002 & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
             \hline
         \end{longtable}
     \end{center}
 }
 
 \newcommand{\allMeanFreshRocJointEmbedding}{
-    \begin{figure}[h!]
+    \begin{figure}[H]
         \vspace*{-0.5cm}
         \centering
         \includegraphics[width=0.6\textwidth]{./results/all_mean_fresh_roc_jointEmbedding.png}
@@ -139,7 +139,7 @@
 }
 
 \newcommand{\allMeanFreshRocProposedModel}{
-    \begin{figure}[h!]
+    \begin{figure}[H]
         \vspace*{-0.5cm}
         \centering
         \includegraphics[width=0.6\textwidth]{./results/all_mean_fresh_roc_proposedModel.png}
