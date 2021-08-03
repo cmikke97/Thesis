@@ -1,16 +1,10 @@
-% !TEX encoding = IsoLatin
-
-% La riga soprastante serve per configurare gli editor TeXShop, TeXWorks
-% e TeXstudio per gestire questo file con la codifica IsoLatin o Latin 1
-% o ISO 8859-1.
-
 % per commentare una riga mettere % al suo inizio
 % per s-commentare una riga (ossia attivarla) togliere il % al suo inizio
 %
 \documentclass[pdfa% formato PDF/A, obbligatorio per l'archiviazione delle tesi di Polito
 ,cucitura%lascia margine per la rilegatura
 %,twoside% per stampa fronte-retro (fortemente consigliato per tesi voluminose, opzionale per le altre)
-%,12pt% font pi˘ grande (12pt) rispetto a quello normalmente usato (11pt)
+%,12pt% font pi√π grande (12pt) rispetto a quello normalmente usato (11pt)
 ]{toptesi}
 %
 \usepackage{hyperref}
@@ -132,7 +126,7 @@
 
 \ateneo{Politecnico di Torino}
 
-%%% scegliere la propria facolt‡ (solo PRIMA dell'AA 2012-2013)
+%%% scegliere la propria facolt√† (solo PRIMA dell'AA 2012-2013)
 %
 %\facolta[III]{Ingegneria dell'Informazione}
 %\facolta[IV]{Organizzazione d'Impresa\\e Ingegneria Gestionale}
@@ -186,7 +180,7 @@
 
 %
 % per numerare e far comparire nell'indice anche le sezioni di quarto livello
-% SCONSIGLIATO! da usarsi solo in caso di estrema necessit‡
+% SCONSIGLIATO! da usarsi solo in caso di estrema necessit√†
 %\setcounter{secnumdepth}{4}% section-numbering-depth
 %\setcounter{tocdepth}{4}% TOC-numbering-depth (TOC=Table-Of-Content)
 
@@ -223,10 +217,10 @@ Nevertheless, future works capable of overcoming this limitation may be very use
 
 Aknowledgments...
 
-%% inserire sempre nella tesi per la laurea di I livello, perchÈ il nome dei tutori non Ë indicato sul frontespizio.
-%Il lavoro descritto in questa monografia Ë stato svolto sotto la supervisione
+%% inserire sempre nella tesi per la laurea di I livello, perch√© il nome dei tutori non √® indicato sul frontespizio.
+%Il lavoro descritto in questa monografia √® stato svolto sotto la supervisione
 %del Prof. Antonio Lioy (tutore accademico)% inserire sempre il nome del tutore accademico
-% e dell'Ing. Mario Rossi (tutore aziendale)% inserire solo se la monografia Ë relativa ad un tirocinio.
+% e dell'Ing. Mario Rossi (tutore aziendale)% inserire solo se la monografia √® relativa ad un tirocinio.
 %.
 
 %\tablespagetrue % normalmente questa riga non serve ed e' commentata
@@ -424,12 +418,11 @@ Other cyber threats which are not strictly, and should not be confused with, mal
 Malware samples are usually categorised both by their means of infection and their behavioural category: for instance, \textit{WannaCry} is a ransomware worm. Moreover, a particular piece of malware may have various forms with different attack vectors: e.g., the banking malware called \textit{Emotet} has been spotted in the wild as both a trojan and a worm \cite{FruhlingerME}. Finally, many instances of malware fit into multiple categories: for example \textit{Stuxnet} is both a worm, a virus and a rootkit.
 
 \section{Detection evasion}
-From the creation of the first malwares in 1960s, when hackers used to design computer viruses mainly for fun, a strong competition between attackers and defenders has risen. To defend from malware attacks, anti-malware groups have been developing increasingly complex (and clever) new techniques. On the other hand, malware developers have conceived and adopted new tactics/methods to avoid the malware detectors \cite{Szor_P}.
+From the creation of the first malwares in 1960s, which were designed by hackers mainly for fun, a strong competition between attackers and defenders has risen. In order to defend from malware attacks, anti-malware groups have been developing increasingly complex (and clever) new techniques. On the other hand, malware developers have conceived and adopted new tactics/methods to avoid the malware detectors \cite{Szor_P}.
 
-The first type of anti-malware tools were mostly based on the assumption that malware structures do not change appreciably during time. In fact, initially, the malware machine code was completely unprotected. This allowed analysts to exploit opcode sequences to recognise specific malware families. 
-Recently, however, a big advancement led to the so-called "second generation" malware \cite{Sharma_2014} which, to evade such opcode signatures, employs several obfuscation techniques and can create variants of itself. This posed a challenge to anti-malware developers.
+The first types of anti-malware tools were mostly based on the assumption that malware structures do not change appreciably during time. In fact, initially, the malware machine code was completely unprotected. This allowed analysts to exploit opcode sequences to recognise specific malware families. Recently, however, a big advancement led to the so-called "second generation" malware \cite{Sharma_2014}, which employs several obfuscation techniques and can create numerous variants of itself, with the purpose of evading such opcode signatures. This posed a challenge to anti-malware developers.
 
-The first time a malware has been recognised to exhibit detection avoidance behaviour was in 1986 with the \textit{Brain} virus \cite{SkoudisFMC}. In fact, such malware managed to conceal the infected disk section whenever the user attempted to read it, forcing the computer to display clean data instead of the infected part. From that moment on, the ever increasing popularity of detection evasion techniques among malware writers has shown that malware survival has become the number one priority: the longer the malware remains undetected, the more harm it can do and the more profitable it is to its writer \cite{NamanyaTWM}.
+The first malware to exhibit a detection avoidance behaviour was the \textit{Brain} virus \cite{SkoudisFMC}, in 1986. Such malware, in fact, managed to conceal the infected disk section whenever the user attempted to read it, forcing the computer to display clean data instead of the infected part. From that moment on, the ever increasing popularity of detection evasion techniques among malware writers has shown that malware survival in the victim's machine has become of primal importance: the longer the malware remains undetected, the more harm it can do and the more profitable it is to its writer \cite{NamanyaTWM}.
 
 \subsection{Reverse-Engineering}
 \textit{Reverse engineering}, in broad terms, indicates the process of extracting knowledge, ideas, design philosophy etc. from anything man-made \cite{EilamRSRE}.
@@ -3593,7 +3586,7 @@ A final section (\ref{sec:familyRankingEvaluation}), instead, contains some tabl
 
 Qui si inseriscono brevi conclusioni sul lavoro svolto, senza ripetere inutilmente il sommario.
 
-Si possono evidenziare i punti di forza e quelli di debolezza, nonchÈ i possibili sviluppi futuri o attivit‡ da svolgere per migliorare i risultati.
+Si possono evidenziare i punti di forza e quelli di debolezza, nonch√© i possibili sviluppi futuri o attivit√† da svolgere per migliorare i risultati.
 
 \color{Black}
 \chapter{Appendix}
@@ -3706,7 +3699,7 @@ Here are presented more detailed results regarding the different models' predict
 % bibliografia scritta "a mano"
 %\input{biblio.tex}
 
-% se la bibliografia Ë stata scritta (usando Bibtex) nel file biblio.bib allora commentare la riga precedente e scommentare le due righe seguenti
+% se la bibliografia √® stata scritta (usando Bibtex) nel file biblio.bib allora commentare la riga precedente e scommentare le due righe seguenti
 \bibliographystyle{torsec}
 \bibliography{biblio}
 
