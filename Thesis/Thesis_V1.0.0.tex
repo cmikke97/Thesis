@@ -3420,7 +3420,10 @@ As previously mentioned, both the \textbf{\textit{Proposed Model}} and the \text
 					\State \hskip1.9em 'families': [\textbf{label\_to\_sig}(\textit{lab}) $\forall$ \textit{lab} $\in$ \textbf{range}(\textit{n\_families})],
 					\State \hskip1.9em 'shas': \textit{queries}['shas'],
 					\State \hskip1.9em 'labels': \textit{queries}['labels'],
-					\State \hskip1.9em 'predictions': \textit{anchors}['lables'][\textbf{argmax}(\textit{similarity\_scores})]\})
+					\State \hskip1.9em 'predictions': \textit{anchors}['lables'][\textbf{argmax}(\textit{similarity\_scores})],
+					\State \hskip1.9em 'probabilities': \textbf{nn.Softmax}([[\textbf{max}(\textit{sims}[[\textit{j} $\forall$ \textit{j} $\in$ \textbf{range}(\textbf{len}(\textit{sims}))
+					\State \hskip3.7em \textbf{if} \textit{anchors}['labels'][\textit{j}] $=$ \textit{i}]]) $\forall$ \textit{i} $\in$ \textbf{range}(\textit{n\_families})]
+					\State \hskip3.7em $\forall$ \textit{sims} $\in$ \textit{similarity\_scores}])\})
 				\EndFor
 			\EndFor
 			\State \textbf{save\_to\_file}(\textit{predictions})
@@ -3711,10 +3714,10 @@ Algorithms \ref{alg:trainFamilyClassifierFunction} (\textbf{Family Classifier Tr
 	\caption{Train Family Classifier function}\label{alg:trainFamilyClassifierFunction}
 	\begin{algorithmic}[1]
 			\Function{Train\_Network}{\textit{fresh\_ds\_path}, \textit{checkpoint\_path}, \textit{batch\_size}, \textit{epochs}, \textit{train\_split\_proportion}, \textit{valid\_split\_proportion}, \textit{test\_split\_proportion}, \textit{workers}, ...}
-				\State \textit{dataset\_split\_proportions} $\gets$ \{'train': \textit{train\_split\_proportion},
-				\State \hskip12.8em 'valid': \textit{valid\_split\_proportion},
-				\State \hskip12.8em 'test': \textit{test\_split\_proportion}\}
-				\State \textit{train\_generator}, \textit{valid\_generator}, \_ $\gets$ \textbf{get\_generator}(\textit{fresh\_ds\_path}, splits=[8, 1, 1],
+				\State \textit{split\_proportions} $\gets$ [\textit{train\_split\_proportion},
+				\State \hskip9.1em \textit{valid\_split\_proportion},
+				\State \hskip9.1em \textit{test\_split\_proportion}]
+				\State \textit{train\_gen}, \textit{valid\_gen}, \_ $\gets$ \textbf{get\_generator}(\textit{fresh\_ds\_path}, splits=\textit{split\_proportions},
 				\State \hskip1.9em batch\_size=\textit{batch\_size}, return\_shas=True, num\_workers=\textit{workers}, ..)
 				\State \textit{model} $\gets$ \textit{Family\_Net}(families=[\textbf{label\_to\_sig}(\textit{lab}) $\forall$ \textit{lab} $\in$ \textbf{range}(\textit{n\_families})],
 				\State \hskip1.9em feature\_dimension=2381, embedding\_dimension=32, layer\_sizes=\textit{run\_params}['layer\_sizes'], 
@@ -3736,26 +3739,28 @@ Algorithms \ref{alg:trainFamilyClassifierFunction} (\textbf{Family Classifier Tr
 				\State
 				\State \textit{opt} $\gets$ \textit{run\_params}['optimizer'](\textit{parameters\_to\_optimize}, \textit{run\_params}['lr'],
 				\State \hskip1.9em \textit{run\_params}['weight\_decay'], \textit{run\_params}['momentum'])
+				\State \textit{scheduler} $\gets$ \textbf{MultiStepLR}(\textit{opt}, milestones=[(3 * \textit{epochs}) // 4], gamma=0.1)
 				\ForAll{\textit{epoch} $\in$ \textbf{range}(\textit{epochs})}
 					\State \textit{model}.\textbf{train}()
-					\ForAll{\textit{shas}, \textit{features}, \textit{labels} $\in$ \textit{train\_generator}}
+					\ForAll{\textit{shas}, \textit{features}, \textit{labels} $\in$ \textit{train\_gen}}
 						\State \textit{opt}.\textbf{zero\_grad}
 						\State \textit{out} $\gets$ \textit{model}(\textit{features})
 						\State \textit{loss} $\gets$ \textit{model}.\textbf{compute\_loss}(\textit{out}, \textit{labels})
-						\State \textit{preds} $\gets$ [\textbf{argmax}(\textit{line} $\forall$ \textit{line} $\in$ \textit{out})]
+						\State \textit{preds} $\gets$ [\textbf{argmax}(\textit{line} $\forall$ \textit{line} $\in$ \textit{out}['scores'])]
 						\State accuracy $\gets$ \textbf{sum}(1 $\forall$ \textit{i}, \textit{pred} $\in$ \textbf{enumerate}(\textit{preds}) \textbf{if} \textit{pred} = \textit{labels}[\textit{i}]) / \textbf{len}(\textit{labels})
 						\State \textbf{log}(\textit{loss})
 						\State \textbf{log}(\textit{accuracy})
 						\State \textit{loss}.\textbf{backwawrd}()
 						\State \textit{opt}.\textbf{step}()
 					\EndFor
-					\State
-					\State \textit{model}.\textbf{eval}()
-					\ForAll{\textit{shas}, \textit{features}, \textit{labels} $\in$ \textit{valid\_generator}}
+				\State
+				\State \textit{scheduler}.\textbf{step}()
+				\State \textit{model}.\textbf{eval}()
+				\ForAll{\textit{shas}, \textit{features}, \textit{labels} $\in$ \textit{valid\_gen}}
 					\State \textbf{torch.no\_grad}()
 					\State \textit{out} $\gets$ \textit{model}(\textit{features})
 					\State \textit{loss} $\gets$ \textit{model}.\textbf{compute\_loss}(\textit{out}, \textit{labels})
-					\State \textit{preds} $\gets$ [\textbf{max}(\textit{line} $\forall$ \textit{line} $\in$ \textit{out})]
+					\State \textit{preds} $\gets$ [\textbf{argmax}(\textit{line} $\forall$ \textit{line} $\in$ \textit{out}['scores'])]
 					\State accuracy $\gets$ \textbf{sum}(1 $\forall$ \textit{i}, \textit{pred} $\in$ \textbf{enumerate}(\textit{preds}) \textbf{if} \textit{pred} = \textit{labels}[\textit{i}]) / \textbf{len}(\textit{labels})
 					\State \textbf{log}(\textit{loss})
 					\State \textbf{log}(\textit{accuracy})
@@ -3779,11 +3784,11 @@ The \textit{Family Classifier} training function, as shown in alg. \ref{alg:trai
 	\caption{Evaluate Family Classifier function}\label{alg:evaluateFamilyClassifierFunction}
 	\begin{algorithmic}[1]
 			\Function{Evaluate\_Network}{\textit{fresh\_ds\_path}, \textit{checkpoint\_path}, \textit{batch\_size}, \textit{train\_split\_proportion}, \textit{valid\_split\_proportion}, \textit{test\_split\_proportion}, \textit{workers}, ...}
-			\State \textit{dataset\_split\_proportions} $\gets$ \{'train': \textit{train\_split\_proportion},
-			\State \hskip12.8em 'valid': \textit{valid\_split\_proportion},
-			\State \hskip12.8em 'test': \textit{test\_split\_proportion}\}
-			\State \_, \_, \textit{test\_generator} $\gets$ \textbf{get\_generator}(\textit{fresh\_ds\_path}, splits=[8, 1, 1], batch\_size=\textit{batch\_size},
-			\State \hskip1.9em return\_shas=True, num\_workers=\textit{workers}, ..)
+			\State \textit{split\_proportions} $\gets$ [\textit{train\_split\_proportion},
+			\State \hskip9.1em \textit{valid\_split\_proportion},
+			\State \hskip9.1em \textit{test\_split\_proportion}]
+			\State \_, \_, \textit{test\_gen} $\gets$ \textbf{get\_generator}(\textit{fresh\_ds\_path}, splits=\textit{split\_proportions},
+			\State \hskip1.9em batch\_size=\textit{batch\_size}, return\_shas=True, num\_workers=\textit{workers}, ..)
 			\State \textit{model} $\gets$ \textit{Family\_Net}(families=[\textbf{label\_to\_sig}(\textit{lab}) $\forall$ \textit{lab} $\in$ \textbf{range}(\textit{n\_families})],
 			\State \hskip1.9em feature\_dimension=2381, embedding\_dimension=32, layer\_sizes=\textit{run\_params}['layer\_sizes'],
 			\State \hskip1.9em fam\_class\_layer\_sizes=\textit{run\_params}['fam\_class\_layer\_sizes'],
@@ -3793,12 +3798,12 @@ The \textit{Family Classifier} training function, as shown in alg. \ref{alg:trai
 			\State
 			\State \textit{model}.\textbf{load\_state\_dict}(\textit{checkpoint\_path})
 			\State \textit{model}.\textbf{eval}()
-			\ForAll{\textit{shas}, \textit{features}, \textit{labels} $\in$ \textit{test\_generator}}
+			\ForAll{\textit{shas}, \textit{features}, \textit{labels} $\in$ \textit{test\_gen}}
 				\State \textit{out} $\gets$ \textit{model}(\textit{features})
-				\State \textit{preds} $\gets$ [\textbf{max}(\textit{line} $\forall$ \textit{line} $\in$ \textit{out})]
+				\State \textit{preds} $\gets$ [\textbf{max}(\textit{line} $\forall$ \textit{line} $\in$ \textit{out}['scores'])]
 				\State accuracy $\gets$ \textbf{sum}(1 $\forall$ \textit{i}, \textit{pred} $\in$ \textbf{enumerate}(\textit{preds}) \textbf{if} \textit{pred} = \textit{labels}[\textit{i}]) / \textbf{len}(\textit{labels})
 				\State \textbf{log}(accuracy)
-				\State \textbf{save\_to\_file}(\textit{labels}, \textit{out})
+				\State \textbf{save\_to\_file}(\textit{labels}, \textit{out}['probs'])
 			\EndFor
 		\EndFunction
 	\end{algorithmic}

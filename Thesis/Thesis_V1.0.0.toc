@@ -159,8 +159,8 @@
 \contentsline {subsection}{\numberline {6.2.2}Family Classifier Training and Evaluation algorithms}{113}{subsection.6.2.2}%
 \contentsline {subsubsection}{Family Classifier Training}{114}{section*.129}%
 \contentsline {subsubsection}{Family Classifier Evaluation}{115}{section*.131}%
-\contentsline {subsubsection}{Family Classifier Results Computation and Plotting}{116}{section*.133}%
-\contentsline {section}{\numberline {6.3}(Alternative Model)}{117}{section.6.3}%
+\contentsline {subsubsection}{Family Classifier Results Computation and Plotting}{115}{section*.133}%
+\contentsline {section}{\numberline {6.3}(Alternative Model)}{115}{section.6.3}%
 \contentsline {chapter}{\numberline {7}Results}{118}{chapter.7}%
 \contentsline {section}{\numberline {7.1}Malware Label results}{119}{section.7.1}%
 \contentsline {subsection}{\numberline {7.1.1}Summary}{122}{subsection.7.1.1}%

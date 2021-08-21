@@ -37,7 +37,7 @@
 \contentsline {figure}{\numberline {6.7}{\ignorespaces Malware Family Classifier Training and evaluation workflow steps}}{113}{figure.caption.128}%
 \contentsline {figure}{\numberline {6.8}{\ignorespaces Family Classifier Training Workflow step}}{114}{figure.caption.130}%
 \contentsline {figure}{\numberline {6.9}{\ignorespaces Family Classifier Evaluate Workflow step}}{115}{figure.caption.132}%
-\contentsline {figure}{\numberline {6.10}{\ignorespaces Family Classifier Results Computation and Plotting step}}{116}{figure.caption.134}%
+\contentsline {figure}{\numberline {6.10}{\ignorespaces Family Classifier Results Computation and Plotting step}}{115}{figure.caption.134}%
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {7.1}{\ignorespaces Malware Label prediction task ALOHA (M/B only) ROC curve}}{121}{figure.caption.136}%
 \contentsline {figure}{\numberline {7.2}{\ignorespaces Malware Label prediction task ALOHA ROC curve}}{121}{figure.caption.137}%
