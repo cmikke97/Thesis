@@ -3547,7 +3547,7 @@ The \textbf{\textit{evaluate\_fresh\_rankings}} function, presented in algorithm
 
 The \textbf{get\_samples} function (alg. \ref{alg:getSamplesFunction}), used by functions \textit{evaluate\_fresh\_scores} and \textit{evaluate\_fresh\_rankings} and presented in alg. \ref{alg:getSamplesFunction} selects '\textit{n\_samples\_to\_get}' samples for each of the '\textit{n\_families}' families from the provided \textit{generator} (fresh dataset) excluding samples present in the '\textit{other}' set (if provided). In order to do this, the function cycles through the provided \textit{generator} and gets the \textit{shas}, \textit{labels}, \textit{features} and \textit{embedding} of the samples not in the '\textit{other}' set and then selects, for each family, as many samples as possible until all families have exactly '\textit{n\_samples\_to\_get}' samples.
 
-\subsection{Fresh Results Computation and Plotting}
+\subsubsection{Fresh Results Computation and Plotting}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{./images/workflow_fresh_results.png}
@@ -3587,7 +3587,15 @@ As shown in figure \ref{fig:FamilyClassifierModel}, the Malware Family Classifie
 
 In particular, the \textit{Shared Base} topology and the \textit{PE Embedding} layer are defined to be equal to the ones used by the Proposed Model (and Joint Embedding Model) implementation. This is done in order to be able to apply transfer Learning by importing the model parameters from a previous \textbf{Proposed Model} training run on the Sorel-20m dataset. These parameters can be then '\textit{fine-tuned}' (further optimized) on the new family classification task using samples from the fresh dataset. On the other hand, the \textit{Family Classifier} output head, which is built on top of the \textit{PE Embedding} layer, is new and its parameters are therefore always learned from scratch.
 
-The \textit{Family Classifier} topology, on the other hand, consists of 5 dense blocks of output sizes 128, 512, 128, 64 and 10, respectively. These dense blocks are designed in the same way as the ones used in the \textit{Proposed Model} base topology - a linear layer with dropout, followed by batch normalization and ReLU activation function - but for the last one which simply consists of a simple linear layer trailed by the \textit{Sigmoid} non-linearity. As always, at network definition it is possible to dynamically set the hyper-parameters for this topology (as well as the shared base topology) such as the exact number of layers, the linear layer's sizes, the dropout probability $p_d$, the normalization function and the activation function used. However, most of the hyper-parameters for the \textit{Family classifier} topology are shared with the model \textit{shared base} with the exception of the number of layers and the layers' dimensions, which can be independently set. The \textit{Family classifier} output head transforms a given input sample PE embedding (of size 32) into a set of 10 class scores (one per family) which correspond to the family label probabilities. The final family prediction, for each sample, is then computed by taking the family label with the highest probability. The loss between the family class output scores $f_{fam}(x)$ and the ground truth family label $y_{fam}$ is then computed using the Pytorch \textit{Cross Entropy Loss} function. 
+The \textit{Family Classifier} topology, on the other hand, consists of 5 dense blocks of output sizes 128, 512, 128, 64 and 10, respectively. These dense blocks are designed in the same way as the ones used in the \textit{Proposed Model} base topology - a linear layer with dropout, followed by batch normalization and ReLU activation function - but for the last one which simply consists of a simple linear layer trailed by the \textit{Sigmoid} non-linearity. As always, at network definition it is possible to dynamically set the hyper-parameters for this topology (as well as the shared base topology) such as the exact number of layers, the linear layer's sizes, the dropout probability $p_d$, the normalization function and the activation function used. However, most of the hyper-parameters for the \textit{Family classifier} topology are shared with the model \textit{shared base} with the exception of the number of layers and the layers' dimensions, which can be independently set. The \textit{Family classifier} output head transforms a given input sample PE embedding (of size 32) into a set of 10 class scores (one per family) which can be transformed into family label probabilities through the use of the \textit{softmax} function. The final family prediction, for each sample, is then computed by taking the family label with the highest score. The loss between the family class output scores $f_{fam}(x)$ and the ground truth family label $y_{fam}$, on the other hand, is computed using the Pytorch \textit{Cross Entropy Loss} function. This corresponds to computing the mean of the per-sample losses as depicted by equation \ref{eq:familyClassifierLoss}.
+\begin{equation}\label{eq:familyClassifierLoss}
+	\mathcal{L} = \frac{\sum_{i=1}^{N} \mathcal{L}(i, y_{fam_i})}{N}
+\end{equation}
+where $N$ is the total number of samples for the current training mini-batch and $\mathcal{L}(i, y_{fam_i})$ is the loss for sample $i$ having ground truth family label $y_{fam_i}$ as defined in equation \ref{eq:FamilyClassifierPerSampleLoss}.
+\begin{equation}\label{eq:FamilyClassifierPerSampleLoss}
+	\mathcal{L}(x, fam) = - \log{\left(\frac{e^{x[fam]}}{\sum_{j} e^{x[j]}}\right)} = - x[fam] + \log{\left(\sum_{j} e^{x[j]}\right)}
+\end{equation}
+where $x[j]$ denotes the sample class score for family $j$.
 
 \subsubsection{Net Definition}
 \begin{algorithm}[h!]
@@ -3641,8 +3649,8 @@ The \textit{Family Classifier} topology, on the other hand, consists of 5 dense 
 			\State \textit{layers}.\textbf{append}(\textbf{nn.Dropout}(\textit{dropout\_p}))
 		\EndFor
 		\State \textit{fam\_class\_layers}.\textbf{append}(\textbf{nn.Linear}(\textit{fam\_class\_layer\_sizes}[-1], \textit{self}.\textit{n\_families}))
-		\State \textit{fam\_class\_layers}.\textbf{append}(\textbf{nn.sigmoid}())
 		\State \textit{self}.\textit{family\_classifier} $\gets$ \textbf{nn.Sequential}(*\textbf{tuple}(\textit{fam\_class\_layers}))
+		\State \textit{self}.\textit{softmax\_output} $\gets$ \textbf{nn.Softmax}(dim=1)
 		\EndFunction
 		\algstore{bkbreak}
 	\end{algorithmic}
@@ -3655,7 +3663,10 @@ The \textit{Family Classifier} topology, on the other hand, consists of 5 dense 
 		\Function{Forward}{\textit{self}, \textit{data}}
 			\State \textit{base\_out} $\gets$ \textit{self}.\textit{model\_base}(\textit{data})
 			\State \textit{pe\_embedding} $\gets$ \textit{self}.\textit{pe\_embedding}(\textit{base\_out})
-			\State \textbf{return} \textit{self}.\textit{family\_classifier}(\textit{pe\_embedding})
+			\State \textit{scores} $\gets$ \textit{self}.\textit{families\_classifier}(\textit{pe\_embedding})
+			\State \textit{rv} $\gets$ \{'scores': \textit{scores},
+			\State \hskip3.1em 'probs': \textit{self}.\textit{softmax\_output}(\textit{scores})\}
+			\State \textbf{return} \textit{rv}
 		\EndFunction
 		\algstore{bkbreak}
 	\end{algorithmic}
@@ -3666,7 +3677,7 @@ The \textit{Family Classifier} topology, on the other hand, consists of 5 dense 
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 		\Function{Compute\_loss}{\textit{self}, \textit{predictions}, \textit{labels}, \textit{loss\_wts}}
-		\State \textbf{return} \textit{self}.\textit{loss\_criterion}(\textit{predictions}, \textit{labels})
+		\State \textbf{return} \textit{self}.\textit{loss\_criterion}(\textit{predictions}['scores'], \textit{labels})
 		\EndFunction
 		\EndClass
 	\end{algorithmic}
