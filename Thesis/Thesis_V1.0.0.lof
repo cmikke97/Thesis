@@ -13,7 +13,7 @@
 \contentsline {figure}{\numberline {3.3}{\ignorespaces Joint Embedding model architecture}}{57}{figure.caption.84}%
 \contentsline {figure}{\numberline {3.4}{\ignorespaces PE + FP model architecture}}{61}{figure.caption.88}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Overall workflow}}{63}{figure.caption.89}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Workflow}}{63}{figure.caption.89}%
 \contentsline {figure}{\numberline {4.2}{\ignorespaces Sorel20M workflow steps}}{64}{figure.caption.90}%
 \contentsline {figure}{\numberline {4.3}{\ignorespaces PE file structure}}{67}{figure.caption.93}%
 \contentsline {figure}{\numberline {4.4}{\ignorespaces Generator alt.3 speed heatmap}}{78}{figure.caption.104}%
@@ -21,30 +21,30 @@
 \contentsline {figure}{\numberline {4.6}{\ignorespaces Fresh dataset workflow steps}}{79}{figure.caption.106}%
 \contentsline {figure}{\numberline {4.7}{\ignorespaces Model Fresh evaluation workflow steps}}{82}{figure.caption.107}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces ALOHA model implementation architecture}}{85}{figure.caption.110}%
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Joint Embedding model implementation architecture}}{89}{figure.caption.112}%
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Training and evaluation workflow steps}}{94}{figure.caption.114}%
+\contentsline {figure}{\numberline {5.1}{\ignorespaces ALOHA model implementation architecture}}{86}{figure.caption.110}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Joint Embedding model implementation architecture}}{88}{figure.caption.112}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Training and evaluation workflow steps}}{95}{figure.caption.114}%
 \contentsline {figure}{\numberline {5.4}{\ignorespaces Training workflow step}}{95}{figure.caption.115}%
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Evaluation workflow step}}{95}{figure.caption.116}%
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Results Computation and plotting workflow step}}{97}{figure.caption.117}%
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Evaluation workflow step}}{97}{figure.caption.116}%
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Results Computation and plotting workflow step}}{98}{figure.caption.117}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces Proposed model architecture}}{99}{figure.caption.118}%
-\contentsline {figure}{\numberline {6.2}{\ignorespaces Training and evaluation workflow steps}}{105}{figure.caption.120}%
-\contentsline {figure}{\numberline {6.3}{\ignorespaces Model fresh evaluation workflow steps}}{105}{figure.caption.121}%
-\contentsline {figure}{\numberline {6.4}{\ignorespaces Model fresh evaluation workflow step}}{106}{figure.caption.123}%
-\contentsline {figure}{\numberline {6.5}{\ignorespaces Fresh results computation and plotting workflow step}}{108}{figure.caption.125}%
-\contentsline {figure}{\numberline {6.6}{\ignorespaces Family Classifier model architecture}}{111}{figure.caption.126}%
-\contentsline {figure}{\numberline {6.7}{\ignorespaces Malware Family Classifier Training and evaluation workflow steps}}{113}{figure.caption.128}%
-\contentsline {figure}{\numberline {6.8}{\ignorespaces Family Classifier Training Workflow step}}{114}{figure.caption.130}%
-\contentsline {figure}{\numberline {6.9}{\ignorespaces Family Classifier Evaluate Workflow step}}{115}{figure.caption.132}%
-\contentsline {figure}{\numberline {6.10}{\ignorespaces Family Classifier Results Computation and Plotting step}}{115}{figure.caption.134}%
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Proposed model architecture}}{100}{figure.caption.118}%
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Training and evaluation workflow steps}}{106}{figure.caption.120}%
+\contentsline {figure}{\numberline {6.3}{\ignorespaces Model fresh evaluation workflow steps}}{106}{figure.caption.121}%
+\contentsline {figure}{\numberline {6.4}{\ignorespaces Model fresh evaluation workflow step}}{107}{figure.caption.123}%
+\contentsline {figure}{\numberline {6.5}{\ignorespaces Fresh results computation and plotting workflow step}}{109}{figure.caption.125}%
+\contentsline {figure}{\numberline {6.6}{\ignorespaces Family Classifier model architecture}}{112}{figure.caption.126}%
+\contentsline {figure}{\numberline {6.7}{\ignorespaces Malware Family Classifier Training and evaluation workflow steps}}{114}{figure.caption.128}%
+\contentsline {figure}{\numberline {6.8}{\ignorespaces Family Classifier Training Workflow step}}{115}{figure.caption.130}%
+\contentsline {figure}{\numberline {6.9}{\ignorespaces Family Classifier Evaluate Workflow step}}{116}{figure.caption.132}%
+\contentsline {figure}{\numberline {6.10}{\ignorespaces Family Classifier Results Computation and Plotting step}}{116}{figure.caption.134}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {7.1}{\ignorespaces Malware Label prediction task ALOHA (M/B only) ROC curve}}{121}{figure.caption.136}%
-\contentsline {figure}{\numberline {7.2}{\ignorespaces Malware Label prediction task ALOHA ROC curve}}{121}{figure.caption.137}%
-\contentsline {figure}{\numberline {7.3}{\ignorespaces Malware Label prediction task Proposed Model ROC curve}}{122}{figure.caption.138}%
-\contentsline {figure}{\numberline {7.4}{\ignorespaces Tags prediction task ALOHA mean ROC curve}}{125}{figure.caption.140}%
-\contentsline {figure}{\numberline {7.5}{\ignorespaces Tags prediction task Joint Embedding mean ROC curve}}{125}{figure.caption.141}%
-\contentsline {figure}{\numberline {7.6}{\ignorespaces Tags prediction task Proposed Model mean ROC curve}}{126}{figure.caption.142}%
-\contentsline {figure}{\numberline {7.7}{\ignorespaces Family prediction task Joint Embedding ROC curve}}{129}{figure.caption.145}%
-\contentsline {figure}{\numberline {7.8}{\ignorespaces Family prediction task Proposed Model ROC curve}}{130}{figure.caption.146}%
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Malware Label prediction task ALOHA (M/B only) ROC curve}}{122}{figure.caption.136}%
+\contentsline {figure}{\numberline {7.2}{\ignorespaces Malware Label prediction task ALOHA ROC curve}}{122}{figure.caption.137}%
+\contentsline {figure}{\numberline {7.3}{\ignorespaces Malware Label prediction task Proposed Model ROC curve}}{123}{figure.caption.138}%
+\contentsline {figure}{\numberline {7.4}{\ignorespaces Tags prediction task ALOHA mean ROC curve}}{126}{figure.caption.140}%
+\contentsline {figure}{\numberline {7.5}{\ignorespaces Tags prediction task Joint Embedding mean ROC curve}}{126}{figure.caption.141}%
+\contentsline {figure}{\numberline {7.6}{\ignorespaces Tags prediction task Proposed Model mean ROC curve}}{127}{figure.caption.142}%
+\contentsline {figure}{\numberline {7.7}{\ignorespaces Family prediction task Joint Embedding ROC curve}}{130}{figure.caption.145}%
+\contentsline {figure}{\numberline {7.8}{\ignorespaces Family prediction task Proposed Model ROC curve}}{131}{figure.caption.146}%
 \addvspace {10\p@ }
