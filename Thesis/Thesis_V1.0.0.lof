@@ -39,12 +39,12 @@
 \contentsline {figure}{\numberline {6.9}{\ignorespaces Family Classifier Evaluate Workflow step}}{117}{figure.caption.132}%
 \contentsline {figure}{\numberline {6.10}{\ignorespaces Family Classifier Results Computation and Plotting step}}{118}{figure.caption.134}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {7.1}{\ignorespaces Malware Label prediction task ALOHA (M/B only) ROC curve}}{123}{figure.caption.136}%
-\contentsline {figure}{\numberline {7.2}{\ignorespaces Malware Label prediction task ALOHA ROC curve}}{123}{figure.caption.137}%
-\contentsline {figure}{\numberline {7.3}{\ignorespaces Malware Label prediction task Proposed Model ROC curve}}{124}{figure.caption.138}%
-\contentsline {figure}{\numberline {7.4}{\ignorespaces Tags prediction task ALOHA mean ROC curve}}{127}{figure.caption.140}%
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Malware Label prediction task ALOHA (M/B only) ROC curve}}{122}{figure.caption.136}%
+\contentsline {figure}{\numberline {7.2}{\ignorespaces Malware Label prediction task ALOHA ROC curve}}{122}{figure.caption.137}%
+\contentsline {figure}{\numberline {7.3}{\ignorespaces Malware Label prediction task Proposed Model ROC curve}}{123}{figure.caption.138}%
+\contentsline {figure}{\numberline {7.4}{\ignorespaces Tags prediction task ALOHA mean ROC curve}}{126}{figure.caption.140}%
 \contentsline {figure}{\numberline {7.5}{\ignorespaces Tags prediction task Joint Embedding mean ROC curve}}{127}{figure.caption.141}%
-\contentsline {figure}{\numberline {7.6}{\ignorespaces Tags prediction task Proposed Model mean ROC curve}}{128}{figure.caption.142}%
+\contentsline {figure}{\numberline {7.6}{\ignorespaces Tags prediction task Proposed Model mean ROC curve}}{127}{figure.caption.142}%
 \contentsline {figure}{\numberline {7.7}{\ignorespaces Family prediction task Joint Embedding ROC curve}}{131}{figure.caption.145}%
-\contentsline {figure}{\numberline {7.8}{\ignorespaces Family prediction task Proposed Model ROC curve}}{132}{figure.caption.146}%
+\contentsline {figure}{\numberline {7.8}{\ignorespaces Family prediction task Proposed Model ROC curve}}{131}{figure.caption.146}%
 \addvspace {10\p@ }

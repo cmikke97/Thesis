@@ -3947,26 +3947,19 @@ The Family classifier evaluation \textbf{\textit{micro}} (global average), \text
 The following results are 'fake'. They were taken from a model trained on just $8.192$ training samples and are here presented only to show the tables structures.
 \color{Black}
 
-In this chapter the evaluation results of the following model implementations will be presented and compared:
+This chapter presents the evaluation results of the different models implemented. In particular, in the first section (\ref{sec:malwareDetectionResults}) are depicted the different models' results on the task of malware detection (Malicious/Benign label prediction). The same models' evaluation results on the task of malware description via SMART tags are presented in a separate section (\ref{sec:malwareDescriptionResults}). The next section (\ref{sec:FreshEvaluationResults}), presents the models' (and original features') results on the family prediction and ranking tasks using samples from the Fresh Dataset. The final section (\ref{sec:FamilyClassificationResults}), on the other hand, presents the evaluation results of the Malware Family Classifier on the family classification task.
+
+\section{Malware Detection results}\label{sec:malwareDetectionResults}
+In this section the models' results concerning the \textbf{Malicious/Benign} label prediction task are presented. In particular for each model are shown the corresponding \textbf{AUC-ROC} (Area Under ROC Curve) score (table \ref{tab:malware_auc}) and the various binary cross entropy loss statistics (\textbf{TPR} (True Positive Rate), \textbf{Accuracy}, \textbf{Recall}, \textbf{Precision} and \textbf{F1 Score}) at different \textbf{FPRs} (False Positive Rates) (table \ref{tab:malware_results_at_fpr}). Moreover, for the \textbf{TPR} statistic, also the \textbf{Proposed Model} Error and Standard Deviation Reductions with respect to the other (previous) models are presented, in percentage. Next, the \textbf{ROC} (Receiving Operating Characteristic) curves of the different models are presented (figures \ref{fig:malwareRocAlohaMB}, \ref{fig:malwareRocAloha} and \ref{fig:malwareRocProposedModel}).
+
+The models considered in this section are:
 \begin{itemize}
 	\item \textbf{ALOHA (M/B only)}: \textit{ALOHA} model implementation described in section \ref{sec:alohaModelImplementation}, with only the \textit{Malicious/Benign} label prediction head enabled. This model thus represents a simple single task FNN designed exclusively for the malicious label prediction task.
 	
 	\item \textbf{ALOHA}: final \textit{ALOHA} model implementation described in section \ref{sec:alohaModelImplementation}, with all the additional output heads enabled.
-	
-	\item \textbf{Joint Embedding}: final \textit{Joint Embedding} model implementation described in section \ref{sec:jointEmbeddingModelImplementation}.
-	
+		
 	\item \textbf{Proposed Model}: final \textit{Proposed Model} implementation described in section \ref{sec:proposedModelImplementation}.
 \end{itemize}
-
-In the first section (\ref{sec:malwareLabelResults}) of this chapter, the models' results concerning the \textbf{Malicious/Benign} label prediction task are presented. In particular for each model are shown the corresponding \textbf{AUC-ROC} (Area Under ROC Curve) score and the various binary cross entropy loss statistics (\textbf{TPR} (True Positive Rate), \textbf{Accuracy}, \textbf{Recall}, \textbf{Precision} and \textbf{F1 Score}) at different \textbf{FPRs} (False Positive Rates). Moreover, for the \textbf{TPR} statistic, also the \textbf{Proposed Model} Error and Standard Deviation Reductions with respect to the other (previous) models are presented, in percentage. Next, the \textbf{ROC} (Receiving Operating Characteristic) curves of the different models for the malicious label prediction task are presented. Finally, it is presented a brief summary of the different statistics for the different models at \textbf{FPR} $=1\%$.
-
-In the next section (\ref{sec:perTagResults}), the models' evaluation results for the SMART tagging prediction task are presented. More specifically, a table shows, for each predicted tag, the \textbf{AUC-ROC} scores relative to the different models. Another table presents the tag prediction per-tag binary cross entropy statistics at \textbf{FPR} $=1\%$. Finally, for each model it is presented a single graph showing the \textbf{ROC} curves of all predicted tags.
-
-A further section (\ref{sec:meanPerSampleTaggingScores}) is used for showing the models' \textit{Mean per-sample scores} corresponding to the different tags for each model. In particular, here are presented the \textbf{Jaccard Similarity} and \textbf{Mean per-Sample Accuracy} scores at different \textbf{FPRs} achieved by the models.
-
-A final section (\ref{sec:familyRankingEvaluation}), instead, contains some tables showing the different models' performance evaluations at the \textbf{Malware Family Prediction and Ranking} tasks. More specifically, a table shows the rankings' \textbf{MRR} (Mean Reciprocal Rank) and \textbf{MAP} (Mean Average Precision) for the \textbf{Joint Embedding} and \textbf{Proposed Model} implementations. The \textbf{ALOHA} implementation, in fact, does not generate the joint embedding space needed for the ranking task. Next, two more tables show the models' malware family prediction \textbf{AUC-ROC} scores and binary cross entropy statistics at \textbf{FPR} $=1\%$, similarly to what was done for the SMART tagging task. Finally, the actual family prediction \textbf{\textit{ROC}} curves for the 2 mentioned model implementations (\textbf{Joint Embedding} and \textbf{Proposed Model}) are presented, along with the 4 fresh dataset samples' rankings which produced the maximum and minimum AP (Average Precision) and RR (Reciprocal Rank) scores.
-
-\section{Malware Label results}\label{sec:malwareLabelResults}
 
 \malwareResultsAucTable
 
@@ -3979,9 +3972,22 @@ A final section (\ref{sec:familyRankingEvaluation}), instead, contains some tabl
 \malwareRocProposedMethod
 
 \subsection{Summary}
+Here (table \ref{tab:malware_result_summary}) it is presented a brief summary of the previously mentioned statistics for the different models at \textbf{FPR} $=1\%$.
+
 \malwareResultsSummaryTable
 
-\section{Per-tag results}\label{sec:perTagResults}
+\section{Malware Description via SMART tags results}\label{sec:malwareDescriptionResults}
+In this section the models' evaluation results for the SMART tagging prediction task are presented. More specifically, table \ref{tab:tag_aucs} shows, for each predicted tag, the \textbf{AUC-ROC} scores relative to the different models. Table \ref{tab:tag_results_summary}, on the other hand, presents the tag prediction per-tag binary cross entropy statistics at \textbf{FPR} $=1\%$. Finally, for each model it is presented a single graph showing the \textbf{ROC} curves of all predicted tags (figures \ref{fig:allMeanRocAloha}, \ref{fig:allMeanRocJointEmbedding} and \ref{fig:allMeanRocProposedModel}).
+
+The models considered in this section are:
+\begin{itemize}
+	\item \textbf{ALOHA}: final \textit{ALOHA} model implementation described in section \ref{sec:alohaModelImplementation}, with all the additional output heads enabled.
+	
+	\item \textbf{Joint Embedding}: final \textit{Joint Embedding} model implementation described in section \ref{sec:jointEmbeddingModelImplementation}.
+	
+	\item \textbf{Proposed Model}: final \textit{Proposed Model} implementation described in section \ref{sec:proposedModelImplementation}.
+\end{itemize}
+
 \tagResultsAucTable
 
 \tagResultsSummaryTable
@@ -3992,10 +3998,16 @@ A final section (\ref{sec:familyRankingEvaluation}), instead, contains some tabl
 
 \allMeanRocProposedModel
 
-\section{Mean per-sample tagging scores}\label{sec:meanPerSampleTaggingScores}
+\subsection{Mean per-sample tagging scores}\label{sec:meanPerSampleTaggingScores}
+Here (table \ref{tab:meanPerSampleScores}) are presented the models' \textit{Mean per-sample scores}, more specifically the \textbf{Jaccard Similarity} and \textbf{Mean per-Sample Accuracy} scores, achieved by the models at different \textbf{FPRs}.
+
 \meanPerSampleScores
 
-\section{Family Ranking Evaluation}\label{sec:familyRankingEvaluation}
+\section{Family Prediction and Ranking Evaluation}\label{sec:FreshEvaluationResults}
+This section shows the different models' performance evaluations at the \textbf{Malware Family Prediction and Ranking} tasks. More specifically, a table shows the mean and standard deviation of the \textbf{MRR} (Mean Reciprocal Rank) and \textbf{MAP} (Mean Average Precision) of the produced rankings for the different model implementations (and original features). For the malware family prediction task, on the other hand, here are presented the models' (mean and std) accuracy trends by varying the number of used anchor samples during the evaluation and also the confusion matrixes corresponding to the best and worst overall predictions.
+
+It is interesting to notice that even if only the \textit{Joint Embedding} and \textit{Proposed Model} implementations map samples to a specially crafted joint embedding space, also the implicit latent representation of the ALOHA model and the original features can be used to compute samples distances. It is therefore possible to compare the results of the different models (including ALOHA model implementation) on the family prediction and ranking tasks.
+
 \MrrAndMapResultsTable
 
 \freshResultsAucTable
@@ -4007,6 +4019,8 @@ A final section (\ref{sec:familyRankingEvaluation}), instead, contains some tabl
 \allMeanFreshRocProposedModel
 
 \subsection{Example rankings}
+Here are presented, for each model, 4 examples rankings which produced the maximum and minimum AP (Average Precision) and RR (Reciprocal Rank) scores.
+
 \maxApExampleRankTable
 
 \maxRrExampleRankTable
@@ -4014,6 +4028,8 @@ A final section (\ref{sec:familyRankingEvaluation}), instead, contains some tabl
 \minApExampleRankTable
 
 \minRrExampleRankTable
+
+\section{Family Classification Results}\label{sec:FamilyClassificationResults}
 
 \chapter{Conclusions}
 \color{Red}

@@ -1,12 +1,12 @@
 \newcommand{\MrrAndMapResultsTable}{
     \begin{table}[H]
         \centering
-        \begin{tabular}{|P{2,8cm}||P{2,2cm} P{2,2cm} P{2,2cm} P{2,2cm}|}
+        \begin{tabular}{|P{1,6cm}||P{2cm} P{2cm} P{2cm} P{2cm} P{2cm}|}
             \hline
-            & ALOHA\newline (M/B only) & ALOHA & Joint\newline Embedding & Proposed\newline Model \\
+            & Ember\newline features & ALOHA\newline (M/B only) & ALOHA & Joint\newline Embedding & Proposed\newline Model \\
             \hline
-            MRR & - & - & 0.252$\pm$0.029 & \textBF{0.255$\pm$0.024} \\
-            MAP & - & - & \textBF{0.106$\pm$0.001} & \textBF{0.106$\pm$0.001} \\
+            MRR & - & - & - & 0.252$\pm$0.029 & \textBF{0.255$\pm$0.024} \\
+            MAP & - & - & - & \textBF{0.106$\pm$0.001} & \textBF{0.106$\pm$0.001} \\
             \hline
         \end{tabular}
         \caption[Family ranking MRR and MAP scores]{Mean and standard deviation MRR (Mean Reciprocal Rank) and MAP (Mean Average Precision) results for the different models on the Family Ranking task. Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:MrrAndMapResults}
