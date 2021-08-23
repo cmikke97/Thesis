@@ -1856,7 +1856,7 @@ where $M$ is the number of samples in the dataset, and $y_i$ and $\textbf{x}^{(i
 In order to improve the detection rate of existing anti-malware techniques also against malware produced by advanced packers and toolkits, code \textit{normalization} techniques can be exploited. These techniques consist of a \textit{normalizer} which accepts obfuscated code as input and tries to eliminate obfuscation producing as output the normalized executable. After \textit{normalization}, the usual signature-based techniques can be applied on the normalized sample \cite{Sharma_2014}.
 
 \chapter{Workflow and Datasets used}
-\begin{figure}[h!]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{./images/workflow.png}
 	\caption[Workflow]{Workflow}
@@ -1866,7 +1866,7 @@ In order to improve the detection rate of existing anti-malware techniques also 
 The workflow presented in image \ref{fig:workflow} summarizes the steps taken throughout the experiments conducted and reported in this document. In particular, for each different model architecture and combination of parameters, the model is first trained and evaluated on the large-scale dataset called \textit{\textbf{Sorel 20M dataset}} \cite{HarangSOREL20M} on the task of SMART tagging and/or malicious/benign label prediction. Next, the model evaluation results are computed and plotted. The model is then evaluated also using a smaller dataset, referred to as '\textit{\textbf{Fresh dataset}}' in this document, specifically crafted for the task of predicting the malware family each specific sample belongs to. The results of this second evaluation are computed and plotted in a separate step. Finally, the fresh dataset is split into training, validation and test subsets and depending on the model type (in particular, in case of the Joint Embedding and the Proposed Model), the learned representation is optionally refined by training (and validating) the architecture resulting by the addition of a family multiclass classifier head on top of the model using the training (and validation) subsets. The resulting classifier is then evaluated on the test subset of the same dataset and the corresponding results are computed and plotted. The whole process presented until now is repeated for \textit{n\_runs} times and finally the mean evaluation results are computed, aggregating the results of the single runs.
 
 \section{Sorel 20M Dataset}
-\begin{figure}[h!]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{./images/workflow_sorel.png}
 	\caption[Sorel20M workflow steps]{Workflow steps which use the Sorel20M dataset}
@@ -2122,7 +2122,7 @@ The first attempts at optimizing the generator were inspired by the '\textit{\te
 		\State \textit{self.pool} $\gets$ \textbf{ThreadPool}()
 		\EndIf
 		\State
-		\State \textit{self.n\_batches} $\gets \lceil$\textit{self.dataset\_len} / \textit{self.batch\_size}$\rceil$
+		\State \textit{self.n\_batches} $\gets$ \textbf{ceil}(\textit{self.dataset\_len} / \textit{self.batch\_size})
 		\EndFunction
 	\end{algorithmic}
 \end{algorithm}
@@ -2177,7 +2177,7 @@ The first attempts at optimizing the generator were inspired by the '\textit{\te
 		\Else
 		\While{\textit{self.i} $<$ \textit{self.dataset\_len} \textbf{and} \textbf{len}(\textit{self.async\_results}) $<$ \textit{self.n\_workers}}
 		\State \textit{arguments} $\gets$ (\textit{self.tensors}, \textit{self.batch\_size}, \textit{self.i}, (\textit{self.indices}))
-		\State \textit{async\_task} $\gets$ \textit{self.pool}.\textbf{apply\_async}(\textbf{get\_batch}, \textit{arguments})
+		\State \textit{async\_task} $\gets$ \textit{self.pool}.\textbf{apply\_async}(\textbf{GetBatch}, \textit{arguments})
 		\State \textit{self.async\_results}.\textbf{append}(\textit{async\_task})
 		\State \textit{self.i} $\gets$ \textit{self.i} + \textit{self.batch\_size}
 		\EndWhile
@@ -2190,7 +2190,7 @@ The first attempts at optimizing the generator were inspired by the '\textit{\te
 \end{algorithm}
 
 \begin{algorithm}[h!]
-	\caption{Alt1 GetBatchh function}\label{alg:Alt1GetBatch}
+	\caption{Alt1 GetBatch function}\label{alg:Alt1GetBatch}
 	\begin{algorithmic}[1]
 		\Function{GetBatch}{\textit{tensors}, \textit{batch\_size}, \textit{i}, \textit{indices}, ...}
 		\State \textit{batch} $\gets$ [ ]
@@ -2263,8 +2263,8 @@ This optimization uses a new FastTensorDataLoader class which exploits a pool of
 		\State \textit{self.pool} $\gets$ \textbf{ThreadPool}()
 		\EndIf
 		\State
-		\State \textit{self.n\_batches} $\gets \lceil$\textit{self.dataset\_len} / \textit{self.batch\_size}$\rceil$
-		\State \textit{self.n\_chunks} $\gets \lceil$\textit{self.dataset\_len} / \textit{self.chunk\_size}$\rceil$
+		\State \textit{self.n\_batches} $\gets$ \textbf{ceil}.(\textit{self.dataset\_len} / \textit{self.batch\_size})
+		\State \textit{self.n\_chunks} $\gets$ \textbf{ceil}.(\textit{self.dataset\_len} / \textit{self.chunk\_size})
 		\State \textit{self.last\_chunk\_size} $\gets$ \textit{self.dataset\_len} $\%$ \textit{self.chunk\_size}
 		\EndFunction
 		\algstore{bkbreak}
@@ -2305,8 +2305,8 @@ This optimization uses a new FastTensorDataLoader class which exploits a pool of
 						\State \textit{start\_i} $\gets$ \textit{self.chunk\_i}
 						\State \textit{end\_i} $\gets$ \textit{start\_i} + \textit{self.chunks}
 						\State \textit{arguments} $\gets$ (\textit{self.tensors}, \textit{self.chunk\_indices}[\textit{start\_i}:\textit{end\_i}],
-						\State \hskip6.5em \textit{self.chunk\_size}, \textit{self.last\_chunk\_size},
-						\State \hskip6.5em \textit{self.n\_chunks}, \textit{self.shuffle})
+						\State \hskip6.6em \textit{self.chunk\_size}, \textit{self.last\_chunk\_size},
+						\State \hskip6.6em \textit{self.n\_chunks}, \textit{self.shuffle})
 						\State \textit{self.chunk\_agg}, \textit{self.chunk\_agg\_size} $\gets$ \textbf{get\_chunks}(\textit{arguments})
 						\State \textit{self.chunk\_i} $\gets$ \textit{end\_i}
 						\State \textit{self.i} $\gets$ 0
@@ -2316,9 +2316,9 @@ This optimization uses a new FastTensorDataLoader class which exploits a pool of
 						\State \textit{start\_i} $\gets$ \textit{self.chunk\_i}
 						\State \textit{end\_i} $\gets$ \textit{start\_i} + \textit{self.chunks}
 						\State \textit{arguments} $\gets$ (\textit{self.tensors}, \textit{self.chunk\_indices}[\textit{start\_i}:\textit{end\_i}],
-						\State \hskip6.5em \textit{self.chunk\_size}, \textit{self.last\_chunk\_size},
-						\State \hskip6.5em \textit{self.n\_chunks}, \textit{self.shuffle})
-						\State \textit{async\_task} $\gets$ \textit{self.pool}.\textbf{apply\_async}(\textbf{get\_chunks}, \textit{arguments})
+						\State \hskip6.6em \textit{self.chunk\_size}, \textit{self.last\_chunk\_size},
+						\State \hskip6.6em \textit{self.n\_chunks}, \textit{self.shuffle})
+						\State \textit{async\_task} $\gets$ \textit{self.pool}.\textbf{apply\_async}(\textbf{GetChunks}, \textit{arguments})
 						\State \textit{self.async\_results}.\textbf{append}(\textit{async\_task})
 						\State \textit{self.chunk\_i} $\gets$ \textit{end\_i}
 					\EndWhile
@@ -2334,7 +2334,7 @@ This optimization uses a new FastTensorDataLoader class which exploits a pool of
 					\EndIf
 				\EndIf
 				\State
-				\State \textit{batch} $\gets$ \textbf{get\_batch}(\textit{self.chunk\_agg}, \textit{self.batch\_size}, \textit{self.i})
+				\State \textit{batch} $\gets$ \textbf{GetBatch}(\textit{self.chunk\_agg}, \textit{self.batch\_size}, \textit{self.i})
 				\State \textit{self.i} $\gets$ \textit{self.i} + \textit{batch}[0].\textbf{shape}[0]
 				\State \textbf{return} \textit{batch}
 			\EndFunction
@@ -2347,9 +2347,9 @@ This optimization uses a new FastTensorDataLoader class which exploits a pool of
 	\begin{algorithmic}[1]
 		\Function{GetChunks}{\textit{tensors}, \textit{chunk\_indices}, \textit{chunk\_size}, \textit{last\_chunk\_size}, \textit{n\_chunks}, \textit{shuffle}}
 		\If{\textit{n\_chunks} $- 1$ \textbf{in} \textit{chunk\_indices}}
-		\State \textit{chunk\_agg\_size} $\gets$ (\textbf{len}(\textit{chunk\_indices}) $- 1$) $\cdot$ \textit{chunk\_size} + \textit{last\_chunk\_size}
+		\State \textit{chunk\_agg\_size} $\gets$ (\textbf{len}(\textit{chunk\_indices}) $- 1$) $\times$ \textit{chunk\_size} + \textit{last\_chunk\_size}
 		\Else
-		\State \textit{chunk\_agg\_size} $\gets$ \textbf{len}(\textit{chunk\_indices}) $\cdot$ \textit{chunk\_size}
+		\State \textit{chunk\_agg\_size} $\gets$ \textbf{len}(\textit{chunk\_indices}) $\times$ \textit{chunk\_size}
 		\EndIf
 		\State
 		\State \textit{chunk\_agg} $\gets$ [ ]
@@ -2359,7 +2359,7 @@ This optimization uses a new FastTensorDataLoader class which exploits a pool of
 		\State
 		\State \textit{c\_start} $\gets$ 0
 		\ForAll{\textit{idx} $\in$ [0, ..., \textbf{len}(\textit{chunk\_indices})]}
-		\State \textit{t\_start} $\gets$ \textit{chunk\_indices}[\textit{idx}] $\cdot$ \textit{chunk\_size}
+		\State \textit{t\_start} $\gets$ \textit{chunk\_indices}[\textit{idx}] $\times$ \textit{chunk\_size}
 		\If{\textit{chunk\_indices}[\textit{idx}] $\neq$ \textit{n\_chunks} $- 1$}
 		\State \textit{c\_end} $\gets$ \textit{c\_start} + \textit{chunk\_size}
 		\State \textit{t\_end} $\gets$ \textit{t\_start} + \textit{chunk\_size}
@@ -2399,51 +2399,51 @@ As it can be seen from the algorithms provided, this version of the generator de
 \subparagraph{Generator parameters optimization}
 To understand the behaviour of the FastTensorDataLoader \textit{\textbf{alt3}} on the target instance and choose the best combination of values for the parameters \textit{\textbf{chunk\_size}} and \textit{\textbf{n\_chunks}} when using 8 threads (which is double the amount of cores available in the instance used for this project), the code speed was cross evaluated using powers of 2 for both values. In particular the data loading code was evaluated using values for \textit{\textbf{chunk\_size}} and \textit{\textbf{n\_chunks}} got from two intervals and the corresponding average \textit{speed} and average \textit{elapsed time} heatmap plots were generated.
 
+In practice \textit{\textbf{chunk\_size}} and \textit{\textbf{n\_chunks}} values were chosen to be the powers of 2 ranging from $2^{4}$ to $2^{14}$ (included) and from $2^{3}$ to $2^{13}$, respectively. Moreover, in order to constrain the evaluation to meaningful values only, two additional parameters have to be set: \textit{\textbf{min\_mul}} and \textit{\textbf{max\_mul}}. In fact, as previously mentioned, the product of \textit{\textbf{chunk\_size}} $\times$ \textit{\textbf{n\_chunks}} gives the total number of samples in one \textit{\textbf{chunk\_aggregate}} residing in main memory; this quantity must be constrained to a certain range to avoid using too much RAM while being able to retrieve at least one \textit{batch} of data from the \textit{chunk aggregate}. The parameters \textit{\textbf{min\_mul}} and \textit{\textbf{max\_mul}} are used exactly to indicate the minimum and maximum number of batches retrievable from the resulting \textit{\textbf{chunk\_aggregates}} and therefore indirectly pose a constrain on the product '\textit{\textbf{chunk\_size}} $\times$ \textit{\textbf{n\_chunks}}'.
+
+The data loading code (generator \textit{\textbf{alt3}}) performance was evaluated setting \textit{\textbf{min\_mul}} to a value of 1, while \textit{\textbf{max\_mul}} was set to 32. Those values were chosen in order to always be able to retrieve at least one \textit{batch} from the \textit{\textbf{chunk\_aggregate}} without saturating the RAM available on the instance used for this project (in fact, having for \textit{\textbf{max\_mul}} a value greater than 32 would mean having $32 \times$ \textit{\textbf{batch\_size}} samples loaded into memory at the same time, per worker, which was too much for the available instance).
+
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=\textwidth]{./images/speeds_heatmap.png}
+	\includegraphics[width=0.95\textwidth]{./images/speeds_heatmap.png}
 	\caption[Generator alt.3 speed heatmap]{Generator Alt.3 Speeds Heatmap, Higher is Better}
 	\label{fig:speeds_heatmap}
 \end{figure}
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=\textwidth]{./images/times_heatmap.png}
+	\includegraphics[width=0.95\textwidth]{./images/times_heatmap.png}
 	\caption[Generator alt.3 elapsed times heatmap]{Generator Alt.3 Elapsed Times Heatmap, Lower is Better}
 	\label{fig:times_heatmap}
 \end{figure}
-
-In practice \textit{\textbf{chunk\_size}} and \textit{\textbf{n\_chunks}} values were chosen to be the powers of 2 ranging from $2^{4}$ to $2^{14}$ (included) and from $2^{3}$ to $2^{13}$, respectively. Moreover, in order to constrain the evaluation to meaningful values only, two additional parameters have to be set: \textit{\textbf{min\_mul}} and \textit{\textbf{max\_mul}}. In fact, as previously mentioned, the product of \textit{\textbf{chunk\_size}} $\times$ \textit{\textbf{n\_chunks}} gives the total number of samples in one \textit{\textbf{chunk\_aggregate}} residing in main memory; this quantity must be constrained to a certain range to avoid using too much RAM while being able to retrieve at least one \textit{batch} of data from the \textit{chunk aggregate}. The parameters \textit{\textbf{min\_mul}} and \textit{\textbf{max\_mul}} are used exactly to indicate the minimum and maximum number of batches retrievable from the resulting \textit{\textbf{chunk\_aggregates}} and therefore indirectly pose a constrain on the product '\textit{\textbf{chunk\_size}} $\times$ \textit{\textbf{n\_chunks}}'.
-
-The data loading code (generator \textit{\textbf{alt3}}) performance was evaluated setting \textit{\textbf{min\_mul}} to a value of 1, while \textit{\textbf{max\_mul}} was set to 32. Those values were chosen in order to always be able to retrieve at least one \textit{batch} from the \textit{\textbf{chunk\_aggregate}} without saturating the RAM available on the instance used for this project (in fact, having for \textit{\textbf{max\_mul}} a value greater than 32 would mean having $32 \times$ \textit{\textbf{batch\_size}} samples loaded into memory at the same time, per worker, which was too much for the available instance).
 
 Given the resulting heatmaps (\ref{fig:speeds_heatmap}, \ref{fig:times_heatmap}), for all the experiments conducted for this project \textit{\textbf{chunk\_size}} and {\textbf{n\_chunks}} were permanently set to \textbf{256}, which seemed to be a good compromise between data loading speed and samples dispersion.
 
 In any case, with respect to the previous solutions (original \textit{Pytorch} dataloader and the generators \textit{\textbf{alt1}} and \textit{\textbf{alt2}}) the speed up was huge. This new version took, in fact, approximately 15 minutes, on average, to complete 1 training epoch while the previous solution took, at best, $\sim6$ hours. Therefore this alternative generator was the one selected to be used for loading the dataset in all the conducted experiments. However, it has to be reiterated that this generator version works by approximating the random sampling step during training which in turn may hinder the model generalization on unseen samples. The results presented in this document may therefore be slightly lower than what could be achieved on a more powerful instance using the original \textit{Pytorch} dataloader.
 
 \section{Fresh Dataset}
-\begin{figure}[h!]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{./images/workflow_fresh_dataset.png}
 	\caption[Fresh dataset workflow steps]{Workflow steps which use the Fresh dataset}
 	\label{fig:workflow_fresh_dataset}
 \end{figure}
 
-In order to evaluate the learned representation of PE files (embedding) of the proposed model on the sample family prediction task (fig. \ref{fig:workflow_fresh_dataset}), a further dataset, also referred to as \textit{\textbf{fresh\_dataset}} throughout this document (and in the code), was created. It consisted of a number of sample files' feature vectors along with the corresponding family labels and sha256 hashes.
+In order to evaluate the learned representation of PE files (embedding) of the proposed model on the sample family prediction and ranking tasks (fig. \ref{fig:workflow_fresh_dataset}), a further dataset, also referred to as \textit{\textbf{fresh\_dataset}} throughout this document (and in the code), was created. It consisted of a number of sample files' feature vectors along with the corresponding family labels and sha256 hashes.
 
-More specifically, a number '\textit{\textbf{m}}' of PE malware families were selected from the list of the most prominent ones present in Italy at the time of writing (as reported by CERT-AGID summary \cite{CERTAGID}) of which Malware Bazaar provided at least '\textit{\textbf{x}}' sample files. Then, '\textit{\textbf{x}}' sample files per family were downloaded by Malware Bazaar \cite{MalwareBazaar} along with their metadata information (label, sha256 hash etc.) and the corresponding numerical feature vectors were extracted using the EMBER feature extraction and numerical feature generation codes \cite{AndersonEMBER} (and Sorel-20m normalization). Malware Bazaar is a malware sample database maintained by malware analysts which provides examples of malware executables and high-quality manually crafted classifications/descriptions for different malware families and it is therefore a good source for creating the new (fresh) dataset.
+More specifically, a number '\textit{\textbf{m}}' of PE malware families were selected from the list of the most prominent ones present in Italy at the time of writing (as reported by CERT-AGID summary \cite{CERTAGID}) of which Malware Bazaar provided at least '\textit{\textbf{x}}' sample files. Then, '\textit{\textbf{x}}' sample files per family were downloaded by Malware Bazaar \cite{MalwareBazaar} along with their metadata information (label, sha256 hash etc.) and the corresponding numerical feature vectors were extracted using the EMBER (version 2.0) feature extraction and numerical feature generation codes \cite{AndersonEMBER} (and Sorel-20m normalization). Malware Bazaar is a malware sample database maintained by malware analysts which provides examples of malware executables and high-quality manually crafted classifications/descriptions for different malware families and it is therefore a good source for creating the new (fresh) dataset.
 
-A function called \textit{\textbf{build\_fresh\_dataset}} was specifically implemented with the purpose of creating the \textit{\textbf{fresh\_dataset}} given the following arguments:
+A function called \textit{\textbf{build\_fresh\_dataset}} was specifically implemented with the purpose of creating the \textit{\textbf{fresh\_dataset}}, given the following arguments:
 \begin{itemize}
-	\item a list of malware families (more than '\textit{\textbf{m}}') in order of importance;
+	\item a list of '\textit{\textbf{f}}' malware families (with \textit{\textbf{f}} $\ge$ \textit{\textbf{m}}) in order of importance;
 	
 	\item the number '\textit{\textbf{x}}' of samples per family to download;
 	
 	\item the number '\textit{\textbf{m}}' of families to consider.
 \end{itemize}
-More specifically, the function downloads '\textit{\textbf{x}}' samples per malware family from Malware Bazaar (if possible, otherwise it skips the malware family and considers the next in order of importance between the ones selected), extracts the features from each sample and creates the new dataset containing '\textit{\textbf{n}} $=$ \textit{\textbf{x}} $\times$ \textit{\textbf{m}}' samples which are then stored on disk as (\textit{numpy}) memory mapped arrays (as it was done with the pre-processed Sorel20M dataset). Therefore, between the $\ge$ \textit{\textbf{m}} malware families provided to the function, only the first \textit{\textbf{m}} for which \textit{\textbf{x}} PE samples can be retrieved from Malware Bazaar are considered.
+More specifically, the function downloads '\textit{\textbf{x}}' samples per malware family from Malware Bazaar (if possible, otherwise it skips the malware family and considers the next in order of importance between the ones selected) ordering them by the time they were first seen (from most to least recent), it extracts the features from each sample and creates the new dataset containing '\textit{\textbf{n}} $=$ \textit{\textbf{x}} $\times$ \textit{\textbf{m}}' samples which are then stored on disk as (\textit{numpy}) memory mapped arrays (as it was done with the pre-processed Sorel20M dataset). Therefore, between the \textit{\textbf{f}} $\ge$ \textit{\textbf{m}} malware families provided to the function, only the first \textit{\textbf{m}} for which \textit{\textbf{x}} PE samples can be retrieved from Malware Bazaar are considered.
 
-For all the model evaluations on the \textit{\textbf{fresh dataset}} done for this project the \textit{\textbf{fresh dataset}} was composed of \textit{\textbf{x}} $= 500$ samples per family, considering the following \textit{\textbf{m}} $= 10$ families: \textit{agenttesla}, \textit{formbook}, \textit{masslogger}, \textit{loki}, \textit{avemariarat}, \textit{njrat}, \textit{remcosrat}, \textit{netwire}, \textit{azorult} and \textit{asyncrat}. Therefore the \textit{\textbf{fresh dataset}} consisted of 5000 PE samples.
+In particular, the \textit{\textbf{fresh dataset}} created for this project consists of \textit{\textbf{x}} $= \textbf{1.000}$ samples per family, for a total of $\textbf{10.000}$ PE samples, considering the following \textit{\textbf{m}} $= \textbf{10}$ families: \textit{FormBook}, \textit{AgentTesla}, \textit{Gozi}, \textit{Quakbot}, \textit{Loki}, \textit{Heodo}, \textit{RemcosRAT}, \textit{TrickBot}, \textit{GuLoader} and \textit{AveMariaRAT}.
 
 \subsection{Fresh Dataset Generator (Dataloader) implementation}
 \begin{algorithm}[h!]
@@ -2530,26 +2530,67 @@ The dataset class used for opening the fresh dataset - shown in alg. \ref{alg:Fr
 	\ForAll{\textit{i} $\in$ \textbf{range}(\textbf{len}(\textit{splits}))}
 	\State \textit{splits}[\textit{i}] $\gets$ \textit{splits}[\textit{i}] / \textit{splits\_sum}
 	\EndFor
+	\State
 	\State \textit{S}, \textit{X}, \textit{y} $\gets$ \textit{ds}.\textbf{get\_as\_tensors}()
-	\State \textit{S\_train}, \textit{S\_valid\_test}, \textit{X\_train}, \textit{X\_valid\_test}, \textit{y\_train}, \textit{y\_valid\_test} $\gets$ \textbf{train\_test\_split}(
-	\State \hskip1.7em \textit{S}, \textit{X}, \textit{y}, test\_size=\textit{splits}[1] + \textit{splits}[2], stratify=\textit{y})
-	\State \textit{S\_valid}, \textit{S\_test}, \textit{X\_valid}, \textit{X\_test}, \textit{y\_valid}, \textit{y\_test} $\gets$ \textbf{train\_test\_split}(
-	\State \hskip1.7em \textit{S\_valid\_test}, \textit{X\_valid\_test}, \textit{y\_valid\_test}, test\_size=\textit{splits}[2], stratify=\textit{y\_valid\_test})
+	\State \textit{S\_train}, \textit{S\_valid}, \textit{S\_test}, \textit{X\_train}, \textit{X\_valid}, \textit{X\_test}, \textit{y\_train}, \textit{y\_valid}, \textit{y\_test} $\gets$
+	\State \hskip1.9em \textbf{TrainValidTestSplit}(\textit{S}, \textit{X}, \textit{y}, proportions=\textit{splits},
+	\State \hskip12.5em n\_samples\_tot=\textbf{len}(\textit{ds}),
+	\State \hskip12.5em n\_families=\textit{ds}.\textit{n\_families})
 	\State \textit{train\_generator} $\gets$ \textbf{Pytorch\_DataLoader}(\textbf{Dataset}(\textit{S\_train}, \textit{X\_train}, \textit{y\_train}, ...), ...)
 	\State \textit{valid\_generator} $\gets$ \textbf{Pytorch\_DataLoader}(\textbf{Dataset}(\textit{S\_valid}, \textit{X\_valid}, \textit{y\_valid}, ...), ...)
 	\State \textit{test\_generator} $\gets$ \textbf{Pytorch\_DataLoader}(\textbf{Dataset}(\textit{S\_test}, \textit{X\_test}, \textit{y\_test}, ...), ...)
 	\State \textit{generator} $\gets$ (\textit{train\_generator}, \textit{valid\_generator}, \textit{test\_generator})
 	\Else
-	\State \textit{ds} $\gets$ \textbf{Dataset.from\_file}(\textit{ds\_root}, \textit{return\_shas})
+	\State \textit{ds} $\gets$ \textbf{Dataset.FromFile}(\textit{ds\_root}, \textit{return\_shas})
 	\State \textit{generator} $\gets$ \textbf{Pytorch\_DataLader}(ds, ...)
 	\EndIf
 	\end{algorithmic}
 \end{algorithm}
 
-Algorithm \ref{alg:FreshDataloaderDefinition} shows how the fresh dataset generator (Dataloader) gets instantiated. This dataloader instantiation is similar to the one previously presented when loading the Sorel-20m dataset through the Pytorch dataloader with the addition of the possibility to split the dataset into training, validation and test sub-sets. In particular, if the dataset split proportions are provided (in the form of a list containing 3 integer values), the dataset is split into training, validation and test subsets by first opening the entire fresh dataset and then splitting it by iteratively using the Pytorch \textbf{train\_test\_split} function (the dataset is split in stratified mode in order to retain the same family class proportions in the resulting splits). On the other hand, if the split proportions are not provided, the entire fresh dataset is opened from file without being split.
+\begin{algorithm}[h!]
+	\caption{Train Valid Test Split function}\label{alg:TrainValidTestSplit}
+	\begin{algorithmic}[1]
+		\Function{TrainValidTestSplit}{\textit{*tensors}, \textit{proportions}, \textit{n\_samples\_tot}, \textit{n\_families}}
+			\State \textit{n\_samples\_per\_family} $\gets$ \textit{n\_samples\_tot} // \textit{n\_families}
+			\State \textit{n\_samples} $\gets$ \{'test': \textbf{math.floor}(\textit{proportions}[2] $\times$ \textit{n\_samples\_per\_family}),
+			\State \hskip6.5em 'valid': \textbf{math.floor}(\textit{proportions}[1] $\times$ \textit{n\_samples\_per\_family}),
+			\State \hskip6.5em 'train': \textbf{math.ceil}(\textit{proportions}[0] $\times$ \textit{n\_samples\_per\_family})\}
+			\State \textit{indices} $\gets$ \{\}
+			\ForAll{\textit{i} $\in$ \textbf{range}(\textit{n\_families})}
+				\If{\textit{i} = 0}
+					\State \textit{start} $\gets$ 0
+					\ForAll{\textit{k}, \textit{v} $\in$ \textit{n\_samples}.\textbf{items}()}
+						\State \textit{end} $\gets$ \textit{start} $+$ \textit{v}
+						\State \textit{indices}[\textit{k}] $\gets$ \textbf{np.arange}(\textit{start}, \textit{end})
+						\State \textit{start} $\gets$ \textit{end}
+					\EndFor
+				\Else
+					\State \textit{start} $\gets$ \textit{i} $\times$ \textit{n\_samples\_per\_family}
+					\ForAll{\textit{k}, \textit{v} $\in$ \textit{n\_samples}.\textbf{items}()}
+						\State \textit{end} $\gets$ \textit{start} $+$ \textit{v}
+						\State \textit{indices}[\textit{k}] $\gets$ \textbf{np.concatenate}(\textit{indices}[\textit{k}], \textbf{np.arange}(\textit{start}, \textit{end}))
+						\State \textit{start} $\gets$ \textit{end}
+					\EndFor
+				\EndIf
+			\EndFor
+			\State
+			\State \textit{rv} $\gets$ []
+			\ForAll{\textit{t} $\in$ \textit{tensors}}
+				\State \textit{rv}.\textbf{append}(\textit{t}[\textit{indices}['train']])
+				\State \textit{rv}.\textbf{append}(\textit{t}[\textit{indices}['valid']])
+				\State \textit{rv}.\textbf{append}(\textit{t}[\textit{indices}['test']])
+			\EndFor
+			\State \textbf{return} \textit{rv}
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}
+
+Algorithm \ref{alg:FreshDataloaderDefinition} shows how the fresh dataset generator (Dataloader) gets instantiated. This dataloader instantiation is similar to the one previously presented when loading the Sorel-20m dataset through the Pytorch dataloader with the addition of the possibility to split the dataset into training, validation and test sub-sets. In particular, if the dataset split proportions are provided (in the form of a list containing 3 integer values), the dataset is split into training, validation and test subsets by first opening the entire fresh dataset and then splitting it by using the purposefully created \textbf{train\_valid\_test\_split} function, presented in alg. \ref{alg:TrainValidTestSplit}. On the other hand, if the split proportions are not provided, the entire fresh dataset is opened from file without being split.
+
+The \textbf{train\_valid\_test\_split} (alg. \ref{alg:TrainValidTestSplit}) function's purpose is that of splitting the tensors passed as input into 3 subsets, following the given proportions. This is done by first computing the number of samples, per family, to select for each of the sub-splits by multiplying the respective proportion by the Fresh Dataset total number of samples per family. The function then computes the sub-splits indices assigning the first '\textit{n\_samples}['test']' samples (per family) of the original dataset (which are the most recent ones) to the test sub-split, the following '\textit{n\_samples}['valid']' samples (per family) to the validations sub-split and the remaining ones (which are the least recent ones) to the training sub-split. Finally, the input tensors are split by indexing them using the previously computed indices.
 
 \subsection{Base Model Evaluation with Fresh Dataset}
-\begin{figure}[h!]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{./images/workflow_base_fresh_dataset.png}
 	\caption[Model Fresh evaluation workflow steps]{Base Model Evaluation with Fresh dataset Workflow steps}
@@ -2599,9 +2640,9 @@ The \textit{\textbf{evaluate\_fresh}} function provides, together with the \text
 For all the experiments presented in this document the number of query samples $q$ was set to 100.
 
 \subsection{Family Classifier Training and Evaluation}
-The Fresh Dataset - which contains $5.000$ samples of malicious PE files belonging to $10$ different malware families - provides, as previously mentioned, the information regarding the malware family each of its samples belongs to. When split into training, validation and test subsets, it can also be used to directly train, validate and evaluate a Malware Family Classifier model.
+The Fresh Dataset - which contains $10.000$ samples of malicious PE files belonging to $10$ different malware families - provides, as previously mentioned, the information regarding the malware family each of its samples belongs to. When split into training, validation and test subsets, it can also be used to directly train, validate and evaluate a Malware Family Classifier model.
 
-When trying to improve the relatively poor results of the \textbf{Proposed Model} in the malware Family prediction task, the $5.000$ samples of the Fresh Dataset were divided following a 8-1-1 ratio: the training subset was created selecting the first 400 samples, per family, and therefore consisted of 4000 samples. The validation and test subsets, instead, consisted of 500 samples each (50 samples per family). The resulting dataset splits were then used to train (and evaluate) both a malware family classifier built on top of the \textbf{Proposed Model} (using \textit{transfer learning}) and a separate comparable malware family classifier trained from scratch. In particular, the training and validation subsets were used for training the classifier and validating its accuracy, while the test subset served for evaluating the classifier accuracy (and other classification scores) on unseen samples. The resulting multi-class classification statistics, which included \textit{accuracy}, \textit{Jaccard Similarity score}, \textit{recall}, \textit{precision}, \textit{f1-score} were then computed and plotted together with the resulting model \textit{AUC-ROC} scores and confusion matrixes.
+When trying to improve the relatively poor results of the \textbf{Proposed Model} in the malware Family prediction task, the $10.000$ samples of the Fresh Dataset were divided following a 7-1-2 ratio: the training subset was created selecting the first $700$ samples, per family, and therefore consisted of $7.000$ samples. The validation and test subsets, instead, respectively consisted of $1.000$ and $2.000$ samples ($100$ and $200$ samples per family, respectively). The resulting dataset splits were then used to train (and evaluate) both a malware family classifier built on top of the \textbf{Proposed Model} (using \textit{transfer learning}) and a separate comparable malware family classifier trained from scratch. In particular, the training and validation subsets were used for training the classifier and validating its accuracy, while the test subset served for evaluating the classifier accuracy (and other classification scores) on unseen samples. The resulting multi-class classification statistics, which included \textit{accuracy}, \textit{Jaccard Similarity score}, \textit{recall}, \textit{precision}, \textit{f1-score} were then computed and plotted together with the resulting model \textit{AUC-ROC} scores and confusion matrixes.
 
 In particular, the \textit{Jaccard Similarity score}, \textit{recall}, \textit{precision}, \textit{f1-score} and \textit{AUC-ROC} scores were computed by averaging the respective class scores in 3 different ways:
 \begin{itemize}
@@ -2621,7 +2662,7 @@ Both the \textbf{ALOHA} \cite{ruddALOHA} and \textbf{Joint Embedding}, \cite{Duc
 Both the implementations developed for this project only loosely followed the original models' structure as described in the respective papers. Here are presented the actual implementation details.
 
 \subsection{ALOHA model}\label{sec:alohaModelImplementation}
-\begin{figure}[H]
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{./images/ALOHA_Implementation.png}
 	\caption[ALOHA model implementation architecture]{ALOHA model implementation architecture}
@@ -2646,6 +2687,7 @@ The final aggregate loss $L(\textbf{x}, y)$ is computed as the weighted sum of a
 	\begin{algorithmic}[1]
 		\Class{Net}
 		\Function{Init}{\textit{self}, \textit{use\_malware}, \textit{use\_counts}, \textit{use\_tags}, \textit{n\_tags}, \textit{feature\_dimension}, \textit{layer\_sizes}, \textit{dropout\_p}, \textit{activation\_function}, \textit{normalization\_function}}
+			\State
 			\State \textit{self}.\textit{use\_malware} $\gets$ \textit{use\_malware}
 			\State \textit{self}.\textit{use\_counts} $\gets$ \textit{use\_counts}
 			\State \textit{self}.\textit{use\_tags} $\gets$ \textit{use\_tags}
@@ -2768,7 +2810,7 @@ Alg. \ref{alg:alohaNetForward}, instead, describes how the input data (PE file n
 Finally, in alg. \ref{alg:alohaNetComputeLoss} it is shown how the loss between the model predictions and the actual labels gets computed. In particular, the final total loss is the weighted sum of the losses of the different output heads which are enabled for the current run. Both the \textit{Malicious/Benign} and the \textit{SMART tags} prediction heads use the binary cross entropy loss function to compute the loss between their predictions and the ground truth labels. On the other hand, the \textit{Vendor Count} prediction head uses the PoissonNLLLoss (Negative log likelihood loss with Poisson distribution) function.
 
 \subsection{Joint Embedding}\label{sec:jointEmbeddingModelImplementation}
-\begin{figure}[H]
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{./images/Joint_Embedding_Implementation.png}
 	\caption[Joint Embedding model implementation architecture]{Joint Embedding model implementation architecture}
@@ -2814,6 +2856,7 @@ The predicted tag probabilities outputted by the \textit{Prediction Layer} are t
 	\begin{algorithmic}[1]
 		\Class{Net}
 			\Function{Init}{\textit{self}, \textit{use\_malware}, \textit{use\_counts}, \textit{use\_tags}, \textit{n\_tags}, \textit{feature\_dimension}, \textit{embedding\_dimension}, \textit{max\_embedding\_norm}, \textit{layer\_sizes}, \textit{dropout\_p}, \textit{activation\_function}, \textit{normalization\_function}}
+			\State
 			\State \textit{self}.\textit{n\_tags} $\gets$ \textit{n\_tags}
 			\State \textit{self}.\textit{embedding\_dimension} $\gets$ \textit{embedding\_dimension}
 			\State \textit{layers} $\gets$ [ ]
@@ -2874,8 +2917,8 @@ The predicted tag probabilities outputted by the \textit{Prediction Layer} are t
 		\algrestore{bkbreak}
 			\Function{Forward}{\textit{self}, \textit{data}}
 			\State ...
-			\State \textit{similarity\_scores} $\gets$ \textbf{torch.div}(\textbf{torch.add}(\textbf{Cosine\_similarity}(\textit{pe\_embedding}, 
-			\State \hskip8.8em \textit{tags\_embedding}, dim=2), 1.0), 2.0)
+			\State \textit{similarity\_scores} $\gets$ \textbf{torch.div}(\textbf{torch.add}(\textbf{Cosine\_similarity}(
+			\State \hskip1.9em \textit{pe\_embedding}, \textit{tags\_embedding}, dim=2), 1.0), 2.0)
 			\State \textit{rv}['similarity'] $\gets$ \textit{similarity\_scores}
 			\State \textit{rv}['probability'] $\gets$ \textit{similarity\_scores}
 			\State \textbf{return} \textit{rv}
@@ -2892,7 +2935,7 @@ The predicted tag probabilities outputted by the \textit{Prediction Layer} are t
 			\State ...
 			\State \textit{distances} $\gets$ \textbf{torch.cdist}(\textit{pe\_embedding}, \textit{tags\_embedding}, p=2.0)
 			\State \textit{similarity\_scores} $\gets$ \textbf{distance\_to\_similarity}(\textit{distances}, a=\textit{sim\_function\_a}, 
-			\State \hskip8.9em function=\textit{sim\_function})
+			\State \hskip20.1em function=\textit{sim\_function})
 			\State \textit{rv}['similarity'] $\gets$ \textit{similarity\_scores}
 			\State \textit{rv}['probability'] $\gets$ \textit{similarity\_scores}
 			\State \textbf{return} \textit{rv}
@@ -2922,6 +2965,7 @@ The predicted tag probabilities outputted by the \textit{Prediction Layer} are t
 		\algrestore{bkbreak}
 			\Function{GetSimilarity}{\textit{self}, \textit{first\_embedding}, \textit{second\_embedding}}
 				\State \textit{similarity\_scores} $\gets$ \textbf{torch.matmul}(\textit{first\_embedding}, \textit{second\_embedding}.\textbf{T})
+				\State
 				\State \textbf{return} \{'similarity': \textit{similarity\_scores}, 'probability': \textit{self.sigmoid}(\textit{similarity\_scores})\}
 			\EndFunction
 		\algstore{bkbreak}
@@ -2933,8 +2977,9 @@ The predicted tag probabilities outputted by the \textit{Prediction Layer} are t
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 			\Function{GetSimilarity}{\textit{self}, \textit{first\_embedding}, \textit{second\_embedding}}
-				\State \textit{similarity\_scores} $\gets$ \textbf{torch.div}(\textbf{torch.add}(\textbf{F.cosine\_similarity}(\textit{first\_embedding},
-				\State \hskip8.9em \textit{second\_embedding}), 1.0), 2.0)
+				\State \textit{similarity\_scores} $\gets$ \textbf{torch.div}(\textbf{torch.add}(\textbf{F.cosine\_similarity}(
+				\State \hskip1.9em \textit{first\_embedding}, \textit{second\_embedding}), 1.0), 2.0)
+				\State
 				\State \textbf{return} \{'similarity': \textit{similarity\_scores}, 'probability': \textit{similarity\_scores}\}
 			\EndFunction
 		\algstore{bkbreak}
@@ -2947,8 +2992,9 @@ The predicted tag probabilities outputted by the \textit{Prediction Layer} are t
 		\algrestore{bkbreak}
 			\Function{GetSimilarity}{\textit{self}, \textit{first\_embedding}, \textit{second\_embedding}}
 				\State \textit{distances} $\gets$ \textbf{torch.cdist}(\textit{first\_embedding}, \textit{second\_embedding}, p=2.0)
-				\State \textit{similarity\_scores} $\gets$ \textbf{distance\_to\_similarity}(\textit{distances}, a=\textit{self.embedding\_dimension},
-				\State \hskip9em function=\textit{sim\_function})
+				\State \textit{similarity\_scores} $\gets$ \textbf{DistanceToSimilarity}(\textit{distances}, a=\textit{self.embedding\_dimension},
+				\State \hskip20em function=\textit{sim\_function})
+				\State
 				\State \textbf{return} \{'similarity': \textit{similarity\_scores}, 'probability': \textit{similarity\_scores}\}
 			\EndFunction
 		\algstore{bkbreak}
@@ -2962,9 +3008,8 @@ The predicted tag probabilities outputted by the \textit{Prediction Layer} are t
 			\Function{ComputeLoss}{\textit{predictions}, \textit{labels}, \textit{loss\_wts}}
 			\State \textit{loss\_dict} $\gets$ \{'total': 0.\}
 			\State
-			\State \textit{similarity\_loss} $\gets$ \textbf{Binary\_cross\_entropy}(\textit{predictions}['probability'],
-			\State \hskip7.9em \textit{labels}['tags'],
-			\State \hskip7.9em reduction='none').\textbf{sum}(dim=1).\textbf{mean}(dim=0)
+			\State \textit{similarity\_loss} $\gets$ \textbf{Binary\_cross\_entropy}(
+			\State \hskip1.9em \textit{predictions}['probability'], \textit{labels}['tags'], reduction='none').\textbf{sum}(dim=1).\textbf{mean}(dim=0)
 			\State
 			\State \textit{loss\_dict}['jointEmbedding'] $\gets$ \textit{similarity\_loss}
 			\State \textit{loss\_dict}['total'] $\gets$ \textit{similarity\_loss}
@@ -2981,11 +3026,14 @@ The predicted tag probabilities outputted by the \textit{Prediction Layer} are t
 		\Function{DistanceToSimilarity}{\textit{distance}, \textit{a}, \textit{function}}
 			\If{\textit{function} $=$ 'exp'}
 				\State \textit{similarity} $\gets$ \textbf{torch.exp}(\textbf{torch.div}(\textit{distances}, $-$\textit{a}))
+				\State
 			\ElsIf{\textit{function} $=$ 'inv'}
 				\State \textit{similarity} $\gets$ \textbf{torch.pow}(\textbf{torch.add}(\textbf{torch.div}(\textit{distances}, \textit{a}), 1.0), -1.0)
+				\State
 			\ElsIf{\textit{function} $=$ 'inv\_pow'}
-				\State \textit{similarity} $\gets$ \textbf{torch.pow}(\textbf{torch.add}(\textbf{torch.div}(\textbf{torch.pow}(\textit{distances}, 2.0), \textit{a}),
-				\State \hskip5.9em 1.0), -1.0)
+				\State \textit{similarity} $\gets$ \textbf{torch.pow}(
+				\State \hskip1.9em \textbf{torch.add}(\textbf{torch.div}(\textbf{torch.pow}(\textit{distances}, 2.0), \textit{a}), 1.0), -1.0)
+				\State
 			\Else
 				\State \textbf{raise} Exception
 			\EndIf
@@ -3038,44 +3086,53 @@ Both the \textbf{\textit{ALOHA}} and the \textbf{\textit{Joint Embedding}} model
 	\caption{Train Network function}\label{alg:trainNetworkFunction}
 	\begin{algorithmic}[1]
 		\Function{TrainNetwork}{\textit{ds\_path}, \textit{net\_type}, \textit{gen\_type}, \textit{batch\_size}, \textit{epochs}, \textit{use\_malicious\_labels}, \textit{use\_count\_labels}, \textit{use\_tag\_labels}, \textit{feature\_dimension}, \textit{workers}, ...}
-		\State \textit{Net}, \textit{Dataset}, \textit{get\_generator}, \textit{device}, \textit{run\_params} $\gets$ \textbf{import\_modules}(\textit{net\_type}, \textit{gen\_type})
-		\State
-		\State \textit{model} $\gets$ \textit{Net}(\textit{use\_malicious\_labels}, \textit{use\_count\_labels}, \textit{use\_tag\_labels},
-		\State \hskip6.4em \textbf{len}(\textit{Dataset}.\textit{tags}), feature\_dimension, \textit{run\_params}['layer\_sizes'],
-		\State \hskip6.4em \textit{run\_params}['dropout\_p'], \textit{run\_params}['activation\_function'],
-		\State \hskip6.4em \textit{run\_params}['normalization\_function'])
-		\State \textit{opt} $\gets$ \textit{run\_params}['optimizer'](\textit{model}.\textbf{parameters}(), \textit{run\_params}['lr'],
-		\State \hskip13.9em \textit{run\_params}['weight\_decay'], \textit{run\_params}['momentum'])
-		\State
-		\State \textit{generator} $\gets$ \textit{get\_generator}(\textit{ds\_path}, \textit{batch\_size}, 'train', \textit{workers}, \textit{training\_n\_samples},
-		\State \hskip12.1em \textit{use\_malicious\_labels}, \textit{use\_count\_labels}, \textit{use\_tag\_labels})
-		\State \textit{val\_generator} $\gets$ \textit{get\_generator}(\textit{ds\_path}, \textit{batch\_size}, 'validation', \textit{workers},
-		\State \hskip13.7em \textit{validation\_n\_samples}, \textit{use\_malicious\_labels}, 
-		\State \hskip13.7em \textit{use\_count\_labels}, \textit{use\_tag\_labels})
-		\State ...
-		\ForAll{\textit{epoch} $\in$ \textbf{range}(\textit{epochs})}
-		\State \textit{model}.\textbf{train}()
-		\ForAll{\textit{i}, (\textit{features}, \textit{labels}) $\in$ \textbf{enumerate}(\textit{generator})}
-		\State \textit{opt}.\textbf{zero\_grad}()
-		\State \textit{out} $\gets$ \textit{model}(\textit{features})
-		\State \textit{loss\_dict} $\gets$ \textit{model}.\textbf{compute\_loss}(\textit{out}, \textit{labels}, \textit{run\_params}['loss\_wts'])
-		\State \textit{loss} $\gets$ \textit{loss\_dict}['total']
-		\State \textbf{log}(\textit{loss\_dict})
-		\State \textit{loss}.\textbf{backward}()
-		\State \textit{opt}.\textbf{step}()
-		\EndFor
-		\State
-		\State \textit{model}.\textbf{eval}()
-		\ForAll{\textit{i}, (\textit{features}, \textit{labels}) $\in$ \textbf{enumerate}(\textit{val\_generator})}
-		\State \textbf{torch.no\_grad}()
-		\State \textit{out} $\gets$ \textit{model}(\textit{features})
-		\State \textit{loss\_dict} $\gets$ \textit{model}.\textbf{compute\_loss}(\textit{out}, \textit{labels})
-		\State \textbf{log}(\textit{loss\_dict})
-		\EndFor
-		\State				
-		\State \textit{model}.\textbf{save}(\textit{epoch})
-		\State \textbf{save\_opt\_state}(\textit{opt}, \textit{epoch})
-		\EndFor
+			\State
+			\State \textit{Net}, \textit{Dataset}, \textit{get\_generator}, \textit{run\_params} $\gets$ \textbf{import\_modules}(\textit{net\_type}, \textit{gen\_type})
+			\State
+			\State \textit{model} $\gets$ \textit{Net}(\textit{use\_malicious\_labels}, \textit{use\_count\_labels},
+			\State \hskip6.4em \textit{use\_tag\_labels}, \textbf{len}(\textit{Dataset}.\textit{tags}),
+			\State \hskip6.4em feature\_dimension, \textit{run\_params}['layer\_sizes'],
+			\State \hskip6.4em \textit{run\_params}['dropout\_p'], \textit{run\_params}['activation\_function'],
+			\State \hskip6.4em \textit{run\_params}['normalization\_function'])
+			\State
+			\State \textit{opt} $\gets$ \textit{run\_params}['optimizer'](\textit{model}.\textbf{parameters}(), \textit{run\_params}['lr'],
+			\State \hskip13.9em \textit{run\_params}['weight\_decay'], \textit{run\_params}['momentum'])
+			\State
+			\State \textit{generator} $\gets$ \textit{get\_generator}(\textit{ds\_path}, \textit{batch\_size},
+			\State \hskip12.1em 'train', \textit{workers},
+			\State \hskip12.1em \textit{training\_n\_samples}, \textit{use\_malicious\_labels},
+			\State \hskip12.1em \textit{use\_count\_labels}, \textit{use\_tag\_labels})
+			\State
+			\State \textit{val\_generator} $\gets$ \textit{get\_generator}(\textit{ds\_path}, \textit{batch\_size},
+			\State \hskip13.7em 'validation', \textit{workers},
+			\State \hskip13.7em \textit{validation\_n\_samples}, \textit{use\_malicious\_labels}, 
+			\State \hskip13.7em \textit{use\_count\_labels}, \textit{use\_tag\_labels})
+			\State ...
+			\ForAll{\textit{epoch} $\in$ \textbf{range}(\textit{epochs})}
+				\State \textit{model}.\textbf{train}()
+				\State
+				\ForAll{\textit{i}, (\textit{features}, \textit{labels}) $\in$ \textbf{enumerate}(\textit{generator})}
+					\State \textit{opt}.\textbf{zero\_grad}()
+					\State \textit{out} $\gets$ \textit{model}(\textit{features})
+					\State \textit{loss\_dict} $\gets$ \textit{model}.\textbf{ComputeLoss}(\textit{out}, \textit{labels}, \textit{run\_params}['loss\_wts'])
+					\State \textit{loss} $\gets$ \textit{loss\_dict}['total']
+					\State \textbf{log}(\textit{loss\_dict})
+					\State \textit{loss}.\textbf{backward}()
+					\State \textit{opt}.\textbf{step}()
+				\EndFor
+				\State
+				\State \textit{model}.\textbf{eval}()
+				\State
+				\ForAll{\textit{i}, (\textit{features}, \textit{labels}) $\in$ \textbf{enumerate}(\textit{val\_generator})}
+					\State \textbf{torch.no\_grad}()
+					\State \textit{out} $\gets$ \textit{model}(\textit{features})
+					\State \textit{loss\_dict} $\gets$ \textit{model}.\textbf{ComputeLoss}(\textit{out}, \textit{labels})
+					\State \textbf{log}(\textit{loss\_dict})
+				\EndFor
+				\State				
+				\State \textit{model}.\textbf{save}(\textit{epoch})
+				\State \textbf{save\_opt\_state}(\textit{opt}, \textit{epoch})
+			\EndFor
 		\EndFunction
 	\end{algorithmic}
 \end{algorithm}
@@ -3094,19 +3151,23 @@ In particular, as shown in alg. \ref{alg:trainNetworkFunction}, the training fun
 	\caption{Evaluate Network function}\label{alg:evaluateNetworkFunction}
 	\begin{algorithmic}[1]
 		\Function{EvaluateNetwork}{\textit{ds\_path}, \textit{checkpoint\_file}, \textit{net\_type}, \textit{gen\_type}, \textit{batch\_size}, \textit{evaluate\_malware}, \textit{evaluate\_count}, \textit{evaluate\_tags}, \textit{feature\_dimension}, ...}
-		\State \textit{Net}, \textit{Dataset}, \textit{get\_generator}, \textit{device}, \textit{run\_params} $\gets$ \textbf{import\_modules}(\textit{net\_type}, \textit{gen\_type})
 		\State
-		\State \textit{model} $\gets$ \textit{Net}(\textit{evaluate\_malware}, \textit{evaluate\_count}, \textit{evaluate\_tags},
-		\State \hskip6.4em \textbf{len}(\textit{Dataset}.\textit{tags}), \textit{feature\_dimension}, \textit{run\_params}['layer\_sizes'],
+		\State \textit{Net}, \textit{Dataset}, \textit{get\_generator}, \textit{run\_params} $\gets$ \textbf{import\_modules}(\textit{net\_type}, \textit{gen\_type})
+		\State
+		\State \textit{model} $\gets$ \textit{Net}(\textit{evaluate\_malware}, \textit{evaluate\_count},
+		\State \hskip6.4em \textit{evaluate\_tags}, \textbf{len}(\textit{Dataset}.\textit{tags}),
+		\State \hskip6.4em \textit{feature\_dimension}, \textit{run\_params}['layer\_sizes'],
 		\State \hskip6.4em \textit{run\_params}['dropout\_p'], \textit{run\_params}['activation\_function'],
 		\State \hskip6.4em \textit{run\_params}['normalization\_function'])
 		\State
 		\State \textit{model}.\textbf{load\_state\_dict}(\textit{checkpoint\_file})
 		\State \textit{model}.\textbf{eval}()
 		\State
-		\State \textit{generator} $\gets$ \textit{get\_generator}(\textit{ds\_path}, \textit{batch\_size}, 'test', \textit{workers}, \textit{test\_n\_samples},
-		\State \hskip12.1em \textit{use\_malicious\_labels}, \textit{use\_count\_labels},
-		\State \hskip12.1em \textit{use\_tag\_labels}, return\_shas=True)
+		\State \textit{generator} $\gets$ \textit{get\_generator}(\textit{ds\_path}, \textit{batch\_size},
+		\State \hskip12.1em 'test', \textit{workers},
+		\State \hskip12.1em \textit{test\_n\_samples}, \textit{use\_malicious\_labels},
+		\State \hskip12.1em \textit{use\_count\_labels}, \textit{use\_tag\_labels},
+		\State \hskip12.1em return\_shas=True)
 		\State ...
 		\ForAll{\textit{shas}, \textit{features}, \textit{labels} $\in$ \textit{generator}}
 		\State \textit{predictions} $\gets$ \textit{model}(\textit{features})
@@ -3143,7 +3204,7 @@ Therefore the \textbf{Proposed Model} and the \textbf{Joint Embedding} model imp
 If the \textbf{Proposed Model} performs well enough on the malware family \textit{prediction} and \textit{ranking} tasks, it could be possible to use its learned embedding space to define implicit signatures - the corresponding representation in this space, a.k.a. the embedding - of malware samples belonging to a specific malware family. These signatures could then be used to craft Yara Rules - with the use of a specially crafted custom Yara module that dynamically extracts the embedding representation for new PE files and compares them to the known signatures - to detect similar samples as belonging to the specific family represented by each rule. Yara Rules created in this way could potentially inherit the good properties of ML methods such as being able to detect not only known malware strains but also novel variants, being less susceptible to obfuscation attempts, etc. while being compatible with the highly expressive approach that is Yara.
 
 \subsection{Implementation}\label{sec:proposedModelImplementation}
-\begin{figure}[H]
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{./images/Proposed_Model.png}
 	\caption[Proposed model architecture]{Proposed Model architecture}
@@ -3172,6 +3233,7 @@ Finally the individual head losses are aggregated together by computing their we
 	\begin{algorithmic}[1]
 		\Class{Net}
 			\Function{Init}{\textit{self}, \textit{use\_malware}, \textit{use\_counts}, \textit{use\_tags}, \textit{n\_tags}, \textit{feature\_dimension}, \textit{embedding\_dimension}, \textit{max\_embedding\_norm}, \textit{layer\_sizes}, \textit{dropout\_p}, \textit{activation\_function}, \textit{normalization\_function}}	
+			\State
 			\State \textit{self}.\textit{use\_malware} $\gets$ \textit{use\_malware}
 			\State \textit{self}.\textit{use\_counts} $\gets$ \textit{use\_counts}
 			\State \textit{self}.\textit{n\_tags} $\gets$ \textit{n\_tags}
@@ -3201,9 +3263,12 @@ Finally the individual head losses are aggregated together by computing their we
 			\State \hskip1.9em \textbf{nn.Linear}(\textit{layer\_sizes}[-1], \textit{self}.\textit{embedding\_dimension}),
 			\State \hskip1.9em \textit{normalization\_function}(\textit{self}.\textit{embedding\_dimension}),
 			\State \hskip1.9em \textit{activation\_function}())
+			\State
 			\State \textit{self}.\textit{malware\_head} $\gets$ \textbf{nn.Sequential}(\textbf{nn.Linear}(\textit{layer\_sizes}[-1], 1),
 			\State \hskip16.5em \textbf{nn.Sigmoid}())
+			\State
 			\State \textit{self}.\textit{count\_head} $\gets$ \textbf{nn.Sequential}(\textbf{nn.Linear}(\textit{layer\_sizes}[-1], 1), \textbf{nn.ReLU}())
+			\State
 			\State \textit{self}.\textit{tags\_embedding} $\gets$ \textbf{nn.Embedding}(\textit{self}.\textit{n\_tags}, \textit{self}.\textit{embedding\_dimension},
 			\State \hskip17.7em \textit{max\_norm}=\textit{max\_embedding\_norm})
 		\EndFunction
@@ -3229,7 +3294,6 @@ Finally the individual head losses are aggregated together by computing their we
 			\State
 			\State \textit{pe\_embedding} $\gets$ \textit{self}.\textit{pe\_embedding}(\textit{base\_out})
 			\State \textit{tags\_embedding} $\gets$ \textit{self}.\textit{tags\_embedding}((\textbf{Dataset}.\textit{encoded\_tags}))
-			\State
 			\State \textit{rv}['similarity'] $\gets$ \textbf{torch.matmul}(\textit{pe\_embedding}, \textit{tags\_embedding}.\textbf{T})
 			\State \textit{rv}['probability'] $\gets$ \textit{self}.\textit{sigmoid}(\textit{similarity\_scores})
 			\State
@@ -3245,8 +3309,8 @@ Finally the individual head losses are aggregated together by computing their we
 		\algrestore{bkbreak}
 		\Function{Forward}{\textit{self}, \textit{data}}
 			\State ...
-			\State \textit{similarity\_scores} $\gets$ \textbf{torch.div}(\textbf{torch.add}(
-			\State \hskip1.9em \textbf{Cosine\_similarity}(\textit{pe\_embedding}, \textit{tags\_embedding}, dim=2), 1.0), 2.0)
+			\State \textit{similarity\_scores} $\gets$ \textbf{torch.div}(
+			\State \hskip1.9em \textbf{torch.add}(\textbf{Cosine\_similarity}(\textit{pe\_embedding}, \textit{tags\_embedding}, dim=2), 1.0), 2.0)
 			\State \textit{rv}['similarity'] $\gets$ \textit{similarity\_scores}
 			\State \textit{rv}['probability'] $\gets$ \textit{similarity\_scores}
 			\State \textbf{return} \textit{rv}
@@ -3340,11 +3404,11 @@ The proposed model was trained multiple times for 10 \textit{epochs} on the firs
 
 Then, for the evaluation of the resulting model the first $1.846.154$ test samples of the Sorel20M pre-processed dataset were used to asses the model \textit{TPR}, \textit{accuracy}, \textit{recall}, \textit{precision}, \textit{f1 score}, \textit{jaccard similarity}, and \textit{mean-per-sample accuracy} at different \textit{FPRs} of interest (particularly at $FPR=1\%$) for the tags and malicious/benign label prediction task, as well as the corresponding ROC curves and AUC scores.
 
-Moreover, this model learned samples' representation (embedding), together with the \textit{Joint Embedding} model implementation one, was also tested on the fresh dataset, which contains $5.000$ malicious samples belonging to $10$ different malware families to asses its performance in the malware family classification and ranking tasks with respect to the mentioned previous method. The malware families represented by the fresh dataset were chosen among the most wide-spread PE malware families present in Italy at the time of writing (as reported by \cite{CERTAGID}) for which \textit{Malware Bazaar} \cite{MalwareBazaar} provided at least 500 samples.
+Moreover, this model learned samples' representation (embedding), together with the \textit{Joint Embedding} model implementation one, was also tested on the fresh dataset, which contains $10.000$ malicious samples belonging to $10$ different malware families to asses its performance in the malware family classification and ranking tasks with respect to the mentioned previous method. The malware families represented by the fresh dataset were chosen among the most wide-spread PE malware families present in Italy at the time of writing (as reported by \cite{CERTAGID}) for which \textit{Malware Bazaar} \cite{MalwareBazaar} provided at least $1.000$ samples.
 
 In particular, the learned representation was first evaluated on the task of \textit{f-way} family classification via nearest neighbor search as previously described in \ref{par:fWayFamilyClassificationEvaluation} by randomly sampling $k$ ($\in [1, 10]$) anchor samples and $q$ ($=23$) query samples, per-family, and assigning to the $(f \times q = 230)$ query samples the same class as their closest anchor sample in feature space. The sampling process (for both anchors and query samples), classification and evaluation was repeated 15 times per value of $k$ to obtain uncertainty estimates for the results. The trends of some binary cross entropy statistics like \textit{accuracy}, \textit{precision}, \textit{recall} and \textit{f1-score} were computed along with the ROC-AUC score trends and some confusion matrixes.
 
-Then, the learned embedding was evaluated on the malware family ranking task (as described in \ref{par:FamilyRankingEvaluation}) by randomly selecting \textit{\textbf{q}} (100) query samples from the fresh dataset and computing, for each of them, the ranking of the other $n_{samples} - 1 = 4999$, ordering them by similarity. Then, given the resulting rankings, the \textbf{MAP} and \textbf{MRR} scores were calculated.
+Then, the learned embedding was evaluated on the malware family ranking task (as described in \ref{par:FamilyRankingEvaluation}) by randomly selecting \textit{\textbf{q}} (100) query samples from the fresh dataset and computing, for each of them, the ranking of the other $n_{samples} - 1 = 9.999$, ordering them by similarity. Then, given the resulting rankings, the \textbf{MAP} and \textbf{MRR} scores were calculated.
 
 The final \textbf{Proposed Model} architecture consisted of 5 layers of sizes 1024, 768, 512, 512, 512 respectively (keeping them consistent to the \textit{ALOHA} and \textit{Joint Embedding} model implementation in order to be able to compare their results), with dropout probability $p_d=5\%$, \textit{Batch} normalization, \textbf{ReLU} activation function and the \textit{dot product} as similarity score function. The training was carried out with a learning rate $LR=10^{-3}$, \textbf{Adam} optimizer, no momentum nor weight decay, and loss weights set to 1.0 for the malicious/benign head, 0.1 for the count head and 1.0 for the SMART tag (joint embedding) head.
 
@@ -3372,11 +3436,13 @@ As previously mentioned in section \ref{sec:alohaAndJointEmbeddingTrainAndEvalua
 	\caption{Evaluate Fresh function}\label{alg:evaluateFreshFunction}
 	\begin{algorithmic}[1]
 		\Function{EvaluateFresh}{\textit{fresh\_ds\_path}, \textit{checkpoint\_path}, \textit{net\_type}, \textit{min\_n\_anchor\_samples}, \textit{max\_n\_anchor\_samples}, \textit{n\_query\_samples}, \textit{n\_evaluations}, \textit{batch\_size}}
-		\State \textbf{evaluate\_fresh\_scores}(\textit{fresh\_ds\_path}, \textit{checkpoint\_path}, \textit{net\_type},
+		\State
+		\State \textbf{EvaluateFreshScores}(\textit{fresh\_ds\_path}, \textit{checkpoint\_path}, \textit{net\_type},
 		\State \hskip10.7em \textit{n\_query\_samples}, \textit{min\_n\_anchor\_samples},
 		\State \hskip10.7em \textit{max\_n\_anchor\_samples}, \textit{n\_evaluations}, \textit{batch\_size})
-		\State \textbf{evaluate\_fresh\_rankings}(\textit{fresh\_ds\_path}, \textit{checkpoint\_path}, \textit{net\_type}, \textit{n\_query\_samples},
-		\State \hskip11.9em \textit{n\_evaluations}, \textit{batch\_size})
+		\State
+		\State \textbf{EvaluateFreshRankings}(\textit{fresh\_ds\_path}, \textit{checkpoint\_path}, \textit{net\_type},
+		\State \hskip11.9em \textit{n\_query\_samples}, \textit{n\_evaluations}, \textit{batch\_size})
 		\EndFunction
 	\end{algorithmic}
 \end{algorithm}
@@ -3395,20 +3461,24 @@ As previously mentioned, both the \textbf{\textit{Proposed Model}} and the \text
 	\caption{Evaluate Fresh Scores function}\label{alg:evaluateFreshScoresFunction}
 	\begin{algorithmic}[1]
 			\Function{EvaluateFreshScores}{\textit{ds\_path}, \textit{checkpoint\_path}, \textit{net\_type}, \textit{n\_queries}, \textit{min\_anchors}, \textit{max\_anchors}, \textit{n\_evaluations}, \textit{batch\_size}}
+			\State
 			\State \textit{Net}, \textit{run\_params} $\gets$ \textbf{import\_modules}(\textit{net\_type})
 			\State
 			\State \textit{model} $\gets$ \textit{Net}(use\_malware=False, use\_counts=False, n\_tags=\textbf{len}(\textit{Dataset}.\textit{tags}),
 			\State \hskip6.3em feature\_dimension=2381, embedding\_dimension=32,
-			\State \hskip6.3em layer\_sizes=\textit{run\_params}['layer\_sizes'], dropout\_p=\textit{run\_params}['dropout\_p'],
+			\State \hskip6.3em layer\_sizes=\textit{run\_params}['layer\_sizes'],
+			\State \hskip6.3em dropout\_p=\textit{run\_params}['dropout\_p'],
 			\State \hskip6.3em activation\_function=\textit{run\_params}['activation\_function'],
 			\State \hskip6.3em normalization\_function=\textit{run\_params}['normalization\_function'])
+			\State
 			\State \textit{model}.\textbf{load\_state\_dict}(\textit{checkpoint\_path})
 			\State \textit{model}.\textbf{eval}()
 			\State \textit{generator} $\gets$ \textbf{get\_generator}(\textit{ds\_path}, \textit{batch\_size}, return\_shas=True, shuffle=True)
-			\State
 			\State \textit{predictions} $\gets$ \{\}
+			\State
 			\ForAll{\textit{k}, \textit{n\_anchors} $\in$ \textbf{enumerate}(\textbf{range}(\textit{min\_anchors}, \textit{max\_anchors} $+ 1$))}
 				\State \textit{predictions}[\textit{n\_anchors}] $\gets$ [ ]
+				\State
 				\ForAll{\textit{j} $\in$ \textbf{range}(\textit{n\_evaluations})}
 					\State \textit{anchors} $\gets$ \textbf{get\_samples}(\textit{model}, \textit{generator}, \textit{n\_families}, \textit{n\_anchors})
 					\State \textit{queries} $\gets$ \textbf{get\_samples}(\textit{model}, \textit{generator}, \textit{n\_families}, \textit{n\_queries}, other=\textit{anchors})
@@ -3424,6 +3494,7 @@ As previously mentioned, both the \textbf{\textit{Proposed Model}} and the \text
 					\State \hskip3.7em $\forall$ \textit{sims} $\in$ \textit{similarity\_scores}])\})
 				\EndFor
 			\EndFor
+			\State
 			\State \textbf{save\_to\_file}(\textit{predictions})
 		\EndFunction
 	\end{algorithmic}
@@ -3432,44 +3503,50 @@ As previously mentioned, both the \textbf{\textit{Proposed Model}} and the \text
 \begin{algorithm}[h!]
 	\caption{Evaluate Fresh Rankings function}\label{alg:evaluateFreshRankingsFunction}
 	\begin{algorithmic}[1]
-		\Function{EvaluateFreshRankings}{\textit{ds\_path}, \textit{checkpoint\_path}, \textit{net\_type}, \textit{n\_query\_samples}, \textit{n\_evaluations}, \textit{batch\_size}}
-		\State \textit{Net}, \textit{run\_params} $\gets$ \textbf{import\_modules}(\textit{net\_type})
-		\State
-		\State \textit{model} $\gets$ \textit{Net}(use\_malware=False, use\_counts=False, n\_tags=\textbf{len}(\textit{Dataset}.\textit{tags}),
-		\State \hskip6.3em feature\_dimension=2381, embedding\_dimension=32,
-		\State \hskip6.3em layer\_sizes=\textit{run\_params}['layer\_sizes'], dropout\_p=\textit{run\_params}['dropout\_p'],
-		\State \hskip6.3em activation\_function=\textit{run\_params}['activation\_function'],
-		\State \hskip6.3em normalization\_function=\textit{run\_params}['normalization\_function'])
-		\State \textit{model}.\textbf{load\_state\_dict}(\textit{checkpoint\_path})
-		\State \textit{model}.\textbf{eval}()
-		\State \textit{generator} $\gets$ \textit{get\_generator}(\textit{ds\_path}, \textit{batch\_size}, return\_shas=True, shuffle=True)
-		\State
-		\State \textit{ranking\_scores} $\gets$ {'MRR': [ ], 'MAP': [ ]}
-		\State \textit{global\_ranks\_to\_save} $\gets$ None
-		\ForAll{\textit{j} $\in$ \textbf{range}(\textit{n\_evaluations})}
-		\State \textit{queries} $\gets$ \textbf{get\_samples}(\textit{model}, \textit{generator}, \textit{n\_families}, \textit{n\_query\_samples})
-		\State \textit{rank\_per\_query} $\gets$ [ ]
-		\ForAll{\textit{shas}, \textit{features}, \textit{labels} $\in$ \textit{generator}}
-		\State \textit{embeddings} $\gets$ \textit{model}.\textbf{get\_embedding}(\textit{features})\'embedding']
-		\State \textit{similarity\_scores} $\gets$ \textit{model}.\textbf{get\_similarity}(\textit{queries}['embeddings'], 
-		\State \hskip18.7em \textit{embeddings})['similarity']
-		\ForAll{\textit{i}, \textit{s} $\in$ \textbf{enumerate}(\textit{queries}['shas'])}
-		\State \textit{indices} $\gets$ -\textit{similarity\_scores}[\textit{i}, [\textit{j} $\forall$ \textit{j} $\in$ \textbf{range}(\textbf{len}(\textit{similarity\_scores}[\textit{i}]))
-		\State \hskip13.7em \textbf{if} \textit{shas}[\textit{j}] $\ne$ \textit{s}]].\textbf{argsort}()
-		\State \textit{rank\_per\_query}.\textbf{append}(\{
-		\State \hskip1.9em 'query\_sha': \textit{s},
-		\State \hskip1.9em 'ground\_truth\_label': \textit{queries}['labels'][\textit{i}],
-		\State \hskip1.9em 'ground\_truth\_family': \textbf{label\_to\_sig}(\textit{queries}['labels'][\textit{i}]),
-		\State \hskip1.9em 'rank\_shas': \textit{shas}[\textit{indices}],
-		\State \hskip1.9em 'rank\_labels': \textit{labels}[\textit{indices}],
-		\State \hskip1.9em 'rank\_families': [\textbf{label\_to\_sig}(\textit{lab}) $\forall$ \textit{lab} $\in$ \textit{labels}[\textit{indices}]]
-		\State \})
-		\EndFor
-		\EndFor
-		\State \textit{ranking\_scores}, \textit{global\_ranks\_to\_save}, \textit{rank\_per\_query} $\gets$ \textbf{compute\_ranking\_scores}(
-		\State \hskip1.9em \textit{ranking\_scores}, \textit{global\_ranks\_to\_save}, \textit{rank\_per\_query})
-		\EndFor
-		\State \textbf{save\_to\_file}(\textit{global\_ranks\_to\_save})
+			\Function{EvaluateFreshRankings}{\textit{ds\_path}, \textit{checkpoint\_path}, \textit{net\_type}, \textit{n\_query\_samples}, \textit{n\_evaluations}, \textit{batch\_size}}
+			\State
+			\State \textit{Net}, \textit{run\_params} $\gets$ \textbf{import\_modules}(\textit{net\_type})
+			\State
+			\State \textit{model} $\gets$ \textit{Net}(use\_malware=False, use\_counts=False, n\_tags=\textbf{len}(\textit{Dataset}.\textit{tags}),
+			\State \hskip6.3em feature\_dimension=2381, embedding\_dimension=32,
+			\State \hskip6.3em layer\_sizes=\textit{run\_params}['layer\_sizes'],
+			\State \hskip6.3em dropout\_p=\textit{run\_params}['dropout\_p'],
+			\State \hskip6.3em activation\_function=\textit{run\_params}['activation\_function'],
+			\State \hskip6.3em normalization\_function=\textit{run\_params}['normalization\_function'])
+			\State
+			\State \textit{model}.\textbf{load\_state\_dict}(\textit{checkpoint\_path})
+			\State \textit{model}.\textbf{eval}()
+			\State \textit{generator} $\gets$ \textit{get\_generator}(\textit{ds\_path}, \textit{batch\_size}, return\_shas=True, shuffle=True)
+			\State \textit{ranking\_scores} $\gets$ {'MRR': [ ], 'MAP': [ ]}
+			\State \textit{global\_ranks\_to\_save} $\gets$ None
+			\State
+			\ForAll{\textit{j} $\in$ \textbf{range}(\textit{n\_evaluations})}
+				\State \textit{queries} $\gets$ \textbf{get\_samples}(\textit{model}, \textit{generator}, \textit{n\_families}, \textit{n\_query\_samples})
+				\State \textit{rank\_per\_query} $\gets$ [ ]
+				\State
+				\ForAll{\textit{shas}, \textit{features}, \textit{labels} $\in$ \textit{generator}}
+					\State \textit{embeddings} $\gets$ \textit{model}.\textbf{get\_embedding}(\textit{features})\'embedding']
+					\State \textit{similarity\_scores} $\gets$ \textit{model}.\textbf{get\_similarity}(\textit{queries}['embeddings'], 
+					\State \hskip18.7em \textit{embeddings})['similarity']
+					\State
+					\ForAll{\textit{i}, \textit{s} $\in$ \textbf{enumerate}(\textit{queries}['shas'])}
+						\State \textit{indices} $\gets$ -\textit{similarity\_scores}[\textit{i}, [\textit{j} $\forall$ \textit{j} $\in$ \textbf{range}(\textbf{len}(\textit{similarity\_scores}[\textit{i}]))
+						\State \hskip13.7em \textbf{if} \textit{shas}[\textit{j}] $\ne$ \textit{s}]].\textbf{argsort}()
+						\State \textit{rank\_per\_query}.\textbf{append}(\{
+						\State \hskip1.9em 'query\_sha': \textit{s},
+						\State \hskip1.9em 'ground\_truth\_label': \textit{queries}['labels'][\textit{i}],
+						\State \hskip1.9em 'ground\_truth\_family': \textbf{label\_to\_sig}(\textit{queries}['labels'][\textit{i}]),
+						\State \hskip1.9em 'rank\_shas': \textit{shas}[\textit{indices}],
+						\State \hskip1.9em 'rank\_labels': \textit{labels}[\textit{indices}],
+						\State \hskip1.9em 'rank\_families': [\textbf{label\_to\_sig}(\textit{lab}) $\forall$ \textit{lab} $\in$ \textit{labels}[\textit{indices}]]
+						\State \})
+					\EndFor
+				\EndFor
+				\State \textit{ranking\_scores}, \textit{global\_ranks\_to\_save}, \textit{rank\_per\_query} $\gets$ \textbf{ComputeRankingScores}(
+				\State \hskip1.9em \textit{ranking\_scores}, \textit{global\_ranks\_to\_save}, \textit{rank\_per\_query})
+				\EndFor
+			\State
+			\State \textbf{save\_to\_file}(\textit{global\_ranks\_to\_save})
 		\EndFunction
 	\end{algorithmic}
 \end{algorithm}
@@ -3498,55 +3575,56 @@ As previously mentioned, both the \textbf{\textit{Proposed Model}} and the \text
 \begin{algorithm}[h!]
 	\caption{Get Samples function}\label{alg:getSamplesFunction}
 	\begin{algorithmic}[1]
-		\Function{GetSamples}{\textit{model}, \textit{generator}, \textit{n\_families}, \textit{n\_samples\_to\_get}, \textit{other}}
-		\State \textit{samples} $\gets$ None
-		\State \textit{samples\_families} $\gets$ [0 $\forall$ \_ $\in$ \textbf{range}(\textit{n\_families})]
-		\ForAll{\textit{shas}, \textit{features}, \textit{labels} $\in$ \textit{generator}}
-		\If{\textit{other} \textbf{is not} None}
-			\State \textit{indices} $\gets$ [\textit{i} $\forall$ \textit{i}, \textit{sha} $\in$\ \textbf{enumerate}(\textit{shas}) \textbf{if} \textit{sha} \textbf{not in} \textit{other}['shas']]
-			\State \textit{shas} $\gets$ [\textit{shas}[\textit{i}] $\forall$ \textit{i} $\in$ \textit{indices}]
-			\State \textit{features} $\gets$ \textit{features}[\textit{indices}]
-			\State \textit{labels} $\gets$ \textit{labels}[\textit{indices}]
-		\EndIf
-		\State
-		\State \textit{embeddings} $\gets$ \textit{model}.\textbf{get\_embedding}(\textit{features})['embedding']
-		\ForAll{\textit{n} $\in$ \textbf{range}(\textit{n\_families})}
-		\If{\textit{samples\_families}[\textit{n}] $\ge$ \textit{n\_samples\_to\_get}}
-		\textbf{continue}
-		\EndIf
-		\State
-		\State \textit{indices} $\gets$ [\textit{i} $\forall$ \textit{i}, \textit{label} $\in$ \textbf{enumerate}(\textit{labels}) \textbf{if} \textit{label} = \textit{n}]
-		\State \textit{indices} $\gets$ \textit{indices[:\textit{n\_samples\_to\_get}]} \textbf{if} \textbf{len}(\textit{indices}) $>$ \textit{n\_samples\_to\_get} \textbf{else} \textit{indices}
-		\If{\textit{samples} \textbf{is} None}
-		\State \textit{samples} $\gets$ \{'shas': [\textit{indices}],
-		\State \hskip5.6em 'labels': \textit{labels}[\textit{indices}],
-		\State \hskip5.6em 'features': \textit{features}[\textit{indices}],
-		\State \hskip5.6em 'embeddings': \textit{embeddings}[\textit{indices}]\}
-		\Else
-		\State \textit{samples}['shas'].\textbf{extend}(\textit{shas}[\textit{indices}])
-		\State \textit{samples}['labels'].\textbf{extend}(\textit{labels}[\textit{indices}])
-		\State \textit{samples}['features'].\textbf{extend}(\textit{features}[\textit{indices}])
-		\State \textit{samples}['embeddings'].\textbf{extend}(\textit{embeddings}[\textit{indices}])
-		\EndIf
-		\State
-		\State \textit{samples\_families}[\textit{n}] $\gets$ \textit{samples\_families}[\textit{n}] + \textbf{len}(\textit{indices})
-		\EndFor
-		\State
-		\If{\textbf{all}(\textit{n} $ge$ \textit{n\_samples\_to\_get} $\forall$ \textit{n} $\in$ \textit{samples\_families})}
-		\textbf{break}
-		\EndIf
-		\EndFor
-		\State
-		\State \textbf{return} \textit{samples}
+			\Function{GetSamples}{\textit{model}, \textit{generator}, \textit{n\_families}, \textit{n\_samples\_to\_get}, \textit{other}}
+			\State \textit{samples} $\gets$ None
+			\State \textit{samples\_families} $\gets$ [0 $\forall$ \_ $\in$ \textbf{range}(\textit{n\_families})]
+			\State
+			\ForAll{\textit{shas}, \textit{features}, \textit{labels} $\in$ \textit{generator}}
+				\If{\textit{other} \textbf{is not} None}
+					\State \textit{indices} $\gets$ [\textit{i} $\forall$ \textit{i}, \textit{sha} $\in$\ \textbf{enumerate}(\textit{shas}) \textbf{if} \textit{sha} \textbf{not in} \textit{other}['shas']]
+					\State \textit{shas} $\gets$ [\textit{shas}[\textit{i}] $\forall$ \textit{i} $\in$ \textit{indices}]
+					\State \textit{features} $\gets$ \textit{features}[\textit{indices}]
+					\State \textit{labels} $\gets$ \textit{labels}[\textit{indices}]
+				\EndIf
+				\State
+				\State \textit{embeddings} $\gets$ \textit{model}.\textbf{get\_embedding}(\textit{features})['embedding']
+				\ForAll{\textit{n} $\in$ \textbf{range}(\textit{n\_families})}
+					\If{\textit{samples\_families}[\textit{n}] $\ge$ \textit{n\_samples\_to\_get}}
+						\textbf{continue}
+					\EndIf
+					\State
+					\State \textit{indices} $\gets$ [\textit{i} $\forall$ \textit{i}, \textit{label} $\in$ \textbf{enumerate}(\textit{labels}) \textbf{if} \textit{label} = \textit{n}]
+					\State \textit{indices} $\gets$ \textit{indices[:\textit{n\_samples\_to\_get}]} \textbf{if} \textbf{len}(\textit{indices}) $>$ \textit{n\_samples\_to\_get} \textbf{else} \textit{indices}
+					\If{\textit{samples} \textbf{is} None}
+						\State \textit{samples} $\gets$ \{'shas': [\textit{indices}],
+						\State \hskip5.6em 'labels': \textit{labels}[\textit{indices}],
+						\State \hskip5.6em 'features': \textit{features}[\textit{indices}],
+						\State \hskip5.6em 'embeddings': \textit{embeddings}[\textit{indices}]\}
+					\Else
+						\State \textit{samples}['shas'].\textbf{extend}(\textit{shas}[\textit{indices}])
+						\State \textit{samples}['labels'].\textbf{extend}(\textit{labels}[\textit{indices}])
+						\State \textit{samples}['features'].\textbf{extend}(\textit{features}[\textit{indices}])
+						\State \textit{samples}['embeddings'].\textbf{extend}(\textit{embeddings}[\textit{indices}])
+					\EndIf
+					\State
+					\State \textit{samples\_families}[\textit{n}] $\gets$ \textit{samples\_families}[\textit{n}] + \textbf{len}(\textit{indices})
+				\EndFor
+				\State
+				\If{\textbf{all}(\textit{n} $ge$ \textit{n\_samples\_to\_get} $\forall$ \textit{n} $\in$ \textit{samples\_families})}
+					\textbf{break}
+				\EndIf
+			\EndFor
+			\State
+			\State \textbf{return} \textit{samples}
 		\EndFunction
 	\end{algorithmic}
 \end{algorithm}
 
-The \textbf{\textit{evaluate\_fresh\_scores}} function, shown in alg. \ref{alg:evaluateFreshScoresFunction}, begins by importing the '\textit{Net}' class corresponding to the chosen \textit{net\_type} and then instantiates it by providing the needed arguments (such as the \textit{feature\_dimension}, the \textit{embedding\_dimension}, the \textit{layer\_sizes}, etc.). Next, the function loads the model checkpoint state parameters corresponding to the selected training run, it sets the model into \textit{evaluation} mode and instantiates the fresh dataset generator (dataloader). After these preliminary steps, for all the values of '\textit{n\_anchors}' between '\textit{min\_anchors}' and '\textit{max\_anchors}' (included), the function performs '\textit{n\_evaluations}' evaluations recording the model predictions, which will be later used to compute the corresponding accuracy (and other statistics) results. In particular, for each evaluation '\textit{n\_anchors}' anchor samples and '\textit{n\_queries}' query samples, per-family, are randomly selected (without overlaps) from the fresh dataset using the \textbf{get\_samples} function and the similarity scores between their embeddings are computed by using the model's \textbf{get\_similarity} function. Finally, the function produces and saves to file the family predictions, by getting, for each query sample, the family label of the most similar anchor sample in the previously computed similarity score matrix. Moreover, the function also computes the per-sample family label probabilities by retrieving the similarity score corresponding to the most similar anchor sample, for each family, and subsequently applying the \textit{Softmax} function to the resulting list of family scores.
+The \textbf{\textit{EvaluateFreshScores}} function, shown in alg. \ref{alg:evaluateFreshScoresFunction}, begins by importing the '\textit{Net}' class corresponding to the chosen \textit{net\_type} and then instantiates it by providing the needed arguments (such as the \textit{feature\_dimension}, the \textit{embedding\_dimension}, the \textit{layer\_sizes}, etc.). Next, the function loads the model checkpoint state parameters corresponding to the selected training run, it sets the model into \textit{evaluation} mode and instantiates the fresh dataset generator (dataloader). After these preliminary steps, for all the values of '\textit{n\_anchors}' between '\textit{min\_anchors}' and '\textit{max\_anchors}' (included), the function performs '\textit{n\_evaluations}' evaluations recording the model predictions, which will be later used to compute the corresponding accuracy (and other statistics) results. In particular, for each evaluation '\textit{n\_anchors}' anchor samples and '\textit{n\_queries}' query samples, per-family, are randomly selected (without overlaps) from the fresh dataset using the \textbf{GetSamples} function and the similarity scores between their embeddings are computed by using the model's \textbf{GetSimilarity} function. Finally, the function produces and saves to file the family predictions, by getting, for each query sample, the family label of the most similar anchor sample in the previously computed similarity score matrix. Moreover, the function also computes the per-sample family label probabilities by retrieving the similarity score corresponding to the most similar anchor sample, for each family, and subsequently applying the \textit{Softmax} function to the resulting list of family scores.
 
-The \textbf{\textit{evaluate\_fresh\_rankings}} function, presented in algorithm \ref{alg:evaluateFreshRankingsFunction}, again begins by importing the selected \textit{Net} class. It then instantiate the model with the needed parameters, loads the selected checkpoint state parameters, sets the model to \textit{evaluation} mode and defines the fresh dataset generator (dataloader). Next, for '\textit{n\_evaluations}' times, the function randomly selects '\textit{n\_query\_samples}' query samples, per family, from the previously defined fresh dataset \textit{generator}. The function then cycles through all the mini-batches of data from the fresh dataset generator and gets the samples embeddings by feeding the model with their numerical feature vectors. Then, in order to generate the family rankings, the function computes the similarity scores between the \textbf{query} samples' embeddings and the mini-batch embeddings (which may contain also the \textbf{query} sample latent representation) by using the model's \textit{get\_similarity} function. Next, for each \textbf{query} sample the function generates one ranking by ordering the samples' \textit{shas}, \textit{family labels} and \textit{family names} by their similarity with the current \textbf{query} sample (excluding the current \textbf{query} sample from the ranking). Finally, the function uses the \textbf{compute\_ranking\_scores} function, presented in alg. \ref{alg:computeRankingScoresFunction}, to compute the \textit{MRR} and \textit{MAP} scores and save a bunch of interesting rankings, namely the ones which produced the maximum and minimum RR (reciprocal rank) and AP (average precision), for the current evaluation. The overall mean and standard deviation of both ranking scores are computed and saved at the end of the cycle.
+The \textbf{\textit{EvaluateFreshRankings}} function, presented in algorithm \ref{alg:evaluateFreshRankingsFunction}, again begins by importing the selected \textit{Net} class. It then instantiate the model with the needed parameters, loads the selected checkpoint state parameters, sets the model to \textit{evaluation} mode and defines the fresh dataset generator (dataloader). Next, for '\textit{n\_evaluations}' times, the function randomly selects '\textit{n\_query\_samples}' query samples, per family, from the previously defined fresh dataset \textit{generator}. The function then cycles through all the mini-batches of data from the fresh dataset generator and gets the samples embeddings by feeding the model with their numerical feature vectors. Then, in order to generate the family rankings, the function computes the similarity scores between the \textbf{query} samples' embeddings and the mini-batch embeddings (which may contain also the \textbf{query} sample latent representation) by using the model's \textit{GetSimilarity} function. Next, for each \textbf{query} sample the function generates one ranking by ordering the samples' \textit{shas}, \textit{family labels} and \textit{family names} by their similarity with the current \textbf{query} sample (excluding the current \textbf{query} sample from the ranking). Finally, the function uses the \textbf{ComputeRankingScores} function, presented in alg. \ref{alg:computeRankingScoresFunction}, to compute the \textit{MRR} and \textit{MAP} scores and save a bunch of interesting rankings, namely the ones which produced the maximum and minimum RR (reciprocal rank) and AP (average precision), for the current evaluation. The overall mean and standard deviation of both ranking scores are computed and saved at the end of the cycle.
 
-The \textbf{get\_samples} function (alg. \ref{alg:getSamplesFunction}), used by functions \textit{evaluate\_fresh\_scores} and \textit{evaluate\_fresh\_rankings} and presented in alg. \ref{alg:getSamplesFunction} selects '\textit{n\_samples\_to\_get}' samples for each of the '\textit{n\_families}' families from the provided \textit{generator} (fresh dataset) excluding samples present in the '\textit{other}' set (if provided). In order to do this, the function cycles through the provided \textit{generator} and gets the \textit{shas}, \textit{labels}, \textit{features} and \textit{embedding} of the samples not in the '\textit{other}' set and then selects, for each family, as many samples as possible until all families have exactly '\textit{n\_samples\_to\_get}' samples.
+The \textbf{GetSamples} function (alg. \ref{alg:getSamplesFunction}), used by functions \textit{EvaluateFreshScores} and \textit{EvaluateFreshRankings} and presented in alg. \ref{alg:getSamplesFunction} selects '\textit{n\_samples\_to\_get}' samples for each of the '\textit{n\_families}' families from the provided \textit{generator} (fresh dataset) excluding samples present in the '\textit{other}' set (if provided). In order to do this, the function cycles through the provided \textit{generator} and gets the \textit{shas}, \textit{labels}, \textit{features} and \textit{embedding} of the samples not in the '\textit{other}' set and then selects, for each family, as many samples as possible until all families have exactly '\textit{n\_samples\_to\_get}' samples.
 
 \subsubsection{Fresh Results Computation and Plotting}
 \begin{figure}[H]
@@ -3559,7 +3637,7 @@ The \textbf{get\_samples} function (alg. \ref{alg:getSamplesFunction}), used by 
 The actual binary cross entropy statistics trends for the \textit{f-way} malware family classification task (\textit{Accuracy}, \textit{Recall}, \textit{precision} etc..) and the resulting \textit{AUC-ROC} score trends are computed, plotted and saved to file by a distinct set of functions which are not presented in this document given that they simply implement and apply the corresponding mathematical formulas.
 
 \section{Malware Family Classifier}
-Given the \textbf{Proposed Model} relatively poor results in the Malware Family Classification task (which it was never trained for), the next step was the development of a \textbf{Malware Family Classifier} specifically trained (and tested) on the fresh dataset (which contains information about the malware family each sample belongs to) for such task. However, this dataset, which contains $5.000$ samples divided in $4.000$ training, $500$ validation and $500$ test samples, is arguably too small to produce a general enough model able to reliably predict the family label for each malware sample without overfitting on the training subsplit. This problem was therefore tackled with the aid of \textbf{transfer learning}.
+Given the \textbf{Proposed Model} relatively poor results in the Malware Family Classification task (which it was never trained for), the next step was the development of a \textbf{Malware Family Classifier} specifically trained (and tested) on the fresh dataset (which contains information about the malware family each sample belongs to) for such task. However, this dataset, which contains $10.000$ samples divided in $7.000$ training, $1.000$ validation and $2.000$ test samples, is arguably too small to produce a general enough model able to reliably predict the family label for each malware sample without overfitting on the training sub-split. This problem was therefore tackled with the aid of \textbf{transfer learning}.
 
 \textit{Transfer Learning} (TL) is a machine learning (ML) technique, especially popular in deep learning, that focuses on storing knowledge gained while solving one problem and applying it to a different but related problem. Transfer Learning is usually defined in terms of domains and tasks. A domain $\mathcal{D}$ consists of: a feature space $\mathcal{X}$ and a marginal probability distribution $P(\mathcal{X})$, where $\mathcal{X}={x_1. ..., x_n} \in \mathcal{X}$. Given a specific domain, $\mathcal{D}={\mathcal{X}, P(\mathcal{X})}$, a task consists of two components: a label space $\mathcal{Y}$ and an objective predictive function $f:\mathcal{X}->\mathcal{Y}$. The function $f$ is used to predict the corresponding label $f(x)$ of a new instance $x$. This task, denoted by $\mathcal{T}={\mathcal{Y},f(x)}$, is learned from the training data consisting of pairs ${x_i,y_i}$, where $x_i \in \mathcal{X}$ and $y_i \in \mathcal{Y}$. Given a source domain $\mathcal{D}_S$ and learning task $\mathcal{T}_S$, a target domain $\mathcal{D}_T$ and learning task $\mathcal{T}_T$, where $\mathcal{D}_S \ne \mathcal{D}_T$, or $\mathcal{T}_S \ne \mathcal{T}_T$, transfer Learning aims to help improve the learning of the target predictive function $f_T(\cdot)$ in $\mathcal{D}_T$ using the knowledge in $\mathcal{D}_S$ and $\mathcal{T}_S$. In practice, when using transfer learning, a base network is first trained on a base (large) dataset solving a specific task, and then the learned features are repurposed, or transferred, to a second target network to be trained on a target dataset and task. 
 
@@ -3577,7 +3655,7 @@ A Malware Family Classifier was thus constructed by adding a multi-class classif
 In order to evaluate the effectiveness of this approach with respect to simply training an equivalent family classifier entirely from scratch, two models were defined and trained with the same model hyper-parameters (learning rate, number of layers, etc.) and for the same amount of epochs: one had its model base parameters imported from a trained \textit{Proposed Model} and 'fine-tuned' while the other was trained entirely from scratch. The resulting two models were then evaluated by recording and comparing their accuracy and some '\textit{micro}' (global average), '\textit{macro}' (unweighted per-class average) and '\textit{weighted}' (per-class average, weighted by support) multi-class classification statistics such as \textit{Jaccard-score}, \textit{recall}, \textit{precision} and \textit{f1-score} along with the corresponding \textit{AUC-ROC} scores.
 
 \subsection{Implementation}
-\begin{figure}[H]
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{./images/Family_Classifier.png}
 	\caption[Family Classifier model architecture]{Family Classifier Model architecture}
@@ -3600,44 +3678,55 @@ where $x[j]$ denotes the sample class score for family $j$.
 
 \subsubsection{Net Definition}
 \begin{algorithm}[h!]
-	\caption{Malware Family Classifier Net class, Init}\label{alg:malwareFamilyClassifierNetInit}
+	\caption{Malware Family Classifier Net class, Init part 1}\label{alg:malwareFamilyClassifierNetInitPt1}
 	\begin{algorithmic}[1]
 		\Class{Net}
 			\Function{Init}{\textit{self}, \textit{families}, \textit{feature\_dimension}, \textit{embedding\_dimension}, \textit{layer\_sizes}, \textit{fam\_class\_layer\_sizes}, \textit{dropout\_p}, \textit{activation\_function}, \textit{normalization\_function}}	
-			\State \textit{self}.\textit{families} $\gets$ \textit{families}
-			\State \textit{self}.\textit{n\_families} $\gets$ \textbf{len}(\textit{families})
-			\State \textit{self}.\textit{encoded\_families} $\gets$ [\textit{idx} $\forall$ \textit{idx} $\in$ \textbf{range}(\textit{self}.\textit{n\_families})]
-			\State \textit{self}.\textit{embedding\_dimension} $\gets$ \textit{embedding\_dimension}
-			\State \textit{self}.\textit{loss\_criterion} $\gets$ \textbf{nn.CrossEntropyLoss}()
-			\State \textit{layers} $\gets$ [ ]
-			\State \textit{fam\_class\_layers} $\gets$ [ ]
-			\State
-			\If{\textit{layer\_sizes} \textbf{is} None}
-				\State \textit{layer\_sizes} $\gets$ [512, 512, 128]
-			\EndIf
-			\If{\textit{fam\_class\_layer\_sizes} \textbf{is} None}
-				\State \textit{fam\_class\_layer\_sizes} $\gets$ [64, 32]
-			\EndIf
-			\State
-			\ForAll{\textit{i}, \textit{ls} $\in$ \textbf{enumerate}(\textit{layer\_sizes})}
-				\If{\textit{i} $=0$}
-					\State \textit{layers}.\textbf{append}(\textbf{nn.Linear}(\textit{feature\_dimension}, \textit{ls}))
-					\Else
-					\State \textit{layers}.\textbf{append}(\textbf{nn.Linear}(\textit{layer\_sizes}[\textit{i} $-1$], \textit{ls}))
+				\State
+				\State \textit{self}.\textit{families} $\gets$ \textit{families}
+				\State \textit{self}.\textit{n\_families} $\gets$ \textbf{len}(\textit{families})
+				\State \textit{self}.\textit{encoded\_families} $\gets$ [\textit{idx} $\forall$ \textit{idx} $\in$ \textbf{range}(\textit{self}.\textit{n\_families})]
+				\State \textit{self}.\textit{embedding\_dimension} $\gets$ \textit{embedding\_dimension}
+				\State \textit{self}.\textit{loss\_criterion} $\gets$ \textbf{nn.CrossEntropyLoss}()
+				\State \textit{layers} $\gets$ [ ]
+				\State \textit{fam\_class\_layers} $\gets$ [ ]
+				\If{\textit{layer\_sizes} \textbf{is} None}
+					\State \textit{layer\_sizes} $\gets$ [512, 512, 128]
 				\EndIf
 				\State
-				\State \textit{layers}.\textbf{append}(\textit{normalization\_function}(\textit{ls}))
-				\State \textit{layers}.\textbf{append}(\textit{activation\_function}())
-				\State \textit{layers}.\textbf{append}(\textbf{nn.Dropout}(\textit{dropout\_p}))
-			\EndFor
-			\State
-			\State \textit{self}.\textit{model\_base} $\gets$ \textbf{nn.Sequential}(*tuple(\textit{layers}))
-			\State \textit{self}.\textit{sigmoid} $\gets$ \textbf{nn.Sigmoid}()
-			\State		
+				\If{\textit{fam\_class\_layer\_sizes} \textbf{is} None}
+					\State \textit{fam\_class\_layer\_sizes} $\gets$ [64, 32]
+				\EndIf
+				\State
+				\ForAll{\textit{i}, \textit{ls} $\in$ \textbf{enumerate}(\textit{layer\_sizes})}
+					\If{\textit{i} $=0$}
+						\State \textit{layers}.\textbf{append}(\textbf{nn.Linear}(\textit{feature\_dimension}, \textit{ls}))
+					\Else
+						\State \textit{layers}.\textbf{append}(\textbf{nn.Linear}(\textit{layer\_sizes}[\textit{i} $-1$], \textit{ls}))
+					\EndIf
+					\State
+					\State \textit{layers}.\textbf{append}(\textit{normalization\_function}(\textit{ls}))
+					\State \textit{layers}.\textbf{append}(\textit{activation\_function}())
+					\State \textit{layers}.\textbf{append}(\textbf{nn.Dropout}(\textit{dropout\_p}))
+				\EndFor
+				\State
+				\State \textit{self}.\textit{model\_base} $\gets$ \textbf{nn.Sequential}(*tuple(\textit{layers}))
+				\State \textit{self}.\textit{sigmoid} $\gets$ \textbf{nn.Sigmoid}()
+				\State \Comment Continues on next page..
+		\algstore{bkbreak}
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[h!]
+	\caption{Malware Family Classifier Net class, Init part 2}\label{alg:malwareFamilyClassifierNetInitPt2}
+	\begin{algorithmic}[1]
+		\algrestore{bkbreak}
+			\State \Comment Continued from previous page..
 			\State \textit{self}.\textit{pe\_embedding} $\gets$ \textbf{nn.Sequential}(
 			\State \hskip1.9em \textbf{nn.Linear}(\textit{layer\_sizes}[-1], \textit{self}.\textit{embedding\_dimension}),
 			\State \hskip1.9em \textit{normalization\_function}(\textit{self}.\textit{embedding\_dimension}),
 			\State \hskip1.9em \textit{activation\_function}())
+			\State
 			\ForAll{\textit{i}, \textit{ls} $\in$ \textbf{enumerate}(\textit{fam\_class\_layer\_sizes})}
 				\If{\textit{i} $=0$}
 					\State \textit{fam\_class\_layers}.\textbf{append}(\textbf{nn.Linear}(\textit{embedding\_dimension}, \textit{ls}))
@@ -3649,6 +3738,7 @@ where $x[j]$ denotes the sample class score for family $j$.
 			\State \textit{layers}.\textbf{append}(\textit{activation\_function}())
 			\State \textit{layers}.\textbf{append}(\textbf{nn.Dropout}(\textit{dropout\_p}))
 		\EndFor
+		\State
 		\State \textit{fam\_class\_layers}.\textbf{append}(\textbf{nn.Linear}(\textit{fam\_class\_layer\_sizes}[-1], \textit{self}.\textit{n\_families}))
 		\State \textit{self}.\textit{family\_classifier} $\gets$ \textbf{nn.Sequential}(*\textbf{tuple}(\textit{fam\_class\_layers}))
 		\State \textit{self}.\textit{softmax\_output} $\gets$ \textbf{nn.Softmax}(dim=1)
@@ -3667,6 +3757,7 @@ where $x[j]$ denotes the sample class score for family $j$.
 			\State \textit{scores} $\gets$ \textit{self}.\textit{families\_classifier}(\textit{pe\_embedding})
 			\State \textit{rv} $\gets$ \{'scores': \textit{scores},
 			\State \hskip3.1em 'probs': \textit{self}.\textit{softmax\_output}(\textit{scores})\}
+			\State
 			\State \textbf{return} \textit{rv}
 		\EndFunction
 		\algstore{bkbreak}
@@ -3678,13 +3769,14 @@ where $x[j]$ denotes the sample class score for family $j$.
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 		\Function{ComputeLoss}{\textit{self}, \textit{predictions}, \textit{labels}, \textit{loss\_wts}}
+		\State
 		\State \textbf{return} \textit{self}.\textit{loss\_criterion}(\textit{predictions}['scores'], \textit{labels})
 		\EndFunction
 		\EndClass
 	\end{algorithmic}
 \end{algorithm}
 
-Algorithm \ref{alg:malwareFamilyClassifierNetInit} (Malware Family Classifier Init function) shows how the Family Classifier model is initialized. In particular the function first defines the model \textit{shared base} topology (\textit{model\_base}) as a sequence of blocks composed each of a linear layer, a Normalization layer, an Activation function and dropout, exactly as previously done for the \textbf{\textit{Proposed Model}} implementation. Next, the \textit{pe\_embedding} topology is constructed as a single linear layer with output size equal to the \textit{embedding\_dimension} ($=32$), followed by a Normalization layer and an Activation function. Thereafter, the function defines the \textit{Family Classifier} topology as a sequence of dense blocks - equal to the ones used in the \textit{shared base} part - trailed by a final linear layer of output size equal to the number of family labels ($=10$) and, optionally, a \textit{Softmax} non-linearity.
+Algorithm \ref{alg:malwareFamilyClassifierNetInitPt1}-\ref{alg:malwareFamilyClassifierNetInitPt2} (Malware Family Classifier Init function) shows how the Family Classifier model is initialized. In particular the function first defines the model \textit{shared base} topology (\textit{model\_base}) as a sequence of blocks composed each of a linear layer, a Normalization layer, an Activation function and dropout, exactly as previously done for the \textbf{\textit{Proposed Model}} implementation. Next, the \textit{pe\_embedding} topology is constructed as a single linear layer with output size equal to the \textit{embedding\_dimension} ($=32$), followed by a Normalization layer and an Activation function. Thereafter, the function defines the \textit{Family Classifier} topology as a sequence of dense blocks - equal to the ones used in the \textit{shared base} part - trailed by a final linear layer of output size equal to the number of family labels ($=10$) and, optionally, a \textit{Softmax} non-linearity.
 
 Algorithm \ref{alg:malwareFamilyClassifierNetForward} (\textbf{\textit{Malware Family Classifier} forward function}), on the other hand, shows how the input data (PE files' numerical feature vectors) is forwarded through the model. In particular, the function feeds the model base topology (\textit{model\_base}) with the input data producing an intermediate representation \textit{base\_out}. This intermediate representation is then forwarded to the \textit{pe\_embedding} subnet which outputs the input samples' PE latent representation (of size 32). At the beginning of the family classifier model training procedure, the mapping function between the samples' input features and the produced PE embeddings corresponds, if transfer Learning was applied, to the one learned by the \textbf{Proposed Model} using the Sorel-20m dataset. The output class (family) scores are computed by feeding the \textit{Family classifier} topology with the produced input samples' PE embeddings. Finally, the family probabilities are simply obtained by applying the \textit{Softmax} function to the previously computed family \textit{scores}.
 
@@ -3698,7 +3790,7 @@ Finally, as presented by algorithm \ref{alg:malwareFamilyClassifierNetComputeLos
 	\label{fig:workflow_fam_train_eval}
 \end{figure}
 
-Algorithms \ref{alg:trainFamilyClassifierFunction} (\textbf{Family Classifier Train function}) and \ref{alg:evaluateFamilyClassifierFunction} (\textbf{Family Classifier Evaluate function}) show how the \textbf{\textit{Family Classifier}} model implementation gets trained and evaluated using samples from the Fresh Dataset. 
+Algorithms \ref{alg:trainFamilyClassifierFunctionPt1}-\ref{alg:trainFamilyClassifierFunctionPt2} (\textbf{Family Classifier Train function}) and \ref{alg:evaluateFamilyClassifierFunction} (\textbf{Family Classifier Evaluate function}) show how the \textbf{\textit{Family Classifier}} model implementation gets trained and evaluated using samples from the Fresh Dataset. 
 
 \subsubsection{Family Classifier Training}
 \begin{figure}[H]
@@ -3709,16 +3801,24 @@ Algorithms \ref{alg:trainFamilyClassifierFunction} (\textbf{Family Classifier Tr
 \end{figure}
 
 \begin{algorithm}[h!]
-	\caption{Train Family Classifier function}\label{alg:trainFamilyClassifierFunction}
+	\caption{Train Family Classifier function, part 1}\label{alg:trainFamilyClassifierFunctionPt1}
 	\begin{algorithmic}[1]
 			\Function{TrainNetwork}{\textit{fresh\_ds\_path}, \textit{checkpoint\_path}, \textit{batch\_size}, \textit{epochs}, \textit{train\_split\_proportion}, \textit{valid\_split\_proportion}, \textit{test\_split\_proportion}, \textit{workers}, ...}
+				\State
 				\State \textit{split\_proportions} $\gets$ [\textit{train\_split\_proportion},
 				\State \hskip9.1em \textit{valid\_split\_proportion},
 				\State \hskip9.1em \textit{test\_split\_proportion}]
-				\State \textit{train\_gen}, \textit{valid\_gen}, \_ $\gets$ \textbf{get\_generator}(\textit{fresh\_ds\_path}, splits=\textit{split\_proportions},
-				\State \hskip1.9em batch\_size=\textit{batch\_size}, return\_shas=True, num\_workers=\textit{workers}, ..)
+				\State
+				\State \textit{train\_gen}, \textit{valid\_gen}, \_ $\gets$ \textbf{get\_generator}(\textit{fresh\_ds\_path},
+				\State \hskip1.9em splits=\textit{split\_proportions},
+				\State \hskip1.9em batch\_size=\textit{batch\_size},
+				\State \hskip1.9em return\_shas=True,
+				\State \hskip1.9em num\_workers=\textit{workers}, ..)
+				\State
 				\State \textit{model} $\gets$ \textit{Family\_Net}(families=[\textbf{label\_to\_sig}(\textit{lab}) $\forall$ \textit{lab} $\in$ \textbf{range}(\textit{n\_families})],
-				\State \hskip1.9em feature\_dimension=2381, embedding\_dimension=32, layer\_sizes=\textit{run\_params}['layer\_sizes'], 
+				\State \hskip1.9em feature\_dimension=2381,
+				\State \hskip1.9em embedding\_dimension=32,
+				\State \hskip1.9em layer\_sizes=\textit{run\_params}['layer\_sizes'], 
 				\State \hskip1.9em fam\_class\_layer\_sizes=\textit{run\_params}['fam\_class\_layer\_sizes'],
 				\State \hskip1.9em dropout\_p=\textit{run\_params}['dropout\_p'],
 				\State \hskip1.9em activation\_function=\textit{run\_params}['activation\_function'],
@@ -3736,10 +3836,21 @@ Algorithms \ref{alg:trainFamilyClassifierFunction} (\textbf{Family Classifier Tr
 				\EndIf
 				\State
 				\State \textit{opt} $\gets$ \textit{run\_params}['optimizer'](\textit{parameters\_to\_optimize}, \textit{run\_params}['lr'],
-				\State \hskip1.9em \textit{run\_params}['weight\_decay'], \textit{run\_params}['momentum'])
+				\State \hskip13.8em \textit{run\_params}['weight\_decay'], \textit{run\_params}['momentum'])
 				\State \textit{scheduler} $\gets$ \textbf{MultiStepLR}(\textit{opt}, milestones=[(3 $\times$ \textit{epochs}) // 4], gamma=0.1)
+				\State \Comment Continues on next page..
+		\algstore{bkbreak}
+	\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[h!]
+	\caption{Train Family Classifier function, part 2}\label{alg:trainFamilyClassifierFunctionPt2}
+	\begin{algorithmic}[1]
+		\algrestore{bkbreak}
+				\State \Comment Continued from previous page..
 				\ForAll{\textit{epoch} $\in$ \textbf{range}(\textit{epochs})}
 					\State \textit{model}.\textbf{train}()
+					\State
 					\ForAll{\textit{shas}, \textit{features}, \textit{labels} $\in$ \textit{train\_gen}}
 						\State \textit{opt}.\textbf{zero\_grad}
 						\State \textit{out} $\gets$ \textit{model}(\textit{features})
@@ -3754,6 +3865,7 @@ Algorithms \ref{alg:trainFamilyClassifierFunction} (\textbf{Family Classifier Tr
 				\State
 				\State \textit{scheduler}.\textbf{step}()
 				\State \textit{model}.\textbf{eval}()
+				\State
 				\ForAll{\textit{shas}, \textit{features}, \textit{labels} $\in$ \textit{valid\_gen}}
 					\State \textbf{torch.no\_grad}()
 					\State \textit{out} $\gets$ \textit{model}(\textit{features})
@@ -3768,7 +3880,7 @@ Algorithms \ref{alg:trainFamilyClassifierFunction} (\textbf{Family Classifier Tr
 	\end{algorithmic}
 \end{algorithm}
 
-The \textit{Family Classifier} training function, as shown in alg. \ref{alg:trainFamilyClassifierFunction}, first opens and loads the Fresh Dataset splitting it in training, validation and test subsets following the selected proportions. The \textit{Family Classifier} model then gets instantiated by providing the necessary parameters to its \textit{init} function. Next, if a checkpoint of a \textbf{Proposed Model} training run is provided, the state parameters for the \textit{shared base} topology and \textit{PE embedding} layer are loaded into the newly instantiated \textbf{Family Classifier} model and the learning rates for the different model subnets are set such that the \textit{shared base} and \textit{PE embedding} topologies are just '\textit{fine-tuned}' while training the model (by using a smaller learning rate). Then, the selected optimizer (\textbf{Adam} or \textbf{SGD}) gets instantiated given the model parameters, selected learning rate, weight decay and momentum. At this point a scheduler is also instantiated with the purpose of modifying the model's parameters learning rates (multiplying them by $0.1$) after $3/4$ of the total number of epochs. After these preliminary steps, the function trains (and validates) the \textbf{Family Classifier} model for '\textit{epochs}' epochs. More specifically, at each epoch, the model is set to training mode and then, for all the mini-batches of data randomly sampled from the (fresh dataset) training generator, the input features are fed into the model to obtain the corresponding output class (family) scores. Next, the loss between the predicted class scores and the ground truth family label is computed and used to produce the gradients which are back-propagated through the network. Moreover, the function also computes the predicted family label - by selecting, for each sample, the family label with maximum class score - and the model accuracy for the current mini-batch - by dividing the number of correct predictions by the total amount of predictions. Then, the previously computed model loss and accuracy are logged and the model is set to \textit{validation} mode after having updated the scheduler. Finally, for each mini-batch of data from the (fresh dataset) validation generator, the function computes and logs the model loss and accuracy.
+The \textit{Family Classifier} training function, as shown in alg. \ref{alg:trainFamilyClassifierFunctionPt1}-\ref{alg:trainFamilyClassifierFunctionPt2}, first opens and loads the Fresh Dataset splitting it in training, validation and test subsets following the selected proportions. The \textit{Family Classifier} model then gets instantiated by providing the necessary parameters to its \textit{init} function. Next, if a checkpoint of a \textbf{Proposed Model} training run is provided, the state parameters for the \textit{shared base} topology and \textit{PE embedding} layer are loaded into the newly instantiated \textbf{Family Classifier} model and the learning rates for the different model subnets are set such that the \textit{shared base} and \textit{PE embedding} topologies are just '\textit{fine-tuned}' while training the model (by using a smaller learning rate). Then, the selected optimizer (\textbf{Adam} or \textbf{SGD}) gets instantiated given the model parameters, selected learning rate, weight decay and momentum. At this point a scheduler is also instantiated with the purpose of modifying the model's parameters learning rates (multiplying them by $0.1$) after $3/4$ of the total number of epochs. After these preliminary steps, the function trains (and validates) the \textbf{Family Classifier} model for '\textit{epochs}' epochs. More specifically, at each epoch, the model is set to training mode and then, for all the mini-batches of data randomly sampled from the (fresh dataset) training generator, the input features are fed into the model to obtain the corresponding output class (family) scores. Next, the loss between the predicted class scores and the ground truth family label is computed and used to produce the gradients which are back-propagated through the network. Moreover, the function also computes the predicted family label - by selecting, for each sample, the family label with maximum class score - and the model accuracy for the current mini-batch - by dividing the number of correct predictions by the total amount of predictions. Then, the previously computed model loss and accuracy are logged and the model is set to \textit{validation} mode after having updated the scheduler. Finally, for each mini-batch of data from the (fresh dataset) validation generator, the function computes and logs the model loss and accuracy.
 
 \subsubsection{Family Classifier Evaluation}
 \begin{figure}[H]
@@ -3782,13 +3894,21 @@ The \textit{Family Classifier} training function, as shown in alg. \ref{alg:trai
 	\caption{Evaluate Family Classifier function}\label{alg:evaluateFamilyClassifierFunction}
 	\begin{algorithmic}[1]
 			\Function{EvaluateNetwork}{\textit{fresh\_ds\_path}, \textit{checkpoint\_path}, \textit{batch\_size}, \textit{train\_split\_proportion}, \textit{valid\_split\_proportion}, \textit{test\_split\_proportion}, \textit{workers}, ...}
+			\State
 			\State \textit{split\_proportions} $\gets$ [\textit{train\_split\_proportion},
 			\State \hskip9.1em \textit{valid\_split\_proportion},
 			\State \hskip9.1em \textit{test\_split\_proportion}]
-			\State \_, \_, \textit{test\_gen} $\gets$ \textbf{get\_generator}(\textit{fresh\_ds\_path}, splits=\textit{split\_proportions},
-			\State \hskip1.9em batch\_size=\textit{batch\_size}, return\_shas=True, num\_workers=\textit{workers}, ..)
+			\State
+			\State \_, \_, \textit{test\_gen} $\gets$ \textbf{get\_generator}(\textit{fresh\_ds\_path},
+			\State \hskip1.9em splits=\textit{split\_proportions},
+			\State \hskip1.9em batch\_size=\textit{batch\_size},
+			\State \hskip1.9em return\_shas=True,
+			\State \hskip1.9em num\_workers=\textit{workers}, ..)
+			\State
 			\State \textit{model} $\gets$ \textit{Family\_Net}(families=[\textbf{label\_to\_sig}(\textit{lab}) $\forall$ \textit{lab} $\in$ \textbf{range}(\textit{n\_families})],
-			\State \hskip1.9em feature\_dimension=2381, embedding\_dimension=32, layer\_sizes=\textit{run\_params}['layer\_sizes'],
+			\State \hskip1.9em feature\_dimension=2381,
+			\State \hskip1.9em embedding\_dimension=32,
+			\State \hskip1.9em layer\_sizes=\textit{run\_params}['layer\_sizes'],
 			\State \hskip1.9em fam\_class\_layer\_sizes=\textit{run\_params}['fam\_class\_layer\_sizes'],
 			\State \hskip1.9em dropout\_p=\textit{run\_params}['dropout\_p'],
 			\State \hskip1.9em activation\_function=\textit{run\_params}['activation\_function'],
@@ -3796,6 +3916,7 @@ The \textit{Family Classifier} training function, as shown in alg. \ref{alg:trai
 			\State
 			\State \textit{model}.\textbf{load\_state\_dict}(\textit{checkpoint\_path})
 			\State \textit{model}.\textbf{eval}()
+			\State
 			\ForAll{\textit{shas}, \textit{features}, \textit{labels} $\in$ \textit{test\_gen}}
 				\State \textit{out} $\gets$ \textit{model}(\textit{features})
 				\State \textit{preds} $\gets$ [\textbf{max}(\textit{line} $\forall$ \textit{line} $\in$ \textit{out}['scores'])]
