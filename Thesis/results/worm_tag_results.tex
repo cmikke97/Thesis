@@ -1,14 +1,14 @@
 \newcommand{\wormTagResultsAucTable}{
     \begin{table}[H]
         \centering
-        \begin{tabular}{|p{2,8cm}||P{2,2cm} P{2,2cm} P{2,2cm} P{2,2cm}|}
+        \begin{tabular}{|p{2,8cm}||P{2,4cm} P{2,4cm} P{2,4cm}|}
             \hline
-            Worm Tag & ALOHA\newline (M/B only) & ALOHA & Joint\newline Embedding & Proposed\newline Model \\
+            Worm Tag & ALOHA\newline (M/B only) & ALOHA & Proposed\newline Model \\
             \hline
-            AUC-ROC & - & \textBF{0.966$\pm$0.010} & 0.928$\pm$0.014 & 0.940$\pm$0.014 \\
+            AUC-ROC & - & 0.562$\pm$0.037 & \textBF{0.648$\pm$0.011} \\
             \hline
         \end{tabular}
-        \caption[Worm Tag prediction task AUC-ROC results]{AUC-ROC (Area Under Curve) of the different models for the \textbf{Worm Tag} prediction task. Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:wormTag_auc}
+        \caption[Worm Tag prediction task AUC-ROC results]{AUC-ROC (Area Under Curve) of the different models for the \textbf{Worm Tag} prediction task. Results were aggregated over \textBF{2} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:wormTag_auc}
     \end{table}
 }
 
@@ -31,51 +31,44 @@
             \caption*{\raggedleft ...continued on next page} \\
             \endfoot
 
-            \caption[Worm Tag prediction task results]{Mean and standard deviation results (TPR, Accuracy, Recall, Precision and F1-Score) of the different models for the \textbf{Worm Tag} prediction task at different \textbf{FPR}s (\textit{False Positive Rates}). Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}. Under \textbf{TPR} results are also presented the percentage reduction in mean detection error and in ROC curve standard deviation introduced by the \textit{Proposed Model} with respect to both \textit{ALOHA} model and \textit{Joint Embedding}.} \label{tab:wormTag_results_at_fpr} \\
+            \caption[Worm Tag prediction task results]{Mean and standard deviation results (TPR, Accuracy, Recall, Precision and F1-Score) of the different models for the \textbf{Worm Tag} prediction task at different \textbf{FPR}s (\textit{False Positive Rates}). Results were aggregated over \textBF{2} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}. Under \textbf{TPR} results are also presented the percentage reduction in mean detection error and in ROC curve standard deviation introduced by the \textit{Proposed Model} with respect to both \textit{ALOHA} model and \textit{Joint Embedding}.} \label{tab:wormTag_results_at_fpr} \\
             \endlastfoot
 
             \multicolumn{6}{|c|}{\textbf{TPR}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.004$\pm$0.003 & 0.062$\pm$0.020 & 0.289$\pm$0.108 & 0.605$\pm$0.012 & \textBF{0.877$\pm$0.061} \\
-            Joint Embedding & \textBF{0.117$\pm$0.035} & 0.191$\pm$0.098 & \textBF{0.581$\pm$0.012} & 0.656$\pm$0.004 & 0.770$\pm$0.015 \\
-            Proposed Model & 0.104$\pm$0.054 & \textBF{0.204$\pm$0.119} & 0.508$\pm$0.094 & \textBF{0.657$\pm$0.007} & 0.785$\pm$0.011 \\
+            ALOHA & 0.010$\pm$0.010 & 0.010$\pm$0.010 & 0.012$\pm$0.012 & 0.012$\pm$0.012 & 0.117$\pm$0.047 \\
+            Proposed Model & \textBF{0.021$\pm$0.021} & \textBF{0.021$\pm$0.021} & \textBF{0.021$\pm$0.021} & \textBF{0.031$\pm$0.027} & \textBF{0.238$\pm$0.137} \\
             \hline
             Error Reduction wrt\newline ALOHA (M/B only) & - & - & - & - & - \\
-            Error Reduction wrt\newline ALOHA & 10.0\% & 15.1\% & 30.8\% & 13.2\% & -74.8\% \\
-            Error Reduction wrt\newline Joint Embedding & -1.5\% & 1.6\% & -17.4\% & 0.3\% & 6.5\% \\
+            Error Reduction wrt\newline ALOHA & 1.1\% & 1.1\% & 0.9\% & 1.9\% & 13.7\% \\
             \hline
             Std Reduction wrt\newline ALOHA (M/B only) & - & - & - & - & - \\
-            Std Reduction wrt\newline ALOHA & -1700.0\% & -495.0\% & 13.0\% & 41.7\% & 82.0\% \\
-            Std Reduction wrt\newline Joint Embedding & -54.3\% & -21.4\% & -683.3\% & -75.0\% & 26.7\% \\
+            Std Reduction wrt\newline ALOHA & -110.0\% & -110.0\% & -75.0\% & -125.0\% & -191.5\% \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Accuracy}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.842$\pm$0.000 & 0.851$\pm$0.003 & 0.887$\pm$0.017 & 0.929$\pm$0.002 & \textBF{0.896$\pm$0.010} \\
-            Joint Embedding & \textBF{0.860$\pm$0.005} & 0.872$\pm$0.015 & \textBF{0.933$\pm$0.002} & \textBF{0.937$\pm$0.001} & 0.879$\pm$0.002 \\
-            Proposed Model & 0.858$\pm$0.009 & \textBF{0.874$\pm$0.019} & 0.921$\pm$0.015 & \textBF{0.937$\pm$0.001} & 0.882$\pm$0.002 \\
+            ALOHA & 0.896$\pm$0.001 & 0.896$\pm$0.001 & 0.896$\pm$0.001 & \textBF{0.893$\pm$0.004} & 0.819$\pm$0.006 \\
+            Proposed Model & \textBF{0.898$\pm$0.002} & \textBF{0.898$\pm$0.002} & 0.897$\pm$0.003 & 0.890$\pm$0.003 & \textBF{0.831$\pm$0.014} \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Recall}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.004$\pm$0.003 & 0.062$\pm$0.020 & 0.289$\pm$0.108 & 0.605$\pm$0.012 & \textBF{0.877$\pm$0.061} \\
-            Joint Embedding & \textBF{0.117$\pm$0.035} & 0.191$\pm$0.098 & \textBF{0.581$\pm$0.012} & 0.656$\pm$0.004 & 0.770$\pm$0.015 \\
-            Proposed Model & 0.104$\pm$0.054 & \textBF{0.204$\pm$0.119} & 0.508$\pm$0.094 & \textBF{0.657$\pm$0.007} & 0.785$\pm$0.011 \\
+            ALOHA & 0.010$\pm$0.010 & 0.010$\pm$0.010 & 0.012$\pm$0.012 & 0.012$\pm$0.012 & 0.117$\pm$0.047 \\
+            Proposed Model & \textBF{0.021$\pm$0.021} & \textBF{0.021$\pm$0.021} & \textBF{0.021$\pm$0.021} & \textBF{0.031$\pm$0.027} & \textBF{0.238$\pm$0.137} \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Precision}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.980$\pm$0.016 & 0.990$\pm$0.004 & 0.980$\pm$0.006 & 0.919$\pm$0.002 & \textBF{0.622$\pm$0.017} \\
-            Joint Embedding & \textBF{1.000$\pm$0.000} & \textBF{0.998$\pm$0.001} & \textBF{0.991$\pm$0.000} & \textBF{0.925$\pm$0.000} & 0.592$\pm$0.005 \\
-            Proposed Model & 0.999$\pm$0.000 & 0.997$\pm$0.002 & 0.989$\pm$0.002 & 0.925$\pm$0.001 & 0.596$\pm$0.004 \\
+            ALOHA & \textBF{1.000$\pm$0.000} & \textBF{1.000$\pm$0.000} & 0.375$\pm$0.375 & \textBF{0.333$\pm$0.333} & 0.119$\pm$0.043 \\
+            Proposed Model & \textBF{1.000$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.500$\pm$0.500} & 0.224$\pm$0.181 & \textBF{0.205$\pm$0.099} \\
             \hline
             \multicolumn{6}{|c|}{\textbf{F1 Score}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.009$\pm$0.005 & 0.116$\pm$0.036 & 0.436$\pm$0.124 & 0.730$\pm$0.009 & \textBF{0.727$\pm$0.033} \\
-            Joint Embedding & \textBF{0.209$\pm$0.054} & 0.310$\pm$0.133 & \textBF{0.732$\pm$0.010} & 0.767$\pm$0.003 & 0.669$\pm$0.009 \\
-            Proposed Model & 0.185$\pm$0.086 & \textBF{0.324$\pm$0.155} & 0.666$\pm$0.083 & \textBF{0.768$\pm$0.005} & 0.678$\pm$0.007 \\
+            ALOHA & 0.019$\pm$0.019 & 0.019$\pm$0.019 & 0.023$\pm$0.023 & 0.023$\pm$0.023 & 0.118$\pm$0.045 \\
+            Proposed Model & \textBF{0.041$\pm$0.041} & \textBF{0.041$\pm$0.041} & \textBF{0.041$\pm$0.041} & \textBF{0.055$\pm$0.048} & \textBF{0.220$\pm$0.116} \\
             \hline
         \end{longtable}
     \end{center}
@@ -91,12 +84,11 @@
             Model & TPR & Accuracy & Precision & Recall & F1 score \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.605$\pm$0.012 & 0.929$\pm$0.002 & 0.919$\pm$0.002 & 0.605$\pm$0.012 & 0.730$\pm$0.009 \\
-            Joint Embedding & 0.656$\pm$0.004 & \textBF{0.937$\pm$0.001} & \textBF{0.925$\pm$0.000} & 0.656$\pm$0.004 & 0.767$\pm$0.003 \\
-            Proposed Model & \textBF{0.657$\pm$0.007} & \textBF{0.937$\pm$0.001} & 0.925$\pm$0.001 & \textBF{0.657$\pm$0.007} & \textBF{0.768$\pm$0.005} \\
+            ALOHA & 0.012$\pm$0.012 & \textBF{0.893$\pm$0.004} & \textBF{0.333$\pm$0.333} & 0.012$\pm$0.012 & 0.023$\pm$0.023 \\
+            Proposed Model & \textBF{0.031$\pm$0.027} & 0.890$\pm$0.003 & 0.224$\pm$0.181 & \textBF{0.031$\pm$0.027} & \textBF{0.055$\pm$0.048} \\
             \hline
         \end{tabular}
-        \caption[Summary of Worm Tag prediction task results]{Summary of the mean and standard deviation results of the different models for the \textbf{Worm Tag} prediction task at \textbf{FPR} $=1\%$. Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:wormTag_result_summary}
+        \caption[Summary of Worm Tag prediction task results]{Summary of the mean and standard deviation results of the different models for the \textbf{Worm Tag} prediction task at \textbf{FPR} $=1\%$. Results were aggregated over \textBF{2} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:wormTag_result_summary}
     \end{table}
 }
 
@@ -106,7 +98,7 @@
         \centering
         \includegraphics[width=0.6\textwidth]{./results/worm_tag_roc_alohaMB.png}
         \vspace*{-0.2cm}
-        \caption[Worm Tag prediction task ALOHA (M/B only) ROC curve]{ROC curve and AUC statistics of \textBF{ALOHA (M/B only)} model for the \textbf{Worm Tag}. The line represents the \textit{mean} TPR at a given FPR, while the shaded region represents the \textit{standard deviation}. Statistics were computed over \textBF{3} training runs, each with random parameter initialization.}
+        \caption[Worm Tag prediction task ALOHA (M/B only) ROC curve]{ROC curve and AUC statistics of \textBF{ALOHA (M/B only)} model for the \textbf{Worm Tag}. The line represents the \textit{mean} TPR at a given FPR, while the shaded region represents the \textit{standard deviation}. Statistics were computed over \textBF{2} training runs, each with random parameter initialization.}
         \label{fig:wormTagRocAlohaMB}
     \end{figure}
 }
@@ -117,19 +109,8 @@
         \centering
         \includegraphics[width=0.6\textwidth]{./results/worm_tag_roc_aloha.png}
         \vspace*{-0.2cm}
-        \caption[Worm Tag prediction task ALOHA ROC curve]{ROC curve and AUC statistics of \textBF{ALOHA} model for the \textbf{Worm Tag}. The line represents the \textit{mean} TPR at a given FPR, while the shaded region represents the \textit{standard deviation}. Statistics were computed over \textBF{3} training runs, each with random parameter initialization.}
+        \caption[Worm Tag prediction task ALOHA ROC curve]{ROC curve and AUC statistics of \textBF{ALOHA} model for the \textbf{Worm Tag}. The line represents the \textit{mean} TPR at a given FPR, while the shaded region represents the \textit{standard deviation}. Statistics were computed over \textBF{2} training runs, each with random parameter initialization.}
         \label{fig:wormTagRocAloha}
-    \end{figure}
-}
-
-\newcommand{\wormTagRocJointEmbedding}{
-    \begin{figure}[H]
-        \vspace*{-0.5cm}
-        \centering
-        \includegraphics[width=0.6\textwidth]{./results/worm_tag_roc_jointEmbedding.png}
-        \vspace*{-0.2cm}
-        \caption[Worm Tag prediction task Joint Embedding ROC curve]{ROC curve and AUC statistics of \textBF{Joint Embedding} model for the \textbf{Worm Tag}. The line represents the \textit{mean} TPR at a given FPR, while the shaded region represents the \textit{standard deviation}. Statistics were computed over \textBF{3} training runs, each with random parameter initialization.}
-        \label{fig:wormTagRocJointEmbedding}
     \end{figure}
 }
 
@@ -139,7 +120,7 @@
         \centering
         \includegraphics[width=0.6\textwidth]{./results/worm_tag_roc_proposedModel.png}
         \vspace*{-0.2cm}
-        \caption[Worm Tag prediction task Proposed Model ROC curve]{ROC curve and AUC statistics of \textBF{Proposed Model} for the \textbf{Worm Tag}. The line represents the \textit{mean} TPR at a given FPR, while the shaded region represents the \textit{standard deviation}. Statistics were computed over \textBF{3} training runs, each with random parameter initialization.}
+        \caption[Worm Tag prediction task Proposed Model ROC curve]{ROC curve and AUC statistics of \textBF{Proposed Model} for the \textbf{Worm Tag}. The line represents the \textit{mean} TPR at a given FPR, while the shaded region represents the \textit{standard deviation}. Statistics were computed over \textBF{2} training runs, each with random parameter initialization.}
         \label{fig:wormTagRocProposedModel}
     \end{figure}
 }

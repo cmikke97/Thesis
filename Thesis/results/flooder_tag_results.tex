@@ -1,14 +1,14 @@
 \newcommand{\flooderTagResultsAucTable}{
     \begin{table}[H]
         \centering
-        \begin{tabular}{|p{2,8cm}||P{2,2cm} P{2,2cm} P{2,2cm} P{2,2cm}|}
+        \begin{tabular}{|p{2,8cm}||P{2,4cm} P{2,4cm} P{2,4cm}|}
             \hline
-            Flooder Tag & ALOHA\newline (M/B only) & ALOHA & Joint\newline Embedding & Proposed\newline Model \\
+            Flooder Tag & ALOHA\newline (M/B only) & ALOHA & Proposed\newline Model \\
             \hline
-            AUC-ROC & - & 0.983$\pm$0.002 & \textBF{0.988$\pm$0.000} & 0.988$\pm$0.001 \\
+            AUC-ROC & - & 0.494$\pm$0.168 & 0.559$\pm$0.218 \\
             \hline
         \end{tabular}
-        \caption[Flooder Tag prediction task AUC-ROC results]{AUC-ROC (Area Under Curve) of the different models for the \textbf{Flooder Tag} prediction task. Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:flooderTag_auc}
+        \caption[Flooder Tag prediction task AUC-ROC results]{AUC-ROC (Area Under Curve) of the different models for the \textbf{Flooder Tag} prediction task. Results were aggregated over \textBF{2} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:flooderTag_auc}
     \end{table}
 }
 
@@ -31,51 +31,44 @@
             \caption*{\raggedleft ...continued on next page} \\
             \endfoot
 
-            \caption[Flooder Tag prediction task results]{Mean and standard deviation results (TPR, Accuracy, Recall, Precision and F1-Score) of the different models for the \textbf{Flooder Tag} prediction task at different \textbf{FPR}s (\textit{False Positive Rates}). Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}. Under \textbf{TPR} results are also presented the percentage reduction in mean detection error and in ROC curve standard deviation introduced by the \textit{Proposed Model} with respect to both \textit{ALOHA} model and \textit{Joint Embedding}.} \label{tab:flooderTag_results_at_fpr} \\
+            \caption[Flooder Tag prediction task results]{Mean and standard deviation results (TPR, Accuracy, Recall, Precision and F1-Score) of the different models for the \textbf{Flooder Tag} prediction task at different \textbf{FPR}s (\textit{False Positive Rates}). Results were aggregated over \textBF{2} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}. Under \textbf{TPR} results are also presented the percentage reduction in mean detection error and in ROC curve standard deviation introduced by the \textit{Proposed Model} with respect to both \textit{ALOHA} model and \textit{Joint Embedding}.} \label{tab:flooderTag_results_at_fpr} \\
             \endlastfoot
 
             \multicolumn{6}{|c|}{\textbf{TPR}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.741$\pm$0.102 & 0.784$\pm$0.054 & 0.835$\pm$0.009 & 0.876$\pm$0.016 & 0.951$\pm$0.009 \\
-            Joint Embedding & 0.819$\pm$0.018 & 0.835$\pm$0.013 & 0.835$\pm$0.013 & \textBF{0.916$\pm$0.003} & \textBF{0.964$\pm$0.002} \\
-            Proposed Model & \textBF{0.831$\pm$0.011} & \textBF{0.838$\pm$0.004} & \textBF{0.838$\pm$0.004} & 0.906$\pm$0.007 & 0.964$\pm$0.004 \\
+            ALOHA & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & 0.000$\pm$0.000 \\
+            Proposed Model & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & 0.167$\pm$0.167 \\
             \hline
             Error Reduction wrt\newline ALOHA (M/B only) & - & - & - & - & - \\
-            Error Reduction wrt\newline ALOHA & 34.7\% & 25.0\% & 1.8\% & 24.2\% & 26.5\% \\
-            Error Reduction wrt\newline Joint Embedding & 6.6\% & 1.8\% & 1.8\% & -11.9\% & 0.0\% \\
+            Error Reduction wrt\newline ALOHA & 0.0\% & 0.0\% & 0.0\% & 0.0\% & 16.7\% \\
             \hline
             Std Reduction wrt\newline ALOHA (M/B only) & - & - & - & - & - \\
-            Std Reduction wrt\newline ALOHA & 89.2\% & 92.6\% & 55.6\% & 56.3\% & 55.6\% \\
-            Std Reduction wrt\newline Joint Embedding & 38.9\% & 69.2\% & 69.2\% & -133.3\% & -100.0\% \\
+            Std Reduction wrt\newline ALOHA & 0.0\% & 0.0\% & 0.0\% & 0.0\% & 0.0\% \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Accuracy}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & \textBF{1.000$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.999$\pm$0.000} & \textBF{0.990$\pm$0.000} & \textBF{0.900$\pm$0.000} \\
-            Joint Embedding & \textBF{1.000$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.999$\pm$0.000} & \textBF{0.990$\pm$0.000} & \textBF{0.900$\pm$0.000} \\
-            Proposed Model & \textBF{1.000$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.999$\pm$0.000} & \textBF{0.990$\pm$0.000} & \textBF{0.900$\pm$0.000} \\
+            ALOHA & \textBF{0.999$\pm$0.000} & \textBF{0.999$\pm$0.000} & \textBF{0.998$\pm$0.000} & 0.997$\pm$0.001 & 0.893$\pm$0.009 \\
+            Proposed Model & \textBF{0.999$\pm$0.000} & \textBF{0.999$\pm$0.000} & \textBF{0.998$\pm$0.000} & \textBF{0.997$\pm$0.000} & 0.903$\pm$0.001 \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Recall}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.741$\pm$0.102 & 0.784$\pm$0.054 & 0.835$\pm$0.009 & 0.876$\pm$0.016 & 0.951$\pm$0.009 \\
-            Joint Embedding & 0.819$\pm$0.018 & 0.835$\pm$0.013 & 0.835$\pm$0.013 & \textBF{0.916$\pm$0.003} & \textBF{0.964$\pm$0.002} \\
-            Proposed Model & \textBF{0.831$\pm$0.011} & \textBF{0.838$\pm$0.004} & \textBF{0.838$\pm$0.004} & 0.906$\pm$0.007 & 0.964$\pm$0.004 \\
+            ALOHA & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & 0.000$\pm$0.000 \\
+            Proposed Model & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & 0.167$\pm$0.167 \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Precision}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.992$\pm$0.001 & 0.934$\pm$0.004 & \textBF{0.604$\pm$0.004} & 0.137$\pm$0.002 & \textBF{0.017$\pm$0.000} \\
-            Joint Embedding & \textBF{0.996$\pm$0.003} & \textBF{0.943$\pm$0.006} & 0.601$\pm$0.003 & \textBF{0.142$\pm$0.000} & \textBF{0.017$\pm$0.000} \\
-            Proposed Model & 0.994$\pm$0.001 & 0.935$\pm$0.004 & 0.603$\pm$0.001 & 0.141$\pm$0.001 & \textBF{0.017$\pm$0.000} \\
+            ALOHA & \textBF{1.000$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & 0.000$\pm$0.000 \\
+            Proposed Model & \textBF{1.000$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & 0.002$\pm$0.002 \\
             \hline
             \multicolumn{6}{|c|}{\textbf{F1 Score}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.844$\pm$0.070 & 0.851$\pm$0.034 & 0.701$\pm$0.006 & 0.237$\pm$0.004 & 0.033$\pm$0.000 \\
-            Joint Embedding & 0.898$\pm$0.011 & \textBF{0.886$\pm$0.009} & 0.699$\pm$0.007 & \textBF{0.246$\pm$0.001} & \textBF{0.034$\pm$0.000} \\
-            Proposed Model & \textBF{0.905$\pm$0.007} & 0.884$\pm$0.002 & \textBF{0.701$\pm$0.003} & 0.244$\pm$0.002 & \textBF{0.034$\pm$0.000} \\
+            ALOHA & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & 0.000$\pm$0.000 \\
+            Proposed Model & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & 0.004$\pm$0.004 \\
             \hline
         \end{longtable}
     \end{center}
@@ -91,12 +84,11 @@
             Model & TPR & Accuracy & Precision & Recall & F1 score \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.876$\pm$0.016 & \textBF{0.990$\pm$0.000} & 0.137$\pm$0.002 & 0.876$\pm$0.016 & 0.237$\pm$0.004 \\
-            Joint Embedding & \textBF{0.916$\pm$0.003} & \textBF{0.990$\pm$0.000} & \textBF{0.142$\pm$0.000} & \textBF{0.916$\pm$0.003} & \textBF{0.246$\pm$0.001} \\
-            Proposed Model & 0.906$\pm$0.007 & \textBF{0.990$\pm$0.000} & 0.141$\pm$0.001 & 0.906$\pm$0.007 & 0.244$\pm$0.002 \\
+            ALOHA & \textBF{0.000$\pm$0.000} & 0.997$\pm$0.001 & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
+            Proposed Model & \textBF{0.000$\pm$0.000} & \textBF{0.997$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
             \hline
         \end{tabular}
-        \caption[Summary of Flooder Tag prediction task results]{Summary of the mean and standard deviation results of the different models for the \textbf{Flooder Tag} prediction task at \textbf{FPR} $=1\%$. Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:flooderTag_result_summary}
+        \caption[Summary of Flooder Tag prediction task results]{Summary of the mean and standard deviation results of the different models for the \textbf{Flooder Tag} prediction task at \textbf{FPR} $=1\%$. Results were aggregated over \textBF{2} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:flooderTag_result_summary}
     \end{table}
 }
 
@@ -106,7 +98,7 @@
         \centering
         \includegraphics[width=0.6\textwidth]{./results/flooder_tag_roc_alohaMB.png}
         \vspace*{-0.2cm}
-        \caption[Flooder Tag prediction task ALOHA (M/B only) ROC curve]{ROC curve and AUC statistics of \textBF{ALOHA (M/B only)} model for the \textbf{Flooder Tag}. The line represents the \textit{mean} TPR at a given FPR, while the shaded region represents the \textit{standard deviation}. Statistics were computed over \textBF{3} training runs, each with random parameter initialization.}
+        \caption[Flooder Tag prediction task ALOHA (M/B only) ROC curve]{ROC curve and AUC statistics of \textBF{ALOHA (M/B only)} model for the \textbf{Flooder Tag}. The line represents the \textit{mean} TPR at a given FPR, while the shaded region represents the \textit{standard deviation}. Statistics were computed over \textBF{2} training runs, each with random parameter initialization.}
         \label{fig:flooderTagRocAlohaMB}
     \end{figure}
 }
@@ -117,19 +109,8 @@
         \centering
         \includegraphics[width=0.6\textwidth]{./results/flooder_tag_roc_aloha.png}
         \vspace*{-0.2cm}
-        \caption[Flooder Tag prediction task ALOHA ROC curve]{ROC curve and AUC statistics of \textBF{ALOHA} model for the \textbf{Flooder Tag}. The line represents the \textit{mean} TPR at a given FPR, while the shaded region represents the \textit{standard deviation}. Statistics were computed over \textBF{3} training runs, each with random parameter initialization.}
+        \caption[Flooder Tag prediction task ALOHA ROC curve]{ROC curve and AUC statistics of \textBF{ALOHA} model for the \textbf{Flooder Tag}. The line represents the \textit{mean} TPR at a given FPR, while the shaded region represents the \textit{standard deviation}. Statistics were computed over \textBF{2} training runs, each with random parameter initialization.}
         \label{fig:flooderTagRocAloha}
-    \end{figure}
-}
-
-\newcommand{\flooderTagRocJointEmbedding}{
-    \begin{figure}[H]
-        \vspace*{-0.5cm}
-        \centering
-        \includegraphics[width=0.6\textwidth]{./results/flooder_tag_roc_jointEmbedding.png}
-        \vspace*{-0.2cm}
-        \caption[Flooder Tag prediction task Joint Embedding ROC curve]{ROC curve and AUC statistics of \textBF{Joint Embedding} model for the \textbf{Flooder Tag}. The line represents the \textit{mean} TPR at a given FPR, while the shaded region represents the \textit{standard deviation}. Statistics were computed over \textBF{3} training runs, each with random parameter initialization.}
-        \label{fig:flooderTagRocJointEmbedding}
     \end{figure}
 }
 
@@ -139,7 +120,7 @@
         \centering
         \includegraphics[width=0.6\textwidth]{./results/flooder_tag_roc_proposedModel.png}
         \vspace*{-0.2cm}
-        \caption[Flooder Tag prediction task Proposed Model ROC curve]{ROC curve and AUC statistics of \textBF{Proposed Model} for the \textbf{Flooder Tag}. The line represents the \textit{mean} TPR at a given FPR, while the shaded region represents the \textit{standard deviation}. Statistics were computed over \textBF{3} training runs, each with random parameter initialization.}
+        \caption[Flooder Tag prediction task Proposed Model ROC curve]{ROC curve and AUC statistics of \textBF{Proposed Model} for the \textbf{Flooder Tag}. The line represents the \textit{mean} TPR at a given FPR, while the shaded region represents the \textit{standard deviation}. Statistics were computed over \textBF{2} training runs, each with random parameter initialization.}
         \label{fig:flooderTagRocProposedModel}
     \end{figure}
 }

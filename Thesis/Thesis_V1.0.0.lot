@@ -13,13 +13,13 @@
 \contentsline {table}{\numberline {7.2}{\ignorespaces Malware Label prediction task results}}{121}{table.7.2}%
 \contentsline {table}{\numberline {7.3}{\ignorespaces Summary of Malware Label prediction task results}}{123}{table.caption.139}%
 \contentsline {table}{\numberline {7.4}{\ignorespaces Tags prediction task AUC-ROC results}}{124}{table.7.4}%
-\contentsline {table}{\numberline {7.5}{\ignorespaces Tags prediction task results}}{126}{table.7.5}%
-\contentsline {table}{\numberline {7.6}{\ignorespaces Tags prediction task mean per-sample scores}}{128}{table.caption.143}%
+\contentsline {table}{\numberline {7.5}{\ignorespaces Tags prediction task results}}{125}{table.7.5}%
+\contentsline {table}{\numberline {7.6}{\ignorespaces Tags prediction task mean per-sample scores}}{127}{table.caption.143}%
 \contentsline {table}{\numberline {7.7}{\ignorespaces Family ranking MRR and MAP scores}}{128}{table.caption.144}%
-\contentsline {table}{\numberline {7.8}{\ignorespaces Family prediction task AUC-ROC results}}{129}{table.7.8}%
-\contentsline {table}{\numberline {7.9}{\ignorespaces Family prediction task results}}{130}{table.7.9}%
-\contentsline {table}{\numberline {7.10}{\ignorespaces Family ranking max AP example}}{132}{table.caption.147}%
-\contentsline {table}{\numberline {7.11}{\ignorespaces Family ranking max RR example}}{132}{table.caption.148}%
-\contentsline {table}{\numberline {7.12}{\ignorespaces Family ranking min AP example}}{133}{table.caption.149}%
-\contentsline {table}{\numberline {7.13}{\ignorespaces Family ranking min RR example}}{133}{table.caption.150}%
+\contentsline {table}{\numberline {7.8}{\ignorespaces Family ranking max AP example}}{131}{table.caption.149}%
+\contentsline {table}{\numberline {7.9}{\ignorespaces Family ranking max RR example}}{132}{table.caption.150}%
+\contentsline {table}{\numberline {7.10}{\ignorespaces Family ranking min AP example}}{133}{table.caption.151}%
+\contentsline {table}{\numberline {7.11}{\ignorespaces Family ranking min RR example}}{134}{table.caption.152}%
+\contentsline {table}{\numberline {7.12}{\ignorespaces Family Classifier Accuracy Results}}{135}{table.caption.153}%
+\contentsline {table}{\numberline {7.13}{\ignorespaces Family Classifier Scores}}{135}{table.caption.154}%
 \addvspace {10\p@ }

@@ -1,150 +1,484 @@
-\newcommand{\freshResultsAucTable}{
-    \begin{center}
-        \begin{longtable}[c]{|P{2,8cm}||P{2,2cm} P{2,2cm} P{2,2cm} P{2,2cm}|}
-            \hline
-            AUC-ROC & ALOHA\newline (M/B only) & ALOHA & Joint\newline Embedding & Proposed\newline Model \\
-            \hline
-            \endfirsthead
-
-            \caption*{\raggedright ...continued from previous page} \\
-            \hline
-            AUC-ROC & ALOHA\newline (M/B only) & ALOHA & Joint\newline Embedding & Proposed\newline Model \\
-            \hline
-            \endhead
-
-            \caption*{\raggedleft ...continued on next page} \\
-            \endfoot
-
-            \caption[Family prediction task AUC-ROC results]{Mean and standard deviation AUC-ROC (Area Under Curve) of the different models for the the prediction of the different families on fresh dataset samples. Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:families_aucs}
-            \endlastfoot
-
-            Agenttesla & - & - & 0.616$\pm$0.091 & \textBF{0.629$\pm$0.052} \\
-            Avemariarat & - & - & 0.495$\pm$0.046 & \textBF{0.510$\pm$0.029} \\
-            Azorult & - & - & 0.588$\pm$0.016 & \textBF{0.588$\pm$0.009} \\
-            Formbook & - & - & \textBF{0.533$\pm$0.026} & 0.513$\pm$0.035 \\
-            Heodo & - & - & \textBF{0.798$\pm$0.016} & 0.778$\pm$0.025 \\
-            Loki & - & - & \textBF{0.577$\pm$0.016} & 0.568$\pm$0.015 \\
-            Masslogger & - & - & 0.513$\pm$0.040 & \textBF{0.550$\pm$0.029} \\
-            Netwire & - & - & \textBF{0.503$\pm$0.008} & 0.486$\pm$0.024 \\
-            Njrat & - & - & \textBF{0.722$\pm$0.030} & 0.651$\pm$0.023 \\
-            Remcorsat & - & - & \textBF{0.545$\pm$0.077} & 0.531$\pm$0.055 \\
-            \hline
-        \end{longtable}
-    \end{center}
-}
-
-\newcommand{\freshResultsSummaryTable}{
-    \begin{center}
-        \begin{longtable}[c]{|P{3,2cm}||P{1,8cm} P{1,8cm} P{1,8cm} P{1,8cm} P{1,8cm}|}
-            \hline
-            & TPR & Accuracy & Precision & Recall & F1 score \\
-            \hline
-            \endfirsthead
-
-            \caption*{\raggedright ...continued from previous page} \\
-            \hline
-            & TPR & Accuracy & Precision & Recall & F1 score \\
-            \hline
-            \endhead
-
-            \caption*{\raggedleft ...continued on next page} \\
-            \endfoot
-
-            \caption[Family prediction task results]{Summary of the mean and standard deviation results of the different models for the prediction of the different families on fresh dataset samples at \textbf{FPR} $=1\%$. Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:fresh_results_summary}
-            \endlastfoot
-
-            \multicolumn{6}{|c|}{\textbf{Agenttesla} (at FPR $=1\%$)} \\
-            \hline
-            ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & - & - & - & - & - \\
-            Joint Embedding & 0.014$\pm$0.003 & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
-            Proposed Model & \textBF{0.015$\pm$0.003} & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
-            \hline
-            \multicolumn{6}{|c|}{\textbf{Avemariarat} (at FPR $=1\%$)} \\
-            \hline
-            ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & - & - & - & - & - \\
-            Joint Embedding & 0.010$\pm$0.002 & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
-            Proposed Model & \textBF{0.010$\pm$0.001} & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
-            \hline
-            \multicolumn{6}{|c|}{\textbf{Azorult} (at FPR $=1\%$)} \\
-            \hline
-            ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & - & - & - & - & - \\
-            Joint Embedding & \textBF{0.013$\pm$0.001} & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
-            Proposed Model & \textBF{0.013$\pm$0.001} & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
-            \hline
-            \multicolumn{6}{|c|}{\textbf{Formbook} (at FPR $=1\%$)} \\
-            \hline
-            ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & - & - & - & - & - \\
-            Joint Embedding & \textBF{0.011$\pm$0.001} & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
-            Proposed Model & 0.010$\pm$0.001 & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
-            \hline
-            \multicolumn{6}{|c|}{\textbf{Heodo} (at FPR $=1\%$)} \\
-            \hline
-            ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & - & - & - & - & - \\
-            Joint Embedding & \textBF{0.033$\pm$0.009} & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
-            Proposed Model & 0.026$\pm$0.005 & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
-            \hline
-            \multicolumn{6}{|c|}{\textbf{Loki} (at FPR $=1\%$)} \\
-            \hline
-            ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & - & - & - & - & - \\
-            Joint Embedding & 0.012$\pm$0.001 & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
-            Proposed Model & \textBF{0.012$\pm$0.000} & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
-            \hline
-            \multicolumn{6}{|c|}{\textbf{Masslogger} (at FPR $=1\%$)} \\
-            \hline
-            ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & - & - & - & - & - \\
-            Joint Embedding & 0.011$\pm$0.001 & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
-            Proposed Model & \textBF{0.012$\pm$0.001} & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
-            \hline
-            \multicolumn{6}{|c|}{\textbf{Netwire} (at FPR $=1\%$)} \\
-            \hline
-            ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & - & - & - & - & - \\
-            Joint Embedding & \textBF{0.010$\pm$0.000} & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
-            Proposed Model & 0.009$\pm$0.001 & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
-            \hline
-            \multicolumn{6}{|c|}{\textbf{Njrat} (at FPR $=1\%$)} \\
-            \hline
-            ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & - & - & - & - & - \\
-            Joint Embedding & \textBF{0.022$\pm$0.004} & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
-            Proposed Model & 0.017$\pm$0.002 & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
-            \hline
-            \multicolumn{6}{|c|}{\textbf{Remcorsat} (at FPR $=1\%$)} \\
-            \hline
-            ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & - & - & - & - & - \\
-            Joint Embedding & \textBF{0.013$\pm$0.005} & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
-            Proposed Model & 0.011$\pm$0.002 & \textBF{0.900$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
-            \hline
-        \end{longtable}
-    \end{center}
-}
-
-\newcommand{\allMeanFreshRocJointEmbedding}{
+\newcommand{\alohaAccuracyTrend}{
     \begin{figure}[H]
         \vspace*{-0.5cm}
         \centering
-        \includegraphics[width=0.6\textwidth]{./results/all_mean_fresh_roc_jointEmbedding.png}
+        \includegraphics[width=0.65\textwidth]{./results/accuracy_trend_aloha.png}
         \vspace*{-0.2cm}
-        \caption[Family prediction task Joint Embedding ROC curve]{Mean ROC curve and AUC statistics of \textBF{Joint Embedding} model for the prediction of all families on fresh dataset samples. The line represents the \textit{mean} TPR at a given FPR. Statistics were computed over \textBF{3} training runs, each with random parameter initialization.}
-        \label{fig:allMeanFreshRocJointEmbedding}
+        \caption[ALOHA Family Prediction Accuracy Trend]{\textBF{Accuracy Trend} (varying the number of anchor samples used) resulting from the evaluation of the \textBF{ALOHA} implementation on the Malware Family Prediction task. The line represents the \textit{mean} Accuracy, while the shaded region represents the \textit{standard deviation}. Statistics were computed over 15 evaluation of the same model with different query and anchor samples.}
+        \label{fig:alohaAccuracyTrend}
     \end{figure}
 }
 
-\newcommand{\allMeanFreshRocProposedModel}{
+\newcommand{\alohaMBAccuracyTrend}{
     \begin{figure}[H]
         \vspace*{-0.5cm}
         \centering
-        \includegraphics[width=0.6\textwidth]{./results/all_mean_fresh_roc_proposedModel.png}
+        \includegraphics[width=0.65\textwidth]{./results/accuracy_trend_alohaMB.png}
         \vspace*{-0.2cm}
-        \caption[Family prediction task Proposed Model ROC curve]{Mean ROC curve and AUC statistics of \textBF{Proposed Model} for the prediction of all families on fresh dataset samples. The line represents the \textit{mean} TPR at a given FPR. Statistics were computed over \textBF{3} training runs, each with random parameter initialization.}
-        \label{fig:allMeanFreshRocProposedModel}
+        \caption[ALOHA (M/B only) Family Prediction Accuracy Trend]{\textBF{Accuracy Trend} (varying the number of anchor samples used) resulting from the evaluation of the \textBF{ALOHA (M/B only)} implementation on the Malware Family Prediction task. The line represents the \textit{mean} Accuracy, while the shaded region represents the \textit{standard deviation}. Statistics were computed over 15 evaluation of the same model with different query and anchor samples.}
+        \label{fig:alohaMBAccuracyTrend}
     \end{figure}
 }
+
+\newcommand{\jointEmbeddingAccuracyTrend}{
+    \begin{figure}[H]
+        \vspace*{-0.5cm}
+        \centering
+        \includegraphics[width=0.65\textwidth]{./results/accuracy_trend_jointEmbedding.png}
+        \vspace*{-0.2cm}
+        \caption[Joint Embedding Family Prediction Accuracy Trend]{\textBF{Accuracy Trend} (varying the number of anchor samples used) resulting from the evaluation of the \textBF{Joint Embedding} implementation on the Malware Family Prediction task. The line represents the \textit{mean} Accuracy, while the shaded region represents the \textit{standard deviation}. Statistics were computed over 15 evaluation of the same model with different query and anchor samples.}
+        \label{fig:jointEmbeddingAccuracyTrend}
+    \end{figure}
+}
+
+\newcommand{\proposedModelAccuracyTrend}{
+    \begin{figure}[H]
+        \vspace*{-0.5cm}
+        \centering
+        \includegraphics[width=0.65\textwidth]{./results/accuracy_trend_proposedModel.png}
+        \vspace*{-0.2cm}
+        \caption[Proposed Model Family Prediction Accuracy Trend]{\textBF{Accuracy Trend} (varying the number of anchor samples used) resulting from the evaluation of the \textBF{Proposed Model} implementation on the Malware Family Prediction task. The line represents the \textit{mean} Accuracy, while the shaded region represents the \textit{standard deviation}. Statistics were computed over 15 evaluation of the same model with different query and anchor samples.}
+        \label{fig:proposedModelAccuracyTrend}
+    \end{figure}
+}
+
+\newcommand{\alohaAucRocMacroTrend}{
+    \begin{figure}[H]
+        \vspace*{-0.5cm}
+        \centering
+        \includegraphics[width=0.65\textwidth]{./results/auc_roc_macro_trend_aloha.png}
+        \vspace*{-0.2cm}
+        \caption[ALOHA Family Prediction AUC-ROC Macro Trend]{\textBF{AUC-ROC Macro Trend} (varying the number of anchor samples used) resulting from the evaluation of the \textBF{ALOHA} implementation on the Malware Family Prediction task. The line represents the \textit{mean} Macro AUC-ROC, while the shaded region represents the \textit{standard deviation}. Statistics were computed over 15 evaluation of the same model with different query and anchor samples.}
+        \label{fig:alohaAucRocMacroTrend}
+    \end{figure}
+}
+
+\newcommand{\alohaMBAucRocMacroTrend}{
+    \begin{figure}[H]
+        \vspace*{-0.5cm}
+        \centering
+        \includegraphics[width=0.65\textwidth]{./results/auc_roc_macro_trend_alohaMB.png}
+        \vspace*{-0.2cm}
+        \caption[ALOHA (M/B only) Family Prediction AUC-ROC Macro Trend]{\textBF{AUC-ROC Macro Trend} (varying the number of anchor samples used) resulting from the evaluation of the \textBF{ALOHA (M/B only)} implementation on the Malware Family Prediction task. The line represents the \textit{mean} Macro AUC-ROC, while the shaded region represents the \textit{standard deviation}. Statistics were computed over 15 evaluation of the same model with different query and anchor samples.}
+        \label{fig:alohaMBAucRocMacroTrend}
+    \end{figure}
+}
+
+\newcommand{\jointEmbeddingAucRocMacroTrend}{
+    \begin{figure}[H]
+        \vspace*{-0.5cm}
+        \centering
+        \includegraphics[width=0.65\textwidth]{./results/auc_roc_macro_trend_jointEmbedding.png}
+        \vspace*{-0.2cm}
+        \caption[Joint Embedding Family Prediction AUC-ROC Macro Trend]{\textBF{AUC-ROC Macro Trend} (varying the number of anchor samples used) resulting from the evaluation of the \textBF{Joint Embedding} implementation on the Malware Family Prediction task. The line represents the \textit{mean} Macro AUC-ROC, while the shaded region represents the \textit{standard deviation}. Statistics were computed over 15 evaluation of the same model with different query and anchor samples.}
+        \label{fig:jointEmbeddingAucRocMacroTrend}
+    \end{figure}
+}
+
+\newcommand{\proposedModelAucRocMacroTrend}{
+    \begin{figure}[H]
+        \vspace*{-0.5cm}
+        \centering
+        \includegraphics[width=0.65\textwidth]{./results/auc_roc_macro_trend_proposedModel.png}
+        \vspace*{-0.2cm}
+        \caption[Proposed Model Family Prediction AUC-ROC Macro Trend]{\textBF{AUC-ROC Macro Trend} (varying the number of anchor samples used) resulting from the evaluation of the \textBF{Proposed Model} implementation on the Malware Family Prediction task. The line represents the \textit{mean} Macro AUC-ROC, while the shaded region represents the \textit{standard deviation}. Statistics were computed over 15 evaluation of the same model with different query and anchor samples.}
+        \label{fig:proposedModelAucRocMacroTrend}
+    \end{figure}
+}
+
+\newcommand{\alohaAucRocMicroTrend}{
+    \begin{figure}[H]
+        \vspace*{-0.5cm}
+        \centering
+        \includegraphics[width=0.65\textwidth]{./results/auc_roc_micro_trend_aloha.png}
+        \vspace*{-0.2cm}
+        \caption[ALOHA Family Prediction AUC-ROC Micro Trend]{\textBF{AUC-ROC Micro Trend} (varying the number of anchor samples used) resulting from the evaluation of the \textBF{ALOHA} implementation on the Malware Family Prediction task. The line represents the \textit{mean} Micro AUC-ROC, while the shaded region represents the \textit{standard deviation}. Statistics were computed over 15 evaluation of the same model with different query and anchor samples.}
+        \label{fig:alohaAucRocMicroTrend}
+    \end{figure}
+}
+
+\newcommand{\alohaMBAucRocMicroTrend}{
+    \begin{figure}[H]
+        \vspace*{-0.5cm}
+        \centering
+        \includegraphics[width=0.65\textwidth]{./results/auc_roc_micro_trend_alohaMB.png}
+        \vspace*{-0.2cm}
+        \caption[ALOHA (M/B only) Family Prediction AUC-ROC Micro Trend]{\textBF{AUC-ROC Micro Trend} (varying the number of anchor samples used) resulting from the evaluation of the \textBF{ALOHA (M/B only)} implementation on the Malware Family Prediction task. The line represents the \textit{mean} Micro AUC-ROC, while the shaded region represents the \textit{standard deviation}. Statistics were computed over 15 evaluation of the same model with different query and anchor samples.}
+        \label{fig:alohaMBAucRocMicroTrend}
+    \end{figure}
+}
+
+\newcommand{\jointEmbeddingAucRocMicroTrend}{
+    \begin{figure}[H]
+        \vspace*{-0.5cm}
+        \centering
+        \includegraphics[width=0.65\textwidth]{./results/auc_roc_micro_trend_jointEmbedding.png}
+        \vspace*{-0.2cm}
+        \caption[Joint Embedding Family Prediction AUC-ROC Micro Trend]{\textBF{AUC-ROC Micro Trend} (varying the number of anchor samples used) resulting from the evaluation of the \textBF{Joint Embedding} implementation on the Malware Family Prediction task. The line represents the \textit{mean} Micro AUC-ROC, while the shaded region represents the \textit{standard deviation}. Statistics were computed over 15 evaluation of the same model with different query and anchor samples.}
+        \label{fig:jointEmbeddingAucRocMicroTrend}
+    \end{figure}
+}
+
+\newcommand{\proposedModelAucRocMicroTrend}{
+    \begin{figure}[H]
+        \vspace*{-0.5cm}
+        \centering
+        \includegraphics[width=0.65\textwidth]{./results/auc_roc_micro_trend_proposedModel.png}
+        \vspace*{-0.2cm}
+        \caption[Proposed Model Family Prediction AUC-ROC Micro Trend]{\textBF{AUC-ROC Micro Trend} (varying the number of anchor samples used) resulting from the evaluation of the \textBF{Proposed Model} implementation on the Malware Family Prediction task. The line represents the \textit{mean} Micro AUC-ROC, while the shaded region represents the \textit{standard deviation}. Statistics were computed over 15 evaluation of the same model with different query and anchor samples.}
+        \label{fig:proposedModelAucRocMicroTrend}
+    \end{figure}
+}
+
+\newcommand{\alohaFScoreMacroTrend}{
+    \begin{figure}[H]
+        \vspace*{-0.5cm}
+        \centering
+        \includegraphics[width=0.65\textwidth]{./results/f1_score_macro_trend_aloha.png}
+        \vspace*{-0.2cm}
+        \caption[ALOHA Family Prediction F1-score Macro Trend]{\textBF{F1-score Macro Trend} (varying the number of anchor samples used) resulting from the evaluation of the \textBF{ALOHA} implementation on the Malware Family Prediction task. The line represents the \textit{mean} Macro F1-score, while the shaded region represents the \textit{standard deviation}. Statistics were computed over 15 evaluation of the same model with different query and anchor samples.}
+        \label{fig:alohaF1ScoreMacroTrend}
+    \end{figure}
+}
+
+\newcommand{\alohaMBFScoreMacroTrend}{
+    \begin{figure}[H]
+        \vspace*{-0.5cm}
+        \centering
+        \includegraphics[width=0.65\textwidth]{./results/f1_score_macro_trend_alohaMB.png}
+        \vspace*{-0.2cm}
+        \caption[ALOHA (M/B only) Family Prediction F1-score Macro Trend]{\textBF{F1-score Macro Trend} (varying the number of anchor samples used) resulting from the evaluation of the \textBF{ALOHA (M/B only)} implementation on the Malware Family Prediction task. The line represents the \textit{mean} Macro F1-score, while the shaded region represents the \textit{standard deviation}. Statistics were computed over 15 evaluation of the same model with different query and anchor samples.}
+        \label{fig:alohaMBF1ScoreMacroTrend}
+    \end{figure}
+}
+
+\newcommand{\jointEmbeddingFScoreMacroTrend}{
+    \begin{figure}[H]
+        \vspace*{-0.5cm}
+        \centering
+        \includegraphics[width=0.65\textwidth]{./results/f1_score_macro_trend_jointEmbedding.png}
+        \vspace*{-0.2cm}
+        \caption[Joint Embedding Family Prediction F1-score Macro Trend]{\textBF{F1-score Macro Trend} (varying the number of anchor samples used) resulting from the evaluation of the \textBF{Joint Embedding} implementation on the Malware Family Prediction task. The line represents the \textit{mean} Macro F1-score, while the shaded region represents the \textit{standard deviation}. Statistics were computed over 15 evaluation of the same model with different query and anchor samples.}
+        \label{fig:jointEmbeddingF1ScoreMacroTrend}
+    \end{figure}
+}
+
+\newcommand{\proposedModelFScoreMacroTrend}{
+    \begin{figure}[H]
+        \vspace*{-0.5cm}
+        \centering
+        \includegraphics[width=0.65\textwidth]{./results/f1_score_macro_trend_proposedModel.png}
+        \vspace*{-0.2cm}
+        \caption[Proposed Model Family Prediction F1-score Macro Trend]{\textBF{F1-score Macro Trend} (varying the number of anchor samples used) resulting from the evaluation of the \textBF{Proposed Model} implementation on the Malware Family Prediction task. The line represents the \textit{mean} Macro F1-score, while the shaded region represents the \textit{standard deviation}. Statistics were computed over 15 evaluation of the same model with different query and anchor samples.}
+        \label{fig:proposedModelF1ScoreMacroTrend}
+    \end{figure}
+}
+
+\newcommand{\alohaFScoreMicroTrend}{
+    \begin{figure}[H]
+        \vspace*{-0.5cm}
+        \centering
+        \includegraphics[width=0.65\textwidth]{./results/f1_score_micro_trend_aloha.png}
+        \vspace*{-0.2cm}
+        \caption[ALOHA Family Prediction F1-score Micro Trend]{\textBF{F1-score Micro Trend} (varying the number of anchor samples used) resulting from the evaluation of the \textBF{ALOHA} implementation on the Malware Family Prediction task. The line represents the \textit{mean} Micro F1-score, while the shaded region represents the \textit{standard deviation}. Statistics were computed over 15 evaluation of the same model with different query and anchor samples.}
+        \label{fig:alohaF1ScoreMicroTrend}
+    \end{figure}
+}
+
+\newcommand{\alohaMBFScoreMicroTrend}{
+    \begin{figure}[H]
+        \vspace*{-0.5cm}
+        \centering
+        \includegraphics[width=0.65\textwidth]{./results/f1_score_micro_trend_alohaMB.png}
+        \vspace*{-0.2cm}
+        \caption[ALOHA (M/B only) Family Prediction F1-score Micro Trend]{\textBF{F1-score Micro Trend} (varying the number of anchor samples used) resulting from the evaluation of the \textBF{ALOHA (M/B only)} implementation on the Malware Family Prediction task. The line represents the \textit{mean} Micro F1-score, while the shaded region represents the \textit{standard deviation}. Statistics were computed over 15 evaluation of the same model with different query and anchor samples.}
+        \label{fig:alohaMBF1ScoreMicroTrend}
+    \end{figure}
+}
+
+\newcommand{\jointEmbeddingFScoreMicroTrend}{
+    \begin{figure}[H]
+        \vspace*{-0.5cm}
+        \centering
+        \includegraphics[width=0.65\textwidth]{./results/f1_score_micro_trend_jointEmbedding.png}
+        \vspace*{-0.2cm}
+        \caption[Joint Embedding Family Prediction F1-score Micro Trend]{\textBF{F1-score Micro Trend} (varying the number of anchor samples used) resulting from the evaluation of the \textBF{Joint Embedding} implementation on the Malware Family Prediction task. The line represents the \textit{mean} Micro F1-score, while the shaded region represents the \textit{standard deviation}. Statistics were computed over 15 evaluation of the same model with different query and anchor samples.}
+        \label{fig:jointEmbeddingF1ScoreMicroTrend}
+    \end{figure}
+}
+
+\newcommand{\proposedModelFScoreMicroTrend}{
+    \begin{figure}[H]
+        \vspace*{-0.5cm}
+        \centering
+        \includegraphics[width=0.65\textwidth]{./results/f1_score_micro_trend_proposedModel.png}
+        \vspace*{-0.2cm}
+        \caption[Proposed Model Family Prediction F1-score Micro Trend]{\textBF{F1-score Micro Trend} (varying the number of anchor samples used) resulting from the evaluation of the \textBF{Proposed Model} implementation on the Malware Family Prediction task. The line represents the \textit{mean} Micro F1-score, while the shaded region represents the \textit{standard deviation}. Statistics were computed over 15 evaluation of the same model with different query and anchor samples.}
+        \label{fig:proposedModelF1ScoreMicroTrend}
+    \end{figure}
+}
+
+\newcommand{\alohaPrecisionMacroTrend}{
+    \begin{figure}[H]
+        \vspace*{-0.5cm}
+        \centering
+        \includegraphics[width=0.65\textwidth]{./results/precision_macro_trend_aloha.png}
+        \vspace*{-0.2cm}
+        \caption[ALOHA Family Prediction Precision Macro Trend]{\textBF{Precision Macro Trend} (varying the number of anchor samples used) resulting from the evaluation of the \textBF{ALOHA} implementation on the Malware Family Prediction task. The line represents the \textit{mean} Macro Precision, while the shaded region represents the \textit{standard deviation}. Statistics were computed over 15 evaluation of the same model with different query and anchor samples.}
+        \label{fig:alohaPrecisionMacroTrend}
+    \end{figure}
+}
+
+\newcommand{\alohaMBPrecisionMacroTrend}{
+    \begin{figure}[H]
+        \vspace*{-0.5cm}
+        \centering
+        \includegraphics[width=0.65\textwidth]{./results/precision_macro_trend_alohaMB.png}
+        \vspace*{-0.2cm}
+        \caption[ALOHA (M/B only) Family Prediction Precision Macro Trend]{\textBF{Precision Macro Trend} (varying the number of anchor samples used) resulting from the evaluation of the \textBF{ALOHA (M/B only)} implementation on the Malware Family Prediction task. The line represents the \textit{mean} Macro Precision, while the shaded region represents the \textit{standard deviation}. Statistics were computed over 15 evaluation of the same model with different query and anchor samples.}
+        \label{fig:alohaMBPrecisionMacroTrend}
+    \end{figure}
+}
+
+\newcommand{\jointEmbeddingPrecisionMacroTrend}{
+    \begin{figure}[H]
+        \vspace*{-0.5cm}
+        \centering
+        \includegraphics[width=0.65\textwidth]{./results/precision_macro_trend_jointEmbedding.png}
+        \vspace*{-0.2cm}
+        \caption[Joint Embedding Family Prediction Precision Macro Trend]{\textBF{Precision Macro Trend} (varying the number of anchor samples used) resulting from the evaluation of the \textBF{Joint Embedding} implementation on the Malware Family Prediction task. The line represents the \textit{mean} Macro Precision, while the shaded region represents the \textit{standard deviation}. Statistics were computed over 15 evaluation of the same model with different query and anchor samples.}
+        \label{fig:jointEmbeddingPrecisionMacroTrend}
+    \end{figure}
+}
+
+\newcommand{\proposedModelPrecisionMacroTrend}{
+    \begin{figure}[H]
+        \vspace*{-0.5cm}
+        \centering
+        \includegraphics[width=0.65\textwidth]{./results/precision_macro_trend_proposedModel.png}
+        \vspace*{-0.2cm}
+        \caption[Proposed Model Family Prediction Precision Macro Trend]{\textBF{Precision Macro Trend} (varying the number of anchor samples used) resulting from the evaluation of the \textBF{Proposed Model} implementation on the Malware Family Prediction task. The line represents the \textit{mean} Macro Precision, while the shaded region represents the \textit{standard deviation}. Statistics were computed over 15 evaluation of the same model with different query and anchor samples.}
+        \label{fig:proposedModelPrecisionMacroTrend}
+    \end{figure}
+}
+
+\newcommand{\alohaPrecisionMicroTrend}{
+    \begin{figure}[H]
+        \vspace*{-0.5cm}
+        \centering
+        \includegraphics[width=0.65\textwidth]{./results/precision_micro_trend_aloha.png}
+        \vspace*{-0.2cm}
+        \caption[ALOHA Family Prediction Precision Micro Trend]{\textBF{Precision Micro Trend} (varying the number of anchor samples used) resulting from the evaluation of the \textBF{ALOHA} implementation on the Malware Family Prediction task. The line represents the \textit{mean} Micro Precision, while the shaded region represents the \textit{standard deviation}. Statistics were computed over 15 evaluation of the same model with different query and anchor samples.}
+        \label{fig:alohaPrecisionMicroTrend}
+    \end{figure}
+}
+
+\newcommand{\alohaMBPrecisionMicroTrend}{
+    \begin{figure}[H]
+        \vspace*{-0.5cm}
+        \centering
+        \includegraphics[width=0.65\textwidth]{./results/precision_micro_trend_alohaMB.png}
+        \vspace*{-0.2cm}
+        \caption[ALOHA (M/B only) Family Prediction Precision Micro Trend]{\textBF{Precision Micro Trend} (varying the number of anchor samples used) resulting from the evaluation of the \textBF{ALOHA (M/B only)} implementation on the Malware Family Prediction task. The line represents the \textit{mean} Micro Precision, while the shaded region represents the \textit{standard deviation}. Statistics were computed over 15 evaluation of the same model with different query and anchor samples.}
+        \label{fig:alohaMBPrecisionMicroTrend}
+    \end{figure}
+}
+
+\newcommand{\jointEmbeddingPrecisionMicroTrend}{
+    \begin{figure}[H]
+        \vspace*{-0.5cm}
+        \centering
+        \includegraphics[width=0.65\textwidth]{./results/precision_micro_trend_jointEmbedding.png}
+        \vspace*{-0.2cm}
+        \caption[Joint Embedding Family Prediction Precision Micro Trend]{\textBF{Precision Micro Trend} (varying the number of anchor samples used) resulting from the evaluation of the \textBF{Joint Embedding} implementation on the Malware Family Prediction task. The line represents the \textit{mean} Micro Precision, while the shaded region represents the \textit{standard deviation}. Statistics were computed over 15 evaluation of the same model with different query and anchor samples.}
+        \label{fig:jointEmbeddingPrecisionMicroTrend}
+    \end{figure}
+}
+
+\newcommand{\proposedModelPrecisionMicroTrend}{
+    \begin{figure}[H]
+        \vspace*{-0.5cm}
+        \centering
+        \includegraphics[width=0.65\textwidth]{./results/precision_micro_trend_proposedModel.png}
+        \vspace*{-0.2cm}
+        \caption[Proposed Model Family Prediction Precision Micro Trend]{\textBF{Precision Micro Trend} (varying the number of anchor samples used) resulting from the evaluation of the \textBF{Proposed Model} implementation on the Malware Family Prediction task. The line represents the \textit{mean} Micro Precision, while the shaded region represents the \textit{standard deviation}. Statistics were computed over 15 evaluation of the same model with different query and anchor samples.}
+        \label{fig:proposedModelPrecisionMicroTrend}
+    \end{figure}
+}
+
+\newcommand{\alohaRecallScoreMacroTrend}{
+    \begin{figure}[H]
+        \vspace*{-0.5cm}
+        \centering
+        \includegraphics[width=0.65\textwidth]{./results/recall_score_macro_trend_aloha.png}
+        \vspace*{-0.2cm}
+        \caption[ALOHA Family Prediction Recall Macro Trend]{\textBF{Recall Macro Trend} (varying the number of anchor samples used) resulting from the evaluation of the \textBF{ALOHA} implementation on the Malware Family Prediction task. The line represents the \textit{mean} Macro Recall, while the shaded region represents the \textit{standard deviation}. Statistics were computed over 15 evaluation of the same model with different query and anchor samples.}
+        \label{fig:alohaRecallScoreMacroTrend}
+    \end{figure}
+}
+
+\newcommand{\alohaMBRecallScoreMacroTrend}{
+    \begin{figure}[H]
+        \vspace*{-0.5cm}
+        \centering
+        \includegraphics[width=0.65\textwidth]{./results/recall_score_macro_trend_alohaMB.png}
+        \vspace*{-0.2cm}
+        \caption[ALOHA (M/B only) Family Prediction Recall Macro Trend]{\textBF{Recall Macro Trend} (varying the number of anchor samples used) resulting from the evaluation of the \textBF{ALOHA (M/B only)} implementation on the Malware Family Prediction task. The line represents the \textit{mean} Macro Recall, while the shaded region represents the \textit{standard deviation}. Statistics were computed over 15 evaluation of the same model with different query and anchor samples.}
+        \label{fig:alohaMBRecallScoreMacroTrend}
+    \end{figure}
+}
+
+\newcommand{\jointEmbeddingRecallScoreMacroTrend}{
+    \begin{figure}[H]
+        \vspace*{-0.5cm}
+        \centering
+        \includegraphics[width=0.65\textwidth]{./results/recall_score_macro_trend_jointEmbedding.png}
+        \vspace*{-0.2cm}
+        \caption[Joint Embedding Family Prediction Recall Macro Trend]{\textBF{Recall Macro Trend} (varying the number of anchor samples used) resulting from the evaluation of the \textBF{Joint Embedding} implementation on the Malware Family Prediction task. The line represents the \textit{mean} Macro Recall, while the shaded region represents the \textit{standard deviation}. Statistics were computed over 15 evaluation of the same model with different query and anchor samples.}
+        \label{fig:jointEmbeddingRecallScoreMacroTrend}
+    \end{figure}
+}
+
+\newcommand{\proposedModelRecallScoreMacroTrend}{
+    \begin{figure}[H]
+        \vspace*{-0.5cm}
+        \centering
+        \includegraphics[width=0.65\textwidth]{./results/recall_score_macro_trend_proposedModel.png}
+        \vspace*{-0.2cm}
+        \caption[Proposed Model Family Prediction Recall Macro Trend]{\textBF{Recall Macro Trend} (varying the number of anchor samples used) resulting from the evaluation of the \textBF{Proposed Model} implementation on the Malware Family Prediction task. The line represents the \textit{mean} Macro Recall, while the shaded region represents the \textit{standard deviation}. Statistics were computed over 15 evaluation of the same model with different query and anchor samples.}
+        \label{fig:proposedModelRecallScoreMacroTrend}
+    \end{figure}
+}
+
+\newcommand{\alohaRecallScoreMicroTrend}{
+    \begin{figure}[H]
+        \vspace*{-0.5cm}
+        \centering
+        \includegraphics[width=0.65\textwidth]{./results/recall_score_micro_trend_aloha.png}
+        \vspace*{-0.2cm}
+        \caption[ALOHA Family Prediction Recall Micro Trend]{\textBF{Recall Micro Trend} (varying the number of anchor samples used) resulting from the evaluation of the \textBF{ALOHA} implementation on the Malware Family Prediction task. The line represents the \textit{mean} Micro Recall, while the shaded region represents the \textit{standard deviation}. Statistics were computed over 15 evaluation of the same model with different query and anchor samples.}
+        \label{fig:alohaRecallScoreMicroTrend}
+    \end{figure}
+}
+
+\newcommand{\alohaMBRecallScoreMicroTrend}{
+    \begin{figure}[H]
+        \vspace*{-0.5cm}
+        \centering
+        \includegraphics[width=0.65\textwidth]{./results/recall_score_micro_trend_alohaMB.png}
+        \vspace*{-0.2cm}
+        \caption[ALOHA (M/B only) Family Prediction Recall Micro Trend]{\textBF{Recall Micro Trend} (varying the number of anchor samples used) resulting from the evaluation of the \textBF{ALOHA (M/B only)} implementation on the Malware Family Prediction task. The line represents the \textit{mean} Micro Recall, while the shaded region represents the \textit{standard deviation}. Statistics were computed over 15 evaluation of the same model with different query and anchor samples.}
+        \label{fig:alohaMBRecallScoreMicroTrend}
+    \end{figure}
+}
+
+\newcommand{\jointEmbeddingRecallScoreMicroTrend}{
+    \begin{figure}[H]
+        \vspace*{-0.5cm}
+        \centering
+        \includegraphics[width=0.65\textwidth]{./results/recall_score_micro_trend_jointEmbedding.png}
+        \vspace*{-0.2cm}
+        \caption[Joint Embedding Family Prediction Recall Micro Trend]{\textBF{Recall Micro Trend} (varying the number of anchor samples used) resulting from the evaluation of the \textBF{Joint Embedding} implementation on the Malware Family Prediction task. The line represents the \textit{mean} Micro Recall, while the shaded region represents the \textit{standard deviation}. Statistics were computed over 15 evaluation of the same model with different query and anchor samples.}
+        \label{fig:jointEmbeddingRecallScoreMicroTrend}
+    \end{figure}
+}
+
+\newcommand{\proposedModelRecallScoreMicroTrend}{
+    \begin{figure}[H]
+        \vspace*{-0.5cm}
+        \centering
+        \includegraphics[width=0.65\textwidth]{./results/recall_score_micro_trend_proposedModel.png}
+        \vspace*{-0.2cm}
+        \caption[Proposed Model Family Prediction Recall Micro Trend]{\textBF{Recall Micro Trend} (varying the number of anchor samples used) resulting from the evaluation of the \textBF{Proposed Model} implementation on the Malware Family Prediction task. The line represents the \textit{mean} Micro Recall, while the shaded region represents the \textit{standard deviation}. Statistics were computed over 15 evaluation of the same model with different query and anchor samples.}
+        \label{fig:proposedModelRecallScoreMicroTrend}
+    \end{figure}
+}
+
+\newcommand{\alohaConfMatrixMaxAcc}{
+    \begin{figure}[H]
+        \vspace*{-0.5cm}
+        \centering
+        \includegraphics[width=0.65\textwidth]{./results/conf_matrix_max_acc_aloha.png}
+        \vspace*{-0.2cm}
+        \caption[ALOHA Family Prediction Max Accuracy Confusion Matrix]{\textBF{Confusion Matrix} corresponding to the best prediction when using the number $k$ of anchors which produced the overall best accuracy, resulting from the evaluation of the \textBF{ALOHA} implementation on the Malware Family Prediction task.}
+        \label{fig:alohaConfMatrixMaxAcc}
+    \end{figure}
+}
+
+\newcommand{\alohaMBConfMatrixMaxAcc}{
+    \begin{figure}[H]
+        \vspace*{-0.5cm}
+        \centering
+        \includegraphics[width=0.65\textwidth]{./results/conf_matrix_max_acc_alohaMB.png}
+        \vspace*{-0.2cm}
+        \caption[ALOHA (M/B only) Family Prediction Max Accuracy Confusion Matrix]{\textBF{Confusion Matrix} corresponding to the best prediction when using the number $k$ of anchors which produced the overall best accuracy, resulting from the evaluation of the \textBF{ALOHA (M/B only)} implementation on the Malware Family Prediction task.}
+        \label{fig:alohaMBConfMatrixMaxAcc}
+    \end{figure}
+}
+
+\newcommand{\jointEmbeddingConfMatrixMaxAcc}{
+    \begin{figure}[H]
+        \vspace*{-0.5cm}
+        \centering
+        \includegraphics[width=0.65\textwidth]{./results/conf_matrix_max_acc_jointEmbedding.png}
+        \vspace*{-0.2cm}
+        \caption[Joint Embedding Family Prediction Max Accuracy Confusion Matrix]{\textBF{Confusion Matrix} corresponding to the best prediction when using the number $k$ of anchors which produced the overall best accuracy, resulting from the evaluation of the \textBF{Joint Embedding} implementation on the Malware Family Prediction task.}
+        \label{fig:jointEmbeddingConfMatrixMaxAcc}
+    \end{figure}
+}
+
+\newcommand{\proposedModelConfMatrixMaxAcc}{
+    \begin{figure}[H]
+        \vspace*{-0.5cm}
+        \centering
+        \includegraphics[width=0.65\textwidth]{./results/conf_matrix_max_acc_proposedModel.png}
+        \vspace*{-0.2cm}
+        \caption[Proposed Model Family Prediction Max Accuracy Confusion Matrix]{\textBF{Confusion Matrix} corresponding to the best prediction when using the number $k$ of anchors which produced the overall best accuracy, resulting from the evaluation of the \textBF{Proposed Model} implementation on the Malware Family Prediction task.}
+        \label{fig:proposedModelConfMatrixMaxAcc}
+    \end{figure}
+}
+
+\newcommand{\alohaConfMatrixMinAcc}{
+    \begin{figure}[H]
+        \vspace*{-0.5cm}
+        \centering
+        \includegraphics[width=0.65\textwidth]{./results/conf_matrix_min_acc_aloha.png}
+        \vspace*{-0.2cm}
+        \caption[ALOHA Family Prediction Min Accuracy Confusion Matrix]{\textBF{Confusion Matrix} corresponding to the worst prediction when using the number $k$ of anchors which produced the overall best accuracy, resulting from the evaluation of the \textBF{ALOHA} implementation on the Malware Family Prediction task.}
+        \label{fig:alohaConfMatrixMinAcc}
+    \end{figure}
+}
+
+\newcommand{\alohaMBConfMatrixMinAcc}{
+    \begin{figure}[H]
+        \vspace*{-0.5cm}
+        \centering
+        \includegraphics[width=0.65\textwidth]{./results/conf_matrix_min_acc_alohaMB.png}
+        \vspace*{-0.2cm}
+        \caption[ALOHA (M/B only) Family Prediction Min Accuracy Confusion Matrix]{\textBF{Confusion Matrix} corresponding to the worst prediction when using the number $k$ of anchors which produced the overall best accuracy, resulting from the evaluation of the \textBF{ALOHA (M/B only)} implementation on the Malware Family Prediction task.}
+        \label{fig:alohaMBConfMatrixMinAcc}
+    \end{figure}
+}
+
+\newcommand{\jointEmbeddingConfMatrixMinAcc}{
+    \begin{figure}[H]
+        \vspace*{-0.5cm}
+        \centering
+        \includegraphics[width=0.65\textwidth]{./results/conf_matrix_min_acc_jointEmbedding.png}
+        \vspace*{-0.2cm}
+        \caption[Joint Embedding Family Prediction Min Accuracy Confusion Matrix]{\textBF{Confusion Matrix} corresponding to the worst prediction when using the number $k$ of anchors which produced the overall best accuracy, resulting from the evaluation of the \textBF{Joint Embedding} implementation on the Malware Family Prediction task.}
+        \label{fig:jointEmbeddingConfMatrixMinAcc}
+    \end{figure}
+}
+
+\newcommand{\proposedModelConfMatrixMinAcc}{
+    \begin{figure}[H]
+        \vspace*{-0.5cm}
+        \centering
+        \includegraphics[width=0.65\textwidth]{./results/conf_matrix_min_acc_proposedModel.png}
+        \vspace*{-0.2cm}
+        \caption[Proposed Model Family Prediction Min Accuracy Confusion Matrix]{\textBF{Confusion Matrix} corresponding to the worst prediction when using the number $k$ of anchors which produced the overall best accuracy, resulting from the evaluation of the \textBF{Proposed Model} implementation on the Malware Family Prediction task.}
+        \label{fig:proposedModelConfMatrixMinAcc}
+    \end{figure}
+}
+

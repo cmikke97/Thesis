@@ -51,27 +51,29 @@
 \usepackage{longtable}
 \usepackage{xcolor}
 \usepackage{caption}
+\usepackage{multirow}
 \usepackage{array}
 
 \input{commands.tex}
 
 \input{results/malware_label_results.tex}
 \input{results/tag_results.tex}
-\input{results/adware_tag_results.tex}
-\input{results/crypto_miner_tag_results.tex}
-\input{results/downloader_tag_results.tex}
-\input{results/dropper_tag_results.tex}
-\input{results/file_infector_tag_results.tex}
-\input{results/flooder_tag_results.tex}
-\input{results/installer_tag_results.tex}
-\input{results/packed_tag_results.tex}
-\input{results/ransomware_tag_results.tex}
-\input{results/spyware_tag_results.tex}
-\input{results/worm_tag_results.tex}
+%\input{results/adware_tag_results.tex}
+%\input{results/crypto_miner_tag_results.tex}
+%\input{results/downloader_tag_results.tex}
+%\input{results/dropper_tag_results.tex}
+%\input{results/file_infector_tag_results.tex}
+%\input{results/flooder_tag_results.tex}
+%\input{results/installer_tag_results.tex}
+%\input{results/packed_tag_results.tex}
+%\input{results/ransomware_tag_results.tex}
+%\input{results/spyware_tag_results.tex}
+%\input{results/worm_tag_results.tex}
 
 \input{results/mean_per_sample_scores.tex}
 \input{results/family_ranking_results.tex}
 \input{results/fresh_results.tex}
+\input{results/family_classifier_results.tex}
 
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
@@ -2171,7 +2173,7 @@ The first attempts at optimizing the generator were inspired by the '\textit{\te
 		\EndIf
 		\State
 		\If{\textit{self.num\_workers} $= 1$}
-		\State \textit{batch} $\gets$ \textbf{get\_batch}(\textit{self.tensors}, \textit{self.batch\_size}, \textit{self.i}, (\textit{self.indices}))
+		\State \textit{batch} $\gets$ \textbf{GetBatch}(\textit{self.tensors}, \textit{self.batch\_size}, \textit{self.i}, (\textit{self.indices}))
 		\State \textit{self.i} $\gets$ \textit{self.i} + \textit{self.batch\_size}
 		\State \textbf{return} \textit{batch}
 		\Else
@@ -2228,7 +2230,7 @@ The first attempts at optimizing the generator were inspired by the '\textit{\te
 	\end{algorithmic}
 \end{algorithm}
 
-In practice, both versions of the generator share (for the most part) the \textit{Init} and \textit{Next} functions. The main differences are, instead, in the \textit{Iter} and \textit{get\_batch} functions.
+In practice, both versions of the generator share (for the most part) the \textit{Init} and \textit{Next} functions. The main differences are, instead, in the \textit{Iter} and \textit{GetBatch} functions.
 
 The \textit{Init} function (alg. \ref{alg:Alt1_2FastDataLoaderInit}) is used for setting up some \textit{\textbf{FastTensorDataLoader}} class variables and optionally initializing the \textit{\textbf{ThreadPool}} used for \textit{multithreading}.
 
@@ -2236,7 +2238,7 @@ The \textit{Iter} function purpose is to set up the parameters for the current c
 
 In order to get a batch of data, the \textit{Next} function (alg. \ref{alg:Alt1_2FastDataLoaderNext}), which is similar for both generator versions, is used. In particular, this function monitors the number of samples already extracted from the dataset tensors and raises a \textit{StopIteration} exception when it has cycled through all the data. Moreover, this function is also responsible for extracting and returning batches of data from the dataset tensors. This can be done in sequence or in \textit{multithreading}. Specifically, when the number of workers selected is 1 the function sequentially gets one single batch and returns it after having updated the count of already extracted samples for the current epoch. On the other hand, if more than 1 workers are used the function prepares a number of asynchronous batch extraction tasks to be run in parallel by the threads in the thread pool, then it waits for the first result and returns it. The next call to the function will prepare other tasks and wait for the next first result. The exact number of asynchronous tasks prepared at each call is chosen dynamically to keep a fix-sized array of '\textit{num\_workers} ' async task results always full.
 
-Finally, in algorithm \ref{alg:Alt1GetBatch} it is shown the \textit{get\_batch} function used by generator \textit{\textbf{alt1}}: if the sample \textit{indices} are provided they are used with the \textit{index\_select} function to select the data samples for the current batch of data, otherwise a set of consecutive samples is drawn from the dataset. The \textit{get\_batch} function used by generator \textit{\textbf{alt2}} (alg. \ref{alg:Alt2GetBatch}) is simpler: it simply selects a set of consecutive samples from the dataset tensors since those were already shuffled if required.
+Finally, in algorithm \ref{alg:Alt1GetBatch} it is shown the \textit{GetBatch} function used by generator \textit{\textbf{alt1}}: if the sample \textit{indices} are provided they are used with the \textit{index\_select} function to select the data samples for the current batch of data, otherwise a set of consecutive samples is drawn from the dataset. The \textit{GetChunks\_batch} function used by generator \textit{\textbf{alt2}} (alg. \ref{alg:Alt2GetBatch}) is simpler: it simply selects a set of consecutive samples from the dataset tensors since those were already shuffled if required.
 
 Unfortunately, the presented two generator alternatives did not improve the data loading process enough. More specifically, when considering $6M$ samples, generator \textit{\textbf{alt1}} was only slightly faster than the original Pytorch Dataloader, while \textit{\textbf{alt2}} was even significantly slower. Generator \textit{\textbf{alt1}}, in fact, was still fairly similar to the Pytorch Dataloader implementation having used the \textit{index\_select} function instead of the slower \textit{torch.cat}. On the other hand, generator \textit{\textbf{alt2}} worked by shuffling the entire dataset tensors prior to batch extraction. If this solution surely has the potential of being more efficient for small to moderately sized datasets, it can become a bottleneck in case of huge datasets.
 
@@ -2307,7 +2309,7 @@ This optimization uses a new FastTensorDataLoader class which exploits a pool of
 						\State \textit{arguments} $\gets$ (\textit{self.tensors}, \textit{self.chunk\_indices}[\textit{start\_i}:\textit{end\_i}],
 						\State \hskip6.6em \textit{self.chunk\_size}, \textit{self.last\_chunk\_size},
 						\State \hskip6.6em \textit{self.n\_chunks}, \textit{self.shuffle})
-						\State \textit{self.chunk\_agg}, \textit{self.chunk\_agg\_size} $\gets$ \textbf{get\_chunks}(\textit{arguments})
+						\State \textit{self.chunk\_agg}, \textit{self.chunk\_agg\_size} $\gets$ \textbf{GetChunks}(\textit{arguments})
 						\State \textit{self.chunk\_i} $\gets$ \textit{end\_i}
 						\State \textit{self.i} $\gets$ 0
 					\EndIf
@@ -2390,7 +2392,7 @@ More specifically, in the \textit{Init} function (alg. \ref{alg:Alt3FastDataLoad
 
 The \textit{Iter} function (alg. \ref{alg:Alt3FastDataLoaderIter}), instead, is used to reset the current \textit{chunk aggregate} (and its size) and the number of already processed chunks for the current cycle at the beginning of each \textit{epoch}. Moreover, it also randomly or sequentially (linearly) - depending on whether shuffling is required - initializes the \textit{chunk indices}, which define the order in which the data chunks are retrieved.
 
-In algorithm \ref{alg:Alt3FastDataLoaderNext} it is presented the \textit{\textbf{FastTensorDataLoader}} \textit{\textbf{alt3}} \textit{Next} member function, which is used for managing the asynchronous extraction of chunks of consecutive samples from the dataset and for returning a single batch of data at a time. In particular, if the selected number of workers is 1, then, if all the data of the current \textit{chunk aggregate} has been cycled through (or it is the first function call) the function simply extracts a single new \textit{chunk aggregate} (which is a concatenation of multiple chunks selected randomly or linearly depending on the value of the \textit{self.shuffle} variable) through the \textbf{get\_chunks} function. The number of already processed chunks for the current \textit{epoch} and the number of extracted samples from that specific \textit{chunk aggregate} are then updated/reset accordingly. This is however done only if the number of chunks already processed is less than the total amount of chunks, otherwise the \textit{StopIteration} exception is raised. If, on the other hand, the number of workers is greater than 1, the function prepares a number of asynchronous \textit{chunk aggregate} extraction tasks such that the queue (of size equal to the number of workers selected) in which they are inserted is always full, until the number of extracted chunks is less than the total amount. It then updates the number of extracted chunks appropriately. Then, when the current \textit{chunk aggregate} data has been explored completely (or if it is the first function call), if the async task queue is empty, meaning there are no more \textit{chunk aggregates} for the current \textit{epoch}, it raises the \textit{StopIteration} exception; otherwise the function gets the first async task from the queue and waits for its result (which is the extracted \textit{chunk aggregate}). Independently from the number of workers used, the function then proceeds to efficiently get a single batch of data from the current already-in-memory \textit{chunk aggregate} and returns it.
+In algorithm \ref{alg:Alt3FastDataLoaderNext} it is presented the \textit{\textbf{FastTensorDataLoader}} \textit{\textbf{alt3}} \textit{Next} member function, which is used for managing the asynchronous extraction of chunks of consecutive samples from the dataset and for returning a single batch of data at a time. In particular, if the selected number of workers is 1, then, if all the data of the current \textit{chunk aggregate} has been cycled through (or it is the first function call) the function simply extracts a single new \textit{chunk aggregate} (which is a concatenation of multiple chunks selected randomly or linearly depending on the value of the \textit{self.shuffle} variable) through the \textbf{GetChunks} function. The number of already processed chunks for the current \textit{epoch} and the number of extracted samples from that specific \textit{chunk aggregate} are then updated/reset accordingly. This is however done only if the number of chunks already processed is less than the total amount of chunks, otherwise the \textit{StopIteration} exception is raised. If, on the other hand, the number of workers is greater than 1, the function prepares a number of asynchronous \textit{chunk aggregate} extraction tasks such that the queue (of size equal to the number of workers selected) in which they are inserted is always full, until the number of extracted chunks is less than the total amount. It then updates the number of extracted chunks appropriately. Then, when the current \textit{chunk aggregate} data has been explored completely (or if it is the first function call), if the async task queue is empty, meaning there are no more \textit{chunk aggregates} for the current \textit{epoch}, it raises the \textit{StopIteration} exception; otherwise the function gets the first async task from the queue and waits for its result (which is the extracted \textit{chunk aggregate}). Independently from the number of workers used, the function then proceeds to efficiently get a single batch of data from the current already-in-memory \textit{chunk aggregate} and returns it.
 
 The \textbf{GetBatch} function used in generator \textit{\textbf{alt3}} is the same one already exploited in version \textit{\textbf{alt2}} (alg. \ref{alg:Alt2GetBatch}); however, generator \textit{\textbf{alt3}} sees the addition of the \textbf{GetChunks} function (alg. \ref{alg:Alt3GetChunks}) which is used to extract a number of chunks of consecutive data from the dataset and combine them into an \textit{aggregate chunk}. In particular, the function first computes the size of the resulting \textit{chunk aggregate} depending on the number of chunk indices specified and the chunk size (considering as a special case the last chunk of the dataset which may have a smaller size). Then, the \textit{chunk aggregate} itself is initialized as a series of properly sized empty tensors (one for samples features, one for labels and one for sha256 hashes) which are later filled sequentially by the data chunks got from the dataset tensors. Finally, the \textit{chunk aggregate} data gets shuffled in place, if needed, and returned.
 
@@ -2531,7 +2533,7 @@ The dataset class used for opening the fresh dataset - shown in alg. \ref{alg:Fr
 	\State \textit{splits}[\textit{i}] $\gets$ \textit{splits}[\textit{i}] / \textit{splits\_sum}
 	\EndFor
 	\State
-	\State \textit{S}, \textit{X}, \textit{y} $\gets$ \textit{ds}.\textbf{get\_as\_tensors}()
+	\State \textit{S}, \textit{X}, \textit{y} $\gets$ \textit{ds}.\textbf{GetAsTensors}()
 	\State \textit{S\_train}, \textit{S\_valid}, \textit{S\_test}, \textit{X\_train}, \textit{X\_valid}, \textit{X\_test}, \textit{y\_train}, \textit{y\_valid}, \textit{y\_test} $\gets$
 	\State \hskip1.9em \textbf{TrainValidTestSplit}(\textit{S}, \textit{X}, \textit{y}, proportions=\textit{splits},
 	\State \hskip12.5em n\_samples\_tot=\textbf{len}(\textit{ds}),
@@ -2585,9 +2587,9 @@ The dataset class used for opening the fresh dataset - shown in alg. \ref{alg:Fr
 	\end{algorithmic}
 \end{algorithm}
 
-Algorithm \ref{alg:FreshDataloaderDefinition} shows how the fresh dataset generator (Dataloader) gets instantiated. This dataloader instantiation is similar to the one previously presented when loading the Sorel-20m dataset through the Pytorch dataloader with the addition of the possibility to split the dataset into training, validation and test sub-sets. In particular, if the dataset split proportions are provided (in the form of a list containing 3 integer values), the dataset is split into training, validation and test subsets by first opening the entire fresh dataset and then splitting it by using the purposefully created \textbf{train\_valid\_test\_split} function, presented in alg. \ref{alg:TrainValidTestSplit}. On the other hand, if the split proportions are not provided, the entire fresh dataset is opened from file without being split.
+Algorithm \ref{alg:FreshDataloaderDefinition} shows how the fresh dataset generator (Dataloader) gets instantiated. This dataloader instantiation is similar to the one previously presented when loading the Sorel-20m dataset through the Pytorch dataloader with the addition of the possibility to split the dataset into training, validation and test sub-sets. In particular, if the dataset split proportions are provided (in the form of a list containing 3 integer values), the dataset is split into training, validation and test subsets by first opening the entire fresh dataset and then splitting it by using the purposefully created \textbf{TrainValidTestSplit} function, presented in alg. \ref{alg:TrainValidTestSplit}. On the other hand, if the split proportions are not provided, the entire fresh dataset is opened from file without being split.
 
-The \textbf{train\_valid\_test\_split} (alg. \ref{alg:TrainValidTestSplit}) function's purpose is that of splitting the tensors passed as input into 3 subsets, following the given proportions. This is done by first computing the number of samples, per family, to select for each of the sub-splits by multiplying the respective proportion by the Fresh Dataset total number of samples per family. The function then computes the sub-splits indices assigning the first '\textit{n\_samples}['test']' samples (per family) of the original dataset (which are the most recent ones) to the test sub-split, the following '\textit{n\_samples}['valid']' samples (per family) to the validations sub-split and the remaining ones (which are the least recent ones) to the training sub-split. Finally, the input tensors are split by indexing them using the previously computed indices.
+The \textbf{TrainValidTestSplit} (alg. \ref{alg:TrainValidTestSplit}) function's purpose is that of splitting the tensors passed as input into 3 subsets, following the given proportions. This is done by first computing the number of samples, per family, to select for each of the sub-splits by multiplying the respective proportion by the Fresh Dataset total number of samples per family. The function then computes the sub-splits indices assigning the first '\textit{n\_samples}['test']' samples (per family) of the original dataset (which are the most recent ones) to the test sub-split, the following '\textit{n\_samples}['valid']' samples (per family) to the validations sub-split and the remaining ones (which are the least recent ones) to the training sub-split. Finally, the input tensors are split by indexing them using the previously computed indices.
 
 \subsection{Base Model Evaluation with Fresh Dataset}
 \begin{figure}[H]
@@ -2597,13 +2599,13 @@ The \textbf{train\_valid\_test\_split} (alg. \ref{alg:TrainValidTestSplit}) func
 	\label{fig:workflow_base_fresh_dataset}
 \end{figure}
 
-The actual model evaluation on the \textit{\textbf{fresh dataset}} is computed by another function called \textit{\textbf{evaluate\_fresh}}. This function evaluates the model learned representation in both the f-way malware family classification and malware family ranking tasks.
+The actual model evaluation on the \textit{\textbf{fresh dataset}} is computed by another function called \textit{\textbf{EvaluateFresh}}. This function evaluates the model learned representation in both the f-way malware family classification and malware family ranking tasks.
 
 \paragraph{f-way Malware Family Classification task evaluation}\label{par:fWayFamilyClassificationEvaluation}
-The model learned representation first gets evaluated on the task of \textit{f-way} family classification via nearest neighbor search, using the fresh dataset. In particular a function called \textit{evaluate\_fresh\_scores} randomly samples $k$ files per family as anchor samples, and $q$ files per family as query samples. Each of the $(f \times q)$ query samples is then predicted to belong to the same class as its closest anchor sample in feature space (Joint Embedding space in case of the Joint Embedding and Proposed Models). The number $q$ of query samples - per family - considered during the actual evaluation was set to $23$ and the number of anchor samples $k$ was varied from $1$ to $10$ (included). The sampling process (for both anchors and query samples), classification and evaluation was repeated 15 times per value of $k$ to obtain uncertainty estimates for the results. More specifically, the \textit{accuracies} and the values of a number of other binary cross-entropy \textit{macro} (per-class average) and \textit{micro} (global average) statistics such as \textit{precision}, \textit{recall} and \textit{f1-score} were collected for each number of anchors $k$ and the resulting trends were plotted (with uncertainty estimates). Moreover, the function saves to file also the confusion matrixes corresponding to the best and worst classification accuracy results for the number $k$ of anchors which produced the overall best accuracy. FInally, also the per-family, micro (global average) and macro (per-family average) ROC-AUC scores are computed for each number $k$ of anchors and the resulting trends are plotted (with uncertainty).
+The model learned representation first gets evaluated on the task of \textit{f-way} family classification via nearest neighbour search, using the fresh dataset. In particular a function called \textit{EvaluateFreshScores} randomly samples $k$ files per family as anchor samples, and $q$ files per family as query samples. Each of the $(f \times q)$ query samples is then predicted to belong to the same class as its closest anchor sample in feature space (Joint Embedding space in case of the Joint Embedding and Proposed Models). The number $q$ of query samples - per family - considered during the actual evaluation was set to $23$ and the number of anchor samples $k$ was varied from $1$ to $10$ (included). The sampling process (for both anchors and query samples), classification and evaluation was repeated 15 times per value of $k$ to obtain uncertainty estimates for the results. More specifically, the \textit{accuracies} and the values of a number of other binary cross-entropy \textit{macro} (per-class average) and \textit{micro} (global average) statistics such as \textit{precision}, \textit{recall} and \textit{f1-score} were collected for each number of anchors $k$ and the resulting trends were plotted (with uncertainty estimates). Moreover, the function saves to file also the confusion matrixes corresponding to the best and worst classification accuracy results for the number $k$ of anchors which produced the overall best accuracy. Finally, also the per-family, micro (global average) and macro (per-family average) ROC-AUC scores are computed for each number $k$ of anchors and the resulting trends are plotted (with uncertainty).
 
 \paragraph{Malware Family Ranking task evaluation}\label{par:FamilyRankingEvaluation}
-On the other hand, to evaluate the model learned representation on the family ranking task, the function first randomly selects '\textit{\textbf{q}}' query samples among the ones in the $fresh\_dataset$. Then, it computes the similarity (using the model's \textit{get\_similarity} function) between each query sample with the other '$n-1$' samples present in the $fresh\_dataset$ ordering the latter by similarity. At this point, for each query sample there is a ranking of all the other $n-1$ samples sorted from the most to least similar. Using those rankings the function finally calculates the \textbf{MRR} (\textit{Mean Reciprocal Rank}) and \textbf{MAP} (\textit{Mean Average Precision}) scores for the model learned representation.
+On the other hand, to evaluate the model learned representation on the family ranking task, the function first randomly selects '\textit{\textbf{q}}' query samples among the ones in the $fresh\_dataset$. Then, it computes the similarity (using the model's \textit{GetSimilarity} function) between each query sample with the other '$n-1$' samples present in the $fresh\_dataset$ ordering the latter by similarity. At this point, for each query sample there is a ranking of all the other $n-1$ samples sorted from the most to least similar. Using those rankings the function finally calculates the \textbf{MRR} (\textit{Mean Reciprocal Rank}) and \textbf{MAP} (\textit{Mean Average Precision}) scores for the model learned representation.
 
 The Mean Reciprocal Rank (\textbf{MRR}, \ref{eq:MRR}) is the average of the Reciprocal Ranks (\textbf{RR}, \ref{eq:RR}) of a series of queries. In particular, the Reciprocal Rank (\textbf{RR}) of a query response is the multiplicative inverse of the rank (position in the ranking) of the single sample belonging to the family of interest which classified with the highest rank (it is the closest).
 \begin{equation}\label{eq:RR}
@@ -2626,7 +2628,7 @@ The \textbf{MAP} score (\ref{eq:MAP}), on the other hand, takes into account all
 \end{equation}
 where \textit{\textbf{P}}(\textit{\textbf{k}}) denotes the \textit{precision} at position k in the ranking, \textit{\textbf{AvgP}}(\textit{\textbf{k}}) indicates the \textit{average precision} at position k in the ranking, \textit{\textbf{n}} is the number of samples in the \textit{\textbf{fresh\_dataset}}, \textit{\textbf{rel}}(\textit{\textbf{k}}) is an indicator function which equals 1 if the sample item at rank \textit{\textbf{k}} is a relevant sample for the current query, zero otherwise, and finally \textit{\textbf{q}} is the number of queries. Moreover, a sample is considered relevant if its family is the same as the current query sample one.
 
-The \textit{\textbf{evaluate\_fresh}} function provides, together with the \textbf{MRR} and \textbf{MAP} scores, the complete rankings for the $q$ query samples in a single \textit{json} file. Moreover, for convenience, 4 particular rankings are also saved as \textit{csv} files. These 4 rankings are those that produced:
+The \textit{\textbf{EvaluateFresh}} function provides, together with the \textbf{MRR} and \textbf{MAP} scores, the complete rankings for the $q$ query samples in a single \textit{json} file. Moreover, for convenience, 4 particular rankings are also saved as \textit{csv} files. These 4 rankings are those that produced:
 \begin{itemize}
 	\item the maximum \textbf{RR} (Reciprocal Rank);
 	
@@ -2934,7 +2936,7 @@ The predicted tag probabilities outputted by the \textit{Prediction Layer} are t
 			\Function{Forward}{\textit{self}, \textit{data}}
 			\State ...
 			\State \textit{distances} $\gets$ \textbf{torch.cdist}(\textit{pe\_embedding}, \textit{tags\_embedding}, p=2.0)
-			\State \textit{similarity\_scores} $\gets$ \textbf{distance\_to\_similarity}(\textit{distances}, a=\textit{sim\_function\_a}, 
+			\State \textit{similarity\_scores} $\gets$ \textbf{DistanceToSimilarity}(\textit{distances}, a=\textit{sim\_function\_a}, 
 			\State \hskip20.1em function=\textit{sim\_function})
 			\State \textit{rv}['similarity'] $\gets$ \textit{similarity\_scores}
 			\State \textit{rv}['probability'] $\gets$ \textit{similarity\_scores}
@@ -3049,9 +3051,9 @@ Alg. \ref{alg:jointEmbeddingNetForward} (\textbf{\textit{Joint Embedding} model 
 
 In alg. \ref{alg:jointEmbeddingNetForwardCosine} (\textbf{\textit{Joint Embedding} model forward function with \textit{cosine similarity}}) is presented an alternative to the aforementioned \textbf{Model forward function} that uses the \textbf{\textit{Cosine similarity}} instead of the \textbf{\textit{dot product}} to compute the similarity scores. For the most part this version is equal to the previous one but for how the similarity scores are computed. In fact, in this case they correspond to the \textbf{\textit{Cosine similarities}} between the \textbf{\textit{pe\_embedding}} and the \textbf{\textit{tags\_embedding}}, which are values in the range $[-1, 1]$, mapped to values in the $[0, 1]$ interval. Moreover, in this case, since the similarity scores are already in the $[0, 1]$ range, the tag probabilities coincide with the similarity scores.
 
-A further alternative to the \textbf{Model forward function} which uses one of the \textit{Inverted Pairwise Euclidean Distances} proposed in sec. \ref{sec:jointEmbeddingModelImplementation} instead of the \textit{dot product}, is presented in alg. \ref{alg:jointEmbeddingNetForwardPairwiseDistance} (\textbf{\textit{Joint Embedding} model forward function with \textit{Inverted Pairwise Euclidean Distance}}). Again, this alternative is pretty much equal to the original forward function (alg. \ref{alg:jointEmbeddingNetForward}). In this case, however, the similarity scores are produced by inverting, through the use of the specially crafted \textbf{distance\_to\_similarity} function presented in alg. \ref{alg:distanceToSimilarityFunction} (which simply applies the selected distance inversion formula among the ones mentioned in sec. \ref{sec:jointEmbeddingModelImplementation}), the euclidean distances between the samples' and the tags' embeddings in the joint latent space.
+A further alternative to the \textbf{Model forward function} which uses one of the \textit{Inverted Pairwise Euclidean Distances} proposed in sec. \ref{sec:jointEmbeddingModelImplementation} instead of the \textit{dot product}, is presented in alg. \ref{alg:jointEmbeddingNetForwardPairwiseDistance} (\textbf{\textit{Joint Embedding} model forward function with \textit{Inverted Pairwise Euclidean Distance}}). Again, this alternative is pretty much equal to the original forward function (alg. \ref{alg:jointEmbeddingNetForward}). In this case, however, the similarity scores are produced by inverting, through the use of the specially crafted \textbf{DistanceToSimilarity} function presented in alg. \ref{alg:distanceToSimilarityFunction} (which simply applies the selected distance inversion formula among the ones mentioned in sec. \ref{sec:jointEmbeddingModelImplementation}), the euclidean distances between the samples' and the tags' embeddings in the joint latent space.
 
-Alg. \ref{alg:jointEmbeddingNetGetEmbedding} (\textbf{\textit{JointEmbedding} model get embedding function}) presents the \textit{get\_embedding} function which is used to extract the PE embedding representation corresponding to the input file feature vector. This is particularly useful when performing different kinds of model performance evaluations together with the \textbf{get\_similarity function}, which instead returns the similarity between two different input embeddings. Of course, depending on the similarity function selected at model definition the \textit{get\_similarity} function has to be different. In particular, if the \textbf{dot product} is selected the function, shown in algorithm \ref{alg:jointEmbeddingNetGetSimilarity} (\textbf{\textit{JointEmbedding} model get similarity function with Dot Product}), simply computes the similarity scores as the dot product between the two input embeddings and then defines the probabilities by further applying the sigmoid activation function on those scores. On the other hand, if the \textbf{cosine similarity} is selected, the function (\ref{alg:jointEmbeddingNetGetSimilarityCosine} - \textbf{\textit{JointEmbedding} model get similarity function with Cosine Similarity}) assigns to both similarity scores and resulting probabilities the normalized (to the $[0,1]$ range) cosine similarity between the two embeddings. Finally, in case the \textbf{Inverted Pairwise Euclidean Distance} is selected, the function (\ref{alg:jointEmbeddingNetGetSimilarityPairwiseDistance} - \textbf{\textit{JointEmbedding} model get similarity function with Inverted Pairwise Euclidean Distance}) first computes the euclidean distance between the two input embeddings and then assigns to both similarity scores and resulting probabilities the inversion of such distances through the use of the \textit{distance\_to\_similarity} function.
+Alg. \ref{alg:jointEmbeddingNetGetEmbedding} (\textbf{\textit{JointEmbedding} model get embedding function}) presents the \textit{GetEmbedding} function which is used to extract the PE embedding representation corresponding to the input file feature vector. This is particularly useful when performing different kinds of model performance evaluations together with the \textbf{GetSimilarity function}, which instead returns the similarity between two different input embeddings. Of course, depending on the similarity function selected at model definition the \textit{GetSimilarity} function has to be different. In particular, if the \textbf{dot product} is selected the function, shown in algorithm \ref{alg:jointEmbeddingNetGetSimilarity} (\textbf{\textit{JointEmbedding} model get similarity function with Dot Product}), simply computes the similarity scores as the dot product between the two input embeddings and then defines the probabilities by further applying the sigmoid activation function on those scores. On the other hand, if the \textbf{cosine similarity} is selected, the function (\ref{alg:jointEmbeddingNetGetSimilarityCosine} - \textbf{\textit{JointEmbedding} model get similarity function with Cosine Similarity}) assigns to both similarity scores and resulting probabilities the normalized (to the $[0,1]$ range) cosine similarity between the two embeddings. Finally, in case the \textbf{Inverted Pairwise Euclidean Distance} is selected, the function (\ref{alg:jointEmbeddingNetGetSimilarityPairwiseDistance} - \textbf{\textit{JointEmbedding} model get similarity function with Inverted Pairwise Euclidean Distance}) first computes the euclidean distance between the two input embeddings and then assigns to both similarity scores and resulting probabilities the inversion of such distances through the use of the \textit{DistanceToSimilarity} function.
 
 Finally, in algorithm \ref{alg:jointEmbeddingNetComputeLoss} it is described how the loss, which guides the training procedure, is computed. In particular, it corresponds to the \textbf{binary cross entropy loss} between the predicted tag probabilities and the actual tag labels, as depicted by the formulas mentioned in paragraph \ref{par:tagPredictionImplementation}.
 
@@ -3326,7 +3328,7 @@ Finally the individual head losses are aggregated together by computing their we
 		\Function{Forward}{\textit{self}, \textit{data}}
 		\State ...
 		\State \textit{distances} $\gets$ \textbf{torch.cdist}(\textit{pe\_embedding}, \textit{tags\_embedding}, p=2.0)
-		\State \textit{similarity\_scores} $\gets$ \textbf{distance\_to\_similarity}(\textit{distances}, a=\textit{sim\_function\_a},
+		\State \textit{similarity\_scores} $\gets$ \textbf{DistanceToSimilarity}(\textit{distances}, a=\textit{sim\_function\_a},
 		\State \hskip20em function=\textit{sim\_function})
 		\State \textit{rv}['similarity'] $\gets$ \textit{similarity\_scores}
 		\State \textit{rv}['probability'] $\gets$ \textit{similarity\_scores}
@@ -3393,9 +3395,9 @@ As presented by algorithm \ref{alg:proposedModelNetInit} (\textbf{\textit{Propos
 
 The input data (PE files' numerical feature vectors) is forwarded through the model as shown in alg. \ref{alg:proposedModelNetForwardDotProduct} (\textbf{\textit{Proposed Model} forward function (with \textit{dot product})}). In particular, it first passes through the model base topology (\textit{model\_base}) to produce an intermediate representation \textit{base\_out} which is then forwarded to the various parallel output heads. The \textit{malware label prediction head} and the \textit{vendor count prediction head}, if enabled, produce the corresponding predictions given as input the transient latent representation \textit{base\_out}. On the other hand, for the \textit{tags prediction} topology, the intermediate representation \textit{base\_out} is fed into the \textit{pe\_embedding} sub-net producing the latent representation of the input data samples in the joint embedding space (PE embedding). The tag similarity scores are then computed by applying the dot product (via a simple matrix multiplication) between the PE embedding and the tags embedding matrix (\textit{tags\_embedding}). Finally, the tags probability predictions are produced by applying the \textit{sigmoid} activation function on the previously computed similarity scores.
 
-If, however, the user chooses to try a different similarity function other than the \textbf{\textit{dot product}}, two alternatives are available: the \textbf{\textit{cosine similarity}} or the \textbf{\textit{inverted pairwise euclidean distance}}. In particular both the \textbf{\textit{Proposed Model} forward function (with \textit{cosine similarity})}, shown in alg. \ref{alg:proposedModelNetForwardCosine}, and the \textbf{\textit{Proposed Model} forward function (with \textit{inverted pairwise Euclidean distance})}, shown in alg. \ref{alg:proposedModelNetForwardPairwiseDistance}, are for the most part identical to the original forward function but for the computation of the similarity scores. The \textit{cosine similarity} version of this function, in fact, computes the similarity scores as the cosine similarities between the PE files' and tags' embeddings, which are values in the range $[-1,1]$, normalized to the $[0,1]$ interval. On the other hand, the \textit{inverted pairwise Euclidean distance} version computes those scores as the euclidean distances between the two embeddings, inverted through the \textbf{\textit{distance\_to\_similarity}} function already mentioned in sec. \ref{sec:jointEmbeddingNetDefinitionCode}. Again, similarly to what was done in the \textit{Joint Embedding} model implementation, in both cases the final tag probabilities coincide with the computed similarity scores.
+If, however, the user chooses to try a different similarity function other than the \textbf{\textit{dot product}}, two alternatives are available: the \textbf{\textit{cosine similarity}} or the \textbf{\textit{inverted pairwise euclidean distance}}. In particular both the \textbf{\textit{Proposed Model} forward function (with \textit{cosine similarity})}, shown in alg. \ref{alg:proposedModelNetForwardCosine}, and the \textbf{\textit{Proposed Model} forward function (with \textit{inverted pairwise Euclidean distance})}, shown in alg. \ref{alg:proposedModelNetForwardPairwiseDistance}, are for the most part identical to the original forward function but for the computation of the similarity scores. The \textit{cosine similarity} version of this function, in fact, computes the similarity scores as the cosine similarities between the PE files' and tags' embeddings, which are values in the range $[-1,1]$, normalized to the $[0,1]$ interval. On the other hand, the \textit{inverted pairwise Euclidean distance} version computes those scores as the euclidean distances between the two embeddings, inverted through the \textbf{\textit{DistanceToSimilarity}} function already mentioned in sec. \ref{sec:jointEmbeddingNetDefinitionCode}. Again, similarly to what was done in the \textit{Joint Embedding} model implementation, in both cases the final tag probabilities coincide with the computed similarity scores.
 
-The \textbf{\textit{Proposed Model}} implementation uses exactly the same \textbf{\textit{get\_embedding}} and \textbf{\textit{get\_similarity}} functions as the ones used in the \textbf{\textit{Joint Embedding}} model implementation, shown in alg. \ref{alg:jointEmbeddingNetGetEmbedding}. Again, these functions are particularly useful when performing evaluations on the learned embedding.
+The \textbf{\textit{Proposed Model}} implementation uses exactly the same \textbf{\textit{GetEmbedding}} and \textbf{\textit{GetSimilarity}} functions as the ones used in the \textbf{\textit{Joint Embedding}} model implementation, shown in alg. \ref{alg:jointEmbeddingNetGetEmbedding}. Again, these functions are particularly useful when performing evaluations on the learned embedding.
 
 Finally, algorithm \ref{alg:proposedModelNetComputeLoss} (\textbf{\textit{Proposed Model} compute loss function}) describes how the \textbf{\textit{Proposed Model}} loss computation is implemented in \textit{Python}/\textit{Pytorch} code. In particular the final total loss corresponds to the weighted sum of the losses from each enabled output head. The weights used in this computation can be defined by the user at network definition. Both the \textit{Malicious/Benign} label prediction loss and the \textit{Vendor Count} prediction loss computations were taken from the \textbf{\textit{ALOHA}} model implementation. Therefore the first is implemented as the \textbf{binary cross entropy loss} between the predicted malware label and the respective ground truth label, the latter instead corresponds to the \textbf{Negative Log Likelihood with Poisson distribution} between the predicted count and the ground truth value. On the other hand, the \textit{Tags} prediction loss computation is taken from the \textbf{\textit{Joint Embedding}} model implementation and is therefore the per-sample mean of all tag losses, each of which is computed as the \textbf{binary cross entropy} loss between the predicted tag probability and the ground truth tag.
 
@@ -3447,7 +3449,7 @@ As previously mentioned in section \ref{sec:alohaAndJointEmbeddingTrainAndEvalua
 	\end{algorithmic}
 \end{algorithm}
 
-As previously mentioned, both the \textbf{\textit{Proposed Model}} and the \textbf{\textit{Joint Embedding}} model implementations are also evaluated on the \textit{f-way} malware family classification and family ranking tasks. In particular the function presented in algorithm \ref{alg:evaluateFreshFunction} (\textbf{Evaluate fresh function}) is used to produce both the metnioned evaluation results. More specifically, it calls the following two functions in succession: \textbf{\textit{evaluate\_fresh\_scores}} and \textbf{\textit{evaluate\_fresh\_rankings}}.
+As previously mentioned, both the \textbf{\textit{Proposed Model}} and the \textbf{\textit{Joint Embedding}} model implementations are also evaluated on the \textit{f-way} malware family classification and family ranking tasks. In particular the function presented in algorithm \ref{alg:evaluateFreshFunction} (\textbf{Evaluate fresh function}) is used to produce both the metnioned evaluation results. More specifically, it calls the following two functions in succession: \textbf{\textit{EvaluateFreshScores}} and \textbf{\textit{EvaluateFreshScores}}.
 
 \subsubsection{Model Evaluation on f-way Malware Family Classification/Family Ranking tasks}
 \begin{figure}[H]
@@ -3480,9 +3482,9 @@ As previously mentioned, both the \textbf{\textit{Proposed Model}} and the \text
 				\State \textit{predictions}[\textit{n\_anchors}] $\gets$ [ ]
 				\State
 				\ForAll{\textit{j} $\in$ \textbf{range}(\textit{n\_evaluations})}
-					\State \textit{anchors} $\gets$ \textbf{get\_samples}(\textit{model}, \textit{generator}, \textit{n\_families}, \textit{n\_anchors})
-					\State \textit{queries} $\gets$ \textbf{get\_samples}(\textit{model}, \textit{generator}, \textit{n\_families}, \textit{n\_queries}, other=\textit{anchors})
-					\State \textit{similarity\_scores} $\gets$\textit{model}.\textbf{get\_similarity}(\textit{queries}['embeddings'], 
+					\State \textit{anchors} $\gets$ \textbf{GetSamples}(\textit{model}, \textit{generator}, \textit{n\_families}, \textit{n\_anchors})
+					\State \textit{queries} $\gets$ \textbf{GetSamples}(\textit{model}, \textit{generator}, \textit{n\_families}, \textit{n\_queries}, other=\textit{anchors})
+					\State \textit{similarity\_scores} $\gets$\textit{model}.\textbf{GetSimilarity}(\textit{queries}['embeddings'], 
 					\State \hskip18.4em \textit{anchors}['embeddings'])['similarity']
 					\State \textit{predictions}[\textit{n\_anchors}].\textbf{append}(\{
 					\State \hskip1.9em 'families': [\textbf{label\_to\_sig}(\textit{lab}) $\forall$ \textit{lab} $\in$ \textbf{range}(\textit{n\_families})],
@@ -3521,12 +3523,12 @@ As previously mentioned, both the \textbf{\textit{Proposed Model}} and the \text
 			\State \textit{global\_ranks\_to\_save} $\gets$ None
 			\State
 			\ForAll{\textit{j} $\in$ \textbf{range}(\textit{n\_evaluations})}
-				\State \textit{queries} $\gets$ \textbf{get\_samples}(\textit{model}, \textit{generator}, \textit{n\_families}, \textit{n\_query\_samples})
+				\State \textit{queries} $\gets$ \textbf{GetSamples}(\textit{model}, \textit{generator}, \textit{n\_families}, \textit{n\_query\_samples})
 				\State \textit{rank\_per\_query} $\gets$ [ ]
 				\State
 				\ForAll{\textit{shas}, \textit{features}, \textit{labels} $\in$ \textit{generator}}
-					\State \textit{embeddings} $\gets$ \textit{model}.\textbf{get\_embedding}(\textit{features})\'embedding']
-					\State \textit{similarity\_scores} $\gets$ \textit{model}.\textbf{get\_similarity}(\textit{queries}['embeddings'], 
+					\State \textit{embeddings} $\gets$ \textit{model}.\textbf{GetEmbedding}(\textit{features})\'embedding']
+					\State \textit{similarity\_scores} $\gets$ \textit{model}.\textbf{GetSimilarity}(\textit{queries}['embeddings'], 
 					\State \hskip18.7em \textit{embeddings})['similarity']
 					\State
 					\ForAll{\textit{i}, \textit{s} $\in$ \textbf{enumerate}(\textit{queries}['shas'])}
@@ -3587,7 +3589,7 @@ As previously mentioned, both the \textbf{\textit{Proposed Model}} and the \text
 					\State \textit{labels} $\gets$ \textit{labels}[\textit{indices}]
 				\EndIf
 				\State
-				\State \textit{embeddings} $\gets$ \textit{model}.\textbf{get\_embedding}(\textit{features})['embedding']
+				\State \textit{embeddings} $\gets$ \textit{model}.\textbf{GetEmbedding}(\textit{features})['embedding']
 				\ForAll{\textit{n} $\in$ \textbf{range}(\textit{n\_families})}
 					\If{\textit{samples\_families}[\textit{n}] $\ge$ \textit{n\_samples\_to\_get}}
 						\textbf{continue}
@@ -3854,7 +3856,7 @@ Algorithms \ref{alg:trainFamilyClassifierFunctionPt1}-\ref{alg:trainFamilyClassi
 					\ForAll{\textit{shas}, \textit{features}, \textit{labels} $\in$ \textit{train\_gen}}
 						\State \textit{opt}.\textbf{zero\_grad}
 						\State \textit{out} $\gets$ \textit{model}(\textit{features})
-						\State \textit{loss} $\gets$ \textit{model}.\textbf{compute\_loss}(\textit{out}, \textit{labels})
+						\State \textit{loss} $\gets$ \textit{model}.\textbf{ComputeLoss}(\textit{out}, \textit{labels})
 						\State \textit{preds} $\gets$ [\textbf{argmax}(\textit{line} $\forall$ \textit{line} $\in$ \textit{out}['scores'])]
 						\State accuracy $\gets$ \textbf{sum}(1 $\forall$ \textit{i}, \textit{pred} $\in$ \textbf{enumerate}(\textit{preds}) \textbf{if} \textit{pred} = \textit{labels}[\textit{i}]) / \textbf{len}(\textit{labels})
 						\State \textbf{log}(\textit{loss})
@@ -3869,7 +3871,7 @@ Algorithms \ref{alg:trainFamilyClassifierFunctionPt1}-\ref{alg:trainFamilyClassi
 				\ForAll{\textit{shas}, \textit{features}, \textit{labels} $\in$ \textit{valid\_gen}}
 					\State \textbf{torch.no\_grad}()
 					\State \textit{out} $\gets$ \textit{model}(\textit{features})
-					\State \textit{loss} $\gets$ \textit{model}.\textbf{compute\_loss}(\textit{out}, \textit{labels})
+					\State \textit{loss} $\gets$ \textit{model}.\textbf{ComputeLoss}(\textit{out}, \textit{labels})
 					\State \textit{preds} $\gets$ [\textbf{argmax}(\textit{line} $\forall$ \textit{line} $\in$ \textit{out}['scores'])]
 					\State accuracy $\gets$ \textbf{sum}(1 $\forall$ \textit{i}, \textit{pred} $\in$ \textbf{enumerate}(\textit{preds}) \textbf{if} \textit{pred} = \textit{labels}[\textit{i}]) / \textbf{len}(\textit{labels})
 					\State \textbf{log}(\textit{loss})
@@ -4010,13 +4012,13 @@ It is interesting to notice that even if only the \textit{Joint Embedding} and \
 
 \MrrAndMapResultsTable
 
-\freshResultsAucTable
+\alohaMBAccuracyTrend
 
-\freshResultsSummaryTable
+\alohaAccuracyTrend
 
-\allMeanFreshRocJointEmbedding
+\jointEmbeddingAccuracyTrend
 
-\allMeanFreshRocProposedModel
+\proposedModelAccuracyTrend
 
 \subsection{Example rankings}
 Here are presented, for each model, 4 examples rankings which produced the maximum and minimum AP (Average Precision) and RR (Reciprocal Rank) scores.
@@ -4030,6 +4032,15 @@ Here are presented, for each model, 4 examples rankings which produced the maxim
 \minRrExampleRankTable
 
 \section{Family Classification Results}\label{sec:FamilyClassificationResults}
+\FamilyClassifierAccuracyResultsTable
+
+\FamilyClassifierScoresTable
+
+\FamilyClassifierJointEmbeddingConfusionMatrix
+
+\FamilyClassifierProposedModelConfusionMatrix
+
+\FamilyClassifierOnlyConfusionMatrix
 
 \chapter{Conclusions}
 \color{Red}

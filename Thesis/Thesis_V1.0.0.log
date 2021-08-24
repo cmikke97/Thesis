@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  23 AUG 2021 17:28
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  24 AUG 2021 15:34
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -604,14 +604,21 @@ Package caption Info: longtable package is loaded.
 
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/caption\ltcaption.sty
 Package: ltcaption 2020/05/30 v1.4b longtable captions (AR)
-)) (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/tools\array.sty
+))
+(C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/multirow\multirow.sty
+Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
+\multirow@colwidth=\skip62
+\multirow@cntb=\count307
+\multirow@dima=\skip63
+\bigstrutjot=\dimen166
+) (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/tools\array.sty
 Package: array 2019/08/31 v2.4l Tabular extension package (FMi)
-\col@sep=\dimen166
+\col@sep=\dimen167
 \ar@mcellbox=\box60
-\extrarowheight=\dimen167
+\extrarowheight=\dimen168
 \NC@list=\toks30
-\extratabsurround=\skip62
-\backup@length=\skip63
+\extratabsurround=\skip64
+\backup@length=\skip65
 \ar@cellbox=\box61
 )
 (commands.tex
@@ -626,67 +633,67 @@ Package: siunitx 2021-04-09 v2.8d A comprehensive (SI) units package
 Package: l3keys2e 2021-03-12 LaTeX2e option processing using LaTeX3 keys
 )
 \l__siunitx_tmp_box=\box62
-\l__siunitx_tmp_dim=\dimen168
-\l__siunitx_tmp_int=\count307
-\l__siunitx_number_mantissa_length_int=\count308
-\l__siunitx_number_uncert_length_int=\count309
-\l__siunitx_round_int=\count310
-\l__siunitx_process_decimal_int=\count311
-\l__siunitx_process_uncertainty_int=\count312
-\l__siunitx_process_fixed_int=\count313
-\l__siunitx_process_integer_min_int=\count314
-\l__siunitx_process_precision_int=\count315
-\l__siunitx_group_min_int=\count316
+\l__siunitx_tmp_dim=\dimen169
+\l__siunitx_tmp_int=\count308
+\l__siunitx_number_mantissa_length_int=\count309
+\l__siunitx_number_uncert_length_int=\count310
+\l__siunitx_round_int=\count311
+\l__siunitx_process_decimal_int=\count312
+\l__siunitx_process_uncertainty_int=\count313
+\l__siunitx_process_fixed_int=\count314
+\l__siunitx_process_integer_min_int=\count315
+\l__siunitx_process_precision_int=\count316
+\l__siunitx_group_min_int=\count317
 \l__siunitx_angle_marker_box=\box63
 \l__siunitx_angle_unit_box=\box64
-\l__siunitx_angle_marker_dim=\dimen169
-\l__siunitx_angle_unit_dim=\dimen170
-\l__siunitx_unit_int=\count317
-\l__siunitx_unit_denominator_int=\count318
-\l__siunitx_unit_numerator_int=\count319
-\l__siunitx_unit_prefix_int=\count320
-\l__siunitx_unit_prefix_base_int=\count321
-\l__siunitx_unit_prefix_gram_int=\count322
-\l__siunitx_number_product_int=\count323
-\c__siunitx_one_fill_skip=\skip64
-\l__siunitx_table_unit_align_skip=\skip65
-\l__siunitx_table_exponent_dim=\dimen171
-\l__siunitx_table_integer_dim=\dimen172
-\l__siunitx_table_mantissa_dim=\dimen173
-\l__siunitx_table_marker_dim=\dimen174
-\l__siunitx_table_result_dim=\dimen175
-\l__siunitx_table_uncert_dim=\dimen176
-\l__siunitx_table_fill_pre_dim=\dimen177
-\l__siunitx_table_fill_post_dim=\dimen178
-\l__siunitx_table_fill_mid_dim=\dimen179
+\l__siunitx_angle_marker_dim=\dimen170
+\l__siunitx_angle_unit_dim=\dimen171
+\l__siunitx_unit_int=\count318
+\l__siunitx_unit_denominator_int=\count319
+\l__siunitx_unit_numerator_int=\count320
+\l__siunitx_unit_prefix_int=\count321
+\l__siunitx_unit_prefix_base_int=\count322
+\l__siunitx_unit_prefix_gram_int=\count323
+\l__siunitx_number_product_int=\count324
+\c__siunitx_one_fill_skip=\skip66
+\l__siunitx_table_unit_align_skip=\skip67
+\l__siunitx_table_exponent_dim=\dimen172
+\l__siunitx_table_integer_dim=\dimen173
+\l__siunitx_table_mantissa_dim=\dimen174
+\l__siunitx_table_marker_dim=\dimen175
+\l__siunitx_table_result_dim=\dimen176
+\l__siunitx_table_uncert_dim=\dimen177
+\l__siunitx_table_fill_pre_dim=\dimen178
+\l__siunitx_table_fill_post_dim=\dimen179
+\l__siunitx_table_fill_mid_dim=\dimen180
 \l__siunitx_table_pre_box=\box65
 \l__siunitx_table_post_box=\box66
 \l__siunitx_table_mantissa_box=\box67
 \l__siunitx_table_result_box=\box68
-\l__siunitx_table_number_align_skip=\skip66
-\l__siunitx_table_text_align_skip=\skip67
+\l__siunitx_table_number_align_skip=\skip68
+\l__siunitx_table_text_align_skip=\skip69
 
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/translator\translator
 .sty
 Package: translator 2020-08-03 v1.12c Easy translation of strings in LaTeX
 ))
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.sty
-\lst@mode=\count324
+\lst@mode=\count325
 \lst@gtempboxa=\box69
 \lst@token=\toks31
-\lst@length=\count325
-\lst@currlwidth=\dimen180
-\lst@column=\count326
-\lst@pos=\count327
-\lst@lostspace=\dimen181
-\lst@width=\dimen182
-\lst@newlines=\count328
-\lst@lineno=\count329
-\lst@maxwidth=\dimen183
+\lst@length=\count326
+\lst@currlwidth=\dimen181
+\lst@column=\count327
+\lst@pos=\count328
+\lst@lostspace=\dimen182
+\lst@width=\dimen183
+\lst@newlines=\count329
+\lst@lineno=\count330
+\lst@maxwidth=\dimen184
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
 File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
-\c@lstnumber=\count330
-\lst@skipnumbers=\count331
+\c@lstnumber=\count331
+\lst@skipnumbers=\count332
 \lst@framebox=\box70
 )
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.cfg
@@ -694,38 +701,33 @@ File: listings.cfg 2020/03/24 1.8d listings configuration
 ))
 Package: listings 2020/03/24 1.8d (Carsten Heinz)
 ) (results/malware_label_results.tex) (results/tag_results.tex)
-(results/adware_tag_results.tex) (results/crypto_miner_tag_results.tex)
-(results/downloader_tag_results.tex) (results/dropper_tag_results.tex)
-(results/file_infector_tag_results.tex) (results/flooder_tag_results.tex)
-(results/installer_tag_results.tex) (results/packed_tag_results.tex)
-(results/ransomware_tag_results.tex) (results/spyware_tag_results.tex)
-(results/worm_tag_results.tex) (results/mean_per_sample_scores.tex)
-(results/family_ranking_results.tex) (results/fresh_results.tex)
+(results/mean_per_sample_scores.tex) (results/family_ranking_results.tex)
+(results/fresh_results.tex) (results/family_classifier_results.tex)
 \CBox=\box71
 
 (Thesis_V1.0.0.aux)
 \openout1 = `Thesis_V1.0.0.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 129.
-LaTeX Font Info:    ... okay on input line 129.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 129.
-LaTeX Font Info:    ... okay on input line 129.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 129.
-LaTeX Font Info:    ... okay on input line 129.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 129.
-LaTeX Font Info:    ... okay on input line 129.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 129.
-LaTeX Font Info:    ... okay on input line 129.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 129.
-LaTeX Font Info:    ... okay on input line 129.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 129.
-LaTeX Font Info:    ... okay on input line 129.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 129.
-LaTeX Font Info:    ... okay on input line 129.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 129.
-LaTeX Font Info:    ... okay on input line 129.
-LaTeX Info: Redefining \it@ocap on input line 129.
-LaTeX Info: Redefining \it@ccap on input line 129.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 131.
+LaTeX Font Info:    ... okay on input line 131.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 131.
+LaTeX Font Info:    ... okay on input line 131.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 131.
+LaTeX Font Info:    ... okay on input line 131.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 131.
+LaTeX Font Info:    ... okay on input line 131.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 131.
+LaTeX Font Info:    ... okay on input line 131.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 131.
+LaTeX Font Info:    ... okay on input line 131.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 131.
+LaTeX Font Info:    ... okay on input line 131.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 131.
+LaTeX Font Info:    ... okay on input line 131.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 131.
+LaTeX Font Info:    ... okay on input line 131.
+LaTeX Info: Redefining \it@ocap on input line 131.
+LaTeX Info: Redefining \it@ccap on input line 131.
 
 
 File italian.ldf warning: 
@@ -733,22 +735,22 @@ italian.ldf    With OT1 encoding guillemets are poorly faked
 italian.ldf    Use T1 encoding
 italian.ldf    or specify a font with command \CaporaliFrom
 italian.ldf    See the documentation concerning the babel-italian typesetting 
-italian.ldf    on input line 129.
+italian.ldf    on input line 131.
 
 
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.
 mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count332
-\scratchdimen=\dimen184
+\scratchcounter=\count333
+\scratchdimen=\dimen185
 \scratchbox=\box72
-\nofMPsegments=\count333
-\nofMParguments=\count334
+\nofMPsegments=\count334
+\nofMParguments=\count335
 \everyMPshowfont=\toks32
-\MPscratchCnt=\count335
-\MPscratchDim=\dimen185
-\MPnumerator=\count336
-\makeMPintoPDFobject=\count337
+\MPscratchCnt=\count336
+\MPscratchDim=\dimen186
+\MPnumerator=\count337
+\makeMPintoPDFobject=\count338
 \everyMPtoPDFconversion=\toks33
 )
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf
@@ -761,20 +763,20 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 .cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-Package TOPtesi Info: Margin width recalculation on input line 129.
+Package TOPtesi Info: Margin width recalculation on input line 131.
 Package TOPtesi Info: Before:
 (TOPtesi)             oddsidemargin  15.23279pt
-(TOPtesi)             evensidemargin 15.23279pt on input line 129.
+(TOPtesi)             evensidemargin 15.23279pt on input line 131.
 Package TOPtesi Info: After:
 (TOPtesi)             oddsidemargin  35.1497pt
-(TOPtesi)             evensidemargin -4.68413pt on input line 129.
+(TOPtesi)             evensidemargin -4.68413pt on input line 131.
 
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/toptesi\topfront.sty
 Package: topfront 2020-09-06 v.6.4.06 Title page for TOPtesi and other classes
-\TPT@logospace=\skip68
+\TPT@logospace=\skip70
 \TPT@logobox=\box73
-\TPT@logoheight=\dimen186
-\T@Tlogoheight=\skip69
+\TPT@logoheight=\dimen187
+\T@Tlogoheight=\skip71
 
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/toptesi\toptesi.cfg))
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/toptesi\topcoman.sty
@@ -784,7 +786,7 @@ e
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/base\textcomp.sty
 Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
 ))
-Package hyperref Info: Link coloring ON on input line 129.
+Package hyperref Info: Link coloring ON on input line 131.
 
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
@@ -796,11 +798,11 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 itlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count338
+\c@section@level=\count339
 )
-LaTeX Info: Redefining \ref on input line 129.
-LaTeX Info: Redefining \pageref on input line 129.
-LaTeX Info: Redefining \nameref on input line 129.
+LaTeX Info: Redefining \ref on input line 131.
+LaTeX Info: Redefining \pageref on input line 131.
+LaTeX Info: Redefining \nameref on input line 131.
  (Thesis_V1.0.0.out) (Thesis_V1.0.0.out)
 \@outlinefile=\write4
 \openout4 = `Thesis_V1.0.0.out'.
@@ -821,14 +823,14 @@ File: siunitx-binary.cfg 2021-04-09 v2.8d siunitx: Binary units
 -basic-dictionary-English.dict
 Dictionary: translator-basic-dictionary, Language: English 
 )
-\c@lstlisting=\count339
-LaTeX Font Info:    Trying to load font information for U+msa on input line 129
+\c@lstlisting=\count340
+LaTeX Font Info:    Trying to load font information for U+msa on input line 131
 .
 
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 129
+LaTeX Font Info:    Trying to load font information for U+msb on input line 131
 .
 
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
@@ -837,7 +839,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 <logopolito.pdf, id=270, 526.79488pt x 523.45164pt>
 File: logopolito.pdf Graphic file (type pdf)
 <use logopolito.pdf>
-Package pdftex.def Info: logopolito.pdf  used on input line 170.
+Package pdftex.def Info: logopolito.pdf  used on input line 172.
 (pdftex.def)             Requested size: 70.44707pt x 70.00249pt.
 
 [1{C:/Users/michele/AppData/Local/MiKTeX/pdftex/config/pdftex.map}
@@ -878,27 +880,27 @@ Package pdftex.def Info: logopolito.pdf  used on input line 170.
 
 ]
 Chapter 1.
-<./images/elk_cloner_example.png, id=504, 501.875pt x 221.82875pt>
+<./images/elk_cloner_example.png, id=514, 501.875pt x 221.82875pt>
 File: ./images/elk_cloner_example.png Graphic file (type png)
 <use ./images/elk_cloner_example.png>
 Package pdftex.def Info: ./images/elk_cloner_example.png  used on input line 25
-0.
+2.
 (pdftex.def)             Requested size: 253.50397pt x 112.05139pt.
-<./images/av_atlas_report_total_amount_new.png, id=509, 579.66562pt x 316.18124
+<./images/av_atlas_report_total_amount_new.png, id=519, 579.66562pt x 316.18124
 pt>
 File: ./images/av_atlas_report_total_amount_new.png Graphic file (type png)
 <use ./images/av_atlas_report_total_amount_new.png>
 Package pdftex.def Info: ./images/av_atlas_report_total_amount_new.png  used on
- input line 259.
+ input line 261.
 (pdftex.def)             Requested size: 422.50232pt x 230.45819pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<./images/av_atlas_report_total_amount.png, id=510, 579.66562pt x 315.42844pt>
+<./images/av_atlas_report_total_amount.png, id=520, 579.66562pt x 315.42844pt>
 File: ./images/av_atlas_report_total_amount.png Graphic file (type png)
 <use ./images/av_atlas_report_total_amount.png>
 Package pdftex.def Info: ./images/av_atlas_report_total_amount.png  used on inp
-ut line 266.
+ut line 268.
 (pdftex.def)             Requested size: 422.50232pt x 229.90948pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -923,7 +925,7 @@ File: lstlang2.sty 2020/03/24 1.8d listings language file
 File: lstlang3.sty 2020/03/24 1.8d listings language file
 )
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 510.
+nput line 512.
  [24] [25] [26]
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
@@ -936,38 +938,38 @@ Chapter 3.
 
 ]
 LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 
-1091.
+1093.
  (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/base\ts1cmtt.fd
 File: ts1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 ) [41] [42] [43] [44] [45] [46] [47] [48] [49] [50] [51] [52]
-<./images/ALOHA.png, id=1313, 530.4618pt x 336.0555pt>
+<./images/ALOHA.png, id=1323, 530.4618pt x 336.0555pt>
 File: ./images/ALOHA.png Graphic file (type png)
 <use ./images/ALOHA.png>
-Package pdftex.def Info: ./images/ALOHA.png  used on input line 1623.
+Package pdftex.def Info: ./images/ALOHA.png  used on input line 1625.
 (pdftex.def)             Requested size: 422.50232pt x 267.67049pt.
  [53 <./images/ALOHA.png>] [54] [55]
-<./images/Multi_Head.png, id=1364, 456.0237pt x 191.5155pt>
+<./images/Multi_Head.png, id=1374, 456.0237pt x 191.5155pt>
 File: ./images/Multi_Head.png Graphic file (type png)
 <use ./images/Multi_Head.png>
-Package pdftex.def Info: ./images/Multi_Head.png  used on input line 1715.
+Package pdftex.def Info: ./images/Multi_Head.png  used on input line 1717.
 (pdftex.def)             Requested size: 422.50232pt x 177.4442pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [56]
-<./images/Joint_Embedding.png, id=1377, 412.6617pt x 244.2726pt>
+<./images/Joint_Embedding.png, id=1387, 412.6617pt x 244.2726pt>
 File: ./images/Joint_Embedding.png Graphic file (type png)
 <use ./images/Joint_Embedding.png>
-Package pdftex.def Info: ./images/Joint_Embedding.png  used on input line 1724.
+Package pdftex.def Info: ./images/Joint_Embedding.png  used on input line 1726.
 
 (pdftex.def)             Requested size: 422.50232pt x 250.09776pt.
  [57 <./images/Multi_Head.png> <./images/Joint_Embedding.png>] [58]
 [59]
-<./images/PE_plus_FP.png, id=1423, 549.9747pt x 375.804pt>
+<./images/PE_plus_FP.png, id=1433, 549.9747pt x 375.804pt>
 File: ./images/PE_plus_FP.png Graphic file (type png)
 <use ./images/PE_plus_FP.png>
-Package pdftex.def Info: ./images/PE_plus_FP.png  used on input line 1831.
+Package pdftex.def Info: ./images/PE_plus_FP.png  used on input line 1833.
 (pdftex.def)             Requested size: 422.50232pt x 288.69907pt.
 
 
@@ -975,15 +977,15 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 [60] [61 <./images/PE_plus_FP.png>] [62]
 Chapter 4.
-<./images/workflow.png, id=1450, 513.8397pt x 161.8848pt>
+<./images/workflow.png, id=1460, 513.8397pt x 161.8848pt>
 File: ./images/workflow.png Graphic file (type png)
 <use ./images/workflow.png>
-Package pdftex.def Info: ./images/workflow.png  used on input line 1861.
+Package pdftex.def Info: ./images/workflow.png  used on input line 1863.
 (pdftex.def)             Requested size: 422.50232pt x 133.11444pt.
-<./images/workflow_sorel.png, id=1453, 513.8397pt x 161.8848pt>
+<./images/workflow_sorel.png, id=1463, 513.8397pt x 161.8848pt>
 File: ./images/workflow_sorel.png Graphic file (type png)
 <use ./images/workflow_sorel.png>
-Package pdftex.def Info: ./images/workflow_sorel.png  used on input line 1871.
+Package pdftex.def Info: ./images/workflow_sorel.png  used on input line 1873.
 (pdftex.def)             Requested size: 422.50232pt x 133.11444pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -991,13 +993,13 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [63
 
  <./images/workflow.png>] [64 <./images/workflow_sorel.png>] [65]
-<./images/Portable_Executable_32_bit_Structure.png, id=1479, 2991.175pt x 4228.
+<./images/Portable_Executable_32_bit_Structure.png, id=1489, 2991.175pt x 4228.
 79875pt>
 File: ./images/Portable_Executable_32_bit_Structure.png Graphic file (type png)
 
 <use ./images/Portable_Executable_32_bit_Structure.png>
 Package pdftex.def Info: ./images/Portable_Executable_32_bit_Structure.png  use
-d on input line 1934.
+d on input line 1936.
 (pdftex.def)             Requested size: 422.50232pt x 597.25443pt.
 
 
@@ -1005,20 +1007,20 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 [66] [67 <./images/Portable_Executable_32_bit_Structure.png>] [68]
 LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 2
-006.
+008.
 
 (C:\Users\michele\AppData\Local\Programs\MiKTeX\tex/latex/base\omscmr.fd
 File: omscmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2006.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2008.
 
 
 [69]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 2039.
+put line 2041.
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2064.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2066.
 
 
 
@@ -1051,26 +1053,26 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [74] [75] [76] [77]
-<./images/speeds_heatmap.png, id=1592, 722.7pt x 650.43pt>
+<./images/speeds_heatmap.png, id=1602, 722.7pt x 650.43pt>
 File: ./images/speeds_heatmap.png Graphic file (type png)
 <use ./images/speeds_heatmap.png>
-Package pdftex.def Info: ./images/speeds_heatmap.png  used on input line 2408.
+Package pdftex.def Info: ./images/speeds_heatmap.png  used on input line 2410.
 (pdftex.def)             Requested size: 401.3759pt x 361.24104pt.
-<./images/times_heatmap.png, id=1593, 722.7pt x 650.43pt>
+<./images/times_heatmap.png, id=1603, 722.7pt x 650.43pt>
 File: ./images/times_heatmap.png Graphic file (type png)
 <use ./images/times_heatmap.png>
-Package pdftex.def Info: ./images/times_heatmap.png  used on input line 2415.
+Package pdftex.def Info: ./images/times_heatmap.png  used on input line 2417.
 (pdftex.def)             Requested size: 401.3759pt x 361.24104pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [78 <./images/speeds_heatmap.png>]
-<./images/workflow_fresh_dataset.png, id=1601, 513.8397pt x 161.8848pt>
+<./images/workflow_fresh_dataset.png, id=1611, 513.8397pt x 161.8848pt>
 File: ./images/workflow_fresh_dataset.png Graphic file (type png)
 <use ./images/workflow_fresh_dataset.png>
 Package pdftex.def Info: ./images/workflow_fresh_dataset.png  used on input lin
-e 2427.
+e 2429.
 (pdftex.def)             Requested size: 422.50232pt x 133.11444pt.
 
 Underfull \vbox (badness 1337) has occurred while \output is active []
@@ -1100,19 +1102,19 @@ Overfull \vbox (3.1115pt too high) has occurred while \output is active []
 
 
 [82]
-<./images/workflow_base_fresh_dataset.png, id=1642, 513.8397pt x 161.1621pt>
+<./images/workflow_base_fresh_dataset.png, id=1652, 513.8397pt x 161.1621pt>
 File: ./images/workflow_base_fresh_dataset.png Graphic file (type png)
 <use ./images/workflow_base_fresh_dataset.png>
 Package pdftex.def Info: ./images/workflow_base_fresh_dataset.png  used on inpu
-t line 2595.
+t line 2597.
 (pdftex.def)             Requested size: 422.50232pt x 132.52017pt.
  [83 <./images/workflow_base_fresh_dataset.png>] [84] [85]
 Chapter 5.
-<./images/ALOHA_Implementation.png, id=1674, 479.8728pt x 234.1548pt>
+<./images/ALOHA_Implementation.png, id=1684, 479.8728pt x 234.1548pt>
 File: ./images/ALOHA_Implementation.png Graphic file (type png)
 <use ./images/ALOHA_Implementation.png>
 Package pdftex.def Info: ./images/ALOHA_Implementation.png  used on input line 
-2667.
+2669.
 (pdftex.def)             Requested size: 422.50232pt x 206.17119pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -1120,7 +1122,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 [86
 
 ]
-Underfull \hbox (badness 3019) in paragraph at lines 2689--2690
+Underfull \hbox (badness 3019) in paragraph at lines 2691--2692
 [] \OT1/cmr/bx/n/10 func-tion \OT1/cmr/m/sc/10 Init\OT1/cmr/m/n/10 (\OT1/cmr/m/
 it/10 self\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 use[]malware\OT1/cmr/m/n/10 , \OT1
 /cmr/m/it/10 use[]counts\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 use[]tags\OT1/cmr/m/
@@ -1146,12 +1148,12 @@ Overfull \vbox (2.55594pt too high) has occurred while \output is active []
 
 
 [88] [89]
-<./images/Joint_Embedding_Implementation.png, id=1715, 416.2752pt x 221.1462pt>
+<./images/Joint_Embedding_Implementation.png, id=1725, 416.2752pt x 221.1462pt>
 
 File: ./images/Joint_Embedding_Implementation.png Graphic file (type png)
 <use ./images/Joint_Embedding_Implementation.png>
 Package pdftex.def Info: ./images/Joint_Embedding_Implementation.png  used on i
-nput line 2815.
+nput line 2817.
 (pdftex.def)             Requested size: 422.50232pt x 224.46606pt.
  [90 <./images/Joint_Embedding_Implementation.png>]
 
@@ -1179,7 +1181,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Overfull \hbox (19.59752pt too wide) in paragraph at lines 3012--3013
+Overfull \hbox (19.59752pt too wide) in paragraph at lines 3014--3015
 []  \OT1/cmr/m/it/10 pre-dic-tions\OT1/cmr/m/n/10 ['probability'], \OT1/cmr/m/i
 t/10 la-bels\OT1/cmr/m/n/10 ['tags'], re-duc-tion='none').\OT1/cmr/bx/n/10 sum\
 OT1/cmr/m/n/10 (dim=1).\OT1/cmr/bx/n/10 mean\OT1/cmr/m/n/10 (dim=0) 
@@ -1194,15 +1196,15 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 [91] [92] [93] [94]
 File: ./images/workflow_sorel.png Graphic file (type png)
 <use ./images/workflow_sorel.png>
-Package pdftex.def Info: ./images/workflow_sorel.png  used on input line 3070.
+Package pdftex.def Info: ./images/workflow_sorel.png  used on input line 3072.
 (pdftex.def)             Requested size: 422.50232pt x 133.11444pt.
-<./images/workflow_train.png, id=1785, 513.8397pt x 161.8848pt>
+<./images/workflow_train.png, id=1795, 513.8397pt x 161.8848pt>
 File: ./images/workflow_train.png Graphic file (type png)
 <use ./images/workflow_train.png>
-Package pdftex.def Info: ./images/workflow_train.png  used on input line 3080.
+Package pdftex.def Info: ./images/workflow_train.png  used on input line 3082.
 (pdftex.def)             Requested size: 422.50232pt x 133.11444pt.
  [95]
-Underfull \hbox (badness 10000) in paragraph at lines 3088--3089
+Underfull \hbox (badness 10000) in paragraph at lines 3090--3091
 []\OT1/cmr/bx/n/10 func-tion \OT1/cmr/m/sc/10 Train-Net-work\OT1/cmr/m/n/10 (\O
 T1/cmr/m/it/10 ds[]path\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 net[]type\OT1/cmr/m/n
 /10 , \OT1/cmr/m/it/10 gen[]type\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 batch[]size\
@@ -1212,19 +1214,19 @@ OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 epochs\OT1/cmr/m/n/10 ,
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<./images/workflow_eval.png, id=1793, 513.8397pt x 161.8848pt>
+<./images/workflow_eval.png, id=1803, 513.8397pt x 161.8848pt>
 File: ./images/workflow_eval.png Graphic file (type png)
 <use ./images/workflow_eval.png>
-Package pdftex.def Info: ./images/workflow_eval.png  used on input line 3145.
+Package pdftex.def Info: ./images/workflow_eval.png  used on input line 3147.
 (pdftex.def)             Requested size: 422.50232pt x 133.11444pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [96 <./images/workflow_train.png> <./images/workflow_eval.png>]
-<./images/workflow_results.png, id=1801, 513.8397pt x 161.1621pt>
+<./images/workflow_results.png, id=1811, 513.8397pt x 161.1621pt>
 File: ./images/workflow_results.png Graphic file (type png)
 <use ./images/workflow_results.png>
-Package pdftex.def Info: ./images/workflow_results.png  used on input line 3185
+Package pdftex.def Info: ./images/workflow_results.png  used on input line 3187
 .
 (pdftex.def)             Requested size: 422.50232pt x 132.52017pt.
 
@@ -1236,10 +1238,10 @@ Chapter 6.
 [99
 
 ]
-<./images/Proposed_Model.png, id=1818, 505.1673pt x 297.7524pt>
+<./images/Proposed_Model.png, id=1828, 505.1673pt x 297.7524pt>
 File: ./images/Proposed_Model.png Graphic file (type png)
 <use ./images/Proposed_Model.png>
-Package pdftex.def Info: ./images/Proposed_Model.png  used on input line 3209.
+Package pdftex.def Info: ./images/Proposed_Model.png  used on input line 3211.
 (pdftex.def)             Requested size: 422.50232pt x 249.02899pt.
  [100 <./images/Proposed_Model.png>]
 
@@ -1261,32 +1263,25 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [102]
-[103]
-Overfull \hbox (16.08266pt too wide) in paragraph at lines 3398--3399
-[]\OT1/cmr/m/n/10 The \OT1/cmr/bx/it/10 Pro-posed Model \OT1/cmr/m/n/10 im-ple-
-men-ta-tion uses ex-actly the same \OT1/cmr/bx/it/10 get[]embedding \OT1/cmr/m/
-n/10 and \OT1/cmr/bx/it/10 get[]similarity
- []
-
-[104]
+[103] [104]
 File: ./images/workflow_sorel.png Graphic file (type png)
 <use ./images/workflow_sorel.png>
-Package pdftex.def Info: ./images/workflow_sorel.png  used on input line 3420.
+Package pdftex.def Info: ./images/workflow_sorel.png  used on input line 3422.
 (pdftex.def)             Requested size: 422.50232pt x 133.11444pt.
  [105]
 File: ./images/workflow_base_fresh_dataset.png Graphic file (type png)
 <use ./images/workflow_base_fresh_dataset.png>
 Package pdftex.def Info: ./images/workflow_base_fresh_dataset.png  used on inpu
-t line 3430.
+t line 3432.
 (pdftex.def)             Requested size: 422.50232pt x 132.52017pt.
-<./images/workflow_fresh_eval.png, id=1884, 513.8397pt x 161.1621pt>
+<./images/workflow_fresh_eval.png, id=1894, 513.8397pt x 161.1621pt>
 File: ./images/workflow_fresh_eval.png Graphic file (type png)
 <use ./images/workflow_fresh_eval.png>
 Package pdftex.def Info: ./images/workflow_fresh_eval.png  used on input line 3
-455.
+457.
 (pdftex.def)             Requested size: 422.50232pt x 132.52017pt.
  [106]
-Underfull \hbox (badness 10000) in paragraph at lines 3463--3464
+Underfull \hbox (badness 10000) in paragraph at lines 3465--3466
 []\OT1/cmr/bx/n/10 func-tion \OT1/cmr/m/sc/10 Eval-u-ate-Fresh-Scores\OT1/cmr/m
 /n/10 (\OT1/cmr/m/it/10 ds[]path\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 check-point[
 ]path\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 net[]type\OT1/cmr/m/n/10 , \OT1/cmr/m/i
@@ -1306,11 +1301,11 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [108]
-<./images/workflow_fresh_results.png, id=1907, 513.8397pt x 161.1621pt>
+<./images/workflow_fresh_results.png, id=1917, 513.8397pt x 161.1621pt>
 File: ./images/workflow_fresh_results.png Graphic file (type png)
 <use ./images/workflow_fresh_results.png>
 Package pdftex.def Info: ./images/workflow_fresh_results.png  used on input lin
-e 3632.
+e 3634.
 (pdftex.def)             Requested size: 422.50232pt x 132.52017pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1320,14 +1315,14 @@ Overfull \vbox (5.04561pt too high) has occurred while \output is active []
 
 
 [110 <./images/workflow_fresh_results.png>] [111]
-<./images/Family_Classifier.png, id=1925, 557.2017pt x 188.6247pt>
+<./images/Family_Classifier.png, id=1935, 557.2017pt x 188.6247pt>
 File: ./images/Family_Classifier.png Graphic file (type png)
 <use ./images/Family_Classifier.png>
 Package pdftex.def Info: ./images/Family_Classifier.png  used on input line 366
-0.
+2.
 (pdftex.def)             Requested size: 422.50232pt x 143.02814pt.
  [112 <./images/Family_Classifier.png>]
-Underfull \hbox (badness 3492) in paragraph at lines 3684--3685
+Underfull \hbox (badness 3492) in paragraph at lines 3686--3687
 [] \OT1/cmr/bx/n/10 func-tion \OT1/cmr/m/sc/10 Init\OT1/cmr/m/n/10 (\OT1/cmr/m/
 it/10 self\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 fam-i-lies\OT1/cmr/m/n/10 , \OT1/c
 mr/m/it/10 fea-ture[]dimension\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 em-bed-ding[]d
@@ -1344,21 +1339,21 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [113] [114]
-<./images/workflow_family_classifier.png, id=1953, 513.8397pt x 161.8848pt>
+<./images/workflow_family_classifier.png, id=1963, 513.8397pt x 161.8848pt>
 File: ./images/workflow_family_classifier.png Graphic file (type png)
 <use ./images/workflow_family_classifier.png>
 Package pdftex.def Info: ./images/workflow_family_classifier.png  used on input
- line 3788.
+ line 3790.
 (pdftex.def)             Requested size: 422.50232pt x 133.11444pt.
-<./images/workflow_family_classifier_train.png, id=1957, 513.8397pt x 161.8848p
+<./images/workflow_family_classifier_train.png, id=1967, 513.8397pt x 161.8848p
 t>
 File: ./images/workflow_family_classifier_train.png Graphic file (type png)
 <use ./images/workflow_family_classifier_train.png>
 Package pdftex.def Info: ./images/workflow_family_classifier_train.png  used on
- input line 3798.
+ input line 3800.
 (pdftex.def)             Requested size: 422.50232pt x 133.11444pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 3806--3807
+Underfull \hbox (badness 10000) in paragraph at lines 3808--3809
 []\OT1/cmr/bx/n/10 func-tion \OT1/cmr/m/sc/10 Train-Net-work\OT1/cmr/m/n/10 (\O
 T1/cmr/m/it/10 fresh[]ds[]path\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 check-point[]p
 ath\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 batch[]size\OT1/cmr/m/n/10 , \OT1/cmr/m/i
@@ -1373,18 +1368,18 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [115 <./images/workflow_family_classifier.png> <./images/workflow_family_classi
 fier_train.png>]
-<./images/workflow_family_classifier_evaluate.png, id=1971, 513.8397pt x 161.88
+<./images/workflow_family_classifier_evaluate.png, id=1981, 513.8397pt x 161.88
 48pt>
 File: ./images/workflow_family_classifier_evaluate.png Graphic file (type png)
 <use ./images/workflow_family_classifier_evaluate.png>
 Package pdftex.def Info: ./images/workflow_family_classifier_evaluate.png  used
- on input line 3888.
+ on input line 3890.
 (pdftex.def)             Requested size: 422.50232pt x 133.11444pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [116]
-Underfull \hbox (badness 10000) in paragraph at lines 3896--3897
+Underfull \hbox (badness 10000) in paragraph at lines 3898--3899
 []\OT1/cmr/bx/n/10 func-tion \OT1/cmr/m/sc/10 Eval-u-ateNet-work\OT1/cmr/m/n/10
  (\OT1/cmr/m/it/10 fresh[]ds[]path\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 check-poin
 t[]path\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 batch[]size\OT1/cmr/m/n/10 ,
@@ -1393,2154 +1388,1678 @@ t[]path\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 batch[]size\OT1/cmr/m/n/10 ,
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<./images/workflow_family_classifier_results.png, id=1977, 513.8397pt x 161.884
+<./images/workflow_family_classifier_results.png, id=1987, 513.8397pt x 161.884
 8pt>
 File: ./images/workflow_family_classifier_results.png Graphic file (type png)
 <use ./images/workflow_family_classifier_results.png>
 Package pdftex.def Info: ./images/workflow_family_classifier_results.png  used 
-on input line 3936.
+on input line 3938.
 (pdftex.def)             Requested size: 422.50232pt x 133.11444pt.
 [117 <./images/workflow_family_classifier_evaluate.png>] [118 <./images/workflo
 w_family_classifier_results.png>] [119]
 Chapter 7.
 
-Overfull \hbox (0.22159pt too wide) in alignment at lines 3966--3966
+Overfull \hbox (0.22159pt too wide) in alignment at lines 3968--3968
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (0.22159pt too wide) in alignment at lines 3966--3966
+Overfull \hbox (0.22159pt too wide) in alignment at lines 3968--3968
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (0.22159pt too wide) in alignment at lines 3966--3966
+Overfull \hbox (0.22159pt too wide) in alignment at lines 3968--3968
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (0.22159pt too wide) in alignment at lines 3966--3966
+Overfull \hbox (0.22159pt too wide) in alignment at lines 3968--3968
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3966--3966
- []|\OT1/cmr/m/n/10 0.281$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.093| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3966--3966
- []|\OT1/cmr/m/n/10 0.671$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.020| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3966--3966
- []|\OT1/cmr/m/n/10 0.864$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.014| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3966--3966
- []|\OT1/cmr/m/n/10 0.950$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.003| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3966--3966
- []|\OT1/cmr/m/n/10 0.989$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3966--3966
- []|\OT1/cmr/m/n/10 0.346$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.014| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3966--3966
- []|\OT1/cmr/m/n/10 0.672$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.023| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3966--3966
- []|\OT1/cmr/m/n/10 0.855$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.013| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3966--3966
- []|\OT1/cmr/m/n/10 0.952$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.003| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3966--3966
- []|\OT1/cmr/m/n/10 0.987$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.003| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3966--3966
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3968--3968
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3966--3966
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3968--3968
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3966--3966
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3968--3968
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3966--3966
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3968--3968
+ []|\OT1/cmr/m/n/10 0.256$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.011| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3968--3968
+ []|\OT1/cmr/m/n/10 0.516$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.009| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3968--3968
+ []|\OT1/cmr/m/n/10 0.006$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.006| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3968--3968
+ []|\OT1/cmr/m/n/10 0.006$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.006| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3968--3968
+ []|\OT1/cmr/m/n/10 0.013$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.001| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3968--3968
+ []|\OT1/cmr/m/n/10 0.064$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.026| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3968--3968
+ []|\OT1/cmr/m/n/10 0.295$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.024| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3968--3968
+ []|\OT1/cmr/m/n/10 0.072$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.046| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3968--3968
+ []|\OT1/cmr/m/n/10 0.072$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.046| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3968--3968
+ []|\OT1/cmr/m/n/10 0.077$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.041| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3968--3968
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3966--3966
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3968--3968
  []|[]| 
  []
 
 
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3966--3966
- []|\OT1/cmr/m/n/10 0.721$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.037| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3966--3966
- []|\OT1/cmr/m/n/10 0.873$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.008| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3966--3966
- []|\OT1/cmr/m/n/10 0.947$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.005| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3966--3966
- []|\OT1/cmr/m/n/10 0.975$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.001| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3966--3966
- []|\OT1/cmr/m/n/10 0.934$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3966--3966
- []|\OT1/cmr/m/n/10 0.747$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.005| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3966--3966
- []|\OT1/cmr/m/n/10 0.873$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.009| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3966--3966
- []|\OT1/cmr/m/n/10 0.943$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.005| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3966--3966
- []|\OT1/cmr/m/n/10 0.975$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.001| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3966--3966
- []|\OT1/cmr/m/n/10 0.934$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.001| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3966--3966
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3968--3968
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3966--3966
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3968--3968
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3966--3966
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3968--3968
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3966--3966
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3968--3968
+ []|\OT1/cmr/m/n/10 0.779$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.003| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3968--3968
+ []|\OT1/cmr/m/n/10 0.790$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.003| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3968--3968
+ []|\OT1/cmr/m/n/10 0.714$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.002| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3968--3968
+ []|\OT1/cmr/m/n/10 0.714$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.002| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3968--3968
+ []|\OT1/cmr/m/n/10 0.716$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3968--3968
+ []|\OT1/cmr/m/n/10 0.724$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.007| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3968--3968
+ []|\OT1/cmr/m/n/10 0.726$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.007| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3968--3968
+ []|\OT1/cmr/m/n/10 0.733$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.013| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3968--3968
+ []|\OT1/cmr/m/n/10 0.733$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.013| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3968--3968
+ []|\OT1/cmr/m/n/10 0.734$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.012| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3968--3968
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3966--3966
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3968--3968
  []|[]| 
  []
 
 
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3966--3966
- []|\OT1/cmr/m/n/10 0.279$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.095| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3966--3966
- []|\OT1/cmr/m/n/10 0.671$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.020| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3966--3966
- []|\OT1/cmr/m/n/10 0.864$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.014| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3966--3966
- []|\OT1/cmr/m/n/10 0.950$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.003| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3966--3966
- []|\OT1/cmr/m/n/10 0.989$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3966--3966
- []|\OT1/cmr/m/n/10 0.346$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.014| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3966--3966
- []|\OT1/cmr/m/n/10 0.672$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.023| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3966--3966
- []|\OT1/cmr/m/n/10 0.855$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.013| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3966--3966
- []|\OT1/cmr/m/n/10 0.952$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.003| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3966--3966
- []|\OT1/cmr/m/n/10 0.987$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.003| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3966--3966
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3968--3968
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3966--3966
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3968--3968
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3966--3966
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3968--3968
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3966--3966
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3968--3968
+ []|\OT1/cmr/m/n/10 0.256$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.011| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3968--3968
+ []|\OT1/cmr/m/n/10 0.516$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.009| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3968--3968
+ []|\OT1/cmr/m/n/10 0.006$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.006| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3968--3968
+ []|\OT1/cmr/m/n/10 0.006$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.006| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3968--3968
+ []|\OT1/cmr/m/n/10 0.013$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.001| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3968--3968
+ []|\OT1/cmr/m/n/10 0.064$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.026| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3968--3968
+ []|\OT1/cmr/m/n/10 0.295$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.024| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3968--3968
+ []|\OT1/cmr/m/n/10 0.072$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.046| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3968--3968
+ []|\OT1/cmr/m/n/10 0.072$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.046| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3968--3968
+ []|\OT1/cmr/m/n/10 0.077$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.041| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3968--3968
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3966--3966
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3968--3968
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3966--3966
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3968--3968
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3966--3966
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3968--3968
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3966--3966
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3968--3968
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3966--3966
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3968--3968
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3966--3966
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3968--3968
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3966--3966
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3968--3968
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3966--3966
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3968--3968
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3966--3966
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3968--3968
+ []|\OT1/cmr/m/n/10 0.899$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.010| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3968--3968
+ []|\OT1/cmr/m/n/10 0.701$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.087| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3968--3968
+ []|\OT1/cmr/m/n/10 0.543$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.021| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3968--3968
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3966--3966
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3968--3968
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3966--3966
- []|[]| 
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3968--3968
+ []|\OT1/cmr/m/n/10 0.981$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.019| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3966--3966
- []|[]| 
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3968--3968
+ []|\OT1/cmr/m/n/10 0.912$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.022| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3966--3966
- []|[]| 
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3968--3968
+ []|\OT1/cmr/m/n/10 0.675$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.033| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3966--3966
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3966--3966
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3966--3966
- []|[]| 
- []
-
-
-Overfull \hbox (0.22159pt too wide) in alignment at lines 3966--3966
+Overfull \hbox (0.22159pt too wide) in alignment at lines 3968--3968
  [] [] [] [] [] [] 
  []
 
 [120
 
 ]
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3966--3966
- []|\OT1/cmr/m/n/10 0.427$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.122| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3966--3966
- []|\OT1/cmr/m/n/10 0.803$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.014| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3966--3966
- []|\OT1/cmr/m/n/10 0.926$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.008| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3966--3966
- []|\OT1/cmr/m/n/10 0.967$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.002| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3966--3966
- []|\OT1/cmr/m/n/10 0.921$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3966--3966
- []|\OT1/cmr/m/n/10 0.514$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.016| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3966--3966
- []|\OT1/cmr/m/n/10 0.804$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.016| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3966--3966
- []|\OT1/cmr/m/n/10 0.921$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.007| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3966--3966
- []|\OT1/cmr/m/n/10 0.967$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.001| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3966--3966
- []|\OT1/cmr/m/n/10 0.920$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.002| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3966--3966
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3968--3968
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3966--3966
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3968--3968
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3966--3966
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3968--3968
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3966--3966
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3968--3968
+ []|\OT1/cmr/m/n/10 0.400$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.013| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3968--3968
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3966--3966
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3968--3968
+ []|\OT1/cmr/m/n/10 0.011$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.011| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3968--3968
+ []|\OT1/cmr/m/n/10 0.011$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.011| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3968--3968
+ []|\OT1/cmr/m/n/10 0.025$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.003| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3968--3968
+ []|\OT1/cmr/m/n/10 0.116$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.044| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3968--3968
+ []|\OT1/cmr/m/n/10 0.382$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.025| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3968--3968
+ []|\OT1/cmr/m/n/10 0.130$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.081| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3968--3968
+ []|\OT1/cmr/m/n/10 0.130$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.081| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3968--3968
+ []|\OT1/cmr/m/n/10 0.140$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.071| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3968--3968
  []|[]| 
  []
 
 
-Overfull \hbox (0.22159pt too wide) in alignment at lines 3966--3966
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3968--3968
+ []|\OT1/cmr/m/n/10 0.586$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.063| 
+ []
+
+
+Overfull \hbox (0.22159pt too wide) in alignment at lines 3968--3968
  [] [] [] [] [] [] 
  []
 
-<./results/malware_roc_alohaMB.png, id=2010, 867.24pt x 867.24pt>
+<./results/malware_roc_alohaMB.png, id=2020, 867.24pt x 867.24pt>
 File: ./results/malware_roc_alohaMB.png Graphic file (type png)
 <use ./results/malware_roc_alohaMB.png>
 Package pdftex.def Info: ./results/malware_roc_alohaMB.png  used on input line 
-3968.
+3970.
 (pdftex.def)             Requested size: 253.50397pt x 253.50458pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [121]
-<./results/malware_roc_aloha.png, id=2016, 867.24pt x 867.24pt>
+<./results/malware_roc_aloha.png, id=2026, 867.24pt x 867.24pt>
 File: ./results/malware_roc_aloha.png Graphic file (type png)
 <use ./results/malware_roc_aloha.png>
 Package pdftex.def Info: ./results/malware_roc_aloha.png  used on input line 39
-70.
+72.
 (pdftex.def)             Requested size: 253.50397pt x 253.50458pt.
-<./results/malware_roc_proposedModel.png, id=2017, 867.24pt x 867.24pt>
+<./results/malware_roc_proposedModel.png, id=2027, 867.24pt x 867.24pt>
 File: ./results/malware_roc_proposedModel.png Graphic file (type png)
 <use ./results/malware_roc_proposedModel.png>
 Package pdftex.def Info: ./results/malware_roc_proposedModel.png  used on input
- line 3972.
+ line 3974.
 (pdftex.def)             Requested size: 253.50397pt x 253.50458pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [122 <./results/malware_roc_alohaMB.png> <./results/malware_roc_aloha.png>]
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3977--3977
- []|\OT1/cmr/m/n/10 0.950$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.003| 
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3979--3979
+ []|\OT1/cmr/m/n/10 0.256$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.011| 
  []
 
 
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3977--3977
- []|\OT1/cmr/m/n/10 0.975$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.001| 
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3979--3979
+ []|\OT1/cmr/m/n/10 0.779$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.003| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3977--3977
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3979--3979
  []|[]| 
  []
 
 
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3977--3977
- []|\OT1/cmr/m/n/10 0.950$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.003| 
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3979--3979
+ []|\OT1/cmr/m/n/10 0.256$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.011| 
  []
 
 
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3977--3977
- []|\OT1/cmr/m/n/10 0.967$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.002| 
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3979--3979
+ []|\OT1/cmr/m/n/10 0.400$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.013| 
  []
 
 
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3977--3977
- []|\OT1/cmr/m/n/10 0.952$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.003| 
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3979--3979
+ []|\OT1/cmr/m/n/10 0.064$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.026| 
  []
 
 
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3977--3977
- []|\OT1/cmr/m/n/10 0.975$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.001| 
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3979--3979
+ []|\OT1/cmr/m/n/10 0.724$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.007| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3977--3977
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3979--3979
+ []|\OT1/cmr/m/n/10 0.701$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.087| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3979--3979
+ []|\OT1/cmr/m/n/10 0.064$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.026| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3979--3979
+ []|\OT1/cmr/m/n/10 0.116$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.044| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3979--3979
  []|[]| 
  []
 
 
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3977--3977
- []|\OT1/cmr/m/n/10 0.952$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.003| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3977--3977
- []|\OT1/cmr/m/n/10 0.967$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.001| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3977--3977
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3979--3979
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3977--3977
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3979--3979
+ []|\OT1/cmr/m/n/10 0.912$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.022| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3979--3979
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3977--3977
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3977--3977
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3977--3977
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3979--3979
  []|[]| 
  []
 
 [123 <./results/malware_roc_proposedModel.png>]
-Overfull \hbox (0.22159pt too wide) in alignment at lines 3993--3993
+Overfull \hbox (0.22159pt too wide) in alignment at lines 3995--3995
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (0.22159pt too wide) in alignment at lines 3993--3993
+Overfull \hbox (0.22159pt too wide) in alignment at lines 3995--3995
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (0.22159pt too wide) in alignment at lines 3993--3993
+Overfull \hbox (0.22159pt too wide) in alignment at lines 3995--3995
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (0.22159pt too wide) in alignment at lines 3993--3993
+Overfull \hbox (0.22159pt too wide) in alignment at lines 3995--3995
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.682$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.010| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.972$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.001| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.806$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.002| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.682$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.010| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.739$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.007| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.698$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.008| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.973$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.810$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.002| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.698$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.008| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.750$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.005| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.773$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.148| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.987$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.002| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.515$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.052| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.773$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.148| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.616$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.086| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.896$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.008| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.556$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.002| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.896$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.008| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.687$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.004| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.632$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.034| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.960$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.003| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.852$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.007| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.632$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.034| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.725$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.025| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.635$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.031| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.960$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.003| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.853$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.006| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.635$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.031| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.728$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.023| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.673$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.037| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.950$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.005| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.908$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.005| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.673$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.037| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.772$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.026| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.690$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.016| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.952$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.002| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.910$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.002| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.690$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.016| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.785$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.011| 
- []
-
-
-Overfull \hbox (0.22159pt too wide) in alignment at lines 3993--3993
- [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.875$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.003| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.971$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.001| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.944$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.875$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.003| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.908$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.002| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.867$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.015| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.970$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.002| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.943$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.001| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.867$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.015| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.903$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.009| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.876$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.016| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.137$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.002| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.876$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.016| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.237$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.004| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.906$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.007| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.141$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.001| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.906$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.007| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.244$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.002| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.717$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.054| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.985$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.001| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.564$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.019| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.717$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.054| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.631$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.033| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.759$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.042| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.986$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.001| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.578$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.014| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.759$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.042| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.656$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.024| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.715$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.003| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.952$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.919$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.715$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.003| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.804$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.002| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.735$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.015| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.955$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.002| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.921$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.002| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.735$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.015| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.817$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.010| 
- []
-
-
-Overfull \hbox (0.22159pt too wide) in alignment at lines 3993--3993
- [] [] [] [] [] [] 
- []
-
-[124]
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.850$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.002| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.824$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.850$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.002| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.837$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.001| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.856$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.003| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.856$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.003| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.840$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.002| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.582$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.031| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.946$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.003| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.874$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.006| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.582$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.031| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.698$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.025| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.660$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.003| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.955$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.888$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.660$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.003| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.757$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.002| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.605$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.012| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.929$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.002| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.919$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.002| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.605$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.012| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.730$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.009| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.656$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.004| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.656$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.004| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.767$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.003| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 3993--3993
- []|\OT1/cmr/m/n/10 0.925$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.001| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 3993--3993
- []|[]| 
- []
-
-
-Overfull \hbox (0.22159pt too wide) in alignment at lines 3993--3993
- [] [] [] [] [] [] 
- []
-
-[125]
-<./results/all_mean_roc_aloha.png, id=2046, 867.24pt x 867.24pt>
-File: ./results/all_mean_roc_aloha.png Graphic file (type png)
-<use ./results/all_mean_roc_aloha.png>
-Package pdftex.def Info: ./results/all_mean_roc_aloha.png  used on input line 3
-995.
-(pdftex.def)             Requested size: 253.50397pt x 253.50458pt.
-<./results/all_mean_roc_jointEmbedding.png, id=2047, 867.24pt x 867.24pt>
-File: ./results/all_mean_roc_jointEmbedding.png Graphic file (type png)
-<use ./results/all_mean_roc_jointEmbedding.png>
-Package pdftex.def Info: ./results/all_mean_roc_jointEmbedding.png  used on inp
-ut line 3997.
-(pdftex.def)             Requested size: 253.50397pt x 253.50458pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [126 <./results/all_mean_roc_aloha.png>]
-<./results/all_mean_roc_proposedModel.png, id=2053, 867.24pt x 867.24pt>
-File: ./results/all_mean_roc_proposedModel.png Graphic file (type png)
-<use ./results/all_mean_roc_proposedModel.png>
-Package pdftex.def Info: ./results/all_mean_roc_proposedModel.png  used on inpu
-t line 3999.
-(pdftex.def)             Requested size: 253.50397pt x 253.50458pt.
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 4004--4004
- []|\OT1/cmr/m/n/10 0.674$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.004| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 4004--4004
- []|\OT1/cmr/m/n/10 0.716$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.013| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 4004--4004
- []|\OT1/cmr/m/n/10 0.787$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.014| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 4004--4004
- []|\OT1/cmr/m/n/10 0.864$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.003| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 4004--4004
- []|\OT1/cmr/m/n/10 0.793$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.002| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4004--4004
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4004--4004
- []|[]| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 4004--4004
- []|\OT1/cmr/m/n/10 0.826$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.020| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4004--4004
- []|[]| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 4004--4004
- []|\OT1/cmr/m/n/10 0.784$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.003| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 4004--4004
- []|\OT1/cmr/m/n/10 0.693$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.017| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 4004--4004
- []|\OT1/cmr/m/n/10 0.748$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.017| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4004--4004
- []|[]| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 4004--4004
- []|\OT1/cmr/m/n/10 0.877$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.002| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4004--4004
- []|[]| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 4004--4004
- []|\OT1/cmr/m/n/10 0.633$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.002| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 4004--4004
- []|\OT1/cmr/m/n/10 0.658$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.014| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 4004--4004
- []|\OT1/cmr/m/n/10 0.716$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.031| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 4004--4004
- []|\OT1/cmr/m/n/10 0.791$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.002| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4004--4004
- []|[]| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 4004--4004
- []|\OT1/cmr/m/n/10 0.643$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.005| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 4004--4004
- []|\OT1/cmr/m/n/10 0.680$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.012| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 4004--4004
- []|\OT1/cmr/m/n/10 0.763$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.021| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 4004--4004
- []|\OT1/cmr/m/n/10 0.806$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.004| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 4004--4004
- []|\OT1/cmr/m/n/10 0.684$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.006| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4004--4004
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4004--4004
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4004--4004
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4004--4004
- []|[]| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 4004--4004
- []|\OT1/cmr/m/n/10 0.699$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.004| 
- []
-
-
-Underfull \vbox (badness 2443) has occurred while \output is active []
-
- [127 <./results/all_mean_roc_jointEmbedding.png> <./results/all_mean_roc_propo
-sedModel.png>] [128]
-Overfull \hbox (0.22159pt too wide) in alignment at lines 4015--4015
- [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (0.22159pt too wide) in alignment at lines 4015--4015
- [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (0.22159pt too wide) in alignment at lines 4015--4015
- [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (0.22159pt too wide) in alignment at lines 4015--4015
- [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 4015--4015
- []|\OT1/cmr/m/n/10 0.014$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.003| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
- []|[]| 
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.904$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.005| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
- []|[]| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 4015--4015
- []|\OT1/cmr/m/n/10 0.010$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.002| 
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.005$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.005| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
- []|[]| 
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.042$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.042| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
- []|[]| 
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.005$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.005| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
- []|[]| 
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.008$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.008| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
- []|[]| 
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.005$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.005| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
- []|[]| 
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.903$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
- []|[]| 
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.045$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.045| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
- []|[]| 
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.005$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.005| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
- []|[]| 
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.008$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.008| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
- []|[]| 
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.980$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.004| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
- []|[]| 
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.979$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.001| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 4015--4015
- []|\OT1/cmr/m/n/10 0.010$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.001| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
- []|[]| 
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.927$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
- []
-
-
-Overfull \hbox (0.22159pt too wide) in alignment at lines 4015--4015
- [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
- []|[]| 
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.015$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.003| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
- []|[]| 
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.924$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
- []|[]| 
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.093$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.019| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
- []|[]| 
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.015$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.003| 
  []
 
 
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
  []|\OT1/cmr/m/n/10 0.026$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.005| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.000$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.000$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.000$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.000$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 4015--4015
- []|\OT1/cmr/m/n/10 0.012$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.001| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.000$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.925$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.001| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.000$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.000$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.000$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.023$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.023| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.925$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.002| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.121$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.121| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.023$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.023| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.039$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.039| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.005$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.005| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.904$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.001| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.053$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.053| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.005$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.005| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.009$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.009| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.023$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.014| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.905$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.001| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.168$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.082| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.023$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.014| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.041$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.024| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
- []|[]| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 4015--4015
- []|\OT1/cmr/m/n/10 0.011$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.001| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
- []|[]| 
- []
-
-
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 4015--4015
- []|\OT1/cmr/m/n/10 0.009$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.001| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
- []|[]| 
- []
-
-
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
- []|[]| 
- []
-
-
-Overfull \hbox (0.22159pt too wide) in alignment at lines 4015--4015
+Overfull \hbox (0.22159pt too wide) in alignment at lines 3995--3995
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.997$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.001| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 4015--4015
- []|\OT1/cmr/m/n/10 0.017$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.002| 
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.993$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.005| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.11845pt too wide) in paragraph at lines 4015--4015
- []|\OT1/cmr/m/n/10 0.011$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.002| 
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.961$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.001| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (2.12003pt too wide) in paragraph at lines 4015--4015
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.007$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.007| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.963$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.022$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.022| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.007$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.007| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.011$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.011| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.007$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.007| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
  []|[]| 
  []
 
 
-Overfull \hbox (0.22159pt too wide) in alignment at lines 4015--4015
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.038$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.038| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.007$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.007| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.012$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.012| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.000$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.875$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.003| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.000$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.000$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.000$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
+ []|[]| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
+ []|[]| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
+ []|[]| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
+ []|[]| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
+ []|[]| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.017$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.010| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.875$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.001| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.181$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.094| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.017$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.010| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.031$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.019| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.000$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.959$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.004| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.000$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.000$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.000$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
+ []|[]| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.955$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.001| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.021$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.021| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
+ []|[]| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.009$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.009| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
+ []|[]| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
+ []|[]| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
+ []|[]| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
+ []|[]| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
+ []|[]| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.047$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.009| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
+ []|[]| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
+ []|[]| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.047$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.009| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.086$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.015| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.019$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.019| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.866$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.001| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.188$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.188| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.019$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.019| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.034$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.034| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
+ []|[]| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.869$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.004| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.452$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.142| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
+ []|[]| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
+ []|[]| 
+ []
+
+
+Overfull \hbox (0.22159pt too wide) in alignment at lines 3995--3995
  [] [] [] [] [] [] 
  []
 
-[129]
+[124]
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.012$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.012| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
+ []|[]| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
+ []|[]| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.012$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.012| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.023$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.023| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.023$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.020| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.890$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.003| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.233$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.190| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.023$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.020| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.043$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.035| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
+ []|[]| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.890$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.003| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 3995--3995
+ []|\OT1/cmr/m/n/10 0.224$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.181| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
+ []|[]| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 3995--3995
+ []|[]| 
+ []
+
+
+Overfull \hbox (0.22159pt too wide) in alignment at lines 3995--3995
+ [] [] [] [] [] [] 
+ []
+
+<./results/all_mean_roc_aloha.png, id=2052, 867.24pt x 867.24pt>
+File: ./results/all_mean_roc_aloha.png Graphic file (type png)
+<use ./results/all_mean_roc_aloha.png>
+Package pdftex.def Info: ./results/all_mean_roc_aloha.png  used on input line 3
+997.
+(pdftex.def)             Requested size: 253.50397pt x 253.50458pt.
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [130]
-<./results/all_mean_fresh_roc_jointEmbedding.png, id=2074, 867.24pt x 867.24pt>
-
-File: ./results/all_mean_fresh_roc_jointEmbedding.png Graphic file (type png)
-<use ./results/all_mean_fresh_roc_jointEmbedding.png>
-Package pdftex.def Info: ./results/all_mean_fresh_roc_jointEmbedding.png  used 
-on input line 4017.
+ [125]
+<./results/all_mean_roc_jointEmbedding.png, id=2057, 867.24pt x 867.24pt>
+File: ./results/all_mean_roc_jointEmbedding.png Graphic file (type png)
+<use ./results/all_mean_roc_jointEmbedding.png>
+Package pdftex.def Info: ./results/all_mean_roc_jointEmbedding.png  used on inp
+ut line 3999.
 (pdftex.def)             Requested size: 253.50397pt x 253.50458pt.
-<./results/all_mean_fresh_roc_proposedModel.png, id=2075, 867.24pt x 867.24pt>
-File: ./results/all_mean_fresh_roc_proposedModel.png Graphic file (type png)
-<use ./results/all_mean_fresh_roc_proposedModel.png>
-Package pdftex.def Info: ./results/all_mean_fresh_roc_proposedModel.png  used o
-n input line 4019.
+<./results/all_mean_roc_proposedModel.png, id=2058, 867.24pt x 867.24pt>
+File: ./results/all_mean_roc_proposedModel.png Graphic file (type png)
+<use ./results/all_mean_roc_proposedModel.png>
+Package pdftex.def Info: ./results/all_mean_roc_proposedModel.png  used on inpu
+t line 4001.
 (pdftex.def)             Requested size: 253.50397pt x 253.50458pt.
 
-Overfull \hbox (0.78508pt too wide) in paragraph at lines 4024--4024
- []|\OT1/cmr/m/n/10 avemariarat| 
- []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[131 <./results/all_mean_fresh_roc_jointEmbedding.png> <./results/all_mean_fres
-h_roc_proposedModel.png>]
-Overfull \hbox (0.78508pt too wide) in paragraph at lines 4026--4026
- []|\OT1/cmr/m/n/10 avemariarat| 
- []
-
-
-Overfull \hbox (0.78508pt too wide) in paragraph at lines 4026--4026
- []|\OT1/cmr/m/n/10 avemariarat| 
+ [126 <./results/all_mean_roc_aloha.png> <./results/all_mean_roc_jointEmbedding
+.png>]
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 4006--4006
+ []|\OT1/cmr/m/n/10 0.718$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
  []
 
 
-Overfull \hbox (0.78508pt too wide) in paragraph at lines 4028--4028
- []|\OT1/cmr/m/n/10 avemariarat| 
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 4006--4006
+ []|\OT1/cmr/m/n/10 0.718$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
  []
 
 
-Overfull \hbox (0.78508pt too wide) in paragraph at lines 4028--4028
- []|\OT1/cmr/m/n/10 avemariarat| 
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 4006--4006
+ []|[]| 
  []
 
 
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 4006--4006
+ []|[]| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 4006--4006
+ []|[]| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 4006--4006
+ []|\OT1/cmr/m/n/10 0.718$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.001| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 4006--4006
+ []|\OT1/cmr/m/n/10 0.718$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.001| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 4006--4006
+ []|\OT1/cmr/m/n/10 0.714$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.001| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 4006--4006
+ []|\OT1/cmr/m/n/10 0.676$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.001| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 4006--4006
+ []|\OT1/cmr/m/n/10 0.385$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.026| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 4006--4006
+ []|[]| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 4006--4006
+ []|[]| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 4006--4006
+ []|\OT1/cmr/m/n/10 0.715$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.003| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 4006--4006
+ []|\OT1/cmr/m/n/10 0.685$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.001| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 4006--4006
+ []|\OT1/cmr/m/n/10 0.370$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.007| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 4006--4006
+ []|[]| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 4006--4006
+ []|[]| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 4006--4006
+ []|[]| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 4006--4006
+ []|[]| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 4006--4006
+ []|[]| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 4006--4006
+ []|[]| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 4006--4006
+ []|[]| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 4006--4006
+ []|\OT1/cmr/m/n/10 0.712$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.001| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 4006--4006
+ []|\OT1/cmr/m/n/10 0.672$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.000| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 4006--4006
+ []|\OT1/cmr/m/n/10 0.364$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.026| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 4006--4006
+ []|[]| 
+ []
+
+
+Overfull \hbox (2.12003pt too wide) in paragraph at lines 4006--4006
+ []|[]| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 4006--4006
+ []|\OT1/cmr/m/n/10 0.713$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.001| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 4006--4006
+ []|\OT1/cmr/m/n/10 0.681$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.001| 
+ []
+
+
+Overfull \hbox (2.11845pt too wide) in paragraph at lines 4006--4006
+ []|\OT1/cmr/m/n/10 0.344$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.005| 
+ []
+
+[127 <./results/all_mean_roc_proposedModel.png>]
+<./results/accuracy_trend_alohaMB.png, id=2072, 867.24pt x 867.24pt>
+File: ./results/accuracy_trend_alohaMB.png Graphic file (type png)
+<use ./results/accuracy_trend_alohaMB.png>
+Package pdftex.def Info: ./results/accuracy_trend_alohaMB.png  used on input li
+ne 4015.
+(pdftex.def)             Requested size: 274.62392pt x 274.62445pt.
+<./results/accuracy_trend_aloha.png, id=2073, 867.24pt x 867.24pt>
+File: ./results/accuracy_trend_aloha.png Graphic file (type png)
+<use ./results/accuracy_trend_aloha.png>
+Package pdftex.def Info: ./results/accuracy_trend_aloha.png  used on input line
+ 4017.
+(pdftex.def)             Requested size: 274.62392pt x 274.62445pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [128 <./results/accuracy_trend_alohaMB.png>]
+<./results/accuracy_trend_jointEmbedding.png, id=2079, 867.24pt x 867.24pt>
+File: ./results/accuracy_trend_jointEmbedding.png Graphic file (type png)
+<use ./results/accuracy_trend_jointEmbedding.png>
+Package pdftex.def Info: ./results/accuracy_trend_jointEmbedding.png  used on i
+nput line 4019.
+(pdftex.def)             Requested size: 274.62392pt x 274.62445pt.
+<./results/accuracy_trend_proposedModel.png, id=2080, 867.24pt x 867.24pt>
+File: ./results/accuracy_trend_proposedModel.png Graphic file (type png)
+<use ./results/accuracy_trend_proposedModel.png>
+Package pdftex.def Info: ./results/accuracy_trend_proposedModel.png  used on in
+put line 4021.
+(pdftex.def)             Requested size: 274.62392pt x 274.62445pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [129 <./results/accuracy_trend_aloha.png> <./results/accuracy_trend_jointEmbed
+ding.png>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [130 <./results/accuracy_trend_proposedModel.png>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [131]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [132]
-Overfull \hbox (0.78508pt too wide) in paragraph at lines 4030--4030
- []|\OT1/cmr/m/n/10 avemariarat| 
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [133]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [134]
+Overfull \hbox (2.80562pt too wide) in paragraph at lines 4037--4037
+\OT1/cmr/m/n/10 Similarity|  
  []
 
 
-Overfull \hbox (0.78508pt too wide) in paragraph at lines 4030--4030
- []|\OT1/cmr/m/n/10 avemariarat| 
+Overfull \hbox (3.84474pt too wide) in paragraph at lines 4037--4037
+ []|\OT1/cmr/m/n/10 Weighted| 
  []
 
-[133]
+
+Overfull \hbox (3.84474pt too wide) in paragraph at lines 4037--4037
+ []|\OT1/cmr/m/n/10 Weighted| 
+ []
+
+
+Overfull \hbox (3.84474pt too wide) in paragraph at lines 4037--4037
+ []|\OT1/cmr/m/n/10 Weighted| 
+ []
+
+
+Overfull \hbox (3.84474pt too wide) in paragraph at lines 4037--4037
+ []|\OT1/cmr/m/n/10 Weighted| 
+ []
+
+
+Overfull \hbox (3.84474pt too wide) in paragraph at lines 4037--4037
+ []|\OT1/cmr/m/n/10 Weighted| 
+ []
+
+
+Overfull \hbox (3.84474pt too wide) in paragraph at lines 4037--4037
+ []|\OT1/cmr/m/n/10 Weighted| 
+ []
+
+<./results/family_classifier_confusion_matrix_jointEmbedding.png, id=2109, 867.
+24pt x 867.24pt>
+File: ./results/family_classifier_confusion_matrix_jointEmbedding.png Graphic f
+ile (type png)
+<use ./results/family_classifier_confusion_matrix_jointEmbedding.png>
+Package pdftex.def Info: ./results/family_classifier_confusion_matrix_jointEmbe
+dding.png  used on input line 4039.
+(pdftex.def)             Requested size: 295.75032pt x 295.74431pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [135]
+<./results/family_classifier_confusion_matrix_proposedModel.png, id=2114, 867.2
+4pt x 867.24pt>
+File: ./results/family_classifier_confusion_matrix_proposedModel.png Graphic fi
+le (type png)
+<use ./results/family_classifier_confusion_matrix_proposedModel.png>
+Package pdftex.def Info: ./results/family_classifier_confusion_matrix_proposedM
+odel.png  used on input line 4041.
+(pdftex.def)             Requested size: 295.75032pt x 295.74431pt.
+<./results/family_classifier_confusion_matrix_familyClassifierOnly.png, id=2115
+, 867.24pt x 867.24pt>
+File: ./results/family_classifier_confusion_matrix_familyClassifierOnly.png Gra
+phic file (type png)
+<use ./results/family_classifier_confusion_matrix_familyClassifierOnly.png>
+Package pdftex.def Info: ./results/family_classifier_confusion_matrix_familyCla
+ssifierOnly.png  used on input line 4043.
+(pdftex.def)             Requested size: 295.75032pt x 295.74431pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [136 <./results/family_classifier_confusion_matrix_jointEmbedding.png> <./resu
+lts/family_classifier_confusion_matrix_proposedModel.png>] [137 <./results/fami
+ly_classifier_confusion_matrix_familyClassifierOnly.png>]
 Chapter 8.
-(Thesis_V1.0.0.bbl [134
+(Thesis_V1.0.0.bbl [138
 
 ]
 Underfull \hbox (badness 1242) in paragraph at lines 31--33
@@ -3608,7 +3127,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 89--91
  https : / / owasp . org / www-[]community /
  []
 
-[135
+[139
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 168--170
@@ -3628,7 +3147,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 194--197
 ext = YARA % 20is % 20a % 20tool %
  []
 
-[136]
+[140]
 Underfull \hbox (badness 1371) in paragraph at lines 209--212
 []\OT1/cmr/m/n/10 Forcepoint, ``What is heuris-tic anal-y-sis?.'' [][]$\OT1/cmt
 t/m/n/10 https : / / www . forcepoint . com / cyber-[]edu /
@@ -3640,15 +3159,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 242--244
 tps : / / discuss . pytorch . org / t /
  []
 
-) [137] (Thesis_V1.0.0.aux)
+) [141] (Thesis_V1.0.0.aux)
 Package rerunfilecheck Info: File `Thesis_V1.0.0.out' has not changed.
 (rerunfilecheck)             Checksum: 5D331E15385E6FBF9D4C2283074D299A;12083.
  ) 
 Here is how much of TeX's memory you used:
- 20926 strings out of 481296
- 353479 string characters out of 2908369
- 1061157 words of memory out of 3000000
- 36838 multiletter control sequences out of 15000+600000
+ 20950 strings out of 481296
+ 353866 string characters out of 2908369
+ 1013455 words of memory out of 3000000
+ 36874 multiletter control sequences out of 15000+600000
  420300 words of font info for 89 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  134i,17n,137p,2600b,2546s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -3683,9 +3202,9 @@ mti12.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
 sfonts/cm/cmtt10.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type
 1/public/amsfonts/cm/cmtt8.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/
 fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Thesis_V1.0.0.pdf (137 pages, 5523199 bytes).
+Output written on Thesis_V1.0.0.pdf (141 pages, 5642450 bytes).
 PDF statistics:
- 2430 PDF objects out of 2487 (max. 8388607)
- 816 named destinations out of 1000 (max. 500000)
- 717 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2469 PDF objects out of 2487 (max. 8388607)
+ 825 named destinations out of 1000 (max. 500000)
+ 742 words of extra memory for PDF output out of 10000 (max. 10000000)
 

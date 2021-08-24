@@ -43,8 +43,13 @@
 \contentsline {figure}{\numberline {7.2}{\ignorespaces Malware Label prediction task ALOHA ROC curve}}{122}{figure.caption.137}%
 \contentsline {figure}{\numberline {7.3}{\ignorespaces Malware Label prediction task Proposed Model ROC curve}}{123}{figure.caption.138}%
 \contentsline {figure}{\numberline {7.4}{\ignorespaces Tags prediction task ALOHA mean ROC curve}}{126}{figure.caption.140}%
-\contentsline {figure}{\numberline {7.5}{\ignorespaces Tags prediction task Joint Embedding mean ROC curve}}{127}{figure.caption.141}%
+\contentsline {figure}{\numberline {7.5}{\ignorespaces Tags prediction task Joint Embedding mean ROC curve}}{126}{figure.caption.141}%
 \contentsline {figure}{\numberline {7.6}{\ignorespaces Tags prediction task Proposed Model mean ROC curve}}{127}{figure.caption.142}%
-\contentsline {figure}{\numberline {7.7}{\ignorespaces Family prediction task Joint Embedding ROC curve}}{131}{figure.caption.145}%
-\contentsline {figure}{\numberline {7.8}{\ignorespaces Family prediction task Proposed Model ROC curve}}{131}{figure.caption.146}%
+\contentsline {figure}{\numberline {7.7}{\ignorespaces ALOHA (M/B only) Family Prediction Accuracy Trend}}{128}{figure.caption.145}%
+\contentsline {figure}{\numberline {7.8}{\ignorespaces ALOHA Family Prediction Accuracy Trend}}{129}{figure.caption.146}%
+\contentsline {figure}{\numberline {7.9}{\ignorespaces Joint Embedding Family Prediction Accuracy Trend}}{129}{figure.caption.147}%
+\contentsline {figure}{\numberline {7.10}{\ignorespaces Proposed Model Family Prediction Accuracy Trend}}{130}{figure.caption.148}%
+\contentsline {figure}{\numberline {7.11}{\ignorespaces Family Classifier Joint Embedding Confusion Matrix}}{136}{figure.caption.155}%
+\contentsline {figure}{\numberline {7.12}{\ignorespaces Family Classifier Proposed Model Confusion Matrix}}{136}{figure.caption.156}%
+\contentsline {figure}{\numberline {7.13}{\ignorespaces Family Classifier Only Joint Embedding Confusion Matrix}}{137}{figure.caption.157}%
 \addvspace {10\p@ }

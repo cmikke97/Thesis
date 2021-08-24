@@ -1,14 +1,14 @@
 \newcommand{\downloaderTagResultsAucTable}{
     \begin{table}[H]
         \centering
-        \begin{tabular}{|p{2,8cm}||P{2,2cm} P{2,2cm} P{2,2cm} P{2,2cm}|}
+        \begin{tabular}{|p{2,8cm}||P{2,4cm} P{2,4cm} P{2,4cm}|}
             \hline
-            Downloader Tag & ALOHA\newline (M/B only) & ALOHA & Joint\newline Embedding & Proposed\newline Model \\
+            Downloader Tag & ALOHA\newline (M/B only) & ALOHA & Proposed\newline Model \\
             \hline
-            AUC-ROC & - & 0.968$\pm$0.007 & 0.974$\pm$0.002 & \textBF{0.980$\pm$0.002} \\
+            AUC-ROC & - & 0.595$\pm$0.045 & \textBF{0.636$\pm$0.021} \\
             \hline
         \end{tabular}
-        \caption[Downloader Tag prediction task AUC-ROC results]{AUC-ROC (Area Under Curve) of the different models for the \textbf{Downloader Tag} prediction task. Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:downloaderTag_auc}
+        \caption[Downloader Tag prediction task AUC-ROC results]{AUC-ROC (Area Under Curve) of the different models for the \textbf{Downloader Tag} prediction task. Results were aggregated over \textBF{2} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:downloaderTag_auc}
     \end{table}
 }
 
@@ -31,51 +31,44 @@
             \caption*{\raggedleft ...continued on next page} \\
             \endfoot
 
-            \caption[Downloader Tag prediction task results]{Mean and standard deviation results (TPR, Accuracy, Recall, Precision and F1-Score) of the different models for the \textbf{Downloader Tag} prediction task at different \textbf{FPR}s (\textit{False Positive Rates}). Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}. Under \textbf{TPR} results are also presented the percentage reduction in mean detection error and in ROC curve standard deviation introduced by the \textit{Proposed Model} with respect to both \textit{ALOHA} model and \textit{Joint Embedding}.} \label{tab:downloaderTag_results_at_fpr} \\
+            \caption[Downloader Tag prediction task results]{Mean and standard deviation results (TPR, Accuracy, Recall, Precision and F1-Score) of the different models for the \textbf{Downloader Tag} prediction task at different \textbf{FPR}s (\textit{False Positive Rates}). Results were aggregated over \textBF{2} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}. Under \textbf{TPR} results are also presented the percentage reduction in mean detection error and in ROC curve standard deviation introduced by the \textit{Proposed Model} with respect to both \textit{ALOHA} model and \textit{Joint Embedding}.} \label{tab:downloaderTag_results_at_fpr} \\
             \endlastfoot
 
             \multicolumn{6}{|c|}{\textbf{TPR}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.070$\pm$0.030 & 0.274$\pm$0.170 & 0.478$\pm$0.150 & 0.632$\pm$0.034 & 0.883$\pm$0.055 \\
-            Joint Embedding & 0.132$\pm$0.087 & 0.211$\pm$0.134 & 0.320$\pm$0.224 & 0.635$\pm$0.031 & \textBF{0.960$\pm$0.003} \\
-            Proposed Model & \textBF{0.133$\pm$0.101} & \textBF{0.364$\pm$0.045} & \textBF{0.557$\pm$0.044} & \textBF{0.667$\pm$0.012} & 0.957$\pm$0.006 \\
+            ALOHA & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.006$\pm$0.006} & \textBF{0.018$\pm$0.018} & 0.152$\pm$0.079 \\
+            Proposed Model & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & 0.000$\pm$0.000 & 0.000$\pm$0.000 & \textBF{0.152$\pm$0.024} \\
             \hline
             Error Reduction wrt\newline ALOHA (M/B only) & - & - & - & - & - \\
-            Error Reduction wrt\newline ALOHA & 6.8\% & 12.4\% & 15.1\% & 9.5\% & 63.2\% \\
-            Error Reduction wrt\newline Joint Embedding & 0.1\% & 19.4\% & 34.9\% & 8.8\% & -7.5\% \\
+            Error Reduction wrt\newline ALOHA & 0.0\% & 0.0\% & -0.6\% & -1.8\% & 0.0\% \\
             \hline
             Std Reduction wrt\newline ALOHA (M/B only) & - & - & - & - & - \\
-            Std Reduction wrt\newline ALOHA & -236.7\% & 73.5\% & 70.7\% & 64.7\% & 89.1\% \\
-            Std Reduction wrt\newline Joint Embedding & -16.1\% & 66.4\% & 80.4\% & 61.3\% & -100.0\% \\
+            Std Reduction wrt\newline ALOHA & 0.0\% & 0.0\% & 100.0\% & 100.0\% & 69.6\% \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Accuracy}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.922$\pm$0.003 & 0.939$\pm$0.014 & 0.955$\pm$0.013 & 0.960$\pm$0.003 & 0.899$\pm$0.005 \\
-            Joint Embedding & 0.927$\pm$0.007 & 0.934$\pm$0.011 & 0.942$\pm$0.019 & 0.960$\pm$0.003 & \textBF{0.905$\pm$0.000} \\
-            Proposed Model & \textBF{0.928$\pm$0.008} & \textBF{0.947$\pm$0.004} & \textBF{0.962$\pm$0.004} & \textBF{0.963$\pm$0.001} & 0.905$\pm$0.001 \\
+            ALOHA & \textBF{0.933$\pm$0.000} & \textBF{0.933$\pm$0.000} & \textBF{0.933$\pm$0.000} & 0.927$\pm$0.000 & 0.850$\pm$0.006 \\
+            Proposed Model & \textBF{0.933$\pm$0.000} & \textBF{0.933$\pm$0.000} & \textBF{0.933$\pm$0.000} & \textBF{0.931$\pm$0.000} & \textBF{0.851$\pm$0.001} \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Recall}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.070$\pm$0.030 & 0.274$\pm$0.170 & 0.478$\pm$0.150 & 0.632$\pm$0.034 & 0.883$\pm$0.055 \\
-            Joint Embedding & 0.132$\pm$0.087 & 0.211$\pm$0.134 & 0.320$\pm$0.224 & 0.635$\pm$0.031 & \textBF{0.960$\pm$0.003} \\
-            Proposed Model & \textBF{0.133$\pm$0.101} & \textBF{0.364$\pm$0.045} & \textBF{0.557$\pm$0.044} & \textBF{0.667$\pm$0.012} & 0.957$\pm$0.006 \\
+            ALOHA & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.006$\pm$0.006} & \textBF{0.018$\pm$0.018} & 0.152$\pm$0.079 \\
+            Proposed Model & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & 0.000$\pm$0.000 & 0.000$\pm$0.000 & \textBF{0.152$\pm$0.024} \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Precision}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.998$\pm$0.001 & 0.995$\pm$0.003 & 0.975$\pm$0.010 & 0.852$\pm$0.007 & 0.446$\pm$0.016 \\
-            Joint Embedding & 0.999$\pm$0.001 & 0.990$\pm$0.008 & 0.928$\pm$0.065 & 0.853$\pm$0.006 & \textBF{0.467$\pm$0.001} \\
-            Proposed Model & \textBF{1.000$\pm$0.000} & \textBF{0.997$\pm$0.000} & \textBF{0.981$\pm$0.001} & \textBF{0.859$\pm$0.002} & 0.466$\pm$0.002 \\
+            ALOHA & \textBF{1.000$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.250$\pm$0.250} & \textBF{0.111$\pm$0.111} & 0.096$\pm$0.047 \\
+            Proposed Model & \textBF{1.000$\pm$0.000} & \textBF{1.000$\pm$0.000} & 0.000$\pm$0.000 & 0.000$\pm$0.000 & \textBF{0.099$\pm$0.014} \\
             \hline
             \multicolumn{6}{|c|}{\textbf{F1 Score}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.129$\pm$0.053 & 0.404$\pm$0.195 & 0.627$\pm$0.149 & 0.725$\pm$0.025 & 0.592$\pm$0.026 \\
-            Joint Embedding & \textBF{0.223$\pm$0.132} & 0.328$\pm$0.186 & 0.437$\pm$0.263 & 0.728$\pm$0.023 & \textBF{0.628$\pm$0.001} \\
-            Proposed Model & 0.221$\pm$0.158 & \textBF{0.532$\pm$0.049} & \textBF{0.710$\pm$0.036} & \textBF{0.751$\pm$0.009} & 0.627$\pm$0.003 \\
+            ALOHA & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.012$\pm$0.012} & \textBF{0.031$\pm$0.031} & 0.118$\pm$0.059 \\
+            Proposed Model & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & 0.000$\pm$0.000 & 0.000$\pm$0.000 & \textBF{0.120$\pm$0.018} \\
             \hline
         \end{longtable}
     \end{center}
@@ -91,12 +84,11 @@
             Model & TPR & Accuracy & Precision & Recall & F1 score \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.632$\pm$0.034 & 0.960$\pm$0.003 & 0.852$\pm$0.007 & 0.632$\pm$0.034 & 0.725$\pm$0.025 \\
-            Joint Embedding & 0.635$\pm$0.031 & 0.960$\pm$0.003 & 0.853$\pm$0.006 & 0.635$\pm$0.031 & 0.728$\pm$0.023 \\
-            Proposed Model & \textBF{0.667$\pm$0.012} & \textBF{0.963$\pm$0.001} & \textBF{0.859$\pm$0.002} & \textBF{0.667$\pm$0.012} & \textBF{0.751$\pm$0.009} \\
+            ALOHA & \textBF{0.018$\pm$0.018} & 0.927$\pm$0.000 & \textBF{0.111$\pm$0.111} & \textBF{0.018$\pm$0.018} & \textBF{0.031$\pm$0.031} \\
+            Proposed Model & 0.000$\pm$0.000 & \textBF{0.931$\pm$0.000} & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.000$\pm$0.000 \\
             \hline
         \end{tabular}
-        \caption[Summary of Downloader Tag prediction task results]{Summary of the mean and standard deviation results of the different models for the \textbf{Downloader Tag} prediction task at \textbf{FPR} $=1\%$. Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:downloaderTag_result_summary}
+        \caption[Summary of Downloader Tag prediction task results]{Summary of the mean and standard deviation results of the different models for the \textbf{Downloader Tag} prediction task at \textbf{FPR} $=1\%$. Results were aggregated over \textBF{2} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:downloaderTag_result_summary}
     \end{table}
 }
 
@@ -106,7 +98,7 @@
         \centering
         \includegraphics[width=0.6\textwidth]{./results/downloader_tag_roc_alohaMB.png}
         \vspace*{-0.2cm}
-        \caption[Downloader Tag prediction task ALOHA (M/B only) ROC curve]{ROC curve and AUC statistics of \textBF{ALOHA (M/B only)} model for the \textbf{Downloader Tag}. The line represents the \textit{mean} TPR at a given FPR, while the shaded region represents the \textit{standard deviation}. Statistics were computed over \textBF{3} training runs, each with random parameter initialization.}
+        \caption[Downloader Tag prediction task ALOHA (M/B only) ROC curve]{ROC curve and AUC statistics of \textBF{ALOHA (M/B only)} model for the \textbf{Downloader Tag}. The line represents the \textit{mean} TPR at a given FPR, while the shaded region represents the \textit{standard deviation}. Statistics were computed over \textBF{2} training runs, each with random parameter initialization.}
         \label{fig:downloaderTagRocAlohaMB}
     \end{figure}
 }
@@ -117,19 +109,8 @@
         \centering
         \includegraphics[width=0.6\textwidth]{./results/downloader_tag_roc_aloha.png}
         \vspace*{-0.2cm}
-        \caption[Downloader Tag prediction task ALOHA ROC curve]{ROC curve and AUC statistics of \textBF{ALOHA} model for the \textbf{Downloader Tag}. The line represents the \textit{mean} TPR at a given FPR, while the shaded region represents the \textit{standard deviation}. Statistics were computed over \textBF{3} training runs, each with random parameter initialization.}
+        \caption[Downloader Tag prediction task ALOHA ROC curve]{ROC curve and AUC statistics of \textBF{ALOHA} model for the \textbf{Downloader Tag}. The line represents the \textit{mean} TPR at a given FPR, while the shaded region represents the \textit{standard deviation}. Statistics were computed over \textBF{2} training runs, each with random parameter initialization.}
         \label{fig:downloaderTagRocAloha}
-    \end{figure}
-}
-
-\newcommand{\downloaderTagRocJointEmbedding}{
-    \begin{figure}[H]
-        \vspace*{-0.5cm}
-        \centering
-        \includegraphics[width=0.6\textwidth]{./results/downloader_tag_roc_jointEmbedding.png}
-        \vspace*{-0.2cm}
-        \caption[Downloader Tag prediction task Joint Embedding ROC curve]{ROC curve and AUC statistics of \textBF{Joint Embedding} model for the \textbf{Downloader Tag}. The line represents the \textit{mean} TPR at a given FPR, while the shaded region represents the \textit{standard deviation}. Statistics were computed over \textBF{3} training runs, each with random parameter initialization.}
-        \label{fig:downloaderTagRocJointEmbedding}
     \end{figure}
 }
 
@@ -139,7 +120,7 @@
         \centering
         \includegraphics[width=0.6\textwidth]{./results/downloader_tag_roc_proposedModel.png}
         \vspace*{-0.2cm}
-        \caption[Downloader Tag prediction task Proposed Model ROC curve]{ROC curve and AUC statistics of \textBF{Proposed Model} for the \textbf{Downloader Tag}. The line represents the \textit{mean} TPR at a given FPR, while the shaded region represents the \textit{standard deviation}. Statistics were computed over \textBF{3} training runs, each with random parameter initialization.}
+        \caption[Downloader Tag prediction task Proposed Model ROC curve]{ROC curve and AUC statistics of \textBF{Proposed Model} for the \textbf{Downloader Tag}. The line represents the \textit{mean} TPR at a given FPR, while the shaded region represents the \textit{standard deviation}. Statistics were computed over \textBF{2} training runs, each with random parameter initialization.}
         \label{fig:downloaderTagRocProposedModel}
     \end{figure}
 }

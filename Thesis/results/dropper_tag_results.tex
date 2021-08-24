@@ -1,14 +1,14 @@
 \newcommand{\dropperTagResultsAucTable}{
     \begin{table}[H]
         \centering
-        \begin{tabular}{|p{2,8cm}||P{2,2cm} P{2,2cm} P{2,2cm} P{2,2cm}|}
+        \begin{tabular}{|p{2,8cm}||P{2,4cm} P{2,4cm} P{2,4cm}|}
             \hline
-            Dropper Tag & ALOHA\newline (M/B only) & ALOHA & Joint\newline Embedding & Proposed\newline Model \\
+            Dropper Tag & ALOHA\newline (M/B only) & ALOHA & Proposed\newline Model \\
             \hline
-            AUC-ROC & - & 0.968$\pm$0.005 & 0.972$\pm$0.001 & \textBF{0.977$\pm$0.001} \\
+            AUC-ROC & - & 0.547$\pm$0.077 & \textBF{0.550$\pm$0.027} \\
             \hline
         \end{tabular}
-        \caption[Dropper Tag prediction task AUC-ROC results]{AUC-ROC (Area Under Curve) of the different models for the \textbf{Dropper Tag} prediction task. Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:dropperTag_auc}
+        \caption[Dropper Tag prediction task AUC-ROC results]{AUC-ROC (Area Under Curve) of the different models for the \textbf{Dropper Tag} prediction task. Results were aggregated over \textBF{2} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:dropperTag_auc}
     \end{table}
 }
 
@@ -31,51 +31,44 @@
             \caption*{\raggedleft ...continued on next page} \\
             \endfoot
 
-            \caption[Dropper Tag prediction task results]{Mean and standard deviation results (TPR, Accuracy, Recall, Precision and F1-Score) of the different models for the \textbf{Dropper Tag} prediction task at different \textbf{FPR}s (\textit{False Positive Rates}). Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}. Under \textbf{TPR} results are also presented the percentage reduction in mean detection error and in ROC curve standard deviation introduced by the \textit{Proposed Model} with respect to both \textit{ALOHA} model and \textit{Joint Embedding}.} \label{tab:dropperTag_results_at_fpr} \\
+            \caption[Dropper Tag prediction task results]{Mean and standard deviation results (TPR, Accuracy, Recall, Precision and F1-Score) of the different models for the \textbf{Dropper Tag} prediction task at different \textbf{FPR}s (\textit{False Positive Rates}). Results were aggregated over \textBF{2} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}. Under \textbf{TPR} results are also presented the percentage reduction in mean detection error and in ROC curve standard deviation introduced by the \textit{Proposed Model} with respect to both \textit{ALOHA} model and \textit{Joint Embedding}.} \label{tab:dropperTag_results_at_fpr} \\
             \endlastfoot
 
             \multicolumn{6}{|c|}{\textbf{TPR}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.042$\pm$0.022 & 0.073$\pm$0.023 & 0.127$\pm$0.053 & 0.673$\pm$0.037 & 0.899$\pm$0.017 \\
-            Joint Embedding & \textBF{0.088$\pm$0.088} & 0.104$\pm$0.089 & \textBF{0.176$\pm$0.130} & \textBF{0.702$\pm$0.031} & 0.904$\pm$0.019 \\
-            Proposed Model & 0.068$\pm$0.015 & \textBF{0.127$\pm$0.047} & 0.151$\pm$0.042 & 0.690$\pm$0.016 & \textBF{0.943$\pm$0.017} \\
+            ALOHA & \textBF{0.003$\pm$0.003} & \textBF{0.003$\pm$0.003} & \textBF{0.009$\pm$0.009} & \textBF{0.035$\pm$0.029} & 0.105$\pm$0.099 \\
+            Proposed Model & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.023$\pm$0.023 & \textBF{0.116$\pm$0.105} \\
             \hline
             Error Reduction wrt\newline ALOHA (M/B only) & - & - & - & - & - \\
-            Error Reduction wrt\newline ALOHA & 2.7\% & 5.8\% & 2.7\% & 5.2\% & 43.6\% \\
-            Error Reduction wrt\newline Joint Embedding & -2.2\% & 2.6\% & -3.0\% & -4.0\% & 40.6\% \\
+            Error Reduction wrt\newline ALOHA & -0.3\% & -0.3\% & -0.9\% & -1.2\% & 1.2\% \\
             \hline
             Std Reduction wrt\newline ALOHA (M/B only) & - & - & - & - & - \\
-            Std Reduction wrt\newline ALOHA & 31.8\% & -104.3\% & 20.8\% & 56.8\% & 0.0\% \\
-            Std Reduction wrt\newline Joint Embedding & 83.0\% & 47.2\% & 67.7\% & 48.4\% & 10.5\% \\
+            Std Reduction wrt\newline ALOHA & 100.0\% & 100.0\% & 100.0\% & 20.7\% & -6.1\% \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Accuracy}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.878$\pm$0.003 & 0.882$\pm$0.003 & 0.888$\pm$0.007 & 0.950$\pm$0.005 & 0.900$\pm$0.002 \\
-            Joint Embedding & \textBF{0.884$\pm$0.011} & 0.886$\pm$0.011 & \textBF{0.894$\pm$0.016} & \textBF{0.953$\pm$0.004} & 0.901$\pm$0.002 \\
-            Proposed Model & 0.881$\pm$0.002 & \textBF{0.888$\pm$0.006} & 0.891$\pm$0.005 & 0.952$\pm$0.002 & \textBF{0.905$\pm$0.002} \\
+            ALOHA & \textBF{0.930$\pm$0.000} & \textBF{0.930$\pm$0.000} & \textBF{0.930$\pm$0.001} & \textBF{0.926$\pm$0.000} & 0.841$\pm$0.011 \\
+            Proposed Model & \textBF{0.930$\pm$0.000} & \textBF{0.930$\pm$0.000} & 0.929$\pm$0.000 & 0.925$\pm$0.002 & \textBF{0.846$\pm$0.007} \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Recall}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.042$\pm$0.022 & 0.073$\pm$0.023 & 0.127$\pm$0.054 & 0.673$\pm$0.037 & 0.899$\pm$0.017 \\
-            Joint Embedding & \textBF{0.088$\pm$0.088} & 0.104$\pm$0.089 & \textBF{0.174$\pm$0.129} & \textBF{0.702$\pm$0.031} & 0.904$\pm$0.019 \\
-            Proposed Model & 0.066$\pm$0.014 & \textBF{0.126$\pm$0.047} & 0.150$\pm$0.042 & 0.690$\pm$0.016 & \textBF{0.943$\pm$0.017} \\
+            ALOHA & \textBF{0.003$\pm$0.003} & \textBF{0.003$\pm$0.003} & \textBF{0.009$\pm$0.009} & \textBF{0.035$\pm$0.029} & 0.105$\pm$0.099 \\
+            Proposed Model & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.023$\pm$0.023 & \textBF{0.116$\pm$0.105} \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Precision}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.998$\pm$0.001 & 0.989$\pm$0.004 & 0.937$\pm$0.031 & 0.908$\pm$0.005 & 0.568$\pm$0.005 \\
-            Joint Embedding & 0.991$\pm$0.012 & 0.946$\pm$0.069 & 0.880$\pm$0.130 & \textBF{0.911$\pm$0.004} & 0.570$\pm$0.005 \\
-            Proposed Model & \textBF{0.999$\pm$0.000} & \textBF{0.994$\pm$0.002} & \textBF{0.954$\pm$0.011} & 0.910$\pm$0.002 & \textBF{0.580$\pm$0.004} \\
+            ALOHA & \textBF{1.000$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.300$\pm$0.300} & \textBF{0.233$\pm$0.122} & 0.069$\pm$0.065 \\
+            Proposed Model & \textBF{1.000$\pm$0.000} & \textBF{1.000$\pm$0.000} & 0.000$\pm$0.000 & 0.121$\pm$0.121 & \textBF{0.077$\pm$0.068} \\
             \hline
             \multicolumn{6}{|c|}{\textbf{F1 Score}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.080$\pm$0.041 & 0.134$\pm$0.041 & 0.220$\pm$0.085 & 0.772$\pm$0.026 & 0.696$\pm$0.009 \\
-            Joint Embedding & \textBF{0.149$\pm$0.144} & 0.176$\pm$0.146 & \textBF{0.274$\pm$0.191} & \textBF{0.793$\pm$0.021} & 0.699$\pm$0.009 \\
-            Proposed Model & 0.124$\pm$0.026 & \textBF{0.221$\pm$0.072} & 0.258$\pm$0.062 & 0.785$\pm$0.011 & \textBF{0.718$\pm$0.008} \\
+            ALOHA & \textBF{0.006$\pm$0.006} & \textBF{0.006$\pm$0.006} & \textBF{0.017$\pm$0.017} & \textBF{0.060$\pm$0.049} & 0.083$\pm$0.078 \\
+            Proposed Model & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.039$\pm$0.039 & \textBF{0.093$\pm$0.083} \\
             \hline
         \end{longtable}
     \end{center}
@@ -91,12 +84,11 @@
             Model & TPR & Accuracy & Precision & Recall & F1 score \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.673$\pm$0.037 & 0.950$\pm$0.005 & 0.908$\pm$0.005 & 0.673$\pm$0.037 & 0.772$\pm$0.026 \\
-            Joint Embedding & \textBF{0.702$\pm$0.031} & \textBF{0.953$\pm$0.004} & \textBF{0.911$\pm$0.004} & \textBF{0.702$\pm$0.031} & \textBF{0.793$\pm$0.021} \\
-            Proposed Model & 0.690$\pm$0.016 & 0.952$\pm$0.002 & 0.910$\pm$0.002 & 0.690$\pm$0.016 & 0.785$\pm$0.011 \\
+            ALOHA & \textBF{0.035$\pm$0.029} & \textBF{0.926$\pm$0.000} & \textBF{0.233$\pm$0.122} & \textBF{0.035$\pm$0.029} & \textBF{0.060$\pm$0.049} \\
+            Proposed Model & 0.023$\pm$0.023 & 0.925$\pm$0.002 & 0.121$\pm$0.121 & 0.023$\pm$0.023 & 0.039$\pm$0.039 \\
             \hline
         \end{tabular}
-        \caption[Summary of Dropper Tag prediction task results]{Summary of the mean and standard deviation results of the different models for the \textbf{Dropper Tag} prediction task at \textbf{FPR} $=1\%$. Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:dropperTag_result_summary}
+        \caption[Summary of Dropper Tag prediction task results]{Summary of the mean and standard deviation results of the different models for the \textbf{Dropper Tag} prediction task at \textbf{FPR} $=1\%$. Results were aggregated over \textBF{2} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:dropperTag_result_summary}
     \end{table}
 }
 
@@ -106,7 +98,7 @@
         \centering
         \includegraphics[width=0.6\textwidth]{./results/dropper_tag_roc_alohaMB.png}
         \vspace*{-0.2cm}
-        \caption[Dropper Tag prediction task ALOHA (M/B only) ROC curve]{ROC curve and AUC statistics of \textBF{ALOHA (M/B only)} model for the \textbf{Dropper Tag}. The line represents the \textit{mean} TPR at a given FPR, while the shaded region represents the \textit{standard deviation}. Statistics were computed over \textBF{3} training runs, each with random parameter initialization.}
+        \caption[Dropper Tag prediction task ALOHA (M/B only) ROC curve]{ROC curve and AUC statistics of \textBF{ALOHA (M/B only)} model for the \textbf{Dropper Tag}. The line represents the \textit{mean} TPR at a given FPR, while the shaded region represents the \textit{standard deviation}. Statistics were computed over \textBF{2} training runs, each with random parameter initialization.}
         \label{fig:dropperTagRocAlohaMB}
     \end{figure}
 }
@@ -117,19 +109,8 @@
         \centering
         \includegraphics[width=0.6\textwidth]{./results/dropper_tag_roc_aloha.png}
         \vspace*{-0.2cm}
-        \caption[Dropper Tag prediction task ALOHA ROC curve]{ROC curve and AUC statistics of \textBF{ALOHA} model for the \textbf{Dropper Tag}. The line represents the \textit{mean} TPR at a given FPR, while the shaded region represents the \textit{standard deviation}. Statistics were computed over \textBF{3} training runs, each with random parameter initialization.}
+        \caption[Dropper Tag prediction task ALOHA ROC curve]{ROC curve and AUC statistics of \textBF{ALOHA} model for the \textbf{Dropper Tag}. The line represents the \textit{mean} TPR at a given FPR, while the shaded region represents the \textit{standard deviation}. Statistics were computed over \textBF{2} training runs, each with random parameter initialization.}
         \label{fig:dropperTagRocAloha}
-    \end{figure}
-}
-
-\newcommand{\dropperTagRocJointEmbedding}{
-    \begin{figure}[H]
-        \vspace*{-0.5cm}
-        \centering
-        \includegraphics[width=0.6\textwidth]{./results/dropper_tag_roc_jointEmbedding.png}
-        \vspace*{-0.2cm}
-        \caption[Dropper Tag prediction task Joint Embedding ROC curve]{ROC curve and AUC statistics of \textBF{Joint Embedding} model for the \textbf{Dropper Tag}. The line represents the \textit{mean} TPR at a given FPR, while the shaded region represents the \textit{standard deviation}. Statistics were computed over \textBF{3} training runs, each with random parameter initialization.}
-        \label{fig:dropperTagRocJointEmbedding}
     \end{figure}
 }
 
@@ -139,7 +120,7 @@
         \centering
         \includegraphics[width=0.6\textwidth]{./results/dropper_tag_roc_proposedModel.png}
         \vspace*{-0.2cm}
-        \caption[Dropper Tag prediction task Proposed Model ROC curve]{ROC curve and AUC statistics of \textBF{Proposed Model} for the \textbf{Dropper Tag}. The line represents the \textit{mean} TPR at a given FPR, while the shaded region represents the \textit{standard deviation}. Statistics were computed over \textBF{3} training runs, each with random parameter initialization.}
+        \caption[Dropper Tag prediction task Proposed Model ROC curve]{ROC curve and AUC statistics of \textBF{Proposed Model} for the \textbf{Dropper Tag}. The line represents the \textit{mean} TPR at a given FPR, while the shaded region represents the \textit{standard deviation}. Statistics were computed over \textBF{2} training runs, each with random parameter initialization.}
         \label{fig:dropperTagRocProposedModel}
     \end{figure}
 }
