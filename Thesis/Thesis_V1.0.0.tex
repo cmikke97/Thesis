@@ -4006,9 +4006,9 @@ Here (table \ref{tab:meanPerSampleScores}) are presented the models' \textit{Mea
 \meanPerSampleScores
 
 \section{Family Prediction and Ranking Evaluation}\label{sec:FreshEvaluationResults}
-This section shows the different models' performance evaluations at the \textbf{Malware Family Prediction and Ranking} tasks. More specifically, a table shows the mean and standard deviation of the \textbf{MRR} (Mean Reciprocal Rank) and \textbf{MAP} (Mean Average Precision) of the produced rankings for the different model implementations (and original features). For the malware family prediction task, on the other hand, here are presented the models' (mean and std) accuracy trends by varying the number of used anchor samples during the evaluation and also the confusion matrixes corresponding to the best and worst overall predictions.
+This section shows the different models' performance evaluation results at the \textbf{Malware Family Prediction and Ranking} tasks. More specifically, table \ref{tab:MrrAndMapResults} shows the mean and standard deviation of the \textbf{MRR} (Mean Reciprocal Rank) and \textbf{MAP} (Mean Average Precision) scores corresponding to the produced rankings of the different model implementations. Figures \ref{fig:alohaMBAccuracyTrend}, \ref{fig:alohaAccuracyTrend}, \ref{fig:jointEmbeddingAccuracyTrend} and \ref{fig:proposedModelAccuracyTrend}, on the other hand, present the models' (mean and std) accuracy trends (varying the number of used anchor samples during the evaluation) and (figures \ref{fig:alohaMBConfMatrixMaxAcc}, \ref{fig:alohaConfMatrixMaxAcc}, \ref{fig:jointEmbeddingConfMatrixMaxAcc} and \ref{fig:proposedModelConfMatrixMaxAcc}) the confusion matrixes corresponding to the best predictions when using the number \textbf{k} of anchor samples which produced the overall best accuracy, resulting from the evaluation on the Malware Family Prediction task.
 
-It is interesting to notice that even if only the \textit{Joint Embedding} and \textit{Proposed Model} implementations map samples to a specially crafted joint embedding space, also the implicit latent representation of the ALOHA model and the original features can be used to compute samples distances. It is therefore possible to compare the results of the different models (including ALOHA model implementation) on the family prediction and ranking tasks.
+In particular, the \textit{Joint Embedding} and \textit{Proposed Model} implementations' learned joint embedding representations of PE files (of size 32) were compared also with the ALOHA and ALOHA (M/B only) model implementations' implicit latent representation (of size 512) after the based shared topology. Comparing the results of the different models (including both ALOHA model implementations) on the family prediction and ranking tasks, in fact, is possible given that also the implicit latent representations of the ALOHA-based implementations can be used to compute samples distances.
 
 \MrrAndMapResultsTable
 
@@ -4019,6 +4019,14 @@ It is interesting to notice that even if only the \textit{Joint Embedding} and \
 \jointEmbeddingAccuracyTrend
 
 \proposedModelAccuracyTrend
+
+\alohaMBConfMatrixMaxAcc
+
+\alohaConfMatrixMaxAcc
+
+\jointEmbeddingConfMatrixMaxAcc
+
+\proposedModelConfMatrixMaxAcc
 
 \subsection{Example rankings}
 Here are presented, for each model, 4 examples rankings which produced the maximum and minimum AP (Average Precision) and RR (Reciprocal Rank) scores.
