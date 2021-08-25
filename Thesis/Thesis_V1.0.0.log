@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  25 AUG 2021 21:13
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  25 AUG 2021 21:26
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -3023,70 +3023,68 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [135]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [136]
-Overfull \hbox (2.80562pt too wide) in paragraph at lines 4045--4045
+[136]
+Overfull \hbox (2.80562pt too wide) in paragraph at lines 4047--4047
 \OT1/cmr/m/n/10 Similarity|  
  []
 
 
-Overfull \hbox (3.84474pt too wide) in paragraph at lines 4045--4045
+Overfull \hbox (3.84474pt too wide) in paragraph at lines 4047--4047
  []|\OT1/cmr/m/n/10 Weighted| 
  []
 
 
-Overfull \hbox (3.84474pt too wide) in paragraph at lines 4045--4045
+Overfull \hbox (3.84474pt too wide) in paragraph at lines 4047--4047
  []|\OT1/cmr/m/n/10 Weighted| 
  []
 
 
-Overfull \hbox (3.84474pt too wide) in paragraph at lines 4045--4045
+Overfull \hbox (3.84474pt too wide) in paragraph at lines 4047--4047
  []|\OT1/cmr/m/n/10 Weighted| 
  []
 
 
-Overfull \hbox (3.84474pt too wide) in paragraph at lines 4045--4045
+Overfull \hbox (3.84474pt too wide) in paragraph at lines 4047--4047
  []|\OT1/cmr/m/n/10 Weighted| 
  []
 
 
-Overfull \hbox (3.84474pt too wide) in paragraph at lines 4045--4045
+Overfull \hbox (3.84474pt too wide) in paragraph at lines 4047--4047
  []|\OT1/cmr/m/n/10 Weighted| 
  []
 
 
-Overfull \hbox (3.84474pt too wide) in paragraph at lines 4045--4045
+Overfull \hbox (3.84474pt too wide) in paragraph at lines 4047--4047
  []|\OT1/cmr/m/n/10 Weighted| 
  []
 
-<./results/family_classifier_confusion_matrix_jointEmbedding.png, id=2142, 867.
+<./results/family_classifier_confusion_matrix_jointEmbedding.png, id=2147, 867.
 24pt x 867.24pt>
 File: ./results/family_classifier_confusion_matrix_jointEmbedding.png Graphic f
 ile (type png)
 <use ./results/family_classifier_confusion_matrix_jointEmbedding.png>
 Package pdftex.def Info: ./results/family_classifier_confusion_matrix_jointEmbe
-dding.png  used on input line 4047.
+dding.png  used on input line 4049.
 (pdftex.def)             Requested size: 295.75032pt x 295.74431pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [137]
-<./results/family_classifier_confusion_matrix_proposedModel.png, id=2147, 867.2
+<./results/family_classifier_confusion_matrix_proposedModel.png, id=2152, 867.2
 4pt x 867.24pt>
 File: ./results/family_classifier_confusion_matrix_proposedModel.png Graphic fi
 le (type png)
 <use ./results/family_classifier_confusion_matrix_proposedModel.png>
 Package pdftex.def Info: ./results/family_classifier_confusion_matrix_proposedM
-odel.png  used on input line 4049.
+odel.png  used on input line 4051.
 (pdftex.def)             Requested size: 295.75032pt x 295.74431pt.
-<./results/family_classifier_confusion_matrix_familyClassifierOnly.png, id=2148
+<./results/family_classifier_confusion_matrix_familyClassifierOnly.png, id=2153
 , 867.24pt x 867.24pt>
 File: ./results/family_classifier_confusion_matrix_familyClassifierOnly.png Gra
 phic file (type png)
 <use ./results/family_classifier_confusion_matrix_familyClassifierOnly.png>
 Package pdftex.def Info: ./results/family_classifier_confusion_matrix_familyCla
-ssifierOnly.png  used on input line 4051.
+ssifierOnly.png  used on input line 4053.
 (pdftex.def)             Requested size: 295.75032pt x 295.74431pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -3238,9 +3236,9 @@ mti12.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
 sfonts/cm/cmtt10.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type
 1/public/amsfonts/cm/cmtt8.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/
 fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Thesis_V1.0.0.pdf (143 pages, 6016431 bytes).
+Output written on Thesis_V1.0.0.pdf (143 pages, 6018119 bytes).
 PDF statistics:
- 2504 PDF objects out of 2984 (max. 8388607)
+ 2509 PDF objects out of 2984 (max. 8388607)
  831 named destinations out of 1000 (max. 500000)
  762 words of extra memory for PDF output out of 10000 (max. 10000000)
 
