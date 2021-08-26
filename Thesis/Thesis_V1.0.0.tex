@@ -4058,10 +4058,16 @@ This thesis' objective was the creation of an automatic malware signature genera
 \section{Future Work}
 The \textbf{Proposed Model} and \textbf{Family Classifier} model implementations' have the potential to be very useful tools to the IT-Security field in the current scenario. Indeed, they can be used to detect, describe (via semantic attribute tags) and classify malicious software in an infected system. This is particularly useful for countering a malware infection on a system/network, defining a remediation procedure, identifying possible root causes, and evaluating the severity and potential consequences of the attack. Moreover, by providing a more general description of PE files, they should be able to detect not only known malwares but also novel malware strains/variants, providing some degree of proactive detection.
 
-The current implementations of both models, however, have some limitations; namely the relatively poor results in the family classification task and the lack of interpretability of the resulting implicit signatures. By overcoming these shortcomings, future works may develop tools which would be very useful to the IT-Security field in the current scenario.
+The current implementations of both models, however, have some limitations; namely the relatively poor results in the family classification task and the lack of interpretability of the resulting implicit signatures. Future works capable of overcoming these shortcomings may be extremely helpful to malware analysts, antivirus software developers and system administrators and could even enable the generation of explicit (and thus more interpretable) signatures derived from the learned implicit ones.
 
-
-and could even enable the generation of explicit (and thus more interpretable) signatures derived from the learned implicit ones.
+In particular, here are listed some attempts that can be made for overcoming the first limitation:
+\begin{itemize}
+	\item Training the \textbf{Proposed Model} on the entire Sorel20M dataset (and not just a sub-part of it) with no code optimizations/approximations on a more powerful instance - which can be done with little modifications to the code developed for this project - alone should provide improved results in both the Malware detection and description (via SMART tags) tasks. Moreover, this could also improve the performance of the resulting learned representation of PE Files on the Family prediction and ranking tasks.
+	
+	\item A higher-quality, larger and more recent dataset of PE samples with respect to Sorel20M dataset, could further enhance the performance of the resulting model in all three tasks (especially for the family prediction and ranking tasks). Moreover, a dataset providing also the information regarding the family each sample belongs to could remove the need for a specially crafted Fresh Dataset. This could be beneficial given that the Fresh Dataset was built by downloading samples from Malware Bazaar, which, being a Website where analysts can share malware samples with the InfoSec community, could provide misclassified samples.
+	
+	\item On the other hand, a higher-quality (and possibly larger) dataset of PE malicious files with the corresponding family label with respect to the current Fresh Dataset could improve the performance of the \textbf{Family Classifier} model implementation.
+\end{itemize} 
 
 % bibliografia scritta "a mano"
 %\input{biblio.tex}
