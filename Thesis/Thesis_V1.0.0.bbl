@@ -249,4 +249,8 @@ CERT-AGID, ``Cert-agid threat summary.''
 \bibitem{MalwareBazaar}
 ``Malware bazaar.'' \url{https://bazaar.abuse.ch/browse/}
 
+\bibitem{BensaoudCMICNNM}
+A.~Bensaoud, N.~Abudawaood, and J.~Kalita, ``Classifying malware images with
+  convolutional neural network models'', 10 2020
+
 \end{thebibliography}

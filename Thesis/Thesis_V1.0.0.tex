@@ -1792,7 +1792,7 @@ On the other hand, the \textit{Mean Jaccard} similarity (eq. \ref{eq:meanJaccard
 \end{equation}
 where $T^{(i)}$ is the set of tags associated with sample $i$, $\hat{T}^{(i)}$ is the set of tags predicted for the same sample after binarizing the predictions, $\textbf{y} \in \{0, 1\}^T$ is the binary target vector for a PE file (where $\textbf{y}_n$ indicates whether the $n$-th tag applies to the file), $\hat{\textbf{y}}$ is the binarized prediction vector from a given tagging model and $\mathbb{I}$ is the indicator function which is 1 if the condition in the argument is true, 0 otherwise.
 
-\subsection{Learning from Context: Exploiting and Interpreting File Path Information for Better Malware Detection}
+\subsection{Learning from Context: Exploiting and Interpreting File Path Information for Better Malware Detection}\label{sec:learningFromContext}
 Recent static portable executable (PE) malware detection techniques, including \cite{ruddALOHA}, typically employ ML-Sec classifiers designed to work with a single numerical feature vector, derived from each file, as input, having as output one or more target labels/tasks. However, as noted by Kyadige et. al. in \cite{KyadigeLFCEIFPIBMD}, there is still much unused orthogonal information that could be exploited regarding the sample files, such as the file paths. The authors in \cite{KyadigeLFCEIFPIBMD} thus proposed utilizing the static source of contextual information represented by PE file paths as auxiliary data to the classifier in order to augment static ML detectors. File paths, which are already commonly used by malware analysts to correct and investigate detection errors, are available statically with very little overhead, and can seamlessly be integrated into a multi-view static ML detector.
 
 File paths are not inherently malicious or benign; however, given that many malware strains use specifically crafted file paths to perpetrate their malicious intents (a file path may in fact be chosen to increase the odds of the malware being executed, to avoid disk scans, or to hide from the user's view), they provide much instrumental information that can be used to enhance the overall detection.
@@ -4067,7 +4067,14 @@ In particular, here are listed some attempts that can be made for overcoming the
 	\item A higher-quality, larger and more recent dataset of PE samples with respect to Sorel20M dataset, could further enhance the performance of the resulting model in all three tasks (especially for the family prediction and ranking tasks). Moreover, a dataset providing also the information regarding the family each sample belongs to could remove the need for a specially crafted Fresh Dataset. This could be beneficial given that the Fresh Dataset was built by downloading samples from Malware Bazaar, which, being a Website where analysts can share malware samples with the InfoSec community, could provide misclassified samples.
 	
 	\item On the other hand, a higher-quality (and possibly larger) dataset of PE malicious files with the corresponding family label with respect to the current Fresh Dataset could improve the performance of the \textbf{Family Classifier} model implementation.
-\end{itemize} 
+	
+	\item Finally, a model designed following the idea of paper "\textbf{Learning from Context: Exploiting and Interpreting File Path Information for Better Malware Detection}" \cite{KyadigeLFCEIFPIBMD} - described in section \ref{sec:learningFromContext} - of exploiting additional orthogonal input features deriving statically from the samples has the potential of providing a more informed representation of PE files which may result in better implicit signatures and improved results in all previously mentioned tasks. For example, additional information like the \textbf{File Path} where the malicious sample was seen on an endpoint host (as suggested in work \cite{KyadigeLFCEIFPIBMD}), or the image representation of malware samples' byte codes (as described in paper \cite{BensaoudCMICNNM}) could be forwarded through a series of convolutional layers to automatically extract the best samples' latent representations to be used in parallel with the currently developed shared base topology output. This, however, implies the need for a dataset providing such additional features.
+\end{itemize}
+
+On the other hand, in order to overcome the lack of interpretability of the generated implicit signatures the following attempts could be made:
+\begin{itemize}
+	\item 
+\end{itemize}
 
 % bibliografia scritta "a mano"
 %\input{biblio.tex}

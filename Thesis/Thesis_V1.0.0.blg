@@ -5,40 +5,42 @@ Reallocating 'name_of_file' (item size: 1) to 7 items.
 The style file: torsec.bst
 Reallocating 'name_of_file' (item size: 1) to 7 items.
 Database file #1: biblio.bib
+Warning--entry type for "BensaoudCMICNNM" isn't style-file defined
+--line 569 of file biblio.bib
 Warning--empty booktitle in LiPRTCMP
 Warning--empty booktitle in YouMOT
 Warning--empty booktitle in NguyenSPVD
 Warning--empty booktitle in MarcosAVclass
-You've used 54 entries,
+You've used 55 entries,
             1924 wiz_defined-function locations,
-            813 strings with 12293 characters,
-and the built_in function-call counts, 9566 in all, are:
-= -- 784
-> -- 398
+            817 strings with 12445 characters,
+and the built_in function-call counts, 9721 in all, are:
+= -- 793
+> -- 409
 < -- 0
-+ -- 161
-- -- 107
-* -- 581
-:= -- 1333
++ -- 165
+- -- 110
+* -- 592
+:= -- 1355
 add.period$ -- 0
-call.type$ -- 54
-change.case$ -- 57
+call.type$ -- 55
+change.case$ -- 58
 chr.to.int$ -- 0
-cite$ -- 58
-duplicate$ -- 418
-empty$ -- 1176
-format.name$ -- 107
-if$ -- 2387
+cite$ -- 59
+duplicate$ -- 423
+empty$ -- 1196
+format.name$ -- 110
+if$ -- 2424
 int.to.chr$ -- 0
-int.to.str$ -- 54
+int.to.str$ -- 55
 missing$ -- 24
-newline$ -- 165
-num.names$ -- 51
-pop$ -- 322
+newline$ -- 168
+num.names$ -- 52
+pop$ -- 330
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 351
+skip$ -- 356
 stack$ -- 0
 substring$ -- 295
 swap$ -- 84
@@ -47,7 +49,7 @@ text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 4
-while$ -- 73
-width$ -- 56
-write$ -- 465
-(There were 4 warnings)
+while$ -- 74
+width$ -- 57
+write$ -- 472
+(There were 5 warnings)
