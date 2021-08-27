@@ -1404,7 +1404,7 @@ Inside the \textit{Conditions} section, among other things, it is possible to:
 	\end{itemize}
 \end{enumerate}
 
-\subsubsection{Yara Rules Automatic Generators}
+\subsubsection{Yara Rules Automatic Generators}\label{sec:YaraRulesAutomaticGenerators}
 There are various automatic \textit{Yara rules} generator tools available. In the following the most notable ones will be briefly described:
 
 \paragraph{\textit{YarGen} Tool}
@@ -4079,7 +4079,9 @@ On the other hand, the fact that the signatures generated with the proposed appr
 	\begin{itemize}
 		\item A custom YARA module could be implemented by embedding the proposed \textbf{Family Classifier} (or \textbf{Proposed Model}, if it becomes good enough at the family prediction task) inside the rule. In particular, the custom module should enable the extraction of EMBER (version 2.0) feature vectors from the files' binaries and subsequently the generation of the corresponding implicit signatures/latent representations, when the rule is deployed. Then, the generated implicit signatures can be used to decide the family the current sample most probably belongs to between a set of families of interest (the ones the model was trained on). Finally, the rule should be triggered if the predicted family corresponds to the one it represents. This would make the proposed approach compatible with the highly expressive language that is Yara; however, it would not improve the interpretability of the generated signatures since the decision making process is unchanged.
 		
-		\item
+		\item Alternatively, machine learning model interpretability tools such as \textbf{LIME} and \textbf{SHAP} could be employed to try understanding the (trained) \textbf{Proposed Model} and \textbf{Family Classifier} decision making process, highlighting the characteristics of PE samples that influence the decision process the most, for each family. Then, for each family, it could be possible to manually generate one or more Yara Rules by detecting those features that are common to samples of the same family and not for others (through a Union of Disjunctions formulation). This most certainly would help malware analysts in the job of creating Yara rules and can thus be seen as an aiding tool for such purposes. This also has the advantage of easily detecting new malware variants and obfuscated malware, but has the great disadvantage of no longer being an automatic signature generation tool - it is in fact semi-automatic given that a malware analyst has to generate the final Yara Rule.
+		
+		\item Finally, another alternative is to try to use the representation of PE examples in the joint embedding space learned by the \textbf{proposed model} to cluster new malware samples into non-overlapping groups and then create, for each group, the Yara Rules manually or through automatic Yara Rules generators such as the aforementioned (in section \ref{sec:YaraRulesAutomaticGenerators}) \textbf{YarGen}, \textbf{YaraGenerator}, \textbf{Yabin} and \textbf{AutoYara}. This could be thought of as a middle ground between the two previous solutions, in the sense that it would generate true Yara Rules while also being (potentially) completely automatic.
 	\end{itemize}
 \end{itemize}
 
