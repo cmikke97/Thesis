@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  28 AUG 2021 20:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  28 AUG 2021 21:02
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -891,31 +891,28 @@ Package pdftex.def Info: ./images/elk_cloner_example.png  used on input line 25
 
 
  <./images/elk_cloner_example.png>]
-<./images/framework_lifecycle.png, id=558, 390.9807pt x 65.043pt>
-File: ./images/framework_lifecycle.png Graphic file (type png)
-<use ./images/framework_lifecycle.png>
-Package pdftex.def Info: ./images/framework_lifecycle.png  used on input line 2
-67.
-(pdftex.def)             Requested size: 380.2495pt x 63.25935pt.
- [12 <./images/framework_lifecycle.png>]
-<./images/av_atlas_report_total_amount_new.png, id=566, 579.66562pt x 316.18124
+<./images/av_atlas_report_total_amount_new.png, id=554, 579.66562pt x 316.18124
 pt>
 File: ./images/av_atlas_report_total_amount_new.png Graphic file (type png)
 <use ./images/av_atlas_report_total_amount_new.png>
 Package pdftex.def Info: ./images/av_atlas_report_total_amount_new.png  used on
- input line 277.
+ input line 260.
 (pdftex.def)             Requested size: 422.50232pt x 230.45819pt.
-<./images/av_atlas_report_total_amount.png, id=567, 579.66562pt x 315.42844pt>
+<./images/av_atlas_report_total_amount.png, id=555, 579.66562pt x 315.42844pt>
 File: ./images/av_atlas_report_total_amount.png Graphic file (type png)
 <use ./images/av_atlas_report_total_amount.png>
 Package pdftex.def Info: ./images/av_atlas_report_total_amount.png  used on inp
-ut line 283.
+ut line 266.
 (pdftex.def)             Requested size: 422.50232pt x 229.90948pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [13 <./images/av_atlas_report_total_amount_new.png>] [14 <./images/av_atlas_re
-port_total_amount.png>]
+ [12 <./images/av_atlas_report_total_amount_new.png> <./images/av_atlas_report_
+total_amount.png>]
+<./images/framework_lifecycle.png, id=565, 390.9807pt x 65.043pt>
+File: ./images/framework_lifecycle.png Graphic file (type png)
+<use ./images/framework_lifecycle.png>
+Package pdftex.def Info: ./images/framework_lifecycle.png  used on input line 2
+79.
+(pdftex.def)             Requested size: 380.2495pt x 63.25935pt.
+ [13 <./images/framework_lifecycle.png>] [14]
 Chapter 2.
 [15
 
@@ -3242,7 +3239,7 @@ mti12.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
 sfonts/cm/cmtt10.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type
 1/public/amsfonts/cm/cmtt8.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/
 fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Thesis_V1.0.0.pdf (145 pages, 6260392 bytes).
+Output written on Thesis_V1.0.0.pdf (145 pages, 6260422 bytes).
 PDF statistics:
  2550 PDF objects out of 2984 (max. 8388607)
  835 named destinations out of 1000 (max. 500000)

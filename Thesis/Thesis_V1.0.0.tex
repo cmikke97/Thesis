@@ -256,6 +256,18 @@ The previously mentioned 1960s and 1970s malware were all kept within a laborato
 
 In the following decades malware has evolved both regarding its complexity and malware sample numbers. In particular, according to AV Atlas \cite{AvAtlas}, in 2019 and 2020 (and until mid 2021 - that is until the time of writing) the number of newly generated malware blew with respect to previous years, as shown in graph \ref{fig:avAtlasReportNew}, to the point that currently approximately 5.1 new Microsoft Windows malware (and PUA) are generated per second, $\sim18,500$ per hour. As reported by AV Atlas dashboard and as shown in graph \ref{fig:avAtlasReport}, in recent years the total amount of unique malware (and PUA) variants reached impressive numbers, to the point that they are now more than $830$ millions. Moreover, nowadays malware commonly use obfuscation and other sophisticated techniques, such as Polymorphism and Metamorphism, to evolve their structure thus evading detection.
 
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{./images/av_atlas_report_total_amount_new.png}
+	\caption[AV Atlas - Total Amount of New Malware and PUA]{AV Atlas - Total Amount of New Malware and PUA}
+	\label{fig:avAtlasReportNew}
+\end{figure}
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{./images/av_atlas_report_total_amount.png}
+	\caption[AV Atlas - Total Amount of Malware and PUA]{AV Atlas - Total Amount of Malware and PUA}
+	\label{fig:avAtlasReport}
+\end{figure}
+
 For all these reasons, signature-based detection techniques, such as manually generated Yara Rules, which are typically used by most commercial anti-virus solutions, are becoming inefficient in the present scenario. In fact, it is now straight up impossible for analysts to manually analyse each malware variant that is found in the wild. Moreover, even when a new malware family is identified and an appropriate amount of its samples are analysed, the generated signature may not be capable of detecting new variations or may even be rendered useless through the use of obfuscation and/or polymorphic mechanisms. There is therefore the need for automated malware analysis solutions capable of automatically generating (implicit or explicit) signatures effective at distinguishing malicious from benign code while being less susceptible to code modifications and obfuscation attempts.
 
 This thesis presents a research aimed at satisfying this need for automated malware detection solutions. In particular, it presents a novel model built upon previous works on ML-based (Machine Learning) automatic malware detection and description designed for PE (Microsoft Windows Portable Executable) files. Moreover, it introduces a new evaluation procedure that may prove the applicability of the model learned implicit representation/signature of malware samples in the Malware family prediction and ranking tasks. These tasks are particularly interesting for malware analysts since they allow them to quickly categorize malware samples as being part of specific sets (families) of samples with common behavioural and structural characteristics.
@@ -272,18 +284,6 @@ The proposed framework life cycle can be conceptually divided in four phases (as
 This thesis focuses on the first three phases previously mentioned. In particular, it concentrates on defining, training and evaluating the best model architecture possible for the tasks at hand. However, some code optimization challenges resulting from the slowness of the code in the instance used for the experiments meant that it could be possible to train the model only with the first half of the samples of the Sorel20M dataset in a reasonable time, with some approximations on the samples dispersion when random sampling them from the dataset. This led to slightly worse performance than what is theoretically possible with the current architecture using the whole dataset. Nevertheless, the deployment of the proposed model on a real-world scenario is theoretically possible with the current final architecture, although it would be better to train the proposed model on the whole Sorel20M dataset on a better instance first in order to see its true potential.
 
 At a later moment, the proposed framework was extended with the addition of a \textbf{Malware Family Classifier} model head defined on top of the \textbf{Proposed Model} base topology in order to improve its relatively poor results in the Malware Family Prediction task. This new model was then specifically trained (and tested) for such purpose on the relatively small '\textit{fresh dataset}', which contains information about the malware family each sample belongs to. However, instead of training the newly defined architecture from scratch on such small dataset at the risk of overfitting, the technique called '\textit{Transfer Learning}' was used by transferring the knowledge (the learned model parameters) from a previous \textbf{Proposed Model} training run on the large Sorel20M dataset onto the new model base topology (the one shared with the \textbf{Proposed Model} architecture), before training. Then, during the training procedure some of the imported parameters were 'fine-tuned' while the ones corresponding to the newly added Family Classifier head were learned from scratch.
-
-\begin{figure}[h!]
-	\includegraphics[width=\textwidth]{./images/av_atlas_report_total_amount_new.png}
-	\caption[AV Atlas - Total Amount of New Malware and PUA]{AV Atlas - Total Amount of New Malware and PUA}
-	\label{fig:avAtlasReportNew}
-\end{figure}
-
-\begin{figure}[H]
-	\includegraphics[width=\textwidth]{./images/av_atlas_report_total_amount.png}
-	\caption[AV Atlas - Total Amount of Malware and PUA]{AV Atlas - Total Amount of Malware and PUA}
-	\label{fig:avAtlasReport}
-\end{figure}
 
 \chapter{Background}
 
