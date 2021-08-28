@@ -217,11 +217,9 @@ This thesis presents a novel model built upon previous works in \textbf{ML-based
 
 The \textbf{Proposed Model}'s results in the different tasks (both the ones it was trained on - Malicious/Benign label and descriptive tags prediction - and the additional malware family prediction and ranking tasks) were compared to the previous models' ones. In particular, the \textbf{ALOHA} model proposed in \cite{ruddALOHA} and the \textbf{Joint Embedding} model described in \cite{DucauAMDATSE} were selected as reference models.
 
-The results show that the \textbf{Proposed Model} generates implicit signatures (samples embeddings) which provide comparable TPRs, Accuracies, Recalls, Precisions and F1 Scores at low false positive rates with respect to the ones produced by the mentioned previous methods on the corresponding tasks. When testing the \textbf{Proposed Model}'s learned representations on the Malware Family prediction and ranking tasks, however, the results were less promising. Therefore, a new Malware Family Classifier model was created and trained (and evaluated) on a specially crafted dataset of $5.000$ PE files, exploiting the parameters from a previous \textbf{Proposed Model} training run, with the aid of transfer learning.
+The results show that the \textbf{Proposed Model} generates implicit signatures (samples embeddings) which provide comparable TPRs, Accuracies, Recalls, Precisions and F1 Scores at low false positive rates with respect to the ones produced by the mentioned previous methods on the corresponding tasks. When testing the \textbf{Proposed Model}'s learned representations on the Malware Family prediction and ranking tasks, however, the results were less promising. Therefore, a new Malware \textbf{Family Classifier} model was created and trained (and evaluated) on a specially crafted dataset of $5.000$ PE files, exploiting the parameters from a previous \textbf{Proposed Model} training run, with the aid of transfer learning.
 
-...
-
-Nevertheless, future (and more performant) works capable of overcoming some of the \textbf{Proposed Model} limitations may be very useful to the IT-Security field in the current scenario and could even enable the generation of explicit (and thus more interpretable) signatures derived from the learned implicit ones.
+Future (and more performant) works capable of overcoming some of the resulting model limitations may be very useful to the IT-Security field in the current scenario and could even enable the generation of explicit (and thus more interpretable) signatures derived from the learned implicit ones.
 
 \ringraziamenti
 
@@ -264,7 +262,7 @@ This thesis presents a research aimed at satisfying this need for automated malw
 
 The proposed framework life cycle can be conceptually divided in four phases (as shown in figure \ref{fig:frameworkLifecycle}): \textbf{model architecture definition}, \textbf{model training and validation}, \textbf{model evaluation} and finally \textbf{model deployment}. In particular, in the first phase the proposed FNN (Feedforward Neural Network) model architecture is defined and implemented taking inspiration from previous works such as the \textbf{ALOHA} and the \textbf{Joint Embedding} models presented in papers \cite{ruddALOHA} and \cite{DucauAMDATSE}, respectively. In the second phase, instead, the proposed model is trained (and validated) on an open source large scale dataset of malware and benignware samples (Sorel20M \cite{HarangSOREL20M}) with the aim of creating high quality implicit signatures capable of detecting (and describing via SMART tags) unseen malware samples, as well as obfuscated malware and new variants, with high True Positive Rate (TPR) and high Recall at low False Positive Rates (FPRs). The first two phases here described are iteratively repeated until a model with satisfactory training and validation loss trends is generated. In the third phase, on the other hand, the final model architecture is tested on the Malware detection and Description tasks and the corresponding prediction scores are computed and plotted. Moreover, in this phase the model learned representation of PE files is also tested on the Malware family prediction and ranking tasks using a novel dataset, referred to as '\textit{fresh dataset}' in this document, containing $5.000$ samples belonging to $10$ of the most widespread malware families in Italy at the time of writing, specifically created for that purpose. In both datasets the samples are directly represented by their numerical feature representation extracted statically from specific fields of each sample's Windows Portable Executable (PE) file header. The proposed model thus relies exclusively on static analysis features which are generally simpler, less computationally intensive and thus faster than dynamic analysis ones (executable's behaviour characteristics). Finally, in the last phase the final proposed model architecture is deployed in the wild. In particular, it can be used as an automatic Malware detection tool that provides additional description tags useful for remediation. Moreover, potentially, if the corresponding evaluation results allow it, it could also be used to provide information about the malware family each analysed sample most probably belongs to, among the set of families of interest.
 
-\begin{figure}[h!]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\textwidth]{./images/framework_lifecycle.png}
 	\caption[Proposed Framework Life Cycle]{Proposed Framework Life Cycle}
@@ -275,13 +273,13 @@ This thesis focuses on the first three phases previously mentioned. In particula
 
 At a later moment, the proposed framework was extended with the addition of a \textbf{Malware Family Classifier} model head defined on top of the \textbf{Proposed Model} base topology in order to improve its relatively poor results in the Malware Family Prediction task. This new model was then specifically trained (and tested) for such purpose on the relatively small '\textit{fresh dataset}', which contains information about the malware family each sample belongs to. However, instead of training the newly defined architecture from scratch on such small dataset at the risk of overfitting, the technique called '\textit{Transfer Learning}' was used by transferring the knowledge (the learned model parameters) from a previous \textbf{Proposed Model} training run on the large Sorel20M dataset onto the new model base topology (the one shared with the \textbf{Proposed Model} architecture), before training. Then, during the training procedure some of the imported parameters were 'fine-tuned' while the ones corresponding to the newly added Family Classifier head were learned from scratch.
 
-\begin{figure}[hbt!]
+\begin{figure}[h!]
 	\includegraphics[width=\textwidth]{./images/av_atlas_report_total_amount_new.png}
 	\caption[AV Atlas - Total Amount of New Malware and PUA]{AV Atlas - Total Amount of New Malware and PUA}
 	\label{fig:avAtlasReportNew}
 \end{figure}
 
-\begin{figure}[hbt!]
+\begin{figure}[H]
 	\includegraphics[width=\textwidth]{./images/av_atlas_report_total_amount.png}
 	\caption[AV Atlas - Total Amount of Malware and PUA]{AV Atlas - Total Amount of Malware and PUA}
 	\label{fig:avAtlasReport}
