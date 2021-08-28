@@ -5,7 +5,7 @@
             \hline
             Worm Tag & ALOHA\newline (M/B only) & ALOHA & Proposed\newline Model \\
             \hline
-            AUC-ROC & - & 0.562$\pm$0.037 & \textBF{0.648$\pm$0.011} \\
+            AUC-ROC & - & \textBF{0.975$\pm$0.007} & 0.964$\pm$0.002 \\
             \hline
         \end{tabular}
         \caption[Worm Tag prediction task AUC-ROC results]{AUC-ROC (Area Under Curve) of the different models for the \textbf{Worm Tag} prediction task. Results were aggregated over \textBF{2} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:wormTag_auc}
@@ -37,38 +37,38 @@
             \multicolumn{6}{|c|}{\textbf{TPR}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.010$\pm$0.010 & 0.010$\pm$0.010 & 0.012$\pm$0.012 & 0.012$\pm$0.012 & 0.117$\pm$0.047 \\
-            Proposed Model & \textBF{0.021$\pm$0.021} & \textBF{0.021$\pm$0.021} & \textBF{0.021$\pm$0.021} & \textBF{0.031$\pm$0.027} & \textBF{0.238$\pm$0.137} \\
+            ALOHA & \textBF{0.221$\pm$0.033} & 0.378$\pm$0.026 & 0.521$\pm$0.068 & 0.611$\pm$0.017 & \textBF{0.925$\pm$0.047} \\
+            Proposed Model & 0.179$\pm$0.135 & \textBF{0.398$\pm$0.006} & \textBF{0.608$\pm$0.011} & \textBF{0.669$\pm$0.008} & 0.813$\pm$0.021 \\
             \hline
             Error Reduction wrt\newline ALOHA (M/B only) & - & - & - & - & - \\
-            Error Reduction wrt\newline ALOHA & 1.1\% & 1.1\% & 0.9\% & 1.9\% & 13.7\% \\
+            Error Reduction wrt\newline ALOHA & -5.4\% & 3.2\% & 18.2\% & 14.9\% & -149.3\% \\
             \hline
             Std Reduction wrt\newline ALOHA (M/B only) & - & - & - & - & - \\
-            Std Reduction wrt\newline ALOHA & -110.0\% & -110.0\% & -75.0\% & -125.0\% & -191.5\% \\
+            Std Reduction wrt\newline ALOHA & -309.1\% & 76.9\% & 83.8\% & 52.9\% & 55.3\% \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Accuracy}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.896$\pm$0.001 & 0.896$\pm$0.001 & 0.896$\pm$0.001 & \textBF{0.893$\pm$0.004} & 0.819$\pm$0.006 \\
-            Proposed Model & \textBF{0.898$\pm$0.002} & \textBF{0.898$\pm$0.002} & 0.897$\pm$0.003 & 0.890$\pm$0.003 & \textBF{0.831$\pm$0.014} \\
+            ALOHA & \textBF{0.877$\pm$0.005} & 0.901$\pm$0.004 & 0.923$\pm$0.011 & 0.930$\pm$0.003 & \textBF{0.904$\pm$0.007} \\
+            Proposed Model & 0.870$\pm$0.021 & \textBF{0.905$\pm$0.001} & \textBF{0.937$\pm$0.002} & \textBF{0.939$\pm$0.001} & 0.886$\pm$0.003 \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Recall}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.010$\pm$0.010 & 0.010$\pm$0.010 & 0.012$\pm$0.012 & 0.012$\pm$0.012 & 0.117$\pm$0.047 \\
-            Proposed Model & \textBF{0.021$\pm$0.021} & \textBF{0.021$\pm$0.021} & \textBF{0.021$\pm$0.021} & \textBF{0.031$\pm$0.027} & \textBF{0.238$\pm$0.137} \\
+            ALOHA & \textBF{0.221$\pm$0.033} & 0.378$\pm$0.026 & 0.521$\pm$0.068 & 0.611$\pm$0.017 & \textBF{0.925$\pm$0.047} \\
+            Proposed Model & 0.179$\pm$0.135 & \textBF{0.398$\pm$0.006} & \textBF{0.608$\pm$0.011} & \textBF{0.669$\pm$0.008} & 0.813$\pm$0.021 \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Precision}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & \textBF{1.000$\pm$0.000} & \textBF{1.000$\pm$0.000} & 0.375$\pm$0.375 & \textBF{0.333$\pm$0.333} & 0.119$\pm$0.043 \\
-            Proposed Model & \textBF{1.000$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.500$\pm$0.500} & 0.224$\pm$0.181 & \textBF{0.205$\pm$0.099} \\
+            ALOHA & \textBF{1.000$\pm$0.000} & \textBF{0.999$\pm$0.000} & 0.990$\pm$0.001 & 0.920$\pm$0.002 & \textBF{0.635$\pm$0.012} \\
+            Proposed Model & 0.999$\pm$0.001 & \textBF{0.999$\pm$0.000} & \textBF{0.991$\pm$0.000} & \textBF{0.926$\pm$0.001} & 0.605$\pm$0.006 \\
             \hline
             \multicolumn{6}{|c|}{\textbf{F1 Score}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.019$\pm$0.019 & 0.019$\pm$0.019 & 0.023$\pm$0.023 & 0.023$\pm$0.023 & 0.118$\pm$0.045 \\
-            Proposed Model & \textBF{0.041$\pm$0.041} & \textBF{0.041$\pm$0.041} & \textBF{0.041$\pm$0.041} & \textBF{0.055$\pm$0.048} & \textBF{0.220$\pm$0.116} \\
+            ALOHA & \textBF{0.361$\pm$0.044} & 0.547$\pm$0.028 & 0.680$\pm$0.059 & 0.734$\pm$0.013 & \textBF{0.753$\pm$0.024} \\
+            Proposed Model & 0.281$\pm$0.197 & \textBF{0.569$\pm$0.006} & \textBF{0.753$\pm$0.009} & \textBF{0.777$\pm$0.006} & 0.694$\pm$0.012 \\
             \hline
         \end{longtable}
     \end{center}
@@ -84,8 +84,8 @@
             Model & TPR & Accuracy & Precision & Recall & F1 score \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.012$\pm$0.012 & \textBF{0.893$\pm$0.004} & \textBF{0.333$\pm$0.333} & 0.012$\pm$0.012 & 0.023$\pm$0.023 \\
-            Proposed Model & \textBF{0.031$\pm$0.027} & 0.890$\pm$0.003 & 0.224$\pm$0.181 & \textBF{0.031$\pm$0.027} & \textBF{0.055$\pm$0.048} \\
+            ALOHA & 0.611$\pm$0.017 & 0.930$\pm$0.003 & 0.920$\pm$0.002 & 0.611$\pm$0.017 & 0.734$\pm$0.013 \\
+            Proposed Model & \textBF{0.669$\pm$0.008} & \textBF{0.939$\pm$0.001} & \textBF{0.926$\pm$0.001} & \textBF{0.669$\pm$0.008} & \textBF{0.777$\pm$0.006} \\
             \hline
         \end{tabular}
         \caption[Summary of Worm Tag prediction task results]{Summary of the mean and standard deviation results of the different models for the \textbf{Worm Tag} prediction task at \textbf{FPR} $=1\%$. Results were aggregated over \textBF{2} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:wormTag_result_summary}

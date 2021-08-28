@@ -3940,7 +3940,7 @@ Algorithm \ref{alg:evaluateFamilyClassifierFunction} (\textbf{Family Classifier 
 	\label{fig:workflow_train_eval_plot2}
 \end{figure}
 
-The Family classifier evaluation \textbf{\textit{micro}} (global average), \textbf{\textit{macro}} (unweighted per-family average) and \textbf{\textit{weighted}} (per-family average, weighted by support) scores, such as '\textit{Jaccard similarity score}', '\textit{recall}', '\textit{precision}' and '\textit{f1-score}', are computed and saved to file, together with the resulting AUC-ROC scores and confusion matrix, by a distinct set of functions - which simply apply the respective mathematical formulas - not presented in this document.
+The Family classifier evaluation \textbf{\textit{micro}} (global average), \textbf{\textit{macro}} (unweighted per-family average) and \textbf{\textit{weighted}} (per-family average, weighted by support) scores, such as '\textit{Jaccard similarity score}', '\textit{recall}', '\textit{precision}' and '\textit{f1-score}', are computed and saved to file, together with the resulting \textbf{OVO} (One Vs. One) and \textbf{OVR} (One Vs. Rest) AUC-ROC scores and confusion matrix, by a distinct set of functions - which simply apply the respective mathematical formulas - not presented in this document.
 
 \section{(Alternative Model)}
 

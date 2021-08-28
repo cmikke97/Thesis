@@ -5,7 +5,7 @@
             \hline
             Downloader Tag & ALOHA\newline (M/B only) & ALOHA & Proposed\newline Model \\
             \hline
-            AUC-ROC & - & 0.595$\pm$0.045 & \textBF{0.636$\pm$0.021} \\
+            AUC-ROC & - & 0.967$\pm$0.002 & \textBF{0.983$\pm$0.002} \\
             \hline
         \end{tabular}
         \caption[Downloader Tag prediction task AUC-ROC results]{AUC-ROC (Area Under Curve) of the different models for the \textbf{Downloader Tag} prediction task. Results were aggregated over \textBF{2} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:downloaderTag_auc}
@@ -37,38 +37,38 @@
             \multicolumn{6}{|c|}{\textbf{TPR}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.006$\pm$0.006} & \textBF{0.018$\pm$0.018} & 0.152$\pm$0.079 \\
-            Proposed Model & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & 0.000$\pm$0.000 & 0.000$\pm$0.000 & \textBF{0.152$\pm$0.024} \\
+            ALOHA & \textBF{0.203$\pm$0.060} & 0.306$\pm$0.033 & 0.455$\pm$0.009 & 0.599$\pm$0.018 & 0.877$\pm$0.057 \\
+            Proposed Model & 0.196$\pm$0.043 & \textBF{0.489$\pm$0.030} & 0.588$\pm$0.001 & \textBF{0.691$\pm$0.008} & \textBF{0.971$\pm$0.003} \\
             \hline
             Error Reduction wrt\newline ALOHA (M/B only) & - & - & - & - & - \\
-            Error Reduction wrt\newline ALOHA & 0.0\% & 0.0\% & -0.6\% & -1.8\% & 0.0\% \\
+            Error Reduction wrt\newline ALOHA & -0.9\% & 26.4\% & 24.4\% & 22.9\% & 76.4\% \\
             \hline
             Std Reduction wrt\newline ALOHA (M/B only) & - & - & - & - & - \\
-            Std Reduction wrt\newline ALOHA & 0.0\% & 0.0\% & 100.0\% & 100.0\% & 69.6\% \\
+            Std Reduction wrt\newline ALOHA & 28.3\% & 9.1\% & 88.9\% & 55.6\% & 94.7\% \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Accuracy}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & \textBF{0.933$\pm$0.000} & \textBF{0.933$\pm$0.000} & \textBF{0.933$\pm$0.000} & 0.927$\pm$0.000 & 0.850$\pm$0.006 \\
-            Proposed Model & \textBF{0.933$\pm$0.000} & \textBF{0.933$\pm$0.000} & \textBF{0.933$\pm$0.000} & \textBF{0.931$\pm$0.000} & \textBF{0.851$\pm$0.001} \\
+            ALOHA & 0.933$\pm$0.005 & 0.942$\pm$0.003 & 0.954$\pm$0.001 & 0.957$\pm$0.002 & 0.898$\pm$0.005 \\
+            Proposed Model & \textBF{0.933$\pm$0.004} & \textBF{0.957$\pm$0.003} & 0.965$\pm$0.000 & \textBF{0.965$\pm$0.001} & \textBF{0.906$\pm$0.000} \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Recall}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.006$\pm$0.006} & \textBF{0.018$\pm$0.018} & 0.152$\pm$0.079 \\
-            Proposed Model & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & 0.000$\pm$0.000 & 0.000$\pm$0.000 & \textBF{0.152$\pm$0.024} \\
+            ALOHA & \textBF{0.203$\pm$0.060} & 0.305$\pm$0.033 & 0.455$\pm$0.009 & 0.599$\pm$0.018 & 0.877$\pm$0.057 \\
+            Proposed Model & 0.196$\pm$0.043 & \textBF{0.489$\pm$0.030} & 0.588$\pm$0.001 & \textBF{0.691$\pm$0.008} & \textBF{0.971$\pm$0.003} \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Precision}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & \textBF{1.000$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.250$\pm$0.250} & \textBF{0.111$\pm$0.111} & 0.096$\pm$0.047 \\
-            Proposed Model & \textBF{1.000$\pm$0.000} & \textBF{1.000$\pm$0.000} & 0.000$\pm$0.000 & 0.000$\pm$0.000 & \textBF{0.099$\pm$0.014} \\
+            ALOHA & \textBF{0.999$\pm$0.000} & 0.996$\pm$0.000 & 0.976$\pm$0.000 & 0.845$\pm$0.004 & 0.444$\pm$0.016 \\
+            Proposed Model & \textBF{0.999$\pm$0.000} & \textBF{0.998$\pm$0.000} & \textBF{0.982$\pm$0.000} & \textBF{0.863$\pm$0.001} & \textBF{0.470$\pm$0.001} \\
             \hline
             \multicolumn{6}{|c|}{\textbf{F1 Score}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.012$\pm$0.012} & \textBF{0.031$\pm$0.031} & 0.118$\pm$0.059 \\
-            Proposed Model & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & 0.000$\pm$0.000 & 0.000$\pm$0.000 & \textBF{0.120$\pm$0.018} \\
+            ALOHA & \textBF{0.334$\pm$0.083} & 0.467$\pm$0.039 & 0.621$\pm$0.008 & 0.701$\pm$0.014 & 0.589$\pm$0.027 \\
+            Proposed Model & 0.326$\pm$0.060 & \textBF{0.656$\pm$0.027} & 0.736$\pm$0.001 & \textBF{0.767$\pm$0.005} & \textBF{0.633$\pm$0.001} \\
             \hline
         \end{longtable}
     \end{center}
@@ -84,8 +84,8 @@
             Model & TPR & Accuracy & Precision & Recall & F1 score \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & \textBF{0.018$\pm$0.018} & 0.927$\pm$0.000 & \textBF{0.111$\pm$0.111} & \textBF{0.018$\pm$0.018} & \textBF{0.031$\pm$0.031} \\
-            Proposed Model & 0.000$\pm$0.000 & \textBF{0.931$\pm$0.000} & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.000$\pm$0.000 \\
+            ALOHA & 0.599$\pm$0.018 & 0.957$\pm$0.002 & 0.845$\pm$0.004 & 0.599$\pm$0.018 & 0.701$\pm$0.014 \\
+            Proposed Model & \textBF{0.691$\pm$0.008} & \textBF{0.965$\pm$0.001} & \textBF{0.863$\pm$0.001} & \textBF{0.691$\pm$0.008} & \textBF{0.767$\pm$0.005} \\
             \hline
         \end{tabular}
         \caption[Summary of Downloader Tag prediction task results]{Summary of the mean and standard deviation results of the different models for the \textbf{Downloader Tag} prediction task at \textbf{FPR} $=1\%$. Results were aggregated over \textBF{2} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:downloaderTag_result_summary}

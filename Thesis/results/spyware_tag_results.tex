@@ -5,7 +5,7 @@
             \hline
             Spyware Tag & ALOHA\newline (M/B only) & ALOHA & Proposed\newline Model \\
             \hline
-            AUC-ROC & - & 0.532$\pm$0.051 & \textBF{0.639$\pm$0.058} \\
+            AUC-ROC & - & 0.961$\pm$0.002 & 0.973$\pm$0.003 \\
             \hline
         \end{tabular}
         \caption[Spyware Tag prediction task AUC-ROC results]{AUC-ROC (Area Under Curve) of the different models for the \textbf{Spyware Tag} prediction task. Results were aggregated over \textBF{2} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:spywareTag_auc}
@@ -37,38 +37,38 @@
             \multicolumn{6}{|c|}{\textbf{TPR}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.009$\pm$0.009 & 0.047$\pm$0.009 & 0.103$\pm$0.044 \\
-            Proposed Model & \textBF{0.019$\pm$0.019} & \textBF{0.019$\pm$0.019} & \textBF{0.031$\pm$0.031} & \textBF{0.049$\pm$0.020} & \textBF{0.122$\pm$0.069} \\
+            ALOHA & 0.113$\pm$0.002 & 0.187$\pm$0.074 & 0.190$\pm$0.074 & 0.599$\pm$0.027 & 0.899$\pm$0.002 \\
+            Proposed Model & \textBF{0.132$\pm$0.126} & \textBF{0.406$\pm$0.001} & \textBF{0.504$\pm$0.006} & 0.713$\pm$0.004 & 0.918$\pm$0.001 \\
             \hline
             Error Reduction wrt\newline ALOHA (M/B only) & - & - & - & - & - \\
-            Error Reduction wrt\newline ALOHA & 1.9\% & 1.9\% & 2.2\% & 0.2\% & 2.1\% \\
+            Error Reduction wrt\newline ALOHA & 2.1\% & 26.9\% & 38.8\% & 28.4\% & 18.8\% \\
             \hline
             Std Reduction wrt\newline ALOHA (M/B only) & - & - & - & - & - \\
-            Std Reduction wrt\newline ALOHA & 0.0\% & 0.0\% & -244.4\% & -122.2\% & -56.8\% \\
+            Std Reduction wrt\newline ALOHA & -6200.0\% & 98.6\% & 91.9\% & 85.2\% & 50.0\% \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Accuracy}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.870$\pm$0.000 & 0.870$\pm$0.000 & 0.870$\pm$0.001 & \textBF{0.870$\pm$0.000} & 0.796$\pm$0.006 \\
-            Proposed Model & \textBF{0.872$\pm$0.002} & \textBF{0.872$\pm$0.002} & \textBF{0.873$\pm$0.004} & 0.869$\pm$0.004 & \textBF{0.799$\pm$0.009} \\
+            ALOHA & 0.905$\pm$0.000 & 0.913$\pm$0.008 & 0.913$\pm$0.008 & 0.948$\pm$0.003 & 0.900$\pm$0.000 \\
+            Proposed Model & \textBF{0.907$\pm$0.013} & \textBF{0.936$\pm$0.000} & \textBF{0.946$\pm$0.001} & 0.960$\pm$0.000 & 0.902$\pm$0.000 \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Recall}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.009$\pm$0.009 & 0.047$\pm$0.009 & 0.103$\pm$0.044 \\
-            Proposed Model & \textBF{0.019$\pm$0.019} & \textBF{0.019$\pm$0.019} & \textBF{0.031$\pm$0.031} & \textBF{0.049$\pm$0.020} & \textBF{0.122$\pm$0.069} \\
+            ALOHA & 0.113$\pm$0.002 & 0.187$\pm$0.074 & 0.190$\pm$0.074 & 0.599$\pm$0.027 & 0.899$\pm$0.002 \\
+            Proposed Model & \textBF{0.132$\pm$0.126} & \textBF{0.406$\pm$0.001} & \textBF{0.504$\pm$0.006} & 0.713$\pm$0.004 & 0.918$\pm$0.001 \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Precision}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & \textBF{1.000$\pm$0.000} & \textBF{1.000$\pm$0.000} & 0.429$\pm$0.429 & \textBF{0.504$\pm$0.018} & 0.132$\pm$0.049 \\
-            Proposed Model & \textBF{1.000$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.455$\pm$0.455} & 0.452$\pm$0.142 & \textBF{0.149$\pm$0.075} \\
+            ALOHA & \textBF{1.000$\pm$0.000} & 0.997$\pm$0.000 & 0.953$\pm$0.017 & 0.877$\pm$0.005 & 0.518$\pm$0.001 \\
+            Proposed Model & 0.994$\pm$0.006 & \textBF{0.998$\pm$0.000} & \textBF{0.984$\pm$0.000} & 0.895$\pm$0.000 & 0.523$\pm$0.000 \\
             \hline
             \multicolumn{6}{|c|}{\textbf{F1 Score}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.018$\pm$0.018 & 0.086$\pm$0.015 & 0.116$\pm$0.047 \\
-            Proposed Model & \textBF{0.036$\pm$0.036} & \textBF{0.036$\pm$0.036} & \textBF{0.059$\pm$0.059} & \textBF{0.088$\pm$0.036} & \textBF{0.134$\pm$0.072} \\
+            ALOHA & 0.203$\pm$0.003 & 0.309$\pm$0.106 & 0.310$\pm$0.105 & 0.712$\pm$0.021 & 0.657$\pm$0.001 \\
+            Proposed Model & \textBF{0.212$\pm$0.198} & \textBF{0.578$\pm$0.001} & \textBF{0.666$\pm$0.005} & 0.793$\pm$0.003 & 0.666$\pm$0.001 \\
             \hline
         \end{longtable}
     \end{center}
@@ -84,8 +84,8 @@
             Model & TPR & Accuracy & Precision & Recall & F1 score \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.047$\pm$0.009 & \textBF{0.870$\pm$0.000} & \textBF{0.504$\pm$0.018} & 0.047$\pm$0.009 & 0.086$\pm$0.015 \\
-            Proposed Model & \textBF{0.049$\pm$0.020} & 0.869$\pm$0.004 & 0.452$\pm$0.142 & \textBF{0.049$\pm$0.020} & \textBF{0.088$\pm$0.036} \\
+            ALOHA & 0.599$\pm$0.027 & 0.948$\pm$0.003 & 0.877$\pm$0.005 & 0.599$\pm$0.027 & 0.712$\pm$0.021 \\
+            Proposed Model & 0.713$\pm$0.004 & 0.960$\pm$0.000 & 0.895$\pm$0.000 & 0.713$\pm$0.004 & 0.793$\pm$0.003 \\
             \hline
         \end{tabular}
         \caption[Summary of Spyware Tag prediction task results]{Summary of the mean and standard deviation results of the different models for the \textbf{Spyware Tag} prediction task at \textbf{FPR} $=1\%$. Results were aggregated over \textBF{2} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:spywareTag_result_summary}

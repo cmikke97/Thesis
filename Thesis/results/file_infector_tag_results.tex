@@ -5,7 +5,7 @@
             \hline
             File-infector Tag & ALOHA\newline (M/B only) & ALOHA & Proposed\newline Model \\
             \hline
-            AUC-ROC & - & 0.546$\pm$0.204 & \textBF{0.642$\pm$0.155} \\
+            AUC-ROC & - & 0.985$\pm$0.000 & \textBF{0.987$\pm$0.000} \\
             \hline
         \end{tabular}
         \caption[File-infector Tag prediction task AUC-ROC results]{AUC-ROC (Area Under Curve) of the different models for the \textbf{File-infector Tag} prediction task. Results were aggregated over \textBF{2} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:fileInfectorTag_auc}
@@ -37,38 +37,38 @@
             \multicolumn{6}{|c|}{\textbf{TPR}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.005$\pm$0.005 & \textBF{0.185$\pm$0.139} \\
-            Proposed Model & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.000$\pm$0.000 & \textBF{0.058$\pm$0.007} & 0.118$\pm$0.053 \\
+            ALOHA & \textBF{0.445$\pm$0.236} & \textBF{0.520$\pm$0.206} & 0.724$\pm$0.065 & 0.844$\pm$0.001 & 0.946$\pm$0.006 \\
+            Proposed Model & 0.144$\pm$0.027 & 0.326$\pm$0.047 & 0.647$\pm$0.061 & 0.854$\pm$0.003 & 0.955$\pm$0.006 \\
             \hline
             Error Reduction wrt\newline ALOHA (M/B only) & - & - & - & - & - \\
-            Error Reduction wrt\newline ALOHA & 0.0\% & 0.0\% & 0.0\% & 5.3\% & -8.2\% \\
+            Error Reduction wrt\newline ALOHA & -54.2\% & -40.4\% & -27.9\% & 6.4\% & 16.7\% \\
             \hline
             Std Reduction wrt\newline ALOHA (M/B only) & - & - & - & - & - \\
-            Std Reduction wrt\newline ALOHA & 0.0\% & 0.0\% & 0.0\% & -40.0\% & 61.9\% \\
+            Std Reduction wrt\newline ALOHA & 88.6\% & 77.2\% & 6.2\% & -200.0\% & 0.0\% \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Accuracy}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & \textBF{0.912$\pm$0.000} & \textBF{0.912$\pm$0.000} & 0.910$\pm$0.001 & 0.904$\pm$0.001 & \textBF{0.837$\pm$0.012} \\
-            Proposed Model & \textBF{0.912$\pm$0.000} & \textBF{0.912$\pm$0.000} & \textBF{0.911$\pm$0.000} & \textBF{0.907$\pm$0.001} & 0.832$\pm$0.004 \\
+            ALOHA & \textBF{0.910$\pm$0.038} & \textBF{0.922$\pm$0.033} & 0.955$\pm$0.010 & 0.966$\pm$0.000 & 0.907$\pm$0.001 \\
+            Proposed Model & 0.862$\pm$0.004 & 0.891$\pm$0.008 & 0.942$\pm$0.010 & 0.968$\pm$0.000 & \textBF{0.909$\pm$0.001} \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Recall}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.005$\pm$0.005 & \textBF{0.185$\pm$0.139} \\
-            Proposed Model & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.000$\pm$0.000 & \textBF{0.058$\pm$0.007} & 0.118$\pm$0.053 \\
+            ALOHA & \textBF{0.445$\pm$0.236} & \textBF{0.520$\pm$0.206} & 0.724$\pm$0.065 & 0.844$\pm$0.001 & 0.946$\pm$0.006 \\
+            Proposed Model & 0.144$\pm$0.027 & 0.326$\pm$0.047 & 0.647$\pm$0.061 & 0.854$\pm$0.003 & 0.955$\pm$0.006 \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Precision}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & \textBF{1.000$\pm$0.000} & \textBF{1.000$\pm$0.000} & 0.000$\pm$0.000 & 0.053$\pm$0.053 & \textBF{0.141$\pm$0.098} \\
-            Proposed Model & \textBF{1.000$\pm$0.000} & \textBF{1.000$\pm$0.000} & 0.000$\pm$0.000 & \textBF{0.352$\pm$0.037} & 0.101$\pm$0.041 \\
+            ALOHA & \textBF{1.000$\pm$0.000} & \textBF{0.999$\pm$0.000} & 0.993$\pm$0.001 & 0.942$\pm$0.000 & 0.646$\pm$0.001 \\
+            Proposed Model & \textBF{1.000$\pm$0.000} & 0.998$\pm$0.000 & 0.992$\pm$0.001 & \textBF{0.943$\pm$0.000} & \textBF{0.648$\pm$0.001} \\
             \hline
             \multicolumn{6}{|c|}{\textbf{F1 Score}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.009$\pm$0.009 & \textBF{0.160$\pm$0.115} \\
-            Proposed Model & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.000$\pm$0.000 & \textBF{0.099$\pm$0.012} & 0.109$\pm$0.047 \\
+            ALOHA & \textBF{0.578$\pm$0.232} & \textBF{0.659$\pm$0.182} & 0.836$\pm$0.044 & 0.890$\pm$0.000 & 0.767$\pm$0.003 \\
+            Proposed Model & 0.250$\pm$0.041 & 0.490$\pm$0.054 & 0.781$\pm$0.045 & 0.896$\pm$0.002 & 0.772$\pm$0.003 \\
             \hline
         \end{longtable}
     \end{center}
@@ -84,8 +84,8 @@
             Model & TPR & Accuracy & Precision & Recall & F1 score \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.005$\pm$0.005 & 0.904$\pm$0.001 & 0.053$\pm$0.053 & 0.005$\pm$0.005 & 0.009$\pm$0.009 \\
-            Proposed Model & \textBF{0.058$\pm$0.007} & \textBF{0.907$\pm$0.001} & \textBF{0.352$\pm$0.037} & \textBF{0.058$\pm$0.007} & \textBF{0.099$\pm$0.012} \\
+            ALOHA & 0.844$\pm$0.001 & 0.966$\pm$0.000 & 0.942$\pm$0.000 & 0.844$\pm$0.001 & 0.890$\pm$0.000 \\
+            Proposed Model & 0.854$\pm$0.003 & 0.968$\pm$0.000 & \textBF{0.943$\pm$0.000} & 0.854$\pm$0.003 & 0.896$\pm$0.002 \\
             \hline
         \end{tabular}
         \caption[Summary of File-infector Tag prediction task results]{Summary of the mean and standard deviation results of the different models for the \textbf{File-infector Tag} prediction task at \textbf{FPR} $=1\%$. Results were aggregated over \textBF{2} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:fileInfectorTag_result_summary}

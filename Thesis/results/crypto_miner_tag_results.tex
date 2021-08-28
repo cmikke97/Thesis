@@ -5,7 +5,7 @@
             \hline
             Crypto-miner Tag & ALOHA\newline (M/B only) & ALOHA & Proposed\newline Model \\
             \hline
-            AUC-ROC & - & 0.573$\pm$0.032 & 0.481$\pm$0.325 \\
+            AUC-ROC & - & 0.989$\pm$0.001 & 0.989$\pm$0.000 \\
             \hline
         \end{tabular}
         \caption[Crypto-miner Tag prediction task AUC-ROC results]{AUC-ROC (Area Under Curve) of the different models for the \textbf{Crypto-miner Tag} prediction task. Results were aggregated over \textBF{2} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:cryptoMinerTag_auc}
@@ -37,38 +37,38 @@
             \multicolumn{6}{|c|}{\textbf{TPR}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & 0.000$\pm$0.000 \\
-            Proposed Model & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & 0.041$\pm$0.014 \\
+            ALOHA & \textBF{0.434$\pm$0.029} & 0.512$\pm$0.011 & 0.557$\pm$0.020 & 0.761$\pm$0.138 & 0.966$\pm$0.016 \\
+            Proposed Model & 0.347$\pm$0.017 & 0.513$\pm$0.002 & 0.514$\pm$0.002 & 0.746$\pm$0.159 & 0.978$\pm$0.009 \\
             \hline
             Error Reduction wrt\newline ALOHA (M/B only) & - & - & - & - & - \\
-            Error Reduction wrt\newline ALOHA & 0.0\% & 0.0\% & 0.0\% & 0.0\% & 4.1\% \\
+            Error Reduction wrt\newline ALOHA & -15.4\% & 0.2\% & -9.7\% & -6.3\% & 35.3\% \\
             \hline
             Std Reduction wrt\newline ALOHA (M/B only) & - & - & - & - & - \\
-            Std Reduction wrt\newline ALOHA & 0.0\% & 0.0\% & 0.0\% & 0.0\% & 0.0\% \\
+            Std Reduction wrt\newline ALOHA & 41.4\% & 81.8\% & 90.0\% & -15.2\% & 43.8\% \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Accuracy}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & \textBF{0.985$\pm$0.000} & \textBF{0.985$\pm$0.000} & \textBF{0.984$\pm$0.000} & 0.980$\pm$0.004 & 0.887$\pm$0.008 \\
-            Proposed Model & \textBF{0.985$\pm$0.000} & \textBF{0.985$\pm$0.000} & \textBF{0.984$\pm$0.000} & \textBF{0.984$\pm$0.000} & 0.890$\pm$0.000 \\
+            ALOHA & \textBF{0.992$\pm$0.000} & \textBF{0.993$\pm$0.000} & \textBF{0.993$\pm$0.000} & 0.987$\pm$0.002 & \textBF{0.901$\pm$0.000} \\
+            Proposed Model & 0.991$\pm$0.000 & \textBF{0.993$\pm$0.000} & 0.992$\pm$0.000 & 0.987$\pm$0.002 & \textBF{0.901$\pm$0.000} \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Recall}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & 0.000$\pm$0.000 \\
-            Proposed Model & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & 0.041$\pm$0.014 \\
+            ALOHA & \textBF{0.434$\pm$0.029} & 0.512$\pm$0.011 & 0.557$\pm$0.020 & 0.761$\pm$0.138 & 0.966$\pm$0.016 \\
+            Proposed Model & 0.347$\pm$0.017 & 0.513$\pm$0.002 & 0.514$\pm$0.002 & 0.746$\pm$0.159 & 0.978$\pm$0.009 \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Precision}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & \textBF{1.000$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & 0.000$\pm$0.000 \\
-            Proposed Model & \textBF{1.000$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & 0.006$\pm$0.002 \\
+            ALOHA & \textBF{0.998$\pm$0.000} & \textBF{0.988$\pm$0.001} & 0.886$\pm$0.004 & 0.512$\pm$0.046 & 0.119$\pm$0.002 \\
+            Proposed Model & \textBF{0.998$\pm$0.000} & 0.986$\pm$0.000 & 0.878$\pm$0.000 & 0.505$\pm$0.054 & 0.120$\pm$0.001 \\
             \hline
             \multicolumn{6}{|c|}{\textbf{F1 Score}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & 0.000$\pm$0.000 \\
-            Proposed Model & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & 0.011$\pm$0.004 \\
+            ALOHA & \textBF{0.604$\pm$0.028} & 0.674$\pm$0.009 & 0.684$\pm$0.016 & 0.611$\pm$0.077 & 0.212$\pm$0.003 \\
+            Proposed Model & 0.515$\pm$0.018 & 0.675$\pm$0.002 & 0.648$\pm$0.001 & 0.601$\pm$0.090 & 0.214$\pm$0.002 \\
             \hline
         \end{longtable}
     \end{center}
@@ -84,8 +84,8 @@
             Model & TPR & Accuracy & Precision & Recall & F1 score \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & \textBF{0.000$\pm$0.000} & 0.980$\pm$0.004 & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
-            Proposed Model & \textBF{0.000$\pm$0.000} & \textBF{0.984$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} \\
+            ALOHA & 0.761$\pm$0.138 & 0.987$\pm$0.002 & 0.512$\pm$0.046 & 0.761$\pm$0.138 & 0.611$\pm$0.077 \\
+            Proposed Model & 0.746$\pm$0.159 & 0.987$\pm$0.002 & 0.505$\pm$0.054 & 0.746$\pm$0.159 & 0.601$\pm$0.090 \\
             \hline
         \end{tabular}
         \caption[Summary of Crypto-miner Tag prediction task results]{Summary of the mean and standard deviation results of the different models for the \textbf{Crypto-miner Tag} prediction task at \textbf{FPR} $=1\%$. Results were aggregated over \textBF{2} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:cryptoMinerTag_result_summary}

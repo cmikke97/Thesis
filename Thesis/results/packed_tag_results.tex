@@ -5,7 +5,7 @@
             \hline
             Packed Tag & ALOHA\newline (M/B only) & ALOHA & Proposed\newline Model \\
             \hline
-            AUC-ROC & - & 0.525$\pm$0.054 & \textBF{0.668$\pm$0.035} \\
+            AUC-ROC & - & 0.980$\pm$0.003 & \textBF{0.983$\pm$0.001} \\
             \hline
         \end{tabular}
         \caption[Packed Tag prediction task AUC-ROC results]{AUC-ROC (Area Under Curve) of the different models for the \textbf{Packed Tag} prediction task. Results were aggregated over \textBF{2} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:packedTag_auc}
@@ -37,38 +37,38 @@
             \multicolumn{6}{|c|}{\textbf{TPR}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.050$\pm$0.012 \\
-            Proposed Model & \textBF{0.002$\pm$0.002} & \textBF{0.002$\pm$0.002} & 0.002$\pm$0.002 & 0.017$\pm$0.010 & 0.119$\pm$0.029 \\
+            ALOHA & 0.050$\pm$0.026 & 0.277$\pm$0.056 & 0.569$\pm$0.007 & 0.710$\pm$0.015 & 0.935$\pm$0.008 \\
+            Proposed Model & \textBF{0.142$\pm$0.128} & \textBF{0.340$\pm$0.150} & \textBF{0.607$\pm$0.043} & \textBF{0.766$\pm$0.010} & 0.951$\pm$0.001 \\
             \hline
             Error Reduction wrt\newline ALOHA (M/B only) & - & - & - & - & - \\
-            Error Reduction wrt\newline ALOHA & 0.2\% & 0.2\% & 0.2\% & 1.7\% & 7.3\% \\
+            Error Reduction wrt\newline ALOHA & 9.7\% & 8.7\% & 8.8\% & 19.3\% & 24.6\% \\
             \hline
             Std Reduction wrt\newline ALOHA (M/B only) & - & - & - & - & - \\
-            Std Reduction wrt\newline ALOHA & 0.0\% & 0.0\% & 0.0\% & 0.0\% & -141.7\% \\
+            Std Reduction wrt\newline ALOHA & -392.3\% & -167.9\% & -514.3\% & 33.3\% & 87.5\% \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Accuracy}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.881$\pm$0.000 & 0.881$\pm$0.000 & 0.881$\pm$0.000 & 0.875$\pm$0.003 & 0.799$\pm$0.003 \\
-            Proposed Model & \textBF{0.882$\pm$0.000} & \textBF{0.882$\pm$0.000} & 0.881$\pm$0.000 & 0.875$\pm$0.001 & 0.807$\pm$0.004 \\
+            ALOHA & 0.870$\pm$0.004 & 0.901$\pm$0.008 & 0.940$\pm$0.001 & 0.952$\pm$0.002 & 0.905$\pm$0.001 \\
+            Proposed Model & \textBF{0.883$\pm$0.017} & \textBF{0.910$\pm$0.021} & \textBF{0.945$\pm$0.006} & \textBF{0.959$\pm$0.001} & 0.907$\pm$0.000 \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Recall}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.050$\pm$0.012 \\
-            Proposed Model & \textBF{0.002$\pm$0.002} & \textBF{0.002$\pm$0.002} & 0.002$\pm$0.002 & 0.017$\pm$0.010 & 0.119$\pm$0.029 \\
+            ALOHA & 0.050$\pm$0.026 & 0.277$\pm$0.056 & 0.569$\pm$0.007 & 0.710$\pm$0.015 & 0.935$\pm$0.008 \\
+            Proposed Model & \textBF{0.142$\pm$0.128} & \textBF{0.340$\pm$0.150} & \textBF{0.607$\pm$0.043} & \textBF{0.766$\pm$0.010} & 0.951$\pm$0.001 \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Precision}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & \textBF{1.000$\pm$0.000} & \textBF{1.000$\pm$0.000} & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.063$\pm$0.015 \\
-            Proposed Model & \textBF{1.000$\pm$0.000} & \textBF{1.000$\pm$0.000} & 0.167$\pm$0.167 & 0.181$\pm$0.094 & 0.136$\pm$0.030 \\
+            ALOHA & 0.998$\pm$0.001 & \textBF{0.998$\pm$0.000} & 0.989$\pm$0.000 & 0.918$\pm$0.002 & 0.597$\pm$0.002 \\
+            Proposed Model & 0.998$\pm$0.002 & 0.998$\pm$0.001 & \textBF{0.990$\pm$0.001} & \textBF{0.924$\pm$0.001} & 0.600$\pm$0.000 \\
             \hline
             \multicolumn{6}{|c|}{\textbf{F1 Score}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.056$\pm$0.013 \\
-            Proposed Model & \textBF{0.003$\pm$0.003} & \textBF{0.003$\pm$0.003} & 0.003$\pm$0.003 & 0.031$\pm$0.019 & 0.127$\pm$0.030 \\
+            ALOHA & 0.094$\pm$0.048 & 0.430$\pm$0.068 & 0.723$\pm$0.006 & 0.801$\pm$0.010 & 0.728$\pm$0.004 \\
+            Proposed Model & \textBF{0.227$\pm$0.198} & \textBF{0.489$\pm$0.169} & \textBF{0.752$\pm$0.034} & \textBF{0.838$\pm$0.007} & 0.736$\pm$0.001 \\
             \hline
         \end{longtable}
     \end{center}
@@ -84,8 +84,8 @@
             Model & TPR & Accuracy & Precision & Recall & F1 score \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & 0.000$\pm$0.000 & 0.875$\pm$0.003 & 0.000$\pm$0.000 & 0.000$\pm$0.000 & 0.000$\pm$0.000 \\
-            Proposed Model & 0.017$\pm$0.010 & 0.875$\pm$0.001 & 0.181$\pm$0.094 & 0.017$\pm$0.010 & 0.031$\pm$0.019 \\
+            ALOHA & 0.710$\pm$0.015 & 0.952$\pm$0.002 & 0.918$\pm$0.002 & 0.710$\pm$0.015 & 0.801$\pm$0.010 \\
+            Proposed Model & \textBF{0.766$\pm$0.010} & \textBF{0.959$\pm$0.001} & \textBF{0.924$\pm$0.001} & \textBF{0.766$\pm$0.010} & \textBF{0.838$\pm$0.007} \\
             \hline
         \end{tabular}
         \caption[Summary of Packed Tag prediction task results]{Summary of the mean and standard deviation results of the different models for the \textbf{Packed Tag} prediction task at \textbf{FPR} $=1\%$. Results were aggregated over \textBF{2} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:packedTag_result_summary}

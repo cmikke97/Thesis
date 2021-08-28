@@ -8,15 +8,15 @@
             \hline
             \multicolumn{6}{|c|}{\textbf{Jaccard Similarity}} \\
             \hline
-            ALOHA & 0.718$\pm$0.000 & 0.718$\pm$0.000 & \textBF{0.715$\pm$0.001} & \textBF{0.691$\pm$0.002} & \textBF{0.493$\pm$0.042} \\
-            Joint Embedding & 0.718$\pm$0.001 & 0.718$\pm$0.001 & 0.714$\pm$0.001 & 0.676$\pm$0.001 & 0.385$\pm$0.026 \\
-            Proposed Model & \textBF{0.719$\pm$0.001} & \textBF{0.719$\pm$0.001} & 0.715$\pm$0.003 & 0.685$\pm$0.001 & 0.370$\pm$0.007 \\
+            ALOHA & \textBF{0.711$\pm$0.012} & 0.748$\pm$0.010 & 0.799$\pm$0.006 & 0.864$\pm$0.001 & 0.794$\pm$0.014 \\
+            Joint Embedding & 0.684$\pm$0.009 & 0.742$\pm$0.009 & 0.820$\pm$0.005 & 0.884$\pm$0.001 & 0.785$\pm$0.007 \\
+            Proposed Model & 0.695$\pm$0.019 & \textBF{0.761$\pm$0.008} & \textBF{0.826$\pm$0.003} & \textBF{0.885$\pm$0.001} & \textBF{0.799$\pm$0.002} \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Mean per-Sample Accuracy}} \\
             \hline
-            ALOHA & \textBF{0.718$\pm$0.000} & \textBF{0.718$\pm$0.000} & \textBF{0.714$\pm$0.001} & \textBF{0.688$\pm$0.002} & \textBF{0.481$\pm$0.040} \\
-            Joint Embedding & \textBF{0.718$\pm$0.000} & \textBF{0.718$\pm$0.000} & 0.712$\pm$0.001 & 0.672$\pm$0.000 & 0.364$\pm$0.026 \\
-            Proposed Model & \textBF{0.718$\pm$0.000} & \textBF{0.718$\pm$0.000} & 0.713$\pm$0.001 & 0.681$\pm$0.001 & 0.344$\pm$0.005 \\
+            ALOHA & 0.646$\pm$0.006 & 0.690$\pm$0.001 & 0.749$\pm$0.000 & 0.796$\pm$0.001 & \textBF{0.699$\pm$0.020} \\
+            Joint Embedding & 0.640$\pm$0.001 & 0.684$\pm$0.005 & 0.761$\pm$0.005 & 0.810$\pm$0.000 & 0.684$\pm$0.008 \\
+            Proposed Model & \textBF{0.649$\pm$0.010} & \textBF{0.703$\pm$0.010} & \textBF{0.773$\pm$0.003} & \textBF{0.813$\pm$0.000} & 0.695$\pm$0.001 \\
             \hline
         \end{tabular}
         \caption[Tags prediction task mean per-sample scores]{Mean and standard deviation of mean per-sample tagging results (\textit{Jaccard simialrity} and \textit{mean per-sample accuracy}) for the different models. Results were aggregated over \textBF{2} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:meanPerSampleScores}

@@ -5,7 +5,7 @@
             \hline
             Installer Tag & ALOHA\newline (M/B only) & ALOHA & Proposed\newline Model \\
             \hline
-            AUC-ROC & - & \textBF{0.676$\pm$0.097} & 0.633$\pm$0.009 \\
+            AUC-ROC & - & 0.971$\pm$0.004 & \textBF{0.981$\pm$0.000} \\
             \hline
         \end{tabular}
         \caption[Installer Tag prediction task AUC-ROC results]{AUC-ROC (Area Under Curve) of the different models for the \textbf{Installer Tag} prediction task. Results were aggregated over \textBF{2} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:installerTag_auc}
@@ -37,38 +37,38 @@
             \multicolumn{6}{|c|}{\textbf{TPR}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & 0.000$\pm$0.000 & \textBF{0.021$\pm$0.021} & 0.121$\pm$0.050 \\
-            Proposed Model & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.007$\pm$0.007} & 0.007$\pm$0.007 & 0.107$\pm$0.021 \\
+            ALOHA & 0.202$\pm$0.004 & 0.288$\pm$0.021 & 0.431$\pm$0.075 & 0.724$\pm$0.044 & 0.908$\pm$0.019 \\
+            Proposed Model & 0.220$\pm$0.010 & \textBF{0.340$\pm$0.020} & \textBF{0.515$\pm$0.028} & \textBF{0.773$\pm$0.009} & \textBF{0.951$\pm$0.007} \\
             \hline
             Error Reduction wrt\newline ALOHA (M/B only) & - & - & - & - & - \\
-            Error Reduction wrt\newline ALOHA & 0.0\% & 0.0\% & 0.7\% & -1.4\% & -1.6\% \\
+            Error Reduction wrt\newline ALOHA & 2.3\% & 7.3\% & 14.8\% & 17.8\% & 46.7\% \\
             \hline
             Std Reduction wrt\newline ALOHA (M/B only) & - & - & - & - & - \\
-            Std Reduction wrt\newline ALOHA & 0.0\% & 0.0\% & 0.0\% & 66.7\% & 58.0\% \\
+            Std Reduction wrt\newline ALOHA & -150.0\% & 4.8\% & 62.7\% & 79.5\% & 63.2\% \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Accuracy}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & \textBF{0.971$\pm$0.000} & \textBF{0.971$\pm$0.000} & 0.970$\pm$0.001 & 0.961$\pm$0.001 & 0.879$\pm$0.002 \\
-            Proposed Model & \textBF{0.971$\pm$0.000} & \textBF{0.971$\pm$0.000} & \textBF{0.971$\pm$0.000} & \textBF{0.965$\pm$0.002} & 0.877$\pm$0.000 \\
+            ALOHA & 0.986$\pm$0.000 & 0.987$\pm$0.000 & 0.989$\pm$0.001 & 0.985$\pm$0.001 & 0.900$\pm$0.000 \\
+            Proposed Model & 0.986$\pm$0.000 & \textBF{0.988$\pm$0.000} & \textBF{0.990$\pm$0.000} & \textBF{0.986$\pm$0.000} & \textBF{0.901$\pm$0.000} \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Recall}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & 0.000$\pm$0.000 & \textBF{0.021$\pm$0.021} & 0.121$\pm$0.050 \\
-            Proposed Model & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.007$\pm$0.007} & 0.007$\pm$0.007 & 0.107$\pm$0.021 \\
+            ALOHA & 0.202$\pm$0.004 & 0.288$\pm$0.021 & 0.431$\pm$0.075 & 0.724$\pm$0.044 & 0.908$\pm$0.019 \\
+            Proposed Model & 0.220$\pm$0.010 & \textBF{0.340$\pm$0.020} & \textBF{0.515$\pm$0.028} & \textBF{0.773$\pm$0.009} & \textBF{0.951$\pm$0.007} \\
             \hline
             \multicolumn{6}{|c|}{\textbf{Precision}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & \textBF{1.000$\pm$0.000} & \textBF{1.000$\pm$0.000} & 0.000$\pm$0.000 & \textBF{0.054$\pm$0.054} & 0.035$\pm$0.014 \\
-            Proposed Model & \textBF{1.000$\pm$0.000} & \textBF{1.000$\pm$0.000} & \textBF{0.167$\pm$0.167} & 0.038$\pm$0.038 & 0.031$\pm$0.006 \\
+            ALOHA & 0.997$\pm$0.000 & 0.981$\pm$0.001 & 0.883$\pm$0.018 & 0.567$\pm$0.015 & 0.141$\pm$0.003 \\
+            Proposed Model & \textBF{0.998$\pm$0.000} & \textBF{0.984$\pm$0.001} & \textBF{0.903$\pm$0.004} & \textBF{0.583$\pm$0.003} & \textBF{0.147$\pm$0.001} \\
             \hline
             \multicolumn{6}{|c|}{\textbf{F1 Score}} \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & 0.000$\pm$0.000 & \textBF{0.031$\pm$0.031} & 0.054$\pm$0.022 \\
-            Proposed Model & \textBF{0.000$\pm$0.000} & \textBF{0.000$\pm$0.000} & \textBF{0.014$\pm$0.014} & 0.012$\pm$0.012 & 0.048$\pm$0.009 \\
+            ALOHA & 0.337$\pm$0.006 & 0.445$\pm$0.025 & 0.576$\pm$0.072 & 0.636$\pm$0.026 & 0.244$\pm$0.004 \\
+            Proposed Model & 0.360$\pm$0.014 & \textBF{0.505$\pm$0.022} & \textBF{0.656$\pm$0.024} & \textBF{0.665$\pm$0.005} & \textBF{0.254$\pm$0.002} \\
             \hline
         \end{longtable}
     \end{center}
@@ -84,8 +84,8 @@
             Model & TPR & Accuracy & Precision & Recall & F1 score \\
             \hline
             ALOHA (M/B only) & - & - & - & - & - \\
-            ALOHA & \textBF{0.021$\pm$0.021} & 0.961$\pm$0.001 & \textBF{0.054$\pm$0.054} & \textBF{0.021$\pm$0.021} & \textBF{0.031$\pm$0.031} \\
-            Proposed Model & 0.007$\pm$0.007 & \textBF{0.965$\pm$0.002} & 0.038$\pm$0.038 & 0.007$\pm$0.007 & 0.012$\pm$0.012 \\
+            ALOHA & 0.724$\pm$0.044 & 0.985$\pm$0.001 & 0.567$\pm$0.015 & 0.724$\pm$0.044 & 0.636$\pm$0.026 \\
+            Proposed Model & \textBF{0.773$\pm$0.009} & \textBF{0.986$\pm$0.000} & \textBF{0.583$\pm$0.003} & \textBF{0.773$\pm$0.009} & \textBF{0.665$\pm$0.005} \\
             \hline
         \end{tabular}
         \caption[Summary of Installer Tag prediction task results]{Summary of the mean and standard deviation results of the different models for the \textbf{Installer Tag} prediction task at \textbf{FPR} $=1\%$. Results were aggregated over \textBF{2} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:installerTag_result_summary}
