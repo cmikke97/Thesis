@@ -5,7 +5,7 @@
             \hline
             & Joint Embedding\newline Family Classifier & Proposed Model\newline Family Classifier & Family Classifier\newline only \\
             \hline
-            Accuracy & 0.394$\pm$0.005 & 0.404$\pm$0.002 & \textBF{0.405$\pm$0.006} \\
+            Accuracy & 0.445$\pm$0.005 & \textBF{0.465$\pm$0.003} & 0.414$\pm$0.007 \\
             \hline
         \end{tabular}
         \caption[Family Classifier Accuracy Results]{Mean and Standard deviation of the Family Classifier accuracy obtained by evaluating the Family Classifiers built on top of the \textBF{Joint Embedding} and \textBF{Proposed Model} implementations along with a Family Classifier model with no Transfer Learning applied (\textBF{Family Classifier Only}). Results were aggregated over \textBF{2} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:FamilyClassifierAccuracyResults}
@@ -19,29 +19,29 @@
             \hline
             & & Joint Embedding\newline Family Classifier & Proposed Model\newline Family Classifier & Family Classifier\newline only \\
             \hline
-            \multirow{3}{4em}{Jaccard\newline Similarity} & Micro & 0.245$\pm$0.004 & \textBF{0.254$\pm$0.002} & 0.254$\pm$0.005 \\
-            & Macro & 0.273$\pm$0.007 & \textBF{0.288$\pm$0.001} & 0.269$\pm$0.007 \\
-            & Weighted & 0.273$\pm$0.007 & \textBF{0.288$\pm$0.001} & 0.269$\pm$0.007 \\
+            \multirow{3}{4em}{Jaccard\newline Similarity} & Micro & 0.286$\pm$0.004 & \textBF{0.303$\pm$0.002} & 0.261$\pm$0.006 \\
+            & Macro & 0.318$\pm$0.001 & \textBF{0.339$\pm$0.002} & 0.282$\pm$0.011 \\
+            & Weighted & 0.318$\pm$0.001 & \textBF{0.339$\pm$0.002} & 0.282$\pm$0.011 \\
             \hline
-            \multirow{3}{4em}{Recall} & Micro & 0.394$\pm$0.005 & 0.404$\pm$0.002 & \textBF{0.405$\pm$0.006} \\
-            & Macro & 0.393$\pm$0.005 & 0.404$\pm$0.002 & \textBF{0.405$\pm$0.006} \\
-            & Weighted & 0.394$\pm$0.005 & 0.404$\pm$0.002 & \textBF{0.405$\pm$0.006} \\
+            \multirow{3}{4em}{Recall} & Micro & 0.445$\pm$0.005 & \textBF{0.465$\pm$0.003} & 0.414$\pm$0.007 \\
+            & Macro & 0.445$\pm$0.005 & \textBF{0.465$\pm$0.003} & 0.413$\pm$0.008 \\
+            & Weighted & 0.445$\pm$0.005 & \textBF{0.465$\pm$0.003} & 0.414$\pm$0.007 \\
             \hline
-            \multirow{3}{4em}{Precision} & Micro & 0.394$\pm$0.005 & 0.404$\pm$0.002 & \textBF{0.405$\pm$0.006} \\
-            & Macro & 0.480$\pm$0.009 & \textBF{0.508$\pm$0.014} & 0.478$\pm$0.003 \\
-            & Weighted & 0.480$\pm$0.009 & \textBF{0.508$\pm$0.014} & 0.478$\pm$0.003 \\
+            \multirow{3}{4em}{Precision} & Micro & 0.445$\pm$0.005 & \textBF{0.465$\pm$0.003} & 0.414$\pm$0.007 \\
+            & Macro & 0.507$\pm$0.001 & \textBF{0.538$\pm$0.006} & 0.473$\pm$0.009 \\
+            & Weighted & 0.507$\pm$0.001 & \textBF{0.538$\pm$0.006} & 0.473$\pm$0.009 \\
             \hline
-            \multirow{3}{4em}{F1-score} & Micro & 0.394$\pm$0.005 & 0.404$\pm$0.002 & \textBF{0.405$\pm$0.006} \\
-            & Macro & 0.389$\pm$0.009 & \textBF{0.406$\pm$0.001} & 0.388$\pm$0.009 \\
-            & Weighted & 0.389$\pm$0.009 & \textBF{0.406$\pm$0.001} & 0.388$\pm$0.009 \\
+            \multirow{3}{4em}{F1-score} & Micro & 0.445$\pm$0.005 & \textBF{0.465$\pm$0.003} & 0.413$\pm$0.008 \\
+            & Macro & 0.438$\pm$0.003 & \textBF{0.460$\pm$0.005} & 0.397$\pm$0.010 \\
+            & Weighted & 0.438$\pm$0.003 & \textBF{0.460$\pm$0.005} & 0.397$\pm$0.010 \\
             \hline
             \multirow{3}{4em}{AUC\newline ROC\newline OVO} & Micro & - & - & - \\
-            & Macro & 0.791$\pm$0.001 & 0.790$\pm$0.001 & \textBF{0.796$\pm$0.003} \\
-            & Weighted & 0.791$\pm$0.001 & 0.790$\pm$0.001 & \textBF{0.796$\pm$0.003} \\
+            & Macro & 0.815$\pm$0.004 & \textBF{0.830$\pm$0.002} & 0.800$\pm$0.012 \\
+            & Weighted & 0.815$\pm$0.004 & \textBF{0.830$\pm$0.002} & 0.800$\pm$0.012 \\
             \hline
             \multirow{3}{4em}{AUC\newline ROC\newline OVR} & Micro & - & - & - \\
-            & Macro & 0.791$\pm$0.001 & 0.790$\pm$0.001 & \textBF{0.796$\pm$0.003} \\
-            & Weighted & 0.791$\pm$0.001 & 0.790$\pm$0.001 & \textBF{0.796$\pm$0.003} \\
+            & Macro & 0.815$\pm$0.004 & \textBF{0.830$\pm$0.002} & 0.800$\pm$0.012 \\
+            & Weighted & 0.815$\pm$0.004 & \textBF{0.830$\pm$0.002} & 0.800$\pm$0.015 \\
             \hline
         \end{tabular}
         \caption[Family Classifier Scores]{Mean and Standard deviation of the Family Classifier scores obtained by evaluating the Family Classifiers built on top of the \textBF{Joint Embedding} and \textBF{Proposed Model} implementations along with a Family Classifier model with no Transfer Learning applied (\textBF{Family Classifier Only}). Results were aggregated over \textBF{2} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:FamilyClassifierScoresTable}
