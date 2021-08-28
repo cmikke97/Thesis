@@ -1264,7 +1264,7 @@ This section contains the strings/patterns/signatures that a file must contain t
 \end{itemize}
 
 \paragraph{Conditions section}
-The last section of \textit{YARA rules}, which is the only one really required, contains the rule conditions that determine when the rule gets triggered. These conditions are Boolean expressions similar to those used in programming languages \cite{ArntzEYR}. Through the use of all the usual logical and relational operators, conditions can be made arbitrarly complex in order to accommodate for the author specific needs \cite{SimonWIY}.	
+The last section of \textit{YARA rules}, which is the only one really required, contains the rule conditions that determine when the rule gets triggered. These conditions are Boolean expressions similar to those used in programming languages \cite{ArntzEYR}. Through the use of all the usual logical and relational operators, conditions can be made arbitrarly complex in order to accommodate the author specific needs \cite{SimonWIY}.	
 
 Inside the \textit{Conditions} section, among other things, it is possible to:
 \begin{itemize}
@@ -1694,18 +1694,16 @@ The authors of \cite{DucauAMDATSE} applied multi-label classification in order t
 
 An alternative approach to multi-label classification is to learn a compact shared vector (embedding) space representation on which to map both input samples and labels - a joint embedding - where similar content across modalities are projected into similar vectors in the same low dimensional space \cite{DucauAMDATSE}. Then, at test/deployment time, in order to determine likely labels, a similarity comparison between vectors belonging to this learned latent space is performed, e.g. via inner product. In \cite{DucauAMDATSE}, the authors used a joint embedding model that maps malware tags and executable files into the same low dimensional Euclidean joint-embedding space for the malware description problem.
 
-\color{Black}
 \paragraph{Tag Distillation from Detection Names}
 Ducau et al. \cite{DucauAMDATSE} relied on semi-automatic strategies, even if they are noisier than manual labelling, because they allowed them to label millions of files that can be then used to train a classifier. In particular, they designed a labelling function which annotates PE files using the previously mentioned set of tags $\mathcal{T}$ by combining information extracted from the detection names got from ten reputable anti-malware vendors.
 
-The labelling process consisted of the following three main stages:
-\begin{enumerate}
-	\item \textit{token extraction}
-	
-	\item \textit{token-to-tag mapping}
-	
-	\item \textit{token relationship mining}
-\end{enumerate}
+The labelling process consisted of the three main stages presented in figure \ref{fig:Tag_Distillation}:
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.8\textwidth]{./images/Tag_Distillation.png}
+	\caption[Tag Distillation Process]{Tag Distillation from Detection Names Process}
+	\label{fig:Tag_Distillation}
+\end{figure}
 
 The token extraction phase consisted of normalizing and parsing the multiple detection names and converting them in sets of sub-strings. In a similar way to what the malware labelling tool AVClass, which was proposed by Marcos et al. in \cite{MarcosAVclass}, does, the token-to-tag mapping stage uses rules created from expert knowledge by a group of malware analysts, that associate relevant tokens with the set of tags of interest. Finally, this mapping is extended by mining statistical relationships between tokens to improve tagging stability and coverage.
 
