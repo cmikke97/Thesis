@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  28 AUG 2021 11:48
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  28 AUG 2021 12:08
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -886,31 +886,30 @@ File: ./images/elk_cloner_example.png Graphic file (type png)
 Package pdftex.def Info: ./images/elk_cloner_example.png  used on input line 25
 2.
 (pdftex.def)             Requested size: 253.50397pt x 112.05139pt.
-<./images/av_atlas_report_total_amount_new.png, id=532, 579.66562pt x 316.18124
-pt>
-File: ./images/av_atlas_report_total_amount_new.png Graphic file (type png)
-<use ./images/av_atlas_report_total_amount_new.png>
-Package pdftex.def Info: ./images/av_atlas_report_total_amount_new.png  used on
- input line 261.
-(pdftex.def)             Requested size: 422.50232pt x 230.45819pt.
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<./images/av_atlas_report_total_amount.png, id=533, 579.66562pt x 315.42844pt>
-File: ./images/av_atlas_report_total_amount.png Graphic file (type png)
-<use ./images/av_atlas_report_total_amount.png>
-Package pdftex.def Info: ./images/av_atlas_report_total_amount.png  used on inp
-ut line 268.
-(pdftex.def)             Requested size: 422.50232pt x 229.90948pt.
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
 [11
 
 
 
- <./images/elk_cloner_example.png>] [12 <./images/av_atlas_report_total_amount_
-new.png> <./images/av_atlas_report_total_amount.png>] [13] [14]
+ <./images/elk_cloner_example.png>] [12]
+<./images/av_atlas_report_total_amount_new.png, id=554, 579.66562pt x 316.18124
+pt>
+File: ./images/av_atlas_report_total_amount_new.png Graphic file (type png)
+<use ./images/av_atlas_report_total_amount_new.png>
+Package pdftex.def Info: ./images/av_atlas_report_total_amount_new.png  used on
+ input line 273.
+(pdftex.def)             Requested size: 422.50232pt x 230.45819pt.
+<./images/av_atlas_report_total_amount.png, id=555, 579.66562pt x 315.42844pt>
+File: ./images/av_atlas_report_total_amount.png Graphic file (type png)
+<use ./images/av_atlas_report_total_amount.png>
+Package pdftex.def Info: ./images/av_atlas_report_total_amount.png  used on inp
+ut line 280.
+(pdftex.def)             Requested size: 422.50232pt x 229.90948pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[13 <./images/av_atlas_report_total_amount_new.png>] [14 <./images/av_atlas_rep
+ort_total_amount.png>]
 Chapter 2.
 [15
 
@@ -3200,7 +3199,7 @@ Package rerunfilecheck Info: File `Thesis_V1.0.0.out' has not changed.
 Here is how much of TeX's memory you used:
  20991 strings out of 481296
  355295 string characters out of 2908369
- 1014088 words of memory out of 3000000
+ 1014086 words of memory out of 3000000
  36901 multiletter control sequences out of 15000+600000
  420300 words of font info for 89 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
@@ -3236,7 +3235,7 @@ mti12.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
 sfonts/cm/cmtt10.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fonts/type
 1/public/amsfonts/cm/cmtt8.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/
 fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Thesis_V1.0.0.pdf (145 pages, 6190397 bytes).
+Output written on Thesis_V1.0.0.pdf (145 pages, 6190300 bytes).
 PDF statistics:
  2537 PDF objects out of 2984 (max. 8388607)
  835 named destinations out of 1000 (max. 500000)
