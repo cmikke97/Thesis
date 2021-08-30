@@ -54,6 +54,9 @@
 \usepackage{multirow}
 \usepackage{array}
 
+\usepackage{subcaption}
+\usepackage{mwe}
+
 \input{commands.tex}
 
 \input{results/malware_label_results.tex}
@@ -4009,29 +4012,25 @@ Here (table \ref{tab:meanPerSampleScores}) are presented the models' \textit{Mea
 
 \meanPerSampleScores
 
+\newpage
 \section{Family Prediction and Ranking Evaluation}\label{sec:FreshEvaluationResults}
-This section shows the different models' performance evaluation results at the \textbf{Malware Family Prediction and Ranking} tasks. More specifically, table \ref{tab:MrrAndMapResults} shows the mean and standard deviation of the \textbf{MRR} (Mean Reciprocal Rank) and \textbf{MAP} (Mean Average Precision) scores corresponding to the produced rankings of the different model implementations. Figures \ref{fig:alohaMBAccuracyTrend}, \ref{fig:alohaAccuracyTrend}, \ref{fig:jointEmbeddingAccuracyTrend} and \ref{fig:proposedModelAccuracyTrend}, on the other hand, present the models' (mean and standard deviation) accuracy trends (varying the number of used anchor samples during the evaluation) and (figures \ref{fig:alohaMBConfMatrixMaxAcc}, \ref{fig:alohaConfMatrixMaxAcc}, \ref{fig:jointEmbeddingConfMatrixMaxAcc} and \ref{fig:proposedModelConfMatrixMaxAcc}) the confusion matrixes corresponding to the best predictions when using the number \textbf{k} of anchor samples which produced the overall best accuracy, resulting from the evaluation on the Malware Family Prediction task.
+This section shows the different models' performance evaluation results at the \textbf{Malware Family Prediction and Ranking} tasks. More specifically, table \ref{tab:MrrAndMapResults} shows the mean and standard deviation of the \textbf{MRR} (Mean Reciprocal Rank) and \textbf{MAP} (Mean Average Precision) scores corresponding to the produced rankings of the different model implementations. Figure \ref{fig:AccuracyTrends}, on the other hand, present the models' (mean and standard deviation) accuracy trends (varying the number of used anchor samples during the evaluation) and (figures \ref{fig:alohaMBConfMatrixMaxAcc}, \ref{fig:alohaConfMatrixMaxAcc}, \ref{fig:jointEmbeddingConfMatrixMaxAcc} and \ref{fig:proposedModelConfMatrixMaxAcc}) the confusion matrixes corresponding to the best predictions when using the number \textbf{k} of anchor samples which produced the overall best accuracy, resulting from the evaluation on the Malware Family Prediction task.
 
 In particular, the \textit{Joint Embedding} and \textit{Proposed Model} implementations' learned joint embedding representations of PE files (of size 32) were compared also with the ALOHA and ALOHA (M/B only) model implementations' implicit latent representation (of size 512) after the based shared topology. Comparing the results of the different models (including both ALOHA model implementations) on the family prediction and ranking tasks, in fact, is possible given that also the implicit latent representations of the ALOHA-based implementations can be used to compute samples distances.
 
 \MrrAndMapResultsTable
 
-\alohaMBAccuracyTrend
+\scoresAtMaxAccuracy
 
-\alohaAccuracyTrend
+\allAccuracyTrends
 
-\jointEmbeddingAccuracyTrend
+\allAucRocMicroTrends
 
-\proposedModelAccuracyTrend
+\allAucRocMacroTrends
 
-\alohaMBConfMatrixMaxAcc
+\allConfusionMatrixesMaxAcc
 
-\alohaConfMatrixMaxAcc
-
-\jointEmbeddingConfMatrixMaxAcc
-
-\proposedModelConfMatrixMaxAcc
-
+\newpage
 \subsection{Example rankings}
 Here are presented, for each model, 4 examples rankings which produced the maximum and minimum AP (Average Precision) and RR (Reciprocal Rank) scores.
 

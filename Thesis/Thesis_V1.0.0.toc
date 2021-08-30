@@ -167,9 +167,9 @@
 \contentsline {subsection}{\numberline {7.1.1}Summary}{123}{subsection.7.1.1}%
 \contentsline {section}{\numberline {7.2}Malware Description via SMART tags results}{123}{section.7.2}%
 \contentsline {subsection}{\numberline {7.2.1}Mean per-sample tagging scores}{127}{subsection.7.2.1}%
-\contentsline {section}{\numberline {7.3}Family Prediction and Ranking Evaluation}{127}{section.7.3}%
+\contentsline {section}{\numberline {7.3}Family Prediction and Ranking Evaluation}{128}{section.7.3}%
 \contentsline {subsection}{\numberline {7.3.1}Example rankings}{132}{subsection.7.3.1}%
-\contentsline {section}{\numberline {7.4}Family Classification Results}{136}{section.7.4}%
-\contentsline {chapter}{\numberline {8}Conclusions}{140}{chapter.8}%
-\contentsline {section}{\numberline {8.1}Future Work}{140}{section.8.1}%
-\contentsline {chapter}{Bibliography}{143}{section.8.1}%
+\contentsline {section}{\numberline {7.4}Family Classification Results}{135}{section.7.4}%
+\contentsline {chapter}{\numberline {8}Conclusions}{139}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Future Work}{139}{section.8.1}%
+\contentsline {chapter}{Bibliography}{142}{section.8.1}%
