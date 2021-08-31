@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  31 AUG 2021 16:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  31 AUG 2021 20:11
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -1062,9 +1062,12 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <10> not available
 [70]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
 put line 2045.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2070.
-
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -2978,50 +2981,46 @@ Overfull \hbox (2.11845pt too wide) in paragraph at lines 4013--4013
  []
 
 [128 <./results/all_mean_roc_proposedModel.png>]
-<./results/accuracy_trends.png, id=2111, 867.24pt x 867.24pt>
+<./results/accuracy_trends.png, id=2113, 867.24pt x 867.24pt>
 File: ./results/accuracy_trends.png Graphic file (type png)
 <use ./results/accuracy_trends.png>
 Package pdftex.def Info: ./results/accuracy_trends.png  used on input line 4025
 .
 (pdftex.def)             Requested size: 295.75032pt x 295.74431pt.
-
-Underfull \vbox (badness 3118) has occurred while \output is active []
-
  [129]
-<./results/auc_roc_micro_trends.png, id=2116, 867.24pt x 867.24pt>
+<./results/auc_roc_micro_trends.png, id=2118, 867.24pt x 867.24pt>
 File: ./results/auc_roc_micro_trends.png Graphic file (type png)
 <use ./results/auc_roc_micro_trends.png>
 Package pdftex.def Info: ./results/auc_roc_micro_trends.png  used on input line
  4027.
 (pdftex.def)             Requested size: 295.75032pt x 295.74431pt.
-<./results/auc_roc_macro_trends.png, id=2117, 867.24pt x 867.24pt>
+<./results/auc_roc_macro_trends.png, id=2119, 867.24pt x 867.24pt>
 File: ./results/auc_roc_macro_trends.png Graphic file (type png)
 <use ./results/auc_roc_macro_trends.png>
 Package pdftex.def Info: ./results/auc_roc_macro_trends.png  used on input line
  4029.
 (pdftex.def)             Requested size: 295.75032pt x 295.74431pt.
-
-[130 <./results/accuracy_trends.png> <./results/auc_roc_micro_trends.png>]
-<./results/conf_matrix_max_acc_alohaMB.png, id=2124, 867.24pt x 867.24pt>
+ [130 <./results/accuracy_trends.png> <./results/auc_roc_micro_trends.png>]
+<./results/conf_matrix_max_acc_alohaMB.png, id=2126, 867.24pt x 867.24pt>
 File: ./results/conf_matrix_max_acc_alohaMB.png Graphic file (type png)
 <use ./results/conf_matrix_max_acc_alohaMB.png>
 Package pdftex.def Info: ./results/conf_matrix_max_acc_alohaMB.png  used on inp
 ut line 4031.
 (pdftex.def)             Requested size: 200.69118pt x 200.69167pt.
-<./results/conf_matrix_max_acc_aloha.png, id=2125, 867.24pt x 867.24pt>
+<./results/conf_matrix_max_acc_aloha.png, id=2127, 867.24pt x 867.24pt>
 File: ./results/conf_matrix_max_acc_aloha.png Graphic file (type png)
 <use ./results/conf_matrix_max_acc_aloha.png>
 Package pdftex.def Info: ./results/conf_matrix_max_acc_aloha.png  used on input
  line 4031.
 (pdftex.def)             Requested size: 200.69118pt x 200.69167pt.
-<./results/conf_matrix_max_acc_jointEmbedding.png, id=2126, 867.24pt x 867.24pt
+<./results/conf_matrix_max_acc_jointEmbedding.png, id=2128, 867.24pt x 867.24pt
 >
 File: ./results/conf_matrix_max_acc_jointEmbedding.png Graphic file (type png)
 <use ./results/conf_matrix_max_acc_jointEmbedding.png>
 Package pdftex.def Info: ./results/conf_matrix_max_acc_jointEmbedding.png  used
  on input line 4031.
 (pdftex.def)             Requested size: 200.69118pt x 200.69167pt.
-<./results/conf_matrix_max_acc_proposedModel.png, id=2127, 867.24pt x 867.24pt>
+<./results/conf_matrix_max_acc_proposedModel.png, id=2129, 867.24pt x 867.24pt>
 
 File: ./results/conf_matrix_max_acc_proposedModel.png Graphic file (type png)
 <use ./results/conf_matrix_max_acc_proposedModel.png>
@@ -3078,7 +3077,7 @@ Overfull \hbox (3.84474pt too wide) in paragraph at lines 4050--4050
  []|\OT1/cmr/m/n/10 Weighted| 
  []
 
-<./results/family_classifier_confusion_matrix_jointEmbedding.png, id=2165, 867.
+<./results/family_classifier_confusion_matrix_jointEmbedding.png, id=2167, 867.
 24pt x 867.24pt>
 File: ./results/family_classifier_confusion_matrix_jointEmbedding.png Graphic f
 ile (type png)
@@ -3090,7 +3089,7 @@ dding.png  used on input line 4052.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [137]
-<./results/family_classifier_confusion_matrix_proposedModel.png, id=2170, 867.2
+<./results/family_classifier_confusion_matrix_proposedModel.png, id=2172, 867.2
 4pt x 867.24pt>
 File: ./results/family_classifier_confusion_matrix_proposedModel.png Graphic fi
 le (type png)
@@ -3098,7 +3097,7 @@ le (type png)
 Package pdftex.def Info: ./results/family_classifier_confusion_matrix_proposedM
 odel.png  used on input line 4054.
 (pdftex.def)             Requested size: 295.75032pt x 295.74431pt.
-<./results/family_classifier_confusion_matrix_familyClassifierOnly.png, id=2171
+<./results/family_classifier_confusion_matrix_familyClassifierOnly.png, id=2173
 , 867.24pt x 867.24pt>
 File: ./results/family_classifier_confusion_matrix_familyClassifierOnly.png Gra
 phic file (type png)
@@ -3110,11 +3109,8 @@ ssifierOnly.png  used on input line 4056.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [138 <./results/family_classifier_confusion_matrix_jointEmbedding.png> <./resu
-lts/family_classifier_confusion_matrix_proposedModel.png>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [139 <./results/family_classifier_confusion_matrix_familyClassifierOnly.png>] 
-[140]
+lts/family_classifier_confusion_matrix_proposedModel.png>] [139 <./results/fami
+ly_classifier_confusion_matrix_familyClassifierOnly.png>] [140]
 Chapter 8.
 [141
 
@@ -3217,8 +3213,14 @@ tps : / / discuss . pytorch . org / t /
  []
 
 ) [146] (Thesis_V1.0.0.aux)
-Package rerunfilecheck Info: File `Thesis_V1.0.0.out' has not changed.
-(rerunfilecheck)             Checksum: EB1940B1A030D03EE2B5BDF19EC46957;12483.
+
+Package rerunfilecheck Warning: File `Thesis_V1.0.0.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `Thesis_V1.0.0.out':
+(rerunfilecheck)             Before: EB1940B1A030D03EE2B5BDF19EC46957;12483
+(rerunfilecheck)             After:  511E82F71FCDC2A0BDC7CA85573F26D2;12450.
  ) 
 Here is how much of TeX's memory you used:
  21587 strings out of 481296
@@ -3261,9 +3263,9 @@ ublic/amsfonts/cm/cmti12.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fo
 nts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/michele/AppData/Local/Program
 s/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt8.pfb><C:/Users/michele/AppData/Loc
 al/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Thesis_V1.0.0.pdf (146 pages, 6401521 bytes).
+Output written on Thesis_V1.0.0.pdf (146 pages, 6404929 bytes).
 PDF statistics:
- 2560 PDF objects out of 2984 (max. 8388607)
+ 2567 PDF objects out of 2984 (max. 8388607)
  836 named destinations out of 1000 (max. 500000)
  791 words of extra memory for PDF output out of 10000 (max. 10000000)
 

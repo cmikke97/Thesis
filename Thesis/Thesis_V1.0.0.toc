@@ -170,7 +170,7 @@
 \contentsline {section}{\numberline {7.3}Family Prediction and Ranking Evaluation}{129}{section.7.3}%
 \contentsline {subsection}{\numberline {7.3.1}Example rankings}{133}{subsection.7.3.1}%
 \contentsline {section}{\numberline {7.4}Family Classification Results}{136}{section.7.4}%
-\contentsline {section}{\numberline {7.5}Total Computation Time}{139}{section.7.5}%
+\contentsline {section}{\numberline {7.5}Computation Time}{139}{section.7.5}%
 \contentsline {chapter}{\numberline {8}Conclusions}{141}{chapter.8}%
 \contentsline {section}{\numberline {8.1}Future Work}{141}{section.8.1}%
 \contentsline {chapter}{Bibliography}{144}{section.8.1}%
