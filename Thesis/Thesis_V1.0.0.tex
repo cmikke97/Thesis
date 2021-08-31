@@ -4055,6 +4055,43 @@ In this section are presented and compared the different Family Classifier model
 
 \FamilyClassifierOnlyConfusionMatrix
 
+\section{Total Computation Time}
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|P{4,5cm}||P{2,6cm} P{2,6cm} P{2,6cm}|}
+		\hline
+		& Time Required per Run & N. of Runs per Experiment & Time Required per Experiment \\
+		\hline
+		Base Model Training & 3h 5m 34s & 3 & 9h 16m 42s \\
+		Base Model Evaluation & 4m 57s & 3 & 14m 51s \\
+		Base Model Results Computation & 5m 0s & 3 & 15m 0s \\
+		Base Model Evaluation on Fresh Dataset & 8m 12s & 3 & 24m 36s \\
+		Fresh Results Computation & 11s & 3 & 33s \\
+		Family Classifier Training & 31s & 3 & 1m 33s \\
+		Family Classifier Evaluation & 6s & 3 & 18s \\
+		Family Classifier Results Computation & 4s & 3 & 12s \\
+		Mean Results Computation & - & 1 & 5m 24s \\
+		\hline
+		Complete Workflow & 3h 24m 35s & 1 & 10h 19m 9s \\
+		\hline
+	\end{tabular}
+	\caption[Computation Time Per Experiment]{Computation Time Required to complete one experiment.}
+	\label{tab:ComputationTimePerExperiment}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|P{4,5cm} P{4,5cm}|}
+		\hline
+		Total Number of Experiments & Total Computation Time \\
+		\hline
+		148 & 1527h 14m 12s \\
+		\hline
+	\end{tabular}
+	\caption[Overall Computation Time]{Overall Computation time required to complete all experiments conducted for this project.}
+	\label{tab:OverallComputationTime}
+\end{table}
+
 \chapter{Conclusions}
 This thesis' objective was the creation of an automatic malware signature generation tool capable of generating (implicit or explicit) signatures of PE malicious files with high recall at low false positive rates, possibly capable of detecting not only known malware strains but also novel variants, while also being less susceptible to obfuscation attempts. To achieve this goal an attempt was made by first designing the \textbf{Proposed Model}, described in \ref{sec:proposedModelImplementation}, which improved the results of the \textbf{ALOHA} model implementation \ref{sec:alohaModelImplementation} (from work \cite{ruddALOHA}) at the Malicious/Benign label prediction - also called Malware detection - task while also providing slightly better results than the \textbf{Joint Embedding} model implementation \ref{sec:jointEmbeddingModelImplementation} (from work \cite{DucauAMDATSE}) at the malware description via SMART tags task. The learned representation of PE files in the Joint Embedding space, which is used to classify a sample as malicious or benign and to assign it the corresponding tags based on its similarity (or distance) to the tag labels in the same space, can in fact be thought as the \textbf{implicit} signature of the malicious samples seen during training. These signatures, however, have little interpretability. It is in fact difficult to understand how the model decides to map a file to a specific location in the Joint Embedding space, therefore assigning it a specific set of tags. Moreover, when tested on the \textit{Family Prediction} and \textit{Family Ranking} tasks, these signatures performed poorly. This, however, can be due to the relatively small size of the dataset (half of the Sorel-20M dataset) used during training and to the code approximations introduced in the dataset loading process to speed up the code. In fact, even the \textbf{Joint Embedding} model implementation - which provided good results, as stated in paper \cite{DucauAMDATSE}, when trained on a considerably larger number of samples (70M samples) and tested on samples much more similar to the training ones (the authors used the test dataset of the joint embedding model also for the f-way family classification task; such dataset contains samples recorded only a few months later than those used for training) - performed poorly when trained with the Sorel-20M dataset and tested on the \textit{Family Prediction} and \textit{Family Ranking} tasks using the Fresh Dataset (which consists of samples obtained in mid 2021 while the SOREL20M dataset used for training contains samples dating back to 2018 - 2019). The introduction of a \textbf{Family Classifier}, specifically trained for the malware family classification task, on top of the \textbf{Proposed Model} PE embedding layer provided more meaningful results, although not exceptional, in the family prediction task while also demonstrating the potential of using Transfer learning in this context.
 
