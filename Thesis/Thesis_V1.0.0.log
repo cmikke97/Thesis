@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  1 SEP 2021 18:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  1 SEP 2021 19:36
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -3046,51 +3046,50 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [136]
-Overfull \hbox (2.80562pt too wide) in paragraph at lines 4069--4069
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [137]
+Overfull \hbox (2.80562pt too wide) in paragraph at lines 4071--4071
 \OT1/cmr/m/n/10 Similarity|  
  []
 
 
-Overfull \hbox (3.84474pt too wide) in paragraph at lines 4069--4069
+Overfull \hbox (3.84474pt too wide) in paragraph at lines 4071--4071
  []|\OT1/cmr/m/n/10 Weighted| 
  []
 
 
-Overfull \hbox (3.84474pt too wide) in paragraph at lines 4069--4069
+Overfull \hbox (3.84474pt too wide) in paragraph at lines 4071--4071
  []|\OT1/cmr/m/n/10 Weighted| 
  []
 
 
-Overfull \hbox (3.84474pt too wide) in paragraph at lines 4069--4069
+Overfull \hbox (3.84474pt too wide) in paragraph at lines 4071--4071
  []|\OT1/cmr/m/n/10 Weighted| 
  []
 
 
-Overfull \hbox (3.84474pt too wide) in paragraph at lines 4069--4069
+Overfull \hbox (3.84474pt too wide) in paragraph at lines 4071--4071
  []|\OT1/cmr/m/n/10 Weighted| 
  []
 
 
-Overfull \hbox (3.84474pt too wide) in paragraph at lines 4069--4069
+Overfull \hbox (3.84474pt too wide) in paragraph at lines 4071--4071
  []|\OT1/cmr/m/n/10 Weighted| 
  []
 
 
-Overfull \hbox (3.84474pt too wide) in paragraph at lines 4069--4069
+Overfull \hbox (3.84474pt too wide) in paragraph at lines 4071--4071
  []|\OT1/cmr/m/n/10 Weighted| 
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [137]
 <./results/family_classifier_confusion_matrix_jointEmbedding.png, id=2206, 867.
 24pt x 867.24pt>
 File: ./results/family_classifier_confusion_matrix_jointEmbedding.png Graphic f
 ile (type png)
 <use ./results/family_classifier_confusion_matrix_jointEmbedding.png>
 Package pdftex.def Info: ./results/family_classifier_confusion_matrix_jointEmbe
-dding.png  used on input line 4071.
+dding.png  used on input line 4073.
 (pdftex.def)             Requested size: 295.75032pt x 295.74431pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -3102,7 +3101,7 @@ File: ./results/family_classifier_confusion_matrix_proposedModel.png Graphic fi
 le (type png)
 <use ./results/family_classifier_confusion_matrix_proposedModel.png>
 Package pdftex.def Info: ./results/family_classifier_confusion_matrix_proposedM
-odel.png  used on input line 4073.
+odel.png  used on input line 4075.
 (pdftex.def)             Requested size: 295.75032pt x 295.74431pt.
 <./results/family_classifier_confusion_matrix_familyClassifierOnly.png, id=2212
 , 867.24pt x 867.24pt>
@@ -3110,7 +3109,7 @@ File: ./results/family_classifier_confusion_matrix_familyClassifierOnly.png Gra
 phic file (type png)
 <use ./results/family_classifier_confusion_matrix_familyClassifierOnly.png>
 Package pdftex.def Info: ./results/family_classifier_confusion_matrix_familyCla
-ssifierOnly.png  used on input line 4075.
+ssifierOnly.png  used on input line 4077.
 (pdftex.def)             Requested size: 295.75032pt x 295.74431pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -3267,7 +3266,7 @@ ublic/amsfonts/cm/cmti12.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fo
 nts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/michele/AppData/Local/Program
 s/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt8.pfb><C:/Users/michele/AppData/Loc
 al/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Thesis_V1.0.0.pdf (147 pages, 6417443 bytes).
+Output written on Thesis_V1.0.0.pdf (147 pages, 6417911 bytes).
 PDF statistics:
  2606 PDF objects out of 2984 (max. 8388607)
  840 named destinations out of 1000 (max. 500000)
