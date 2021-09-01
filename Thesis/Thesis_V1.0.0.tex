@@ -3953,8 +3953,6 @@ Algorithm \ref{alg:evaluateFamilyClassifierFunction} (\textbf{Family Classifier 
 
 The Family classifier evaluation \textbf{\textit{micro}} (global average), \textbf{\textit{macro}} (unweighted per-family average) and \textbf{\textit{weighted}} (per-family average, weighted by support) scores, such as '\textit{Jaccard similarity score}', '\textit{recall}', '\textit{precision}' and '\textit{f1-score}', are computed and saved to file, together with the resulting \textbf{OVO} (One Vs. One) and \textbf{OVR} (One Vs. Rest) AUC-ROC scores and confusion matrix, by a distinct set of functions - which simply apply the respective mathematical formulas - not presented in this document.
 
-\section{(Alternative Model)}
-
 \chapter{Results}\label{chap:results}
 This chapter presents the evaluation results of the different models implemented. In particular, in the first section (\ref{sec:malwareDetectionResults}) are depicted the different models' results on the task of malware detection (Malicious/Benign label prediction). The same models' evaluation results on the task of malware description via SMART tags are presented in a separate section (\ref{sec:malwareDescriptionResults}). The next section (\ref{sec:FreshEvaluationResults}), presents the models' (and original features') results on the family prediction and ranking tasks using samples from the Fresh Dataset. The final section (\ref{sec:FamilyClassificationResults}), on the other hand, presents the evaluation results of the Malware Family Classifier on the family classification task.
 
@@ -3980,16 +3978,16 @@ The models considered in this section are:
 
 \malwareRocProposedMethod
 
-In particular, as shown in table \ref{tab:malware_auc}, the \textbf{Proposed Model} implementation provided a slightly better \textit{AUC-ROC} score than both the \textbf{ALOHA} model implementations when tested on the malware detection - Malicious/Benign label prediction - task. Moreover, table \ref{tab:malware_results_at_fpr} shows that the \textbf{Proposed Model} implementation consistently provided better scores for all the binary cross entropy statistics used as performance measures than the other two models at different \textit{FPRs} (False Positive Rates). Most importantly, the \textbf{Proposed Model} implementation performed better than the other models at $FPR = 1\%$, as summarized in table \ref{tab:malware_result_summary}. These results prove the effectiveness of using the 'harder' problem of creating a \textit{Joint Embedding} space where samples are close to their associated SMART tags as an additional task to improve the performance of the model at the malware detection task.
-
 \subsection{Summary}
 Here (table \ref{tab:malware_result_summary}) it is presented a brief summary of the previously mentioned statistics for the different models at \textbf{FPR} $=1\%$.
 
 \malwareResultsSummaryTable
 
-\newpage
+\subsection{Comments}
+As shown in table \ref{tab:malware_auc}, the \textbf{Proposed Model} implementation provided a slightly better \textit{AUC-ROC} score than both the \textbf{ALOHA} model implementations when tested on the malware detection - Malicious/Benign label prediction - task. Moreover, table \ref{tab:malware_results_at_fpr} shows that the \textbf{Proposed Model} implementation consistently provided better scores for all the binary cross entropy statistics used as performance measures than the other two models at different \textit{FPRs} (False Positive Rates). Most importantly, the \textbf{Proposed Model} implementation performed better than the other models at $FPR = 1\%$, as summarized in table \ref{tab:malware_result_summary}. These results prove the effectiveness of using the 'harder' problem of creating a \textit{Joint Embedding} space where samples are close to their associated SMART tags as an additional task to improve the performance of the model at the malware detection task.
+
 \section{Malware Description via SMART tags results}\label{sec:malwareDescriptionResults}
-In this section the models' evaluation results for the SMART tagging prediction task are presented. More specifically, table \ref{tab:tag_aucs} shows, for each predicted tag, the \textbf{AUC-ROC} scores relative to the different models. Table \ref{tab:tag_results_summary}, on the other hand, presents the tag prediction per-tag binary cross entropy statistics at \textbf{FPR} $=1\%$. Finally, for each model it is presented a single graph showing the \textbf{ROC} curves of all predicted tags (figures \ref{fig:allMeanRocAloha}, \ref{fig:allMeanRocJointEmbedding} and \ref{fig:allMeanRocProposedModel}).
+In this section the models' evaluation results for the SMART tagging prediction task are presented. More specifically, table \ref{tab:tag_aucs} shows, for each predicted tag, the \textbf{AUC-ROC} scores relative to the different models. Table \ref{tab:tag_results_summary}, on the other hand, presents the per-tag binary cross entropy statistics at \textbf{FPR} $=1\%$. Finally, figures \ref{fig:allMeanRocAloha}, \ref{fig:allMeanRocJointEmbedding} and \ref{fig:allMeanRocProposedModel} present, for each model, a single graph showing the mean \textbf{ROC} curves of all predicted tags plus the Malware label (if available).
 
 The models considered in this section are:
 \begin{itemize}
@@ -4000,8 +3998,10 @@ The models considered in this section are:
 	\item \textbf{Proposed Model}: final \textit{Proposed Model} implementation described in section \ref{sec:proposedModelImplementation}.
 \end{itemize}
 
+\vspace{-0.7cm}
 \tagResultsAucTable
 
+\vspace{-2.0cm}
 \tagResultsSummaryTable
 
 \allMeanRocAloha
@@ -4010,20 +4010,27 @@ The models considered in this section are:
 
 \allMeanRocProposedModel
 
+\vspace{-0.5cm}
 \subsection{Mean per-sample tagging scores}\label{sec:meanPerSampleTaggingScores}
 Here (table \ref{tab:meanPerSampleScores}) are presented the models' \textit{Mean per-sample scores}, more specifically the \textbf{Jaccard Similarity} and \textbf{Mean per-Sample Accuracy} scores, achieved by the models at different \textbf{FPRs}.
 
 \meanPerSampleScores
 
-\newpage
+\vspace{-0.5cm}
+\subsection{Comments}
+As shown in table \ref{tab:tag_aucs}, the \textbf{Proposed Model} implementation provided better \textit{AUC-ROC} scores than the \textbf{ALOHA} and \textbf{Joint Embedding} model implementations for most of the target SMART tags. More specifically, it performed better when dealing with the \textit{Adware}, \textit{Downloader}, \textit{Dropper}, \textit{File-infector}, \textit{Flooder}, \textit{Installer} and \textit{Packed} tags. The \textbf{Joint Embedding} model implementation, on the other hand provided a higher \textit{AUC-ROC} score than the other models for the \textit{Crypto-miner}, \textit{Flooder} (on par with the \textbf{Proposed Model} implementation), \textit{Ransomware} and \textit{Spyware} tags. Finally, the \textbf{ALOHA} model implementation performed better than the other models only on the \textit{Worm} tag. It is interesting to notice, however, that the \textbf{Proposed Model} implementation results for the tags on which it did not perform best, were always the second best and anyway comparable to the best results.
+
+On top of that, table \ref{tab:tag_results_summary} shows that the \textbf{Proposed Model} implementation provided the best scores for all the binary cross entropy statistics used as performance measures (at $FPR = 1\%$) when dealing with the \textit{Downloader}, \textit{Flooder}, \textit{Installer}, \textit{Packed} and \textit{Worm} tags. It also provided the best \textit{TPR}, \textit{Precision}, \textit{Recall} and \textit{F1 score} at $FPR = 1\%$ for the \textit{Adware} tag, while having the same \textit{accuracy} than the \textbf{Joint Embedding} model implementation but with a higher standard deviation. On the other hand, the \textbf{Proposed Model} implementation provided worse scores for all binary cross entropy statistics than the \textbf{Joint Embedding} model implementation for the \textit{Crypto-miner}, \textit{File-infector} (for which it provided the same \textit{precision}), \textit{Ransomware} (for which it provided the same \textit{accuracy}) and \textit{Spyware} tags. Finally, the \textbf{Proposed Model} implementation provided in general worse results than the \textbf{Joint Embedding} model implementation for the \textit{Dropper} tag but for the \textit{Accuracy} score, for which it provided the same mean value with a lower standard deviation. Again, it is interesting to notice that when the \textbf{Proposed Model} did not provide the best results it was always the second best (and the scores were comparable).
+
+Finally, table \ref{tab:meanPerSampleScores} shows that the \textbf{Proposed Model} implementation provided, in general, better \textit{Jaccard Similarity} and \textit{Mean per-Sample Accuracy} than the \textbf{ALOHA} and \textbf{Joint Embedding} model implementations at different \textit{FPRs} (False Positive Rates). More importantly, it provided better results at $FPR = 1\%$ than the other two models.
+
+These results prove the effectiveness of introducing the \textit{Malicious/Benign label} prediction and \textit{Vendor Count} estimation tasks, coming from the \textbf{ALOHA} model implementation, as additional targets in order to improve over the \textbf{Joint Embedding} model implementation on the \textit{SMART tag} prediction task results.
+
+\vspace{-0.5cm}
 \section{Family Prediction and Ranking Evaluation}\label{sec:FreshEvaluationResults}
-This section shows the different models' performance evaluation results at the \textbf{Malware Family Prediction and Ranking} tasks. More specifically, table \ref{tab:MrrAndMapResults} shows the mean and standard deviation of the \textbf{MRR} (Mean Reciprocal Rank) and \textbf{MAP} (Mean Average Precision) scores corresponding to the produced rankings of the different model implementations. Figures \ref{fig:AccuracyTrends}, \ref{fig:AucRocMicroTrends} and \ref{fig:AucRocMacroTrends}, on the other hand, present the models' (mean and standard deviation) accuracy and (\textit{micro} and \textit{macro} averaged) AUC ROC trends (varying the number of used anchor samples during the evaluation), respectively. Finally, figures \ref{fig:alohaMBConfMatrixMaxAcc}, \ref{fig:alohaConfMatrixMaxAcc}, \ref{fig:jointEmbeddingConfMatrixMaxAcc} and \ref{fig:proposedModelConfMatrixMaxAcc} show the confusion matrixes corresponding to the best predictions when using the number \textbf{k} of anchor samples which produced the overall best accuracy, resulting from the evaluation on the Malware Family Prediction task.
+This section shows the different models' performance evaluation results at the \textbf{Malware Family Prediction and Ranking} tasks. More specifically, figures \ref{fig:AccuracyTrends}, \ref{fig:AucRocMicroTrends} and \ref{fig:AucRocMacroTrends}, present, respectively, the models' (mean and standard deviation) accuracy and (\textit{micro} and \textit{macro} averaged) AUC ROC trends obtained by varying the number of anchor samples used during the evaluation. Table \ref{tab:ScoresAtMaxAccuracy}, on the other hand shows the models' scores - while figures \ref{fig:alohaMBConfMatrixMaxAcc}, \ref{fig:alohaConfMatrixMaxAcc}, \ref{fig:jointEmbeddingConfMatrixMaxAcc} and \ref{fig:proposedModelConfMatrixMaxAcc} show the confusion matrixes corresponding to the best predictions - when using the number \textbf{k} of anchor samples which produced the overall best accuracy, resulting from the evaluation on the Malware Family Prediction task. Finally, table \ref{tab:MrrAndMapResults} shows the mean and standard deviation of the \textbf{MRR} (Mean Reciprocal Rank) and \textbf{MAP} (Mean Average Precision) scores corresponding to the produced rankings of the different model implementations.
 
-In particular, the \textit{Joint Embedding} and \textit{Proposed Model} implementations' learned joint embedding representations of PE files (of size 32) were compared also with the ALOHA and ALOHA (M/B only) model implementations' implicit latent representation (of size 512) after the based shared topology. Comparing the results of the different models (including both ALOHA model implementations) on the family prediction and ranking tasks, in fact, is possible given that also the implicit latent representations of the ALOHA-based implementations can be used to compute samples distances.
-
-\MrrAndMapResultsTable
-
-\scoresAtMaxAccuracy
+In particular, the \textit{Joint Embedding} and \textit{Proposed Model} implementations' learned joint embedding representations of PE files (of size 32) were compared also to the ALOHA and ALOHA (M/B only) model implementations' implicit latent representation (of size 512) after the based shared topology. In fact, it is possible to compare the results of the different models (including both ALOHA model implementations) on the family prediction and ranking tasks, given that also the implicit latent representations of the ALOHA-based implementations can be used to compute samples distances. However, when comparing the different scores also the difference in size of the chosen representations should be take into consideration. A smaller representation has, in fact, much higher value than a bigger one, provided it performs well enough, since it allows quicker comparisons between files consequently making the tasks of storing, indexing and querying large databases of malware more efficient.
 
 \allAccuracyTrends
 
@@ -4031,7 +4038,11 @@ In particular, the \textit{Joint Embedding} and \textit{Proposed Model} implemen
 
 \allAucRocMacroTrends
 
+\scoresAtMaxAccuracy
+
 \allConfusionMatrixesMaxAcc
+
+\MrrAndMapResultsTable
 
 \newpage
 \subsection{Example rankings}
@@ -4044,6 +4055,8 @@ Here are presented, for each model, 4 examples rankings which produced the maxim
 \minApExampleRankTable
 
 \minRrExampleRankTable
+
+\subsection{Comments}
 
 \section{Family Classification Results}\label{sec:FamilyClassificationResults}
 In this section are presented and compared the different Family Classifier model implementations' results. In particular, table \ref{tab:FamilyClassifierAccuracyResults} presents the mean and standard deviation of the classification accuracy obtained by evaluating the Family Classifiers built on top of the \textbf{Joint Embedding} and \textbf{Proposed Model} implementations along with a Family Classifier model with no Transfer Learning applied (\textbf{Family Classifier Only}). Table \ref{tab:FamilyClassifierScoresTable}, on the other hand, shows the '\textbf{Micro}' averaged, '\textbf{Macro}' averaged and '\textbf{Weighted}' averaged multi-class classification scores resulting from the evaluation of the different Family Classifiers. Finally, figures \ref{fig:FamilyClassifierJointEmbeddingConfusionMatrix}, \ref{fig:FamilyClassifierProposedModelConfusionMatrix} and \ref{fig:FamilyClassifierOnlyConfusionMatrix} show the models' resulting confusion matrixes.
@@ -4058,9 +4071,9 @@ In this section are presented and compared the different Family Classifier model
 
 \FamilyClassifierOnlyConfusionMatrix
 
-\vspace*{-1.2cm}
+\subsection{Comments}
+
 \section{Computation Time}
-\vspace*{-0.5cm}
 This section presents an overview of the time needed to complete the experiments conducted for this project using a \textbf{Colab Pro} instance (which provides a NVIDIA T4 or P100 GPU, 2 CPU cores, 25GB of RAM and 147GB of disk space). In particular, table \ref{tab:ComputationTimePerExperiment} shows how much time was necessary to complete each step of a single experiment along with the computation time needed for the whole workflow. On the other hand, table \ref{tab:OverallComputationTime} shows the total computation time spent to complete all the experiments.
 
 \begin{table}[H]

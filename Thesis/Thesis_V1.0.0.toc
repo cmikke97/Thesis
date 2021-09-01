@@ -161,15 +161,18 @@
 \contentsline {subsubsection}{Family Classifier Training}{117}{section*.131}%
 \contentsline {subsubsection}{Family Classifier Evaluation}{119}{section*.133}%
 \contentsline {subsubsection}{Family Classifier Results Computation and Plotting}{120}{section*.135}%
-\contentsline {section}{\numberline {6.3}(Alternative Model)}{120}{section.6.3}%
 \contentsline {chapter}{\numberline {7}Results}{121}{chapter.7}%
 \contentsline {section}{\numberline {7.1}Malware Detection results}{121}{section.7.1}%
 \contentsline {subsection}{\numberline {7.1.1}Summary}{124}{subsection.7.1.1}%
+\contentsline {subsection}{\numberline {7.1.2}Comments}{124}{subsection.7.1.2}%
 \contentsline {section}{\numberline {7.2}Malware Description via SMART tags results}{125}{section.7.2}%
-\contentsline {subsection}{\numberline {7.2.1}Mean per-sample tagging scores}{129}{subsection.7.2.1}%
-\contentsline {section}{\numberline {7.3}Family Prediction and Ranking Evaluation}{130}{section.7.3}%
-\contentsline {subsection}{\numberline {7.3.1}Example rankings}{134}{subsection.7.3.1}%
+\contentsline {subsection}{\numberline {7.2.1}Mean per-sample tagging scores}{128}{subsection.7.2.1}%
+\contentsline {subsection}{\numberline {7.2.2}Comments}{128}{subsection.7.2.2}%
+\contentsline {section}{\numberline {7.3}Family Prediction and Ranking Evaluation}{129}{section.7.3}%
+\contentsline {subsection}{\numberline {7.3.1}Example rankings}{133}{subsection.7.3.1}%
+\contentsline {subsection}{\numberline {7.3.2}Comments}{137}{subsection.7.3.2}%
 \contentsline {section}{\numberline {7.4}Family Classification Results}{137}{section.7.4}%
+\contentsline {subsection}{\numberline {7.4.1}Comments}{140}{subsection.7.4.1}%
 \contentsline {section}{\numberline {7.5}Computation Time}{140}{section.7.5}%
 \contentsline {chapter}{\numberline {8}Conclusions}{142}{chapter.8}%
 \contentsline {section}{\numberline {8.1}Future Work}{142}{section.8.1}%
