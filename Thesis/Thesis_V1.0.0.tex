@@ -4081,7 +4081,22 @@ As shown in table \ref{tab:FamilyClassifierAccuracyResults}, the \textbf{Family 
 
 Table \ref{tab:FamilyClassifierScoresTable} confirms the better performance of the \textbf{Family Classifier} built on top of the \textbf{Proposed Model} in the \textit{Malware Family Classification} task by showing that it consistently provided the best '\textit{Micro}', '\textit{Macro}' and '\textit{Weighted}' averaged scores for all multi-class classification statistics used as performance metrics. It is interesting to notice that the \textbf{Family Classifier} built on top of the \textbf{Joint Embedding} model was, instead, always the second best, while the \textbf{Family Classifier} with no transfer learning applied was always last. This proves the effectiveness of utilizing the technique of \textit{transfer learning} to reduce overfitting when training the classifier using the 'small' training subset of the Fresh Dataset.
 
-The confusion matrixes corresponding to the different \textbf{Family Classifiers}, shown by figures \ref{fig:FamilyClassifierJointEmbeddingConfusionMatrix}, \ref{fig:FamilyClassifierProposedModelConfusionMatrix} and \ref{fig:FamilyClassifierOnlyConfusionMatrix}, reflect these results.
+Interestingly, looking at the confusion matrixes resulting from the evaluation of the different \textbf{Family Classifiers} on the test sub-split of the Fresh Dataset, shown by figures \ref{fig:FamilyClassifierJointEmbeddingConfusionMatrix}, \ref{fig:FamilyClassifierProposedModelConfusionMatrix} and \ref{fig:FamilyClassifierOnlyConfusionMatrix}, it is possible to notice some similarities in the errors committed (some of which are even similar to the ones done when using the base model's representations for the \textit{f-way} family prediction task). In fact, in all three cases these observations can be made:
+\begin{itemize}
+	\item samples of class \textbf{\textit{FormBook}} are often misclassified as being of class \textbf{\textit{AgentTesla}}
+	
+	\item samples of class \textbf{\textit{Gozi}} are often misclassified as being of class \textbf{\textit{TrickBot}}
+	
+	\item samples of class \textbf{\textit{Loki}} are often misclassified as being of class \textbf{\textit{AgentTesla}} or \textbf{\textit{FormBook}}
+	
+	\item samples of class \textbf{\textit{RemcosRAT}} are often misclassified as being of class \textbf{\textit{FormBook}} or \textbf{\textit{AgentTesla}}
+	
+	\item samples of class \textbf{\textit{TrickBot}} are often misclassified as being of class \textbf{\textit{Heodo}}
+	
+	\item samples of class \textbf{\textit{GuLoader}} are often misclassified as being of class \textbf{\textit{Loki}}
+	
+	\item samples of class \textbf{\textit{AveMariaRAT}} are often misclassified as being of class \textbf{\textit{AgentTesla}}, \textbf{\textit{FormBook}} or \textbf{\textit{Loki}}
+\end{itemize}
 
 \section{Computation Time}
 This section presents an overview of the time needed to complete the experiments conducted for this project using a \textbf{Colab Pro} instance (which provides a NVIDIA T4 or P100 GPU, 2 CPU cores, 25GB of RAM and 147GB of disk space). In particular, table \ref{tab:ComputationTimePerExperiment} shows how much time was necessary to complete each step of a single experiment along with the computation time needed for the whole workflow. On the other hand, table \ref{tab:OverallComputationTime} shows the total computation time spent to complete all the experiments.
