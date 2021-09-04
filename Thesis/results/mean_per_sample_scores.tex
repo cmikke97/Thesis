@@ -19,7 +19,7 @@
             Proposed Model & \textBF{0.649$\pm$0.010} & \textBF{0.703$\pm$0.010} & \textBF{0.773$\pm$0.003} & \textBF{0.813$\pm$0.000} & 0.695$\pm$0.001 \\
             \hline
         \end{tabular}
-        \caption[Tags prediction task mean per-sample scores]{Mean and standard deviation of mean per-sample tagging results (\textit{Jaccard simialrity} and \textit{mean per-sample accuracy}) for the different models. Results were aggregated over \textBF{2} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:meanPerSampleScores}
+        \caption[Tags prediction task mean per-sample scores]{Mean and standard deviation of mean per-sample tagging results (\textit{Jaccard simialrity} and \textit{mean per-sample accuracy}) for the different models. Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:meanPerSampleScores}
     \end{table}
 }
 
@@ -29,7 +29,7 @@
         \centering
         \includegraphics[width=0.7\textwidth]{./results/all_mean_roc_aloha.png}
         \vspace*{-0.2cm}
-        \caption[Tags prediction task ALOHA mean ROC curve]{Mean ROC curve and AUC statistics of \textBF{ALOHA} model for the tags/labels. The line represents the \textit{mean} TPR at a given FPR. Statistics were computed over \textBF{2} training runs, each with random parameter initialization.}
+        \caption[Tags prediction task ALOHA mean ROC curve]{Mean ROC curve and AUC statistics of \textBF{ALOHA} model for the tags/labels. The line represents the \textit{mean} TPR at a given FPR. Statistics were computed over \textBF{3} training runs, each with random parameter initialization.}
         \label{fig:allMeanRocAloha}
     \end{figure}
 }
@@ -40,7 +40,7 @@
         \centering
         \includegraphics[width=0.7\textwidth]{./results/all_mean_roc_jointEmbedding.png}
         \vspace*{-0.2cm}
-        \caption[Tags prediction task Joint Embedding mean ROC curve]{Mean ROC curve and AUC statistics of \textBF{Joint Embedding} model for all tags/labels. The line represents the \textit{mean} TPR at a given FPR. Statistics were computed over \textBF{2} training runs, each with random parameter initialization.}
+        \caption[Tags prediction task Joint Embedding mean ROC curve]{Mean ROC curve and AUC statistics of \textBF{Joint Embedding} model for all tags/labels. The line represents the \textit{mean} TPR at a given FPR. Statistics were computed over \textBF{3} training runs, each with random parameter initialization.}
         \label{fig:allMeanRocJointEmbedding}
     \end{figure}
 }
@@ -51,7 +51,7 @@
         \centering
         \includegraphics[width=0.7\textwidth]{./results/all_mean_roc_proposedModel.png}
         \vspace*{-0.2cm}
-        \caption[Tags prediction task Proposed Model mean ROC curve]{Mean ROC curve and AUC statistics of \textBF{Proposed Model} for the tags/labels. The line represents the \textit{mean} TPR at a given FPR. Statistics were computed over \textBF{2} training runs, each with random parameter initialization.}
+        \caption[Tags prediction task Proposed Model mean ROC curve]{Mean ROC curve and AUC statistics of \textBF{Proposed Model} for the tags/labels. The line represents the \textit{mean} TPR at a given FPR. Statistics were computed over \textBF{3} training runs, each with random parameter initialization.}
         \label{fig:allMeanRocProposedModel}
     \end{figure}
 }
