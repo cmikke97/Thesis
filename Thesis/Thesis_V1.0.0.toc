@@ -177,14 +177,14 @@
 \contentsline {subsubsection}{Formbook}{141}{section*.161}%
 \contentsline {subsubsection}{AgentTesla}{141}{section*.162}%
 \contentsline {subsubsection}{Gozi}{141}{section*.163}%
-\contentsline {subsubsection}{QuakBot}{142}{section*.164}%
+\contentsline {subsubsection}{QuakBot}{141}{section*.164}%
 \contentsline {subsubsection}{Loki}{142}{section*.165}%
-\contentsline {subsubsection}{Heodo}{143}{section*.166}%
-\contentsline {subsubsection}{RemcosRAT}{143}{section*.167}%
-\contentsline {subsubsection}{TrickBot}{143}{section*.168}%
-\contentsline {subsubsection}{GuLoader}{144}{section*.169}%
-\contentsline {subsubsection}{AveMariaRAT}{144}{section*.170}%
-\contentsline {section}{\numberline {7.5}Computation Time}{145}{section.7.5}%
-\contentsline {chapter}{\numberline {8}Conclusions}{147}{chapter.8}%
-\contentsline {section}{\numberline {8.1}Future Work}{147}{section.8.1}%
-\contentsline {chapter}{Bibliography}{150}{section.8.1}%
+\contentsline {subsubsection}{Heodo}{142}{section*.166}%
+\contentsline {subsubsection}{RemcosRAT}{142}{section*.167}%
+\contentsline {subsubsection}{TrickBot}{142}{section*.168}%
+\contentsline {subsubsection}{GuLoader}{142}{section*.169}%
+\contentsline {subsubsection}{AveMariaRAT}{143}{section*.170}%
+\contentsline {section}{\numberline {7.5}Computation Time}{143}{section.7.5}%
+\contentsline {chapter}{\numberline {8}Conclusions}{145}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Future Work}{145}{section.8.1}%
+\contentsline {chapter}{Bibliography}{148}{section.8.1}%

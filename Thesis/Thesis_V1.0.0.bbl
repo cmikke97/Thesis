@@ -249,6 +249,47 @@ CERT-AGID, ``Cert-agid threat summary.''
 \bibitem{MalwareBazaar}
 ``Malware bazaar.'' \url{https://bazaar.abuse.ch/browse/}
 
+\bibitem{AnyRunFormBook}
+``Any.run malware trends - formbook.''
+  \url{https://any.run/malware-trends/formbook}, Accessed: 2021-09-05
+
+\bibitem{AnyRunAgentTesla}
+``Any.run malware trends - agenttesla.''
+  \url{https://any.run/malware-trends/agenttesla}, Accessed: 2021-09-05
+
+\bibitem{AnyRunGozi}
+``Any.run malware trends - ursnif.''
+  \url{https://any.run/malware-trends/ursnif}, Accessed: 2021-09-05
+
+\bibitem{AnyRunQuakBot}
+``Any.run malware trends - qbot.'' \url{https://any.run/malware-trends/qbot},
+  Accessed: 2021-09-05
+
+\bibitem{AnyRunLoki}
+``Any.run malware trends - lokibot.''
+  \url{https://any.run/malware-trends/lokibot}, Accessed: 2021-09-05
+
+\bibitem{AnyRunHeodo}
+``Any.run malware trends - emotet.''
+  \url{https://any.run/malware-trends/emotet}, Accessed: 2021-09-05
+
+\bibitem{AnyRunRemcosRAT}
+``Any.run malware trends - remcos.''
+  \url{https://any.run/malware-trends/remcos}, Accessed: 2021-09-05
+
+\bibitem{AnyRunTrickBot}
+``Any.run malware trends - trickbot.''
+  \url{https://any.run/malware-trends/trickbot}, Accessed: 2021-09-05
+
+\bibitem{MalpediaGuLoader}
+``Malpedia - cloudeye.''
+  \url{https://malpedia.caad.fkie.fraunhofer.de/details/win.cloudeye},
+  Accessed: 2021-09-05
+
+\bibitem{AnyRunAveMariaRAT}
+``Any.run malware trends - avemariarat.''
+  \url{https://any.run/malware-trends/avemaria}, Accessed: 2021-09-05
+
 \bibitem{BensaoudCMICNNM}
 A.~Bensaoud, N.~Abudawaood, and J.~Kalita, ``Classifying malware images with
   convolutional neural network models'', 10 2020
