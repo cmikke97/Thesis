@@ -4098,11 +4098,9 @@ Interestingly, looking at the confusion matrixes resulting from the evaluation o
 	\item samples of class \textbf{\textit{AveMariaRAT}} are often misclassified as being of class \textbf{\textit{AgentTesla}}, \textbf{\textit{FormBook}} or \textbf{\textit{Loki}}
 \end{itemize}
 
-In order to understand why that is and how it could be possible to improve the classifier performance it seems appropriate to carry out a more in-depth study on the differences and similarities between samples of these families.
+In order to understand why that is and how it could be possible to improve the classifier performance it seems appropriate to carry out a more in-depth study on the different malware families under analysis.
 
 \subsection{Families study}
-\color{Red}
-
 Here is a brief description of the malware families represented by the samples of the Fresh Dataset:
 \begin{itemize}
 	\item \textbf{\textit{Formbook}}, nowadays also called \textit{XLoader}, is an Info Stealer trojan that harvests user credentials from various web browsers and emails, collects screenshots, monitors and logs keystrokes, and can execute commands on infected devices - including rebooting or shutting down systems, downloading and executing files, and unpacking archive files - according to the orders received from Command-and-Control (C2) servers. Its code, which is written in C, uses a number of evasion techniques to make it harder for researchers to analyse it \cite{AnyRunFormBook}.
@@ -4128,15 +4126,14 @@ Here is a brief description of the malware families represented by the samples o
 
 It is interesting to notice how samples belonging to the \textbf{\textit{Trickbot}} family, which are frequently dropped on infected hosts by \textbf{\textit{Heodo}}, get often mistaken by the proposed \textbf{Family Classifier} for samples belonging to the \textbf{\textit{Heodo}} family. In a similar way, samples of families \textbf{\textit{GuLoader}} and \textbf{\textit{AveMariaRAT}}, which often drop other RATs/Stealers including \textbf{\textit{Loki}}, \textbf{\textit{AgentTesla}}, \textbf{\textit{FormBook}} and \textbf{\textit{RemcosRAT}}, are frequently mistaken by the proposed \textbf{Family Classifier} for samples belonging to the those dropped families. This may suggest an improper categorization of samples given by the authors of some reports on Malware Bazaar.
 
-Moreover, the fact that $46\%$ of the samples of family \textbf{\textit{FormBook}} which were categorized by the proposed \textbf{Family Classifier} as belonging to class \textbf{\textit{AgentTesla}} were classified in the same way also by commercial solutions such as the \textbf{ReversingLabs Titanium Cloud}, seems to support this hypothesis.
+Moreover, the fact that $46\%$ of the samples of family \textbf{\textit{FormBook}} which were categorized by the proposed \textbf{Family Classifier} as belonging to class \textbf{\textit{AgentTesla}} were classified in the same way also by some commercial solutions such as the \textbf{ReversingLabs Titanium Cloud}, seems to support this hypothesis.
 
-Finally, by looking at the available samples in general it can be noticed how some samples which were categorized by the authors of the report as belonging to one family are categorized by all available commercial anti-virus solutions as belonging to other families or even as being non-malicious.
+Finally, by looking at the available samples in general it can be noticed how some samples which were categorized by the authors of the corresponding report as belonging to one family are categorized by all available commercial anti-virus solutions as belonging to other families or even as being non-malicious.
 
-The fact that anyone can upload samples (and reports) on Malware Bazaar is on one hand extremely helpful for the generation of a big database of up-to-date malware samples from all over the world. On the other hand, this also opens up the possibility of errors in categorizations given also by the analysts' different interpretations and modes of operation. Moreover, this gets accentuated by the fact that also commercially available anti-virus solutions do not agree on the classification of extremely up-to-date samples. Conversely, in order to be able to generate and properly evaluate a high quality ML model a dataset is needed with as least errors in classification as possible, at least for what concerns the test subpart. However, it is difficult to generate a high-quality dataset from a database of malware samples like Malware Bazaar with such uncertainty.
+The fact that anyone can upload samples (and reports) on Malware Bazaar is on one hand extremely helpful for the generation of a big database of up-to-date malware samples from all over the world. On the other hand, this also opens up the possibility of errors in categorizations given by the analysts' different interpretations and modes of operation. Moreover, this gets accentuated by the fact that also commercially available anti-virus solutions do not agree on the classification of extremely up-to-date samples. Conversely, in order to be able to generate and properly evaluate a high quality ML model a dataset is needed with as least errors in classification as possible, at least for what concerns the test subpart. However, it is difficult to generate a high-quality dataset from a database of malware samples like Malware Bazaar with such uncertainty.
 
-This
+Furthermore, this also makes it difficult to assess which proposed \textbf{Family Classifier} misclassifications are actual errors and why the model made those decision - which is already extremely difficult to understand when working with Neural Networks.
 
-\color{Black}
 \section{Computation Time}
 This section presents an overview of the time needed to complete the experiments conducted for this project using a \textbf{Colab Pro} instance (which provides a NVIDIA T4 or P100 GPU, 2 CPU cores, 25GB of RAM and 147GB of disk space). In particular, table \ref{tab:ComputationTimePerExperiment} shows how much time was necessary to complete each step of a single experiment along with the computation time needed for the whole workflow. On the other hand, table \ref{tab:OverallComputationTime} shows the total computation time spent to complete all the experiments.
 
