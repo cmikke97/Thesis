@@ -174,7 +174,7 @@
 \contentsline {section}{\numberline {7.4}Family Classification Results}{137}{section.7.4}%
 \contentsline {subsection}{\numberline {7.4.1}Comments}{140}{subsection.7.4.1}%
 \contentsline {subsection}{\numberline {7.4.2}Families study}{141}{subsection.7.4.2}%
-\contentsline {section}{\numberline {7.5}Computation Time}{142}{section.7.5}%
-\contentsline {chapter}{\numberline {8}Conclusions}{144}{chapter.8}%
-\contentsline {section}{\numberline {8.1}Future Work}{144}{section.8.1}%
-\contentsline {chapter}{Bibliography}{147}{section.8.1}%
+\contentsline {section}{\numberline {7.5}Computation Time}{143}{section.7.5}%
+\contentsline {chapter}{\numberline {8}Conclusions}{145}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Future Work}{145}{section.8.1}%
+\contentsline {chapter}{Bibliography}{148}{section.8.1}%
