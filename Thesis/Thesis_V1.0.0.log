@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  5 SEP 2021 22:54
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  6 SEP 2021 12:26
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -3116,12 +3116,15 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [139 <./results/family_classifier_confusion_matrix_jointEmbedding.png> <./resu
 lts/family_classifier_confusion_matrix_proposedModel.png>] [140 <./results/fami
-ly_classifier_confusion_matrix_familyClassifierOnly.png>] [141] [142] [143] [14
-4]
-Chapter 8.
-[145
+ly_classifier_confusion_matrix_familyClassifierOnly.png>] [141]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-] [146] (Thesis_V1.0.0.bbl [147]
+ [142]
+[143]
+Chapter 8.
+[144
+
+] [145] (Thesis_V1.0.0.bbl [146]
 Underfull \hbox (badness 1242) in paragraph at lines 31--33
 []\OT1/cmr/m/n/10 R. Sharp, ``An in-tro-duc-tion to mal-ware.'' [][]$\OT1/cmtt/
 m/n/10 https : / / orbit . dtu . dk / en / publications /
@@ -3187,7 +3190,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 89--91
  https : / / owasp . org / www-[]community /
  []
 
-[148
+[147
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 168--170
@@ -3207,7 +3210,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 194--197
 ext = YARA % 20is % 20a % 20tool %
  []
 
-[149]
+[148]
 Underfull \hbox (badness 1371) in paragraph at lines 209--212
 []\OT1/cmr/m/n/10 Forcepoint, ``What is heuris-tic anal-y-sis?.'' [][]$\OT1/cmt
 t/m/n/10 https : / / www . forcepoint . com / cyber-[]edu /
@@ -3225,13 +3228,13 @@ Underfull \hbox (badness 6204) in paragraph at lines 285--288
 alpedia . caad . fkie . fraunhofer . de / details / win .
  []
 
-) [150] (Thesis_V1.0.0.aux)
+) [149] (Thesis_V1.0.0.aux)
 Package rerunfilecheck Info: File `Thesis_V1.0.0.out' has not changed.
 (rerunfilecheck)             Checksum: E448B37A07E56C833DEAE315F16AE5A0;12830.
  ) 
 Here is how much of TeX's memory you used:
- 21629 strings out of 481296
- 368331 string characters out of 2908369
+ 21618 strings out of 481296
+ 368203 string characters out of 2908369
  1107660 words of memory out of 3000000
  37489 multiletter control sequences out of 15000+600000
  420907 words of font info for 91 fonts, out of 8000000 for 9000
@@ -3270,9 +3273,9 @@ ublic/amsfonts/cm/cmti12.pfb><C:/Users/michele/AppData/Local/Programs/MiKTeX/fo
 nts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/michele/AppData/Local/Program
 s/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt8.pfb><C:/Users/michele/AppData/Loc
 al/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Thesis_V1.0.0.pdf (150 pages, 6438978 bytes).
+Output written on Thesis_V1.0.0.pdf (149 pages, 6436802 bytes).
 PDF statistics:
- 2674 PDF objects out of 2984 (max. 8388607)
- 864 named destinations out of 1000 (max. 500000)
+ 2659 PDF objects out of 2984 (max. 8388607)
+ 853 named destinations out of 1000 (max. 500000)
  823 words of extra memory for PDF output out of 10000 (max. 10000000)
 
