@@ -166,15 +166,15 @@
 \contentsline {subsection}{\numberline {7.1.1}Summary}{124}{subsection.7.1.1}%
 \contentsline {subsection}{\numberline {7.1.2}Comments}{124}{subsection.7.1.2}%
 \contentsline {section}{\numberline {7.2}Malware Description via SMART tags results}{125}{section.7.2}%
-\contentsline {subsection}{\numberline {7.2.1}Mean per-sample tagging scores}{129}{subsection.7.2.1}%
-\contentsline {subsection}{\numberline {7.2.2}Comments}{129}{subsection.7.2.2}%
-\contentsline {section}{\numberline {7.3}Family Prediction and Ranking Evaluation}{130}{section.7.3}%
-\contentsline {subsection}{\numberline {7.3.1}Example rankings}{134}{subsection.7.3.1}%
-\contentsline {subsection}{\numberline {7.3.2}Comments}{138}{subsection.7.3.2}%
-\contentsline {section}{\numberline {7.4}Family Classification Results}{138}{section.7.4}%
-\contentsline {subsection}{\numberline {7.4.1}Comments}{141}{subsection.7.4.1}%
-\contentsline {subsection}{\numberline {7.4.2}Families study}{142}{subsection.7.4.2}%
-\contentsline {section}{\numberline {7.5}Computation Time}{144}{section.7.5}%
-\contentsline {chapter}{\numberline {8}Conclusions}{146}{chapter.8}%
-\contentsline {section}{\numberline {8.1}Future Work}{146}{section.8.1}%
-\contentsline {chapter}{Bibliography}{149}{section.8.1}%
+\contentsline {subsection}{\numberline {7.2.1}Mean per-sample tagging scores}{128}{subsection.7.2.1}%
+\contentsline {subsection}{\numberline {7.2.2}Comments}{128}{subsection.7.2.2}%
+\contentsline {section}{\numberline {7.3}Family Prediction and Ranking Evaluation}{129}{section.7.3}%
+\contentsline {subsection}{\numberline {7.3.1}Example rankings}{133}{subsection.7.3.1}%
+\contentsline {subsection}{\numberline {7.3.2}Comments}{137}{subsection.7.3.2}%
+\contentsline {section}{\numberline {7.4}Family Classification Results}{137}{section.7.4}%
+\contentsline {subsection}{\numberline {7.4.1}Comments}{140}{subsection.7.4.1}%
+\contentsline {subsection}{\numberline {7.4.2}Families study}{141}{subsection.7.4.2}%
+\contentsline {section}{\numberline {7.5}Computation Time}{143}{section.7.5}%
+\contentsline {chapter}{\numberline {8}Conclusions}{145}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Future Work}{145}{section.8.1}%
+\contentsline {chapter}{Bibliography}{148}{section.8.1}%

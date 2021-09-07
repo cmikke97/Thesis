@@ -3987,6 +3987,7 @@ Here (table \ref{tab:malware_result_summary}) it is presented a brief summary of
 As shown in table \ref{tab:malware_auc}, the \textbf{Proposed Model} implementation provided a slightly better \textit{AUC-ROC} score than both the \textbf{ALOHA} model implementations when tested on the malware detection - Malicious/Benign label prediction - task. Moreover, table \ref{tab:malware_results_at_fpr} shows that the \textbf{Proposed Model} implementation consistently provided better scores for all the binary cross entropy statistics used as performance measures than the other two models at different \textit{FPRs} (False Positive Rates). Most importantly, the \textbf{Proposed Model} implementation performed better than the other models at $FPR = 1\%$, as summarized in table \ref{tab:malware_result_summary}. These results prove the effectiveness of using the 'harder' problem of creating a \textit{Joint Embedding} space where samples are close to their associated SMART tags as an additional task to improve the performance of the model at the malware detection task.
 
 \section{Malware Description via SMART tags results}\label{sec:malwareDescriptionResults}
+\vspace{-0.4cm}
 In this section the models' evaluation results for the SMART tagging prediction task are presented. More specifically, table \ref{tab:tag_aucs} shows, for each predicted tag, the \textbf{AUC-ROC} scores relative to the different models. Table \ref{tab:tag_results_summary}, on the other hand, presents the per-tag binary cross entropy statistics at \textbf{FPR} $=1\%$. Finally, figures \ref{fig:allMeanRocAloha}, \ref{fig:allMeanRocJointEmbedding} and \ref{fig:allMeanRocProposedModel} present, for each model, a single graph showing the mean \textbf{ROC} curves of all predicted tags plus the Malware label (if available).
 
 The models considered in this section are:
@@ -4001,7 +4002,7 @@ The models considered in this section are:
 \vspace{-0.7cm}
 \tagResultsAucTable
 
-\vspace{-2.0cm}
+\vspace{-2.2cm}
 \tagResultsSummaryTable
 
 \allMeanRocAloha
