@@ -4078,7 +4078,7 @@ In this section are presented and compared the different Family Classifier model
 \FamilyClassifierOnlyConfusionMatrix
 
 \subsection{Comments}
-As shown in table \ref{tab:FamilyClassifierAccuracyResults}, the \textbf{Family Classifier} built on top of the \textbf{Proposed Model} - by transferring the learned weights of the base shared topology at \textbf{Family Classifier} definition effectively re-utilizing the knowledge of a previous \textbf{Proposed Model} training run on the Sorel20M dataset, using \textit{transfer learning} - provided a higher \textit{Accuracy} than both the \textbf{Family Classifier} built on top of the \textbf{Joint Embedding} model implementation and the equally complex \textbf{Family Classifier} with no transfer learning applied.
+As shown in table \ref{tab:FamilyClassifierAccuracyResults}, the \textbf{Family Classifier} built on top of the \textbf{Proposed Model} provided a higher \textit{Accuracy} than both the \textbf{Family Classifier} built on top of the \textbf{Joint Embedding} model implementation and the equally complex \textbf{Family Classifier} with no transfer learning applied.
 
 Table \ref{tab:FamilyClassifierScoresTable} confirms the better performance of the \textbf{Family Classifier} built on top of the \textbf{Proposed Model} in the \textit{Malware Family Classification} task by showing that it consistently provided the best '\textit{Micro}', '\textit{Macro}' and '\textit{Weighted}' averaged scores for all multi-class classification statistics used as performance metrics. It is interesting to notice that the \textbf{Family Classifier} built on top of the \textbf{Joint Embedding} model was, instead, always the second best, while the \textbf{Family Classifier} with no transfer learning applied was always last. This proves the effectiveness of utilizing the technique of \textit{transfer learning} to reduce overfitting when training the classifier using the 'small' training subset of the Fresh Dataset.
 
@@ -4101,7 +4101,7 @@ Interestingly, looking at the confusion matrixes resulting from the evaluation o
 	\item samples of class \textbf{\textit{AveMariaRAT}} are often misclassified as being of class \textbf{\textit{AgentTesla}}, \textbf{\textit{FormBook}} or \textbf{\textit{Loki}}
 \end{itemize}
 
-In order to understand why that is and how it could be possible to improve the classifier performance it seems appropriate to carry out a more in-depth study on the different malware families under analysis.
+In order to understand why that is and how it could be possible to improve the classifier performance it is necessary to carry out a more in-depth study on the different malware families under analysis.
 
 \subsection{Families study}
 Here is a brief description of the malware families represented by the samples of the Fresh Dataset:

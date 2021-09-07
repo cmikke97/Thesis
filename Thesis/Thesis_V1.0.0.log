@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.9.7)  7 SEP 2021 16:56
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.9.7)  7 SEP 2021 17:34
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -3088,8 +3088,11 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [139 <./results/family_classifier_confusion_matrix_jointEmbedding.png> <./resu
 lts/family_classifier_confusion_matrix_proposedModel.png>] [140 <./results/fami
-ly_classifier_confusion_matrix_familyClassifierOnly.png>] [141] [142] [143] [14
-4]
+ly_classifier_confusion_matrix_familyClassifierOnly.png>] [141] [142]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [143]
+[144]
 Chapter 8.
 [145
 
@@ -3246,7 +3249,7 @@ C:/Users/michele.INFOPIUNET/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
 sfonts/cm/cmtt10.pfb><C:/Users/michele.INFOPIUNET/AppData/Local/Programs/MiKTeX
 /fonts/type1/public/amsfonts/cm/cmtt8.pfb><C:/Users/michele.INFOPIUNET/AppData/
 Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Thesis_V1.0.0.pdf (150 pages, 6463879 bytes).
+Output written on Thesis_V1.0.0.pdf (150 pages, 6463650 bytes).
 PDF statistics:
  2690 PDF objects out of 2984 (max. 8388607)
  854 named destinations out of 1000 (max. 500000)
