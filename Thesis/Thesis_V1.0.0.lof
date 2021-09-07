@@ -1,7 +1,7 @@
-\babel@toc {italian}{}
-\babel@toc {italian}{}
-\babel@toc {italian}{}
-\babel@toc {english}{}
+\babel@toc {italian}{}\relax 
+\babel@toc {italian}{}\relax 
+\babel@toc {italian}{}\relax 
+\babel@toc {english}{}\relax 
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {1.1}{\ignorespaces Poem displayed by Elk Cloner virus}}{12}{figure.caption.3}%
 \contentsline {figure}{\numberline {1.2}{\ignorespaces AV Atlas - Total Amount of New Malware and PUA}}{13}{figure.caption.4}%
@@ -45,13 +45,13 @@
 \contentsline {figure}{\numberline {7.2}{\ignorespaces Malware Label prediction task ALOHA ROC curve}}{123}{figure.caption.139}%
 \contentsline {figure}{\numberline {7.3}{\ignorespaces Malware Label prediction task Proposed Model ROC curve}}{124}{figure.caption.140}%
 \contentsline {figure}{\numberline {7.4}{\ignorespaces Tags prediction task ALOHA mean ROC curve}}{127}{figure.caption.142}%
-\contentsline {figure}{\numberline {7.5}{\ignorespaces Tags prediction task Joint Embedding mean ROC curve}}{127}{figure.caption.143}%
+\contentsline {figure}{\numberline {7.5}{\ignorespaces Tags prediction task Joint Embedding mean ROC curve}}{128}{figure.caption.143}%
 \contentsline {figure}{\numberline {7.6}{\ignorespaces Tags prediction task Proposed Model mean ROC curve}}{128}{figure.caption.144}%
 \contentsline {figure}{\numberline {7.7}{\ignorespaces Family Prediction Accuracy Trends}}{130}{figure.caption.146}%
-\contentsline {figure}{\numberline {7.8}{\ignorespaces Family Prediction AUC-ROC (Micro) Trends}}{130}{figure.caption.147}%
-\contentsline {figure}{\numberline {7.9}{\ignorespaces Family Prediction AUC-ROC (Macro) Trends}}{131}{figure.caption.148}%
-\contentsline {figure}{\numberline {7.10}{\ignorespaces Family Prediction Confusion Matrixes (Max Accuracy)}}{132}{figure.caption.150}%
-\contentsline {figure}{\numberline {7.11}{\ignorespaces Family Classifier Joint Embedding Confusion Matrix}}{139}{figure.caption.158}%
-\contentsline {figure}{\numberline {7.12}{\ignorespaces Family Classifier Proposed Model Confusion Matrix}}{139}{figure.caption.159}%
-\contentsline {figure}{\numberline {7.13}{\ignorespaces Family Classifier Only Joint Embedding Confusion Matrix}}{140}{figure.caption.160}%
+\contentsline {figure}{\numberline {7.8}{\ignorespaces Family Prediction AUC-ROC (Micro) Trends}}{131}{figure.caption.147}%
+\contentsline {figure}{\numberline {7.9}{\ignorespaces Family Prediction AUC-ROC (Macro) Trends}}{132}{figure.caption.148}%
+\contentsline {figure}{\numberline {7.10}{\ignorespaces Family Prediction Confusion Matrixes (Max Accuracy)}}{133}{figure.caption.150}%
+\contentsline {figure}{\numberline {7.11}{\ignorespaces Family Classifier Joint Embedding Confusion Matrix}}{140}{figure.caption.158}%
+\contentsline {figure}{\numberline {7.12}{\ignorespaces Family Classifier Proposed Model Confusion Matrix}}{140}{figure.caption.159}%
+\contentsline {figure}{\numberline {7.13}{\ignorespaces Family Classifier Only Joint Embedding Confusion Matrix}}{141}{figure.caption.160}%
 \addvspace {10\p@ }

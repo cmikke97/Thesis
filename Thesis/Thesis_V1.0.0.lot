@@ -1,7 +1,7 @@
-\babel@toc {italian}{}
-\babel@toc {italian}{}
-\babel@toc {italian}{}
-\babel@toc {english}{}
+\babel@toc {italian}{}\relax 
+\babel@toc {italian}{}\relax 
+\babel@toc {italian}{}\relax 
+\babel@toc {english}{}\relax 
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
@@ -13,16 +13,16 @@
 \contentsline {table}{\numberline {7.2}{\ignorespaces Malware Label prediction task results}}{122}{table.7.2}%
 \contentsline {table}{\numberline {7.3}{\ignorespaces Summary of Malware Label prediction task results}}{124}{table.caption.141}%
 \contentsline {table}{\numberline {7.4}{\ignorespaces Tags prediction task AUC-ROC results}}{125}{table.7.4}%
-\contentsline {table}{\numberline {7.5}{\ignorespaces Tags prediction task results}}{126}{table.7.5}%
-\contentsline {table}{\numberline {7.6}{\ignorespaces Tags prediction task mean per-sample scores}}{128}{table.caption.145}%
-\contentsline {table}{\numberline {7.7}{\ignorespaces Family Prediction Scores at Maximum Accuracy}}{131}{table.caption.149}%
-\contentsline {table}{\numberline {7.8}{\ignorespaces Family ranking MRR and MAP scores}}{132}{table.caption.151}%
-\contentsline {table}{\numberline {7.9}{\ignorespaces Family ranking max AP example}}{133}{table.caption.152}%
-\contentsline {table}{\numberline {7.10}{\ignorespaces Family ranking max RR example}}{134}{table.caption.153}%
-\contentsline {table}{\numberline {7.11}{\ignorespaces Family ranking min AP example}}{135}{table.caption.154}%
-\contentsline {table}{\numberline {7.12}{\ignorespaces Family ranking min RR example}}{136}{table.caption.155}%
-\contentsline {table}{\numberline {7.13}{\ignorespaces Family Classifier Accuracy Results}}{138}{table.caption.156}%
-\contentsline {table}{\numberline {7.14}{\ignorespaces Family Classifier Scores}}{138}{table.caption.157}%
-\contentsline {table}{\numberline {7.15}{\ignorespaces Computation Time Per Experiment}}{143}{table.caption.161}%
-\contentsline {table}{\numberline {7.16}{\ignorespaces Overall Computation Time}}{144}{table.caption.162}%
+\contentsline {table}{\numberline {7.5}{\ignorespaces Tags prediction task results}}{127}{table.7.5}%
+\contentsline {table}{\numberline {7.6}{\ignorespaces Tags prediction task mean per-sample scores}}{129}{table.caption.145}%
+\contentsline {table}{\numberline {7.7}{\ignorespaces Family Prediction Scores at Maximum Accuracy}}{132}{table.caption.149}%
+\contentsline {table}{\numberline {7.8}{\ignorespaces Family ranking MRR and MAP scores}}{133}{table.caption.151}%
+\contentsline {table}{\numberline {7.9}{\ignorespaces Family ranking max AP example}}{134}{table.caption.152}%
+\contentsline {table}{\numberline {7.10}{\ignorespaces Family ranking max RR example}}{135}{table.caption.153}%
+\contentsline {table}{\numberline {7.11}{\ignorespaces Family ranking min AP example}}{136}{table.caption.154}%
+\contentsline {table}{\numberline {7.12}{\ignorespaces Family ranking min RR example}}{137}{table.caption.155}%
+\contentsline {table}{\numberline {7.13}{\ignorespaces Family Classifier Accuracy Results}}{139}{table.caption.156}%
+\contentsline {table}{\numberline {7.14}{\ignorespaces Family Classifier Scores}}{139}{table.caption.157}%
+\contentsline {table}{\numberline {7.15}{\ignorespaces Computation Time Per Experiment}}{144}{table.caption.161}%
+\contentsline {table}{\numberline {7.16}{\ignorespaces Overall Computation Time}}{145}{table.caption.162}%
 \addvspace {10\p@ }
