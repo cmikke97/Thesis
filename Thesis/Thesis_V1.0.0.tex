@@ -2044,11 +2044,11 @@ In order to speed up the dataset loading code the dataset was therefore pre-proc
 
 When using an instance with limited disk size, the amount of space occupied by the dataset is a concern. In particular, the \textbf{Colab Pro} instance used for this project had up to $\sim$ 130GB of free disk space and this made it possible to train the models with only approximately half of the samples provided by Sorel20M. In fact for all the conducted experiments only the first $6.000.000$ (of $12.699.013$) training samples, the first $1.153.846$ (of $2.495.822$) validation samples and the first $1.846.154$ (of $4.195.042$) test samples of Sorel20M dataset were considered. The performances of the models presented in this document inevitably suffered from the usage of a smaller dataset during training; this means that the results obtained cannot be directly compared to those of other models which used the entire Sorel-20m dataset. However, the code was designed to work with any dataset size so additional experimentations with more powerful instances can easily be made in the future.
 
+\vspace{-0.1cm}
 \subsubsection{Generator (Dataloader) versions}
+\vspace{-0.1cm}
 \paragraph{Pytorch Dataloader}
 In the first implementation of the pre-processed data loading code the original \textit{Pytorch} Dataloader class was used by passing it a specially crafted class called '\textit{Dataset}' (derived from \textit{Pytorch} 'torch.utils.data.Dataset' class) which is responsible for loading the pre-processed version of the dataset and for retrieving the data (features, labels and sha256) for each sample '\textit{i}'.
-
-In particular, as it can be seen in algorithms \ref{alg:DatasetInit} and \ref{alg:DatasetGetItem}, the \textit{Dataset} class consists of 2 main member functions (although other less important member functions such as the \textit{Len} function are also implemented): \textit{Init} and \textit{GetItem}. In the \textit{Init} constructor function (alg. \ref{alg:DatasetInit}) the dataset, consisting of features (\textit{X}), labels (\textit{y}) and sha256 hashes (\textit{S}), gets loaded into a set of 3 parallel memory mapped arrays. In the \textit{GetItem} member function (alg. \ref{alg:DatasetGetItem}), instead, the data (features, labels and/or sha256 hash) corresponding to the sample with index '\textit{index}' is retrieved and returned to the function caller (that will be the Pytorch original Dataloader itself). Alternatively, the \textit{GetAsTensors} member function (alg. \ref{alg:DatasetGetAsTensors}) directly returns the tensors (memory mapped arrays) containing the samples shas, features and labels. This will be later used by the presented alternative generators. 
 
 \begin{algorithm}[h!]
 	\caption{Dataset class, Init}\label{alg:DatasetInit}
@@ -2107,10 +2107,6 @@ In particular, as it can be seen in algorithms \ref{alg:DatasetInit} and \ref{al
 	\end{algorithmic}
 \end{algorithm}
 
-Before model training/evaluation the dataset generator (dataloader) is defined by passing this dataset class to the \textit{Pytorch} Dataloader implementation (\textit{torch.utils.data.Dataloader}) together with additional arguments specifying the batch size, the number of workers and whether to shuffle the data during loading (alg. \ref{alg:PytorchDataloader}). Then, during training, the \textit{Pytorch} Dataloader class will load the batches of data by iteratively calling the \textit{Dataset}'s \textit{GetItem} function \textit{batch\_size} times for each batch concatenating the extracted samples together using the \textit{torch.cat} function.
-
-As previously mentioned, this implementation is faster than the original Sorel20M dataloader code while being also relatively simple; however, given how the pre-processed dataset is saved (consecutive samples are saved on consecutive locations on disk) it is still somewhat inefficient. In fact, the time needed for completing 10 training epochs on a less powerful instance is still unreasonable. One possible optimization would be to read batches in one go as big chunks rather than calling the \textit{GetItem} function on the Dataset once per sample and then concatenating the resulting data. However, random sampling during model training introduces a regularization effect which generally improves model generalization on unseen samples, therefore it would be better to find an optimization combining both data loading efficiency and random sampling.
-
 \begin{algorithm}[h!]
 	\caption{Pytorch Dataloader definition}\label{alg:PytorchDataloader}
 	\begin{algorithmic}[1]
@@ -2119,6 +2115,13 @@ As previously mentioned, this implementation is faster than the original Sorel20
 	\end{algorithmic}
 \end{algorithm}
 
+In particular, as it can be seen in algorithms \ref{alg:DatasetInit} and \ref{alg:DatasetGetItem}, the \textit{Dataset} class consists of 2 main member functions (although other less important member functions such as the \textit{Len} function are also implemented): \textit{Init} and \textit{GetItem}. In the \textit{Init} constructor function (alg. \ref{alg:DatasetInit}) the dataset, consisting of features (\textit{X}), labels (\textit{y}) and sha256 hashes (\textit{S}), gets loaded into a set of 3 parallel memory mapped arrays. In the \textit{GetItem} member function (alg. \ref{alg:DatasetGetItem}), instead, the data (features, labels and/or sha256 hash) corresponding to the sample with index '\textit{index}' is retrieved and returned to the function caller (that will be the Pytorch original Dataloader itself). Alternatively, the \textit{GetAsTensors} member function (alg. \ref{alg:DatasetGetAsTensors}) directly returns the tensors (memory mapped arrays) containing the samples shas, features and labels. This will be later used by the presented alternative generators.
+
+Before model training/evaluation the dataset generator (dataloader) is defined by passing this dataset class to the \textit{Pytorch} Dataloader implementation (\textit{torch.utils.data.Dataloader}) together with additional arguments specifying the batch size, the number of workers and whether to shuffle the data during loading (alg. \ref{alg:PytorchDataloader}). Then, during training, the \textit{Pytorch} Dataloader class will load the batches of data by iteratively calling the \textit{Dataset}'s \textit{GetItem} function \textit{batch\_size} times for each batch concatenating the extracted samples together using the \textit{torch.cat} function.
+
+As previously mentioned, this implementation is faster than the original Sorel20M dataloader code while being also relatively simple; however, given how the pre-processed dataset is saved (consecutive samples are saved on consecutive locations on disk) it is still somewhat inefficient. In fact, the time needed for completing 10 training epochs on a less powerful instance is still unreasonable. One possible optimization would be to read batches in one go as big chunks rather than calling the \textit{GetItem} function on the Dataset once per sample and then concatenating the resulting data. However, random sampling during model training introduces a regularization effect which generally improves model generalization on unseen samples, therefore it would be better to find an optimization combining both data loading efficiency and random sampling.
+
+\vspace{-0.2cm}
 \paragraph{Generator alt1/alt2}
 The first attempts at optimizing the generator were inspired by the '\textit{\textbf{index select}}' and '\textit{\textbf{shuffle in-place}}' versions of the \textit{\textbf{FastTensorDataLoader}} class suggested in \cite{FastTensorDataloader}. In particular, the alternative generator 1 ('\textit{\textbf{alt1}}'), again loads the pre-processed dataset as a set of memory mapped arrays and assigns them to a set of tensors (\textit{X}, \textit{y} and \textit{S}) from which batches of data are randomly sampled using the \textit{Pytorch} '\textit{\textbf{index\_select}}' function in \textit{multithreading}. In the alternative generator 2 ('\textit{\textbf{alt2}}'), on the other hand, the tensors created by loading the dataset as done in \textit{\textbf{alt1}} are randomly shuffled in place at each iteration. Then the batches of data are extracted (in order) from them in \textit{multithreading}.
 
@@ -2411,6 +2414,7 @@ The \textbf{GetBatch} function used in generator \textit{\textbf{alt3}} is the s
 
 As it can be seen from the algorithms provided, this version of the generator depends on the value of a number of parameters among which the most important ones are \textit{\textbf{chunk\_size}} and \textit{\textbf{n\_chunks}}. Indeed, selecting different values for \textit{\textbf{chunk\_size}} and \textit{\textbf{n\_chunks}} has an impact on the speed of the generator and on the samples dispersion: the samples are not anymore randomly chosen from the whole dataset, but from a random sub-part of it (the \textit{\textbf{chunk\_aggregate}}). This effectively decreases the amount of dispersion (and randomness) of batches, possibly affecting the final model generalization. It is therefore better to consider a higher value for \textit{\textbf{n\_chunks}} possibly decreasing \textit{\textbf{chunk\_size}}. Furhtermore, the values for \textit{\textbf{chunk\_size}} and \textit{\textbf{n\_chunks}}) should be chosen in conjunction since their product results in the number of samples loaded into main memory (RAM) at once for a single worker thread. Increasing too much this number (together with the number of workers used) can potentially saturate the main memory (RAM) of the instance used.
 
+\vspace{-0.2cm}
 \subparagraph{Generator parameters optimization}
 To understand the behaviour of the FastTensorDataLoader \textit{\textbf{alt3}} on the target instance and choose the best combination of values for the parameters \textit{\textbf{chunk\_size}} and \textit{\textbf{n\_chunks}} when using 8 threads (which is double the amount of cores available in the instance used for this project), the code speed was cross evaluated using powers of 2 for both values. In particular the data loading code was evaluated using values for \textit{\textbf{chunk\_size}} and \textit{\textbf{n\_chunks}} got from two intervals and the corresponding average \textit{speed} and average \textit{elapsed time} heatmap plots were generated.
 
@@ -2419,15 +2423,19 @@ In practice \textit{\textbf{chunk\_size}} and \textit{\textbf{n\_chunks}} values
 The data loading code (generator \textit{\textbf{alt3}}) performance was evaluated setting \textit{\textbf{min\_mul}} to a value of 1, while \textit{\textbf{max\_mul}} was set to 32. Those values were chosen in order to always be able to retrieve at least one \textit{batch} from the \textit{\textbf{chunk\_aggregate}} without saturating the RAM available on the instance used for this project (in fact, having for \textit{\textbf{max\_mul}} a value greater than 32 would mean having $32 \times$ \textit{\textbf{batch\_size}} samples loaded into memory at the same time, per worker, which was too much for the available instance).
 
 \begin{figure}[h!]
+	\vspace*{-0.3cm}
 	\centering
 	\includegraphics[width=0.95\textwidth]{./images/speeds_heatmap.png}
+	\vspace*{-0.3cm}
 	\caption[Generator alt.3 speed heatmap]{Generator Alt.3 Speeds Heatmap, Higher is Better}
 	\label{fig:speeds_heatmap}
 \end{figure}
 
 \begin{figure}[h!]
+	\vspace*{-0.3cm}
 	\centering
 	\includegraphics[width=0.95\textwidth]{./images/times_heatmap.png}
+	\vspace*{-0.3cm}
 	\caption[Generator alt.3 elapsed times heatmap]{Generator Alt.3 Elapsed Times Heatmap, Lower is Better}
 	\label{fig:times_heatmap}
 \end{figure}
@@ -2697,7 +2705,7 @@ Finally, the \textit{Malicious (SMART) tags} output head consists of three addit
 The final aggregate loss $L(\textbf{x}, y)$ is computed as the weighted sum of all the output heads losses, as previously described in paragraph \ref{par:alohaFinalLoss} (eq. \ref{eq:alohaFinalLoss}).
 
 \subsubsection{Net Definition}
-\begin{algorithm}[h]
+\begin{algorithm}[h!]
 	\caption{ALOHA Net class, Init}\label{alg:alohaNetInit}
 	\begin{algorithmic}[1]
 		\Class{Net}
@@ -2737,7 +2745,7 @@ The final aggregate loss $L(\textbf{x}, y)$ is computed as the weighted sum of a
 	\end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}[h]
+\begin{algorithm}[h!]
 	\caption{ALOHA Net class, Forward}\label{alg:alohaNetForward}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
@@ -2763,7 +2771,7 @@ The final aggregate loss $L(\textbf{x}, y)$ is computed as the weighted sum of a
 	\end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}[h]
+\begin{algorithm}[h!]
 	\caption{ALOHA Net class, Compute Loss}\label{alg:alohaNetComputeLoss}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
@@ -3864,6 +3872,8 @@ Algorithms \ref{alg:trainFamilyClassifierFunctionPt1}-\ref{alg:trainFamilyClassi
 		\algstore{bkbreak}
 	\end{algorithmic}
 \end{algorithm}
+
+\newpage
 
 \begin{algorithm}[h!]
 	\caption{Train Family Classifier function, part 2}\label{alg:trainFamilyClassifierFunctionPt2}
