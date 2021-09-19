@@ -167,24 +167,24 @@
 \contentsline {subsubsection}{Contrastive Learning Model Training}{118}{section*.138}%
 \contentsline {subsubsection}{Contrastive Learning Model Evaluation}{119}{section*.139}%
 \contentsline {subsubsection}{Contrastive Learning Model Results Computation and Plotting}{119}{section*.140}%
-\contentsline {chapter}{\numberline {7}Results}{122}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Malware Detection results}{122}{section.7.1}%
-\contentsline {subsection}{\numberline {7.1.1}Summary}{125}{subsection.7.1.1}%
-\contentsline {subsection}{\numberline {7.1.2}Comments}{125}{subsection.7.1.2}%
-\contentsline {section}{\numberline {7.2}Malware Description via SMART tags results}{126}{section.7.2}%
-\contentsline {subsection}{\numberline {7.2.1}Mean per-sample tagging scores}{129}{subsection.7.2.1}%
-\contentsline {subsection}{\numberline {7.2.2}Comments}{129}{subsection.7.2.2}%
-\contentsline {section}{\numberline {7.3}Family Prediction and Ranking Evaluation}{130}{section.7.3}%
-\contentsline {subsection}{\numberline {7.3.1}Example rankings}{134}{subsection.7.3.1}%
-\contentsline {subsection}{\numberline {7.3.2}Comments}{138}{subsection.7.3.2}%
-\contentsline {section}{\numberline {7.4}Family Classification Results}{138}{section.7.4}%
-\contentsline {subsection}{\numberline {7.4.1}Comments}{141}{subsection.7.4.1}%
-\contentsline {subsection}{\numberline {7.4.2}Families study}{142}{subsection.7.4.2}%
-\contentsline {section}{\numberline {7.5}Contrastive Learning Results}{144}{section.7.5}%
-\contentsline {subsection}{\numberline {7.5.1}Comments}{144}{subsection.7.5.1}%
-\contentsline {section}{\numberline {7.6}Computation Time}{144}{section.7.6}%
-\contentsline {chapter}{\numberline {8}Conclusions}{146}{chapter.8}%
-\contentsline {section}{\numberline {8.1}Future Work}{146}{section.8.1}%
-\contentsline {chapter}{Bibliography}{149}{section.8.1}%
-\contentsline {chapter}{List of Figures}{152}{section*.167}%
-\contentsline {chapter}{List of Tables}{154}{section*.168}%
+\contentsline {chapter}{\numberline {7}Results}{125}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Malware Detection results}{125}{section.7.1}%
+\contentsline {subsection}{\numberline {7.1.1}Summary}{128}{subsection.7.1.1}%
+\contentsline {subsection}{\numberline {7.1.2}Comments}{128}{subsection.7.1.2}%
+\contentsline {section}{\numberline {7.2}Malware Description via SMART tags results}{129}{section.7.2}%
+\contentsline {subsection}{\numberline {7.2.1}Mean per-sample tagging scores}{132}{subsection.7.2.1}%
+\contentsline {subsection}{\numberline {7.2.2}Comments}{132}{subsection.7.2.2}%
+\contentsline {section}{\numberline {7.3}Family Prediction and Ranking Evaluation}{133}{section.7.3}%
+\contentsline {subsection}{\numberline {7.3.1}Example rankings}{137}{subsection.7.3.1}%
+\contentsline {subsection}{\numberline {7.3.2}Comments}{141}{subsection.7.3.2}%
+\contentsline {section}{\numberline {7.4}Family Classification Results}{141}{section.7.4}%
+\contentsline {subsection}{\numberline {7.4.1}Comments}{144}{subsection.7.4.1}%
+\contentsline {subsection}{\numberline {7.4.2}Families study}{145}{subsection.7.4.2}%
+\contentsline {section}{\numberline {7.5}Contrastive Learning Results}{147}{section.7.5}%
+\contentsline {subsection}{\numberline {7.5.1}Comments}{147}{subsection.7.5.1}%
+\contentsline {section}{\numberline {7.6}Computation Time}{147}{section.7.6}%
+\contentsline {chapter}{\numberline {8}Conclusions}{149}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Future Work}{149}{section.8.1}%
+\contentsline {chapter}{Bibliography}{152}{section.8.1}%
+\contentsline {chapter}{List of Figures}{155}{section*.167}%
+\contentsline {chapter}{List of Tables}{157}{section*.168}%

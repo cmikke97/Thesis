@@ -4237,7 +4237,180 @@ The Family classifier evaluation \textbf{\textit{micro}} (global average), \text
 	\end{algorithmic}
 \end{algorithm}
 
+\begin{algorithm}[h!]
+	\caption{Get Anchor Negative Triplet Mask function}\label{alg:getAnchorNegativeTripletMaskFunction}
+	\begin{algorithmic}[1]
+		\Function{GetAnchorNegativeTripletMask}{\textit{labels}}
+			\State
+			\State \textit{labels\_equal} $\gets$ \textbf{torch.eq}(\textbf{torch.unsqueeze}(\textit{labels}, 0), \textbf{torch.unsqueeze}(\textit{labels}, 1))
+			\State
+			\State \textit{mask} $\gets$ \textbf{torch.logical\_not}(\textit{labels\_equal})
+			\State
+			\State \textbf{return} \textit{mask}
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[h!]
+	\caption{Get Triplet Mask function}\label{alg:getTripletMaskFunction}
+	\begin{algorithmic}[1]
+		\Function{GetTripletMask}{\textit{labels}}
+			\State
+			\State \textit{indices\_equal} $\gets$ \textbf{torch.eye}(\textit{labels}.\textbf{size}()[0]).\textbf{bool}()
+			\State \textit{indices\_not\_equal} $\gets$ \textbf{torch.logical\_not}(\textit{indices\_equal})
+			\State \textit{i\_not\_equal\_j} $\gets$ \textbf{torch.unsqueeze}(\textit{indices\_not\_equal}, 2)
+			\State \textit{i\_not\_equal\_k} $\gets$ \textbf{torch.unsqueeze}(\textit{indices\_not\_equal}, 1)
+			\State \textit{j\_not\_equal\_k} $\gets$ \textbf{torch.unsqueeze}(\textit{indices\_not\_equal}, 0)
+			\State
+			\State \textit{distinct\_indices} $\gets$ \textbf{torch.logical\_and}(
+			\State \hskip1.9em \textbf{torch.logical\_and}(\textit{i\_not\_equal\_j}, \textit{i\_not\_equal\_k}), \textit{j\_not\_equal\_k})
+			\State
+			\State \textit{label\_equal} $\gets$ \textbf{torch.eq}(\textbf{torch.unsqueeze}(\textit{labels}, 0), \textbf{torch.unsqueeze}(\textit{labels}, 1))
+			\State \textit{i\_equal\_j} $\gets$ \textbf{torch.unsqueeze}(\textit{label\_equal}, 2)
+			\State \textit{i\_equal\_k} $\gets$ \textbf{torch.unsqueeze}(\textit{label\_equal}, 1)
+			\State
+			\State \textit{valid\_labels} $\gets$ \textbf{torch.logical\_and}(\textit{i\_equal\_j}, \textbf{torch.logical\_not}(\textit{i\_equal\_k}))
+			\State
+			\State \textit{mask} $\gets$ \textbf{torch.logical\_and}(\textit{distinct\_indices}, \textit{valid\_labels})
+			\State
+			\State \textbf{return} \textit{mask}
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}
+
 \subsubsection{Contrastive Learning Model Evaluation}
+\begin{algorithm}[h!]
+	\caption{Evaluate Contrastive Learning Model function, part 1}\label{alg:evaluateContrastiveLearningModelFunctionPt1}
+	\begin{algorithmic}[1]
+		\Function{EvaluateNetwork}{\textit{fresh\_ds\_path}, \textit{checkpoint\_path}, \textit{batch\_size}, \textit{train\_split\_proportion}, \textit{valid\_split\_proportion}, \textit{test\_split\_proportion}, \textit{rank\_size}, \textit{knn\_k\_min}, \textit{knn\_k\_max}, \textit{workers}, ...}
+			\State
+			\State \textit{split\_proportions} $\gets$ [\textit{train\_split\_proportion},
+			\State \hskip9.1em \textit{valid\_split\_proportion},
+			\State \hskip9.1em \textit{test\_split\_proportion}]
+			\State
+			\State \textit{label\_to\_sig} $\gets$ \textit{test\_generator}.\textit{dataset}.\textit{label\_to\_sig}
+			\State \textit{n\_families} $\gets$ \textit{test\_generator}.\textit{dataset}.\textit{n\_families}
+			\State
+			\State \textit{train\_generator}, \_, \textit{test\_gen} $\gets$ \textbf{get\_generator}(\textit{fresh\_ds\_path},
+			\State \hskip1.9em splits=\textit{split\_proportions},
+			\State \hskip1.9em batch\_size=\textit{batch\_size},
+			\State \hskip1.9em return\_shas=True,
+			\State \hskip1.9em num\_workers=\textit{workers}, ..)
+			\State
+			\State \textit{model} $\gets$ \textit{Contrastive\_Net}(
+			\State \hskip1.9em feature\_dimension=2381,
+			\State \hskip1.9em embedding\_dimension=32,
+			\State \hskip1.9em layer\_sizes=\textit{run\_additional\_params}['layer\_sizes'],
+			\State \hskip1.9em dropout\_p=\textit{run\_additional\_params}['dropout\_p'],
+			\State \hskip1.9em activation\_function=\textit{run\_additional\_params}['activation\_function'],
+			\State \hskip1.9em normalization\_function=\textit{run\_additional\_params}['normalization\_function'])
+			\State
+			\State \textit{model}.\textbf{load\_state\_dict}(\textit{checkpoint\_path})
+			\State \textit{model}.\textbf{eval}()
+			\State
+			\State \Comment Continues on next page..
+		\algstore{bkbreak}
+	\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[h!]
+	\caption{Evaluate Contrastive Learning Model function, part 2}\label{alg:evaluateContrastiveLearningModelFunctionPt2}
+	\begin{algorithmic}[1]
+		\algrestore{bkbreak}
+			\State \Comment Continued from previous page..
+			\ForAll{\textit{shas}, \textit{features}, \textit{labels} $\in$ \textit{test\_gen}}
+				\State \textit{pe\_embeddings} $\gets$ \textit{model}(\textit{features})
+				\State \textit{top\_shas} $\gets$ None
+				\State \textit{top\_labels} $\gets$ None
+				\State \textit{top\_distances} $\gets$ None
+				\State
+				\State \textit{predictions} = \{\}
+				\ForAll{\textit{anchor\_shas}, \textit{anchor\_features}, \textit{anchor\_labels} $\in$ \textit{train\_generator}}
+					\State \textbf{torch.no\_grad}()
+					\State \textit{anchor\_pe\_embeddings} $\gets$ \textit{model}(\textit{anchor\_features})
+					\State
+					\State \textit{distances} $\gets$ \textbf{torch.cdist}(\textit{pe\_embeddings}, \textit{anchor\_pe\_embeddings}, p=2.0)
+					\State
+					\If{\textit{top\_distances} \textbf{is} None}
+						\State \textit{top\_distances} $\gets$ \textit{distances}
+						\State
+						\State \textit{indices} $\gets$ \textit{top\_distances}.\textbf{argsort}(dim=1)
+						\State
+						\State \textit{top\_shas} $\gets$ \textbf{np.concatenate}([\textbf{np.expand\_dims}(\textbf{np.repeat}(\textbf{np.expand\_dims}(
+						\State \hskip1.9em \textit{anchor\_shas}, axis=0), \textit{shas}.\textit{shape}[0], axis=0)[\textit{x}, \textit{y}], axis=0) 
+						\State \hskip1.9em $\forall$ \textit{x}, \textit{row} $\in$ \textbf{enumerate}(\textit{indices}[:, :\textit{rank\_size}])
+						\State \hskip1.9em $\forall$ \textit{y} $\in$ \textit{row}]).\textbf{reshape}(-1, \textit{rank\_size})
+						\State \textit{top\_labels} $\gets$ \textbf{torch.cat}([\textit{anchor\_labels}.\textbf{repeat}(\textit{labels}.\textit{shape}[0], 1)[
+						\State \hskip1.9em \textit{x}, \textit{y}].\textbf{unsqueeze}(0) $\forall$ \textit{x}, \textit{row} $\in$ \textbf{enumerate}(\textit{indices}[:, :\textit{rank\_size}])
+						\State \hskip1.9em $\forall$ \textit{y} $\in$ \textit{row}]).\textbf{view}(-1, \textit{rank\_size})
+						\State \textit{top\_distances} $\gets$ \textbf{torch.cat}([\textit{top\_distances}[\textit{x}, \textit{y}].\textbf{unsqueeze}(0)
+						\State \hskip1.9em $\forall$ \textit{x}, \textit{row} $\in$ \textbf{enumerate}(\textit{indices}[:, :\textit{rank\_size}])
+						\State \hskip1.9em $\forall$ \textit{y} $\in$ \textit{row}]).\textbf{view}(-1, \textit{rank\_size})
+					\Else
+						\State \textit{top\_shas} $\gets$ \textbf{np.concatenate}((\textit{top\_shas}, \textbf{np.repeat}(\textbf{np.expand\_dims}(
+						\State \hskip1.9em \textit{anchor\_shas}, axis=0), \textit{top\_shas}.\textit{shape}[0], axis=0)), axis=1)
+						\State \textit{top\_labels} $\gets$ \textbf{torch.cat}((\textit{top\_labels}, \textit{anchor\_labels}.\textbf{repeat}(
+						\State \hskip1.9em \textit{top\_labels}.size()[0], 1)), dim=1)
+						\State \textit{top\_distances} $\gets$ \textbf{torch.cat}((\textit{top\_distances}, \textit{distances}), dim=1)
+						\State
+						\State \textit{indices} $\gets$ \textit{top\_distances}.\textbf{argsort}(dim=1)
+						\State
+						\State \textit{top\_shas} $\gets$ \textbf{np.concatenate}([\textbf{np.expand\_dims}(\textit{top\_shas}[\textit{x}, \textit{y}], axis=0)
+						\State \hskip1.9em $\forall$ \textit{x}, \textit{row} $\in$ \textbf{enumerate}(\textit{indices}[:, :\textit{rank\_size}])
+						\State \hskip1.9em $\forall$ \textit{y} $\in$ \textit{row}]).\textbf{reshape}(-1, \textit{rank\_size})
+						\State \textit{top\_labels} $\gets$ \textbf{torch.cat}([\textit{top\_labels}[\textit{x}, \textit{y}].\textbf{unsqueeze}(0)
+						\State \hskip1.9em $\forall$ \textit{x}, \textit{row} $\in$ \textbf{enumerate}(\textit{indices}[:, :\textit{rank\_size}])
+						\State \hskip1.9em $\forall$ \textit{y} $\in$ \textit{row}]).\textbf{view}(-1, \textit{rank\_size})
+						\State \textit{top\_distances} $\gets$ \textbf{torch.cat}([\textit{top\_distances}[\textit{x}, \textit{y}].\textbf{unsqueeze}(0)
+						\State \hskip1.9em $\forall$ \textit{x}, \textit{row} $\in$ \textbf{enumerate}(\textit{indices}[:, :\textit{rank\_size}])
+						\State \hskip1.9em $\forall$ \textit{y} $\in$ \textit{row}]).\textbf{view}(-1, \textit{rank\_size})
+					\EndIf
+				\EndFor
+				\State
+				\State \Comment Continues on next page..
+		\algstore{bkbreak}
+	\end{algorithmic}
+\end{algorithm}
+	
+\begin{algorithm}[h!]
+	\caption{Evaluate Contrastive Learning Model function, part 3}\label{alg:evaluateContrastiveLearningModelFunctionPt3}
+	\begin{algorithmic}[1]
+		\algrestore{bkbreak}
+				\State \Comment Continued from previous page..
+				\For{\textit{k}, \textit{s} $\in$ \textbf{enumerate}(\textit{shas})}
+					\State \textit{ranks}.\textbf{append}(\{
+					\State \hskip1.9em 'query\_sha': \textit{s},
+					\State \hskip1.9em 'ground\_truth\_label': \textbf{int}(\textit{labels}[\textit{k}]),
+					\State \hskip1.9em 'ground\_truth\_family': \textbf{label\_to\_sig}(\textbf{int}(\textit{labels}[\textit{k}])),
+					\State \hskip1.9em 'rank\_shas': \textit{top\_shas}[\textit{k}].\textbf{tolist}(),
+					\State \hskip1.9em 'rank\_labels': [\textbf{int}(\textit{lab}) $\forall$ \textit{lab} $\in$ \textit{top\_labels}[\textit{k}]],
+					\State \hskip1.9em 'rank\_families': [\textbf{label\_to\_sig}(\textbf{int}(\textit{lab})) $\forall$ \textit{lab} $\in$ \textit{top\_labels}[\textit{k}]]
+					\State \})
+				\EndFor
+				\State
+				\State \textit{start} $\gets$ \textit{knn\_k\_min} \textbf{if} \textit{knn\_k\_min} $mod 2 \ne 0$ \textbf{else} \textit{knn\_k\_min} $+ 1$
+				\State \textit{end} $\gets$ \textit{knn\_k\_max} $+ 1$
+	            \ForAll{\textit{k} $\in$ \textbf{range}(\textit{start}, \textit{end}, 2)}
+					\State \textit{knn\_labels} $\gets$ \textit{top\_labels}[:, :\textit{k}]
+					\State \textit{knn\_weights} $\gets$ \textbf{torch.pow}(\textit{top\_distances}[:, :\textit{k}], -2)
+					\State
+					\State \textit{knn\_scores} $\gets$ \textbf{torch.zeros}((\textit{knn\_labels}.\textit{shape}[0], \textit{n\_families}))
+					\ForAll{\textit{idx}, \textit{labs} $\in$ \textbf{enumerate}(\textit{knn\_labels})}
+						\State \textit{knn\_scores}[\textit{idx}].\textbf{index\_add\_}(0, \textbf{torch.tensor}([\textbf{int}(\textit{lab}) $\forall$ \textit{lab} $\in$ \textit{labs}]),
+						\State \hskip1.9em \textit{knn\_weights}[\textit{idx}])
+					\EndFor
+					\State					
+					\State \textit{predictions}[\textbf{str}(\textit{k})] $\gets$ \textbf{torch.argmax}(\textit{knn\_scores}, dim=1)
+				\EndFor
+				\State
+				\State \textbf{save\_to\_file}(\textit{predictions})
+				\State \textit{ranking\_scores}, \textit{ranks\_to\_save} $\gets$ \textbf{compute\_ranking\_scores}(\textit{ranks})
+				\State \textbf{log}(\textit{ranking\_scores})
+				\State \textbf{save\_to\_file}(\textit{ranks\_to\_save})
+			\EndFor
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}
 
 \subsubsection{Contrastive Learning Model Results Computation and Plotting}
 
