@@ -3866,6 +3866,7 @@ Algorithms \ref{alg:trainFamilyClassifierFunctionPt1}-\ref{alg:trainFamilyClassi
 				\State \textit{opt} $\gets$ \textit{run\_params}['optimizer'](\textit{parameters\_to\_optimize}, \textit{run\_params}['lr'],
 				\State \hskip13.8em \textit{run\_params}['weight\_decay'], \textit{run\_params}['momentum'])
 				\State \textit{scheduler} $\gets$ \textbf{MultiStepLR}(\textit{opt}, milestones=[(3 $\times$ \textit{epochs}) // 4], gamma=0.1)
+				\State
 				\State \Comment Continues on next page..
 		\algstore{bkbreak}
 	\end{algorithmic}
@@ -3905,6 +3906,8 @@ Algorithms \ref{alg:trainFamilyClassifierFunctionPt1}-\ref{alg:trainFamilyClassi
 					\State \textbf{log}(\textit{loss})
 					\State \textbf{log}(\textit{accuracy})
 				\EndFor
+				\State
+				\State \textit{model}.\textbf{save}()
 			\EndFor
 		\EndFunction
 	\end{algorithmic}
@@ -3988,12 +3991,251 @@ The Family classifier evaluation \textbf{\textit{micro}} (global average), \text
 \end{figure}
 
 \subsubsection{Net Definition}
+\begin{algorithm}[h!]
+	\caption{Contrastive Learning Model Net class, Init part 1}\label{alg:contrastiveLearningModelNetInit}
+	\begin{algorithmic}[1]
+		\Class{Net}
+			\Function{Init}{\textit{self}, \textit{feature\_dimension}, \textit{embedding\_dimension}, \textit{layer\_sizes}, \textit{dropout\_p}, \textit{activation\_function}, \textit{normalization\_function}}	
+				\State
+				\State \textit{self}.\textit{embedding\_dimension} $\gets$ \textit{embedding\_dimension}
+				\State \textit{layers} $\gets$ [ ]
+				\If{\textit{layer\_sizes} \textbf{is} None}
+					\State \textit{layer\_sizes} $\gets$ [512, 512, 128]
+				\EndIf
+				\State
+				\ForAll{\textit{i}, \textit{ls} $\in$ \textbf{enumerate}(\textit{layer\_sizes})}
+					\If{\textit{i} $=0$}
+						\State \textit{layers}.\textbf{append}(\textbf{nn.Linear}(\textit{feature\_dimension}, \textit{ls}))
+					\Else
+						\State \textit{layers}.\textbf{append}(\textbf{nn.Linear}(\textit{layer\_sizes}[\textit{i} $- 1$], \textit{ls}))
+					\EndIf
+					\State
+					\State \textit{layers}.\textbf{append}(\textit{normalization\_function}(\textit{ls}))
+					\State \textit{layers}.\textbf{append}(\textit{activation\_function}())
+					\State \textit{layers}.\textbf{append}(\textbf{nn.Dropout}(\textit{dropout\_p}))
+				\EndFor
+				\State
+				\State \textit{self}.\textit{model\_base} $\gets$ \textbf{nn.Sequential}(*tuple(\textit{layers}))
+				\State \textit{self}.\textit{pe\_embedding} $\gets$ \textbf{nn.Sequential}(
+				\State \hskip1.9em \textbf{nn.Linear}(\textit{layer\_sizes}[-1], \textit{self}.\textit{embedding\_dimension}),
+				\State \hskip1.9em \textit{normalization\_function}(\textit{self}.\textit{embedding\_dimension}),
+				\State \hskip1.9em \textit{activation\_function}())
+			\EndFunction
+		\algstore{bkbreak}
+	\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[h!]
+	\caption{Contrastive Learning Model Net class, Forward}\label{alg:contrastiveLearningModelNetForward}
+	\begin{algorithmic}[1]
+		\algrestore{bkbreak}
+			\Function{Forward}{\textit{self}, \textit{data}}
+				\State \textit{base\_out} $\gets$ \textit{self}.\textit{model\_base}(\textit{data})
+				\State \textit{pe\_embedding} $\gets$ \textit{self}.\textit{pe\_embedding}(\textit{base\_out})
+				\State
+				\State \textbf{return} \textit{pe\_embedding}
+			\EndFunction
+		\EndClass
+	\end{algorithmic}
+\end{algorithm}
 
 \subsection{Experiments}
 
 \subsection{Contrastive Learning Model Training and Evaluation algorithms}
 
 \subsubsection{Contrastive Learning Model Training}
+\begin{algorithm}[h!]
+	\caption{Train Contrastive Learning Model function, part 1}\label{alg:trainContrastiveLearningModelFunctionPt1}
+	\begin{algorithmic}[1]
+			\Function{TrainNetwork}{\textit{fresh\_ds\_path}, \textit{checkpoint\_path}, \textit{batch\_size}, \textit{epochs}, \textit{train\_split\_proportion}, \textit{valid\_split\_proportion}, \textit{test\_split\_proportion}, \textit{workers}, ...}
+			\State
+			\State \textit{split\_proportions} $\gets$ [\textit{train\_split\_proportion},
+			\State \hskip9.1em \textit{valid\_split\_proportion},
+			\State \hskip9.1em \textit{test\_split\_proportion}]
+			\State
+			\State \textit{train\_gen}, \textit{valid\_gen}, \_ $\gets$ \textbf{get\_generator}(\textit{fresh\_ds\_path},
+			\State \hskip1.9em splits=\textit{split\_proportions},
+			\State \hskip1.9em batch\_size=\textit{batch\_size},
+			\State \hskip1.9em return\_shas=True,
+			\State \hskip1.9em num\_workers=\textit{workers}, ..)
+			\State
+			\State \textit{model} $\gets$ \textit{Contrastive\_Net}(
+			\State \hskip1.9em feature\_dimension=2381,
+			\State \hskip1.9em embedding\_dimension=32,
+			\State \hskip1.9em layer\_sizes=\textit{run\_additional\_params}['layer\_sizes'],
+			\State \hskip1.9em dropout\_p=\textit{run\_additional\_params}['dropout\_p'],
+			\State \hskip1.9em activation\_function=\textit{run\_additional\_params}['activation\_function'],
+			\State \hskip1.9em normalization\_function=\textit{run\_additional\_params}['normalization\_function'])
+			\State
+			\If{\textit{checkpoint\_path} \textbf{is not} None}
+				\State \textit{model}.\textbf{load\_state\_dict}(\textit{checkpoint\_path}, strict=False)
+				\State \textit{parameters\_to\_optimize} $\gets$ [
+				\State \hskip1.9em \{'params': \textit{model}.\textit{pe\_embedding}.\textbf{parameters}(), 'lr': \textit{run\_params}['lr']\},
+				\State \hskip1.9em \{'params': \textit{model}.\textit{model\_base}.\textbf{parameters}(), 'lr': \textit{run\_params}['lr'] / 10\}
+				\State ]
+			\Else
+				\State \textit{parameters\_to\_optimize} $\gets$ \textit{model}.\textbf{parameters}()
+			\EndIf
+			\State
+			\State \textit{opt} $\gets$ \textit{run\_params}['optimizer'](\textit{parameters\_to\_optimize}, \textit{run\_params}['lr'],
+			\State \hskip13.8em \textit{run\_params}['weight\_decay'], \textit{run\_params}['momentum'])
+			\State \textit{scheduler} $\gets$ \textbf{MultiStepLR}(\textit{opt}, milestones=[(3 $\times$ \textit{epochs}) // 4], gamma=0.1)
+			\State
+			\State \Comment Continues on next page..
+		\algstore{bkbreak}
+	\end{algorithmic}
+\end{algorithm}
+
+\newpage
+
+\begin{algorithm}[h!]
+	\caption{Train Contrastive Learning Model function, part 2}\label{alg:trainContrastiveLearningModelFunctionPt2}
+	\begin{algorithmic}[1]
+		\algrestore{bkbreak}
+			\State \Comment Continued from previous page..
+			\State
+			\ForAll{\textit{epoch} $\in$ \textbf{range}(\textit{epochs})}
+				\State \textit{model}.\textbf{train}()
+				\State
+				\ForAll{\textit{shas}, \textit{features}, \textit{labels} $\in$ \textit{train\_gen}}
+					\State \textit{opt}.\textbf{zero\_grad}
+					\State \textit{pe\_embeddings} $\gets$ \textit{model}(\textit{features})
+					\If{\textit{run\_additional\_params}['hard']}
+						\State \textit{loss} $\gets$ \textbf{batch\_hard\_triplet\_loss}(\textit{labels}, \textit{pe\_embeddings},
+						\State \hskip1.9em margin=\textit{run\_additional\_params}['margin'],
+						\State \hskip1.9em squared=\textit{run\_additional\_params}['squared'])
+					\Else
+						\State \textit{loss}, \textit{pos\_fraction} $\gets$ \textbf{batch\_all\_triplet\_loss}(\textit{labels}, \textit{pe\_embeddings},
+						\State \hskip1.9em margin=\textit{run\_additional\_params}['margin'],
+						\State \hskip1.9em squared=\textit{run\_additional\_params}['squared'])
+						\State \textbf{log}(\textit{pos\_fraction})
+					\EndIf
+					\State
+					\State \textbf{log}(\textit{loss})
+					\State \textit{loss}.\textbf{backwawrd}()
+					\State \textit{opt}.\textbf{step}()
+				\EndFor
+				\State
+				\State \textit{scheduler}.\textbf{step}()
+				\State \textit{model}.\textbf{eval}()
+				\State
+				\ForAll{\textit{shas}, \textit{features}, \textit{labels} $\in$ \textit{valid\_gen}}
+					\State \textbf{torch.no\_grad}()
+					\State \textit{pe\_embeddings} $\gets$ \textit{model}(\textit{features})
+					\If{\textit{run\_additional\_params}['hard']}
+						\State \textit{loss} $\gets$ \textbf{batch\_hard\_triplet\_loss}(\textit{labels}, \textit{pe\_embeddings},
+						\State \hskip1.9em margin=\textit{run\_additional\_params}['margin'],
+						\State \hskip1.9em squared=\textit{run\_additional\_params}['squared'])
+					\Else
+						\State \textit{loss}, \textit{pos\_fraction} $\gets$ \textbf{batch\_all\_triplet\_loss}(\textit{labels}, \textit{pe\_embeddings},
+						\State \hskip1.9em margin=\textit{run\_additional\_params}['margin'],
+						\State \hskip1.9em squared=\textit{run\_additional\_params}['squared'])
+						\State \textbf{log}(\textit{pos\_fraction})
+					\EndIf
+					\State
+					\State \textbf{log}(\textit{loss})
+				\EndFor
+				\State
+				\State \textit{model}.\textbf{save}()
+			\EndFor
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[h!]
+	\caption{Batch Hard Triplet Loss function}\label{alg:batchHardTripletLossFunction}
+	\begin{algorithmic}[1]
+		\Function{BatchHardTripletLoss}{\textit{labels}, \textit{embeddings}, \textit{margin}, \textit{squared}}
+			\State
+			\State \textit{pairwise\_dist} $\gets$ \textbf{PairwiseDistances}(\textit{embeddings}, \textit{squared})
+			\State
+			\State \textit{mask\_anchor\_positive} $\gets$ \textbf{GetAnchorPositiveTripletMask}(\textit{labels}).\textbf{float}()
+			\State \textit{anchor\_positive\_dist} $\gets$ \textbf{torch.mul}(\textit{mask\_anchor\_positive}, \textit{pairwise\_dist})
+			\State \textit{hardest\_positive\_dist} $\gets$ \textbf{torch.max}(\textit{anchor\_positive\_dist}, dim=1, keepdim=True)[0]
+			\State
+			\State \textit{mask\_anchor\_negative} $\gets$ \textbf{GetAnchorNegativeTripletMask}(\textit{labels}).\textbf{float}()		
+			\State \textit{max\_anchor\_negative\_dist} $\gets$ \textbf{torch.max}(\textit{pairwise\_dist}, dim=1, keepdim=True)[0]
+			\State \textit{anchor\_negative\_dist} $\gets$ \textit{pairwise\_dist} + \textit{max\_anchor\_negative\_dist}
+			\State \hskip1.9em $\times$ (1.0 - \textit{mask\_anchor\_negative})
+			\State \textit{hardest\_negative\_dist} $\gets$ \textbf{torch.min}(\textit{anchor\_negative\_dist}, dim=1, keepdim=True)[0]
+			\State
+			\State \textit{triplet\_loss} $\gets$ \textit{hardest\_positive\_dist} - \textit{hardest\_negative\_dist} + \textit{margin}
+			\State \textit{triplet\_loss} $\gets$ \textbf{torch.maximum}(\textit{triplet\_loss}, \textbf{torch.zeros\_like}(\textit{triplet\_loss}))
+			\State \textit{triplet\_loss} $\gets$ \textbf{torch.mean}(\textit{triplet\_loss})
+			\State
+			\State \textbf{return} \textit{triplet\_loss}
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[h!]
+	\caption{Batch All Triplet Loss function}\label{alg:batchAllTripletLossFunction}
+	\begin{algorithmic}[1]
+		\Function{BatchAllTripletLoss}{\textit{labels}, \textit{embeddings}, \textit{margin}, \textit{squared}}
+			\State
+			\State \textit{pairwise\_dist} $\gets$ \textbf{PairwiseDistances}(\textit{embeddings}, \textit{squared})
+			\State
+			\State \textit{anchor\_positive\_dist} $\gets$ \textbf{torch.unsqueeze}(\textit{pairwise\_dist}, 2)
+			\State \textit{anchor\_negative\_dist} $\gets$ \textbf{torch.unsqueeze}(\textit{pairwise\_dist}, 1)
+			\State
+			\State \textit{triplet\_loss} $\gets$ \textit{anchor\_positive\_dist} - \textit{anchor\_negative\_dist} + \textit{margin}
+			\State
+			\State \textit{mask} $\gets$ \textbf{GetTripletMask}(\textit{labels}).\textbf{float}()
+			\State \textit{triplet\_loss} $\gets$ \textbf{torch.mul}(\textit{mask}, \textit{triplet\_loss})
+			\State
+			\State \textit{triplet\_loss} $\gets$ \textbf{torch.maximum}(\textit{triplet\_loss}, \textbf{torch.zeros\_like}(\textit{triplet\_loss}))
+			\State
+			\State \textit{valid\_triplets} $\gets$ \textbf{torch.gt}(\textit{triplet\_loss}, 1e-16).\textbf{float}()
+			\State \textit{num\_positive\_triplets} $\gets$ \textbf{torch.sum}(\textit{valid\_triplets})
+			\State \textit{num\_valid\_triplets} $\gets$ \textbf{torch.sum}(\textit{mask})
+			\State \textit{fraction\_positive\_triplets} $\gets$ \textit{num\_positive\_triplets} / (\textit{num\_valid\_triplets} + 1e-16)
+			\State
+			\State \textit{triplet\_loss} $\gets$ \textbf{torch.sum}(\textit{triplet\_loss}) / (\textit{num\_positive\_triplets} + 1e-16)
+			\State
+			\State \textbf{return} \textit{triplet\_loss}, \textit{fraction\_positive\_triplets}
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[h!]
+	\caption{Pairwise Distance function}\label{alg:pairwiseDistanceFunction}
+	\begin{algorithmic}[1]
+		\Function{PairwiseDistance}{\textit{embeddings}, \textit{squared}}
+			\State
+			\State \textit{dot\_product} $\gets$ \textbf{torch.matmul}(\textit{embeddings}, \textit{embeddings}.\textbf{T})
+			\State \textit{square\_norm} $\gets$ \textbf{torch.diag}(\textit{dot\_product}, 0)
+			\State \textit{distances} $\gets$ \textbf{torch.unsqueeze}(\textit{square\_norm}, 0) - 2.0 $\times$ \textit{dot\_product}
+			\State \hskip1.9em + \textbf{torch.unsqueeze}(\textit{square\_norm}, 1)
+			\State \textit{distances} $\gets$ \textbf{torch.maximum}(\textit{distances}, \textbf{torch.zeros\_like}(\textit{distances}))
+			\State
+			\If{\textbf{not} \textit{squared}}
+				\State \textit{mask} $\gets$ \textbf{torch.eq}(\textit{distances}, 0.0).\textbf{float}()
+				\State \textit{distances} $\gets$ \textit{distances} + \textit{mask} $\times$ 1e-16
+				\State
+				\State \textit{distances} $\gets$ \textbf{torch.sqrt}(\textit{distances})
+				\State \textit{distances} $\gets$ \textit{distances} $\times$ (1.0 - \textit{mask})
+			\EndIf
+			\State \textbf{return} \textit{distances}
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[h!]
+	\caption{Get Anchor Positive Triplet Mask function}\label{alg:getAnchorPositiveTripletMaskFunction}
+	\begin{algorithmic}[1]
+		\Function{GetAnchorPositiveTripletMask}{\textit{labels}}
+			\State
+			\State \textit{indices\_equal} $\gets$ \textbf{torch.eye}(\textit{labels}.\textbf{size}()[0]).\textbf{bool}()
+			\State \textit{indices\_not\_equal} $\gets$ \textbf{torch.logical\_not}(\textit{indices\_equal})
+			\State
+			\State \textit{labels\_equal} $\gets$ \textbf{torch.eq}(\textbf{torch.unsqueeze}(\textit{labels}, 0), \textbf{torch.unsqueeze}(\textit{labels}, 1))
+			\State
+			\State \textit{mask} $\gets$ \textbf{torch.logical\_and}(\textit{indices\_not\_equal}, \textit{labels\_equal})
+			\State
+			\State \textbf{return} \textit{mask}
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}
 
 \subsubsection{Contrastive Learning Model Evaluation}
 
