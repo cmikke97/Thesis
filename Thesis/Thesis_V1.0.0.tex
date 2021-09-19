@@ -3970,6 +3970,35 @@ Algorithm \ref{alg:evaluateFamilyClassifierFunction} (\textbf{Family Classifier 
 
 The Family classifier evaluation \textbf{\textit{micro}} (global average), \textbf{\textit{macro}} (unweighted per-family average) and \textbf{\textit{weighted}} (per-family average, weighted by support) scores, such as '\textit{Jaccard similarity score}', '\textit{recall}', '\textit{precision}' and '\textit{f1-score}', are computed and saved to file, together with the resulting \textbf{OVO} (One Vs. One) and \textbf{OVR} (One Vs. Rest) AUC-ROC scores and confusion matrix, by a distinct set of functions - which simply apply the respective mathematical formulas - not presented in this document.
 
+\section{Contrastive Learning Model}
+
+\subsection{Implementation}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\textwidth]{./images/Contrastive_Learning.png}
+	\caption[Contrastive Learning model architecture]{Contrastive Learning Model architecture}
+	\label{fig:ContrastiveLearningModel}
+\end{figure}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\textwidth]{./images/Contrastive_Learning_Online.png}
+	\caption[Contrastive Learning Online model architecture]{Contrastive Learning Online Model architecture}
+	\label{fig:ContrastiveLearningOnlineModel}
+\end{figure}
+
+\subsubsection{Net Definition}
+
+\subsection{Experiments}
+
+\subsection{Contrastive Learning Model Training and Evaluation algorithms}
+
+\subsubsection{Contrastive Learning Model Training}
+
+\subsubsection{Contrastive Learning Model Evaluation}
+
+\subsubsection{Contrastive Learning Model Results Computation and Plotting}
+
 \chapter{Results}\label{chap:results}
 This chapter presents the evaluation results of the different models implemented. In particular, in the first section (\ref{sec:malwareDetectionResults}) are depicted the different models' results on the task of malware detection (Malicious/Benign label prediction). The same models' evaluation results on the task of malware description via SMART tags are presented in a separate section (\ref{sec:malwareDescriptionResults}). The next section (\ref{sec:FreshEvaluationResults}), presents the models' (and original features') results on the family prediction and ranking tasks using samples from the Fresh Dataset. The final section (\ref{sec:FamilyClassificationResults}), on the other hand, presents the evaluation results of the Malware Family Classifier on the family classification task.
 
@@ -4159,6 +4188,10 @@ Finally, by looking at the available samples in general it can be noticed how so
 The fact that anyone can upload samples (and reports) on Malware Bazaar is on one hand extremely helpful for the generation of a big database of up-to-date malware samples from all over the world. On the other hand, this also opens up the possibility of errors in categorizations given by the analysts' different interpretations and modes of operation. Moreover, this gets accentuated by the fact that also commercially available anti-virus solutions do not agree on the classification of extremely up-to-date samples. Conversely, in order to be able to generate and properly evaluate a high quality ML model a dataset is needed with as least errors in classification as possible, at least for what concerns the test subpart. However, it is difficult to generate a high-quality dataset from a database of malware samples with such uncertainty like Malware Bazaar.
 
 Furthermore, this fact also makes it difficult to assess which proposed \textbf{Family Classifier} misclassifications are actual errors and why the model made those decision - which is already extremely difficult to understand when working with Neural Networks.
+
+\section{Contrastive Learning Results}\label{sec:ContrastiveLearningResults}
+
+\subsection{Comments}
 
 \section{Computation Time}
 This section presents an overview of the time needed to complete the experiments conducted for this project using a \textbf{Colab Pro} instance (which provides a NVIDIA T4 or P100 GPU, 2 CPU cores, 25GB of RAM and 147GB of disk space). In particular, table \ref{tab:ComputationTimePerExperiment} shows how much time was necessary to complete each step of a single experiment along with the computation time needed for the whole workflow. On the other hand, table \ref{tab:OverallComputationTime} shows the total computation time spent to complete all the experiments.
