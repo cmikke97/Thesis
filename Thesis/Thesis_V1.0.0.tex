@@ -2458,7 +2458,7 @@ In any case, with respect to the previous solutions (original \textit{Pytorch} d
 	\label{fig:workflow_fresh_dataset}
 \end{figure}
 
-In order to evaluate the learned representation of PE files (embedding) of the proposed model on the sample family prediction and ranking tasks (fig. \ref{fig:workflow_fresh_dataset}), a further dataset, also referred to as \textit{\textbf{fresh\_dataset}} throughout this document (and in the code), was created. It consisted of a number of sample files' feature vectors along with the corresponding family labels and sha256 hashes.
+In order to evaluate the learned implicit representation of PE files (embedding) of the proposed model on the malware family prediction and ranking tasks (fig. \ref{fig:workflow_fresh_dataset}), a further dataset, also referred to as \textit{\textbf{fresh\_dataset}} throughout this document (and in the code), was created. The same dataset was also later used to train, validate and evaluate the \textit{Malware Family Classifier} and \textit{Contrastive Learning Model} after being split into training, validation and test subsets. This dataset consisted of a number of sample files' feature vectors along with the corresponding family labels and sha256 hashes.
 
 More specifically, a number '\textit{\textbf{m}}' of PE malware families were selected from the list of the most prominent ones present in Italy at the time of writing (as reported by CERT-AGID summary \cite{CERTAGID}) of which Malware Bazaar provided at least '\textit{\textbf{x}}' sample files. Then, '\textit{\textbf{x}}' sample files per family were downloaded by Malware Bazaar \cite{MalwareBazaar} along with their metadata information (label, sha256 hash etc.) and the corresponding numerical feature vectors were extracted using the EMBER (version 2.0) feature extraction and numerical feature generation codes \cite{AndersonEMBER} (and Sorel-20m normalization). Malware Bazaar is a malware sample database maintained by malware analysts which provides examples of malware executables and high-quality manually crafted classifications/descriptions for different malware families and it is therefore a good source for creating the new (fresh) dataset.
 
@@ -2548,7 +2548,7 @@ In particular, the \textit{\textbf{fresh dataset}} created for this project cons
 	\end{algorithmic}
 \end{algorithm}
 
-The dataset class used for opening the fresh dataset - shown in alg. \ref{alg:FreshDatasetInit}, \ref{alg:FreshDatasetFromFile}, \ref{alg:FreshDatasetGetItem} and \ref{alg:FreshDatasetGetAsTensors} - is similar to the one used for the Sorel-20m dataset. This version, however, is also instantiatable with an already opened dataset/subset providing the corresponding tensors. The \ref{alg:FreshDatasetInit} function, in fact, instantiates the dataset given a set of already loaded dataset tensors (containing the shas, features and labels), while the \ref{alg:FreshDatasetFromFile} function opens the dataset, loads it as as set of memory mapped arrays and finally calls the class Init function.
+The dataset class used for opening the fresh dataset - shown in alg. \ref{alg:FreshDatasetInit}, \ref{alg:FreshDatasetFromFile}, \ref{alg:FreshDatasetGetItem} and \ref{alg:FreshDatasetGetAsTensors} - is similar to the one used for the Sorel-20m dataset. This version, however, is also instantiatable with an already opened dataset/subset providing the corresponding tensors. The \textit{Init} function, presented in alg. \ref{alg:FreshDatasetInit}, in fact, instantiates the dataset given a set of already loaded dataset tensors (containing the shas, features and labels) as input, while the \textit{FreshDatasetFromFile} function (alg. \ref{alg:FreshDatasetFromFile}) opens the dataset, loads it as as set of memory mapped arrays and finally calls the class Init function.
 
 \begin{algorithm}[h!]
 	\caption{Fresh Dataloader definition}\label{alg:FreshDataloaderDefinition}
@@ -2681,6 +2681,9 @@ In particular, the \textit{Jaccard Similarity score}, \textit{recall}, \textit{p
 	
 	\item \textbf{weighted} average: calculates the metrics for each class (family) label, and finds their average, weighted by support (the number of true instances for each label) effectively altering the 'macro' average to account for label imbalance.
 \end{itemize}
+
+\subsection{Contrastive Learning Model Training and Evaluation}
+
 
 \chapter{Previous Methods}
 The state of the art malware detection/description methods presented above (section \ref{sec:previousMethods}), namely \textit{Auxiliary Loss Optimization for Hypothesis Augmentation} (\textbf{ALOHA} model, \cite{ruddALOHA}), \textit{Automatic Malware Description via Attribute Tagging and Similarity Embedding} (\textbf{Joint Embedding} model, \cite{DucauAMDATSE}) and \textit{Learning from Context: Exploiting and Interpreting File Path Information for Better Malware Detection} (\textbf{File content + contextual file path (PE + FP)} model, \cite{KyadigeLFCEIFPIBMD}), represent a good starting point for further research in this topic. Moreover, the models used in those methods can easily be modified to work with Sorel20M dataset, with the exception of the \textbf{PE + FP} model \cite{KyadigeLFCEIFPIBMD} given that the mentioned dataset provides no file path information (and it is unfeasible to extend it with the needed additional information).

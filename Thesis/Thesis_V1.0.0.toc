@@ -131,6 +131,7 @@
 \contentsline {paragraph}{f-way Malware Family Classification task evaluation}{80}{section*.108}%
 \contentsline {paragraph}{Malware Family Ranking task evaluation}{80}{section*.109}%
 \contentsline {subsection}{\numberline {4.2.3}Family Classifier Training and Evaluation}{81}{subsection.4.2.3}%
+\contentsline {subsection}{\numberline {4.2.4}Contrastive Learning Model Training and Evaluation}{82}{subsection.4.2.4}%
 \contentsline {chapter}{\numberline {5}Previous Methods}{83}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Implementation}{83}{section.5.1}%
 \contentsline {subsection}{\numberline {5.1.1}ALOHA model}{83}{subsection.5.1.1}%
