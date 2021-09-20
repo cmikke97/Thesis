@@ -2287,8 +2287,8 @@ This optimization uses a new FastTensorDataLoader class which exploits a pool of
 		\State \textit{self.pool} $\gets$ \textbf{ThreadPool}()
 		\EndIf
 		\State
-		\State \textit{self.n\_batches} $\gets$ \textbf{ceil}.(\textit{self.dataset\_len} / \textit{self.batch\_size})
-		\State \textit{self.n\_chunks} $\gets$ \textbf{ceil}.(\textit{self.dataset\_len} / \textit{self.chunk\_size})
+		\State \textit{self.n\_batches} $\gets$ \textbf{ceil}(\textit{self.dataset\_len} / \textit{self.batch\_size})
+		\State \textit{self.n\_chunks} $\gets$ \textbf{ceil}(\textit{self.dataset\_len} / \textit{self.chunk\_size})
 		\State \textit{self.last\_chunk\_size} $\gets$ \textit{self.dataset\_len} $\%$ \textit{self.chunk\_size}
 		\EndFunction
 		\algstore{bkbreak}
