@@ -3814,7 +3814,7 @@ The evaluation results of the \textit{Family Classifier} model implementation in
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{./images/workflow_family_classifier.png}
-	\caption[Malware Family Classifier Training and evaluation workflow steps]{Family Classifier Training and Evaluation Workflow steps}
+	\caption[Malware Family Classifier Training and Evaluation workflow steps]{Family Classifier Training and Evaluation Workflow steps}
 	\label{fig:workflow_fam_train_eval}
 \end{figure}
 
@@ -3968,7 +3968,7 @@ Algorithm \ref{alg:evaluateFamilyClassifierFunction} (\textbf{Family Classifier 
 	\centering
 	\includegraphics[width=\textwidth]{./images/workflow_family_classifier_results.png}
 	\caption[Family Classifier Results Computation and Plotting step]{Family Classifier Results Computation and Plotting Workflow step}
-	\label{fig:workflow_train_eval_plot2}
+	\label{fig:workflow_family_classifier_results}
 \end{figure}
 
 The Family classifier evaluation \textbf{\textit{micro}} (global average), \textbf{\textit{macro}} (unweighted per-family average) and \textbf{\textit{weighted}} (per-family average, weighted by support) scores, such as '\textit{Jaccard similarity score}', '\textit{recall}', '\textit{precision}' and '\textit{f1-score}', are computed and saved to file, together with the resulting \textbf{OVO} (One Vs. One) and \textbf{OVR} (One Vs. Rest) AUC-ROC scores and confusion matrix, by a distinct set of functions - which simply apply the respective mathematical formulas - not presented in this document.
@@ -4042,8 +4042,21 @@ The Family classifier evaluation \textbf{\textit{micro}} (global average), \text
 \subsection{Experiments}
 
 \subsection{Contrastive Learning Model Training and Evaluation algorithms}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{./images/workflow_contrastive_model.png}
+	\caption[Contrastive Model Training and Evaluation workflow steps]{Contrastive Model Training and Evaluation Workflow steps}
+	\label{fig:workflow_contrastive_model}
+\end{figure}
 
 \subsubsection{Contrastive Learning Model Training}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{./images/workflow_contrastive_model_train.png}
+	\caption[Contrastive Model Training Workflow step]{Contrastive Model Training Workflow step}
+	\label{fig:workflow_contrastive_model_train}
+\end{figure}
+
 \begin{algorithm}[h!]
 	\caption{Train Contrastive Learning Model function, part 1}\label{alg:trainContrastiveLearningModelFunctionPt1}
 	\begin{algorithmic}[1]
@@ -4279,6 +4292,13 @@ The Family classifier evaluation \textbf{\textit{micro}} (global average), \text
 \end{algorithm}
 
 \subsubsection{Contrastive Learning Model Evaluation}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{./images/workflow_contrastive_model_evaluate.png}
+	\caption[Contrastive Model Evaluate Workflow step]{Contrastive Model Evaluate Workflow step}
+	\label{fig:workflow_contrastive_model_evaluate}
+\end{figure}
+
 \begin{algorithm}[h!]
 	\caption{Evaluate Contrastive Learning Model function, part 1}\label{alg:evaluateContrastiveLearningModelFunctionPt1}
 	\begin{algorithmic}[1]
@@ -4413,6 +4433,12 @@ The Family classifier evaluation \textbf{\textit{micro}} (global average), \text
 \end{algorithm}
 
 \subsubsection{Contrastive Learning Model Results Computation and Plotting}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{./images/workflow_contrastive_model_results.png}
+	\caption[Contrastive Model Results Computation and Plotting step]{Contrastive Model Results Computation and Plotting Workflow step}
+	\label{fig:workflow_contrastive_model_results}
+\end{figure}
 
 \chapter{Results}\label{chap:results}
 This chapter presents the evaluation results of the different models implemented. In particular, in the first section (\ref{sec:malwareDetectionResults}) are depicted the different models' results on the task of malware detection (Malicious/Benign label prediction). The same models' evaluation results on the task of malware description via SMART tags are presented in a separate section (\ref{sec:malwareDescriptionResults}). The next section (\ref{sec:FreshEvaluationResults}), presents the models' (and original features') results on the family prediction and ranking tasks using samples from the Fresh Dataset. The final section (\ref{sec:FamilyClassificationResults}), on the other hand, presents the evaluation results of the Malware Family Classifier on the family classification task.
