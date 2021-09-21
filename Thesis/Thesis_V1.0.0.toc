@@ -130,8 +130,8 @@
 \contentsline {subsection}{\numberline {4.2.2}Base Model Evaluation with Fresh Dataset}{80}{subsection.4.2.2}%
 \contentsline {paragraph}{f-way Malware Family Classification task evaluation}{80}{section*.108}%
 \contentsline {paragraph}{Malware Family Ranking task evaluation}{80}{section*.109}%
-\contentsline {subsection}{\numberline {4.2.3}Family Classifier Training and Evaluation}{81}{subsection.4.2.3}%
-\contentsline {subsection}{\numberline {4.2.4}Contrastive Learning Model Training and Evaluation}{82}{subsection.4.2.4}%
+\contentsline {subsection}{\numberline {4.2.3}Family Classifier Training and Evaluation}{82}{subsection.4.2.3}%
+\contentsline {subsection}{\numberline {4.2.4}Contrastive Learning Model Training and Evaluation}{83}{subsection.4.2.4}%
 \contentsline {chapter}{\numberline {5}Previous Methods}{84}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Implementation}{84}{section.5.1}%
 \contentsline {subsection}{\numberline {5.1.1}ALOHA model}{84}{subsection.5.1.1}%
@@ -139,53 +139,53 @@
 \contentsline {subsection}{\numberline {5.1.2}Joint Embedding}{88}{subsection.5.1.2}%
 \contentsline {subsubsection}{Net Definition}{89}{section*.115}%
 \contentsline {section}{\numberline {5.2}Experiments}{93}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Training and Evaluation algorithms}{93}{section.5.3}%
+\contentsline {section}{\numberline {5.3}Training and Evaluation algorithms}{94}{section.5.3}%
 \contentsline {subsection}{\numberline {5.3.1}Training}{94}{subsection.5.3.1}%
-\contentsline {subsection}{\numberline {5.3.2}Evaluation}{94}{subsection.5.3.2}%
-\contentsline {subsection}{\numberline {5.3.3}Results Computation and plotting}{96}{subsection.5.3.3}%
-\contentsline {chapter}{\numberline {6}Proposed Models}{97}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Malware Detection and Description via SMART tags Model}{97}{section.6.1}%
-\contentsline {subsection}{\numberline {6.1.1}Implementation}{98}{subsection.6.1.1}%
-\contentsline {subsubsection}{Net Definition}{99}{section*.121}%
-\contentsline {subsection}{\numberline {6.1.2}Experiments}{103}{subsection.6.1.2}%
-\contentsline {subsection}{\numberline {6.1.3}Training and Evaluation algorithms}{104}{subsection.6.1.3}%
-\contentsline {subsection}{\numberline {6.1.4}Evaluate Fresh algorithm}{104}{subsection.6.1.4}%
-\contentsline {subsubsection}{Model Evaluation on f-way Malware Family Classification/Family Ranking tasks}{105}{section*.124}%
-\contentsline {subsubsection}{Fresh Results Computation and Plotting}{108}{section*.126}%
-\contentsline {section}{\numberline {6.2}Malware Family Classifier}{109}{section.6.2}%
-\contentsline {subsection}{\numberline {6.2.1}Implementation}{110}{subsection.6.2.1}%
-\contentsline {subsubsection}{Net Definition}{111}{section*.129}%
-\contentsline {subsection}{\numberline {6.2.2}Experiments}{113}{subsection.6.2.2}%
-\contentsline {subsection}{\numberline {6.2.3}Family Classifier Training and Evaluation algorithms}{113}{subsection.6.2.3}%
-\contentsline {subsubsection}{Family Classifier Training}{114}{section*.131}%
-\contentsline {subsubsection}{Family Classifier Evaluation}{116}{section*.133}%
-\contentsline {subsubsection}{Family Classifier Results Computation and Plotting}{117}{section*.135}%
-\contentsline {section}{\numberline {6.3}Contrastive Learning Model}{117}{section.6.3}%
-\contentsline {subsection}{\numberline {6.3.1}Implementation}{119}{subsection.6.3.1}%
-\contentsline {subsubsection}{Net Definition}{119}{section*.139}%
-\contentsline {subsection}{\numberline {6.3.2}Experiments}{119}{subsection.6.3.2}%
-\contentsline {subsection}{\numberline {6.3.3}Contrastive Learning Model Training and Evaluation algorithms}{119}{subsection.6.3.3}%
-\contentsline {subsubsection}{Contrastive Learning Model Training}{120}{section*.141}%
-\contentsline {subsubsection}{Contrastive Learning Model Evaluation}{122}{section*.143}%
-\contentsline {subsubsection}{Contrastive Learning Model Results Computation and Plotting}{123}{section*.145}%
-\contentsline {chapter}{\numberline {7}Results}{127}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Malware Detection results}{127}{section.7.1}%
-\contentsline {subsection}{\numberline {7.1.1}Summary}{130}{subsection.7.1.1}%
-\contentsline {subsection}{\numberline {7.1.2}Comments}{130}{subsection.7.1.2}%
-\contentsline {section}{\numberline {7.2}Malware Description via SMART tags results}{131}{section.7.2}%
-\contentsline {subsection}{\numberline {7.2.1}Mean per-sample tagging scores}{134}{subsection.7.2.1}%
-\contentsline {subsection}{\numberline {7.2.2}Comments}{134}{subsection.7.2.2}%
-\contentsline {section}{\numberline {7.3}Family Prediction and Ranking Evaluation}{135}{section.7.3}%
-\contentsline {subsection}{\numberline {7.3.1}Example rankings}{139}{subsection.7.3.1}%
-\contentsline {subsection}{\numberline {7.3.2}Comments}{143}{subsection.7.3.2}%
-\contentsline {section}{\numberline {7.4}Family Classification Results}{143}{section.7.4}%
-\contentsline {subsection}{\numberline {7.4.1}Comments}{146}{subsection.7.4.1}%
-\contentsline {subsection}{\numberline {7.4.2}Families study}{147}{subsection.7.4.2}%
-\contentsline {section}{\numberline {7.5}Contrastive Learning Results}{149}{section.7.5}%
-\contentsline {subsection}{\numberline {7.5.1}Comments}{149}{subsection.7.5.1}%
-\contentsline {section}{\numberline {7.6}Computation Time}{149}{section.7.6}%
-\contentsline {chapter}{\numberline {8}Conclusions}{151}{chapter.8}%
-\contentsline {section}{\numberline {8.1}Future Work}{151}{section.8.1}%
-\contentsline {chapter}{Bibliography}{154}{section.8.1}%
-\contentsline {chapter}{List of Figures}{157}{section*.173}%
-\contentsline {chapter}{List of Tables}{159}{section*.174}%
+\contentsline {subsection}{\numberline {5.3.2}Evaluation}{96}{subsection.5.3.2}%
+\contentsline {subsection}{\numberline {5.3.3}Results Computation and plotting}{97}{subsection.5.3.3}%
+\contentsline {chapter}{\numberline {6}Proposed Models}{98}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Malware Detection and Description via SMART tags Model}{98}{section.6.1}%
+\contentsline {subsection}{\numberline {6.1.1}Implementation}{99}{subsection.6.1.1}%
+\contentsline {subsubsection}{Net Definition}{100}{section*.121}%
+\contentsline {subsection}{\numberline {6.1.2}Experiments}{104}{subsection.6.1.2}%
+\contentsline {subsection}{\numberline {6.1.3}Training and Evaluation algorithms}{105}{subsection.6.1.3}%
+\contentsline {subsection}{\numberline {6.1.4}Evaluate Fresh algorithm}{105}{subsection.6.1.4}%
+\contentsline {subsubsection}{Model Evaluation on f-way Malware Family Classification/Family Ranking tasks}{106}{section*.124}%
+\contentsline {subsubsection}{Fresh Results Computation and Plotting}{109}{section*.126}%
+\contentsline {section}{\numberline {6.2}Malware Family Classifier}{110}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}Implementation}{111}{subsection.6.2.1}%
+\contentsline {subsubsection}{Net Definition}{112}{section*.129}%
+\contentsline {subsection}{\numberline {6.2.2}Experiments}{114}{subsection.6.2.2}%
+\contentsline {subsection}{\numberline {6.2.3}Family Classifier Training and Evaluation algorithms}{114}{subsection.6.2.3}%
+\contentsline {subsubsection}{Family Classifier Training}{115}{section*.131}%
+\contentsline {subsubsection}{Family Classifier Evaluation}{117}{section*.133}%
+\contentsline {subsubsection}{Family Classifier Results Computation and Plotting}{118}{section*.135}%
+\contentsline {section}{\numberline {6.3}Contrastive Learning Model}{118}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}Implementation}{120}{subsection.6.3.1}%
+\contentsline {subsubsection}{Net Definition}{120}{section*.139}%
+\contentsline {subsection}{\numberline {6.3.2}Experiments}{120}{subsection.6.3.2}%
+\contentsline {subsection}{\numberline {6.3.3}Contrastive Learning Model Training and Evaluation algorithms}{120}{subsection.6.3.3}%
+\contentsline {subsubsection}{Contrastive Learning Model Training}{121}{section*.141}%
+\contentsline {subsubsection}{Contrastive Learning Model Evaluation}{123}{section*.143}%
+\contentsline {subsubsection}{Contrastive Learning Model Results Computation and Plotting}{124}{section*.145}%
+\contentsline {chapter}{\numberline {7}Results}{128}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Malware Detection results}{128}{section.7.1}%
+\contentsline {subsection}{\numberline {7.1.1}Summary}{131}{subsection.7.1.1}%
+\contentsline {subsection}{\numberline {7.1.2}Comments}{131}{subsection.7.1.2}%
+\contentsline {section}{\numberline {7.2}Malware Description via SMART tags results}{132}{section.7.2}%
+\contentsline {subsection}{\numberline {7.2.1}Mean per-sample tagging scores}{135}{subsection.7.2.1}%
+\contentsline {subsection}{\numberline {7.2.2}Comments}{135}{subsection.7.2.2}%
+\contentsline {section}{\numberline {7.3}Family Prediction and Ranking Evaluation}{136}{section.7.3}%
+\contentsline {subsection}{\numberline {7.3.1}Example rankings}{140}{subsection.7.3.1}%
+\contentsline {subsection}{\numberline {7.3.2}Comments}{144}{subsection.7.3.2}%
+\contentsline {section}{\numberline {7.4}Family Classification Results}{144}{section.7.4}%
+\contentsline {subsection}{\numberline {7.4.1}Comments}{147}{subsection.7.4.1}%
+\contentsline {subsection}{\numberline {7.4.2}Families study}{148}{subsection.7.4.2}%
+\contentsline {section}{\numberline {7.5}Contrastive Learning Results}{150}{section.7.5}%
+\contentsline {subsection}{\numberline {7.5.1}Comments}{150}{subsection.7.5.1}%
+\contentsline {section}{\numberline {7.6}Computation Time}{150}{section.7.6}%
+\contentsline {chapter}{\numberline {8}Conclusions}{152}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Future Work}{152}{section.8.1}%
+\contentsline {chapter}{Bibliography}{155}{section.8.1}%
+\contentsline {chapter}{List of Figures}{158}{section*.173}%
+\contentsline {chapter}{List of Tables}{160}{section*.174}%

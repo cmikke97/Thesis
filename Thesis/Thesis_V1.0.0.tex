@@ -2213,6 +2213,16 @@ The first attempts at optimizing the generator were inspired by the '\textit{\te
 	\end{algorithmic}
 \end{algorithm}
 
+In practice, both versions of the generator share (for the most part) the \textit{Init} and \textit{Next} functions. The main differences are, instead, in the \textit{Iter} and \textit{GetBatch} functions.
+
+The \textit{Init} function (alg. \ref{alg:Alt1_2FastDataLoaderInit}) is used for setting up some \textit{\textbf{FastTensorDataLoader}} class variables and optionally initializing the \textit{\textbf{ThreadPool}} used for \textit{multithreading}.
+
+The \textit{Iter} function purpose is to set up the parameters for the current cycle at the beginning of each epoch. The two generator alternatives have, however, different \textit{Init} functions. In particular, generator \textit{\textbf{alt1}} \textit{Iter} function (alg. \ref{alg:Alt1FastDataLoaderIter}) resets the count of extracted samples and, if shuffling is enabled, randomly generates the current epoch sample indices (which define the order the samples are extracted from the dataset tensors). On the other hand, generator \textit{\textbf{alt2}} \textit{Iter} function (alg. \ref{alg:Alt2FastDataLoaderIter}) resets the count of extracted samples, and,  if shuffling is enabled, it randomly permutes \textit{in-place} the dataset tensors themselves.
+
+\newpage
+
+In order to get a batch of data, the \textit{Next} function (alg. \ref{alg:Alt1_2FastDataLoaderNext}), which is similar for both generator versions, is used. In particular, this function monitors the number of samples already extracted from the dataset tensors and raises a \textit{StopIteration} exception when it has cycled through all the data. Moreover, this function is also responsible for extracting and returning batches of data from the dataset tensors. This can be done in sequence or in \textit{multithreading}. Specifically, when the number of workers selected is 1 the function sequentially gets one single batch and returns it after having updated the count of already extracted samples for the current epoch. On the other hand, if more than 1 workers are used the function prepares a number of asynchronous batch extraction tasks to be run in parallel by the threads in the thread pool, then it waits for the first result and returns it. The next call to the function will prepare other tasks and wait for the next first result. The exact number of asynchronous tasks prepared at each call is chosen dynamically to keep a fix-sized array of '\textit{num\_workers} ' async task results always full.
+
 \begin{algorithm}[h!]
 	\caption{Alt1 GetBatch function}\label{alg:Alt1GetBatch}
 	\begin{algorithmic}[1]
@@ -2252,18 +2262,11 @@ The first attempts at optimizing the generator were inspired by the '\textit{\te
 	\end{algorithmic}
 \end{algorithm}
 
-In practice, both versions of the generator share (for the most part) the \textit{Init} and \textit{Next} functions. The main differences are, instead, in the \textit{Iter} and \textit{GetBatch} functions.
-
-The \textit{Init} function (alg. \ref{alg:Alt1_2FastDataLoaderInit}) is used for setting up some \textit{\textbf{FastTensorDataLoader}} class variables and optionally initializing the \textit{\textbf{ThreadPool}} used for \textit{multithreading}.
-
-The \textit{Iter} function purpose is to set up the parameters for the current cycle at the beginning of each epoch. The two generator alternatives have, however, different \textit{Init} functions. In particular, generator \textit{\textbf{alt1}} \textit{Iter} function (alg. \ref{alg:Alt1FastDataLoaderIter}) resets the count of extracted samples and, if shuffling is enabled, randomly generates the current epoch sample indices (which define the order the samples are extracted from the dataset tensors). On the other hand, generator \textit{\textbf{alt2}} \textit{Iter} function (alg. \ref{alg:Alt2FastDataLoaderIter}) resets the count of extracted samples, and,  if shuffling is enabled, it randomly permutes \textit{in-place} the dataset tensors themselves.
-
-In order to get a batch of data, the \textit{Next} function (alg. \ref{alg:Alt1_2FastDataLoaderNext}), which is similar for both generator versions, is used. In particular, this function monitors the number of samples already extracted from the dataset tensors and raises a \textit{StopIteration} exception when it has cycled through all the data. Moreover, this function is also responsible for extracting and returning batches of data from the dataset tensors. This can be done in sequence or in \textit{multithreading}. Specifically, when the number of workers selected is 1 the function sequentially gets one single batch and returns it after having updated the count of already extracted samples for the current epoch. On the other hand, if more than 1 workers are used the function prepares a number of asynchronous batch extraction tasks to be run in parallel by the threads in the thread pool, then it waits for the first result and returns it. The next call to the function will prepare other tasks and wait for the next first result. The exact number of asynchronous tasks prepared at each call is chosen dynamically to keep a fix-sized array of '\textit{num\_workers} ' async task results always full.
-
 Finally, in algorithm \ref{alg:Alt1GetBatch} it is shown the \textit{GetBatch} function used by generator \textit{\textbf{alt1}}: if the sample \textit{indices} are provided they are used with the \textit{index\_select} function to select the data samples for the current batch of data, otherwise a set of consecutive samples is drawn from the dataset. The \textit{GetChunks\_batch} function used by generator \textit{\textbf{alt2}} (alg. \ref{alg:Alt2GetBatch}) is simpler: it simply selects a set of consecutive samples from the dataset tensors since those were already shuffled if required.
 
 Unfortunately, the presented two generator alternatives did not improve the data loading process enough. More specifically, when considering $6M$ samples, generator \textit{\textbf{alt1}} was only slightly faster than the original Pytorch Dataloader, while \textit{\textbf{alt2}} was even significantly slower. Generator \textit{\textbf{alt1}}, in fact, was still fairly similar to the Pytorch Dataloader implementation having used the \textit{index\_select} function instead of the slower \textit{torch.cat}. On the other hand, generator \textit{\textbf{alt2}} worked by shuffling the entire dataset tensors prior to batch extraction. If this solution surely has the potential of being more efficient for small to moderately sized datasets, it can become a bottleneck in case of huge datasets.
 
+\newpage
 \paragraph{Generator alt3}
 The generator alternative 3 ('\textit{\textbf{alt3}}') managed to considerably speed up the dataset loading process making a trade off between loading speed and samples dispersion. In fact, the time needed for 1 training epoch (considering 6M training samples) passed from being of approximately 6 hours to $\sim15$ minutes.
 
@@ -2414,6 +2417,8 @@ More specifically, in the \textit{Init} function (alg. \ref{alg:Alt3FastDataLoad
 
 The \textit{Iter} function (alg. \ref{alg:Alt3FastDataLoaderIter}), instead, is used to reset the current \textit{chunk aggregate} (and its size) and the number of already processed chunks for the current cycle at the beginning of each \textit{epoch}. Moreover, it also randomly or sequentially (linearly) - depending on whether shuffling is required - initializes the \textit{chunk indices}, which define the order in which the data chunks are retrieved.
 
+\newpage
+
 In algorithm \ref{alg:Alt3FastDataLoaderNext} it is presented the \textit{\textbf{FastTensorDataLoader}} \textit{\textbf{alt3}} \textit{Next} member function, which is used for managing the asynchronous extraction of chunks of consecutive samples from the dataset and for returning a single batch of data at a time. In particular, if the selected number of workers is 1, then, if all the data of the current \textit{chunk aggregate} has been cycled through (or it is the first function call) the function simply extracts a single new \textit{chunk aggregate} (which is a concatenation of multiple chunks selected randomly or linearly depending on the value of the \textit{self.shuffle} variable) through the \textbf{GetChunks} function. The number of already processed chunks for the current \textit{epoch} and the number of extracted samples from that specific \textit{chunk aggregate} are then updated/reset accordingly. This is however done only if the number of chunks already processed is less than the total amount of chunks, otherwise the \textit{StopIteration} exception is raised. If, on the other hand, the number of workers is greater than 1, the function prepares a number of asynchronous \textit{chunk aggregate} extraction tasks such that the queue (of size equal to the number of workers selected) in which they are inserted is always full, until the number of extracted chunks is less than the total amount. It then updates the number of extracted chunks appropriately. Then, when the current \textit{chunk aggregate} data has been explored completely (or if it is the first function call), if the async task queue is empty, meaning there are no more \textit{chunk aggregates} for the current \textit{epoch}, it raises the \textit{StopIteration} exception; otherwise the function gets the first async task from the queue and waits for its result (which is the extracted \textit{chunk aggregate}). Independently from the number of workers used, the function then proceeds to efficiently get a single batch of data from the current already-in-memory \textit{chunk aggregate} and returns it.
 
 The \textbf{GetBatch} function used in generator \textit{\textbf{alt3}} is the same one already exploited in version \textit{\textbf{alt2}} (alg. \ref{alg:Alt2GetBatch}); however, generator \textit{\textbf{alt3}} sees the addition of the \textbf{GetChunks} function (alg. \ref{alg:Alt3GetChunks}) which is used to extract a number of chunks of consecutive data from the dataset and combine them into an \textit{aggregate chunk}. In particular, the function first computes the size of the resulting \textit{chunk aggregate} depending on the number of chunk indices specified and the chunk size (considering as a special case the last chunk of the dataset which may have a smaller size). Then, the \textit{chunk aggregate} itself is initialized as a series of properly sized empty tensors (one for samples features, one for labels and one for sha256 hashes) which are later filled sequentially by the data chunks got from the dataset tensors. Finally, the \textit{chunk aggregate} data gets shuffled in place, if needed, and returned.
@@ -2431,31 +2436,37 @@ The data loading code (generator \textit{\textbf{alt3}}) performance was evaluat
 \begin{figure}[h!]
 	\vspace*{-0.3cm}
 	\centering
-	\includegraphics[width=0.95\textwidth]{./images/speeds_heatmap.png}
-	\vspace*{-0.3cm}
+	\includegraphics[width=0.99\textwidth]{./images/speeds_heatmap.png}
+	\vspace*{-0.5cm}
 	\caption[Generator alt.3 speed heatmap]{Generator Alt.3 Speeds Heatmap, Higher is Better}
 	\label{fig:speeds_heatmap}
+	\vspace*{-0.3cm}
 \end{figure}
 
 \begin{figure}[h!]
 	\vspace*{-0.3cm}
 	\centering
-	\includegraphics[width=0.95\textwidth]{./images/times_heatmap.png}
-	\vspace*{-0.3cm}
+	\includegraphics[width=0.99\textwidth]{./images/times_heatmap.png}
+	\vspace*{-0.5cm}
 	\caption[Generator alt.3 elapsed times heatmap]{Generator Alt.3 Elapsed Times Heatmap, Lower is Better}
 	\label{fig:times_heatmap}
+	\vspace*{-0.3cm}
 \end{figure}
 
 Given the resulting heatmaps (\ref{fig:speeds_heatmap}, \ref{fig:times_heatmap}), for all the experiments conducted for this project \textit{\textbf{chunk\_size}} and {\textbf{n\_chunks}} were permanently set to \textbf{256}, which seemed to be a good compromise between data loading speed and samples dispersion.
 
 In any case, with respect to the previous solutions (original \textit{Pytorch} dataloader and the generators \textit{\textbf{alt1}} and \textit{\textbf{alt2}}) the speed up was huge. This new version took, in fact, approximately 15 minutes, on average, to complete 1 training epoch while the previous solution took, at best, $\sim6$ hours. Therefore this alternative generator was the one selected to be used for loading the dataset in all the conducted experiments. However, it has to be reiterated that this generator version works by approximating the random sampling step during training which in turn may hinder the model generalization on unseen samples. The results presented in this document may therefore be slightly lower than what could be achieved on a more powerful instance using the original \textit{Pytorch} dataloader.
 
+\vspace{-0.3cm}
 \section{Fresh Dataset}
 \begin{figure}[H]
+	\vspace*{-0.3cm}
 	\centering
 	\includegraphics[width=\textwidth]{./images/workflow_fresh_dataset.png}
+	\vspace*{-0.5cm}
 	\caption[Fresh dataset workflow steps]{Workflow steps which use the Fresh dataset}
 	\label{fig:workflow_fresh_dataset}
+	\vspace*{-0.3cm}
 \end{figure}
 
 In order to evaluate the learned implicit representation of PE files (embedding) of the proposed model on the malware family prediction and ranking tasks (fig. \ref{fig:workflow_fresh_dataset}), a further dataset, also referred to as \textit{\textbf{fresh\_dataset}} throughout this document (and in the code), was created. The same dataset was also later used to train, validate and evaluate the \textit{Malware Family Classifier} and \textit{Contrastive Learning Model} after being split into training, validation and test subsets. This dataset consisted of a number of sample files' feature vectors along with the corresponding family labels and sha256 hashes.
@@ -2492,6 +2503,8 @@ In particular, the \textit{\textbf{fresh dataset}} created for this project cons
 			\algstore{bkbreak}
 	\end{algorithmic}
 \end{algorithm}
+
+\newpage
 
 \begin{algorithm}[h!]
 	\caption{Fresh Dataset class, FromFile}\label{alg:FreshDatasetFromFile}
@@ -2616,6 +2629,8 @@ The dataset class used for opening the fresh dataset - shown in alg. \ref{alg:Fr
 
 Algorithm \ref{alg:FreshDataloaderDefinition} shows how the fresh dataset generator (Dataloader) gets instantiated. This dataloader instantiation is similar to the one previously presented when loading the Sorel-20m dataset through the Pytorch dataloader with the addition of the possibility to split the dataset into training, validation and test sub-sets. In particular, if the dataset split proportions are provided (in the form of a list containing 3 integer values), the dataset is split into training, validation and test subsets by first opening the entire fresh dataset and then splitting it by using the purposefully created \textbf{TrainValidTestSplit} function, presented in alg. \ref{alg:TrainValidTestSplit}. On the other hand, if the split proportions are not provided, the entire fresh dataset is opened from file without being split.
 
+\newpage
+
 The \textbf{TrainValidTestSplit} (alg. \ref{alg:TrainValidTestSplit}) function's purpose is that of splitting the tensors passed as input into 3 subsets, following the given proportions. This is done by first computing the number of samples, per family, to select for each of the sub-splits by multiplying the respective proportion by the Fresh Dataset total number of samples per family. The function then computes the sub-splits indices assigning the first '\textit{n\_samples}['test']' samples (per family) of the original dataset (which are the most recent ones) to the test sub-split, the following '\textit{n\_samples}['valid']' samples (per family) to the validations sub-split and the remaining ones (which are the least recent ones) to the training sub-split. Finally, the input tensors are split by indexing them using the previously computed indices.
 
 \subsection{Base Model Evaluation with Fresh Dataset}\label{sec:baseModelEvaluationWithFreshDataset}
@@ -2666,7 +2681,7 @@ The \textit{\textbf{EvaluateFresh}} function provides, together with the \textbf
 	\item the minimum \textbf{AP} (Average Precision).
 \end{itemize}
 
-For all the experiments presented in this document the number of query samples $q$ was set to 100.
+For all experiments presented in this document the number of query samples $q$ was set to 100.
 
 \subsection{Family Classifier Training and Evaluation}\label{sec:familyClassifierTrainingAndEvaluationDataset}
 \begin{figure}[H]
@@ -2806,64 +2821,66 @@ The final aggregate loss $L(\textbf{x}, y)$ is computed as the weighted sum of a
 	\end{algorithmic}
 \end{algorithm}
 
+Algorithms \ref{alg:alohaNetInit}, \ref{alg:alohaNetForward} and \ref{alg:alohaNetComputeLoss} show some pseudo-code describing how the \textit{ALOHA} model was actually implemented using \textit{Python} language and \textit{Pytorch} library. In particular alg. \ref{alg:alohaNetInit} describes how the the model is constructed/initialized: first the model shared base topology is defined as a sequence of layers composed each of a \textit{Pytorch} linear layer, a normalization layer (which can be chosen to be either \textit{Layer Normalization} or \textit{Batch Normalization}), an activation function dynamically chosen at network instantiation among the ones provided by \textit{Pytorch} library, and Dropout. Then, the \textit{malware} (\textit{Malicious/Benign}) head is defined as a single \textit{Pytorch} linear layer followed by a \textit{Sigmoid} activation. The \textit{Vendor Count} head, on the other hand is simply composed of a single linear layer followed by a Rectified Linear Unit (\textit{ReLU}) non linearity. Finally, the \textit{SMART Tag} prediction head consists of a sequence of 3 linear layers interleaved by \textit{ELU} activations and trailed by a final \textit{Sigmoid} activation function.
+
+\newpage
+
+Alg. \ref{alg:alohaNetForward}, instead, describes how the input data (PE file numerical feature vectors of size $=2381$) is forwarded through the network to produce the final predictions. In particular, the input feature vector first passes through the shared base topology to produce an intermediate representation \textit{base\_out}, which is then used as input for all the output heads to produce their predictions.
+
 \begin{algorithm}[h!]
 	\caption{ALOHA Net class, Compute Loss}\label{alg:alohaNetComputeLoss}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 		\Function{ComputeLoss}{\textit{predictions}, \textit{labels}, \textit{loss\_wts}}
-			\If{\textit{loss\_wts} \textbf{is} None}
-				\State \textit{loss\_wts} $\gets$ \{'malware': 1.0, 'count': 0.1, 'tags': 1.0\}
-			\EndIf
-			\State
-			\State \textit{loss\_dict} $\gets$ \{'total': 0.\}
-			\If{'malware' $\in$ \textit{labels}}
-				\State \textit{malware\_loss} $\gets$ \textbf{Binary\_cross\_entropy}(\textit{predictions}['malware']), \textit{labels}['malware'])
-				\State
-				\If{'malware' $\in$ \textit{loss\_wts}}
-					\State \textit{weight} $\gets$ \textit{loss\_wts}['malware']
-				\Else
-					\State \textit{weight} $\gets$ 1.0
-				\EndIf
-				\State
-				\State \textit{loss\_dict}['malware'] $\gets$ \textit{malware\_loss}
-				\State \textit{loss\_dict}['total'] $\gets$ \textit{loss\_dict}['total'] $+$ \textit{malware\_loss} $\times$ \textit{weight}
-			\EndIf
-			\State
-			\If{'count' $\in$ \textit{labels}}
-				\State \textit{count\_loss} $\gets$ \textbf{PoissonNLLLoss}(\textit{predictions}['count']), \textit{labels}['count'])
-				\State
-				\If{'count' $\in$ \textit{loss\_wts}}
-					\State \textit{weight} $\gets$ \textit{loss\_wts}['count']
-				\Else
-					\State \textit{weight} $\gets$ 1.0
-				\EndIf
-				\State
-				\State \textit{loss\_dict}['count'] $\gets$ \textit{count\_loss}
-				\State \textit{loss\_dict}['total'] $\gets$ \textit{loss\_dict}['total'] $+$ \textit{count\_loss} $\times$ \textit{weight}
-			\EndIf
-			\State
-			\If{'tags' $\in$ \textit{labels}}
-				\State \textit{tags\_loss} $\gets$ \textbf{Binary\_cross\_entropy}(\textit{predictions}['tags'], \textit{labels}['tags'])
-				\State
-				\If{'tags' $\in$ \textit{loss\_wts}}
-					\State \textit{weight} $\gets$ \textit{loss\_wts}['tags']
-				\Else
-					\State \textit{weight} $\gets$ 1.0
-				\EndIf
-				\State
-				\State \textit{loss\_dict}['tags'] $\gets$ \textit{tags\_loss}
-				\State \textit{loss\_dict}['total'] $\gets$ \textit{loss\_dict}['total'] $+$ \textit{tags\_loss} $\times$ \textit{weight}
-			\EndIf
-			\State
-			\State \textbf{return} \textit{loss\_dict}
+		\If{\textit{loss\_wts} \textbf{is} None}
+		\State \textit{loss\_wts} $\gets$ \{'malware': 1.0, 'count': 0.1, 'tags': 1.0\}
+		\EndIf
+		\State
+		\State \textit{loss\_dict} $\gets$ \{'total': 0.\}
+		\If{'malware' $\in$ \textit{labels}}
+		\State \textit{malware\_loss} $\gets$ \textbf{Binary\_cross\_entropy}(\textit{predictions}['malware']), \textit{labels}['malware'])
+		\State
+		\If{'malware' $\in$ \textit{loss\_wts}}
+		\State \textit{weight} $\gets$ \textit{loss\_wts}['malware']
+		\Else
+		\State \textit{weight} $\gets$ 1.0
+		\EndIf
+		\State
+		\State \textit{loss\_dict}['malware'] $\gets$ \textit{malware\_loss}
+		\State \textit{loss\_dict}['total'] $\gets$ \textit{loss\_dict}['total'] $+$ \textit{malware\_loss} $\times$ \textit{weight}
+		\EndIf
+		\State
+		\If{'count' $\in$ \textit{labels}}
+		\State \textit{count\_loss} $\gets$ \textbf{PoissonNLLLoss}(\textit{predictions}['count']), \textit{labels}['count'])
+		\State
+		\If{'count' $\in$ \textit{loss\_wts}}
+		\State \textit{weight} $\gets$ \textit{loss\_wts}['count']
+		\Else
+		\State \textit{weight} $\gets$ 1.0
+		\EndIf
+		\State
+		\State \textit{loss\_dict}['count'] $\gets$ \textit{count\_loss}
+		\State \textit{loss\_dict}['total'] $\gets$ \textit{loss\_dict}['total'] $+$ \textit{count\_loss} $\times$ \textit{weight}
+		\EndIf
+		\State
+		\If{'tags' $\in$ \textit{labels}}
+		\State \textit{tags\_loss} $\gets$ \textbf{Binary\_cross\_entropy}(\textit{predictions}['tags'], \textit{labels}['tags'])
+		\State
+		\If{'tags' $\in$ \textit{loss\_wts}}
+		\State \textit{weight} $\gets$ \textit{loss\_wts}['tags']
+		\Else
+		\State \textit{weight} $\gets$ 1.0
+		\EndIf
+		\State
+		\State \textit{loss\_dict}['tags'] $\gets$ \textit{tags\_loss}
+		\State \textit{loss\_dict}['total'] $\gets$ \textit{loss\_dict}['total'] $+$ \textit{tags\_loss} $\times$ \textit{weight}
+		\EndIf
+		\State
+		\State \textbf{return} \textit{loss\_dict}
 		\EndFunction
 		\EndClass
 	\end{algorithmic}
 \end{algorithm}
-
-Algorithms \ref{alg:alohaNetInit}, \ref{alg:alohaNetForward} and \ref{alg:alohaNetComputeLoss} show some pseudo-code describing how the \textit{ALOHA} model was actually implemented using \textit{Python} language and \textit{Pytorch} library. In particular alg. \ref{alg:alohaNetInit} describes how the the model is constructed/initialized: first the model shared base topology is defined as a sequence of layers composed each of a \textit{Pytorch} linear layer, a normalization layer (which can be chosen to be either \textit{Layer Normalization} or \textit{Batch Normalization}), an activation function dynamically chosen at network instantiation among the ones provided by \textit{Pytorch} library, and Dropout. Then, the \textit{malware} (\textit{Malicious/Benign}) head is defined as a single \textit{Pytorch} linear layer followed by a \textit{Sigmoid} activation. The \textit{Vendor Count} head, on the other hand is simply composed of a single linear layer followed by a Rectified Linear Unit (\textit{ReLU}) non linearity. Finally, the \textit{SMART Tag} prediction head consists of a sequence of 3 linear layers interleaved by \textit{ELU} activations and trailed by a final \textit{Sigmoid} activation function.
-
-Alg. \ref{alg:alohaNetForward}, instead, describes how the input data (PE file numerical feature vectors of size $=2381$) is forwarded through the network to produce the final predictions. In particular, the input feature vector first passes through the shared base topology to produce an intermediate representation \textit{base\_out}, which is then used as input for all the output heads to produce their predictions.
 
 Finally, in alg. \ref{alg:alohaNetComputeLoss} it is shown how the loss between the model predictions and the actual labels gets computed. In particular, the final total loss is the weighted sum of the losses of the different output heads which are enabled for the current run. Both the \textit{Malicious/Benign} and the \textit{SMART tags} prediction heads use the binary cross entropy loss function to compute the loss between their predictions and the ground truth labels. On the other hand, the \textit{Vendor Count} prediction head uses the PoissonNLLLoss (Negative log likelihood loss with Poisson distribution) function.
 
@@ -2969,50 +2986,85 @@ The predicted tag probabilities outputted by the \textit{Prediction Layer} are t
 	\end{algorithmic}
 \end{algorithm}
 
+Algorithm \ref{alg:jointEmbeddingNetInit} (\textbf{\textit{Joint Embedding} model init function}) shows how the \textbf{\textit{Joint Embedding}} model was implemented in \textit{Python}/\textit{Pytorch} code. More specifically, it describes how the network is initialized/defined: first a \textbf{base topology} is defined similarly to the one used in the \textbf{\textit{ALOHA}} model implementation previously described (a series of linear layers interleaved by normalization layers, activation functions and dropout). The \textbf{\textit{PE embedding}} sub-network is, on the other hand, defined as a simple linear layer with output size equal to the chosen \textit{embedding\_dimension}, followed by a Normalization layer and an activation function. Finally, the \textbf{\textit{Tags embedding}} is defined as an embedding matrix of size (\textit{n\_tags}, \textit{embedding\_dimension}), constraining the maximum norm of each tag embedding to \textit{max\_embedding\_norm} (set to 1 throughout the experiments).
+
+Alg. \ref{alg:jointEmbeddingNetForward} (\textbf{\textit{Joint Embedding} model forward function}), instead, describes how the input data (the PE files' numerical feature vectors) is forwarded through the network to produce the final tag predictions. In particular, the input data is first fed into the model base topology to produce an intermediate representation \textbf{\textit{base\_out}}. This transient output is then used as input for the \textbf{\textit{PE Embedding}} topology to produce the samples' representation in the joint embedding space (\textit{pe\_embedding}). On the other hand, the tags embeddings (one per tag) are extracted from the \textit{tags\_embedding} matrix. The \textbf{similarity scores} between the samples' and tags' embeddings are computed via a simple \textbf{\textit{dot product}} (implemented through a matrix multiplication) between the embeddings. Finally the tag probabilities are obtained by mapping the similarity scores to the range $[0,1]$ through the \textit{sigmoid} function.
+
+\newpage
+
+In alg. \ref{alg:jointEmbeddingNetForwardCosine} (\textbf{\textit{Joint Embedding} model forward function with \textit{cosine similarity}}) is presented an alternative to the aforementioned \textbf{Model forward function} that uses the \textbf{\textit{Cosine similarity}} instead of the \textbf{\textit{dot product}} to compute the similarity scores. For the most part this version is equal to the previous one but for how the similarity scores are computed. In fact, in this case they correspond to the \textbf{\textit{Cosine similarities}} between the \textbf{\textit{pe\_embedding}} and the \textbf{\textit{tags\_embedding}}, which are values in the range $[-1, 1]$, mapped to values in the $[0, 1]$ interval. Moreover, in this case, since the similarity scores are already in the $[0, 1]$ range, the tag probabilities coincide with the similarity scores.
+
 \begin{algorithm}[h!]
 	\caption{Joint Embedding Net class, Forward (with \textit{Cosine similarity})}\label{alg:jointEmbeddingNetForwardCosine}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
-			\Function{Forward}{\textit{self}, \textit{data}}
-			\State ...
-			\State \textit{similarity\_scores} $\gets$ \textbf{torch.div}(\textbf{torch.add}(\textbf{Cosine\_similarity}(
-			\State \hskip1.9em \textit{pe\_embedding}, \textit{tags\_embedding}, dim=2), 1.0), 2.0)
-			\State \textit{rv}['similarity'] $\gets$ \textit{similarity\_scores}
-			\State \textit{rv}['probability'] $\gets$ \textit{similarity\_scores}
-			\State \textbf{return} \textit{rv}
-			\EndFunction
+		\Function{Forward}{\textit{self}, \textit{data}}
+		\State ...
+		\State \textit{similarity\_scores} $\gets$ \textbf{torch.div}(\textbf{torch.add}(\textbf{Cosine\_similarity}(
+		\State \hskip1.9em \textit{pe\_embedding}, \textit{tags\_embedding}, dim=2), 1.0), 2.0)
+		\State \textit{rv}['similarity'] $\gets$ \textit{similarity\_scores}
+		\State \textit{rv}['probability'] $\gets$ \textit{similarity\_scores}
+		\State \textbf{return} \textit{rv}
+		\EndFunction
 		\algstore{bkbreak}
 	\end{algorithmic}
 \end{algorithm}
+
+A further alternative to the \textbf{Model forward function} which uses one of the \textit{Inverted Pairwise Euclidean Distances} proposed in sec. \ref{sec:jointEmbeddingModelImplementation} instead of the \textit{dot product}, is presented in alg. \ref{alg:jointEmbeddingNetForwardPairwiseDistance} (\textbf{\textit{Joint Embedding} model forward function with \textit{Inverted Pairwise Euclidean Distance}}). Again, this alternative is pretty much equal to the original forward function (alg. \ref{alg:jointEmbeddingNetForward}). In this case, however, the similarity scores are produced by inverting, through the use of the specially crafted \textbf{DistanceToSimilarity} function presented in alg. \ref{alg:distanceToSimilarityFunction} (which simply applies the selected distance inversion formula among the ones mentioned in sec. \ref{sec:jointEmbeddingModelImplementation}), the euclidean distances between the samples' and the tags' embeddings in the joint latent space.
 
 \begin{algorithm}[h!]
 	\caption{Joint Embedding Net class, Forward (with \textit{Inverted Pairwise Euclidean Distance})}\label{alg:jointEmbeddingNetForwardPairwiseDistance}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
-			\Function{Forward}{\textit{self}, \textit{data}}
-			\State ...
-			\State \textit{distances} $\gets$ \textbf{torch.cdist}(\textit{pe\_embedding}, \textit{tags\_embedding}, p=2.0)
-			\State \textit{similarity\_scores} $\gets$ \textbf{DistanceToSimilarity}(\textit{distances}, a=\textit{sim\_function\_a}, 
-			\State \hskip20.1em function=\textit{sim\_function})
-			\State \textit{rv}['similarity'] $\gets$ \textit{similarity\_scores}
-			\State \textit{rv}['probability'] $\gets$ \textit{similarity\_scores}
-			\State \textbf{return} \textit{rv}
-			\EndFunction
+		\Function{Forward}{\textit{self}, \textit{data}}
+		\State ...
+		\State \textit{distances} $\gets$ \textbf{torch.cdist}(\textit{pe\_embedding}, \textit{tags\_embedding}, p=2.0)
+		\State \textit{similarity\_scores} $\gets$ \textbf{DistanceToSimilarity}(\textit{distances}, a=\textit{sim\_function\_a}, 
+		\State \hskip20.1em function=\textit{sim\_function})
+		\State \textit{rv}['similarity'] $\gets$ \textit{similarity\_scores}
+		\State \textit{rv}['probability'] $\gets$ \textit{similarity\_scores}
+		\State \textbf{return} \textit{rv}
+		\EndFunction
 		\algstore{bkbreak}
 	\end{algorithmic}
 \end{algorithm}
 
 \begin{algorithm}[h!]
+	\caption{Distance-to-Similarity function}\label{alg:distanceToSimilarityFunction}
+	\begin{algorithmic}[1]
+		\Function{DistanceToSimilarity}{\textit{distance}, \textit{a}, \textit{function}}
+		\If{\textit{function} $=$ 'exp'}
+		\State \textit{similarity} $\gets$ \textbf{torch.exp}(\textbf{torch.div}(\textit{distances}, $-$\textit{a}))
+		\State
+		\ElsIf{\textit{function} $=$ 'inv'}
+		\State \textit{similarity} $\gets$ \textbf{torch.pow}(\textbf{torch.add}(\textbf{torch.div}(\textit{distances}, \textit{a}), 1.0), -1.0)
+		\State
+		\ElsIf{\textit{function} $=$ 'inv\_pow'}
+		\State \textit{similarity} $\gets$ \textbf{torch.pow}(
+		\State \hskip1.9em \textbf{torch.add}(\textbf{torch.div}(\textbf{torch.pow}(\textit{distances}, 2.0), \textit{a}), 1.0), -1.0)
+		\State
+		\Else
+		\State \textbf{raise} Exception
+		\EndIf
+		\State
+		\State \textbf{return} \textit{similarity}
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}
+
+Alg. \ref{alg:jointEmbeddingNetGetEmbedding} (\textbf{\textit{JointEmbedding} model get embedding function}) presents the \textit{GetEmbedding} function which is used to extract the PE embedding representation corresponding to the input file feature vector. This is particularly useful when performing different kinds of model performance evaluations together with the \textbf{GetSimilarity function}, which instead returns the similarity between two different input embeddings. Of course, depending on the similarity function selected at model definition the \textit{GetSimilarity} function has to be different. In particular, if the \textbf{dot product} is selected the function, shown in algorithm \ref{alg:jointEmbeddingNetGetSimilarity} (\textbf{\textit{JointEmbedding} model get similarity function with Dot Product}), simply computes the similarity scores as the dot product between the two input embeddings and then defines the probabilities by further applying the sigmoid activation function on those scores. On the other hand, if the \textbf{cosine similarity} is selected, the function (\ref{alg:jointEmbeddingNetGetSimilarityCosine} - \textbf{\textit{JointEmbedding} model get similarity function with Cosine Similarity}) assigns to both similarity scores and resulting probabilities the normalized (to the $[0,1]$ range) cosine similarity between the two embeddings. Finally, in case the \textbf{Inverted Pairwise Euclidean Distance} is selected, the function (\ref{alg:jointEmbeddingNetGetSimilarityPairwiseDistance} - \textbf{\textit{JointEmbedding} model get similarity function with Inverted Pairwise Euclidean Distance}) first computes the euclidean distance between the two input embeddings and then assigns to both similarity scores and resulting probabilities the inversion of such distances through the use of the \textit{DistanceToSimilarity} function.
+
+\begin{algorithm}[h!]
 	\caption{Joint Embedding Net class, GetEmbedding}\label{alg:jointEmbeddingNetGetEmbedding}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
-			\Function{GetEmbedding}{\textit{self}, \textit{data}}
-			\State \textit{rv} $\gets$ \{\}
-			\State \textit{base\_out} $\gets$ \textit{self}.\textit{model\_base}(\textit{data})
-			\State \textit{pe\_embedding} $\gets$ \textit{self}.\textit{pe\_embedding}(\textit{base\_out})
-			\State \textit{rv}['embedding'] $\gets$ \textit{pe\_embedding}
-			\State \textbf{return} \textit{rv}
-			\EndFunction
+		\Function{GetEmbedding}{\textit{self}, \textit{data}}
+		\State \textit{rv} $\gets$ \{\}
+		\State \textit{base\_out} $\gets$ \textit{self}.\textit{model\_base}(\textit{data})
+		\State \textit{pe\_embedding} $\gets$ \textit{self}.\textit{pe\_embedding}(\textit{base\_out})
+		\State \textit{rv}['embedding'] $\gets$ \textit{pe\_embedding}
+		\State \textbf{return} \textit{rv}
+		\EndFunction
 		\algstore{bkbreak}
 	\end{algorithmic}
 \end{algorithm}
@@ -3021,11 +3073,11 @@ The predicted tag probabilities outputted by the \textit{Prediction Layer} are t
 	\caption{Joint Embedding Net class, GetSimilarity (with \textit{Dot Product})}\label{alg:jointEmbeddingNetGetSimilarity}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
-			\Function{GetSimilarity}{\textit{self}, \textit{first\_embedding}, \textit{second\_embedding}}
-				\State \textit{similarity\_scores} $\gets$ \textbf{torch.matmul}(\textit{first\_embedding}, \textit{second\_embedding}.\textbf{T})
-				\State
-				\State \textbf{return} \{'similarity': \textit{similarity\_scores}, 'probability': \textit{self.sigmoid}(\textit{similarity\_scores})\}
-			\EndFunction
+		\Function{GetSimilarity}{\textit{self}, \textit{first\_embedding}, \textit{second\_embedding}}
+		\State \textit{similarity\_scores} $\gets$ \textbf{torch.matmul}(\textit{first\_embedding}, \textit{second\_embedding}.\textbf{T})
+		\State
+		\State \textbf{return} \{'similarity': \textit{similarity\_scores}, 'probability': \textit{self.sigmoid}(\textit{similarity\_scores})\}
+		\EndFunction
 		\algstore{bkbreak}
 	\end{algorithmic}
 \end{algorithm}
@@ -3034,12 +3086,12 @@ The predicted tag probabilities outputted by the \textit{Prediction Layer} are t
 	\caption{Joint Embedding Net class, GetSimilarity (with \textit{Cosine similarity})}\label{alg:jointEmbeddingNetGetSimilarityCosine}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
-			\Function{GetSimilarity}{\textit{self}, \textit{first\_embedding}, \textit{second\_embedding}}
-				\State \textit{similarity\_scores} $\gets$ \textbf{torch.div}(\textbf{torch.add}(\textbf{F.cosine\_similarity}(
-				\State \hskip1.9em \textit{first\_embedding}, \textit{second\_embedding}), 1.0), 2.0)
-				\State
-				\State \textbf{return} \{'similarity': \textit{similarity\_scores}, 'probability': \textit{similarity\_scores}\}
-			\EndFunction
+		\Function{GetSimilarity}{\textit{self}, \textit{first\_embedding}, \textit{second\_embedding}}
+		\State \textit{similarity\_scores} $\gets$ \textbf{torch.div}(\textbf{torch.add}(\textbf{F.cosine\_similarity}(
+		\State \hskip1.9em \textit{first\_embedding}, \textit{second\_embedding}), 1.0), 2.0)
+		\State
+		\State \textbf{return} \{'similarity': \textit{similarity\_scores}, 'probability': \textit{similarity\_scores}\}
+		\EndFunction
 		\algstore{bkbreak}
 	\end{algorithmic}
 \end{algorithm}
@@ -3048,68 +3100,37 @@ The predicted tag probabilities outputted by the \textit{Prediction Layer} are t
 	\caption{Joint Embedding Net class, GetSimilarity (with \textit{Inverted Pairwise Euclidean Distance})}\label{alg:jointEmbeddingNetGetSimilarityPairwiseDistance}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
-			\Function{GetSimilarity}{\textit{self}, \textit{first\_embedding}, \textit{second\_embedding}}
-				\State \textit{distances} $\gets$ \textbf{torch.cdist}(\textit{first\_embedding}, \textit{second\_embedding}, p=2.0)
-				\State \textit{similarity\_scores} $\gets$ \textbf{DistanceToSimilarity}(\textit{distances}, a=\textit{self.embedding\_dimension},
-				\State \hskip20em function=\textit{sim\_function})
-				\State
-				\State \textbf{return} \{'similarity': \textit{similarity\_scores}, 'probability': \textit{similarity\_scores}\}
-			\EndFunction
+		\Function{GetSimilarity}{\textit{self}, \textit{first\_embedding}, \textit{second\_embedding}}
+		\State \textit{distances} $\gets$ \textbf{torch.cdist}(\textit{first\_embedding}, \textit{second\_embedding}, p=2.0)
+		\State \textit{similarity\_scores} $\gets$ \textbf{DistanceToSimilarity}(\textit{distances}, a=\textit{self.embedding\_dimension},
+		\State \hskip20em function=\textit{sim\_function})
+		\State
+		\State \textbf{return} \{'similarity': \textit{similarity\_scores}, 'probability': \textit{similarity\_scores}\}
+		\EndFunction
 		\algstore{bkbreak}
 	\end{algorithmic}
 \end{algorithm}
+
+\newpage
 
 \begin{algorithm}[h!]
 	\caption{Joint Embedding Net class, Compute Loss}\label{alg:jointEmbeddingNetComputeLoss}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
-			\Function{ComputeLoss}{\textit{predictions}, \textit{labels}, \textit{loss\_wts}}
-			\State \textit{loss\_dict} $\gets$ \{'total': 0.\}
-			\State
-			\State \textit{similarity\_loss} $\gets$ \textbf{Binary\_cross\_entropy}(
-			\State \hskip1.9em \textit{predictions}['probability'], \textit{labels}['tags'], reduction='none').\textbf{sum}(dim=1).\textbf{mean}(dim=0)
-			\State
-			\State \textit{loss\_dict}['jointEmbedding'] $\gets$ \textit{similarity\_loss}
-			\State \textit{loss\_dict}['total'] $\gets$ \textit{similarity\_loss}
-			\State
-			\State \textbf{return} \textit{loss\_dict}
-			\EndFunction
+		\Function{ComputeLoss}{\textit{predictions}, \textit{labels}, \textit{loss\_wts}}
+		\State \textit{loss\_dict} $\gets$ \{'total': 0.\}
+		\State
+		\State \textit{similarity\_loss} $\gets$ \textbf{Binary\_cross\_entropy}(
+		\State \hskip1.9em \textit{predictions}['probability'], \textit{labels}['tags'], reduction='none').\textbf{sum}(dim=1).\textbf{mean}(dim=0)
+		\State
+		\State \textit{loss\_dict}['jointEmbedding'] $\gets$ \textit{similarity\_loss}
+		\State \textit{loss\_dict}['total'] $\gets$ \textit{similarity\_loss}
+		\State
+		\State \textbf{return} \textit{loss\_dict}
+		\EndFunction
 		\EndClass
 	\end{algorithmic}
 \end{algorithm}
-
-\begin{algorithm}[h!]
-	\caption{Distance-to-Similarity function}\label{alg:distanceToSimilarityFunction}
-	\begin{algorithmic}[1]
-		\Function{DistanceToSimilarity}{\textit{distance}, \textit{a}, \textit{function}}
-			\If{\textit{function} $=$ 'exp'}
-				\State \textit{similarity} $\gets$ \textbf{torch.exp}(\textbf{torch.div}(\textit{distances}, $-$\textit{a}))
-				\State
-			\ElsIf{\textit{function} $=$ 'inv'}
-				\State \textit{similarity} $\gets$ \textbf{torch.pow}(\textbf{torch.add}(\textbf{torch.div}(\textit{distances}, \textit{a}), 1.0), -1.0)
-				\State
-			\ElsIf{\textit{function} $=$ 'inv\_pow'}
-				\State \textit{similarity} $\gets$ \textbf{torch.pow}(
-				\State \hskip1.9em \textbf{torch.add}(\textbf{torch.div}(\textbf{torch.pow}(\textit{distances}, 2.0), \textit{a}), 1.0), -1.0)
-				\State
-			\Else
-				\State \textbf{raise} Exception
-			\EndIf
-			\State
-			\State \textbf{return} \textit{similarity}
-		\EndFunction
-	\end{algorithmic}
-\end{algorithm}
-
-Algorithm \ref{alg:jointEmbeddingNetInit} (\textbf{\textit{Joint Embedding} model init function}) shows how the \textbf{\textit{Joint Embedding}} model was implemented in \textit{Python}/\textit{Pytorch} code. More specifically, it describes how the network is initialized/defined: first a \textbf{base topology} is defined similarly to the one used in the \textbf{\textit{ALOHA}} model implementation previously described (a series of linear layers interleaved by normalization layers, activation functions and dropout). The \textbf{\textit{PE embedding}} sub-network is, on the other hand, defined as a simple linear layer with output size equal to the chosen \textit{embedding\_dimension}, followed by a Normalization layer and an activation function. Finally, the \textbf{\textit{Tags embedding}} is defined as an embedding matrix of size (\textit{n\_tags}, \textit{embedding\_dimension}), constraining the maximum norm of each tag embedding to \textit{max\_embedding\_norm} (set to 1 throughout the experiments).
-
-Alg. \ref{alg:jointEmbeddingNetForward} (\textbf{\textit{Joint Embedding} model forward function}), instead, describes how the input data (the PE files' numerical feature vectors) is forwarded through the network to produce the final tag predictions. In particular, the input data is first fed into the model base topology to produce an intermediate representation \textbf{\textit{base\_out}}. This transient output is then used as input for the \textbf{\textit{PE Embedding}} topology to produce the samples' representation in the joint embedding space (\textit{pe\_embedding}). On the other hand, the tags embeddings (one per tag) are extracted from the \textit{tags\_embedding} matrix. The \textbf{similarity scores} between the samples' and tags' embeddings are computed via a simple \textbf{\textit{dot product}} (implemented through a matrix multiplication) between the embeddings. Finally the tag probabilities are obtained by mapping the similarity scores to the range $[0,1]$ through the \textit{sigmoid} function.
-
-In alg. \ref{alg:jointEmbeddingNetForwardCosine} (\textbf{\textit{Joint Embedding} model forward function with \textit{cosine similarity}}) is presented an alternative to the aforementioned \textbf{Model forward function} that uses the \textbf{\textit{Cosine similarity}} instead of the \textbf{\textit{dot product}} to compute the similarity scores. For the most part this version is equal to the previous one but for how the similarity scores are computed. In fact, in this case they correspond to the \textbf{\textit{Cosine similarities}} between the \textbf{\textit{pe\_embedding}} and the \textbf{\textit{tags\_embedding}}, which are values in the range $[-1, 1]$, mapped to values in the $[0, 1]$ interval. Moreover, in this case, since the similarity scores are already in the $[0, 1]$ range, the tag probabilities coincide with the similarity scores.
-
-A further alternative to the \textbf{Model forward function} which uses one of the \textit{Inverted Pairwise Euclidean Distances} proposed in sec. \ref{sec:jointEmbeddingModelImplementation} instead of the \textit{dot product}, is presented in alg. \ref{alg:jointEmbeddingNetForwardPairwiseDistance} (\textbf{\textit{Joint Embedding} model forward function with \textit{Inverted Pairwise Euclidean Distance}}). Again, this alternative is pretty much equal to the original forward function (alg. \ref{alg:jointEmbeddingNetForward}). In this case, however, the similarity scores are produced by inverting, through the use of the specially crafted \textbf{DistanceToSimilarity} function presented in alg. \ref{alg:distanceToSimilarityFunction} (which simply applies the selected distance inversion formula among the ones mentioned in sec. \ref{sec:jointEmbeddingModelImplementation}), the euclidean distances between the samples' and the tags' embeddings in the joint latent space.
-
-Alg. \ref{alg:jointEmbeddingNetGetEmbedding} (\textbf{\textit{JointEmbedding} model get embedding function}) presents the \textit{GetEmbedding} function which is used to extract the PE embedding representation corresponding to the input file feature vector. This is particularly useful when performing different kinds of model performance evaluations together with the \textbf{GetSimilarity function}, which instead returns the similarity between two different input embeddings. Of course, depending on the similarity function selected at model definition the \textit{GetSimilarity} function has to be different. In particular, if the \textbf{dot product} is selected the function, shown in algorithm \ref{alg:jointEmbeddingNetGetSimilarity} (\textbf{\textit{JointEmbedding} model get similarity function with Dot Product}), simply computes the similarity scores as the dot product between the two input embeddings and then defines the probabilities by further applying the sigmoid activation function on those scores. On the other hand, if the \textbf{cosine similarity} is selected, the function (\ref{alg:jointEmbeddingNetGetSimilarityCosine} - \textbf{\textit{JointEmbedding} model get similarity function with Cosine Similarity}) assigns to both similarity scores and resulting probabilities the normalized (to the $[0,1]$ range) cosine similarity between the two embeddings. Finally, in case the \textbf{Inverted Pairwise Euclidean Distance} is selected, the function (\ref{alg:jointEmbeddingNetGetSimilarityPairwiseDistance} - \textbf{\textit{JointEmbedding} model get similarity function with Inverted Pairwise Euclidean Distance}) first computes the euclidean distance between the two input embeddings and then assigns to both similarity scores and resulting probabilities the inversion of such distances through the use of the \textit{DistanceToSimilarity} function.
 
 Finally, in algorithm \ref{alg:jointEmbeddingNetComputeLoss} it is described how the loss, which guides the training procedure, is computed. In particular, it corresponds to the \textbf{binary cross entropy loss} between the predicted tag probabilities and the actual tag labels, as depicted by the formulas mentioned in paragraph \ref{par:tagPredictionImplementation}.
 
