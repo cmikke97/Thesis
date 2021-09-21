@@ -3322,8 +3322,7 @@ Finally the individual head losses are aggregated together by computing their we
 			\State \hskip1.9em \textit{normalization\_function}(\textit{self}.\textit{embedding\_dimension}),
 			\State \hskip1.9em \textit{activation\_function}())
 			\State
-			\State \textit{self}.\textit{malware\_head} $\gets$ \textbf{nn.Sequential}(\textbf{nn.Linear}(\textit{layer\_sizes}[-1], 1),
-			\State \hskip16.5em \textbf{nn.Sigmoid}())
+			\State \textit{self}.\textit{malware\_head} $\gets$ \textbf{nn.Sequential}(\textbf{nn.Linear}(\textit{layer\_sizes}[-1], 1), \textbf{nn.Sigmoid}())
 			\State
 			\State \textit{self}.\textit{count\_head} $\gets$ \textbf{nn.Sequential}(\textbf{nn.Linear}(\textit{layer\_sizes}[-1], 1), \textbf{nn.ReLU}())
 			\State
@@ -3472,23 +3471,29 @@ The final \textbf{Proposed Model} architecture consisted of 5 layers of sizes 10
 
 The \textbf{Proposed Model} evaluation results are reported in chapter \ref{chap:results}.
 
+\vspace{-0.2cm}
 \subsection{Training and Evaluation algorithms}
+\vspace{-0.2cm}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{./images/workflow_sorel.png}
 	\caption[Training and evaluation workflow steps]{Model Training and Evaluation Workflow steps}
 	\label{fig:workflow_proposed_train_eval_plot}
 \end{figure}
+\vspace{-0.2cm}
 
 As previously mentioned in section \ref{sec:alohaAndJointEmbeddingTrainAndEvaluate}, the \textbf{\textit{Proposed Model}} training and evaluation procedures are the same as the ones used for the \textbf{\textit{ALOHA}} and \textbf{\textit{Joint Embedding}} model implementations. In particular, the training procedure is presented in alg. \ref{alg:trainNetworkFunction}, while the model evaluation is shown in alg. \ref{alg:evaluateNetworkFunction}.
 
+\vspace{-0.2cm}
 \subsection{Evaluate Fresh algorithm}
+\vspace{-0.2cm}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{./images/workflow_base_fresh_dataset.png}
 	\caption[Model fresh evaluation workflow steps]{Model Fresh Dataset Evaluation Workflow steps}
 	\label{fig:workflow_fresh_eval_all}
 \end{figure}
+\vspace{-0.2cm}
 
 \begin{algorithm}[h!]
 	\caption{Evaluate Fresh function}\label{alg:evaluateFreshFunction}
@@ -3533,7 +3538,6 @@ As previously mentioned, both the \textbf{\textit{Proposed Model}} and the \text
 			\State \textit{model}.\textbf{eval}()
 			\State \textit{generator} $\gets$ \textbf{get\_generator}(\textit{ds\_path}, \textit{batch\_size}, return\_shas=True, shuffle=True)
 			\State \textit{predictions} $\gets$ \{\}
-			\State
 			\ForAll{\textit{k}, \textit{n\_anchors} $\in$ \textbf{enumerate}(\textbf{range}(\textit{min\_anchors}, \textit{max\_anchors} $+ 1$))}
 				\State \textit{predictions}[\textit{n\_anchors}] $\gets$ [ ]
 				\State
@@ -3558,7 +3562,7 @@ As previously mentioned, both the \textbf{\textit{Proposed Model}} and the \text
 	\end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}[h!]
+\begin{algorithm}[hb!]
 	\caption{Evaluate Fresh Rankings function}\label{alg:evaluateFreshRankingsFunction}
 	\begin{algorithmic}[1]
 			\Function{EvaluateFreshRankings}{\textit{ds\_path}, \textit{checkpoint\_path}, \textit{net\_type}, \textit{n\_query\_samples}, \textit{n\_evaluations}, \textit{batch\_size}}
@@ -3577,7 +3581,6 @@ As previously mentioned, both the \textbf{\textit{Proposed Model}} and the \text
 			\State \textit{generator} $\gets$ \textit{get\_generator}(\textit{ds\_path}, \textit{batch\_size}, return\_shas=True, shuffle=True)
 			\State \textit{ranking\_scores} $\gets$ {'MRR': [ ], 'MAP': [ ]}
 			\State \textit{global\_ranks\_to\_save} $\gets$ None
-			\State
 			\ForAll{\textit{j} $\in$ \textbf{range}(\textit{n\_evaluations})}
 				\State \textit{queries} $\gets$ \textbf{GetSamples}(\textit{model}, \textit{generator}, \textit{n\_families}, \textit{n\_query\_samples})
 				\State \textit{rank\_per\_query} $\gets$ [ ]
@@ -3609,6 +3612,10 @@ As previously mentioned, both the \textbf{\textit{Proposed Model}} and the \text
 	\end{algorithmic}
 \end{algorithm}
 
+The \textbf{\textit{EvaluateFreshScores}} function, shown in alg. \ref{alg:evaluateFreshScoresFunction}, begins by importing the '\textit{Net}' class corresponding to the chosen \textit{net\_type} and then instantiates it by providing the needed arguments (such as the \textit{feature\_dimension}, the \textit{embedding\_dimension}, the \textit{layer\_sizes}, etc.). Next, the function loads the model checkpoint state parameters corresponding to the selected training run, it sets the model into \textit{evaluation} mode and instantiates the fresh dataset generator (dataloader). After these preliminary steps, for all the values of '\textit{n\_anchors}' between '\textit{min\_anchors}' and '\textit{max\_anchors}' (included), the function performs '\textit{n\_evaluations}' evaluations recording the model predictions, which will be later used to compute the corresponding accuracy (and other statistics) results. In particular, for each evaluation '\textit{n\_anchors}' anchor samples and '\textit{n\_queries}' query samples, per-family, are randomly selected (without overlaps) from the fresh dataset using the \textbf{GetSamples} function and the similarity scores between their embeddings are computed by using the model's \textbf{GetSimilarity} function. Finally, the function produces and saves to file the family predictions, by getting, for each query sample, the family label of the most similar anchor sample in the previously computed similarity score matrix. Moreover, the function also computes the per-sample family label probabilities by retrieving the similarity score corresponding to the most similar anchor sample, for each family, and subsequently applying the \textit{Softmax} function to the resulting list of family scores.
+
+The \textbf{\textit{EvaluateFreshRankings}} function, presented in algorithm \ref{alg:evaluateFreshRankingsFunction}, again begins by importing the selected \textit{Net} class. It then instantiate the model with the needed parameters, loads the selected checkpoint state parameters, sets the model to \textit{evaluation} mode and defines the fresh dataset generator (dataloader). Next, for '\textit{n\_evaluations}' times, the function randomly selects '\textit{n\_query\_samples}' query samples, per family, from the previously defined fresh dataset \textit{generator}. The function then cycles through all the mini-batches of data from the fresh dataset generator and gets the samples embeddings by feeding the model with their numerical feature vectors. Then, in order to generate the family rankings, the function computes the similarity scores between the \textbf{query} samples' embeddings and the mini-batch embeddings (which may contain also the \textbf{query} sample latent representation) by using the model's \textit{GetSimilarity} function. Next, for each \textbf{query} sample the function generates one ranking by ordering the samples' \textit{shas}, \textit{family labels} and \textit{family names} by their similarity with the current \textbf{query} sample (excluding the current \textbf{query} sample from the ranking). Finally, the function uses the \textbf{ComputeRankingScores} function, presented in alg. \ref{alg:computeRankingScoresFunction}, to compute the \textit{MRR} and \textit{MAP} scores and save a bunch of interesting rankings, namely the ones which produced the maximum and minimum RR (reciprocal rank) and AP (average precision), for the current evaluation. The overall mean and standard deviation of both ranking scores are computed and saved at the end of the cycle.
+
 \begin{algorithm}[h!]
 	\caption{Compute Ranking Scores function}\label{alg:computeRankingScoresFunction}
 	\begin{algorithmic}[1]
@@ -3633,64 +3640,63 @@ As previously mentioned, both the \textbf{\textit{Proposed Model}} and the \text
 \begin{algorithm}[h!]
 	\caption{Get Samples function}\label{alg:getSamplesFunction}
 	\begin{algorithmic}[1]
-			\Function{GetSamples}{\textit{model}, \textit{generator}, \textit{n\_families}, \textit{n\_samples\_to\_get}, \textit{other}}
-			\State \textit{samples} $\gets$ None
-			\State \textit{samples\_families} $\gets$ [0 $\forall$ \_ $\in$ \textbf{range}(\textit{n\_families})]
-			\State
-			\ForAll{\textit{shas}, \textit{features}, \textit{labels} $\in$ \textit{generator}}
-				\If{\textit{other} \textbf{is not} None}
-					\State \textit{indices} $\gets$ [\textit{i} $\forall$ \textit{i}, \textit{sha} $\in$\ \textbf{enumerate}(\textit{shas}) \textbf{if} \textit{sha} \textbf{not in} \textit{other}['shas']]
-					\State \textit{shas} $\gets$ [\textit{shas}[\textit{i}] $\forall$ \textit{i} $\in$ \textit{indices}]
-					\State \textit{features} $\gets$ \textit{features}[\textit{indices}]
-					\State \textit{labels} $\gets$ \textit{labels}[\textit{indices}]
-				\EndIf
-				\State
-				\State \textit{embeddings} $\gets$ \textit{model}.\textbf{GetEmbedding}(\textit{features})['embedding']
-				\ForAll{\textit{n} $\in$ \textbf{range}(\textit{n\_families})}
-					\If{\textit{samples\_families}[\textit{n}] $\ge$ \textit{n\_samples\_to\_get}}
-						\textbf{continue}
-					\EndIf
-					\State
-					\State \textit{indices} $\gets$ [\textit{i} $\forall$ \textit{i}, \textit{label} $\in$ \textbf{enumerate}(\textit{labels}) \textbf{if} \textit{label} = \textit{n}]
-					\State \textit{indices} $\gets$ \textit{indices[:\textit{n\_samples\_to\_get}]} \textbf{if} \textbf{len}(\textit{indices}) $>$ \textit{n\_samples\_to\_get} \textbf{else} \textit{indices}
-					\If{\textit{samples} \textbf{is} None}
-						\State \textit{samples} $\gets$ \{'shas': [\textit{indices}],
-						\State \hskip5.6em 'labels': \textit{labels}[\textit{indices}],
-						\State \hskip5.6em 'features': \textit{features}[\textit{indices}],
-						\State \hskip5.6em 'embeddings': \textit{embeddings}[\textit{indices}]\}
-					\Else
-						\State \textit{samples}['shas'].\textbf{extend}(\textit{shas}[\textit{indices}])
-						\State \textit{samples}['labels'].\textbf{extend}(\textit{labels}[\textit{indices}])
-						\State \textit{samples}['features'].\textbf{extend}(\textit{features}[\textit{indices}])
-						\State \textit{samples}['embeddings'].\textbf{extend}(\textit{embeddings}[\textit{indices}])
-					\EndIf
-					\State
-					\State \textit{samples\_families}[\textit{n}] $\gets$ \textit{samples\_families}[\textit{n}] + \textbf{len}(\textit{indices})
-				\EndFor
-				\State
-				\If{\textbf{all}(\textit{n} $ge$ \textit{n\_samples\_to\_get} $\forall$ \textit{n} $\in$ \textit{samples\_families})}
-					\textbf{break}
-				\EndIf
-			\EndFor
-			\State
-			\State \textbf{return} \textit{samples}
+		\Function{GetSamples}{\textit{model}, \textit{generator}, \textit{n\_families}, \textit{n\_samples\_to\_get}, \textit{other}}
+		\State \textit{samples} $\gets$ None
+		\State \textit{samples\_families} $\gets$ [0 $\forall$ \_ $\in$ \textbf{range}(\textit{n\_families})]
+		\State
+		\ForAll{\textit{shas}, \textit{features}, \textit{labels} $\in$ \textit{generator}}
+		\If{\textit{other} \textbf{is not} None}
+		\State \textit{indices} $\gets$ [\textit{i} $\forall$ \textit{i}, \textit{sha} $\in$\ \textbf{enumerate}(\textit{shas}) \textbf{if} \textit{sha} \textbf{not in} \textit{other}['shas']]
+		\State \textit{shas} $\gets$ [\textit{shas}[\textit{i}] $\forall$ \textit{i} $\in$ \textit{indices}]
+		\State \textit{features} $\gets$ \textit{features}[\textit{indices}]
+		\State \textit{labels} $\gets$ \textit{labels}[\textit{indices}]
+		\EndIf
+		\State
+		\State \textit{embeddings} $\gets$ \textit{model}.\textbf{GetEmbedding}(\textit{features})['embedding']
+		\ForAll{\textit{n} $\in$ \textbf{range}(\textit{n\_families})}
+		\If{\textit{samples\_families}[\textit{n}] $\ge$ \textit{n\_samples\_to\_get}}
+		\textbf{continue}
+		\EndIf
+		\State
+		\State \textit{indices} $\gets$ [\textit{i} $\forall$ \textit{i}, \textit{label} $\in$ \textbf{enumerate}(\textit{labels}) \textbf{if} \textit{label} = \textit{n}]
+		\State \textit{indices} $\gets$ \textit{indices[:\textit{n\_samples\_to\_get}]} \textbf{if} \textbf{len}(\textit{indices}) $>$ \textit{n\_samples\_to\_get} \textbf{else} \textit{indices}
+		\If{\textit{samples} \textbf{is} None}
+		\State \textit{samples} $\gets$ \{'shas': [\textit{indices}],
+		\State \hskip5.6em 'labels': \textit{labels}[\textit{indices}],
+		\State \hskip5.6em 'features': \textit{features}[\textit{indices}],
+		\State \hskip5.6em 'embeddings': \textit{embeddings}[\textit{indices}]\}
+		\Else
+		\State \textit{samples}['shas'].\textbf{extend}(\textit{shas}[\textit{indices}])
+		\State \textit{samples}['labels'].\textbf{extend}(\textit{labels}[\textit{indices}])
+		\State \textit{samples}['features'].\textbf{extend}(\textit{features}[\textit{indices}])
+		\State \textit{samples}['embeddings'].\textbf{extend}(\textit{embeddings}[\textit{indices}])
+		\EndIf
+		\State
+		\State \textit{samples\_families}[\textit{n}] $\gets$ \textit{samples\_families}[\textit{n}] + \textbf{len}(\textit{indices})
+		\EndFor
+		\State
+		\If{\textbf{all}(\textit{n} $ge$ \textit{n\_samples\_to\_get} $\forall$ \textit{n} $\in$ \textit{samples\_families})}
+		\textbf{break}
+		\EndIf
+		\EndFor
+		\State
+		\State \textbf{return} \textit{samples}
 		\EndFunction
 	\end{algorithmic}
 \end{algorithm}
 
-The \textbf{\textit{EvaluateFreshScores}} function, shown in alg. \ref{alg:evaluateFreshScoresFunction}, begins by importing the '\textit{Net}' class corresponding to the chosen \textit{net\_type} and then instantiates it by providing the needed arguments (such as the \textit{feature\_dimension}, the \textit{embedding\_dimension}, the \textit{layer\_sizes}, etc.). Next, the function loads the model checkpoint state parameters corresponding to the selected training run, it sets the model into \textit{evaluation} mode and instantiates the fresh dataset generator (dataloader). After these preliminary steps, for all the values of '\textit{n\_anchors}' between '\textit{min\_anchors}' and '\textit{max\_anchors}' (included), the function performs '\textit{n\_evaluations}' evaluations recording the model predictions, which will be later used to compute the corresponding accuracy (and other statistics) results. In particular, for each evaluation '\textit{n\_anchors}' anchor samples and '\textit{n\_queries}' query samples, per-family, are randomly selected (without overlaps) from the fresh dataset using the \textbf{GetSamples} function and the similarity scores between their embeddings are computed by using the model's \textbf{GetSimilarity} function. Finally, the function produces and saves to file the family predictions, by getting, for each query sample, the family label of the most similar anchor sample in the previously computed similarity score matrix. Moreover, the function also computes the per-sample family label probabilities by retrieving the similarity score corresponding to the most similar anchor sample, for each family, and subsequently applying the \textit{Softmax} function to the resulting list of family scores.
-
-The \textbf{\textit{EvaluateFreshRankings}} function, presented in algorithm \ref{alg:evaluateFreshRankingsFunction}, again begins by importing the selected \textit{Net} class. It then instantiate the model with the needed parameters, loads the selected checkpoint state parameters, sets the model to \textit{evaluation} mode and defines the fresh dataset generator (dataloader). Next, for '\textit{n\_evaluations}' times, the function randomly selects '\textit{n\_query\_samples}' query samples, per family, from the previously defined fresh dataset \textit{generator}. The function then cycles through all the mini-batches of data from the fresh dataset generator and gets the samples embeddings by feeding the model with their numerical feature vectors. Then, in order to generate the family rankings, the function computes the similarity scores between the \textbf{query} samples' embeddings and the mini-batch embeddings (which may contain also the \textbf{query} sample latent representation) by using the model's \textit{GetSimilarity} function. Next, for each \textbf{query} sample the function generates one ranking by ordering the samples' \textit{shas}, \textit{family labels} and \textit{family names} by their similarity with the current \textbf{query} sample (excluding the current \textbf{query} sample from the ranking). Finally, the function uses the \textbf{ComputeRankingScores} function, presented in alg. \ref{alg:computeRankingScoresFunction}, to compute the \textit{MRR} and \textit{MAP} scores and save a bunch of interesting rankings, namely the ones which produced the maximum and minimum RR (reciprocal rank) and AP (average precision), for the current evaluation. The overall mean and standard deviation of both ranking scores are computed and saved at the end of the cycle.
-
 The \textbf{GetSamples} function (alg. \ref{alg:getSamplesFunction}), used by functions \textit{EvaluateFreshScores} and \textit{EvaluateFreshRankings} and presented in alg. \ref{alg:getSamplesFunction} selects '\textit{n\_samples\_to\_get}' samples for each of the '\textit{n\_families}' families from the provided \textit{generator} (fresh dataset) excluding samples present in the '\textit{other}' set (if provided). In order to do this, the function cycles through the provided \textit{generator} and gets the \textit{shas}, \textit{labels}, \textit{features} and \textit{embedding} of the samples not in the '\textit{other}' set and then selects, for each family, as many samples as possible until all families have exactly '\textit{n\_samples\_to\_get}' samples.
 
+\vspace{-0.3cm}
 \subsubsection{Fresh Results Computation and Plotting}
+\vspace{-0.3cm}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{./images/workflow_fresh_results.png}
 	\caption[Fresh results computation and plotting workflow step]{Fresh Results Computation and Plotting Workflow step}
 	\label{fig:workflow_fresh_results}
 \end{figure}
+\vspace{-0.3cm}
 
 The actual binary cross entropy statistics trends for the \textit{f-way} malware family classification task (\textit{Accuracy}, \textit{Recall}, \textit{precision} etc..) and the resulting \textit{AUC-ROC} score trends are computed, plotted and saved to file by a distinct set of functions which are not presented in this document given that they simply implement and apply the corresponding mathematical formulas.
 
@@ -3734,7 +3740,9 @@ where $N$ is the total number of samples for the current training mini-batch and
 \end{equation}
 where $x[j]$ denotes the sample class score for family $j$.
 
+\vspace{-0.2cm}
 \subsubsection{Net Definition}
+\vspace{-0.2cm}
 \begin{algorithm}[h!]
 	\caption{Malware Family Classifier Net class, Init part 1}\label{alg:malwareFamilyClassifierNetInitPt1}
 	\begin{algorithmic}[1]
@@ -3770,9 +3778,14 @@ where $x[j]$ denotes the sample class score for family $j$.
 				\State
 				\State \textit{self}.\textit{model\_base} $\gets$ \textbf{nn.Sequential}(*tuple(\textit{layers}))
 				\State \textit{self}.\textit{sigmoid} $\gets$ \textbf{nn.Sigmoid}()
+				\State
+				\State \textit{self}.\textit{pe\_embedding} $\gets$ \textbf{nn.Sequential}(
+				\State \hskip1.9em \textbf{nn.Linear}(\textit{layer\_sizes}[-1], \textit{self}.\textit{embedding\_dimension}),
+				\State \hskip1.9em \textit{normalization\_function}(\textit{self}.\textit{embedding\_dimension}),
+				\State \hskip1.9em \textit{activation\_function}())
 				\State \Comment Continues on next page..
 		\algstore{bkbreak}
-\end{algorithmic}
+	\end{algorithmic}
 \end{algorithm}
 
 \begin{algorithm}[h!]
@@ -3780,11 +3793,6 @@ where $x[j]$ denotes the sample class score for family $j$.
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 			\State \Comment Continued from previous page..
-			\State \textit{self}.\textit{pe\_embedding} $\gets$ \textbf{nn.Sequential}(
-			\State \hskip1.9em \textbf{nn.Linear}(\textit{layer\_sizes}[-1], \textit{self}.\textit{embedding\_dimension}),
-			\State \hskip1.9em \textit{normalization\_function}(\textit{self}.\textit{embedding\_dimension}),
-			\State \hskip1.9em \textit{activation\_function}())
-			\State
 			\ForAll{\textit{i}, \textit{ls} $\in$ \textbf{enumerate}(\textit{fam\_class\_layer\_sizes})}
 				\If{\textit{i} $=0$}
 					\State \textit{fam\_class\_layers}.\textbf{append}(\textbf{nn.Linear}(\textit{embedding\_dimension}, \textit{ls}))
@@ -3805,22 +3813,26 @@ where $x[j]$ denotes the sample class score for family $j$.
 	\end{algorithmic}
 \end{algorithm}
 
+Algorithm \ref{alg:malwareFamilyClassifierNetInitPt1}-\ref{alg:malwareFamilyClassifierNetInitPt2} (Malware Family Classifier Init function) shows how the Family Classifier model is initialized. In particular the function first defines the model \textit{shared base} topology (\textit{model\_base}) as a sequence of blocks composed each of a linear layer, a Normalization layer, an Activation function and dropout, exactly as previously done for the \textbf{\textit{Proposed Model}} implementation. Next, the \textit{pe\_embedding} topology is constructed as a single linear layer with output size equal to the \textit{embedding\_dimension} ($=32$), followed by a Normalization layer and an Activation function. Thereafter, the function defines the \textit{Family Classifier} topology as a sequence of dense blocks - equal to the ones used in the \textit{shared base} part - trailed by a final linear layer of output size equal to the number of family labels ($=10$) and, optionally, a \textit{Softmax} non-linearity.
+
 \begin{algorithm}[h!]
 	\caption{Malware Family Classifier Net class, Forward}\label{alg:malwareFamilyClassifierNetForward}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 		\Function{Forward}{\textit{self}, \textit{data}}
-			\State \textit{base\_out} $\gets$ \textit{self}.\textit{model\_base}(\textit{data})
-			\State \textit{pe\_embedding} $\gets$ \textit{self}.\textit{pe\_embedding}(\textit{base\_out})
-			\State \textit{scores} $\gets$ \textit{self}.\textit{families\_classifier}(\textit{pe\_embedding})
-			\State \textit{rv} $\gets$ \{'scores': \textit{scores},
-			\State \hskip3.1em 'probs': \textit{self}.\textit{softmax\_output}(\textit{scores})\}
-			\State
-			\State \textbf{return} \textit{rv}
+		\State \textit{base\_out} $\gets$ \textit{self}.\textit{model\_base}(\textit{data})
+		\State \textit{pe\_embedding} $\gets$ \textit{self}.\textit{pe\_embedding}(\textit{base\_out})
+		\State \textit{scores} $\gets$ \textit{self}.\textit{families\_classifier}(\textit{pe\_embedding})
+		\State \textit{rv} $\gets$ \{'scores': \textit{scores},
+		\State \hskip3.1em 'probs': \textit{self}.\textit{softmax\_output}(\textit{scores})\}
+		\State
+		\State \textbf{return} \textit{rv}
 		\EndFunction
 		\algstore{bkbreak}
 	\end{algorithmic}
 \end{algorithm}
+
+Algorithm \ref{alg:malwareFamilyClassifierNetForward} (\textbf{\textit{Malware Family Classifier} forward function}), on the other hand, shows how the input data (PE files' numerical feature vectors) is forwarded through the model. In particular, the function feeds the model base topology (\textit{model\_base}) with the input data producing an intermediate representation \textit{base\_out}. This intermediate representation is then forwarded to the \textit{pe\_embedding} subnet which outputs the input samples' PE latent representation (of size 32). At the beginning of the family classifier model training procedure, the mapping function between the samples' input features and the produced PE embeddings corresponds, if transfer Learning was applied, to the one learned by the \textbf{Proposed Model} using the Sorel-20m dataset. The output class (family) scores are computed by feeding the \textit{Family classifier} topology with the produced input samples' PE embeddings. Finally, the family probabilities are simply obtained by applying the \textit{Softmax} function to the previously computed family \textit{scores}.
 
 \begin{algorithm}[h!]
 	\caption{Malware Family Classifier Net class, Compute Loss}\label{alg:malwareFamilyClassifierNetComputeLoss}
@@ -3833,10 +3845,6 @@ where $x[j]$ denotes the sample class score for family $j$.
 		\EndClass
 	\end{algorithmic}
 \end{algorithm}
-
-Algorithm \ref{alg:malwareFamilyClassifierNetInitPt1}-\ref{alg:malwareFamilyClassifierNetInitPt2} (Malware Family Classifier Init function) shows how the Family Classifier model is initialized. In particular the function first defines the model \textit{shared base} topology (\textit{model\_base}) as a sequence of blocks composed each of a linear layer, a Normalization layer, an Activation function and dropout, exactly as previously done for the \textbf{\textit{Proposed Model}} implementation. Next, the \textit{pe\_embedding} topology is constructed as a single linear layer with output size equal to the \textit{embedding\_dimension} ($=32$), followed by a Normalization layer and an Activation function. Thereafter, the function defines the \textit{Family Classifier} topology as a sequence of dense blocks - equal to the ones used in the \textit{shared base} part - trailed by a final linear layer of output size equal to the number of family labels ($=10$) and, optionally, a \textit{Softmax} non-linearity.
-
-Algorithm \ref{alg:malwareFamilyClassifierNetForward} (\textbf{\textit{Malware Family Classifier} forward function}), on the other hand, shows how the input data (PE files' numerical feature vectors) is forwarded through the model. In particular, the function feeds the model base topology (\textit{model\_base}) with the input data producing an intermediate representation \textit{base\_out}. This intermediate representation is then forwarded to the \textit{pe\_embedding} subnet which outputs the input samples' PE latent representation (of size 32). At the beginning of the family classifier model training procedure, the mapping function between the samples' input features and the produced PE embeddings corresponds, if transfer Learning was applied, to the one learned by the \textbf{Proposed Model} using the Sorel-20m dataset. The output class (family) scores are computed by feeding the \textit{Family classifier} topology with the produced input samples' PE embeddings. Finally, the family probabilities are simply obtained by applying the \textit{Softmax} function to the previously computed family \textit{scores}.
 
 Finally, as presented by algorithm \ref{alg:malwareFamilyClassifierNetComputeLoss} (\textbf{\textit{Malware Family Classifier} compute loss function}) the loss between the predicted family scores and the ground truth family label is simply computed by applying the selected loss criterion, which corresponds in this case to the Pytorch \textbf{cross\_entropy\_loss} function.
 
@@ -3857,13 +3865,16 @@ The evaluation results of the \textit{Family Classifier} model implementation in
 
 Algorithms \ref{alg:trainFamilyClassifierFunctionPt1}-\ref{alg:trainFamilyClassifierFunctionPt2} (\textbf{Family Classifier Train function}) and \ref{alg:evaluateFamilyClassifierFunction} (\textbf{Family Classifier Evaluate function}) show how the \textbf{\textit{Family Classifier}} model implementation gets trained and evaluated using samples from the Fresh Dataset. 
 
+\vspace{-0.2cm}
 \subsubsection{Family Classifier Training}
+\vspace{-0.2cm}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{./images/workflow_family_classifier_train.png}
 	\caption[Family Classifier Training Workflow step]{Family Classifier Training Workflow step}
 	\label{fig:workflow_fam_train}
 \end{figure}
+\vspace{-0.2cm}
 
 \begin{algorithm}[h!]
 	\caption{Train Family Classifier function, part 1}\label{alg:trainFamilyClassifierFunctionPt1}
@@ -4011,6 +4022,7 @@ Algorithm \ref{alg:evaluateFamilyClassifierFunction} (\textbf{Family Classifier 
 The Family classifier evaluation \textbf{\textit{micro}} (global average), \textbf{\textit{macro}} (unweighted per-family average) and \textbf{\textit{weighted}} (per-family average, weighted by support) scores, such as '\textit{Jaccard similarity score}', '\textit{recall}', '\textit{precision}' and '\textit{f1-score}', are computed and saved to file, together with the resulting \textbf{OVO} (One Vs. One) and \textbf{OVR} (One Vs. Rest) AUC-ROC scores and confusion matrix, by a distinct set of functions - which simply apply the respective mathematical formulas - not presented in this document.
 
 \section{Contrastive Learning Model}
+Although the Family Classifier presented in the previous section manages to provide better results in the malware family prediction/classification task than the original \textbf{Proposed Model} learned representation of PE files, it still presents some limitations. One of the shortcomings of such model is the fact that, since the family prediction is obtained by applying the \textit{softmax} function on the model output tensor - of fixed size - which contains the per-family probabilities, it only works when a fixed number of families is defined. At model deployment time, however, it is very much convenient for malware analysts and system administrators to have a model that works with an indefinite number of malware families. In fact, with the ever increasing number of new malware families and variants that are appearing every day it is important to allow some degree of flexibility to the model by enabling the periodic updating of the model learned parameters with up-to-date samples even belonging to malware families never seen before.
 
 \subsection{Implementation}
 \begin{figure}[h!]
