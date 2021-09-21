@@ -3583,7 +3583,7 @@ As previously mentioned, both the \textbf{\textit{Proposed Model}} and the \text
 	\end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}[hb!]
+\begin{algorithm}[h!]
 	\caption{Evaluate Fresh Rankings function}\label{alg:evaluateFreshRankingsFunction}
 	\begin{algorithmic}[1]
 			\Function{EvaluateFreshRankings}{\textit{ds\_path}, \textit{checkpoint\_path}, \textit{net\_type}, \textit{n\_query\_samples}, \textit{n\_evaluations}, \textit{batch\_size}}
@@ -3708,7 +3708,7 @@ The \textbf{\textit{EvaluateFreshRankings}} function, presented in algorithm \re
 
 The \textbf{GetSamples} function (alg. \ref{alg:getSamplesFunction}), used by functions \textit{EvaluateFreshScores} and \textit{EvaluateFreshRankings} and presented in alg. \ref{alg:getSamplesFunction} selects '\textit{n\_samples\_to\_get}' samples for each of the '\textit{n\_families}' families from the provided \textit{generator} (fresh dataset) excluding samples present in the '\textit{other}' set (if provided). In order to do this, the function cycles through the provided \textit{generator} and gets the \textit{shas}, \textit{labels}, \textit{features} and \textit{embedding} of the samples not in the '\textit{other}' set and then selects, for each family, as many samples as possible until all families have exactly '\textit{n\_samples\_to\_get}' samples.
 
-\vspace{-0.3cm}
+\vspace{-0.4cm}
 \subsubsection{Fresh Results Computation and Plotting}
 \vspace{-0.3cm}
 \begin{figure}[H]
@@ -3834,7 +3834,7 @@ where $x[j]$ denotes the sample class score for family $j$.
 	\end{algorithmic}
 \end{algorithm}
 
-Algorithm \ref{alg:malwareFamilyClassifierNetInitPt1}-\ref{alg:malwareFamilyClassifierNetInitPt2} (Malware Family Classifier Init function) shows how the Family Classifier model is initialized. In particular the function first defines the model \textit{shared base} topology (\textit{model\_base}) as a sequence of blocks composed each of a linear layer, a Normalization layer, an Activation function and dropout, exactly as previously done for the \textbf{\textit{Proposed Model}} implementation. Next, the \textit{pe\_embedding} topology is constructed as a single linear layer with output size equal to the \textit{embedding\_dimension} ($=32$), followed by a Normalization layer and an Activation function. Thereafter, the function defines the \textit{Family Classifier} topology as a sequence of dense blocks - equal to the ones used in the \textit{shared base} part - trailed by a final linear layer of output size equal to the number of family labels ($=10$) and, optionally, a \textit{Softmax} non-linearity.
+Algorithms \ref{alg:malwareFamilyClassifierNetInitPt1}-\ref{alg:malwareFamilyClassifierNetInitPt2} (Malware Family Classifier Init function) shows how the Family Classifier model is initialized. In particular the function first defines the model \textit{shared base} topology (\textit{model\_base}) as a sequence of blocks composed each of a linear layer, a Normalization layer, an Activation function and dropout, exactly as previously done for the \textbf{\textit{Proposed Model}} implementation. Next, the \textit{pe\_embedding} topology is constructed as a single linear layer with output size equal to the \textit{embedding\_dimension} ($=32$), followed by a Normalization layer and an Activation function. Thereafter, the function defines the \textit{Family Classifier} topology as a sequence of dense blocks - equal to the ones used in the \textit{shared base} part - trailed by a final linear layer of output size equal to the number of family labels ($=10$) and, optionally, a \textit{Softmax} non-linearity.
 
 \begin{algorithm}[h!]
 	\caption{Malware Family Classifier Net class, Forward}\label{alg:malwareFamilyClassifierNetForward}

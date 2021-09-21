@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.9.11)  21 SEP 2021 19:33
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.9.11)  21 SEP 2021 19:41
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -1292,6 +1292,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 3547--3548
 ]path\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 net[]type\OT1/cmr/m/n/10 , \OT1/cmr/m/i
 t/10 n[]queries\OT1/cmr/m/n/10 ,
  []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [106 <./images/workflow_fresh_eval.png>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -3350,7 +3353,7 @@ IUNET/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><
 C:/Users/michele.INFOPIUNET/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
 sfonts/cm/cmtt8.pfb><C:/Users/michele.INFOPIUNET/AppData/Local/Programs/MiKTeX/
 fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Thesis_V1.0.0.pdf (160 pages, 7605873 bytes).
+Output written on Thesis_V1.0.0.pdf (160 pages, 7605883 bytes).
 PDF statistics:
  2822 PDF objects out of 2984 (max. 8388607)
  898 named destinations out of 1000 (max. 500000)
