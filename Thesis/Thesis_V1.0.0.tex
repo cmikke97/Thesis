@@ -4045,6 +4045,62 @@ The Family classifier evaluation \textbf{\textit{micro}} (global average), \text
 \section{Contrastive Learning Model}
 Although the Family Classifier presented in the previous section manages to provide better results in the malware family prediction/classification task than the original \textbf{Proposed Model} learned representation of PE files, it still presents some limitations. One of the shortcomings of such model is the fact that, since the family prediction is obtained by applying the \textit{softmax} function on the model output tensor - of fixed size - which contains the per-family probabilities, it only works when a fixed number of families is defined. At model deployment time, however, it is very much convenient for malware analysts and system administrators to have a model that works with an indefinite number of malware families. In fact, with the ever increasing number of new malware families and variants that are appearing every day it is important to allow some degree of flexibility to the model by enabling the periodic updating of the model learned parameters with up-to-date samples even belonging to malware families never seen before.
 
+A new model was therefore introduced in order to solve this problem
+
+\textit{\textbf{Siamese Network}}
+
+trained in a contrastive learning setting using the \textit{\textbf{Online Triplet Loss Mining}} approach.
+
+Triplet loss is a loss function frequently used in image recognition which was first introduced by the paper \cite{Schroff_FN} from Google for solving the face recognition task.
+
+Triplet loss in this case will be used to learn good embeddings for each input PE file. In the embedding space, PE files from the same family should be close together and form well separated clusters.
+
+The goal of the triplet loss is to make sure that:
+\begin{itemize}
+	\item Two examples with the same label have their embeddings close together in the embedding space
+	\item Two examples with different labels have their embeddings far away
+\end{itemize}
+
+At the same time, the loss function should also not push the train embeddings of each label to collapse into very small clusters during training.
+
+The triplet loss function the is defined over triplets of embeddings:
+\begin{itemize}
+	\item an \textbf{anchor} sample '$a$'
+	\item a \textbf{positive} sample '$p$' of the same class as the anchor
+	\item a \textbf{negative} sample '$n$' of a different class
+\end{itemize}
+
+Therefore the loss to minimize during training, given a triplet $(a, p, n)$ and a distance function $d(a, b)$ between two data points $a$ and $b$ (which was set to be the \textit{Euclidean Norm}), is:
+\begin{equation}
+	\mathcal{L} = \max(d(a, p) - d(a, n) + margin, 0)
+\end{equation}
+
+This pushes the distance $d(a, p)$ to $0$ and $d(a, n)$ to be greater than $d(a, p) + margin$. Moreover, as soon as '$n$' becomes an '\textit{easy negative}' the loss becomes $0$. The \textit{margin} present in the triplet loss, which is very similar to the margin used in SVMs, here is used to separate the clusters of each class.
+
+Given how the triplet loss was defined there are three categories of triplets:
+\begin{itemize}
+	\item \textbf{Easy triplets}: triplets which have a loss of $0$, because $d(a, p) + margin < d(a, n)$
+	\item \textbf{hard triplets}: triplets where the negative is closer to the anchor than the positive, i.e. $d(a, n) < d(a, p)$
+	\item \textbf{semi-hard triplets}: triplets where the negative is not closer to the anchor than the positive, but which still have positive loss: $d(a, p) < d(a, n) < d(a, p) + margin$
+\end{itemize}
+
+Since each of these definitions depend on where the negative is, relatively to the anchor and positive, the previously defined categories can be extended to the negatives samples: \textbf{hard negatives}, \textbf{semi-hard negatives} or \textbf{easy negatives}.
+
+There are two possible approaches to produce triplets from a dataset of samples belonging to different classes:
+\begin{itemize}
+	\item \textbf{Offline Triplet Mining}: following this approach the triplets are produced offline at the beginning of each epoch. In particular, all the embeddings on the training set are computed, and then only the hard or semi-hard triplets are selected. These triplets can then be used to train the model for one epoch.
+	
+	In practice, first a list of triplets $(i, j, k)$ is produced, then a series of batches of these triplets of size $B$ is created. This means that during training it is needed to compute $3B$ embeddings in order to get the $B$ triplets, compute the loss of these $B$ triplets and then back-propagate it through the network.
+	
+	This makes this approach not very efficient since it requires a full pass on the training set to generate triplets and to update the offline mined triplets regularly.
+	
+	\item \textbf{Online Triplet Mining}: following this approach the useful triplets are computed on the fly, for each batch of inputs. In practice, given a batch of $B$ examples (for instance $B$ PE files), $B$ embeddings are computed obtaining a maximum of $B^3$ triplets, most of which are not valid (i.e. they don?t have 2 positives and 1 negative).
+	
+	This technique provides more triplets for a single batch of inputs, and does not require any offline mining. It is therefore much more efficient.
+\end{itemize}
+
+
+
 \subsection{Implementation}
 \begin{figure}[h!]
 	\centering

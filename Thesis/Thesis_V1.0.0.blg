@@ -11,36 +11,36 @@ Warning--empty booktitle in LiPRTCMP
 Warning--empty booktitle in YouMOT
 Warning--empty booktitle in NguyenSPVD
 Warning--empty booktitle in MarcosAVclass
-You've used 65 entries,
+You've used 66 entries,
             1924 wiz_defined-function locations,
-            858 strings with 13510 characters,
-and the built_in function-call counts, 10781 in all, are:
-= -- 873
-> -- 419
+            867 strings with 13769 characters,
+and the built_in function-call counts, 10946 in all, are:
+= -- 886
+> -- 430
 < -- 0
-+ -- 175
-- -- 110
-* -- 632
-:= -- 1445
++ -- 179
+- -- 113
+* -- 647
+:= -- 1474
 add.period$ -- 0
-call.type$ -- 65
-change.case$ -- 68
+call.type$ -- 66
+change.case$ -- 69
 chr.to.int$ -- 0
-cite$ -- 69
-duplicate$ -- 473
-empty$ -- 1396
-format.name$ -- 110
-if$ -- 2724
+cite$ -- 70
+duplicate$ -- 481
+empty$ -- 1412
+format.name$ -- 113
+if$ -- 2761
 int.to.chr$ -- 0
-int.to.str$ -- 65
-missing$ -- 24
-newline$ -- 198
-num.names$ -- 52
-pop$ -- 420
+int.to.str$ -- 66
+missing$ -- 25
+newline$ -- 201
+num.names$ -- 53
+pop$ -- 423
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 396
+skip$ -- 399
 stack$ -- 0
 substring$ -- 295
 swap$ -- 84
@@ -49,7 +49,7 @@ text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 4
-while$ -- 74
-width$ -- 67
-write$ -- 542
+while$ -- 75
+width$ -- 68
+write$ -- 551
 (There were 5 warnings)
