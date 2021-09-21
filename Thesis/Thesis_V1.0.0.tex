@@ -1884,7 +1884,7 @@ In particular, on one hand the base model learned implicit representation of PE 
 
 On the other hand, the base model learned mapping of PE files in the embedding space is fine-tuned by training (and validating) a \textit{Siamese} network - obtained by duplicating the model base topology - in a contrastive learning setting. Again, the resulting model is then evaluated on the test subset of the \textit{\textbf{Fresh dataset}} and the corresponding results are computed and plotted.
 
-The whole process presented until now is repeated for \textit{n\_runs} times and finally the mean evaluation results are computed, aggregating the results of the single runs.
+The whole process presented until now is repeated for \textit{n\_runs} times and finally the base and contrastive models' mean evaluation results are computed, aggregating the results of the single runs.
 
 \section{Sorel 20M Dataset}
 \begin{figure}[H]
@@ -2669,6 +2669,13 @@ The \textit{\textbf{EvaluateFresh}} function provides, together with the \textbf
 For all the experiments presented in this document the number of query samples $q$ was set to 100.
 
 \subsection{Family Classifier Training and Evaluation}\label{sec:familyClassifierTrainingAndEvaluationDataset}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{./images/workflow_family_classifier.png}
+	\caption[Family Classifier training and evaluation workflow steps]{Family Classifier Training and Evaluation Workflow steps}
+	\label{fig:workflow_family_classifier}
+\end{figure}
+
 The Fresh Dataset - which contains $10.000$ samples of malicious PE files belonging to $10$ different malware families - provides, as previously mentioned, the information regarding the malware family each of its samples belongs to. When split into training, validation and test subsets, it can also be used to directly train, validate and evaluate a Malware Family Classifier model.
 
 When trying to improve the relatively poor results of the \textbf{Proposed Model} in the malware Family prediction task, the $10.000$ samples of the Fresh Dataset were divided following a 7-1-2 ratio: the training subset was created selecting the first $700$ samples, per family, and therefore consisted of $7.000$ samples. The validation and test subsets, instead, respectively consisted of $1.000$ and $2.000$ samples ($100$ and $200$ samples per family, respectively). The resulting dataset splits were then used to train (and evaluate) both a malware family classifier built on top of the \textbf{Proposed Model} (using \textit{transfer learning}) and a separate comparable malware family classifier trained from scratch. In particular, the training and validation subsets were used for training the classifier and validating its accuracy, while the test subset served for evaluating the classifier accuracy (and other classification scores) on unseen samples. The resulting multi-class classification statistics, which included \textit{accuracy}, \textit{Jaccard Similarity score}, \textit{recall}, \textit{precision}, \textit{f1-score} were then computed and plotted together with the resulting model \textit{AUC-ROC} scores and confusion matrixes.
@@ -2683,6 +2690,13 @@ In particular, the \textit{Jaccard Similarity score}, \textit{recall}, \textit{p
 \end{itemize}
 
 \subsection{Contrastive Learning Model Training and Evaluation}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{./images/workflow_contrastive_model.png}
+	\caption[Contrastive Model training and evaluation workflow steps]{Contrastive Model Training and Evaluation Workflow steps}
+	\label{fig:workflow_contrastive_model}
+\end{figure}
+
 At a later moment the training, validation and test subsets of the Fresh Dataset - obtained as described in the previous section (\ref{sec:familyClassifierTrainingAndEvaluationDataset}) by following a 7-1-2 ratio - were also used both to fine-tune (and evaluate) the parameters from a previous \textbf{Proposed Model} training run using a \textit{Siamese} network (with \textit{transfer learning}) and to train (and evaluate) an identical \textit{Siamese} network entirely from scratch (with no \textit{transfer learning} applied). In particular, the training and validation subsets were used for training the \textit{Siamese} network in a contrastive learning setting by optimizing a \textit{Triplet Loss} function, while the test subset was utilized to evaluate the resulting refined/learned implicit representation of PE files in the malware Family Classification (using \textbf{k-NN} - k Nearest Neighbours - approach) and ranking tasks. The resulting rankings, MAP and MRR scores along with the multi-class classification statistics - including \textit{accuracy}, \textit{Jaccard Similarity score}, \textit{recall}, \textit{precision} and \textit{f1-score} (\textbf{micro}, \textbf{macro} and \textbf{weighted} averaged) - were then computed and plotted together with the resulting confusion matrix.
 
 The malware family predictions and rankings, in this case, were obtained in a slightly different way with respect to how it was done when evaluating the \textbf{Proposed Model} on the same tasks, as described in section \ref{sec:baseModelEvaluationWithFreshDataset}. In particular, the rankings were created by considering the samples from the test subset as anchors and the samples from the training subset as query samples, generating one ranking per anchor by sorting the query samples based on their \textit{Euclidean} distance to the current anchor and then truncating the resulting rankings to the top '\textit{q}' ($= 100$ in all experiments) samples. On the other hand, the family classification predictions were obtained by applying the \textbf{Distance Weighted k-NN} approach on the newly created rankings using odd values of '\textit{k}' from '\textit{k\_nn\_min}' ($= 1$) to '\textit{k\_nn\_max}' ($= 11$). In particular, the \textbf{Distance Weighted k-NN} approach is a refinement of the k-NN classification algorithm which consists of weighing the contribution of each of the k nearest neighbours according to their distance to the current anchor sample $x_q$, ultimately assigning greater weights $w_i$ to closer neighbours. The \textbf{k-NN} decision function was therefore the following (eq. \ref{eq:knnDecisionFunction}):
@@ -2695,7 +2709,7 @@ where $(x_a, y_a)$ is an anchor sample, $(x_i, y_i) \in D_k$ is one of the $k$ n
 \end{equation}
 where $d(a, b)$ is the \textit{Euclidean} distance between data points $a$ and $b$.
 
-The trends of the classification statistics resulted from the evaluation were then computed and plotted along with the confusion matrix corresponding to the value of '\textit{k}' which produced the best accuracy.
+The mean trends (varying the number of k Nearest Neighbours '$k$') of the classification statistics resulted from the evaluation of the contrastive model were then computed and plotted along with the confusion matrix corresponding to the value of '$k$' which produced the best accuracy.
 
 \chapter{Previous Methods}
 The state of the art malware detection/description methods presented above (section \ref{sec:previousMethods}), namely \textit{Auxiliary Loss Optimization for Hypothesis Augmentation} (\textbf{ALOHA} model, \cite{ruddALOHA}), \textit{Automatic Malware Description via Attribute Tagging and Similarity Embedding} (\textbf{Joint Embedding} model, \cite{DucauAMDATSE}) and \textit{Learning from Context: Exploiting and Interpreting File Path Information for Better Malware Detection} (\textbf{File content + contextual file path (PE + FP)} model, \cite{KyadigeLFCEIFPIBMD}), represent a good starting point for further research in this topic. Moreover, the models used in those methods can easily be modified to work with Sorel20M dataset, with the exception of the \textbf{PE + FP} model \cite{KyadigeLFCEIFPIBMD} given that the mentioned dataset provides no file path information (and it is unfeasible to extend it with the needed additional information).
@@ -4069,7 +4083,7 @@ The Family classifier evaluation \textbf{\textit{micro}} (global average), \text
 	\centering
 	\includegraphics[width=\textwidth]{./images/workflow_contrastive_model.png}
 	\caption[Contrastive Model Training and Evaluation workflow steps]{Contrastive Model Training and Evaluation Workflow steps}
-	\label{fig:workflow_contrastive_model}
+	\label{fig:workflow_contr_train_eval}
 \end{figure}
 
 \subsubsection{Contrastive Learning Model Training}
