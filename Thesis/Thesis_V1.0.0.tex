@@ -4070,7 +4070,7 @@ The triplet loss function the is defined over triplets of embeddings:
 	\item a \textbf{negative} sample '$n$' of a different class
 \end{itemize}
 
-Therefore the loss to minimize during training, given a triplet $(a, p, n)$ and a distance function $d(a, b)$ between two data points $a$ and $b$ (which was set to be the \textit{Euclidean Norm}), is:
+Therefore the loss to minimize during training, given a triplet $(a, p, n)$ and a distance function $d(a, b)$ between two data points $a$ and $b$ (which was set to be the \textit{Squared Euclidean Norm} throughout the experiments), is:
 \begin{equation}
 	\mathcal{L} = \max(d(a, p) - d(a, n) + margin, 0)
 \end{equation}
