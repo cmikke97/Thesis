@@ -3266,7 +3266,7 @@ The evaluation function, presented in \ref{alg:evaluateNetworkFunction}, begins 
 	\label{fig:workflow_results}
 \end{figure}
 
-The actual binary cross entropy statistics (such as \textit{TPR}, \textit{Accuracy}, \textit{Recall}, etc.. at different FPRs) and the resulting AUC-ROC scores and ROC curves are computed, plotted and saved to file by a distinct set of functions which are not presented in this document given that they simply implement and apply the corresponding mathematical formulas.
+The actual binary cross entropy statistics (such as \textit{TPR}, \textit{Accuracy}, \textit{Recall}, etc.. at different FPRs) and the resulting AUC-ROC scores and ROC curves are computed, plotted and saved to file by a distinct set of functions which are not presented in this document given that they simply implement and apply the corresponding mathematical formulas. Moreover, after $n\_runs$ another set of functions computes the mean and standard deviation of the scores resulting from the different runs and plots the mean ROC curves.
 
 \chapter{Proposed Models}
 \section{Malware Detection and Description via SMART tags Model}
@@ -4575,6 +4575,8 @@ The input data (PE files' numerical feature vectors) is forwarded through the mo
 	\end{algorithmic}
 \end{algorithm}
 
+\newpage
+
 \subsubsection{Contrastive Learning Model Results Computation and Plotting}
 \begin{figure}[H]
 	\centering
@@ -4582,6 +4584,8 @@ The input data (PE files' numerical feature vectors) is forwarded through the mo
 	\caption[Contrastive Model Results Computation and Plotting step]{Contrastive Model Results Computation and Plotting Workflow step}
 	\label{fig:workflow_contrastive_model_results}
 \end{figure}
+
+The \textit{Contrastive (Siamese) Model} evaluation accuracy and \textbf{\textit{micro}} (global average), \textbf{\textit{macro}} (unweighted per-family average) and \textbf{\textit{weighted}} (per-family average, weighted by support) scores, such as '\textit{Jaccard similarity score}', '\textit{recall}', '\textit{precision}' and '\textit{f1-score}', are computed for each value of $k$ and saved to file, together with the resulting confusion matrixes, by a distinct set of functions - which simply apply the respective mathematical formulas - not presented in this document. Moreover, after $n\_runs$ another set of function plots the trends of the previously computed multi-class classification scores as the number of nearest neighbours $k$ changes from '\textit{knn\_k\_min}' to '\textit{knn\_k\_max}'.
 
 \chapter{Results}\label{chap:results}
 This chapter presents the evaluation results of the different models implemented. In particular, in the first section (\ref{sec:malwareDetectionResults}) are depicted the different models' results on the task of malware detection (Malicious/Benign label prediction). The same models' evaluation results on the task of malware description via SMART tags are presented in a separate section (\ref{sec:malwareDescriptionResults}). The next section (\ref{sec:FreshEvaluationResults}), presents the models' (and original features') results on the family prediction and ranking tasks using samples from the Fresh Dataset. The final section (\ref{sec:FamilyClassificationResults}), on the other hand, presents the evaluation results of the Malware Family Classifier on the family classification task.
