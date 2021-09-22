@@ -4114,7 +4114,7 @@ Both strategies were implemented and used in different experiments to train the 
 	\label{fig:ContrastiveLearningModel}
 \end{figure}
 
-The \textbf{Contrastive Learning Model}, as explained in the previous section and as it is shown in figure \ref{fig:ContrastiveLearningModel}, theoretically consists of a \textit{Siamese} network obtained by duplicating the \textit{Shared Model Base} and \textit{PE Embedding} layer of the \textbf{Proposed Model} in order to effectively have one model per triplet element. Being a \textit{Siamese} network, the inner weights of the parallel models are shared during all phases of the training procedure (forward pass, gradients computation and back-propagation) and are jointly optimized in order to minimize the \textbf{Triplet loss}. Following this interpretation, each of these parallel models gets as input one sample - an anchor, a positive and a negative, respectively - and outputs the corresponding \textbf{Embedding}. The \textit{Triplet loss} is then computed on those 3 embeddings and used for optimizing the model following the selected triplet mining strategy only if the current triplet is \textbf{valid}.
+The \textbf{Contrastive Learning Model}, as explained in the previous section and as it is shown in figure \ref{fig:ContrastiveLearningModel}, theoretically consists of a \textit{Siamese} network obtained by duplicating the \textit{Shared Model Base} and \textit{PE Embedding} layer of the \textbf{Proposed Model} in order to effectively have one model per triplet element. Being a \textit{Siamese} network, the inner weights of the parallel models are shared during all phases of the training procedure (forward pass, gradients computation and back-propagation) and are jointly optimized in order to minimize the \textbf{Triplet loss}. Following this interpretation, each of these parallel models gets as input one sample - an anchor, a positive and a negative, respectively - and outputs the corresponding PE \textbf{Embedding} (of size 32). The \textit{Triplet loss} is then computed on those 3 embeddings and used for optimizing the model following the selected triplet mining strategy only if the current triplet is \textbf{valid}.
 
 \begin{figure}[H]
 	\centering
@@ -4122,6 +4122,8 @@ The \textbf{Contrastive Learning Model}, as explained in the previous section an
 	\caption[Contrastive Learning Online model architecture]{Contrastive Learning Online Model architecture}
 	\label{fig:ContrastiveLearningOnlineModel}
 \end{figure}
+
+However, as shown in figure \ref{fig:ContrastiveLearningOnlineModel}, it is much more convenient to consider the \textit{siamese} model as a single model which takes as input, at different times, the elements of a triplet - an anchor, a positive and a negative - and outputs the corresponding PE \textbf{Embedding} (of size 32). The \textbf{Triplet loss} is then computed on those 3 embeddings and it is used to optimize the model parameters.
 
 \subsubsection{Net Definition}
 \begin{algorithm}[h!]
