@@ -4130,7 +4130,7 @@ Overall, the model is therefore simply composed of a \textbf{Shared Model Base} 
 After training, the learned Embeddings of PE files can be evaluated on the malware family prediction/classification and ranking tasks in a similar way as it was done when evaluating the \textbf{Proposed Model} learned embeddings on the same tasks.
 
 \subsubsection{Net Definition}
-Algorithm \ref{alg:contrastiveLearningModelNetInit} (Contrastive Learning Model Init function) shows how the \textit{Contrastive (Siamese) Model} is initialized. In particular, the function first defines the model \textit{shared base} topology (\textit{model\_base}) as a sequence of blocks composed each of a linear layer, a Normalization layer, an Activation function and dropout, exactly as previously done for the \textbf{\textit{Proposed Model}} (and \textbf{Family Classifier}) implementation. Next, the \textit{pe\_embedding} topology is constructed as a single linear layer with output size equal to the \textit{embedding\_dimension} ($=32$), followed by a Normalization layer and an Activation function.
+As presented by algorithm \ref{alg:contrastiveLearningModelNetInit} (\textbf{\textit{Contrastive Learning Model} Init function}), the \textit{Contrastive (Siamese) Model} is initialized by first defining the model \textit{shared base} topology (\textit{model\_base}) as a sequence of blocks composed each of a linear layer, a Normalization layer, an Activation function and dropout, exactly as previously done for the \textbf{\textit{Proposed Model}} (and \textbf{Family Classifier}) implementation. Next, the \textit{pe\_embedding} topology is defined as a single linear layer with output size equal to the \textit{embedding\_dimension} ($=32$), followed by a Normalization layer and an Activation function.
 
 \begin{algorithm}[h!]
 	\caption{Contrastive Learning Model Net class, Init}\label{alg:contrastiveLearningModelNetInit}
@@ -4165,6 +4165,8 @@ Algorithm \ref{alg:contrastiveLearningModelNetInit} (Contrastive Learning Model 
 		\algstore{bkbreak}
 	\end{algorithmic}
 \end{algorithm}
+
+The input data (PE files' numerical feature vectors) is forwarded through the model as shown in alg. \ref{alg:contrastiveLearningModelNetForward} (\textbf{\textit{Contrastive Learning Model} forward function}). In particular, it first passes through the model base topology (\textit{model\_base}) to produce an intermediate representation \textit{base\_out} which is then forwarded to the \textit{pe\_embedding} subnet which outputs the corresponding PE Embedding (of size 32). At the beginning of the Contrastive Model training procedure, the mapping function between the samples' input features and the produced PE embeddings corresponds, if transfer Learning was applied, to the one learned by the \textbf{Proposed Model} using the Sorel-20m dataset.
 
 \begin{algorithm}[h!]
 	\caption{Contrastive Learning Model Net class, Forward}\label{alg:contrastiveLearningModelNetForward}
