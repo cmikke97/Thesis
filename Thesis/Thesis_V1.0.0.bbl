@@ -249,10 +249,14 @@ CERT-AGID, ``Cert-agid threat summary.''
 \bibitem{MalwareBazaar}
 ``Malware bazaar.'' \url{https://bazaar.abuse.ch/browse/}
 
-\bibitem{Schroff_FN}
+\bibitem{SchroffFN}
 F.~Schroff, D.~Kalenichenko, and J.~Philbin, ``Facenet: A unified embedding for
   face recognition and clustering'', 2015 IEEE Conference on Computer Vision
   and Pattern Recognition (CVPR), Jun 2015, \doi{10.1109/cvpr.2015.7298682}
+
+\bibitem{hermansIDOTLFPRI}
+A.~Hermans, L.~Beyer, and B.~Leibe, ``In defense of the triplet loss for person
+  re-identification'', 2017
 
 \bibitem{AnyRunFormBook}
 ``Any.run malware trends - formbook.''
