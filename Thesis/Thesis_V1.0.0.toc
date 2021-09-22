@@ -162,12 +162,12 @@
 \contentsline {subsubsection}{Family Classifier Results Computation and Plotting}{118}{section*.135}%
 \contentsline {section}{\numberline {6.3}Contrastive Learning Model}{118}{section.6.3}%
 \contentsline {subsection}{\numberline {6.3.1}Implementation}{120}{subsection.6.3.1}%
-\contentsline {subsubsection}{Net Definition}{120}{section*.139}%
-\contentsline {subsection}{\numberline {6.3.2}Experiments}{120}{subsection.6.3.2}%
-\contentsline {subsection}{\numberline {6.3.3}Contrastive Learning Model Training and Evaluation algorithms}{120}{subsection.6.3.3}%
-\contentsline {subsubsection}{Contrastive Learning Model Training}{121}{section*.141}%
-\contentsline {subsubsection}{Contrastive Learning Model Evaluation}{122}{section*.143}%
-\contentsline {subsubsection}{Contrastive Learning Model Results Computation and Plotting}{123}{section*.145}%
+\contentsline {subsubsection}{Net Definition}{121}{section*.139}%
+\contentsline {subsection}{\numberline {6.3.2}Experiments}{121}{subsection.6.3.2}%
+\contentsline {subsection}{\numberline {6.3.3}Contrastive Learning Model Training and Evaluation algorithms}{121}{subsection.6.3.3}%
+\contentsline {subsubsection}{Contrastive Learning Model Training}{122}{section*.141}%
+\contentsline {subsubsection}{Contrastive Learning Model Evaluation}{125}{section*.143}%
+\contentsline {subsubsection}{Contrastive Learning Model Results Computation and Plotting}{126}{section*.145}%
 \contentsline {chapter}{\numberline {7}Results}{130}{chapter.7}%
 \contentsline {section}{\numberline {7.1}Malware Detection results}{130}{section.7.1}%
 \contentsline {subsection}{\numberline {7.1.1}Summary}{133}{subsection.7.1.1}%

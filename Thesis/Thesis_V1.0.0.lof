@@ -42,12 +42,12 @@
 \contentsline {figure}{\numberline {6.8}{\ignorespaces Family Classifier Training Workflow step}}{115}{figure.caption.132}%
 \contentsline {figure}{\numberline {6.9}{\ignorespaces Family Classifier Evaluate Workflow step}}{117}{figure.caption.134}%
 \contentsline {figure}{\numberline {6.10}{\ignorespaces Family Classifier Results Computation and Plotting step}}{118}{figure.caption.136}%
-\contentsline {figure}{\numberline {6.13}{\ignorespaces Contrastive Model Training and Evaluation workflow steps}}{120}{figure.caption.140}%
-\contentsline {figure}{\numberline {6.11}{\ignorespaces Contrastive Learning model architecture}}{121}{figure.caption.137}%
+\contentsline {figure}{\numberline {6.11}{\ignorespaces Contrastive Learning model architecture}}{120}{figure.caption.137}%
 \contentsline {figure}{\numberline {6.12}{\ignorespaces Contrastive Learning Online model architecture}}{121}{figure.caption.138}%
-\contentsline {figure}{\numberline {6.14}{\ignorespaces Contrastive Model Training Workflow step}}{121}{figure.caption.142}%
-\contentsline {figure}{\numberline {6.15}{\ignorespaces Contrastive Model Evaluate Workflow step}}{122}{figure.caption.144}%
-\contentsline {figure}{\numberline {6.16}{\ignorespaces Contrastive Model Results Computation and Plotting step}}{123}{figure.caption.146}%
+\contentsline {figure}{\numberline {6.13}{\ignorespaces Contrastive Model Training and Evaluation workflow steps}}{121}{figure.caption.140}%
+\contentsline {figure}{\numberline {6.14}{\ignorespaces Contrastive Model Training Workflow step}}{122}{figure.caption.142}%
+\contentsline {figure}{\numberline {6.15}{\ignorespaces Contrastive Model Evaluate Workflow step}}{125}{figure.caption.144}%
+\contentsline {figure}{\numberline {6.16}{\ignorespaces Contrastive Model Results Computation and Plotting step}}{126}{figure.caption.146}%
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {7.1}{\ignorespaces Malware Label prediction task ALOHA (M/B only) ROC curve}}{132}{figure.caption.148}%
 \contentsline {figure}{\numberline {7.2}{\ignorespaces Malware Label prediction task ALOHA ROC curve}}{132}{figure.caption.149}%
