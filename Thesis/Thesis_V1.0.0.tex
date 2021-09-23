@@ -4831,9 +4831,13 @@ This section presents an overview of the time needed to complete the experiments
 		Family Classifier Training & $\sim$ 31s & 3 & $\sim$ 1m 33s \\
 		Family Classifier Evaluation & $\sim$ 6s & 3 & $\sim$ 18s \\
 		Family Classifier Results Computation & $\sim$ 4s & 3 & $\sim$ 12s \\
-		Mean Results Computation & - & 1 & $\sim$ 5m 24s \\
+		Contrastive Model Training & $\sim$ 32s & 3 & $\sim$ 1m 36s \\
+		Contrastive Model Evaluation & $\sim$ 19m 7s & 3 & $\sim$ 57m 21s \\
+		Contrastive Model Results Computation & $\sim$ 10s & 3 & $\sim$ 30s \\
+		Base Model Mean Results Computation & - & 1 & $\sim$ 5m 24s \\
+		Contrastive Model Mean Scores Computation & - & 1 & $\sim$ 7s \\
 		\hline
-		Complete Workflow & $\sim$ 3h 24m 35s & - & $\sim$ 10h 19m 9s \\
+		Complete Workflow & $\sim$ 3h 44m 24s & - & $\sim$ 11h 18m 43s \\
 		\hline
 	\end{tabular}
 	\caption[Computation Time Per Experiment]{Average computation time required to complete one experiment.}
@@ -4846,16 +4850,16 @@ This section presents an overview of the time needed to complete the experiments
 		\hline
 		Total Number of Experiments & Total Computation Time \\
 		\hline
-		$\sim$ 90 & $\sim$ 928h 43m 30s \\
+		$\sim$ 90 & $\sim$ 1018h 4m 30s \\
 		\hline
 	\end{tabular}
 	\caption[Overall Computation Time]{Overall Computation time required to complete all experiments conducted for this project.}
 	\label{tab:OverallComputationTime}
 \end{table}
 
-As it can be seen in table \ref{tab:ComputationTimePerExperiment}, a base model (\textit{ALOHA (M/B only)} \textit{ALOHA}, \textit{Joint Embedding} or \textit{Proposed Model}) implementation training run took, on average, a little over 3 hours to complete when using generator \textit{alt3} and considering only the first $6M$ training samples of the Sorel20M dataset for $10$ epochs. The base model performance evaluation step and the computation of the corresponding results took each 5 minutes (per run). The evaluation of the base model on the Fresh Dataset took instead approximately 8 minutes, on average, while the family classifier training, evaluation and results computation steps required less than 1 minute each (per run). A single workflow cycle thus took approximately 3 hours and a half to complete. By multiplying each step's computation time by the number of runs executed for each experiment and then aggregating the results together considering also the 5 minutes and a half it takes, on average, to compute the model's mean results, it is possible to obtain the approximated overall time spent to complete one whole experiment. In particular, table \ref{tab:ComputationTimePerExperiment} shows that in order to complete one full experiment the \textbf{Colab Pro} instance approximately takes, on average, 10 hours and 20 minutes.
+As it can be seen in table \ref{tab:ComputationTimePerExperiment}, a base model (\textit{ALOHA (M/B only)} \textit{ALOHA}, \textit{Joint Embedding} or \textit{Proposed Model}) implementation training run took, on average, a little over 3 hours to complete when using generator \textit{alt3} and considering only the first $6M$ training samples of the Sorel20M dataset for $10$ epochs. The base model performance evaluation step and the computation of the corresponding results took each 5 minutes (per run). The evaluation of the base model on the \textit{Fresh Dataset} took instead approximately 8 minutes, on average, while the \textit{Family Classifier} training, evaluation and results computation steps required less than 1 minute each (per run). Moreover, the \textit{Contrastive Model} training, evaluation and results computation steps took, on average, approximately 30 seconds, 20 minutes and 10 seconds, respectively. A single workflow cycle thus took approximately 3 hours and a 45 minutes to complete. By multiplying each step's computation time by the number of runs executed for each experiment and then aggregating the results together considering also the 5 minutes and a half it takes, on average, to compute the base model's mean results and the 7 seconds it takes to compute the \textit{Contrastive Model} mean results, it is possible to obtain the approximated overall time spent to complete one whole experiment. In particular, table \ref{tab:ComputationTimePerExperiment} shows that in order to complete one full experiment the \textbf{Colab Pro} instance approximately took, on average, 11 hours and 20 minutes.
 
-The experiments conducted for this project were approximately 90, as reported in the table \ref{tab:OverallComputationTime}. Thereafter, the overall time spent for completing all the experiments was of approximately 928 hours and 43 minutes, which corresponds to $\sim$ 38 days, 16 hours and 43 minutes of continuous computation.
+The experiments conducted for this project were approximately 90, as reported in the table \ref{tab:OverallComputationTime}. Thereafter, the overall time spent for completing all the experiments was of approximately 1018 hours and 5 minutes, which corresponds to $\sim$ 42 days, 10 hours and 5 minutes of continuous computation.
 
 \chapter{Conclusions}
 This thesis' objective was the creation of an automatic malware signature generation tool capable of generating (implicit or explicit) signatures of PE malicious files with high recall at low false positive rates, possibly capable of detecting not only known malware strains but also novel variants, while also being less susceptible to obfuscation attempts.
