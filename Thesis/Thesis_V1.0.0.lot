@@ -23,9 +23,13 @@
 \contentsline {table}{\numberline {7.12}{\ignorespaces Family ranking min RR example}}{146}{table.caption.165}%
 \contentsline {table}{\numberline {7.13}{\ignorespaces Family Classifier Accuracy Results}}{148}{table.caption.166}%
 \contentsline {table}{\numberline {7.14}{\ignorespaces Family Classifier Scores}}{148}{table.caption.167}%
-\contentsline {table}{\numberline {7.15}{\ignorespaces Contrastive Model Accuracy Results}}{153}{table.caption.171}%
-\contentsline {table}{\numberline {7.16}{\ignorespaces Contrastive Model Scores}}{154}{table.caption.172}%
-\contentsline {table}{\numberline {7.17}{\ignorespaces Contrastive Model family ranking MRR and MAP scores}}{156}{table.caption.176}%
-\contentsline {table}{\numberline {7.18}{\ignorespaces Computation Time Per Experiment}}{157}{table.caption.177}%
-\contentsline {table}{\numberline {7.19}{\ignorespaces Overall Computation Time}}{157}{table.caption.178}%
+\contentsline {table}{\numberline {7.15}{\ignorespaces Contrastive Model Accuracy Results}}{155}{table.caption.172}%
+\contentsline {table}{\numberline {7.16}{\ignorespaces Contrastive Model Scores}}{155}{table.caption.173}%
+\contentsline {table}{\numberline {7.17}{\ignorespaces Contrastive Model family ranking MRR and MAP scores}}{157}{table.caption.177}%
+\contentsline {table}{\numberline {7.18}{\ignorespaces Contrastive Model family ranking max AP example}}{158}{table.caption.178}%
+\contentsline {table}{\numberline {7.19}{\ignorespaces Contrastive Model family ranking max RR example}}{159}{table.caption.179}%
+\contentsline {table}{\numberline {7.20}{\ignorespaces Contrastive Model family ranking max AP example}}{160}{table.caption.180}%
+\contentsline {table}{\numberline {7.21}{\ignorespaces Contrastive Model family ranking max AP example}}{161}{table.caption.181}%
+\contentsline {table}{\numberline {7.22}{\ignorespaces Computation Time Per Experiment}}{162}{table.caption.182}%
+\contentsline {table}{\numberline {7.23}{\ignorespaces Overall Computation Time}}{162}{table.caption.183}%
 \addvspace {10\p@ }

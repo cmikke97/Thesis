@@ -3871,9 +3871,9 @@ Algorithm \ref{alg:malwareFamilyClassifierNetForward} (\textbf{\textit{Malware F
 Finally, as presented by algorithm \ref{alg:malwareFamilyClassifierNetComputeLoss} (\textbf{\textit{Malware Family Classifier} compute loss function}) the loss between the predicted family scores and the ground truth family label is simply computed by applying the selected loss criterion, which corresponds in this case to the Pytorch \textbf{cross\_entropy\_loss} function.
 
 \subsection{Experiments}
-The resulting model was trained (and validated) for 25 \textit{epochs} on the training and validation sub-splits of the Fresh Dataset using different numbers of layers and numbers of nodes per layer (layer sizes) for the Family classifier additional output head while keeping the same model shared base topology inherited by the previously described \textbf{Proposed Model} implementation. Moreover, various combinations of learning rates (LR), momentum, weight decay and loss weights were used in separate family classifier training runs. The model which performed best during validation was then evaluated on the test sub-split of the Fresh Dataset producing the corresponding accuracy and multiclass classification '\textit{micro}' (global average), '\textit{macro}' (unweighted per-class average) and '\textit{weighted}' (per-class average, weighted by support) scores such as \textit{Jaccard Similarity}, \textit{recall}, \textit{precision}, \textit{f1} score, as well as the resulting '\textit{OVO}' (One Vs. One) and '\textit{OVR}' (One Vs. Rest) \textit{AUC-ROC} scores.
+The resulting model was trained (and validated) for 25 \textit{epochs} on the training and validation sub-splits of the Fresh Dataset using different numbers of layers and numbers of nodes per layer (layer sizes) for the Family classifier additional output head while keeping the same model shared base topology inherited by the previously described \textbf{Proposed Model} implementation. Moreover, both the \textit{Adam} and \textit{SGD} optimizers were used in separate family classifier training runs with various combinations of learning rates (LR), momentum, weight decay and loss weights. The model which performed best during validation was then evaluated on the test sub-split of the Fresh Dataset producing the corresponding accuracy and multiclass classification '\textit{micro}' (global average), '\textit{macro}' (unweighted per-class average) and '\textit{weighted}' (per-class average, weighted by support) scores such as \textit{Jaccard Similarity}, \textit{recall}, \textit{precision}, \textit{f1} score, as well as the resulting '\textit{OVO}' (One Vs. One) and '\textit{OVR}' (One Vs. Rest) \textit{AUC-ROC} scores.
 
-The final Family Classifier head architecture consisted of 5 layers of sizes 128, 256, 128, 64, and 10 respectively, with dropout probability $p_d=5\%$ and \textbf{ReLU} activation function and was trained with a learning rate \textit{LR} $= 10^{-3}$, \textbf{Adam} optimizer, \textit{momentum} $= 10^{-3}$, \textit{weight decay} $= 0.01$ and \textit{batch size} $= 250$.
+The final Family Classifier head architecture consisted of 5 layers of sizes 128, 256, 128, 64, and 10 respectively, with dropout probability $p_d=5\%$ and \textbf{ReLU} activation function and was trained with a learning rate $LR = 10^{-3}$, \textbf{Adam} optimizer, no \textit{momentum}, $weight decay = 0.01$ and $batch size = 250$.
 
 The evaluation results of the \textit{Family Classifier} model implementation in the Malware Family classification task are reported in chapter \ref{chap:results}.
 
@@ -4184,6 +4184,11 @@ The input data (PE files' numerical feature vectors) is forwarded through the mo
 \end{algorithm}
 
 \subsection{Experiments}
+The \textit{Contrastive (Siamese)} model defined in the previous section was trained (and validated) for $25$ \textit{epochs} on the training and validation subsets of the \textit{Fresh Dataset} using different combinations of learning rates (\textit{LR}), momentum, weight decay, \textit{Online Triplet Mining} strategy (between \textbf{Batch Hard} and \textbf{Batch All}) and margin while keeping the same model shared base topology inherited by the previously described \textbf{Proposed Model} implementation. Moreover, both the \textit{Adam} and \textit{SGD} optimizers were used in different runs. The model which performed best during validation was then evaluated using the test subset of the \textit{Fresh Dataset} first on the family prediction/classification - using the \textbf{Distance Weighted k-NN} approach with different values of $k$ - producing the corresponding accuracy and multiclass classification '\textit{micro}' (global average), '\textit{macro}' (unweighted per-class average) and '\textit{weighted}' (per-class average, weighted by support) scores such as the \textit{Jaccard Similarity}, \textit{recall}, \textit{precision} and '\textit{f1 score}' along with the corresponding \textit{confusion matrixes}. The same model was then also evaluated, again using the test subset of the \textit{Fresh Dataset}, on the family ranking task producing the corresponding ranking \textit{MRR} and \textit{MAP} scores, along with some example rankings which produced the best and worst \textit{AP} (Average Precision) and \textit{RR} (Reciprocal Rank).
+
+The final \textit{Contrastive (Siamese)} model was trained with a learning rate $LR = 0.01$, \textbf{Adam} optimizer, $weight decay = 0.1$, $batch size = 250$, no \textit{momentum}, using the \textbf{Batch All} \textit{Online Triplet Mining} strategy with $margin = 0.3$, $rank size = 100$, $knn k min = 1$, $knn k max = 11$ and using the squared euclidean norm as distance function.
+
+The evaluation results of the \textit{Contrastive (Siamese)} model implementation in the malware family classification and ranking tasks are reported in chapter \ref{chap:results}.
 
 \subsection{Contrastive Learning Model Training and Evaluation algorithms}
 \begin{figure}[H]
@@ -4779,6 +4784,8 @@ The fact that anyone can upload samples (and reports) on Malware Bazaar is on on
 Furthermore, this fact also makes it difficult to assess which proposed \textbf{Family Classifier} misclassifications are actual errors and why the model made those decision - which is already extremely difficult to understand when working with Neural Networks.
 
 \section{Contrastive Learning Results}\label{sec:ContrastiveLearningResults}
+\ContrLearnAccuracyTrends
+
 \ContrLearnAccuracyResultsTable
 
 \ContrLearnScoresTable
@@ -4791,8 +4798,22 @@ Furthermore, this fact also makes it difficult to assess which proposed \textbf{
 
 \ContrLearnMrrAndMapResultsTable
 
-\subsection{Comments}
+\subsection{Example rankings}
+Here are presented, for each Contrastive Learning model, 4 examples rankings which produced the maximum and minimum AP (Average Precision) and RR (Reciprocal Rank) scores.
 
+\ContrLearnMaxApExampleRankTable
+
+\ContrLearnMaxRrExampleRankTable
+
+\ContrLearnMinApExampleRankTable
+
+\ContrLearnMinRrExampleRankTable
+
+\subsection{Comments}
+\color{Red}
+These results are not directly comparable to the one obtained when evaluating the \textbf{Proposed Model} on the family prediction and ranking tasks since those were obtained using a different procedure.
+
+\color{Black}
 \section{Computation Time}
 This section presents an overview of the time needed to complete the experiments conducted for this project using a \textbf{Colab Pro} instance (which provides a NVIDIA T4 or P100 GPU, 2 CPU cores, 25GB of RAM and 147GB of disk space). In particular, table \ref{tab:ComputationTimePerExperiment} shows how much time was necessary to complete each step of a single experiment along with the computation time needed for the whole workflow. On the other hand, table \ref{tab:OverallComputationTime} shows the total computation time spent to complete all the experiments.
 

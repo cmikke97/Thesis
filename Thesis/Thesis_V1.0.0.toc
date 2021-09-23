@@ -165,9 +165,9 @@
 \contentsline {subsubsection}{Net Definition}{121}{section*.139}%
 \contentsline {subsection}{\numberline {6.3.2}Experiments}{123}{subsection.6.3.2}%
 \contentsline {subsection}{\numberline {6.3.3}Contrastive Learning Model Training and Evaluation algorithms}{123}{subsection.6.3.3}%
-\contentsline {subsubsection}{Contrastive Learning Model Training}{123}{section*.141}%
-\contentsline {subsubsection}{Contrastive Learning Model Evaluation}{124}{section*.143}%
-\contentsline {subsubsection}{Contrastive Learning Model Results Computation and Plotting}{125}{section*.145}%
+\contentsline {subsubsection}{Contrastive Learning Model Training}{124}{section*.141}%
+\contentsline {subsubsection}{Contrastive Learning Model Evaluation}{126}{section*.143}%
+\contentsline {subsubsection}{Contrastive Learning Model Results Computation and Plotting}{127}{section*.145}%
 \contentsline {chapter}{\numberline {7}Results}{131}{chapter.7}%
 \contentsline {section}{\numberline {7.1}Malware Detection results}{131}{section.7.1}%
 \contentsline {subsection}{\numberline {7.1.1}Summary}{134}{subsection.7.1.1}%
@@ -181,11 +181,12 @@
 \contentsline {section}{\numberline {7.4}Family Classification Results}{147}{section.7.4}%
 \contentsline {subsection}{\numberline {7.4.1}Comments}{150}{subsection.7.4.1}%
 \contentsline {subsection}{\numberline {7.4.2}Families study}{151}{subsection.7.4.2}%
-\contentsline {section}{\numberline {7.5}Contrastive Learning Results}{153}{section.7.5}%
-\contentsline {subsection}{\numberline {7.5.1}Comments}{156}{subsection.7.5.1}%
-\contentsline {section}{\numberline {7.6}Computation Time}{156}{section.7.6}%
-\contentsline {chapter}{\numberline {8}Conclusions}{158}{chapter.8}%
-\contentsline {section}{\numberline {8.1}Future Work}{158}{section.8.1}%
-\contentsline {chapter}{Bibliography}{161}{section.8.1}%
-\contentsline {chapter}{List of Figures}{164}{section*.179}%
-\contentsline {chapter}{List of Tables}{166}{section*.180}%
+\contentsline {section}{\numberline {7.5}Contrastive Learning Results}{154}{section.7.5}%
+\contentsline {subsection}{\numberline {7.5.1}Example rankings}{157}{subsection.7.5.1}%
+\contentsline {subsection}{\numberline {7.5.2}Comments}{161}{subsection.7.5.2}%
+\contentsline {section}{\numberline {7.6}Computation Time}{162}{section.7.6}%
+\contentsline {chapter}{\numberline {8}Conclusions}{164}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Future Work}{164}{section.8.1}%
+\contentsline {chapter}{Bibliography}{167}{section.8.1}%
+\contentsline {chapter}{List of Figures}{170}{section*.184}%
+\contentsline {chapter}{List of Tables}{172}{section*.185}%

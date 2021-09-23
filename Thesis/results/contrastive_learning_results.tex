@@ -1,3 +1,31 @@
+\newcommand{\ContrLearnAccuracyTrends}{
+	\begin{figure}[H]
+		\centering
+		\begin{subfigure}[b]{0.475\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{./results/joint_embedding_contr_learn_accuracy.png}
+			\caption[]{{\small Joint Embedding Contrastive Model}}
+			\label{fig:jointEmbeddingContrLearnAccuracyTrend}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}[b]{0.475\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{./results/proposed_model_contr_learn_accuracy.png}
+			\caption[]{{\small Proposed Model Contrastive Model}}
+			\label{fig:proposedModelContrLearnAccuracyTrend}
+		\end{subfigure}
+		\vskip\baselineskip
+		\begin{subfigure}[b]{0.475\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{./results/contrastive_model_only_contr_learn_accuracy.png}
+			\caption[]{{\small Contrastive Model Only}}
+			\label{fig:ContrastiveModelOnlyContrLearnAccuracyTrend}
+		\end{subfigure}
+		\hfill
+		\caption[Contrastive Model Accuracy Trends]{Mean and standard deviation of the accuracy trends obtained by evaluating the Contrastive Model based on the \textbf{Joint Embedding} and \textbf{Proposed Model} along with a Contrastive Model with no \textit{Transfer Learning} applied (\textit{Contrastive Model Only}) on the malware family classification task using the k-NN algorithm as the number $k$ of nearest neighbours changes from 1 to 11. Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings.} \label{fig:ContrLearnAccuracyTrends}
+	\end{figure}
+}
+
 \newcommand{\ContrLearnMrrAndMapResultsTable}{
 	\begin{table}[H]
 		\centering
@@ -93,48 +121,185 @@
 		\centering
 		\begin{tabular}{|P{1,8cm}||P{1,7cm} P{1,2cm} P{2cm}|P{1,7cm} P{1,2cm} P{2cm}|}
 			\hline
-			Max AP & \multicolumn{3}{c|}{ALOHA (M/B)} & \multicolumn{3}{c|}{ALOHA} \\
+			Max AP & \multicolumn{3}{c|}{Joint Embedding Contrastive Model} & \multicolumn{3}{c|}{Proposed Model Contrastive Model} \\
 			& Sha256 & Label & Family & Sha256 & Label & Family \\
 			\hline
-			Query & 24133d.. & 0 & formbook & e3639a.. & 0 & formbook \\
+			Query & 2d2796.. & 8 & guloader & 35287c.. & 8 & guloader \\
 			\hline
-			0 & 8fea1e.. & 3 & quakbot & \textBF{6f16d3}.. & \textBF{0} & \textBF{formbook} \\
-			1 & \textBF{02ad1e}.. & \textBF{0} & \textBF{formbook} & \textBF{0655ee}.. & \textBF{0} & \textBF{formbook} \\
-			2 & \textBF{8da806}.. & \textBF{0} & \textBF{formbook} & \textBF{40f8cf}.. & \textBF{0} & \textBF{formbook} \\
-			3 & 0c95f0.. & 8 & guloader & \textBF{f7c1ec}.. & \textBF{0} & \textBF{formbook} \\
-			4 & 95fa71.. & 9 & avemariarat & 620c36.. & 2 & gozi \\
-			5 & 4b8466.. & 6 & remcosrat & 38e003.. & 6 & remcosrat \\
-			6 & \textBF{191008}.. & \textBF{0} & \textBF{formbook} & \textBF{93e548}.. & \textBF{0} & \textBF{formbook} \\
-			7 & 768da5.. & 9 & avemariarat & 1ddaae.. & 4 & loki \\
-			8 & \textBF{e92575}.. & \textBF{0} & \textBF{formbook} & 5b9f32.. & 3 & quakbot \\
-			9 & f0cae3.. & 3 & quakbot & 83d036.. & 4 & loki \\
+			0 & \textBF{2bb8df}.. & \textBF{8} & \textBF{guloader} & \textBF{22b138}.. & \textBF{8} & \textBF{guloader} \\
+			1 & \textBF{62b561}.. & \textBF{8} & \textBF{guloader} & \textBF{5f9b8c}.. & \textBF{8} & \textBF{guloader} \\
+			2 & \textBF{3b6bd5}.. & \textBF{8} & \textBF{guloader} & \textBF{ea8a5f}.. & \textBF{8} & \textBF{guloader} \\
+			3 & \textBF{279013}.. & \textBF{8} & \textBF{guloader} & \textBF{34cc64}.. & \textBF{8} & \textBF{guloader} \\
+			4 & \textBF{2d2e4e}.. & \textBF{8} & \textBF{guloader} & \textBF{024efd}.. & \textBF{8} & \textBF{guloader} \\
+			5 & \textBF{7174dc}.. & \textBF{8} & \textBF{guloader} & \textBF{ac74bf}.. & \textBF{8} & \textBF{guloader} \\
+			6 & \textBF{092150}.. & \textBF{8} & \textBF{guloader} & \textBF{f12049}.. & \textBF{8} & \textBF{guloader} \\
+			7 & \textBF{69d83c}.. & \textBF{8} & \textBF{guloader} & \textBF{28d54a}.. & \textBF{8} & \textBF{guloader} \\
+			8 & \textBF{314e93}.. & \textBF{8} & \textBF{guloader} & \textBF{a28301}.. & \textBF{8} & \textBF{guloader} \\
+			9 & \textBF{2a44e9}.. & \textBF{8} & \textBF{guloader} & \textBF{ab58ae}.. & \textBF{8} & \textBF{guloader} \\
 			\hline
-			Max AP & \multicolumn{3}{c|}{0.186} & \multicolumn{3}{c|}{0.174} \\
-			\hline
-			Next & \multicolumn{3}{c|}{position 14} & \multicolumn{3}{c|}{position 10} \\
+			Max AP & \multicolumn{3}{c|}{1.000} & \multicolumn{3}{c|}{1.000} \\
 			\hline
 			\hline
-			Max AP & \multicolumn{3}{c|}{Joint Embedding} & \multicolumn{3}{c|}{Proposed Model} \\
-			& Sha256 & Label & Family & Sha256 & Label & Family \\
+			Max AP & \multicolumn{3}{c|}{Contrastive Model Only} & \multicolumn{3}{c|}{} \\
+			& Sha256 & Label & Family & \multicolumn{3}{c|}{} \\
 			\hline
-			Query & c0a92a.. & 6 & remcosrat & 389ec4.. & 7 & trickbot \\
+			Query & 15c19c.. & 5 & heodo & \multicolumn{3}{c|}{} \\
 			\hline
-			0 & \textBF{21f9ef}.. & \textBF{6} & \textBF{remcosrat} & \textBF{aa447e}.. & \textBF{7} & \textBF{trickbot} \\
-			1 & \textBF{49c7a5}.. & \textBF{6} & \textBF{remcosrat} & \textBF{cbe743}.. & \textBF{7} & \textBF{trickbot} \\
-			2 & f75cb4.. & 2 & gozi & 8dc3da.. & 6 & remcosrat \\
-			3 & \textBF{91b004}.. & \textBF{6} & \textBF{remcosrat} & \textBF{e37438}.. & \textBF{7} & \textBF{trickbot} \\
-			4 & 2d54d3.. & 3 & quakbot & \textBF{2cadf2}.. & \textBF{7} & \textBF{trickbot} \\
-			5 & f86765.. & 9 & avemariarat & 545bc3.. & 8 & guloader \\
-			6 & 0ea373.. & 0 & formbook & \textBF{b56a1e}.. & \textBF{7} & \textBF{trickbot} \\
-			7 & \textBF{4a9558}.. & \textBF{6} & \textBF{remcosrat} & e14108.. & 6 & remcosrat \\
-			8 & 019f79.. & 7 & trickbot & 80e880.. & 2 & gozi \\
-			9 & a2f8c1.. & 9 & avemariarat & \textBF{4688b8}.. & \textBF{7} & \textBF{trickbot} \\
+			0 & \textBF{4a36c2}.. & \textBF{5} & \textBF{heodo} & \multicolumn{3}{c|}{} \\
+			1 & \textBF{bbcda6}.. & \textBF{5} & \textBF{heodo} & \multicolumn{3}{c|}{} \\
+			2 & \textBF{445915}.. & \textBF{5} & \textBF{heodo} & \multicolumn{3}{c|}{} \\
+			3 & \textBF{cafc08}.. & \textBF{5} & \textBF{heodo} & \multicolumn{3}{c|}{} \\
+			4 & \textBF{912186}.. & \textBF{5} & \textBF{heodo} & \multicolumn{3}{c|}{} \\
+			5 & \textBF{f906c1}.. & \textBF{5} & \textBF{heodo} & \multicolumn{3}{c|}{} \\
+			6 & \textBF{9662b2}.. & \textBF{5} & \textBF{heodo} & \multicolumn{3}{c|}{} \\
+			7 & \textBF{34a0a3}.. & \textBF{5} & \textBF{heodo} & \multicolumn{3}{c|}{} \\
+			8 & \textBF{63f16a}.. & \textBF{5} & \textBF{heodo} & \multicolumn{3}{c|}{} \\
+			9 & \textBF{30b629}.. & \textBF{5} & \textBF{heodo} & \multicolumn{3}{c|}{} \\
 			\hline
-			Max AP & \multicolumn{3}{c|}{0.190} & \multicolumn{3}{c|}{0.183} \\
-			\hline
-			Next & \multicolumn{3}{c|}{position 11} & \multicolumn{3}{c|}{position 17} \\
+			Max AP & \multicolumn{3}{c|}{1.000} & \multicolumn{3}{c|}{} \\
 			\hline
 		\end{tabular}
-		\caption[Family ranking max AP example]{\textBF{ALOHA (M/B) Embedding}, \textBF{ALOHA}, \textBF{Joint Embedding} and \textBF{Proposed Model} example rankings (limited to the first 10 samples) having the maximum Average Precision (max AP). The elements matching the query sample are shown in \textbf{bold}. The last line of each table indicates the position in the ranking where to find the next element belonging to the same family as the query sample.} \label{tab:ContrLearnMaxApExampleRank}
+		\caption[Contrastive Model family ranking max AP example]{Example rankings (limited to the first 10 samples) having the maximum Average Precision (max AP) between the ones produced by the 2 Contrastive Models obtained by transferring the knowledge from a previous training run of the \textbf{Joint Embedding} and \textbf{Proposed Model} implementations, respectively, and by a Contrastive Model with no \textit{Transfer Learning} applied (\textit{Contrastive Model Only}). The elements matching the query sample are shown in \textbf{bold}.} \label{tab:ContrLearnMaxApExampleRank}
+	\end{table}
+}
+
+\newcommand{\ContrLearnMaxRrExampleRankTable}{
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{|P{1,8cm}||P{1,7cm} P{1,2cm} P{2cm}|P{1,7cm} P{1,2cm} P{2cm}|}
+			\hline
+			Max RR & \multicolumn{3}{c|}{Joint Embedding Contrastive Model} & \multicolumn{3}{c|}{Proposed Model Contrastive Model} \\
+			& Sha256 & Label & Family & Sha256 & Label & Family \\
+			\hline
+			Query & 7308f0.. & 3 & quakbot & 35287c.. & 8 & guloader \\
+			\hline
+			0 & \textBF{770919}.. & \textBF{3} & \textBF{quakbot} & \textBF{22b138}.. & \textBF{8} & \textBF{guloader} \\
+			1 & \textBF{27dd2f}.. & \textBF{3} & \textBF{quakbot} & \textBF{5f9b8c}.. & \textBF{8} & \textBF{guloader} \\
+			2 & \textBF{dfae1e}.. & \textBF{3} & \textBF{quakbot} & \textBF{ea8a5f}.. & \textBF{8} & \textBF{guloader} \\
+			3 & \textBF{246a1e}.. & \textBF{3} & \textBF{quakbot} & \textBF{34cc64}.. & \textBF{8} & \textBF{guloader} \\
+			4 & \textBF{6c0091}.. & \textBF{3} & \textBF{quakbot} & \textBF{024efd}.. & \textBF{8} & \textBF{guloader} \\
+			5 & \textBF{184a00}.. & \textBF{3} & \textBF{quakbot} & \textBF{ac74bf}.. & \textBF{8} & \textBF{guloader} \\
+			6 & \textBF{d15b9a}.. & \textBF{3} & \textBF{quakbot} & \textBF{f12049}.. & \textBF{8} & \textBF{guloader} \\
+			7 & \textBF{e64497}.. & \textBF{3} & \textBF{quakbot} & \textBF{28d54a}.. & \textBF{8} & \textBF{guloader} \\
+			8 & \textBF{a66698}.. & \textBF{3} & \textBF{quakbot} & \textBF{a28301}.. & \textBF{8} & \textBF{guloader} \\
+			9 & \textBF{8048dc}.. & \textBF{3} & \textBF{quakbot} & \textBF{ab58ae}.. & \textBF{8} & \textBF{guloader} \\
+			\hline
+			Max RR & \multicolumn{3}{c|}{1.000} & \multicolumn{3}{c|}{1.000} \\
+			\hline
+			\hline
+			Max RR & \multicolumn{3}{c|}{Contrastive Model Only} & \multicolumn{3}{c|}{} \\
+			& Sha256 & Label & Family & \multicolumn{3}{c|}{} \\
+			\hline
+			Query & 9e955c.. & 7 & trickbot & \multicolumn{3}{c|}{} \\
+			\hline
+			0 & \textBF{973029}.. & \textBF{7} & \textBF{trickbot} & \multicolumn{3}{c|}{} \\
+			1 & 4c3ccb.. & 5 & heodo & \multicolumn{3}{c|}{} \\
+			2 & \textBF{d0de78}.. & \textBF{7} & \textBF{trickbot} & \multicolumn{3}{c|}{} \\
+			3 & \textBF{537cae}.. & \textBF{7} & \textBF{trickbot} & \multicolumn{3}{c|}{} \\
+			4 & \textBF{a0e0ca}.. & \textBF{7} & \textBF{trickbot} & \multicolumn{3}{c|}{} \\
+			5 & \textBF{27311e}.. & \textBF{7} & \textBF{trickbot} & \multicolumn{3}{c|}{} \\
+			6 & \textBF{713ea2}.. & \textBF{7} & \textBF{trickbot} & \multicolumn{3}{c|}{} \\
+			7 & \textBF{6ae0b4}.. & \textBF{7} & \textBF{trickbot} & \multicolumn{3}{c|}{} \\
+			8 & \textBF{128857}.. & \textBF{7} & \textBF{trickbot} & \multicolumn{3}{c|}{} \\
+			9 & \textBF{02f92c}.. & \textBF{7} & \textBF{trickbot} & \multicolumn{3}{c|}{} \\
+			\hline
+			Max RR & \multicolumn{3}{c|}{1.000} & \multicolumn{3}{c|}{} \\
+			\hline
+		\end{tabular}
+		\caption[Contrastive Model family ranking max RR example]{Example rankings (limited to the first 10 samples) having the maximum Reciprocal Rank (max RR) between the ones produced by the 2 Contrastive Models obtained by transferring the knowledge from a previous training run of the \textbf{Joint Embedding} and \textbf{Proposed Model} implementations, respectively, and by a Contrastive Model with no \textit{Transfer Learning} applied (\textit{Contrastive Model Only}). The elements matching the query sample are shown in \textbf{bold}.} \label{tab:ContrLearnMaxRrExampleRank}
+	\end{table}
+}
+
+\newcommand{\ContrLearnMinApExampleRankTable}{
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{|P{1,8cm}||P{1,7cm} P{1,2cm} P{2cm}|P{1,7cm} P{1,2cm} P{2cm}|}
+			\hline
+			Min AP & \multicolumn{3}{c|}{Joint Embedding Contrastive Model} & \multicolumn{3}{c|}{Proposed Model Contrastive Model} \\
+			& Sha256 & Label & Family & Sha256 & Label & Family \\
+			\hline
+			Query & a3b2db.. & 0 & formbook & 241991.. & 7 & trickbot \\
+			\hline
+			0 & adf26e.. & 7 & trickbot & 0417c3.. & 5 & heodo \\
+			1 & 5271ab.. & 7 & trickbot & ecdeac.. & 5 & heodo \\
+			2 & 623b7d.. & 7 & trickbot & c5a06a.. & 5 & heodo \\
+			3 & 7db413.. & 7 & trickbot & 0f6356.. & 5 & heodo \\
+			4 & 1689b8.. & 7 & trickbot & a9471c.. & 5 & heodo \\
+			5 & b544cd.. & 7 & trickbot & d9fc0b.. & 5 & heodo \\
+			6 & ea6a9b.. & 7 & trickbot & 5d000f.. & 5 & heodo \\
+			7 & 31652f.. & 7 & trickbot & 05509e.. & 5 & heodo \\
+			8 & 99f7ef.. & 7 & trickbot & 348634.. & 5 & heodo \\
+			9 & 2c9404.. & 7 & trickbot & d185f7.. & 5 & heodo \\
+			\hline
+			Min AP & \multicolumn{3}{c|}{0.000} & \multicolumn{3}{c|}{0.000} \\
+			\hline
+			\hline
+			Min AP & \multicolumn{3}{c|}{Contrastive Model Only} & \multicolumn{3}{c|}{} \\
+			& Sha256 & Label & Family & \multicolumn{3}{c|}{} \\
+			\hline
+			Query & ff69d2.. & 2 & gozi & \multicolumn{3}{c|}{} \\
+			\hline
+			0 & a8bfae.. & 5 & heodo & \multicolumn{3}{c|}{} \\
+			1 & e0dda0.. & 5 & heodo & \multicolumn{3}{c|}{} \\
+			2 & e28d1b.. & 5 & heodo & \multicolumn{3}{c|}{} \\
+			3 & 417fd8.. & 5 & heodo & \multicolumn{3}{c|}{} \\
+			4 & 6ed52c.. & 5 & heodo & \multicolumn{3}{c|}{} \\
+			5 & f196bb.. & 5 & heodo & \multicolumn{3}{c|}{} \\
+			6 & 596c44.. & 5 & heodo & \multicolumn{3}{c|}{} \\
+			7 & f249cd.. & 5 & heodo & \multicolumn{3}{c|}{} \\
+			8 & b5105e.. & 5 & heodo & \multicolumn{3}{c|}{} \\
+			9 & 7eba4d.. & 5 & heodo & \multicolumn{3}{c|}{} \\
+			\hline
+			Min AP & \multicolumn{3}{c|}{0.000} & \multicolumn{3}{c|}{} \\
+			\hline
+		\end{tabular}
+		\caption[Contrastive Model family ranking max AP example]{Example rankings (limited to the first 10 samples) having the minimum Average Precision (min AP) between the ones produced by the 2 Contrastive Models obtained by transferring the knowledge from a previous training run of the \textbf{Joint Embedding} and \textbf{Proposed Model} implementations, respectively, and by a Contrastive Model with no \textit{Transfer Learning} applied (\textit{Contrastive Model Only}). The elements matching the query sample are shown in \textbf{bold}.} \label{tab:ContrLearnMinApExampleRank}
+	\end{table}
+}
+
+\newcommand{\ContrLearnMinRrExampleRankTable}{
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{|P{1,8cm}||P{1,7cm} P{1,2cm} P{2cm}|P{1,7cm} P{1,2cm} P{2cm}|}
+			\hline
+			Min RR & \multicolumn{3}{c|}{Joint Embedding Contrastive Model} & \multicolumn{3}{c|}{Proposed Model Contrastive Model} \\
+			& Sha256 & Label & Family & Sha256 & Label & Family \\
+			\hline
+			Query & a3b2db.. & 0 & formbook & 241991.. & 7 & trickbot \\
+			\hline
+			0 & adf26e.. & 7 & trickbot & 0417c3.. & 5 & heodo \\
+			1 & 5271ab.. & 7 & trickbot & ecdeac.. & 5 & heodo \\
+			2 & 623b7d.. & 7 & trickbot & c5a06a.. & 5 & heodo \\
+			3 & 7db413.. & 7 & trickbot & 0f6356.. & 5 & heodo \\
+			4 & 1689b8.. & 7 & trickbot & a9471c.. & 5 & heodo \\
+			5 & b544cd.. & 7 & trickbot & d9fc0b.. & 5 & heodo \\
+			6 & ea6a9b.. & 7 & trickbot & 5d000f.. & 5 & heodo \\
+			7 & 31652f.. & 7 & trickbot & 05509e.. & 5 & heodo \\
+			8 & 99f7ef.. & 7 & trickbot & 348634.. & 5 & heodo \\
+			9 & 2c9404.. & 7 & trickbot & d185f7.. & 5 & heodo \\
+			\hline
+			Min RR & \multicolumn{3}{c|}{0.000} & \multicolumn{3}{c|}{0.000} \\
+			\hline
+			\hline
+			Min RR & \multicolumn{3}{c|}{Contrastive Model Only} & \multicolumn{3}{c|}{} \\
+			& Sha256 & Label & Family & \multicolumn{3}{c|}{} \\
+			\hline
+			Query & ff69d2.. & 2 & gozi & \multicolumn{3}{c|}{} \\
+			\hline
+			0 & a8bfae.. & 5 & heodo & \multicolumn{3}{c|}{} \\
+			1 & e0dda0.. & 5 & heodo & \multicolumn{3}{c|}{} \\
+			2 & e28d1b.. & 5 & heodo & \multicolumn{3}{c|}{} \\
+			3 & 417fd8.. & 5 & heodo & \multicolumn{3}{c|}{} \\
+			4 & 6ed52c.. & 5 & heodo & \multicolumn{3}{c|}{} \\
+			5 & f196bb.. & 5 & heodo & \multicolumn{3}{c|}{} \\
+			6 & 596c44.. & 5 & heodo & \multicolumn{3}{c|}{} \\
+			7 & f249cd.. & 5 & heodo & \multicolumn{3}{c|}{} \\
+			8 & b5105e.. & 5 & heodo & \multicolumn{3}{c|}{} \\
+			9 & 7eba4d.. & 5 & heodo & \multicolumn{3}{c|}{} \\
+			\hline
+			Min RR & \multicolumn{3}{c|}{0.000} & \multicolumn{3}{c|}{} \\
+			\hline
+		\end{tabular}
+		\caption[Contrastive Model family ranking max AP example]{Example rankings (limited to the first 10 samples) having the minimum Reciprocal Rank (min RR) between the ones produced by the 2 Contrastive Models obtained by transferring the knowledge from a previous training run of the \textbf{Joint Embedding} and \textbf{Proposed Model} implementations, respectively, and by a Contrastive Model with no \textit{Transfer Learning} applied (\textit{Contrastive Model Only}). The elements matching the query sample are shown in \textbf{bold}.} \label{tab:ContrLearnMinRrExampleRank}
 	\end{table}
 }
