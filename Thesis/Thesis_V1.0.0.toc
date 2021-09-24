@@ -166,7 +166,7 @@
 \contentsline {subsection}{\numberline {6.3.2}Experiments}{123}{subsection.6.3.2}%
 \contentsline {subsection}{\numberline {6.3.3}Contrastive Learning Model Training and Evaluation algorithms}{123}{subsection.6.3.3}%
 \contentsline {subsubsection}{Contrastive Learning Model Training}{124}{section*.141}%
-\contentsline {subsubsection}{Contrastive Learning Model Evaluation}{128}{section*.143}%
+\contentsline {subsubsection}{Contrastive Learning Model Evaluation}{129}{section*.143}%
 \contentsline {subsubsection}{Contrastive Learning Model Results Computation and Plotting}{130}{section*.145}%
 \contentsline {chapter}{\numberline {7}Results}{132}{chapter.7}%
 \contentsline {section}{\numberline {7.1}Malware Detection results}{132}{section.7.1}%
