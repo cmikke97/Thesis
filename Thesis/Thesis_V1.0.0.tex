@@ -4338,6 +4338,41 @@ In particular, as shown in alg. \ref{alg:trainContrastiveLearningModelFunctionPt
 Algorithm \ref{alg:batchHardTripletLossFunction} (\textbf{BatchHardTripletLoss function}) describes how the \textit{Triplet loss} is computed when using the \textbf{Batch Hard} \textit{Online Triplet Mining} Strategy. In particular, the \textbf{BatchHardTripletLoss} function begins by computing a 2D matrix called '\textit{pairwise\_dist}', which contains the euclidean distances between all possible pairs of sample embeddings, by using function '\textit{PairwiseDistances}'. Next, the function finds the \textit{hardest positive} for each anchor by computing a 2D mask of valid pairs $(a, p)$ (such that $a \ne p$ and $a$ and $p$ have the same labels) using function '\textit{GetAnchorPositiveTripletMask}', setting to $0$ any element of matrix '\textit{pairwise\_dist}' outside of the mask and then selecting the pair $(a, p)$ with maximum distance. The selected \textit{hardest positive} surely forms a \textbf{valid} pair since all \textbf{invalid} pairs have their distance set to $0$ by the mask. The function then finds the \textit{hardest negative} by computing a 2D mask of pairs $(a, n)$ using the function '\textit{GetAnchorNegativeTripletMask}' and selecting for each row the valid pair $(a, n)$ with the minimum distance. In this case, the invalid pairs are ignored in the selection of the \textit{hardest negative} by getting the maximum distance for each row of '\textit{pairwise\_dist}' and then adding it to all invalid pairs $(a, n)$ of the same row. Finally, the function computes the actual \textit{Triplet loss} by averaging the result of formula \ref{eq:tripletLossFormula} applied using the \textit{hardest positive} and \textit{hardest negative} for each anchor sample.
 
 \begin{algorithm}[h!]
+	\caption{Get Anchor Positive Triplet Mask function}\label{alg:getAnchorPositiveTripletMaskFunction}
+	\begin{algorithmic}[1]
+		\Function{GetAnchorPositiveTripletMask}{\textit{labels}}
+		\State
+		\State \textit{indices\_equal} $\gets$ \textbf{torch.eye}(\textit{labels}.\textbf{size}()[0]).\textbf{bool}()
+		\State \textit{indices\_not\_equal} $\gets$ \textbf{torch.logical\_not}(\textit{indices\_equal})
+		\State
+		\State \textit{labels\_equal} $\gets$ \textbf{torch.eq}(\textbf{torch.unsqueeze}(\textit{labels}, 0), \textbf{torch.unsqueeze}(\textit{labels}, 1))
+		\State
+		\State \textit{mask} $\gets$ \textbf{torch.logical\_and}(\textit{indices\_not\_equal}, \textit{labels\_equal})
+		\State
+		\State \textbf{return} \textit{mask}
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[h!]
+	\caption{Get Anchor Negative Triplet Mask function}\label{alg:getAnchorNegativeTripletMaskFunction}
+	\begin{algorithmic}[1]
+		\Function{GetAnchorNegativeTripletMask}{\textit{labels}}
+		\State
+		\State \textit{labels\_equal} $\gets$ \textbf{torch.eq}(\textbf{torch.unsqueeze}(\textit{labels}, 0), \textbf{torch.unsqueeze}(\textit{labels}, 1))
+		\State
+		\State \textit{mask} $\gets$ \textbf{torch.logical\_not}(\textit{labels\_equal})
+		\State
+		\State \textbf{return} \textit{mask}
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}
+
+The previously mentioned \textbf{GetAnchorPositiveTripletMask} function, which returns a 2D mask where '$mask[a, p]$' is \textit{True} if and only if $a$ and $p$ are distinct and have the same label, is detailed in alg. \ref{alg:getAnchorPositiveTripletMaskFunction}. This function first produces a 2D mask selecting the non-identical samples (inverting an identity matrix) '\textit{indices\_not\_equal}', then it produces a 2D mask selecting the samples with equal label '\textit{labels\_equal}' and finally applies the logical \textit{and} function to obtain the final 2D mask '\textit{mask}'.
+
+The \textbf{GetAnchorNegativeTripletMask} function, on the other hand, returns a 2D mask where '$mask[a, n]$' is \textit{True} if and only if $a$ and $n$ have distinct labels, as shown in alg. \ref{alg:getAnchorNegativeTripletMaskFunction}. In particular, it first produces a 2D mask selecting the samples with equal label '\textit{labels\_equal}' and then applies the logical \textit{not} function to obtain the final 2D mask '\textit{mask}'.
+
+\begin{algorithm}[h!]
 	\caption{Batch All Triplet Loss function}\label{alg:batchAllTripletLossFunction}
 	\begin{algorithmic}[1]
 		\Function{BatchAllTripletLoss}{\textit{labels}, \textit{embeddings}, \textit{margin}, \textit{squared}}
@@ -4362,37 +4397,6 @@ Algorithm \ref{alg:batchHardTripletLossFunction} (\textbf{BatchHardTripletLoss f
 			\State \textit{triplet\_loss} $\gets$ \textbf{torch.sum}(\textit{triplet\_loss}) / (\textit{num\_positive\_triplets} + 1e-16)
 			\State
 			\State \textbf{return} \textit{triplet\_loss}, \textit{fraction\_positive\_triplets}
-		\EndFunction
-	\end{algorithmic}
-\end{algorithm}
-
-\begin{algorithm}[h!]
-	\caption{Get Anchor Positive Triplet Mask function}\label{alg:getAnchorPositiveTripletMaskFunction}
-	\begin{algorithmic}[1]
-		\Function{GetAnchorPositiveTripletMask}{\textit{labels}}
-			\State
-			\State \textit{indices\_equal} $\gets$ \textbf{torch.eye}(\textit{labels}.\textbf{size}()[0]).\textbf{bool}()
-			\State \textit{indices\_not\_equal} $\gets$ \textbf{torch.logical\_not}(\textit{indices\_equal})
-			\State
-			\State \textit{labels\_equal} $\gets$ \textbf{torch.eq}(\textbf{torch.unsqueeze}(\textit{labels}, 0), \textbf{torch.unsqueeze}(\textit{labels}, 1))
-			\State
-			\State \textit{mask} $\gets$ \textbf{torch.logical\_and}(\textit{indices\_not\_equal}, \textit{labels\_equal})
-			\State
-			\State \textbf{return} \textit{mask}
-		\EndFunction
-	\end{algorithmic}
-\end{algorithm}
-
-\begin{algorithm}[h!]
-	\caption{Get Anchor Negative Triplet Mask function}\label{alg:getAnchorNegativeTripletMaskFunction}
-	\begin{algorithmic}[1]
-		\Function{GetAnchorNegativeTripletMask}{\textit{labels}}
-			\State
-			\State \textit{labels\_equal} $\gets$ \textbf{torch.eq}(\textbf{torch.unsqueeze}(\textit{labels}, 0), \textbf{torch.unsqueeze}(\textit{labels}, 1))
-			\State
-			\State \textit{mask} $\gets$ \textbf{torch.logical\_not}(\textit{labels\_equal})
-			\State
-			\State \textbf{return} \textit{mask}
 		\EndFunction
 	\end{algorithmic}
 \end{algorithm}
