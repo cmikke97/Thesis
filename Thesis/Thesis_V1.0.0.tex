@@ -3983,7 +3983,7 @@ Algorithms \ref{alg:trainFamilyClassifierFunctionPt1}-\ref{alg:trainFamilyClassi
 	\end{algorithmic}
 \end{algorithm}
 
-The \textit{Family Classifier} training function, as shown in alg. \ref{alg:trainFamilyClassifierFunctionPt1}-\ref{alg:trainFamilyClassifierFunctionPt2}, first opens and loads the Fresh Dataset splitting it in training, validation and test subsets following the selected proportions. The \textit{Family Classifier} model then gets instantiated by providing the necessary parameters to its \textit{init} function. Next, if a checkpoint of a \textbf{Proposed Model} training run is provided, the state parameters for the \textit{shared base} topology and \textit{PE embedding} layer are loaded into the newly instantiated \textbf{Family Classifier} model and the learning rates for the different model subnets are set such that the \textit{shared base} and \textit{PE embedding} topologies are just '\textit{fine-tuned}' while training the model (by using a smaller learning rate). Then, the selected optimizer (\textbf{Adam} or \textbf{SGD}) gets instantiated given the model parameters, selected learning rate, weight decay and momentum. At this point a scheduler is also instantiated with the purpose of modifying the model's parameters learning rates (multiplying them by $0.1$) after $3/4$ of the total number of epochs. After these preliminary steps, the function trains (and validates) the \textbf{Family Classifier} model for '\textit{epochs}' epochs. More specifically, at each epoch, the model is set to training mode and then, for all the mini-batches of data randomly sampled from the (fresh dataset) training generator, the input features are fed into the model to obtain the corresponding output class (family) scores. Next, the loss between the predicted class scores and the ground truth family label is computed and used to produce the gradients which are back-propagated through the network. Moreover, the function also computes the predicted family label - by selecting, for each sample, the family label with maximum class score - and the model accuracy for the current mini-batch - by dividing the number of correct predictions by the total amount of predictions. Then, the previously computed model loss and accuracy are logged and the model is set to \textit{validation} mode after having updated the scheduler. Finally, for each mini-batch of data from the (fresh dataset) validation generator, the function computes and logs the model loss and accuracy.
+The \textit{Family Classifier} training function, as shown in alg. \ref{alg:trainFamilyClassifierFunctionPt1}-\ref{alg:trainFamilyClassifierFunctionPt2}, first opens and loads the Fresh Dataset splitting it in training, validation and test subsets following the selected proportions. The \textit{Family Classifier} model then gets instantiated by providing the necessary parameters to its \textit{init} function. Next, if a checkpoint of a \textbf{Proposed Model} training run is provided, it is used to initialize the state parameters of the \textit{shared base} topology and \textit{PE embedding} layer of the newly instantiated \textbf{Family Classifier} model. Then, the learning rates for the parameters of the different parts of the model architecture are set such that the \textit{shared base} and \textit{PE embedding} topologies' ones are just '\textit{fine-tuned}' while training the model (by using a smaller learning rate). Then, the selected optimizer (\textbf{Adam} or \textbf{SGD}) gets instantiated given the model parameters, selected learning rate, weight decay and momentum. At this point a scheduler is also instantiated with the purpose of modifying the model's parameters learning rates (multiplying them by $0.1$) after $3/4$ of the total number of epochs. After these preliminary steps, the function trains (and validates) the \textbf{Family Classifier} model for '\textit{epochs}' epochs. More specifically, at each epoch, the model is set to training mode and then, for all the mini-batches of data randomly sampled from the (fresh dataset) training generator, the input features are fed into the model to obtain the corresponding output class (family) scores. Next, the loss between the predicted class scores and the ground truth family label is computed and used to produce the gradients which are back-propagated through the network. Moreover, the function also computes the predicted family label - by selecting, for each sample, the family label with maximum class score - and the model accuracy for the current mini-batch - by dividing the number of correct predictions by the total amount of predictions. Then, the previously computed model loss and accuracy are logged and the model is set to \textit{validation} mode after having updated the scheduler. Finally, for each mini-batch of data from the (fresh dataset) validation generator, the function computes and logs the model loss and accuracy.
 
 \subsubsection{Family Classifier Evaluation}
 \begin{figure}[H]
@@ -4198,6 +4198,8 @@ The evaluation results of the \textit{Contrastive (Siamese)} model implementatio
 	\label{fig:workflow_contr_train_eval}
 \end{figure}
 
+Algorithms \ref{alg:trainContrastiveLearningModelFunctionPt1}-\ref{alg:trainContrastiveLearningModelFunctionPt1} (\textbf{Contrastive Model Train function}) and \ref{alg:evaluateContrastiveLearningModelFunctionPt1}-\ref{alg:evaluateContrastiveLearningModelFunctionPt2} (\textbf{Contrastive Model Evaluate function}) show how the \textbf{\textit{Contrastive Model}} implementation gets trained and evaluated using samples of the \textit{Fresh Dataset}.
+
 \subsubsection{Contrastive Learning Model Training}
 \begin{figure}[H]
 	\centering
@@ -4207,7 +4209,7 @@ The evaluation results of the \textit{Contrastive (Siamese)} model implementatio
 \end{figure}
 
 \begin{algorithm}[h!]
-	\caption{Train Contrastive Learning Model function, part 1}\label{alg:trainContrastiveLearningModelFunctionPt1}
+	\caption{Contrastive Learning Model Train function, part 1}\label{alg:trainContrastiveLearningModelFunctionPt1}
 	\begin{algorithmic}[1]
 			\Function{TrainNetwork}{\textit{fresh\_ds\_path}, \textit{checkpoint\_path}, \textit{batch\_size}, \textit{epochs}, \textit{train\_split\_proportion}, \textit{valid\_split\_proportion}, \textit{test\_split\_proportion}, \textit{workers}, ...}
 			\State
@@ -4251,7 +4253,7 @@ The evaluation results of the \textit{Contrastive (Siamese)} model implementatio
 \newpage
 
 \begin{algorithm}[h!]
-	\caption{Train Contrastive Learning Model function, part 2}\label{alg:trainContrastiveLearningModelFunctionPt2}
+	\caption{Contrastive Learning Model Train function, part 2}\label{alg:trainContrastiveLearningModelFunctionPt2}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 			\State \Comment Continued from previous page..
@@ -4263,11 +4265,11 @@ The evaluation results of the \textit{Contrastive (Siamese)} model implementatio
 					\State \textit{opt}.\textbf{zero\_grad}
 					\State \textit{pe\_embeddings} $\gets$ \textit{model}(\textit{features})
 					\If{\textit{run\_additional\_params}['hard']}
-						\State \textit{loss} $\gets$ \textbf{batch\_hard\_triplet\_loss}(\textit{labels}, \textit{pe\_embeddings},
+						\State \textit{loss} $\gets$ \textbf{BatchHardTripletLoss}(\textit{labels}, \textit{pe\_embeddings},
 						\State \hskip1.9em margin=\textit{run\_additional\_params}['margin'],
 						\State \hskip1.9em squared=\textit{run\_additional\_params}['squared'])
 					\Else
-						\State \textit{loss}, \textit{pos\_fraction} $\gets$ \textbf{batch\_all\_triplet\_loss}(\textit{labels}, \textit{pe\_embeddings},
+						\State \textit{loss}, \textit{pos\_fraction} $\gets$ \textbf{BatchAllTripletLoss}(\textit{labels}, \textit{pe\_embeddings},
 						\State \hskip1.9em margin=\textit{run\_additional\_params}['margin'],
 						\State \hskip1.9em squared=\textit{run\_additional\_params}['squared'])
 						\State \textbf{log}(\textit{pos\_fraction})
@@ -4285,11 +4287,11 @@ The evaluation results of the \textit{Contrastive (Siamese)} model implementatio
 					\State \textbf{torch.no\_grad}()
 					\State \textit{pe\_embeddings} $\gets$ \textit{model}(\textit{features})
 					\If{\textit{run\_additional\_params}['hard']}
-						\State \textit{loss} $\gets$ \textbf{batch\_hard\_triplet\_loss}(\textit{labels}, \textit{pe\_embeddings},
+						\State \textit{loss} $\gets$ \textbf{BatchHardTripletLoss}(\textit{labels}, \textit{pe\_embeddings},
 						\State \hskip1.9em margin=\textit{run\_additional\_params}['margin'],
 						\State \hskip1.9em squared=\textit{run\_additional\_params}['squared'])
 					\Else
-						\State \textit{loss}, \textit{pos\_fraction} $\gets$ \textbf{batch\_all\_triplet\_loss}(\textit{labels}, \textit{pe\_embeddings},
+						\State \textit{loss}, \textit{pos\_fraction} $\gets$ \textbf{BatchAllTripletLoss}(\textit{labels}, \textit{pe\_embeddings},
 						\State \hskip1.9em margin=\textit{run\_additional\_params}['margin'],
 						\State \hskip1.9em squared=\textit{run\_additional\_params}['squared'])
 						\State \textbf{log}(\textit{pos\_fraction})
@@ -4303,6 +4305,8 @@ The evaluation results of the \textit{Contrastive (Siamese)} model implementatio
 		\EndFunction
 	\end{algorithmic}
 \end{algorithm}
+
+In particular, as shown in alg. \ref{alg:trainContrastiveLearningModelFunctionPt1}-\ref{alg:trainContrastiveLearningModelFunctionPt2}, the \textit{Contrastive Model} training function first opens and loads the \textit{Fresh Dataset} splitting it into training, validation and test subsets following the selected proportions. Then, the function instantiates the \textit{Contrastive Model} itself by providing the necessary parameters to the \textit{Contrastive\_Net} class \textit{init} method. Next, if a checkpoint of a previous \textbf{Proposed Model} training run is provided it is used to initialize the state parameters of the \textit{shared base} topology and \textit{PE embedding} layer of the newly instantiated \textbf{Contrastive Model}. Next, if a checkpoint of a \textbf{Proposed Model} training run is provided, it is used to initialize the state parameters of the \textit{shared base} topology and \textit{PE embedding} layer of the newly instantiated \textbf{Family Classifier} model. Then, the learning rates for the parameters of the different parts of the model architecture are set such that the \textit{shared base} topology's ones are just '\textit{fine-tuned}' while training the model (by using a smaller learning rate). Then. the selected optimizer (\textbf{Adam} or \textbf{SGD}) gets instantiated given the model parameters, selected learning rate, weight decay and momentum. At this point a scheduler is also instantiated with the purpose of modifying the learning rates for the model parameters - multiplying them by $0.1$ - after $3/4$ of the total number of epochs. After these preliminary steps, the function trains (and validates) the \textbf{Contrastive Model} for '\textit{epochs}' epochs. In particular, at each epoch the model is set to \textit{training} mode and then, for all the mini-batches of data randomly sampled from the (fresh dataset) training generator, the input samples' features are fed into the model to obtain the corresponding \textit{pe\_embeddings}. Next, according to the selected \textit{Online Triplet Mining} Strategy (\textbf{Batch Hard} or \textbf{Batch All}) the \textbf{\textit{Triplet Loss}} is computed using function \textit{BatchHardTripletLoss} or \textit{BatchAllTripletLoss}. The computed loss is then logged and used to compute the gradients which are back-propagated through the network. Moreover, in case the \textbf{Batch All} strategy is used, the function also computes and logs the fraction of positive triplets mined ('\textit{pos\_fraction}') which can be used as an additional indication of model convergence since in such strategy the loss tends to oscillate and never settle. Finally, the model is set to \textit{validation} mode and for each mini-batch of data from the (fresh dataset) validation generator the function computes and logs the triplet loss (and fraction of positive triplets mined, if required) following the same \textit{Online Triplet Mining} Strategy.
 
 \begin{algorithm}[h!]
 	\caption{Batch Hard Triplet Loss function}\label{alg:batchHardTripletLossFunction}
@@ -4355,29 +4359,6 @@ The evaluation results of the \textit{Contrastive (Siamese)} model implementatio
 			\State \textit{triplet\_loss} $\gets$ \textbf{torch.sum}(\textit{triplet\_loss}) / (\textit{num\_positive\_triplets} + 1e-16)
 			\State
 			\State \textbf{return} \textit{triplet\_loss}, \textit{fraction\_positive\_triplets}
-		\EndFunction
-	\end{algorithmic}
-\end{algorithm}
-
-\begin{algorithm}[h!]
-	\caption{Pairwise Distance function}\label{alg:pairwiseDistanceFunction}
-	\begin{algorithmic}[1]
-		\Function{PairwiseDistance}{\textit{embeddings}, \textit{squared}}
-			\State
-			\State \textit{dot\_product} $\gets$ \textbf{torch.matmul}(\textit{embeddings}, \textit{embeddings}.\textbf{T})
-			\State \textit{square\_norm} $\gets$ \textbf{torch.diag}(\textit{dot\_product}, 0)
-			\State \textit{distances} $\gets$ \textbf{torch.unsqueeze}(\textit{square\_norm}, 0) - 2.0 $\times$ \textit{dot\_product}
-			\State \hskip1.9em + \textbf{torch.unsqueeze}(\textit{square\_norm}, 1)
-			\State \textit{distances} $\gets$ \textbf{torch.maximum}(\textit{distances}, \textbf{torch.zeros\_like}(\textit{distances}))
-			\State
-			\If{\textbf{not} \textit{squared}}
-				\State \textit{mask} $\gets$ \textbf{torch.eq}(\textit{distances}, 0.0).\textbf{float}()
-				\State \textit{distances} $\gets$ \textit{distances} + \textit{mask} $\times$ 1e-16
-				\State
-				\State \textit{distances} $\gets$ \textbf{torch.sqrt}(\textit{distances})
-				\State \textit{distances} $\gets$ \textit{distances} $\times$ (1.0 - \textit{mask})
-			\EndIf
-			\State \textbf{return} \textit{distances}
 		\EndFunction
 	\end{algorithmic}
 \end{algorithm}
