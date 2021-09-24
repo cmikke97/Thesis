@@ -46,8 +46,8 @@
 \contentsline {figure}{\numberline {6.12}{\ignorespaces Contrastive Learning Online model architecture}}{121}{figure.caption.138}%
 \contentsline {figure}{\numberline {6.13}{\ignorespaces Contrastive Model Training and Evaluation workflow steps}}{123}{figure.caption.140}%
 \contentsline {figure}{\numberline {6.14}{\ignorespaces Contrastive Model Training Workflow step}}{124}{figure.caption.142}%
-\contentsline {figure}{\numberline {6.15}{\ignorespaces Contrastive Model Evaluate Workflow step}}{127}{figure.caption.144}%
-\contentsline {figure}{\numberline {6.16}{\ignorespaces Contrastive Model Results Computation and Plotting step}}{128}{figure.caption.146}%
+\contentsline {figure}{\numberline {6.15}{\ignorespaces Contrastive Model Evaluate Workflow step}}{128}{figure.caption.144}%
+\contentsline {figure}{\numberline {6.16}{\ignorespaces Contrastive Model Results Computation and Plotting step}}{130}{figure.caption.146}%
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {7.1}{\ignorespaces Malware Label prediction task ALOHA (M/B only) ROC curve}}{134}{figure.caption.148}%
 \contentsline {figure}{\numberline {7.2}{\ignorespaces Malware Label prediction task ALOHA ROC curve}}{134}{figure.caption.149}%
