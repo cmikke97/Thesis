@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.9.11)  24 SEP 2021 23:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.9.11)  25 SEP 2021 17:01
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -1433,14 +1433,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[126]
-Overfull \hbox (14.17516pt too wide) in paragraph at lines 4377--4378
-[]\OT1/cmr/m/n/10 The \OT1/cmr/bx/n/10 Get-Triplet-Mask \OT1/cmr/m/n/10 func-ti
-on, de-scribed by al-go-rithm [][]61[][], re-turns a 3D mask where $\OML/cmm/m/
-it/10 mask\OT1/cmr/m/n/10 [\OML/cmm/m/it/10 a; p; n\OT1/cmr/m/n/10 ]$
- []
-
-[127]
+[126] [127]
 <./images/workflow_contrastive_model_evaluate.png, id=2092, 502.9992pt x 174.17
 07pt>
 File: ./images/workflow_contrastive_model_evaluate.png Graphic file (type png)
@@ -3433,7 +3426,7 @@ IUNET/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><
 C:/Users/michele.INFOPIUNET/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
 sfonts/cm/cmtt8.pfb><C:/Users/michele.INFOPIUNET/AppData/Local/Programs/MiKTeX/
 fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Thesis_V1.0.0.pdf (173 pages, 8156301 bytes).
+Output written on Thesis_V1.0.0.pdf (173 pages, 8156311 bytes).
 PDF statistics:
  2944 PDF objects out of 2984 (max. 8388607)
  925 named destinations out of 1000 (max. 500000)
