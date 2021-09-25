@@ -167,26 +167,26 @@
 \contentsline {subsection}{\numberline {6.3.3}Contrastive Learning Model Training and Evaluation algorithms}{123}{subsection.6.3.3}%
 \contentsline {subsubsection}{Contrastive Learning Model Training}{124}{section*.141}%
 \contentsline {subsubsection}{Contrastive Learning Model Evaluation}{129}{section*.143}%
-\contentsline {subsubsection}{Contrastive Learning Model Results Computation and Plotting}{130}{section*.145}%
-\contentsline {chapter}{\numberline {7}Results}{132}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Malware Detection results}{132}{section.7.1}%
-\contentsline {subsection}{\numberline {7.1.1}Summary}{135}{subsection.7.1.1}%
-\contentsline {subsection}{\numberline {7.1.2}Comments}{135}{subsection.7.1.2}%
-\contentsline {section}{\numberline {7.2}Malware Description via SMART tags results}{136}{section.7.2}%
-\contentsline {subsection}{\numberline {7.2.1}Mean per-sample tagging scores}{139}{subsection.7.2.1}%
-\contentsline {subsection}{\numberline {7.2.2}Comments}{139}{subsection.7.2.2}%
-\contentsline {section}{\numberline {7.3}Family Prediction and Ranking Evaluation}{140}{section.7.3}%
-\contentsline {subsection}{\numberline {7.3.1}Example rankings}{144}{subsection.7.3.1}%
-\contentsline {subsection}{\numberline {7.3.2}Comments}{148}{subsection.7.3.2}%
-\contentsline {section}{\numberline {7.4}Family Classification Results}{148}{section.7.4}%
-\contentsline {subsection}{\numberline {7.4.1}Comments}{151}{subsection.7.4.1}%
-\contentsline {subsection}{\numberline {7.4.2}Families study}{152}{subsection.7.4.2}%
-\contentsline {section}{\numberline {7.5}Contrastive Learning Results}{155}{section.7.5}%
-\contentsline {subsection}{\numberline {7.5.1}Example rankings}{158}{subsection.7.5.1}%
-\contentsline {subsection}{\numberline {7.5.2}Comments}{162}{subsection.7.5.2}%
-\contentsline {section}{\numberline {7.6}Computation Time}{163}{section.7.6}%
-\contentsline {chapter}{\numberline {8}Conclusions}{165}{chapter.8}%
-\contentsline {section}{\numberline {8.1}Future Work}{165}{section.8.1}%
-\contentsline {chapter}{Bibliography}{168}{section.8.1}%
-\contentsline {chapter}{List of Figures}{171}{section*.184}%
-\contentsline {chapter}{List of Tables}{173}{section*.185}%
+\contentsline {subsubsection}{Contrastive Learning Model Results Computation and Plotting}{132}{section*.145}%
+\contentsline {chapter}{\numberline {7}Results}{133}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Malware Detection results}{133}{section.7.1}%
+\contentsline {subsection}{\numberline {7.1.1}Summary}{136}{subsection.7.1.1}%
+\contentsline {subsection}{\numberline {7.1.2}Comments}{136}{subsection.7.1.2}%
+\contentsline {section}{\numberline {7.2}Malware Description via SMART tags results}{137}{section.7.2}%
+\contentsline {subsection}{\numberline {7.2.1}Mean per-sample tagging scores}{140}{subsection.7.2.1}%
+\contentsline {subsection}{\numberline {7.2.2}Comments}{140}{subsection.7.2.2}%
+\contentsline {section}{\numberline {7.3}Family Prediction and Ranking Evaluation}{141}{section.7.3}%
+\contentsline {subsection}{\numberline {7.3.1}Example rankings}{145}{subsection.7.3.1}%
+\contentsline {subsection}{\numberline {7.3.2}Comments}{149}{subsection.7.3.2}%
+\contentsline {section}{\numberline {7.4}Family Classification Results}{149}{section.7.4}%
+\contentsline {subsection}{\numberline {7.4.1}Comments}{152}{subsection.7.4.1}%
+\contentsline {subsection}{\numberline {7.4.2}Families study}{153}{subsection.7.4.2}%
+\contentsline {section}{\numberline {7.5}Contrastive Learning Results}{156}{section.7.5}%
+\contentsline {subsection}{\numberline {7.5.1}Example rankings}{159}{subsection.7.5.1}%
+\contentsline {subsection}{\numberline {7.5.2}Comments}{163}{subsection.7.5.2}%
+\contentsline {section}{\numberline {7.6}Computation Time}{164}{section.7.6}%
+\contentsline {chapter}{\numberline {8}Conclusions}{166}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Future Work}{166}{section.8.1}%
+\contentsline {chapter}{Bibliography}{169}{section.8.1}%
+\contentsline {chapter}{List of Figures}{172}{section*.184}%
+\contentsline {chapter}{List of Tables}{174}{section*.185}%

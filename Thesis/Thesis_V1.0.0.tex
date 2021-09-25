@@ -4440,6 +4440,8 @@ The \textbf{GetTripletMask} function, as described by algorithm \ref{alg:getTrip
 	\label{fig:workflow_contrastive_model_evaluate}
 \end{figure}
 
+The \textit{Contrastive Model} evaluation function, presented in algorithm \ref{alg:evaluateContrastiveLearningModelFunctionPt1}-\ref{alg:evaluateContrastiveLearningModelFunctionPt2}-\ref{alg:evaluateContrastiveLearningModelFunctionPt3} (\textbf{Contrastive Model Evaluation function}), begins (as shown in alg. \ref{alg:evaluateContrastiveLearningModelFunctionPt1}) by opening and loading the \textit{Fresh Dataset} splitting it in training, validation and test subsets following the selected proportions, similarly to what was done in the training function. The actual \textit{Contrastive Model} then gets instantiated by providing the necessary arguments to its \textit{init} member function and the checkpoint state parameters from a previous training run are loaded. Next, the model is set into \textit{evaluation} mode.
+
 \begin{algorithm}[h!]
 	\caption{Evaluate Contrastive Learning Model function, part 1}\label{alg:evaluateContrastiveLearningModelFunctionPt1}
 	\begin{algorithmic}[1]
@@ -4468,70 +4470,62 @@ The \textbf{GetTripletMask} function, as described by algorithm \ref{alg:getTrip
 			\State
 			\State \textit{model}.\textbf{load\_state\_dict}(\textit{checkpoint\_path})
 			\State \textit{model}.\textbf{eval}()
-			\State
 			\State \Comment Continues on next page..
 		\algstore{bkbreak}
 	\end{algorithmic}
 \end{algorithm}
+
+\newpage
+
+Then, as shown in alg. \ref{alg:evaluateContrastiveLearningModelFunctionPt2}, the function considers the samples from the test subset of the \textit{Fresh Dataset} as anchors for the computation of the corresponding ranking and family predictions. In practice, for all the mini-batches of data from the (\textit{Fresh Dataset}) test generator, the samples' features are fed into the model to obtain the corresponding \textit{PE Embedding} representations '\textit{anchor\_pe\_embeddings}'. Next, the function cycles through all the mini-batches of data from the (\textit{Fresh Dataset}) train generator in order to obtain the rankings for the current test mini-batch considering the samples from the training subset of the \textit{Fresh Dataset} as query samples. More specifically, the function obtains the \textit{PE Embedding} representation of the training samples '\textit{query\_pe\_embeddings}' by forwarding the corresponding features through the (same) model and then computes the \textit{Euclidean} distances between the embeddings of the \textit{anchor} and \textit{query} samples. These distances are used to update a set of 3 tensors of fixed size (equal to the selected \textit{rank\_size}) called '\textit{top\_shas}', '\textit{top\_labels}' and '\textit{top\_distances}' which contain, respectively, the shas, labels and distances (to the current anchor) of the top '\textit{rank\_size}' most similar samples, per anchor, ordered by similarity.
 
 \begin{algorithm}[h!]
 	\caption{Evaluate Contrastive Learning Model function, part 2}\label{alg:evaluateContrastiveLearningModelFunctionPt2}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 			\State \Comment Continued from previous page..
-			\ForAll{\textit{shas}, \textit{features}, \textit{labels} $\in$ \textit{test\_gen}}
-				\State \textit{pe\_embeddings} $\gets$ \textit{model}(\textit{features})
+			\ForAll{\textit{anchor\_shas}, \textit{anchor\_features}, \textit{anchor\_labels} $\in$ \textit{test\_gen}}
+				\State \textbf{torch.no\_grad}()
+				\State \textit{anchor\_pe\_embeddings} $\gets$ \textit{model}(\textit{anchor\_features})
 				\State \textit{top\_shas} $\gets$ None
 				\State \textit{top\_labels} $\gets$ None
 				\State \textit{top\_distances} $\gets$ None
 				\State
 				\State \textit{predictions} = \{\}
-				\ForAll{\textit{anchor\_shas}, \textit{anchor\_features}, \textit{anchor\_labels} $\in$ \textit{train\_generator}}
+				\ForAll{\textit{query\_shas}, \textit{query\_features}, \textit{query\_labels} $\in$ \textit{train\_generator}}
 					\State \textbf{torch.no\_grad}()
-					\State \textit{anchor\_pe\_embeddings} $\gets$ \textit{model}(\textit{anchor\_features})
+					\State \textit{query\_pe\_embeddings} $\gets$ \textit{model}(\textit{query\_features})
 					\State
-					\State \textit{distances} $\gets$ \textbf{torch.cdist}(\textit{pe\_embeddings}, \textit{anchor\_pe\_embeddings}, p=2.0)
+					\State \textit{distances} $\gets$ \textbf{torch.cdist}(\textit{anchor\_pe\_embeddings}, \textit{query\_pe\_embeddings}, p=2.0)
 					\State
 					\If{\textit{top\_distances} \textbf{is} None}
 						\State \textit{top\_distances} $\gets$ \textit{distances}
 						\State
 						\State \textit{indices} $\gets$ \textit{top\_distances}.\textbf{argsort}(dim=1)
 						\State
-						\State \textit{top\_shas} $\gets$ \textbf{np.concatenate}([\textbf{np.expand\_dims}(\textbf{np.repeat}(\textbf{np.expand\_dims}(
-						\State \hskip1.9em \textit{anchor\_shas}, axis=0), \textit{shas}.\textit{shape}[0], axis=0)[\textit{x}, \textit{y}], axis=0) 
-						\State \hskip1.9em $\forall$ \textit{x}, \textit{row} $\in$ \textbf{enumerate}(\textit{indices}[:, :\textit{rank\_size}])
-						\State \hskip1.9em $\forall$ \textit{y} $\in$ \textit{row}]).\textbf{reshape}(-1, \textit{rank\_size})
-						\State \textit{top\_labels} $\gets$ \textbf{torch.cat}([\textit{anchor\_labels}.\textbf{repeat}(\textit{labels}.\textit{shape}[0], 1)[
-						\State \hskip1.9em \textit{x}, \textit{y}].\textbf{unsqueeze}(0) $\forall$ \textit{x}, \textit{row} $\in$ \textbf{enumerate}(\textit{indices}[:, :\textit{rank\_size}])
-						\State \hskip1.9em $\forall$ \textit{y} $\in$ \textit{row}]).\textbf{view}(-1, \textit{rank\_size})
-						\State \textit{top\_distances} $\gets$ \textbf{torch.cat}([\textit{top\_distances}[\textit{x}, \textit{y}].\textbf{unsqueeze}(0)
-						\State \hskip1.9em $\forall$ \textit{x}, \textit{row} $\in$ \textbf{enumerate}(\textit{indices}[:, :\textit{rank\_size}])
-						\State \hskip1.9em $\forall$ \textit{y} $\in$ \textit{row}]).\textbf{view}(-1, \textit{rank\_size})
+						\State \textit{top\_shas} $\gets$ \textit{query\_shas}[\textit{indices}[:\textit{rank\_size}]]
+						\State \textit{top\_labels} $\gets$ \textit{query\_labels}[\textit{indices}[:\textit{rank\_size}]]
+						\State \textit{top\_distances} $\gets$ \textit{top\_distances}[\textit{indices}[:\textit{rank\_size}]]
 					\Else
-						\State \textit{top\_shas} $\gets$ \textbf{np.concatenate}((\textit{top\_shas}, \textbf{np.repeat}(\textbf{np.expand\_dims}(
-						\State \hskip1.9em \textit{anchor\_shas}, axis=0), \textit{top\_shas}.\textit{shape}[0], axis=0)), axis=1)
-						\State \textit{top\_labels} $\gets$ \textbf{torch.cat}((\textit{top\_labels}, \textit{anchor\_labels}.\textbf{repeat}(
-						\State \hskip1.9em \textit{top\_labels}.size()[0], 1)), dim=1)
-						\State \textit{top\_distances} $\gets$ \textbf{torch.cat}((\textit{top\_distances}, \textit{distances}), dim=1)
+						\State \textit{top\_shas} $\gets$ \textbf{np.concatenate}(\textit{top\_shas}, \textit{query\_shas})
+						\State \textit{top\_labels} $\gets$ \textbf{torch.cat}(\textit{top\_labels}, \textit{query\_labels})
+						\State \textit{top\_distances} $\gets$ \textbf{torch.cat}(\textit{top\_distances}, \textit{distances})
 						\State
 						\State \textit{indices} $\gets$ \textit{top\_distances}.\textbf{argsort}(dim=1)
 						\State
-						\State \textit{top\_shas} $\gets$ \textbf{np.concatenate}([\textbf{np.expand\_dims}(\textit{top\_shas}[\textit{x}, \textit{y}], axis=0)
-						\State \hskip1.9em $\forall$ \textit{x}, \textit{row} $\in$ \textbf{enumerate}(\textit{indices}[:, :\textit{rank\_size}])
-						\State \hskip1.9em $\forall$ \textit{y} $\in$ \textit{row}]).\textbf{reshape}(-1, \textit{rank\_size})
-						\State \textit{top\_labels} $\gets$ \textbf{torch.cat}([\textit{top\_labels}[\textit{x}, \textit{y}].\textbf{unsqueeze}(0)
-						\State \hskip1.9em $\forall$ \textit{x}, \textit{row} $\in$ \textbf{enumerate}(\textit{indices}[:, :\textit{rank\_size}])
-						\State \hskip1.9em $\forall$ \textit{y} $\in$ \textit{row}]).\textbf{view}(-1, \textit{rank\_size})
-						\State \textit{top\_distances} $\gets$ \textbf{torch.cat}([\textit{top\_distances}[\textit{x}, \textit{y}].\textbf{unsqueeze}(0)
-						\State \hskip1.9em $\forall$ \textit{x}, \textit{row} $\in$ \textbf{enumerate}(\textit{indices}[:, :\textit{rank\_size}])
-						\State \hskip1.9em $\forall$ \textit{y} $\in$ \textit{row}]).\textbf{view}(-1, \textit{rank\_size})
+						\State \textit{top\_shas} $\gets$ \textit{query\_shas}[\textit{indices}[:\textit{rank\_size}]]
+						\State \textit{top\_labels} $\gets$ \textit{query\_labels}[\textit{indices}[:\textit{rank\_size}]]
+						\State \textit{top\_distances} $\gets$ \textit{top\_distances}[\textit{indices}[:\textit{rank\_size}]]
 					\EndIf
 				\EndFor
-				\State
 				\State \Comment Continues on next page..
 		\algstore{bkbreak}
 	\end{algorithmic}
 \end{algorithm}
+
+\newpage
+
+At the end of the inner cycle, as shown in algorithm \ref{alg:evaluateContrastiveLearningModelFunctionPt3}, these 3 tensors (\textit{top\_shas}, \textit{top\_labels} and \textit{top\_distances}) are used to generate the actual rankings for the anchor samples of the current test mini-batch. Thereafter, the function applies the \textbf{Distance Weighted k-NN} approach using the generated rankings to obtain the actual family predictions for the test samples of the current mini-batch. In particular, for each odd value '\textit{k}' from '\textit{knn\_k\_min}' to '\textit{knn\_k\_max}', the function gets the first \textit{k} labels from the current \textit{top\_labels} tensor, computes each nearest neighbour weight inverting its distance squared to the anchor and assigns to the current anchor the family with the highest cumulative score. Finally, the function computes the ranking scores (\textbf{MAP and MRR}) and saves to file both the produced rankings and family predictions.
 	
 \begin{algorithm}[h!]
 	\caption{Evaluate Contrastive Learning Model function, part 3}\label{alg:evaluateContrastiveLearningModelFunctionPt3}
@@ -4541,11 +4535,11 @@ The \textbf{GetTripletMask} function, as described by algorithm \ref{alg:getTrip
 				\For{\textit{k}, \textit{s} $\in$ \textbf{enumerate}(\textit{shas})}
 					\State \textit{ranks}.\textbf{append}(\{
 					\State \hskip1.9em 'query\_sha': \textit{s},
-					\State \hskip1.9em 'ground\_truth\_label': \textbf{int}(\textit{labels}[\textit{k}]),
-					\State \hskip1.9em 'ground\_truth\_family': \textbf{label\_to\_sig}(\textbf{int}(\textit{labels}[\textit{k}])),
-					\State \hskip1.9em 'rank\_shas': \textit{top\_shas}[\textit{k}].\textbf{tolist}(),
-					\State \hskip1.9em 'rank\_labels': [\textbf{int}(\textit{lab}) $\forall$ \textit{lab} $\in$ \textit{top\_labels}[\textit{k}]],
-					\State \hskip1.9em 'rank\_families': [\textbf{label\_to\_sig}(\textbf{int}(\textit{lab})) $\forall$ \textit{lab} $\in$ \textit{top\_labels}[\textit{k}]]
+					\State \hskip1.9em 'ground\_truth\_label': \textit{anchor\_labels}[\textit{k}],
+					\State \hskip1.9em 'ground\_truth\_family': \textbf{label\_to\_sig}(\textit{anchor\_labels}[\textit{k}]),
+					\State \hskip1.9em 'rank\_shas': \textit{top\_shas}[\textit{k}],
+					\State \hskip1.9em 'rank\_labels': [\textit{lab} $\forall$ \textit{lab} $\in$ \textit{top\_labels}[\textit{k}]],
+					\State \hskip1.9em 'rank\_families': [\textbf{label\_to\_sig}(\textit{lab}) $\forall$ \textit{lab} $\in$ \textit{top\_labels}[\textit{k}]]
 					\State \})
 				\EndFor
 				\State
