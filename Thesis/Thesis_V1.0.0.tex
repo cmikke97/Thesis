@@ -4770,10 +4770,11 @@ The fact that anyone can upload samples (and reports) on Malware Bazaar is on on
 Furthermore, this fact also makes it difficult to assess which proposed \textbf{Family Classifier} misclassifications are actual errors and why the model made those decision - which is already extremely difficult to understand when working with Neural Networks.
 
 \section{Contrastive Learning Results}\label{sec:ContrastiveLearningResults}
-This section shows the 
-\ContrLearnAccuracyTrends
+This section shows the performance evaluation of the different Contrastive models at the \textbf{Malware Family Prediction/Classification and Ranking} tasks. More specifically, table \ref{tab:ContrLearnAccuracyResults} presents the mean and standard deviation of the family classification accuracy obtained by evaluating the Contrastive Models based on the \textbf{Joint Embedding} and \textbf{Proposed Model} implementations along with a Contrastive Model with no \textit{Transfer Learning} applied (\textbf{Contrastive Model Only}) using the k-NN algorithm with the value of '$k$' which provided the best accuracy. Figures \ref{fig:ContrLearnAccuracyTrends}, on the other hand, show the classification (mean and standard deviation) accuracy trends of the different models as the number of \textit{Nearest Neighbours} '$k$' changes. Next, table \ref{tab:ContrLearnScoresTable} presents the '\textbf{Micro}' averaged, '\textbf{Macro}' averaged and '\textbf{Weighted}' averaged multi-class classification scores of the the same models obtained using the k-NN algorithm with the value of '$k$' which provided the best accuracy. The corresponding Contrastive models' Confusion Matrixes are instead depicted in figures \ref{fig:ContrLearnJointEmbeddingConfusionMatrix}-\ref{fig:ContrLearnProposedModelConfusionMatrix}-\ref{fig:ContrLearnOnlyConfusionMatrix}. Finally, table \ref{tab:ContrLearnMrrAndMapResults} shows the mean and standard deviation of the \textbf{MRR} and \textbf{MAP} scores corresponding to the produced rankings of the different Contrastive Models.
 
 \ContrLearnAccuracyResultsTable
+
+\ContrLearnAccuracyTrends
 
 \ContrLearnScoresTable
 

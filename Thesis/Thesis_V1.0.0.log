@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.9.11)  26 SEP 2021 17:02
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.9.11)  26 SEP 2021 17:39
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -3139,88 +3139,91 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [151 <./results/family_classifier_confusion_matrix_jointEmbedding.png> <./resu
 lts/family_classifier_confusion_matrix_proposedModel.png>] [152 <./results/fami
 ly_classifier_confusion_matrix_familyClassifierOnly.png>] [153] [154]
-<./results/joint_embedding_contr_learn_accuracy.png, id=2362, 867.24pt x 867.24
+<./results/joint_embedding_contr_learn_accuracy.png, id=2369, 867.24pt x 867.24
 pt>
 File: ./results/joint_embedding_contr_learn_accuracy.png Graphic file (type png
 )
 <use ./results/joint_embedding_contr_learn_accuracy.png>
 Package pdftex.def Info: ./results/joint_embedding_contr_learn_accuracy.png  us
-ed on input line 4774.
+ed on input line 4777.
 (pdftex.def)             Requested size: 200.69118pt x 200.69167pt.
-<./results/proposed_model_contr_learn_accuracy.png, id=2363, 867.24pt x 867.24p
+<./results/proposed_model_contr_learn_accuracy.png, id=2370, 867.24pt x 867.24p
 t>
 File: ./results/proposed_model_contr_learn_accuracy.png Graphic file (type png)
 
 <use ./results/proposed_model_contr_learn_accuracy.png>
 Package pdftex.def Info: ./results/proposed_model_contr_learn_accuracy.png  use
-d on input line 4774.
+d on input line 4777.
 (pdftex.def)             Requested size: 200.69118pt x 200.69167pt.
-<./results/contrastive_model_only_contr_learn_accuracy.png, id=2364, 867.24pt x
+<./results/contrastive_model_only_contr_learn_accuracy.png, id=2371, 867.24pt x
  867.24pt>
 File: ./results/contrastive_model_only_contr_learn_accuracy.png Graphic file (t
 ype png)
 <use ./results/contrastive_model_only_contr_learn_accuracy.png>
 Package pdftex.def Info: ./results/contrastive_model_only_contr_learn_accuracy.
-png  used on input line 4774.
+png  used on input line 4777.
 (pdftex.def)             Requested size: 200.69118pt x 200.69167pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [155]
-Overfull \hbox (2.80562pt too wide) in paragraph at lines 4778--4778
+Overfull \hbox (2.80562pt too wide) in paragraph at lines 4779--4779
 \OT1/cmr/m/n/10 Similarity|  
  []
 
 
-Overfull \hbox (3.84474pt too wide) in paragraph at lines 4778--4778
+Overfull \hbox (3.84474pt too wide) in paragraph at lines 4779--4779
  []|\OT1/cmr/m/n/10 Weighted| 
  []
 
 
-Overfull \hbox (3.84474pt too wide) in paragraph at lines 4778--4778
+Overfull \hbox (3.84474pt too wide) in paragraph at lines 4779--4779
  []|\OT1/cmr/m/n/10 Weighted| 
  []
 
 
-Overfull \hbox (3.84474pt too wide) in paragraph at lines 4778--4778
+Overfull \hbox (3.84474pt too wide) in paragraph at lines 4779--4779
  []|\OT1/cmr/m/n/10 Weighted| 
  []
 
 
-Overfull \hbox (3.84474pt too wide) in paragraph at lines 4778--4778
+Overfull \hbox (3.84474pt too wide) in paragraph at lines 4779--4779
  []|\OT1/cmr/m/n/10 Weighted| 
  []
 
-[156 <./results/joint_embedding_contr_learn_accuracy.png> <./results/proposed_m
-odel_contr_learn_accuracy.png> <./results/contrastive_model_only_contr_learn_ac
-curacy.png>]
-<./results/joint_embedding_contr_learn_9-nn_confusion_matrix.png, id=2378, 867.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [156 <./results/joint_embedding_contr_learn_accuracy.png> <./results/proposed_
+model_contr_learn_accuracy.png> <./results/contrastive_model_only_contr_learn_a
+ccuracy.png>]
+<./results/joint_embedding_contr_learn_9-nn_confusion_matrix.png, id=2390, 867.
 24pt x 867.24pt>
 File: ./results/joint_embedding_contr_learn_9-nn_confusion_matrix.png Graphic f
 ile (type png)
 <use ./results/joint_embedding_contr_learn_9-nn_confusion_matrix.png>
 Package pdftex.def Info: ./results/joint_embedding_contr_learn_9-nn_confusion_m
-atrix.png  used on input line 4780.
+atrix.png  used on input line 4781.
 (pdftex.def)             Requested size: 295.75032pt x 295.74431pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [157]
-<./results/proposed_model_contr_learn_5-nn_confusion_matrix.png, id=2385, 867.2
+<./results/proposed_model_contr_learn_5-nn_confusion_matrix.png, id=2396, 867.2
 4pt x 867.24pt>
 File: ./results/proposed_model_contr_learn_5-nn_confusion_matrix.png Graphic fi
 le (type png)
 <use ./results/proposed_model_contr_learn_5-nn_confusion_matrix.png>
 Package pdftex.def Info: ./results/proposed_model_contr_learn_5-nn_confusion_ma
-trix.png  used on input line 4782.
+trix.png  used on input line 4783.
 (pdftex.def)             Requested size: 295.75032pt x 295.74431pt.
 <./results/contrastive_model_only_contr_learn_11-nn_confusion_matrix.png, id=23
-86, 867.24pt x 867.24pt>
+97, 867.24pt x 867.24pt>
 File: ./results/contrastive_model_only_contr_learn_11-nn_confusion_matrix.png G
 raphic file (type png)
 <use ./results/contrastive_model_only_contr_learn_11-nn_confusion_matrix.png>
 Package pdftex.def Info: ./results/contrastive_model_only_contr_learn_11-nn_con
-fusion_matrix.png  used on input line 4784.
+fusion_matrix.png  used on input line 4785.
 (pdftex.def)             Requested size: 295.75032pt x 295.74431pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -3370,10 +3373,10 @@ Package rerunfilecheck Info: File `Thesis_V1.0.0.out' has not changed.
 (rerunfilecheck)             Checksum: 96FCA3241AF6720911F5871BF4A1153B;14426.
  ) 
 Here is how much of TeX's memory you used:
- 23337 strings out of 478927
- 427977 string characters out of 2846373
- 1162066 words of memory out of 3000000
- 39835 multiletter control sequences out of 15000+600000
+ 23338 strings out of 478927
+ 428008 string characters out of 2846373
+ 1162118 words of memory out of 3000000
+ 39836 multiletter control sequences out of 15000+600000
  418075 words of font info for 80 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  138i,17n,136p,3046b,2560s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -3413,9 +3416,9 @@ IUNET/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><
 C:/Users/michele.INFOPIUNET/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
 sfonts/cm/cmtt8.pfb><C:/Users/michele.INFOPIUNET/AppData/Local/Programs/MiKTeX/
 fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Thesis_V1.0.0.pdf (174 pages, 8161556 bytes).
+Output written on Thesis_V1.0.0.pdf (174 pages, 8164156 bytes).
 PDF statistics:
- 2956 PDF objects out of 2984 (max. 8388607)
+ 2963 PDF objects out of 2984 (max. 8388607)
  926 named destinations out of 1000 (max. 500000)
  947 words of extra memory for PDF output out of 10000 (max. 10000000)
 
