@@ -181,7 +181,7 @@
 \contentsline {section}{\numberline {7.4}Family Classification Results}{149}{section.7.4}%
 \contentsline {subsection}{\numberline {7.4.1}Comments}{152}{subsection.7.4.1}%
 \contentsline {subsection}{\numberline {7.4.2}Families study}{153}{subsection.7.4.2}%
-\contentsline {section}{\numberline {7.5}Contrastive Learning Results}{156}{section.7.5}%
+\contentsline {section}{\numberline {7.5}Contrastive Learning Results}{155}{section.7.5}%
 \contentsline {subsection}{\numberline {7.5.1}Example rankings}{159}{subsection.7.5.1}%
 \contentsline {subsection}{\numberline {7.5.2}Comments}{163}{subsection.7.5.2}%
 \contentsline {section}{\numberline {7.6}Computation Time}{164}{section.7.6}%
