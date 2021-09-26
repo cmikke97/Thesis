@@ -183,10 +183,10 @@
 \contentsline {subsection}{\numberline {7.4.2}Families study}{153}{subsection.7.4.2}%
 \contentsline {section}{\numberline {7.5}Contrastive Learning Results}{155}{section.7.5}%
 \contentsline {subsection}{\numberline {7.5.1}Example rankings}{159}{subsection.7.5.1}%
-\contentsline {subsection}{\numberline {7.5.2}Comments}{163}{subsection.7.5.2}%
-\contentsline {section}{\numberline {7.6}Computation Time}{164}{section.7.6}%
-\contentsline {chapter}{\numberline {8}Conclusions}{166}{chapter.8}%
-\contentsline {section}{\numberline {8.1}Future Work}{166}{section.8.1}%
-\contentsline {chapter}{Bibliography}{169}{section.8.1}%
-\contentsline {chapter}{List of Figures}{172}{section*.184}%
-\contentsline {chapter}{List of Tables}{174}{section*.185}%
+\contentsline {subsection}{\numberline {7.5.2}Comments}{161}{subsection.7.5.2}%
+\contentsline {section}{\numberline {7.6}Computation Time}{161}{section.7.6}%
+\contentsline {chapter}{\numberline {8}Conclusions}{164}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Future Work}{164}{section.8.1}%
+\contentsline {chapter}{Bibliography}{167}{section.8.1}%
+\contentsline {chapter}{List of Figures}{170}{section*.184}%
+\contentsline {chapter}{List of Tables}{172}{section*.185}%
