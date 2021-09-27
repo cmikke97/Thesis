@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.9.11)  26 SEP 2021 18:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.9.11)  27 SEP 2021 12:58
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -3939,11 +3939,11 @@ Overfull \hbox (4.813pt too wide) in paragraph at lines 4798--4798
  []|\OT1/cmr/m/n/10 7eba4d..| 
  []
 
-[160]
+[160] [161]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [161]
-[162] [163]
+ [162]
+[163]
 Chapter 8.
 [164
 
@@ -4113,9 +4113,9 @@ IUNET/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><
 C:/Users/michele.INFOPIUNET/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
 sfonts/cm/cmtt8.pfb><C:/Users/michele.INFOPIUNET/AppData/Local/Programs/MiKTeX/
 fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Thesis_V1.0.0.pdf (172 pages, 8160258 bytes).
+Output written on Thesis_V1.0.0.pdf (172 pages, 8164731 bytes).
 PDF statistics:
- 2954 PDF objects out of 2984 (max. 8388607)
+ 2964 PDF objects out of 2984 (max. 8388607)
  924 named destinations out of 1000 (max. 500000)
  947 words of extra memory for PDF output out of 10000 (max. 10000000)
 
