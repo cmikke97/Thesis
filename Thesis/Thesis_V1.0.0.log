@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.9.11)  27 SEP 2021 12:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.9.11)  27 SEP 2021 13:06
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -3939,11 +3939,7 @@ Overfull \hbox (4.813pt too wide) in paragraph at lines 4798--4798
  []|\OT1/cmr/m/n/10 7eba4d..| 
  []
 
-[160] [161]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [162]
-[163]
+[160] [161] [162] [163]
 Chapter 8.
 [164
 
@@ -4070,10 +4066,10 @@ Package rerunfilecheck Info: File `Thesis_V1.0.0.out' has not changed.
 (rerunfilecheck)             Checksum: 96FCA3241AF6720911F5871BF4A1153B;14426.
  ) 
 Here is how much of TeX's memory you used:
- 23335 strings out of 478927
- 427961 string characters out of 2846373
- 1161399 words of memory out of 3000000
- 39835 multiletter control sequences out of 15000+600000
+ 23336 strings out of 478927
+ 427995 string characters out of 2846373
+ 1161449 words of memory out of 3000000
+ 39836 multiletter control sequences out of 15000+600000
  418075 words of font info for 80 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  138i,17n,136p,3046b,2560s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -4113,9 +4109,9 @@ IUNET/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><
 C:/Users/michele.INFOPIUNET/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
 sfonts/cm/cmtt8.pfb><C:/Users/michele.INFOPIUNET/AppData/Local/Programs/MiKTeX/
 fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Thesis_V1.0.0.pdf (172 pages, 8164731 bytes).
+Output written on Thesis_V1.0.0.pdf (172 pages, 8165236 bytes).
 PDF statistics:
- 2964 PDF objects out of 2984 (max. 8388607)
+ 2965 PDF objects out of 2984 (max. 8388607)
  924 named destinations out of 1000 (max. 500000)
  947 words of extra memory for PDF output out of 10000 (max. 10000000)
 
