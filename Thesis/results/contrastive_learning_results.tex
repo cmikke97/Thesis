@@ -4,15 +4,15 @@
 		\begin{subfigure}[b]{0.475\textwidth}
 			\centering
 			\includegraphics[width=\textwidth]{./results/joint_embedding_contr_learn_accuracy.png}
-			\caption[]{{\small Joint Embedding Contrastive Model}}
+			\caption[]{{\small Contrastive Joint Embedding}}
 			\label{fig:jointEmbeddingContrLearnAccuracyTrend}
 		\end{subfigure}
 		\hfill
 		\begin{subfigure}[b]{0.475\textwidth}
 			\centering
-			\includegraphics[width=\textwidth]{./results/proposed_model_contr_learn_accuracy.png}
-			\caption[]{{\small Proposed Model Contrastive Model}}
-			\label{fig:proposedModelContrLearnAccuracyTrend}
+			\includegraphics[width=\textwidth]{./results/mtje_contr_learn_accuracy.png}
+			\caption[]{{\small Contrastive MTJE Model}}
+			\label{fig:mtjeContrLearnAccuracyTrend}
 		\end{subfigure}
 		\vskip\baselineskip
 		\begin{subfigure}[b]{0.475\textwidth}
@@ -22,7 +22,7 @@
 			\label{fig:ContrastiveModelOnlyContrLearnAccuracyTrend}
 		\end{subfigure}
 		\hfill
-		\caption[Contrastive Model Accuracy Trends]{Mean and standard deviation of the accuracy trends obtained by evaluating the Contrastive Model based on the \textbf{Joint Embedding} and \textbf{Proposed Model} along with a Contrastive Model with no \textit{Transfer Learning} applied (\textit{Contrastive Model Only}) on the malware family classification task using the k-NN algorithm as the number $k$ of nearest neighbours changes from 1 to 11. Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings.} \label{fig:ContrLearnAccuracyTrends}
+		\caption[Contrastive Model Accuracy Trends]{Mean and standard deviation of the accuracy trends obtained by evaluating the Contrastive Model based on the \textbf{Joint Embedding} and \textbf{MTJE} model along with a Contrastive Model with no \textit{Transfer Learning} applied (\textit{Contrastive Model Only}) on the malware family classification task using the k-NN algorithm as the number $k$ of nearest neighbours changes from 1 to 11. Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings.} \label{fig:ContrLearnAccuracyTrends}
 	\end{figure}
 }
 
@@ -31,13 +31,13 @@
 		\centering
 		\begin{tabular}{|P{2cm}||P{3,2cm} P{3,2cm} P{3,2cm}|}
 			\hline
-			& Joint Embedding Contrastive Model & Proposed Model Contrastive Model & Contrastive Model Only \\
+			& Contrastive Joint Embedding & Contrastive MTJE Model & Contrastive Model Only \\
 			\hline
 			MRR & 0.506$\pm$0.008 & \textBF{0.509$\pm$0.002} & 0.503$\pm$0.011 \\
 			MAP & 0.441$\pm$0.003 & \textBF{0.443$\pm$0.002} & 0.437$\pm$0.004 \\
 			\hline
 		\end{tabular}
-		\caption[Contrastive Model family ranking MRR and MAP scores]{Mean and standard deviation MRR (Mean Reciprocal Rank) and MAP (Mean Average Precision) results obtained by evaluating the Contrastive Model based on the \textbf{Joint Embedding} and \textbf{Proposed Model} along with a Contrastive Model with no \textit{Transfer Learning} applied (\textit{Contrastive Model Only}) on the Family Ranking task. Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:ContrLearnMrrAndMapResults}
+		\caption[Contrastive Model family ranking MRR and MAP scores]{Mean and standard deviation MRR (Mean Reciprocal Rank) and MAP (Mean Average Precision) results obtained by evaluating the Contrastive Model based on the \textbf{Joint Embedding} and \textbf{MTJE} model along with a Contrastive Model with no \textit{Transfer Learning} applied (\textit{Contrastive Model Only}) on the Family Ranking task. Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:ContrLearnMrrAndMapResults}
 	\end{table}
 }
 
@@ -46,12 +46,12 @@
 		\centering
 		\begin{tabular}{|P{2cm}||P{3,2cm} P{3,2cm} P{3,2cm}|}
 			\hline
-			& Joint Embedding Contrastive Model (with $k=9$) & Proposed Model Contrastive Model (with $k=5$) & Contrastive Model only (with $k=11$) \\
+			& Contrastive Joint Embedding (with $k=9$) & Contrastive MTJE Model (with $k=5$) & Contrastive Model only (with $k=11$) \\
 			\hline
 			Accuracy & 0.427$\pm$0.003 & \textBF{0.431$\pm$0.007} & 0.415$\pm$0.013 \\
 			\hline
 		\end{tabular}
-		\caption[Contrastive Model Accuracy Results]{Mean and Standard deviation of the accuracy obtained by evaluating the Contrastive Model based on the \textbf{Joint Embedding} and \textbf{Proposed Model} along with a Contrastive Model with no \textit{Transfer Learning} applied (\textit{Contrastive Model Only}) on the family classification task. Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:ContrLearnAccuracyResults}
+		\caption[Contrastive Model Accuracy Results]{Mean and Standard deviation of the accuracy obtained by evaluating the Contrastive Model based on the \textbf{Joint Embedding} and \textbf{MTJE} model along with a Contrastive Model with no \textit{Transfer Learning} applied (\textit{Contrastive Model Only}) on the family classification task. Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:ContrLearnAccuracyResults}
 	\end{table}
 }
 
@@ -60,7 +60,7 @@
 		\centering
 		\begin{tabular}{|P{1,8cm}|P{1,3cm}||P{3cm} P{3cm} P{3cm}|}
 			\hline
-			& & Joint Embedding Contrastive Model (with $k=9$) & Proposed Model Contrastive Model (with $k=5$) & Contrastive Model only (with $k=11$) \\
+			& & Contrastive Joint Embedding (with $k=9$) & Contrastive MTJE Model (with $k=5$) & Contrastive Model only (with $k=11$) \\
 			\hline
 			\multirow{3}{4em}{Jaccard Similarity} & Micro & 0.271$\pm$0.002 & \textBF{0.274$\pm$0.006} & 0.262$\pm$0.010 \\
 			& Macro & 0.310$\pm$0.006 & \textBF{0.313$\pm$0.003} & 0.292$\pm$0.008 \\
@@ -79,7 +79,7 @@
 			& Weighted & 0.433$\pm$0.007 & \textBF{0.435$\pm$0.001} & 0.400$\pm$0.004 \\
 			\hline
 		\end{tabular}
-		\caption[Contrastive Model Scores]{Mean and Standard deviation of the multi-class classification scores obtained by evaluating the 2 Contrastive Models obtained by transferring the knowledge from a previous training run on the Sorel-20m dataset of the \textbf{Joint Embedding} and \textbf{Proposed Model} implementations, respectively, along with a Contrastive Model with no \textit{Transfer Learning} applied (\textit{Contrastive Model Only}) on the family classification task using the k-NN algorithm. Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:ContrLearnScoresTable}
+		\caption[Contrastive Model Scores]{Mean and Standard deviation of the multi-class classification scores obtained by evaluating the 2 Contrastive Models obtained by transferring the knowledge from a previous training run on the Sorel-20m dataset of the \textbf{Joint Embedding} and \textbf{MTJE} model implementations, respectively, along with a Contrastive Model with no \textit{Transfer Learning} applied (\textit{Contrastive Model Only}) on the family classification task using the k-NN algorithm. Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:ContrLearnScoresTable}
 	\end{table}
 }
 
@@ -95,14 +95,14 @@
 	\end{figure}
 }
 
-\newcommand{\ContrLearnProposedModelConfusionMatrix}{
+\newcommand{\ContrLearnMtjeConfusionMatrix}{
 	\begin{figure}[H]
 		\vspace*{-0.5cm}
 		\centering
-		\includegraphics[width=0.7\textwidth]{./results/proposed_model_contr_learn_5-nn_confusion_matrix.png}
+		\includegraphics[width=0.7\textwidth]{./results/mtje_contr_learn_5-nn_confusion_matrix.png}
 		\vspace*{-0.2cm}
-		\caption[Contrastive Model based on Proposed Model Confusion Matrix]{Confusion Matrix resulting from the evaluation of the Contrastive Model obtained by transferring the knowledge from a previous \textbf{Proposed Model} training run on the Sorel-20m dataset on the family classification task using the k-NN algorithm with $k=5$.}
-		\label{fig:ContrLearnProposedModelConfusionMatrix}
+		\caption[Contrastive Model based on MTJE Model Confusion Matrix]{Confusion Matrix resulting from the evaluation of the Contrastive Model obtained by transferring the knowledge from a previous \textbf{MTJE} model training run on the Sorel-20m dataset on the family classification task using the k-NN algorithm with $k=5$.}
+		\label{fig:ContrLearnMtjeConfusionMatrix}
 		\vspace*{-0.2cm}
 	\end{figure}
 }
@@ -125,7 +125,7 @@
 		\begin{tabular}{|P{1,4cm}||P{1,1cm} P{0,4cm} P{1,5cm}|P{1,1cm} P{0,4cm} P{1,5cm}|P{1,1cm} P{0,4cm} P{1,5cm}|}
 			\hline
 			Max AP & \multicolumn{3}{c|}{Contrastive} & \multicolumn{3}{c|}{Contrastive} & \multicolumn{3}{c|}{Contrastive} \\
-			& \multicolumn{3}{c|}{Joint Embedding} & \multicolumn{3}{c|}{Proposed Model} & \multicolumn{3}{c|}{Model Only} \\
+			& \multicolumn{3}{c|}{Joint Embedding} & \multicolumn{3}{c|}{MTJE Model} & \multicolumn{3}{c|}{Model Only} \\
 			& Sha256 & Label & Family & Sha256 & Label & Family & Sha256 & Label & Family \\
 			\hline
 			Query & 2d2796.. & 8 & guloader & 35287c.. & 8 & guloader & 15c19c.. & 5 & heodo \\
@@ -145,7 +145,7 @@
 			\hline
 		\end{tabular}
 		\vspace{-0.2cm}
-		\caption[Contrastive Model family ranking max AP example]{Example rankings (limited to the first 10 samples) having the maximum Average Precision (\textbf{max AP}) between the ones produced by the 2 Contrastive Models obtained by transferring the knowledge from a previous training run of the \textbf{Joint Embedding} and \textbf{Proposed Model} implementations, respectively, and by a Contrastive Model with no \textit{Transfer Learning} applied (\textbf{Contrastive Model Only}). The elements matching the query sample are shown in \textbf{bold}.} \label{tab:ContrLearnMaxApExampleRank}
+		\caption[Contrastive Model family ranking max AP example]{Example rankings (limited to the first 10 samples) having the maximum Average Precision (\textbf{max AP}) between the ones produced by the 2 Contrastive Models obtained by transferring the knowledge from a previous training run of the \textbf{Joint Embedding} and \textbf{MTJE} model implementations, respectively, and by a Contrastive Model with no \textit{Transfer Learning} applied (\textbf{Contrastive Model Only}). The elements matching the query sample are shown in \textbf{bold}.} \label{tab:ContrLearnMaxApExampleRank}
 		\vspace{-0.2cm}
 	\end{table}
 }
@@ -156,7 +156,7 @@
 		\begin{tabular}{|P{1,4cm}||P{1,1cm} P{0,4cm} P{1,5cm}|P{1,1cm} P{0,4cm} P{1,5cm}|P{1,1cm} P{0,4cm} P{1,5cm}|}
 			\hline
 			Max RR & \multicolumn{3}{c|}{Contrastive} & \multicolumn{3}{c|}{Contrastive} & \multicolumn{3}{c|}{Contrastive} \\
-			& \multicolumn{3}{c|}{Joint Embedding} & \multicolumn{3}{c|}{Proposed Model} & \multicolumn{3}{c|}{Model Only} \\
+			& \multicolumn{3}{c|}{Joint Embedding} & \multicolumn{3}{c|}{MTJE Model} & \multicolumn{3}{c|}{Model Only} \\
 			& Sha256 & Label & Family & Sha256 & Label & Family & Sha256 & Label & Family \\
 			\hline
 			Query & 7308f0.. & 3 & quakbot & 35287c.. & 8 & guloader & 9e955c.. & 7 & trickbot \\
@@ -176,7 +176,7 @@
 			\hline
 		\end{tabular}
 		\vspace{-0.2cm}
-		\caption[Contrastive Model family ranking max RR example]{Example rankings (limited to the first 10 samples) having the maximum Reciprocal Rank (\textbf{max RR}) between the ones produced by the 2 Contrastive Models obtained by transferring the knowledge from a previous training run of the \textbf{Joint Embedding} and \textbf{Proposed Model} implementations, respectively, and by a Contrastive Model with no \textit{Transfer Learning} applied (\textbf{Contrastive Model Only}). The elements matching the query sample are shown in \textbf{bold}.} \label{tab:ContrLearnMaxRrExampleRank}
+		\caption[Contrastive Model family ranking max RR example]{Example rankings (limited to the first 10 samples) having the maximum Reciprocal Rank (\textbf{max RR}) between the ones produced by the 2 Contrastive Models obtained by transferring the knowledge from a previous training run of the \textbf{Joint Embedding} and \textbf{MTJE} model implementations, respectively, and by a Contrastive Model with no \textit{Transfer Learning} applied (\textbf{Contrastive Model Only}). The elements matching the query sample are shown in \textbf{bold}.} \label{tab:ContrLearnMaxRrExampleRank}
 		\vspace{-0.2cm}
 	\end{table}
 }
@@ -187,7 +187,7 @@
 		\begin{tabular}{|P{1,4cm}||P{1,1cm} P{0,4cm} P{1,5cm}|P{1,1cm} P{0,4cm} P{1,5cm}|P{1,1cm} P{0,4cm} P{1,5cm}|}
 			\hline
 			Min AP & \multicolumn{3}{c|}{Contrastive} & \multicolumn{3}{c|}{Contrastive} & \multicolumn{3}{c|}{Contrastive} \\
-			& \multicolumn{3}{c|}{Joint Embedding} & \multicolumn{3}{c|}{Proposed Model} & \multicolumn{3}{c|}{Model Only} \\
+			& \multicolumn{3}{c|}{Joint Embedding} & \multicolumn{3}{c|}{MTJE Model} & \multicolumn{3}{c|}{Model Only} \\
 			& Sha256 & Label & Family & Sha256 & Label & Family & Sha256 & Label & Family \\
 			\hline
 			Query & a3b2db.. & 0 & formbook & 241991.. & 7 & trickbot & ff69d2.. & 2 & gozi \\
@@ -207,7 +207,7 @@
 			\hline
 		\end{tabular}
 		\vspace{-0.2cm}
-		\caption[Contrastive Model family ranking max AP example]{Example rankings (limited to the first 10 samples) having the minimum Average Precision (\textbf{min AP}) between the ones produced by the 2 Contrastive Models obtained by transferring the knowledge from a previous training run of the \textbf{Joint Embedding} and \textbf{Proposed Model} implementations, respectively, and by a Contrastive Model with no \textit{Transfer Learning} applied (\textbf{Contrastive Model Only}). The elements matching the query sample are shown in \textbf{bold}.} \label{tab:ContrLearnMinApExampleRank}
+		\caption[Contrastive Model family ranking max AP example]{Example rankings (limited to the first 10 samples) having the minimum Average Precision (\textbf{min AP}) between the ones produced by the 2 Contrastive Models obtained by transferring the knowledge from a previous training run of the \textbf{Joint Embedding} and \textbf{MTJE} model implementations, respectively, and by a Contrastive Model with no \textit{Transfer Learning} applied (\textbf{Contrastive Model Only}). The elements matching the query sample are shown in \textbf{bold}.} \label{tab:ContrLearnMinApExampleRank}
 		\vspace{-0.2cm}
 	\end{table}
 }
@@ -218,7 +218,7 @@
 		\begin{tabular}{|P{1,4cm}||P{1,1cm} P{0,4cm} P{1,5cm}|P{1,1cm} P{0,4cm} P{1,5cm}|P{1,1cm} P{0,4cm} P{1,5cm}|}
 			\hline
 			Min RR & \multicolumn{3}{c|}{Contrastive} & \multicolumn{3}{c|}{Contrastive} & \multicolumn{3}{c|}{Contrastive} \\
-			& \multicolumn{3}{c|}{Joint Embedding} & \multicolumn{3}{c|}{Proposed Model} & \multicolumn{3}{c|}{Model Only} \\
+			& \multicolumn{3}{c|}{Joint Embedding} & \multicolumn{3}{c|}{MTJE Model} & \multicolumn{3}{c|}{Model Only} \\
 			& Sha256 & Label & Family & Sha256 & Label & Family & Sha256 & Label & Family \\
 			\hline
 			Query & a3b2db.. & 0 & formbook & 241991.. & 7 & trickbot & ff69d2.. & 2 & gozi \\
@@ -238,7 +238,7 @@
 			\hline
 		\end{tabular}
 		\vspace{-0.2cm}
-		\caption[Contrastive Model family ranking max AP example]{Example rankings (limited to the first 10 samples) having the minimum Reciprocal Rank (\textbf{min RR}) between the ones produced by the 2 Contrastive Models obtained by transferring the knowledge from a previous training run of the \textbf{Joint Embedding} and \textbf{Proposed Model} implementations, respectively, and by a Contrastive Model with no \textit{Transfer Learning} applied (\textbf{Contrastive Model Only}). The elements matching the query sample are shown in \textbf{bold}.} \label{tab:ContrLearnMinRrExampleRank}
+		\caption[Contrastive Model family ranking max AP example]{Example rankings (limited to the first 10 samples) having the minimum Reciprocal Rank (\textbf{min RR}) between the ones produced by the 2 Contrastive Models obtained by transferring the knowledge from a previous training run of the \textbf{Joint Embedding} and \textbf{MTJE} model implementations, respectively, and by a Contrastive Model with no \textit{Transfer Learning} applied (\textbf{Contrastive Model Only}). The elements matching the query sample are shown in \textbf{bold}.} \label{tab:ContrLearnMinRrExampleRank}
 		\vspace{-0.2cm}
 	\end{table}
 }

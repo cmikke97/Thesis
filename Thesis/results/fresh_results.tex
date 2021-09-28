@@ -3,7 +3,7 @@
         \centering
         \begin{tabular}{|P{2,8cm}||P{2,2cm} P{2,2cm} P{2,2cm} P{2,2cm}|}
             \hline
-            & ALOHA (M/B only) & ALOHA & Joint Embedding & Proposed Model \\
+            & ALOHA (M/B only) & ALOHA & Joint Embedding & MTJE Model \\
             \hline
             Accuracy & 0.299$\pm$0.048 & \textBF{0.398$\pm$0.051} & 0.273$\pm$0.058 & 0.223$\pm$0.044 \\
             Recall Micro & 0.299$\pm$0.048 & \textBF{0.398$\pm$0.051} & 0.273$\pm$0.058 & 0.223$\pm$0.044 \\
@@ -148,9 +148,9 @@
         \hfill
         \begin{subfigure}[b]{0.475\textwidth}
             \centering
-            \includegraphics[width=\textwidth]{./results/conf_matrix_max_acc_proposedModel.png}
-            \caption[]{{\small \textBF{Proposed Model} implementation}}
-            \label{fig:proposedModelConfMatrixMaxAcc}
+            \includegraphics[width=\textwidth]{./results/conf_matrix_max_acc_mtje.png}
+            \caption[]{{\small \textBF{MTJE} model implementation}}
+            \label{fig:mtjeConfMatrixMaxAcc}
         \end{subfigure}
         \caption[Family Prediction Confusion Matrixes (Max Accuracy)]{\textBF{Confusion Matrix} corresponding to the best prediction when using the number $k$ of anchors which produced the overall best accuracy, resulting from the evaluation of the different models on the Malware Family Prediction task.}
         \label{fig:ConfusionMatrixesMaxAcc}
@@ -183,9 +183,9 @@
         \hfill
         \begin{subfigure}[b]{0.475\textwidth}
             \centering
-            \includegraphics[width=\textwidth]{./results/conf_matrix_min_acc_proposedModel.png}
-            \caption[]{{\small \textBF{Proposed Model} implementation}}
-            \label{fig:proposedModelConfMatrixMinAcc}
+            \includegraphics[width=\textwidth]{./results/conf_matrix_min_acc_mtje.png}
+            \caption[]{{\small \textBF{MTJE} model implementation}}
+            \label{fig:mtjeConfMatrixMinAcc}
         \end{subfigure}
         \caption[Family Prediction Confusion Matrixes (Min Accuracy)]{\textBF{Confusion Matrix} corresponding to the best prediction when using the number $k$ of anchors which produced the overall worst accuracy, resulting from the evaluation of the different models on the Malware Family Prediction task.}
         \label{fig:ConfusionMatrixesMinAcc}

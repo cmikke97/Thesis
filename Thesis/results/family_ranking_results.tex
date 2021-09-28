@@ -3,7 +3,7 @@
         \centering
         \begin{tabular}{|P{2,8cm}||P{2,2cm} P{2,2cm} P{2,2cm} P{2,2cm}|}
             \hline
-            & ALOHA (M/B only) & ALOHA & Joint Embedding & Proposed Model \\
+            & ALOHA (M/B only) & ALOHA & Joint Embedding & MTJE Model \\
             \hline
             MRR & 0.254$\pm$0.015 & \textBF{0.259$\pm$0.008} & 0.253$\pm$0.012 & 0.253$\pm$0.010 \\
             MAP & 0.106$\pm$0.001 & \textBF{0.106$\pm$0.000} & \textBF{0.106$\pm$0.000} & \textBF{0.106$\pm$0.000} \\
@@ -39,7 +39,7 @@
             Next & \multicolumn{3}{c|}{position 14} & \multicolumn{3}{c|}{position 10} \\
             \hline
             \hline
-            Max AP & \multicolumn{3}{c|}{Joint Embedding} & \multicolumn{3}{c|}{Proposed Model} \\
+            Max AP & \multicolumn{3}{c|}{Joint Embedding} & \multicolumn{3}{c|}{MTJE Model} \\
             & Sha256 & Label & Family & Sha256 & Label & Family \\
             \hline
             Query & c0a92a.. & 6 & remcosrat & 389ec4.. & 7 & trickbot \\
@@ -60,7 +60,7 @@
             Next & \multicolumn{3}{c|}{position 11} & \multicolumn{3}{c|}{position 17} \\
             \hline
         \end{tabular}
-        \caption[Family ranking max AP example]{\textBF{ALOHA (M/B) Embedding}, \textBF{ALOHA}, \textBF{Joint Embedding} and \textBF{Proposed Model} example rankings (limited to the first 10 samples) having the maximum Average Precision (max AP). The elements matching the query sample are shown in \textbf{bold}. The last line of each table indicates the position in the ranking where to find the next element belonging to the same family as the query sample.} \label{tab:maxApExampleRank}
+        \caption[Family ranking max AP example]{\textBF{ALOHA (M/B)}, \textBF{ALOHA}, \textBF{Joint Embedding} and \textBF{MTJE} model example rankings (limited to the first 10 samples) having the maximum Average Precision (max AP). The elements matching the query sample are shown in \textbf{bold}. The last line of each table indicates the position in the ranking where to find the next element belonging to the same family as the query sample.} \label{tab:maxApExampleRank}
     \end{table}
 }
 
@@ -90,7 +90,7 @@
             Next & \multicolumn{3}{c|}{position 10} & \multicolumn{3}{c|}{position 11} \\
             \hline
             \hline
-            Max RR & \multicolumn{3}{c|}{Joint Embedding} & \multicolumn{3}{c|}{Proposed Model} \\
+            Max RR & \multicolumn{3}{c|}{Joint Embedding} & \multicolumn{3}{c|}{MTJE Model} \\
             & Sha256 & Label & Family & Sha256 & Label & Family \\
             \hline
             Query & 32897c.. & 2 & gozi & 807414.. & 1 & agenttesla \\
@@ -111,7 +111,7 @@
             Next & \multicolumn{3}{c|}{position 12} & \multicolumn{3}{c|}{position 14} \\
             \hline
         \end{tabular}
-        \caption[Family ranking max RR example]{\textBF{ALOHA (M/B) Embedding}, \textBF{ALOHA}, \textBF{Joint Embedding} and \textBF{Proposed Model} example rankings (limited to the first 10 samples) having the maximum Reciprocal Rank (max RR). The elements matching the query sample are shown in \textbf{bold}. The last line of each table indicates the position in the ranking where to find the next element belonging to the same family as the query sample.} \label{tab:maxRrExampleRank}
+        \caption[Family ranking max RR example]{\textBF{ALOHA (M/B)}, \textBF{ALOHA}, \textBF{Joint Embedding} and \textBF{MTJE} model example rankings (limited to the first 10 samples) having the maximum Reciprocal Rank (max RR). The elements matching the query sample are shown in \textbf{bold}. The last line of each table indicates the position in the ranking where to find the next element belonging to the same family as the query sample.} \label{tab:maxRrExampleRank}
     \end{table}
 }
 
@@ -141,7 +141,7 @@
             Next & \multicolumn{3}{c|}{position 20} & \multicolumn{3}{c|}{position 39} \\
             \hline
             \hline
-            Min AP & \multicolumn{3}{c|}{Joint Embedding} & \multicolumn{3}{c|}{Proposed Model} \\
+            Min AP & \multicolumn{3}{c|}{Joint Embedding} & \multicolumn{3}{c|}{MTJE Model} \\
             & Sha256 & Label & Family & Sha256 & Label & Family \\
             \hline
             Query & c89a67.. & 7 & trickbot & e619c7.. & 3 & quakbot \\
@@ -162,7 +162,7 @@
             Next & \multicolumn{3}{c|}{position 67} & \multicolumn{3}{c|}{position 49} \\
             \hline
         \end{tabular}
-        \caption[Family ranking min AP example]{\textBF{ALOHA (M/B) Embedding}, \textBF{ALOHA}, \textBF{Joint Embedding} and \textBF{Proposed Model} example rankings (limited to the first 10 samples) having the minimum Average Precision (max AP). The elements matching the query sample are shown in \textbf{bold}. The last line of each table indicates the position in the ranking where to find the next element belonging to the same family as the query sample.} \label{tab:minApExampleRank}
+        \caption[Family ranking min AP example]{\textBF{ALOHA (M/B)}, \textBF{ALOHA}, \textBF{Joint Embedding} and \textBF{MTJE} model example rankings (limited to the first 10 samples) having the minimum Average Precision (max AP). The elements matching the query sample are shown in \textbf{bold}. The last line of each table indicates the position in the ranking where to find the next element belonging to the same family as the query sample.} \label{tab:minApExampleRank}
     \end{table}
 }
 
@@ -192,7 +192,7 @@
             Next & \multicolumn{3}{c|}{position 128} & \multicolumn{3}{c|}{position 113} \\
             \hline
             \hline
-            Min RR & \multicolumn{3}{c|}{Joint Embedding} & \multicolumn{3}{c|}{Proposed Model} \\
+            Min RR & \multicolumn{3}{c|}{Joint Embedding} & \multicolumn{3}{c|}{MTJE Model} \\
             & Sha256 & Label & Family & Sha256 & Label & Family \\
             \hline
             Query & 4a9e32.. & 5 & heodo & dbfdd9.. & 8 & guloader \\
@@ -213,6 +213,6 @@
             Next & \multicolumn{3}{c|}{position 94} & \multicolumn{3}{c|}{position 106} \\
             \hline
         \end{tabular}
-        \caption[Family ranking min RR example]{\textBF{ALOHA (M/B) Embedding}, \textBF{ALOHA}, \textBF{Joint Embedding} and \textBF{Proposed Model} example rankings (limited to the first 10 samples) having the minimum Reciprocal Rank (max RR). The elements matching the query sample are shown in \textbf{bold}. The last line of each table indicates the position in the ranking where to find the next element belonging to the same family as the query sample.} \label{tab:minRrExampleRank}
+        \caption[Family ranking min RR example]{\textBF{ALOHA (M/B)}, \textBF{ALOHA}, \textBF{Joint Embedding} and \textBF{MTJE} model example rankings (limited to the first 10 samples) having the minimum Reciprocal Rank (max RR). The elements matching the query sample are shown in \textbf{bold}. The last line of each table indicates the position in the ranking where to find the next element belonging to the same family as the query sample.} \label{tab:minRrExampleRank}
     \end{table}
 }

@@ -3,12 +3,12 @@
         \centering
         \begin{tabular}{|P{2cm}||P{3,2cm} P{3,2cm} P{3,2cm}|}
             \hline
-            & Joint Embedding Family Classifier & Proposed Model Family Classifier & Family Classifier only \\
+            & Family Classifier on Joint Embedding & Family Classifier on MTJE Model & Family Classifier only \\
             \hline
             Accuracy & 0.445$\pm$0.005 & \textBF{0.465$\pm$0.003} & 0.414$\pm$0.007 \\
             \hline
         \end{tabular}
-        \caption[Family Classifier Accuracy Results]{Mean and Standard deviation of the Family Classifier accuracy obtained by evaluating the Family Classifiers built on top of the \textBF{Joint Embedding} and \textBF{Proposed Model} implementations along with a Family Classifier model with no Transfer Learning applied (\textBF{Family Classifier Only}). Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:FamilyClassifierAccuracyResults}
+        \caption[Family Classifier Accuracy Results]{Mean and Standard deviation of the Family Classifier accuracy obtained by evaluating the Family Classifiers built on top of the \textBF{Joint Embedding} and \textBF{MTJE} model implementations along with a Family Classifier model with no Transfer Learning applied (\textBF{Family Classifier Only}). Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:FamilyClassifierAccuracyResults}
     \end{table}
 }
 
@@ -17,7 +17,7 @@
         \centering
         \begin{tabular}{|P{1,8cm}|P{1,3cm}||P{3cm} P{3cm} P{3cm}|}
             \hline
-            & & Joint Embedding Family Classifier & Proposed Model Family Classifier & Family Classifier only \\
+            & & Family Classifier on Joint Embedding & Family Classifier on MTJE Model & Family Classifier only \\
             \hline
             \multirow{3}{4em}{Jaccard Similarity} & Micro & 0.286$\pm$0.004 & \textBF{0.303$\pm$0.002} & 0.261$\pm$0.006 \\
             & Macro & 0.318$\pm$0.001 & \textBF{0.339$\pm$0.002} & 0.282$\pm$0.011 \\
@@ -44,7 +44,7 @@
             & Weighted & 0.815$\pm$0.004 & \textBF{0.830$\pm$0.002} & 0.800$\pm$0.015 \\
             \hline
         \end{tabular}
-        \caption[Family Classifier Scores]{Mean and Standard deviation of the Family Classifier scores obtained by evaluating the Family Classifiers built on top of the \textBF{Joint Embedding} and \textBF{Proposed Model} implementations along with a Family Classifier model with no Transfer Learning applied (\textBF{Family Classifier Only}). Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:FamilyClassifierScoresTable}
+        \caption[Family Classifier Scores]{Mean and Standard deviation of the Family Classifier scores obtained by evaluating the Family Classifiers built on top of the \textBF{Joint Embedding} and \textBF{MTJE} model implementations along with a Family Classifier model with no Transfer Learning applied (\textBF{Family Classifier Only}). Results were aggregated over \textBF{3} training runs with different weight initializations and minibatch orderings. Best results are shown in \textbf{bold}.} \label{tab:FamilyClassifierScoresTable}
     \end{table}
 }
 
@@ -54,19 +54,19 @@
         \centering
         \includegraphics[width=0.7\textwidth]{./results/family_classifier_confusion_matrix_jointEmbedding.png}
         \vspace*{-0.2cm}
-        \caption[Family Classifier Joint Embedding Confusion Matrix]{Confusion Matrix resulting from the evaluation of the Family Classifier built on top of the Joint Embedding model implementation.}
+        \caption[Family Classifier Joint Embedding Confusion Matrix]{Confusion Matrix resulting from the evaluation of the Family Classifier built on top of the \textbf{Joint Embedding} model implementation.}
         \label{fig:FamilyClassifierJointEmbeddingConfusionMatrix}
     \end{figure}
 }
 
-\newcommand{\FamilyClassifierProposedModelConfusionMatrix}{
+\newcommand{\FamilyClassifierMtjeConfusionMatrix}{
     \begin{figure}[H]
         \vspace*{-0.5cm}
         \centering
-        \includegraphics[width=0.7\textwidth]{./results/family_classifier_confusion_matrix_proposedModel.png}
+        \includegraphics[width=0.7\textwidth]{./results/family_classifier_confusion_matrix_mtje.png}
         \vspace*{-0.2cm}
-        \caption[Family Classifier Proposed Model Confusion Matrix]{Confusion Matrix resulting from the evaluation of the Family Classifier built on top of the Proposed Model implementation.}
-        \label{fig:FamilyClassifierProposedModelConfusionMatrix}
+        \caption[Family Classifier MTJE Model Confusion Matrix]{Confusion Matrix resulting from the evaluation of the Family Classifier built on top of the \textbf{MTJE} Model implementation.}
+        \label{fig:FamilyClassifierMtjeConfusionMatrix}
     \end{figure}
 }
 
@@ -76,7 +76,7 @@
         \centering
         \includegraphics[width=0.7\textwidth]{./results/family_classifier_confusion_matrix_familyClassifierOnly.png}
         \vspace*{-0.2cm}
-        \caption[Family Classifier Only Joint Embedding Confusion Matrix]{Confusion Matrix resulting from the evaluation of the Family Classifier only Model implementation (with no transfer learning).}
+        \caption[Family Classifier Only Joint Embedding Confusion Matrix]{Confusion Matrix resulting from the evaluation of the \textbf{Family Classifier Only} Model implementation (with no transfer learning).}
         \label{fig:FamilyClassifierOnlyConfusionMatrix}
     \end{figure}
 }

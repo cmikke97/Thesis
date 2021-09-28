@@ -144,7 +144,7 @@
 \contentsline {subsection}{\numberline {5.3.2}Evaluation}{96}{subsection.5.3.2}%
 \contentsline {subsection}{\numberline {5.3.3}Results Computation and plotting}{97}{subsection.5.3.3}%
 \contentsline {chapter}{\numberline {6}Proposed Models}{98}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Malware Detection and Description via SMART tags Model}{98}{section.6.1}%
+\contentsline {section}{\numberline {6.1}Multi Task Joint Embedding (\textbf {MTJE}) Model}{98}{section.6.1}%
 \contentsline {subsection}{\numberline {6.1.1}Implementation}{99}{subsection.6.1.1}%
 \contentsline {subsubsection}{Net Definition}{100}{section*.121}%
 \contentsline {subsection}{\numberline {6.1.2}Experiments}{104}{subsection.6.1.2}%
@@ -163,7 +163,7 @@
 \contentsline {section}{\numberline {6.3}Contrastive Learning Model}{118}{section.6.3}%
 \contentsline {subsection}{\numberline {6.3.1}Implementation}{120}{subsection.6.3.1}%
 \contentsline {subsubsection}{Net Definition}{121}{section*.139}%
-\contentsline {subsection}{\numberline {6.3.2}Experiments}{123}{subsection.6.3.2}%
+\contentsline {subsection}{\numberline {6.3.2}Experiments}{122}{subsection.6.3.2}%
 \contentsline {subsection}{\numberline {6.3.3}Contrastive Learning Model Training and Evaluation algorithms}{123}{subsection.6.3.3}%
 \contentsline {subsubsection}{Contrastive Learning Model Training}{124}{section*.141}%
 \contentsline {subsubsection}{Contrastive Learning Model Evaluation}{129}{section*.143}%
@@ -177,7 +177,7 @@
 \contentsline {subsection}{\numberline {7.2.2}Comments}{140}{subsection.7.2.2}%
 \contentsline {section}{\numberline {7.3}Family Prediction and Ranking Evaluation}{141}{section.7.3}%
 \contentsline {subsection}{\numberline {7.3.1}Example rankings}{145}{subsection.7.3.1}%
-\contentsline {subsection}{\numberline {7.3.2}Comments}{149}{subsection.7.3.2}%
+\contentsline {subsection}{\numberline {7.3.2}Comments}{148}{subsection.7.3.2}%
 \contentsline {section}{\numberline {7.4}Family Classification Results}{149}{section.7.4}%
 \contentsline {subsection}{\numberline {7.4.1}Comments}{152}{subsection.7.4.1}%
 \contentsline {subsection}{\numberline {7.4.2}Families study}{153}{subsection.7.4.2}%

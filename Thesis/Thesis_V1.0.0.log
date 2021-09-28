@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.9.11)  27 SEP 2021 19:03
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.9.11)  28 SEP 2021 17:27
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -866,7 +866,13 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ] [3
 
 
-] [4
+]
+Overfull \hbox (6.3109pt too wide) in paragraph at lines 240--241
+\OT1/cmr/m/n/10 upon pre-vi-ous works in \OT1/cmr/bx/n/10 ML-based \OT1/cmr/m/n
+/10 (Ma-chine Learn-ing) au-to-matic PE (Mi-crosoft Win-dows Portable
+ []
+
+[4
 
 ] (Thesis_V1.0.0.toc [5
 
@@ -1245,12 +1251,12 @@ Chapter 6.
 [98
 
 ]
-<./images/Proposed_Model.png, id=1821, 505.1673pt x 297.7524pt>
-File: ./images/Proposed_Model.png Graphic file (type png)
-<use ./images/Proposed_Model.png>
-Package pdftex.def Info: ./images/Proposed_Model.png  used on input line 3294.
+<./images/MTJE_Model.png, id=1821, 505.1673pt x 297.7524pt>
+File: ./images/MTJE_Model.png Graphic file (type png)
+<use ./images/MTJE_Model.png>
+Package pdftex.def Info: ./images/MTJE_Model.png  used on input line 3294.
 (pdftex.def)             Requested size: 422.50232pt x 249.02899pt.
- [99 <./images/Proposed_Model.png>]
+ [99 <./images/MTJE_Model.png>]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
@@ -1386,23 +1392,21 @@ Package pdftex.def Info: ./images/workflow_family_classifier_results.png  used
 on input line 4044.
 (pdftex.def)             Requested size: 422.50232pt x 146.30504pt.
  [118 <./images/workflow_family_classifier_results.png>] [119]
-<./images/Contrastive_Learning.png, id=2015, 384.4764pt x 211.0284pt>
-File: ./images/Contrastive_Learning.png Graphic file (type png)
-<use ./images/Contrastive_Learning.png>
-Package pdftex.def Info: ./images/Contrastive_Learning.png  used on input line 
-4118.
+<./images/Contrastive_Model.png, id=2015, 384.4764pt x 211.0284pt>
+File: ./images/Contrastive_Model.png Graphic file (type png)
+<use ./images/Contrastive_Model.png>
+Package pdftex.def Info: ./images/Contrastive_Model.png  used on input line 411
+8.
 (pdftex.def)             Requested size: 422.50232pt x 231.90332pt.
- [120 <./images/Contrastive_Learning.png>]
-<./images/Contrastive_Learning_Online.png, id=2024, 435.0654pt x 188.6247pt>
-File: ./images/Contrastive_Learning_Online.png Graphic file (type png)
-<use ./images/Contrastive_Learning_Online.png>
-Package pdftex.def Info: ./images/Contrastive_Learning_Online.png  used on inpu
-t line 4127.
+ [120 <./images/Contrastive_Model.png>]
+<./images/Contrastive_Model_Online.png, id=2024, 435.0654pt x 188.6247pt>
+File: ./images/Contrastive_Model_Online.png Graphic file (type png)
+<use ./images/Contrastive_Model_Online.png>
+Package pdftex.def Info: ./images/Contrastive_Model_Online.png  used on input l
+ine 4127.
 (pdftex.def)             Requested size: 422.50232pt x 183.17583pt.
- [121 <./images/Contrastive_Learning_Online.png>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [122]
+[121 <./images/Contrastive_Model_Online.png>] [122]
 File: ./images/workflow_contrastive_model.png Graphic file (type png)
 <use ./images/workflow_contrastive_model.png>
 Package pdftex.def Info: ./images/workflow_contrastive_model.png  used on input
@@ -1895,11 +1899,11 @@ File: ./results/malware_roc_aloha.png Graphic file (type png)
 Package pdftex.def Info: ./results/malware_roc_aloha.png  used on input line 46
 08.
 (pdftex.def)             Requested size: 295.75032pt x 295.74431pt.
-<./results/malware_roc_proposedModel.png, id=2155, 867.24pt x 867.24pt>
-File: ./results/malware_roc_proposedModel.png Graphic file (type png)
-<use ./results/malware_roc_proposedModel.png>
-Package pdftex.def Info: ./results/malware_roc_proposedModel.png  used on input
- line 4610.
+<./results/malware_roc_mtje.png, id=2155, 867.24pt x 867.24pt>
+File: ./results/malware_roc_mtje.png Graphic file (type png)
+<use ./results/malware_roc_mtje.png>
+Package pdftex.def Info: ./results/malware_roc_mtje.png  used on input line 461
+0.
 (pdftex.def)             Requested size: 295.75032pt x 295.74431pt.
 
 Underfull \vbox (badness 2837) has occurred while \output is active []
@@ -1979,7 +1983,7 @@ Overfull \hbox (2.12003pt too wide) in paragraph at lines 4615--4615
  []|[]| 
  []
 
-[136 <./results/malware_roc_proposedModel.png>]
+[136 <./results/malware_roc_mtje.png>]
 Overfull \hbox (0.22159pt too wide) in alignment at lines 4637--4637
  [] [] [] [] [] [] 
  []
@@ -2845,11 +2849,11 @@ File: ./results/all_mean_roc_jointEmbedding.png Graphic file (type png)
 Package pdftex.def Info: ./results/all_mean_roc_jointEmbedding.png  used on inp
 ut line 4641.
 (pdftex.def)             Requested size: 295.75032pt x 295.74431pt.
-<./results/all_mean_roc_proposedModel.png, id=2195, 867.24pt x 867.24pt>
-File: ./results/all_mean_roc_proposedModel.png Graphic file (type png)
-<use ./results/all_mean_roc_proposedModel.png>
-Package pdftex.def Info: ./results/all_mean_roc_proposedModel.png  used on inpu
-t line 4643.
+<./results/all_mean_roc_mtje.png, id=2195, 867.24pt x 867.24pt>
+File: ./results/all_mean_roc_mtje.png Graphic file (type png)
+<use ./results/all_mean_roc_mtje.png>
+Package pdftex.def Info: ./results/all_mean_roc_mtje.png  used on input line 46
+43.
 (pdftex.def)             Requested size: 295.75032pt x 295.74431pt.
 
 [139 <./results/all_mean_roc_aloha.png> <./results/all_mean_roc_jointEmbedding.
@@ -3003,7 +3007,7 @@ Overfull \hbox (2.11845pt too wide) in paragraph at lines 4649--4649
  []|\OT1/cmr/m/n/10 0.695$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.001| 
  []
 
-[140 <./results/all_mean_roc_proposedModel.png>]
+[140 <./results/all_mean_roc_mtje.png>]
 <./results/accuracy_trends.png, id=2222, 867.24pt x 867.24pt>
 File: ./results/accuracy_trends.png Graphic file (type png)
 <use ./results/accuracy_trends.png>
@@ -3043,20 +3047,19 @@ File: ./results/conf_matrix_max_acc_jointEmbedding.png Graphic file (type png)
 Package pdftex.def Info: ./results/conf_matrix_max_acc_jointEmbedding.png  used
  on input line 4675.
 (pdftex.def)             Requested size: 200.69118pt x 200.69167pt.
-<./results/conf_matrix_max_acc_proposedModel.png, id=2244, 867.24pt x 867.24pt>
-
-File: ./results/conf_matrix_max_acc_proposedModel.png Graphic file (type png)
-<use ./results/conf_matrix_max_acc_proposedModel.png>
-Package pdftex.def Info: ./results/conf_matrix_max_acc_proposedModel.png  used 
-on input line 4675.
+<./results/conf_matrix_max_acc_mtje.png, id=2244, 867.24pt x 867.24pt>
+File: ./results/conf_matrix_max_acc_mtje.png Graphic file (type png)
+<use ./results/conf_matrix_max_acc_mtje.png>
+Package pdftex.def Info: ./results/conf_matrix_max_acc_mtje.png  used on input 
+line 4675.
 (pdftex.def)             Requested size: 200.69118pt x 200.69167pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [143 <./results/auc_roc_macro_trends.png>] [144 <./results/conf_matrix_max_acc
 _alohaMB.png> <./results/conf_matrix_max_acc_aloha.png> <./results/conf_matrix_
-max_acc_jointEmbedding.png> <./results/conf_matrix_max_acc_proposedModel.png>]
-Underfull \vbox (badness 2435) has occurred while \output is active []
+max_acc_jointEmbedding.png> <./results/conf_matrix_max_acc_mtje.png>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [145]
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -3065,12 +3068,12 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [147]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+[148]
 
- [148]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+LaTeX Warning: Reference `fig:FamilyClassifiermtjeConfusionMatrix' on page 149 
+undefined on input line 4699.
 
- [149]
+
 Overfull \hbox (2.80562pt too wide) in paragraph at lines 4703--4703
 \OT1/cmr/m/n/10 Similarity|  
  []
@@ -3105,7 +3108,11 @@ Overfull \hbox (3.84474pt too wide) in paragraph at lines 4703--4703
  []|\OT1/cmr/m/n/10 Weighted| 
  []
 
-<./results/family_classifier_confusion_matrix_jointEmbedding.png, id=2308, 867.
+
+Underfull \vbox (badness 1540) has occurred while \output is active []
+
+ [149]
+<./results/family_classifier_confusion_matrix_jointEmbedding.png, id=2306, 867.
 24pt x 867.24pt>
 File: ./results/family_classifier_confusion_matrix_jointEmbedding.png Graphic f
 ile (type png)
@@ -3117,15 +3124,15 @@ dding.png  used on input line 4705.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [150]
-<./results/family_classifier_confusion_matrix_proposedModel.png, id=2313, 867.2
-4pt x 867.24pt>
-File: ./results/family_classifier_confusion_matrix_proposedModel.png Graphic fi
-le (type png)
-<use ./results/family_classifier_confusion_matrix_proposedModel.png>
-Package pdftex.def Info: ./results/family_classifier_confusion_matrix_proposedM
-odel.png  used on input line 4707.
+<./results/family_classifier_confusion_matrix_mtje.png, id=2311, 867.24pt x 867
+.24pt>
+File: ./results/family_classifier_confusion_matrix_mtje.png Graphic file (type 
+png)
+<use ./results/family_classifier_confusion_matrix_mtje.png>
+Package pdftex.def Info: ./results/family_classifier_confusion_matrix_mtje.png 
+ used on input line 4707.
 (pdftex.def)             Requested size: 295.75032pt x 295.74431pt.
-<./results/family_classifier_confusion_matrix_familyClassifierOnly.png, id=2314
+<./results/family_classifier_confusion_matrix_familyClassifierOnly.png, id=2312
 , 867.24pt x 867.24pt>
 File: ./results/family_classifier_confusion_matrix_familyClassifierOnly.png Gra
 phic file (type png)
@@ -3137,9 +3144,9 @@ ssifierOnly.png  used on input line 4709.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [151 <./results/family_classifier_confusion_matrix_jointEmbedding.png> <./resu
-lts/family_classifier_confusion_matrix_proposedModel.png>] [152 <./results/fami
-ly_classifier_confusion_matrix_familyClassifierOnly.png>] [153] [154]
-<./results/joint_embedding_contr_learn_accuracy.png, id=2367, 867.24pt x 867.24
+lts/family_classifier_confusion_matrix_mtje.png>] [152 <./results/family_classi
+fier_confusion_matrix_familyClassifierOnly.png>] [153] [154]
+<./results/joint_embedding_contr_learn_accuracy.png, id=2366, 867.24pt x 867.24
 pt>
 File: ./results/joint_embedding_contr_learn_accuracy.png Graphic file (type png
 )
@@ -3147,15 +3154,13 @@ File: ./results/joint_embedding_contr_learn_accuracy.png Graphic file (type png
 Package pdftex.def Info: ./results/joint_embedding_contr_learn_accuracy.png  us
 ed on input line 4782.
 (pdftex.def)             Requested size: 200.69118pt x 200.69167pt.
-<./results/proposed_model_contr_learn_accuracy.png, id=2368, 867.24pt x 867.24p
-t>
-File: ./results/proposed_model_contr_learn_accuracy.png Graphic file (type png)
-
-<use ./results/proposed_model_contr_learn_accuracy.png>
-Package pdftex.def Info: ./results/proposed_model_contr_learn_accuracy.png  use
-d on input line 4782.
+<./results/mtje_contr_learn_accuracy.png, id=2367, 867.24pt x 867.24pt>
+File: ./results/mtje_contr_learn_accuracy.png Graphic file (type png)
+<use ./results/mtje_contr_learn_accuracy.png>
+Package pdftex.def Info: ./results/mtje_contr_learn_accuracy.png  used on input
+ line 4782.
 (pdftex.def)             Requested size: 200.69118pt x 200.69167pt.
-<./results/contrastive_model_only_contr_learn_accuracy.png, id=2369, 867.24pt x
+<./results/contrastive_model_only_contr_learn_accuracy.png, id=2368, 867.24pt x
  867.24pt>
 File: ./results/contrastive_model_only_contr_learn_accuracy.png Graphic file (t
 ype png)
@@ -3194,10 +3199,10 @@ Overfull \hbox (3.84474pt too wide) in paragraph at lines 4784--4784
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [156 <./results/joint_embedding_contr_learn_accuracy.png> <./results/proposed_
-model_contr_learn_accuracy.png> <./results/contrastive_model_only_contr_learn_a
-ccuracy.png>]
-<./results/joint_embedding_contr_learn_9-nn_confusion_matrix.png, id=2388, 867.
+ [156 <./results/joint_embedding_contr_learn_accuracy.png> <./results/mtje_cont
+r_learn_accuracy.png> <./results/contrastive_model_only_contr_learn_accuracy.pn
+g>]
+<./results/joint_embedding_contr_learn_9-nn_confusion_matrix.png, id=2387, 867.
 24pt x 867.24pt>
 File: ./results/joint_embedding_contr_learn_9-nn_confusion_matrix.png Graphic f
 ile (type png)
@@ -3205,17 +3210,18 @@ ile (type png)
 Package pdftex.def Info: ./results/joint_embedding_contr_learn_9-nn_confusion_m
 atrix.png  used on input line 4786.
 (pdftex.def)             Requested size: 295.75032pt x 295.74431pt.
-<./results/proposed_model_contr_learn_5-nn_confusion_matrix.png, id=2389, 867.2
-4pt x 867.24pt>
-File: ./results/proposed_model_contr_learn_5-nn_confusion_matrix.png Graphic fi
-le (type png)
-<use ./results/proposed_model_contr_learn_5-nn_confusion_matrix.png>
-Package pdftex.def Info: ./results/proposed_model_contr_learn_5-nn_confusion_ma
-trix.png  used on input line 4788.
+<./results/mtje_contr_learn_5-nn_confusion_matrix.png, id=2388, 867.24pt x 867.
+24pt>
+File: ./results/mtje_contr_learn_5-nn_confusion_matrix.png Graphic file (type p
+ng)
+<use ./results/mtje_contr_learn_5-nn_confusion_matrix.png>
+Package pdftex.def Info: ./results/mtje_contr_learn_5-nn_confusion_matrix.png  
+used on input line 4788.
 (pdftex.def)             Requested size: 295.75032pt x 295.74431pt.
- [157 <./results/joint_embedding_contr_learn_9-nn_confusion_matrix.png>]
+
+[157 <./results/joint_embedding_contr_learn_9-nn_confusion_matrix.png>]
 <./results/contrastive_model_only_contr_learn_11-nn_confusion_matrix.png, id=23
-96, 867.24pt x 867.24pt>
+95, 867.24pt x 867.24pt>
 File: ./results/contrastive_model_only_contr_learn_11-nn_confusion_matrix.png G
 raphic file (type png)
 <use ./results/contrastive_model_only_contr_learn_11-nn_confusion_matrix.png>
@@ -3225,8 +3231,8 @@ fusion_matrix.png  used on input line 4790.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [158 <./results/proposed_model_contr_learn_5-nn_confusion_matrix.png> <./resul
-ts/contrastive_model_only_contr_learn_11-nn_confusion_matrix.png>]
+ [158 <./results/mtje_contr_learn_5-nn_confusion_matrix.png> <./results/contras
+tive_model_only_contr_learn_11-nn_confusion_matrix.png>]
 Overfull \hbox (12.9247pt too wide) in paragraph at lines 4797--4797
  []|\OT1/cmr/m/n/10 Label| 
  []
@@ -4062,17 +4068,20 @@ alpedia . caad . fkie . fraunhofer . de / details / win .
 
 ]
 (Thesis_V1.0.0.aux)
+
+LaTeX Warning: There were undefined references.
+
 Package rerunfilecheck Info: File `Thesis_V1.0.0.out' has not changed.
-(rerunfilecheck)             Checksum: 96FCA3241AF6720911F5871BF4A1153B;14426.
+(rerunfilecheck)             Checksum: 711DF03BD9F0C1407580DB2952D1F238;14351.
  ) 
 Here is how much of TeX's memory you used:
- 23336 strings out of 478927
- 427995 string characters out of 2846373
- 1161449 words of memory out of 3000000
- 39836 multiletter control sequences out of 15000+600000
+ 23337 strings out of 478927
+ 427437 string characters out of 2846373
+ 1160965 words of memory out of 3000000
+ 39837 multiletter control sequences out of 15000+600000
  418075 words of font info for 80 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 138i,17n,136p,3046b,2560s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 138i,17n,136p,2790b,2560s stack positions out of 5000i,500n,10000p,200000b,80000s
  <C:\Users\michele.INFOPIUNET\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/e
 c/dpi600\tctt0800.pk> <C:\Users\michele.INFOPIUNET\AppData\Local\MiKTeX\fonts/p
 k/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/michele.INFOPIUNET/AppData/Lo
@@ -4109,9 +4118,9 @@ IUNET/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><
 C:/Users/michele.INFOPIUNET/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
 sfonts/cm/cmtt8.pfb><C:/Users/michele.INFOPIUNET/AppData/Local/Programs/MiKTeX/
 fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Thesis_V1.0.0.pdf (172 pages, 8166815 bytes).
+Output written on Thesis_V1.0.0.pdf (172 pages, 8161718 bytes).
 PDF statistics:
- 2963 PDF objects out of 2984 (max. 8388607)
+ 2962 PDF objects out of 2984 (max. 8388607)
  924 named destinations out of 1000 (max. 500000)
  947 words of extra memory for PDF output out of 10000 (max. 10000000)
 
