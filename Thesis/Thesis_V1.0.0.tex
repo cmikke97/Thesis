@@ -541,7 +541,7 @@ In this case, the conditional jump '\textbf{jz loc}' is immediately followed by 
 Another common anti-disassembly technique is composed of a single conditional \textit{jump} instruction with an always true (or false) condition \cite{SikorskiPMA}.
 
 Example:
-\begin{lstlisting}[caption={Jump Instructions with a Constant Condition example}, label=code:JumpConstant, language={[x86masm]Assembler}, style=mystyle]
+\begin{lstlisting}[caption={Jump Instructions with a Constant Condition}, label=code:JumpConstant, language={[x86masm]Assembler}, style=mystyle]
 	33 C0		xor	eax, eax
 	74 01		jz 	loc
 	
@@ -558,7 +558,7 @@ In all these cases, however, a reverse engineer is able to properly disassemble 
 The core idea behind these techniques is to make the \textit{rogue byte} part of a legitimate instruction that is executed at runtime. This way the \textit{rogue byte} becomes not ignorable during disassembly. In this scenario any given byte may be a part of multiple instructions that are executed. This is done using \textit{jump} instructions. The processor, while running the code, will interpret and execute the bytes following the logical flow of the program, so there is no limitation on the number of instructions the same byte can be part of; a disassembler, however, has such limitations since it will usually represent a single byte as being part of a single instruction.
 
 Example:
-\begin{lstlisting}[caption={Impossible Disassembly example}, label=code:ImpossibleDisassembly, language={[x86masm]Assembler}, style=mystyle]
+\begin{lstlisting}[caption={Impossible Disassembly}, label=code:ImpossibleDisassembly, language={[x86masm]Assembler}, style=mystyle]
 	EB 
 				JMP -1
 	FF
@@ -810,22 +810,22 @@ Data-based obfuscation techniques focus on modifying data values and non-control
 \textit{Constant folding} is a technique commonly used by compilers to optimize a program's code. It does so by replacing expressions with results known at compile time with the results themselves \cite{DangPRE}.
 
 For example, a compiler usually transforms the following expression \ref{code:ConstantFoldingBefore}, into \ref{code:ConstantFoldingAfter}.
-\begin{lstlisting}[caption={Before constant folding}, label=code:ConstantFoldingBefore, language=C, style=mystyle]
+\begin{lstlisting}[caption={Constant folding, before}, label=code:ConstantFoldingBefore, language=C, style=mystyle]
 	x = 4 * 5;
 \end{lstlisting}
 
-\begin{lstlisting}[caption={After constant folding}, label=code:ConstantFoldingAfter, language=C, style=mystyle]
+\begin{lstlisting}[caption={Constant folding, after}, label=code:ConstantFoldingAfter, language=C, style=mystyle]
 	x = 20;
 \end{lstlisting}
 
 \textit{Constant unfolding} is, instead, an obfuscation technique that performs the exact inverse operation: it replaces the constants in the program's code with some expressions having the constant as a result.
 
 For example, the listing \ref{code:ConstantUnfoldingBefore}, after \textit{Constant unfolding} may become \ref{code:ConstantUnfoldingAfter}. The two listings are equivalent. Moreover, there is an infinite amount of listings equivalent to \ref{code:ConstantUnfoldingBefore} that can be generated following this principle.
-\begin{lstlisting}[caption={Before constant unfolding}, label=code:ConstantUnfoldingBefore, language={[x86masm]Assembler}, style=mystyle]
+\begin{lstlisting}[caption={Constant unfolding, before}, label=code:ConstantUnfoldingBefore, language={[x86masm]Assembler}, style=mystyle]
 	push	0h
 \end{lstlisting}
 
-\begin{lstlisting}[caption={After constant unfolding}, label=code:ConstantUnfoldingAfter, language={[x86masm]Assembler}, style=mystyle]
+\begin{lstlisting}[caption={Constant unfolding, after}, label=code:ConstantUnfoldingAfter, language={[x86masm]Assembler}, style=mystyle]
 	push	0F9CBE47Ah
 	add		dword ptr [esp],	6341B86h
 \end{lstlisting}
@@ -837,7 +837,7 @@ The previously described technique is, however, easily defeated by simply applyi
 \textit{Dead code elimination} is another common compiler optimization technique. Its objective is to remove program statements/expressions that nave no real effects on the program operation and final results \cite{DangPRE}.
 
 For example, the listing \ref{code:DeadCodeEliminationBefore}, using \textit{dead code elimination} would become \ref{code:DeadCodeEliminationAfter}.
-\begin{lstlisting}[caption={Before dead code elimination}, label=code:DeadCodeEliminationBefore, language=C, style=mystyle]
+\begin{lstlisting}[caption={Dead code elimination, before}, label=code:DeadCodeEliminationBefore, language=C, style=mystyle]
 	int f(){
 		int x, y;
 		x = 1;		// this assignement is useless, here x is dead
@@ -847,7 +847,7 @@ For example, the listing \ref{code:DeadCodeEliminationBefore}, using \textit{dea
 	}
 \end{lstlisting}
 
-\begin{lstlisting}[caption={After dead code elimination}, label=code:DeadCodeEliminationAfter, language=C, style=mystyle]
+\begin{lstlisting}[caption={Dead code elimination, after}, label=code:DeadCodeEliminationAfter, language=C, style=mystyle]
 	int f(){
 		return 3;
 	}
@@ -902,11 +902,11 @@ For example, the sequence in listing \ref{code:PatternObfuscationOriginalSequenc
 
 Moreover, patterns can be arbitrarily complicated. For example a listing such as \ref{code:PatternObfuscationOriginalSequence2}, could be substituted by the more complex \ref{code:PatternObfuscation2Pattern}.
 
-\begin{lstlisting}[caption={Original sequence \#2}, label=code:PatternObfuscationOriginalSequence2, language={[x86masm]Assembler}, style=mystyle]
+\begin{lstlisting}[caption={Original sequence 2}, label=code:PatternObfuscationOriginalSequence2, language={[x86masm]Assembler}, style=mystyle]
 	sub		esp,	4
 \end{lstlisting}
 
-\begin{lstlisting}[caption={Obfuscation of sequence \#2}, label=code:PatternObfuscation2Pattern, language={[x86masm]Assembler}, style=mystyle]
+\begin{lstlisting}[caption={Obfuscation of sequence 2}, label=code:PatternObfuscation2Pattern, language={[x86masm]Assembler}, style=mystyle]
 	push	reg32
 	mov		reg32,	esp
 	xchg	[esp],	reg32
@@ -1036,7 +1036,7 @@ The first known malware to exploit encryption for detection evasion was CASCADE 
 \subsubsection{Packed Malwares}
 Malware authors are nowadays increasingly exploiting packers (or even multiple packers at once) to produce numerous variants of the same original malware code \cite{NamanyaTWM}. As stated by Perdisci, et al. \cite{PerdisciCPEACVD}, more than 80\% of the new malware currently discovered are actually packed versions of already existing malware.
 
-As already metioned previously, packers are used to compress original executable files into smaller sizes. Moreover, encryption is sometimes also applied to the compressed version of the files in order to make the unpacking process more difficult.
+As already mentioned previously, packers are used to compress original executable files into smaller sizes. Moreover, encryption is sometimes also applied to the compressed version of the files in order to make the unpacking process more difficult.
 
 While many malware authors frequently use commercial and readily available packers to generate new malware variants, it is not uncommon to see malware authors writing and using custom packers. This fact can be exploited by analysts to detect if a file is malicious, without further analysis, based on the fact that benign software vendors would almost never use custom packers.
 
@@ -1843,7 +1843,7 @@ As features for the content of the PE files, they used floating point 1024-dimen
 In total, they represented each sample as two feature vectors: A PE-content feature vector of 1024 dimensions and a contextual file-path feature vector of 100 dimensions \cite{KyadigeLFCEIFPIBMD}.
 
 \paragraph{Inner Workings}
-The model proposed in \cite{KyadigeLFCEIFPIBMD} (fig. \ref{fig:PE_plus_FP_model}) has two inputs, the 1024 element PE-content feature vector, $\textbf{x}_{PE}$, and the 100 element file-path integer vector, $\textbf{x}_{FP}$. The two distinct inputs are fed to two different base sub-networks, each composed by a series of layers with input-specific parameters: $\theta_{PE}$ for the PE content part and $\theta_{FP}$ for the file-path part. The two sets of parameters ($\theta_{PE}$ and $\theta_{FP}$) are jointly optimized during training. The outputs of these base sub-networks are then concatenated and passed through a series of final hidden layers - a joint output sub-network with parameters $\theta_{O}$ terminating with a final dense layer followed by a sigmoid activation function. The final sigmoid activation is used to have as output a detection score between 0 (benign) and 1 (malicious). However, the threshold for determining if a samples is malicious or benign can be set anywhere along the $[0.0, 1.0]$ range according to false positive rate (FPR) and detection rate (TPR) trade offs for the application at hand - a reasonable threshold is typically at or below $10^{-3}$ FPR.
+The model proposed in \cite{KyadigeLFCEIFPIBMD} (fig. \ref{fig:PE_plus_FP_model}) has two inputs, the 1024 element PE-content feature vector, $\textbf{x}_{PE}$, and the 100 element file-path integer vector, $\textbf{x}_{FP}$. The two distinct inputs are fed to two different base sub-networks, each composed by a series of layers with input-specific parameters: $\theta_{PE}$ for the PE content part and $\theta_{FP}$ for the file-path part. The two sets of parameters ($\theta_{PE}$ and $\theta_{FP}$) are jointly optimized during training. The outputs of these base sub-networks are then concatenated and passed through a series of final hidden layers - a joint output sub-network with parameters $\theta_{O}$ terminating with a final dense layer followed by a sigmoid activation function. The final sigmoid activation is used to have as output a detection score between 0 (benign) and 1 (malicious). However, the threshold for determining if a samples is malicious or benign can be set anywhere along the $[0.0, 1.0]$ range according to false positive rate (FPR) and detection rate (TPR) trade-offs for the application at hand - a reasonable threshold is typically at or below $10^{-3}$ FPR.
 
 \begin{figure}[h]
 	\centering
@@ -2063,7 +2063,7 @@ When using an instance with limited disk size, the amount of space occupied by t
 In the first implementation of the pre-processed data loading code the original \textit{Pytorch} Dataloader class was used by passing it a specially crafted class called '\textit{Dataset}' (derived from \textit{Pytorch} 'torch.utils.data.Dataset' class) which is responsible for loading the pre-processed version of the dataset and for retrieving the data (features, labels and sha256) for each sample '\textit{i}'.
 
 \begin{algorithm}[h!]
-	\caption{Dataset class, Init}\label{alg:DatasetInit}
+	\caption{Dataset class, Init function}\label{alg:DatasetInit}
 	\begin{algorithmic}[1]
 		\Class{Dataset}
 			\Function{Init}{\textit{self}, \textit{ds\_root}, \textit{mode}, \textit{n\_samples}, \textit{return\_shas}, ...}
@@ -2082,7 +2082,7 @@ In the first implementation of the pre-processed data loading code the original 
 \end{algorithm}
 
 \begin{algorithm}[h!]
-	\caption{Dataset class, GetItem}\label{alg:DatasetGetItem}
+	\caption{Dataset class, GetItem function}\label{alg:DatasetGetItem}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 			\Function{GetItem}{\textit{self}, \textit{index}}
@@ -2105,7 +2105,7 @@ In the first implementation of the pre-processed data loading code the original 
 \end{algorithm}
 
 \begin{algorithm}[h!]
-	\caption{Dataset class, GetAsTensors}\label{alg:DatasetGetAsTensors}
+	\caption{Dataset class, GetAsTensors function}\label{alg:DatasetGetAsTensors}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 			\Function{GetAsTensors}{\textit{self}}
@@ -2279,7 +2279,7 @@ The generator alternative 3 ('\textit{\textbf{alt3}}') managed to considerably s
 This optimization uses a new FastTensorDataLoader class which exploits a pool of threads to asynchronously load the dataset into memory in chunks of consecutive data. In particular each thread loads into memory '\textit{\textbf{n\_chunks}}' randomly chosen chunks. Each thread then proceeds to concatenate together its '\textit{\textbf{n\_chunks}}' chunks, which contain '\textit{\textbf{chunk\_size}}' malware samples each, generating each a '\textit{\textbf{chunk\_aggregate}}', which is then randomly shuffled and returned by the thread. The \textit{\textbf{chunk\_aggregates}} are asynchronously inserted in a queue (the order depends on the threads instantiation order) of fixed length equal to the number of workers used. The main dataloader thread manages the \textit{\textbf{chunk\_aggregate}} queue, instantiating the parallel threads such that the queue is always full. Moreover, the main dataloader thread sequentially extracts, when possible, one \textit{\textbf{chunk\_aggregate}} at a time from the queue and then proceeds to return one batch of data at a time from it, when required.
 
 \begin{algorithm}[h!]
-	\caption{Alt3 FastTensorDataLoader class, Init}\label{alg:Alt3FastDataLoaderInit}
+	\caption{Alt3 FastTensorDataLoader class, Init function}\label{alg:Alt3FastDataLoaderInit}
 	\begin{algorithmic}[1]
 		\Class{FastTensorDataloader}
 		\Function{Init}{\textit{self}, \textit{tensors}, \textit{batch\_size}, \textit{chunk\_size}, \textit{chunks}, \textit{shuffle}, \textit{n\_workers}, ...}
@@ -2305,7 +2305,7 @@ This optimization uses a new FastTensorDataLoader class which exploits a pool of
 \end{algorithm}
 
 \begin{algorithm}[h!]
-	\caption{Alt3 FastTensorDataLoader class, Iter}\label{alg:Alt3FastDataLoaderIter}
+	\caption{Alt3 FastTensorDataLoader class, Iter function}\label{alg:Alt3FastDataLoaderIter}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 		\Function{Iter}{\textit{self}}
@@ -2325,7 +2325,7 @@ This optimization uses a new FastTensorDataLoader class which exploits a pool of
 \end{algorithm}
 
 \begin{algorithm}[h!]
-	\caption{Alt3 FastTensorDataLoader class, Next}\label{alg:Alt3FastDataLoaderNext}
+	\caption{Alt3 FastTensorDataLoader class, Next function}\label{alg:Alt3FastDataLoaderNext}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 			\Function{Next}{\textit{self}}
@@ -2429,7 +2429,7 @@ In algorithm \ref{alg:Alt3FastDataLoaderNext} it is presented the \textit{\textb
 
 The \textbf{GetBatch} function used in generator \textit{\textbf{alt3}} is the same one already exploited in version \textit{\textbf{alt2}} (alg. \ref{alg:Alt2GetBatch}); however, generator \textit{\textbf{alt3}} sees the addition of the \textbf{GetChunks} function (alg. \ref{alg:Alt3GetChunks}) which is used to extract a number of chunks of consecutive data from the dataset and combine them into an \textit{aggregate chunk}. In particular, the function first computes the size of the resulting \textit{chunk aggregate} depending on the number of chunk indices specified and the chunk size (considering as a special case the last chunk of the dataset which may have a smaller size). Then, the \textit{chunk aggregate} itself is initialized as a series of properly sized empty tensors (one for samples features, one for labels and one for sha256 hashes) which are later filled sequentially by the data chunks got from the dataset tensors. Finally, the \textit{chunk aggregate} data gets shuffled in place, if needed, and returned.
 
-As it can be seen from the algorithms provided, this version of the generator depends on the value of a number of parameters among which the most important ones are \textit{\textbf{chunk\_size}} and \textit{\textbf{n\_chunks}}. Indeed, selecting different values for \textit{\textbf{chunk\_size}} and \textit{\textbf{n\_chunks}} has an impact on the speed of the generator and on the samples dispersion: the samples are not anymore randomly chosen from the whole dataset, but from a random sub-part of it (the \textit{\textbf{chunk\_aggregate}}). This effectively decreases the amount of dispersion (and randomness) of batches, possibly affecting the final model generalization. It is therefore better to consider a higher value for \textit{\textbf{n\_chunks}} possibly decreasing \textit{\textbf{chunk\_size}}. Furhtermore, the values for \textit{\textbf{chunk\_size}} and \textit{\textbf{n\_chunks}}) should be chosen in conjunction since their product results in the number of samples loaded into main memory (RAM) at once for a single worker thread. Increasing too much this number (together with the number of workers used) can potentially saturate the main memory (RAM) of the instance used.
+As it can be seen from the algorithms provided, this version of the generator depends on the value of a number of parameters among which the most important ones are \textit{\textbf{chunk\_size}} and \textit{\textbf{n\_chunks}}. Indeed, selecting different values for \textit{\textbf{chunk\_size}} and \textit{\textbf{n\_chunks}} has an impact on the speed of the generator and on the samples dispersion: the samples are not anymore randomly chosen from the whole dataset, but from a random sub-part of it (the \textit{\textbf{chunk\_aggregate}}). This effectively decreases the amount of dispersion (and randomness) of batches, possibly affecting the final model generalization. It is therefore better to consider a higher value for \textit{\textbf{n\_chunks}} possibly decreasing \textit{\textbf{chunk\_size}}. Furthermore, the values for \textit{\textbf{chunk\_size}} and \textit{\textbf{n\_chunks}}) should be chosen in conjunction since their product results in the number of samples loaded into main memory (RAM) at once for a single worker thread. Increasing too much this number (together with the number of workers used) can potentially saturate the main memory (RAM) of the instance used.
 
 \vspace{-0.2cm}
 \subparagraph{Generator parameters optimization}
@@ -2493,7 +2493,7 @@ In particular, the \textit{\textbf{fresh dataset}} created for this project cons
 
 \subsection{Fresh Dataset Generator (Dataloader) implementation}
 \begin{algorithm}[h!]
-	\caption{Fresh Dataset class, Init}\label{alg:FreshDatasetInit}
+	\caption{Fresh Dataset class, Init function}\label{alg:FreshDatasetInit}
 	\begin{algorithmic}[1]
 		\Class{Dataset}
 			\Function{Init}{\textit{self}, \textit{S}, \textit{X}, \textit{y}, \textit{sig\_to\_label\_dict}, \textit{return\_shas}}
@@ -2513,7 +2513,7 @@ In particular, the \textit{\textbf{fresh dataset}} created for this project cons
 \newpage
 
 \begin{algorithm}[h!]
-	\caption{Fresh Dataset class, FromFile}\label{alg:FreshDatasetFromFile}
+	\caption{Fresh Dataset class, FromFile function}\label{alg:FreshDatasetFromFile}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 			\Function{FromFile}{\textit{cls}, \textit{ds\_root}, \textit{return\_shas}}
@@ -2523,7 +2523,7 @@ In particular, the \textit{\textbf{fresh dataset}} created for this project cons
 			\State \textit{S\_path} $\gets$ \textit{os}.\textbf{path.join}(\textit{ds\_root}, 'S\_fresh.dat')
 			\State \textit{state\_to\_label\_path} $\gets$ \textit{os}.\textbf{path.join}(\textit{ds\_root}, 'sig\_to\_label.json')
 			\State
-			\State \textit{S} $\gets$ \textbf{load\_as\_memmp}(\textit{S\_path}, dtype=\textbf{np.dtype}('U64'), mode='r+')
+			\State \textit{S} $\gets$ \textbf{load\_as\_memmap}(\textit{S\_path}, dtype=\textbf{np.dtype}('U64'), mode='r+')
 			\State \textit{y} $\gets$ \textbf{load\_as\_memmap}(\textit{y\_path}, dtype=\textbf{np.float32}, mode='r+')
 			\State \textit{X} $\gets$ \textbf{load\_as\_memmap}(\textit{X\_path}, dtype=\textbf{np.float32}, mode='r+')
 			\State \textbf{return} \textit{cls}(\textit{S}, \textit{X}, \textit{y}, sig\_to\_label\_dict=\textit{sig\_to\_label\_dict}, return\_shas=\textit{return\_shas})
@@ -2533,7 +2533,7 @@ In particular, the \textit{\textbf{fresh dataset}} created for this project cons
 \end{algorithm}
 
 \begin{algorithm}[h!]
-	\caption{Fresh Dataset class, GetItem}\label{alg:FreshDatasetGetItem}
+	\caption{Fresh Dataset class, GetItem function}\label{alg:FreshDatasetGetItem}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 			\Function{GetItem}{\textit{self}, \textit{index}}
@@ -2553,7 +2553,7 @@ In particular, the \textit{\textbf{fresh dataset}} created for this project cons
 \end{algorithm}
 
 \begin{algorithm}[h!]
-	\caption{FreshDataset class, GetAsTensors}\label{alg:FreshDatasetGetAsTensors}
+	\caption{FreshDataset class, GetAsTensors function}\label{alg:FreshDatasetGetAsTensors}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 			\Function{GetAsTensors}{\textit{self}}
@@ -2590,7 +2590,7 @@ The dataset class used for opening the fresh dataset - shown in alg. \ref{alg:Fr
 	\State \textit{generator} $\gets$ (\textit{train\_generator}, \textit{valid\_generator}, \textit{test\_generator})
 	\Else
 	\State \textit{ds} $\gets$ \textbf{Dataset.FromFile}(\textit{ds\_root}, \textit{return\_shas})
-	\State \textit{generator} $\gets$ \textbf{Pytorch\_DataLader}(ds, ...)
+	\State \textit{generator} $\gets$ \textbf{Pytorch\_DataLoader}(ds, ...)
 	\EndIf
 	\end{algorithmic}
 \end{algorithm}
@@ -2762,7 +2762,7 @@ The final aggregate loss $L(\textbf{x}, y)$ is computed as the weighted sum of a
 
 \subsubsection{Net Definition}
 \begin{algorithm}[h!]
-	\caption{ALOHA Net class, Init}\label{alg:alohaNetInit}
+	\caption{ALOHA Net class, Init function}\label{alg:alohaNetInit}
 	\begin{algorithmic}[1]
 		\Class{Net}
 		\Function{Init}{\textit{self}, \textit{use\_malware}, \textit{use\_counts}, \textit{use\_tags}, \textit{n\_tags}, \textit{feature\_dimension}, \textit{layer\_sizes}, \textit{dropout\_p}, \textit{activation\_function}, \textit{normalization\_function}}
@@ -2802,7 +2802,7 @@ The final aggregate loss $L(\textbf{x}, y)$ is computed as the weighted sum of a
 \end{algorithm}
 
 \begin{algorithm}[h!]
-	\caption{ALOHA Net class, Forward}\label{alg:alohaNetForward}
+	\caption{ALOHA Net class, Forward function}\label{alg:alohaNetForward}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 		\Function{Forward}{\textit{self}, \textit{data}}
@@ -2834,7 +2834,7 @@ Algorithms \ref{alg:alohaNetInit}, \ref{alg:alohaNetForward} and \ref{alg:alohaN
 Alg. \ref{alg:alohaNetForward}, instead, describes how the input data (PE file numerical feature vectors of size $=2381$) is forwarded through the network to produce the final predictions. In particular, the input feature vector first passes through the shared base topology to produce an intermediate representation \textit{base\_out}, which is then used as input for all the output heads to produce their predictions.
 
 \begin{algorithm}[h!]
-	\caption{ALOHA Net class, Compute Loss}\label{alg:alohaNetComputeLoss}
+	\caption{ALOHA Net class, Compute Loss function}\label{alg:alohaNetComputeLoss}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 		\Function{ComputeLoss}{\textit{predictions}, \textit{labels}, \textit{loss\_wts}}
@@ -2933,7 +2933,7 @@ The predicted tag probabilities outputted by the \textit{Prediction Layer} are t
 
 \subsubsection{Net Definition}\label{sec:jointEmbeddingNetDefinitionCode}
 \begin{algorithm}[h!]
-	\caption{Joint Embedding Net class, Init}\label{alg:jointEmbeddingNetInit}
+	\caption{Joint Embedding Net class, Init function}\label{alg:jointEmbeddingNetInit}
 	\begin{algorithmic}[1]
 		\Class{Net}
 			\Function{Init}{\textit{self}, \textit{use\_malware}, \textit{use\_counts}, \textit{use\_tags}, \textit{n\_tags}, \textit{feature\_dimension}, \textit{embedding\_dimension}, \textit{max\_embedding\_norm}, \textit{layer\_sizes}, \textit{dropout\_p}, \textit{activation\_function}, \textit{normalization\_function}}
@@ -2973,7 +2973,7 @@ The predicted tag probabilities outputted by the \textit{Prediction Layer} are t
 \end{algorithm}
 
 \begin{algorithm}[h!]
-	\caption{Joint Embedding Net class, Forward (with \textit{Dot Product})}\label{alg:jointEmbeddingNetForward}
+	\caption{Joint Embedding Net class, Forward function (with \textit{Dot Product})}\label{alg:jointEmbeddingNetForward}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 			\Function{Forward}{\textit{self}, \textit{data}}
@@ -3001,7 +3001,7 @@ Alg. \ref{alg:jointEmbeddingNetForward} (\textbf{\textit{Joint Embedding} model 
 In alg. \ref{alg:jointEmbeddingNetForwardCosine} (\textbf{\textit{Joint Embedding} model forward function with \textit{cosine similarity}}) is presented an alternative to the aforementioned \textbf{Model forward function} that uses the \textbf{\textit{Cosine similarity}} instead of the \textbf{\textit{dot product}} to compute the similarity scores. For the most part this version is equal to the previous one but for how the similarity scores are computed. In fact, in this case they correspond to the \textbf{\textit{Cosine similarities}} between the \textbf{\textit{pe\_embedding}} and the \textbf{\textit{tags\_embedding}}, which are values in the range $[-1, 1]$, mapped to values in the $[0, 1]$ interval. Moreover, in this case, since the similarity scores are already in the $[0, 1]$ range, the tag probabilities coincide with the similarity scores.
 
 \begin{algorithm}[h!]
-	\caption{Joint Embedding Net class, Forward (with \textit{Cosine similarity})}\label{alg:jointEmbeddingNetForwardCosine}
+	\caption{Joint Embedding Net class, Forward function (with \textit{Cosine similarity})}\label{alg:jointEmbeddingNetForwardCosine}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 		\Function{Forward}{\textit{self}, \textit{data}}
@@ -3016,10 +3016,10 @@ In alg. \ref{alg:jointEmbeddingNetForwardCosine} (\textbf{\textit{Joint Embeddin
 	\end{algorithmic}
 \end{algorithm}
 
-A further alternative to the \textbf{Model forward function} which uses one of the \textit{Inverted Pairwise Euclidean Distances} proposed in sec. \ref{sec:jointEmbeddingModelImplementation} instead of the \textit{dot product}, is presented in alg. \ref{alg:jointEmbeddingNetForwardPairwiseDistance} (\textbf{\textit{Joint Embedding} model forward function with \textit{Inverted Pairwise Euclidean Distance}}). Again, this alternative is pretty much equal to the original forward function (alg. \ref{alg:jointEmbeddingNetForward}). In this case, however, the similarity scores are produced by inverting, through the use of the specially crafted \textbf{DistanceToSimilarity} function presented in alg. \ref{alg:distanceToSimilarityFunction} (which simply applies the selected distance inversion formula among the ones mentioned in sec. \ref{sec:jointEmbeddingModelImplementation}), the euclidean distances between the samples' and the tags' embeddings in the joint latent space.
+A further alternative to the \textbf{Model forward function} which uses one of the \textit{Inverted Pairwise Euclidean Distances} proposed in sec. \ref{sec:jointEmbeddingModelImplementation} instead of the \textit{dot product}, is presented in alg. \ref{alg:jointEmbeddingNetForwardPairwiseDistance} (\textbf{\textit{Joint Embedding} model forward function with \textit{Inverted Pairwise Euclidean (IPE) Distance}}). Again, this alternative is pretty much equal to the original forward function (alg. \ref{alg:jointEmbeddingNetForward}). In this case, however, the similarity scores are produced by inverting, through the use of the specially crafted \textbf{DistanceToSimilarity} function presented in alg. \ref{alg:distanceToSimilarityFunction} (which simply applies the selected distance inversion formula among the ones mentioned in sec. \ref{sec:jointEmbeddingModelImplementation}), the euclidean distances between the samples' and the tags' embeddings in the joint latent space.
 
 \begin{algorithm}[h!]
-	\caption{Joint Embedding Net class, Forward (with \textit{Inverted Pairwise Euclidean Distance})}\label{alg:jointEmbeddingNetForwardPairwiseDistance}
+	\caption{Joint Embedding Net class, Forward function (with \textit{\textbf{IPE} Distance})}\label{alg:jointEmbeddingNetForwardPairwiseDistance}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 		\Function{Forward}{\textit{self}, \textit{data}}
@@ -3058,10 +3058,10 @@ A further alternative to the \textbf{Model forward function} which uses one of t
 	\end{algorithmic}
 \end{algorithm}
 
-Alg. \ref{alg:jointEmbeddingNetGetEmbedding} (\textbf{\textit{JointEmbedding} model get embedding function}) presents the \textit{GetEmbedding} function which is used to extract the PE embedding representation corresponding to the input file feature vector. This is particularly useful when performing different kinds of model performance evaluations together with the \textbf{GetSimilarity function}, which instead returns the similarity between two different input embeddings. Of course, depending on the similarity function selected at model definition the \textit{GetSimilarity} function has to be different. In particular, if the \textbf{dot product} is selected the function, shown in algorithm \ref{alg:jointEmbeddingNetGetSimilarity} (\textbf{\textit{JointEmbedding} model get similarity function with Dot Product}), simply computes the similarity scores as the dot product between the two input embeddings and then defines the probabilities by further applying the sigmoid activation function on those scores. On the other hand, if the \textbf{cosine similarity} is selected, the function (\ref{alg:jointEmbeddingNetGetSimilarityCosine} - \textbf{\textit{JointEmbedding} model get similarity function with Cosine Similarity}) assigns to both similarity scores and resulting probabilities the normalized (to the $[0,1]$ range) cosine similarity between the two embeddings. Finally, in case the \textbf{Inverted Pairwise Euclidean Distance} is selected, the function (\ref{alg:jointEmbeddingNetGetSimilarityPairwiseDistance} - \textbf{\textit{JointEmbedding} model get similarity function with Inverted Pairwise Euclidean Distance}) first computes the euclidean distance between the two input embeddings and then assigns to both similarity scores and resulting probabilities the inversion of such distances through the use of the \textit{DistanceToSimilarity} function.
+Alg. \ref{alg:jointEmbeddingNetGetEmbedding} (\textbf{\textit{JointEmbedding} model get embedding function}) presents the \textit{GetEmbedding} function which is used to extract the PE embedding representation corresponding to the input file feature vector. This is particularly useful when performing different kinds of model performance evaluations together with the \textbf{GetSimilarity function}, which instead returns the similarity between two different input embeddings. Of course, depending on the similarity function selected at model definition the \textit{GetSimilarity} function has to be different. In particular, if the \textbf{dot product} is selected the function, shown in algorithm \ref{alg:jointEmbeddingNetGetSimilarity} (\textbf{\textit{JointEmbedding} model get similarity function with Dot Product}), simply computes the similarity scores as the dot product between the two input embeddings and then defines the probabilities by further applying the sigmoid activation function on those scores. On the other hand, if the \textbf{cosine similarity} is selected, the function (\ref{alg:jointEmbeddingNetGetSimilarityCosine} - \textbf{\textit{JointEmbedding} model get similarity function with Cosine Similarity}) assigns to both similarity scores and resulting probabilities the normalized (to the $[0,1]$ range) cosine similarity between the two embeddings. Finally, in case the \textbf{Inverted Pairwise Euclidean Distance} is selected, the function (\ref{alg:jointEmbeddingNetGetSimilarityPairwiseDistance} - \textbf{\textit{JointEmbedding} model get similarity function with Inverted Pairwise Euclidean (IPE) Distance}) first computes the euclidean distance between the two input embeddings and then assigns to both similarity scores and resulting probabilities the inversion of such distances through the use of the \textit{DistanceToSimilarity} function.
 
 \begin{algorithm}[h!]
-	\caption{Joint Embedding Net class, GetEmbedding}\label{alg:jointEmbeddingNetGetEmbedding}
+	\caption{Joint Embedding Net class, GetEmbedding function}\label{alg:jointEmbeddingNetGetEmbedding}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 		\Function{GetEmbedding}{\textit{self}, \textit{data}}
@@ -3076,7 +3076,7 @@ Alg. \ref{alg:jointEmbeddingNetGetEmbedding} (\textbf{\textit{JointEmbedding} mo
 \end{algorithm}
 
 \begin{algorithm}[h!]
-	\caption{Joint Embedding Net class, GetSimilarity (with \textit{Dot Product})}\label{alg:jointEmbeddingNetGetSimilarity}
+	\caption{Joint Embedding Net class, GetSimilarity function (with \textit{Dot Product})}\label{alg:jointEmbeddingNetGetSimilarity}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 		\Function{GetSimilarity}{\textit{self}, \textit{first\_embedding}, \textit{second\_embedding}}
@@ -3089,7 +3089,7 @@ Alg. \ref{alg:jointEmbeddingNetGetEmbedding} (\textbf{\textit{JointEmbedding} mo
 \end{algorithm}
 
 \begin{algorithm}[h!]
-	\caption{Joint Embedding Net class, GetSimilarity (with \textit{Cosine similarity})}\label{alg:jointEmbeddingNetGetSimilarityCosine}
+	\caption{Joint Embedding Net class, GetSimilarity function (with \textit{Cosine similarity})}\label{alg:jointEmbeddingNetGetSimilarityCosine}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 		\Function{GetSimilarity}{\textit{self}, \textit{first\_embedding}, \textit{second\_embedding}}
@@ -3103,7 +3103,7 @@ Alg. \ref{alg:jointEmbeddingNetGetEmbedding} (\textbf{\textit{JointEmbedding} mo
 \end{algorithm}
 
 \begin{algorithm}[h!]
-	\caption{Joint Embedding Net class, GetSimilarity (with \textit{Inverted Pairwise Euclidean Distance})}\label{alg:jointEmbeddingNetGetSimilarityPairwiseDistance}
+	\caption{Joint Embedding Net class, GetSimilarity function (with \textit{\textbf{IPE} Distance})}\label{alg:jointEmbeddingNetGetSimilarityPairwiseDistance}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 		\Function{GetSimilarity}{\textit{self}, \textit{first\_embedding}, \textit{second\_embedding}}
@@ -3120,7 +3120,7 @@ Alg. \ref{alg:jointEmbeddingNetGetEmbedding} (\textbf{\textit{JointEmbedding} mo
 \newpage
 
 \begin{algorithm}[h!]
-	\caption{Joint Embedding Net class, Compute Loss}\label{alg:jointEmbeddingNetComputeLoss}
+	\caption{Joint Embedding Net class, Compute Loss function}\label{alg:jointEmbeddingNetComputeLoss}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 		\Function{ComputeLoss}{\textit{predictions}, \textit{labels}, \textit{loss\_wts}}
@@ -3141,7 +3141,7 @@ Alg. \ref{alg:jointEmbeddingNetGetEmbedding} (\textbf{\textit{JointEmbedding} mo
 Finally, in algorithm \ref{alg:jointEmbeddingNetComputeLoss} it is described how the loss, which guides the training procedure, is computed. In particular, it corresponds to the \textbf{binary cross entropy loss} between the predicted tag probabilities and the actual tag labels, as depicted by the formulas mentioned in paragraph \ref{par:tagPredictionImplementation}.
 
 \section{Experiments}
-Both the models were trained (and validated) for 10 \textit{epochs} each on the first $6M$ training and $1.153.846$ validation samples of the pre-processed Sorel20M dataset (loaded with generator \textit{\textbf{alt3}}) using different numbers of layers, numbers of nodes per layer (layer sizes), activation functions, normalization functions and dropout values for the model base topology. Moreover, various combinations of optimizers (\textbf{Adam} or \textbf{SGD}), learning rates (LR), momentum, weight decay and loss weights were used in separate training runs. Moreover, in the case of the \textbf{Joint Embedding} model also different similarity score functions such as the cosine similarity and the inverse of the Euclidean distance were tested instead of the dot product. The models which performed best during validation were then evaluated on the first $1.846.154$ test samples of Sorel20M dataset looking for their tag and/or malicious/benign label (present only in the ALOHA model implementation) prediction binary cross entropy statistics and mean per-sample scores such as \textit{TPR}, \textit{accuracy}, \textit{recall}, \textit{precision}, \textit{f1} score, \textit{jaccard similarity} and \textit{mean-per-sample-accuracy} at FPR $= 1\%$ as well as the resulting tag and/or malicious/benign \textit{ROC} curves and \textit{AUC} scores.
+Both the models were trained (and validated) for 10 \textit{epochs} each on the first $6M$ training and $1.153.846$ validation samples of the pre-processed Sorel20M dataset (loaded with generator \textit{\textbf{alt3}}) using different numbers of layers, numbers of nodes per layer (layer sizes), activation functions, normalization functions and dropout values for the model base topology. Moreover, various combinations of optimizers (\textbf{Adam} or \textbf{SGD}), learning rates (LR), momentum, weight decay and loss weights were used in separate training runs. Moreover, in the case of the \textbf{Joint Embedding} model also different similarity score functions such as the cosine similarity and the inverse of the Euclidean distance were tested instead of the dot product. The models which performed best during validation were then evaluated on the first $1.846.154$ test samples of Sorel20M dataset looking for their tag and/or malicious/benign label (present only in the ALOHA model implementation) prediction binary cross entropy statistics and mean per-sample scores such as \textit{TPR}, \textit{accuracy}, \textit{recall}, \textit{precision}, \textit{f1} score, \textit{Jaccard similarity} and \textit{mean-per-sample-accuracy} at FPR $= 1\%$ as well as the resulting tag and/or malicious/benign \textit{ROC} curves and \textit{AUC} scores.
 
 The final \textbf{ALOHA} architecture, which had a base topology consisting of 5 layers of sizes 1024, 768, 512, 512 and 512 respectively, with dropout probability $p_d=5\%$ and \textbf{ELU} activation function, in particular, was trained with a learning rate $LR = 10^{-3}$, \textbf{Adam} optimizer, no momentum nor weight decay and loss weights set to 1.0 for the malicious/benign head, 0.1 for the count head and 0.1 for the tag head (as described in the original paper \cite{ruddALOHA}).
 
@@ -3153,7 +3153,7 @@ The \textit{ALOHA} and \textit{Joint Embedding} model implementations evaluation
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{./images/workflow_sorel.png}
-	\caption[Training and evaluation workflow steps]{Model Training and Evaluation Workflow steps}
+	\caption[Training and evaluation workflow steps]{Base Model Training and Evaluation Workflow steps}
 	\label{fig:workflow_train_eval_plot}
 \end{figure}
 
@@ -3163,7 +3163,7 @@ Both the \textbf{\textit{ALOHA}} and the \textbf{\textit{Joint Embedding}} model
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{./images/workflow_train.png}
-	\caption[Training workflow step]{Model Training Workflow step}
+	\caption[Training workflow step]{Base Model Training Workflow step}
 	\label{fig:workflow_train}
 \end{figure}
 
@@ -3228,7 +3228,7 @@ In particular, as shown in alg. \ref{alg:trainNetworkFunction}, the training fun
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{./images/workflow_eval.png}
-	\caption[Evaluation workflow step]{Model Evaluation Workflow step}
+	\caption[Evaluation workflow step]{Base Model Evaluation Workflow step}
 	\label{fig:workflow_eval}
 \end{figure}
 
@@ -3268,7 +3268,7 @@ The evaluation function, presented in \ref{alg:evaluateNetworkFunction}, begins 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{./images/workflow_results.png}
-	\caption[Results Computation and plotting workflow step]{Results Computation and Plotting Workflow step}
+	\caption[Results Computation and plotting workflow step]{Base Model Results Computation and Plotting Workflow step}
 	\label{fig:workflow_results}
 \end{figure}
 
@@ -3316,7 +3316,7 @@ Finally the individual head losses are aggregated together by computing their we
 As presented by algorithm \ref{alg:mtjeModelNetInit} (\textbf{\textit{MTJE} model init function}), the \textbf{\textit{MTJE}} model is initialized first by defining the \textit{model shared topology} (\textit{model\_base}) as a sequence of blocks composed each of a linear layer, a Normalization layer, an activation function and dropout, exactly as previously done for the \textbf{\textit{ALOHA}} and \textbf{\textit{Joint Embedding}} model implementations. Next, similarly to the \textbf{\textit{Joint Embedding}} implementation, the \textit{pe\_embedding} topology and the \textit{tags\_embedding} matrix are defined: the first as a single linear layer with output size equal to the \textit{embedding\_dimension} ($=32$), followed by a Normalization layer and an activation function, and the latter as an embedding matrix of size (\textit{n\_tags}, \textit{embedding\_dimension}). The most important novelty compared to the \textbf{\textit{Joint Embedding}} model is the presence of also the \textit{Malicious/Benign} label and \textit{Vendor Count} prediction heads from the \textbf{\textit{ALOHA}} model implementation. In particular, the \textit{Malicious/Benign} (\textit{malware\_head}) is defined as a linear layer of output size 1 immediately followed by a \textit{sigmoid} non linearity. The \textit{Vendor Count} head (\textit{count\_head}), on the other hand, is set to be a simple linear layer trailed by the \textit{ReLU} non-linearity.
 
 \begin{algorithm}[h!]
-	\caption{MTJE Model Net class, Init}\label{alg:mtjeModelNetInit}
+	\caption{MTJE Model Net class, Init function}\label{alg:mtjeModelNetInit}
 	\begin{algorithmic}[1]
 		\Class{Net}
 			\Function{Init}{\textit{self}, \textit{use\_malware}, \textit{use\_counts}, \textit{use\_tags}, \textit{n\_tags}, \textit{feature\_dimension}, \textit{embedding\_dimension}, \textit{max\_embedding\_norm}, \textit{layer\_sizes}, \textit{dropout\_p}, \textit{activation\_function}, \textit{normalization\_function}}	
@@ -3365,7 +3365,7 @@ As presented by algorithm \ref{alg:mtjeModelNetInit} (\textbf{\textit{MTJE} mode
 The input data (PE files' numerical feature vectors) is forwarded through the model as shown in alg. \ref{alg:mtjeModelNetForwardDotProduct} (\textbf{\textit{MTJE} model forward function (with \textit{dot product})}). In particular, it first passes through the model base topology (\textit{model\_base}) to produce an intermediate representation \textit{base\_out} which is then forwarded to the various parallel output heads. The \textit{malware label prediction head} and the \textit{vendor count prediction head}, if enabled, produce the corresponding predictions given as input the transient latent representation \textit{base\_out}. On the other hand, for the \textit{tags prediction} topology, the intermediate representation \textit{base\_out} is fed into the \textit{pe\_embedding} sub-net producing the latent representation of the input data samples in the joint embedding space (PE embedding). The tag similarity scores are then computed by applying the dot product (via a simple matrix multiplication) between the PE embedding and the tags embedding matrix (\textit{tags\_embedding}). Finally, the tags probability predictions are produced by applying the \textit{sigmoid} activation function on the previously computed similarity scores.
 
 \begin{algorithm}[h!]
-	\caption{MTJE Model Net class, Forward (with \textit{Dot Product})}\label{alg:mtjeModelNetForwardDotProduct}
+	\caption{MTJE Model Net class, Forward function (with \textit{Dot Product})}\label{alg:mtjeModelNetForwardDotProduct}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 		\Function{Forward}{\textit{self}, \textit{data}}
@@ -3392,7 +3392,7 @@ The input data (PE files' numerical feature vectors) is forwarded through the mo
 \end{algorithm}
 
 \begin{algorithm}[h!]
-	\caption{MTJE Model Net class, Forward (with \textit{Cosine similarity})}\label{alg:mtjeModelNetForwardCosine}
+	\caption{MTJE Model Net class, Forward function (with \textit{Cosine similarity})}\label{alg:mtjeModelNetForwardCosine}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 		\Function{Forward}{\textit{self}, \textit{data}}
@@ -3408,7 +3408,7 @@ The input data (PE files' numerical feature vectors) is forwarded through the mo
 \end{algorithm}
 
 \begin{algorithm}[h!]
-	\caption{MTJE Model Net class, Forward (with \textit{Inverted Pairwise Euclidean Distance})}\label{alg:mtjeModelNetForwardPairwiseDistance}
+	\caption{MTJE Model Net class, Forward function (with \textit{\textbf{IPE} Distance})}\label{alg:mtjeModelNetForwardPairwiseDistance}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 		\Function{Forward}{\textit{self}, \textit{data}}
@@ -3424,12 +3424,12 @@ The input data (PE files' numerical feature vectors) is forwarded through the mo
 	\end{algorithmic}
 \end{algorithm}
 
-If, however, the user chooses to try a different similarity function other than the \textbf{\textit{dot product}}, two alternatives are available: the \textbf{\textit{cosine similarity}} or the \textbf{\textit{inverted pairwise euclidean distance}}. In particular both the \textbf{\textit{MTJE} model forward function (with \textit{cosine similarity})}, shown in alg. \ref{alg:mtjeModelNetForwardCosine}, and the \textbf{\textit{MTJE} model forward function (with \textit{inverted pairwise Euclidean distance})}, shown in alg. \ref{alg:mtjeModelNetForwardPairwiseDistance}, are for the most part identical to the original forward function but for the computation of the similarity scores. The \textit{cosine similarity} version of this function, in fact, computes the similarity scores as the cosine similarities between the PE files' and tags' embeddings, which are values in the range $[-1,1]$, normalized to the $[0,1]$ interval. On the other hand, the \textit{inverted pairwise Euclidean distance} version computes those scores as the euclidean distances between the two embeddings, inverted through the \textbf{\textit{DistanceToSimilarity}} function already mentioned in sec. \ref{sec:jointEmbeddingNetDefinitionCode}. Again, similarly to what was done in the \textit{Joint Embedding} model implementation, in both cases the final tag probabilities coincide with the computed similarity scores.
+If, however, the user chooses to try a different similarity function other than the \textbf{\textit{dot product}}, two alternatives are available: the \textbf{\textit{cosine similarity}} or the \textbf{\textit{inverted pairwise euclidean distance}}. In particular both the \textbf{\textit{MTJE} model forward function (with \textit{cosine similarity})}, shown in alg. \ref{alg:mtjeModelNetForwardCosine}, and the \textbf{\textit{MTJE} model forward function (with \textit{inverted pairwise Euclidean (IPE) distance})}, shown in alg. \ref{alg:mtjeModelNetForwardPairwiseDistance}, are for the most part identical to the original forward function but for the computation of the similarity scores. The \textit{cosine similarity} version of this function, in fact, computes the similarity scores as the cosine similarities between the PE files' and tags' embeddings, which are values in the range $[-1,1]$, normalized to the $[0,1]$ interval. On the other hand, the \textit{inverted pairwise Euclidean distance} version computes those scores as the euclidean distances between the two embeddings, inverted through the \textbf{\textit{DistanceToSimilarity}} function already mentioned in sec. \ref{sec:jointEmbeddingNetDefinitionCode}. Again, similarly to what was done in the \textit{Joint Embedding} model implementation, in both cases the final tag probabilities coincide with the computed similarity scores.
 
 The \textbf{MTJE} model implementation uses exactly the same \textbf{\textit{GetEmbedding}} and \textbf{\textit{GetSimilarity}} functions as the ones used in the \textbf{\textit{Joint Embedding}} model implementation, shown in alg. \ref{alg:jointEmbeddingNetGetEmbedding}. Again, these functions are particularly useful when performing evaluations on the learned embedding.
 
 \begin{algorithm}[h!]
-	\caption{MTJE Model Net class, Compute Loss}\label{alg:mtjeModelNetComputeLoss}
+	\caption{MTJE Model Net class, Compute Loss function}\label{alg:mtjeModelNetComputeLoss}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 		\Function{ComputeLoss}{\textit{predictions}, \textit{labels}, \textit{loss\_wts}}
@@ -3504,7 +3504,7 @@ The \textbf{MTJE} model evaluation results are reported in chapter \ref{chap:res
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{./images/workflow_sorel.png}
-	\caption[Training and evaluation workflow steps]{Model Training and Evaluation Workflow steps}
+	\caption[MTJE Model Training and evaluation workflow steps]{MTJE Model Training and Evaluation Workflow steps}
 	\label{fig:workflow_proposed_train_eval_plot}
 \end{figure}
 \vspace{-0.2cm}
@@ -3517,7 +3517,7 @@ As previously mentioned in section \ref{sec:alohaAndJointEmbeddingTrainAndEvalua
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{./images/workflow_base_fresh_dataset.png}
-	\caption[Model fresh evaluation workflow steps]{Model Fresh Dataset Evaluation Workflow steps}
+	\caption[MTJE Model fresh evaluation workflow steps]{MTJE Model Evaluation on Fresh Dataset Workflow steps}
 	\label{fig:workflow_fresh_eval_all}
 \end{figure}
 \vspace{-0.2cm}
@@ -3543,7 +3543,7 @@ As previously mentioned, both the \textbf{\textit{MTJE}} model and the \textbf{\
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{./images/workflow_fresh_eval.png}
-	\caption[Model fresh evaluation workflow step]{Model Fresh Dataset Evaluation Workflow step}
+	\caption[MTJE Model fresh evaluation workflow step]{MTJE Model Evaluation on Fresh Dataset Workflow step}
 	\label{fig:workflow_fresh_eval}
 \end{figure}
 
@@ -3577,7 +3577,7 @@ As previously mentioned, both the \textbf{\textit{MTJE}} model and the \textbf{\
 					\State \hskip1.9em 'families': [\textbf{label\_to\_sig}(\textit{lab}) $\forall$ \textit{lab} $\in$ \textbf{range}(\textit{n\_families})],
 					\State \hskip1.9em 'shas': \textit{queries}['shas'],
 					\State \hskip1.9em 'labels': \textit{queries}['labels'],
-					\State \hskip1.9em 'predictions': \textit{anchors}['lables'][\textbf{argmax}(\textit{similarity\_scores})],
+					\State \hskip1.9em 'predictions': \textit{anchors}['labels'][\textbf{argmax}(\textit{similarity\_scores})],
 					\State \hskip1.9em 'probabilities': \textbf{nn.Softmax}([[\textbf{max}(\textit{sims}[[\textit{j} $\forall$ \textit{j} $\in$ \textbf{range}(\textbf{len}(\textit{sims}))
 					\State \hskip3.7em \textbf{if} \textit{anchors}['labels'][\textit{j}] $=$ \textit{i}]]) $\forall$ \textit{i} $\in$ \textbf{range}(\textit{n\_families})]
 					\State \hskip3.7em $\forall$ \textit{sims} $\in$ \textit{similarity\_scores}])\})
@@ -3613,7 +3613,7 @@ As previously mentioned, both the \textbf{\textit{MTJE}} model and the \textbf{\
 				\State \textit{rank\_per\_query} $\gets$ [ ]
 				\State
 				\ForAll{\textit{shas}, \textit{features}, \textit{labels} $\in$ \textit{generator}}
-					\State \textit{embeddings} $\gets$ \textit{model}.\textbf{GetEmbedding}(\textit{features})\'embedding']
+					\State \textit{embeddings} $\gets$ \textit{model}.\textbf{GetEmbedding}(\textit{features})['embedding']
 					\State \textit{similarity\_scores} $\gets$ \textit{model}.\textbf{GetSimilarity}(\textit{queries}['embeddings'], 
 					\State \hskip18.7em \textit{embeddings})['similarity']
 					\State
@@ -3720,7 +3720,7 @@ The \textbf{GetSamples} function (alg. \ref{alg:getSamplesFunction}), used by fu
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{./images/workflow_fresh_results.png}
-	\caption[Fresh results computation and plotting workflow step]{Fresh Results Computation and Plotting Workflow step}
+	\caption[MTJE Fresh results computation and plotting workflow step]{MTJE Fresh Results Computation and Plotting Workflow step}
 	\label{fig:workflow_fresh_results}
 \end{figure}
 \vspace{-0.3cm}
@@ -3771,7 +3771,7 @@ where $x[j]$ denotes the sample class score for family $j$.
 \subsubsection{Net Definition}
 \vspace{-0.2cm}
 \begin{algorithm}[h!]
-	\caption{Malware Family Classifier Net class, Init part 1}\label{alg:malwareFamilyClassifierNetInitPt1}
+	\caption{Malware Family Classifier Net class, Init function, part 1}\label{alg:malwareFamilyClassifierNetInitPt1}
 	\begin{algorithmic}[1]
 		\Class{Net}
 			\Function{Init}{\textit{self}, \textit{families}, \textit{feature\_dimension}, \textit{embedding\_dimension}, \textit{layer\_sizes}, \textit{fam\_class\_layer\_sizes}, \textit{dropout\_p}, \textit{activation\_function}, \textit{normalization\_function}}	
@@ -3816,7 +3816,7 @@ where $x[j]$ denotes the sample class score for family $j$.
 \end{algorithm}
 
 \begin{algorithm}[h!]
-	\caption{Malware Family Classifier Net class, Init part 2}\label{alg:malwareFamilyClassifierNetInitPt2}
+	\caption{Malware Family Classifier Net class, Init function, part 2}\label{alg:malwareFamilyClassifierNetInitPt2}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 			\State \Comment Continued from previous page..
@@ -3843,13 +3843,13 @@ where $x[j]$ denotes the sample class score for family $j$.
 Algorithms \ref{alg:malwareFamilyClassifierNetInitPt1}-\ref{alg:malwareFamilyClassifierNetInitPt2} (Malware Family Classifier Init function) shows how the Family Classifier model is initialized. In particular the function first defines the model \textit{shared base} topology (\textit{model\_base}) as a sequence of blocks composed each of a linear layer, a Normalization layer, an Activation function and dropout, exactly as previously done for the \textbf{MTJE} model implementation. Next, the \textit{pe\_embedding} topology is constructed as a single linear layer with output size equal to the \textit{embedding\_dimension} ($=32$), followed by a Normalization layer and an Activation function. Thereafter, the function defines the \textit{Family Classifier} topology as a sequence of dense blocks - equal to the ones used in the \textit{shared base} part - trailed by a final linear layer of output size equal to the number of family labels ($=10$) and, optionally, a \textit{Softmax} non-linearity.
 
 \begin{algorithm}[h!]
-	\caption{Malware Family Classifier Net class, Forward}\label{alg:malwareFamilyClassifierNetForward}
+	\caption{Malware Family Classifier Net class, Forward function}\label{alg:malwareFamilyClassifierNetForward}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 		\Function{Forward}{\textit{self}, \textit{data}}
 		\State \textit{base\_out} $\gets$ \textit{self}.\textit{model\_base}(\textit{data})
 		\State \textit{pe\_embedding} $\gets$ \textit{self}.\textit{pe\_embedding}(\textit{base\_out})
-		\State \textit{scores} $\gets$ \textit{self}.\textit{families\_classifier}(\textit{pe\_embedding})
+		\State \textit{scores} $\gets$ \textit{self}.\textit{family\_classifier}(\textit{pe\_embedding})
 		\State \textit{rv} $\gets$ \{'scores': \textit{scores},
 		\State \hskip3.1em 'probs': \textit{self}.\textit{softmax\_output}(\textit{scores})\}
 		\State
@@ -3862,7 +3862,7 @@ Algorithms \ref{alg:malwareFamilyClassifierNetInitPt1}-\ref{alg:malwareFamilyCla
 Algorithm \ref{alg:malwareFamilyClassifierNetForward} (\textbf{\textit{Malware Family Classifier} forward function}), on the other hand, shows how the input data (PE files' numerical feature vectors) is forwarded through the model. In particular, the function feeds the model base topology (\textit{model\_base}) with the input data producing an intermediate representation \textit{base\_out}. This intermediate representation is then forwarded to the \textit{pe\_embedding} subnet which outputs the input samples' PE latent representation (of size 32). At the beginning of the family classifier model training procedure, the mapping function between the samples' input features and the produced PE embeddings corresponds, if transfer Learning was applied, to the one learned by the \textbf{MTJE} model using the Sorel-20m dataset. The output class (family) scores are computed by feeding the \textit{Family classifier} topology with the produced input samples' PE embeddings. Finally, the family probabilities are simply obtained by applying the \textit{Softmax} function to the previously computed family \textit{scores}.
 
 \begin{algorithm}[h!]
-	\caption{Malware Family Classifier Net class, Compute Loss}\label{alg:malwareFamilyClassifierNetComputeLoss}
+	\caption{Malware Family Classifier Net class, Compute Loss function}\label{alg:malwareFamilyClassifierNetComputeLoss}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 		\Function{ComputeLoss}{\textit{self}, \textit{predictions}, \textit{labels}, \textit{loss\_wts}}
@@ -3904,7 +3904,7 @@ Algorithms \ref{alg:trainFamilyClassifierFunctionPt1}-\ref{alg:trainFamilyClassi
 \vspace{-0.2cm}
 
 \begin{algorithm}[h!]
-	\caption{Train Family Classifier function, part 1}\label{alg:trainFamilyClassifierFunctionPt1}
+	\caption{Family Classifier Train function, part 1}\label{alg:trainFamilyClassifierFunctionPt1}
 	\begin{algorithmic}[1]
 			\Function{TrainNetwork}{\textit{fresh\_ds\_path}, \textit{checkpoint\_path}, \textit{batch\_size}, \textit{epochs}, \textit{train\_split\_proportion}, \textit{valid\_split\_proportion}, \textit{test\_split\_proportion}, \textit{workers}, ...}
 				\State
@@ -3950,7 +3950,7 @@ Algorithms \ref{alg:trainFamilyClassifierFunctionPt1}-\ref{alg:trainFamilyClassi
 \newpage
 
 \begin{algorithm}[h!]
-	\caption{Train Family Classifier function, part 2}\label{alg:trainFamilyClassifierFunctionPt2}
+	\caption{Family Classifier Train function, part 2}\label{alg:trainFamilyClassifierFunctionPt2}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 				\State \Comment Continued from previous page..
@@ -3965,7 +3965,7 @@ Algorithms \ref{alg:trainFamilyClassifierFunctionPt1}-\ref{alg:trainFamilyClassi
 						\State accuracy $\gets$ \textbf{sum}(1 $\forall$ \textit{i}, \textit{pred} $\in$ \textbf{enumerate}(\textit{preds}) \textbf{if} \textit{pred} = \textit{labels}[\textit{i}]) / \textbf{len}(\textit{labels})
 						\State \textbf{log}(\textit{loss})
 						\State \textbf{log}(\textit{accuracy})
-						\State \textit{loss}.\textbf{backwawrd}()
+						\State \textit{loss}.\textbf{backward}()
 						\State \textit{opt}.\textbf{step}()
 					\EndFor
 				\State
@@ -3994,12 +3994,12 @@ The \textit{Family Classifier} training function, as shown in alg. \ref{alg:trai
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{./images/workflow_family_classifier_evaluate.png}
-	\caption[Family Classifier Evaluate Workflow step]{Family Classifier Evaluate Workflow step}
+	\caption[Family Classifier Evaluation Workflow step]{Family Classifier Evaluation Workflow step}
 	\label{fig:workflow_fam_eval}
 \end{figure}
 
 \begin{algorithm}[h!]
-	\caption{Evaluate Family Classifier function}\label{alg:evaluateFamilyClassifierFunction}
+	\caption{Family Classifier Evaluate function}\label{alg:evaluateFamilyClassifierFunction}
 	\begin{algorithmic}[1]
 			\Function{EvaluateNetwork}{\textit{fresh\_ds\_path}, \textit{checkpoint\_path}, \textit{batch\_size}, \textit{train\_split\_proportion}, \textit{valid\_split\_proportion}, \textit{test\_split\_proportion}, \textit{workers}, ...}
 			\State
@@ -4139,7 +4139,7 @@ After training, the learned Embeddings of PE files can be evaluated on the malwa
 As presented by algorithm \ref{alg:contrastiveLearningModelNetInit} (\textbf{\textit{Contrastive Learning Model} Init function}), the \textit{Contrastive (Siamese) Model} is initialized by first defining the model \textit{shared base} topology (\textit{model\_base}) as a sequence of blocks composed each of a linear layer, a Normalization layer, an Activation function and dropout, exactly as previously done for the \textbf{MTJE} model (and \textbf{Family Classifier}) implementation. Next, the \textit{pe\_embedding} topology is defined as a single linear layer with output size equal to the \textit{embedding\_dimension} ($=32$), followed by a Normalization layer and an Activation function.
 
 \begin{algorithm}[h!]
-	\caption{Contrastive Learning Model Net class, Init}\label{alg:contrastiveLearningModelNetInit}
+	\caption{Contrastive Learning Model Net class, Init function}\label{alg:contrastiveLearningModelNetInit}
 	\begin{algorithmic}[1]
 		\Class{Net}
 			\Function{Init}{\textit{self}, \textit{feature\_dimension}, \textit{embedding\_dimension}, \textit{layer\_sizes}, \textit{dropout\_p}, \textit{activation\_function}, \textit{normalization\_function}}	
@@ -4175,7 +4175,7 @@ As presented by algorithm \ref{alg:contrastiveLearningModelNetInit} (\textbf{\te
 The input data (PE files' numerical feature vectors) is forwarded through the model as shown in alg. \ref{alg:contrastiveLearningModelNetForward} (\textbf{\textit{Contrastive Learning Model} forward function}). In particular, it first passes through the model base topology (\textit{model\_base}) to produce an intermediate representation \textit{base\_out} which is then forwarded to the \textit{pe\_embedding} subnet which outputs the corresponding PE Embedding (of size 32). At the beginning of the Contrastive Model training procedure, the mapping function between the samples' input features and the produced PE embeddings corresponds, if transfer Learning was applied, to the one learned by the \textbf{MTJE} model using the Sorel-20m dataset.
 
 \begin{algorithm}[h!]
-	\caption{Contrastive Learning Model Net class, Forward}\label{alg:contrastiveLearningModelNetForward}
+	\caption{Contrastive Learning Model Net class, Forward function}\label{alg:contrastiveLearningModelNetForward}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 			\Function{Forward}{\textit{self}, \textit{data}}
@@ -4231,10 +4231,10 @@ Algorithms \ref{alg:trainContrastiveLearningModelFunctionPt1}-\ref{alg:trainCont
 			\State \textit{model} $\gets$ \textit{Contrastive\_Net}(
 			\State \hskip1.9em feature\_dimension=2381,
 			\State \hskip1.9em embedding\_dimension=32,
-			\State \hskip1.9em layer\_sizes=\textit{run\_additional\_params}['layer\_sizes'],
-			\State \hskip1.9em dropout\_p=\textit{run\_additional\_params}['dropout\_p'],
-			\State \hskip1.9em activation\_function=\textit{run\_additional\_params}['activation\_function'],
-			\State \hskip1.9em normalization\_function=\textit{run\_additional\_params}['normalization\_function'])
+			\State \hskip1.9em layer\_sizes=\textit{run\_params}['layer\_sizes'],
+			\State \hskip1.9em dropout\_p=\textit{run\_params}['dropout\_p'],
+			\State \hskip1.9em activation\_function=\textit{run\_params}['activation\_function'],
+			\State \hskip1.9em normalization\_function=\textit{run\_params}['normalization\_function'])
 			\State
 			\If{\textit{checkpoint\_path} \textbf{is not} None}
 				\State \textit{model}.\textbf{load\_state\_dict}(\textit{checkpoint\_path}, strict=False)
@@ -4269,19 +4269,19 @@ Algorithms \ref{alg:trainContrastiveLearningModelFunctionPt1}-\ref{alg:trainCont
 				\ForAll{\textit{shas}, \textit{features}, \textit{labels} $\in$ \textit{train\_gen}}
 					\State \textit{opt}.\textbf{zero\_grad}
 					\State \textit{pe\_embeddings} $\gets$ \textit{model}(\textit{features})
-					\If{\textit{run\_additional\_params}['hard']}
+					\If{\textit{run\_params}['hard']}
 						\State \textit{loss} $\gets$ \textbf{BatchHardTripletLoss}(\textit{labels}, \textit{pe\_embeddings},
-						\State \hskip1.9em margin=\textit{run\_additional\_params}['margin'],
-						\State \hskip1.9em squared=\textit{run\_additional\_params}['squared'])
+						\State \hskip1.9em margin=\textit{run\_params}['margin'],
+						\State \hskip1.9em squared=\textit{run\_params}['squared'])
 					\Else
 						\State \textit{loss}, \textit{pos\_fraction} $\gets$ \textbf{BatchAllTripletLoss}(\textit{labels}, \textit{pe\_embeddings},
-						\State \hskip1.9em margin=\textit{run\_additional\_params}['margin'],
-						\State \hskip1.9em squared=\textit{run\_additional\_params}['squared'])
+						\State \hskip1.9em margin=\textit{run\_params}['margin'],
+						\State \hskip1.9em squared=\textit{run\_params}['squared'])
 						\State \textbf{log}(\textit{pos\_fraction})
 					\EndIf
 					\State
 					\State \textbf{log}(\textit{loss})
-					\State \textit{loss}.\textbf{backwawrd}()
+					\State \textit{loss}.\textbf{backward}()
 					\State \textit{opt}.\textbf{step}()
 				\EndFor
 				\State
@@ -4291,14 +4291,14 @@ Algorithms \ref{alg:trainContrastiveLearningModelFunctionPt1}-\ref{alg:trainCont
 				\ForAll{\textit{shas}, \textit{features}, \textit{labels} $\in$ \textit{valid\_gen}}
 					\State \textbf{torch.no\_grad}()
 					\State \textit{pe\_embeddings} $\gets$ \textit{model}(\textit{features})
-					\If{\textit{run\_additional\_params}['hard']}
+					\If{\textit{run\_params}['hard']}
 						\State \textit{loss} $\gets$ \textbf{BatchHardTripletLoss}(\textit{labels}, \textit{pe\_embeddings},
-						\State \hskip1.9em margin=\textit{run\_additional\_params}['margin'],
-						\State \hskip1.9em squared=\textit{run\_additional\_params}['squared'])
+						\State \hskip1.9em margin=\textit{run\_params}['margin'],
+						\State \hskip1.9em squared=\textit{run\_params}['squared'])
 					\Else
 						\State \textit{loss}, \textit{pos\_fraction} $\gets$ \textbf{BatchAllTripletLoss}(\textit{labels}, \textit{pe\_embeddings},
-						\State \hskip1.9em margin=\textit{run\_additional\_params}['margin'],
-						\State \hskip1.9em squared=\textit{run\_additional\_params}['squared'])
+						\State \hskip1.9em margin=\textit{run\_params}['margin'],
+						\State \hskip1.9em squared=\textit{run\_params}['squared'])
 						\State \textbf{log}(\textit{pos\_fraction})
 					\EndIf
 					\State
@@ -4377,7 +4377,7 @@ The previously mentioned \textbf{GetAnchorPositiveTripletMask} function, which r
 
 The \textbf{GetAnchorNegativeTripletMask} function, on the other hand, returns a 2D mask where '$mask[a, n]$' is \textit{True} if and only if $a$ and $n$ have distinct labels, as shown in alg. \ref{alg:getAnchorNegativeTripletMaskFunction}. In particular, it first produces a 2D mask selecting the samples with equal label '\textit{labels\_equal}' and then applies the logical \textit{not} function to obtain the final 2D mask '\textit{mask}'.
 
-The computation of the \textit{Triplet loss} using the \textbf{Batch All} \textit{Online Triplet Mining Strategy} is described by algorithm \ref{alg:batchAllTripletLossFunction} (\textbf{BatchAllTripletLoss function}). More specifically, the \textbf{BatchAllTripletLoss} function begins in a similar way as the \textbf{BatchHardTripletLoss} function by computing a 2D matrix called 'pairwise dist' containing the euclidean distances between all possible pairs of sample embeddings, using function 'PairwiseDistances'. It then creates a 3D tensor '\textit{triplet\_loss}' of shape $(B, B, B)$ where the element at index $(i, j, k)$ contains the loss for triplet $(i, j, k)$. This 3D tensor thus contains the losses of all possible triplets. Next, the function generates a 3D mask '\textit{mask}' of valid triplets with function '\textit{GetTripletMask}' which is used to set to $0$ the loss for all invalid triplets (where $label(a) \ne label(p)$ or $label(n) = label(a)$ or $a = p$) in the 3D matrix '\textit{triplet\_loss}'. Finally, the function removes the negative losses (i.e. the easy triplets), calculates the fraction of positive triplets (where triplet loss $> 0$) with respect to the valid ones and computes the final \textbf{Triplet loss} by averaging over the positive triplets.
+The computation of the \textit{Triplet loss} using the \textbf{Batch All} \textit{Online Triplet Mining Strategy} is described by algorithm \ref{alg:batchAllTripletLossFunction} (\textbf{BatchAllTripletLoss function}). More specifically, the \textbf{BatchAllTripletLoss} function begins in a similar way as the \textbf{BatchHardTripletLoss} function by computing a 2D matrix called '\textit{pairwise dist}' containing the euclidean distances between all possible pairs of sample embeddings, using function 'PairwiseDistances'. It then creates a 3D tensor '\textit{triplet\_loss}' of shape $(B, B, B)$ where the element at index $(i, j, k)$ contains the loss for triplet $(i, j, k)$. This 3D tensor thus contains the losses of all possible triplets. Next, the function generates a 3D mask '\textit{mask}' of valid triplets with function '\textit{GetTripletMask}' which is used to set to $0$ the loss for all invalid triplets (where $label(a) \ne label(p)$ or $label(n) = label(a)$ or $a = p$) in the 3D matrix '\textit{triplet\_loss}'. Finally, the function removes the negative losses (i.e. the easy triplets), calculates the fraction of positive triplets (where triplet loss $> 0$) with respect to the valid ones and computes the final \textbf{Triplet loss} by averaging over the positive triplets.
 
 The \textbf{GetTripletMask} function, as described by algorithm \ref{alg:getTripletMaskFunction}, returns a 3D mask where $mask[a, p, n]$ is \textit{True} if and only if the triplet $(a, p, n)$ is \textit{valid} where a triplet $(i, j, k)$ is considered valid if $i$, $j$ and $k$ are distinct and $labels[i] = labels[j]$ and $labels[i] \ne labels[k]$. More specifically, the function first creates 3 3D masks '\textit{i\_not\_equal\_j}', '\textit{i\_not\_equal\_k}' and '\textit{j\_not\_equal\_k}' by extending a 2D mask called '\textit{indices\_not\_equal}' obtained by selecting the non-identical samples (inverting an identity matrix). These 3 masks are then combined using the logical \textit{and} function to create the 3D mask '\textit{distinct\_indices}' which is used to select the triplets where samples $i$, $j$ and $k$ are distinct. The function then creates 2 more 3D masks '\textit{i\_equal\_j}' and '\textit{i\_equal\_k}' by extending a 2D mask called '\textit{label\_equal}' obtained by selecting the samples with the same label. These 2 masks are then combined using the logical \textit{and} function after having inverted the '\textit{i\_equal\_k}' mask to produce the 3D mask '\textit{valid\_labels}' which is used to select the triplets where $labels[i] = labels[j]$ and $labels[i] \ne labels[k]$. Finally, the function combines the '\textit{distinct\_indices}' and 'valid\_labels' using the logical \textit{and} function to obtain the final 3D mask '\textit{mask}'.
 
@@ -4441,14 +4441,14 @@ The \textbf{GetTripletMask} function, as described by algorithm \ref{alg:getTrip
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{./images/workflow_contrastive_model_evaluate.png}
-	\caption[Contrastive Model Evaluate Workflow step]{Contrastive Model Evaluate Workflow step}
+	\caption[Contrastive Model Evaluation Workflow step]{Contrastive Model Evaluation Workflow step}
 	\label{fig:workflow_contrastive_model_evaluate}
 \end{figure}
 
 The \textit{Contrastive Model} evaluation function, presented in algorithm \ref{alg:evaluateContrastiveLearningModelFunctionPt1}-\ref{alg:evaluateContrastiveLearningModelFunctionPt2}-\ref{alg:evaluateContrastiveLearningModelFunctionPt3} (\textbf{Contrastive Model Evaluation function}), begins (as shown in alg. \ref{alg:evaluateContrastiveLearningModelFunctionPt1}) by opening and loading the \textit{Fresh Dataset} splitting it in training, validation and test subsets following the selected proportions, similarly to what was done in the training function. The actual \textit{Contrastive Model} then gets instantiated by providing the necessary arguments to its \textit{init} member function and the checkpoint state parameters from a previous training run are loaded. Next, the model is set into \textit{evaluation} mode.
 
 \begin{algorithm}[h!]
-	\caption{Evaluate Contrastive Learning Model function, part 1}\label{alg:evaluateContrastiveLearningModelFunctionPt1}
+	\caption{Contrastive Learning Model Evaluate function, part 1}\label{alg:evaluateContrastiveLearningModelFunctionPt1}
 	\begin{algorithmic}[1]
 		\Function{EvaluateNetwork}{\textit{fresh\_ds\_path}, \textit{checkpoint\_path}, \textit{batch\_size}, \textit{train\_split\_proportion}, \textit{valid\_split\_proportion}, \textit{test\_split\_proportion}, \textit{rank\_size}, \textit{knn\_k\_min}, \textit{knn\_k\_max}, \textit{workers}, ...}
 			\State
@@ -4468,10 +4468,10 @@ The \textit{Contrastive Model} evaluation function, presented in algorithm \ref{
 			\State \textit{model} $\gets$ \textit{Contrastive\_Net}(
 			\State \hskip1.9em feature\_dimension=2381,
 			\State \hskip1.9em embedding\_dimension=32,
-			\State \hskip1.9em layer\_sizes=\textit{run\_additional\_params}['layer\_sizes'],
-			\State \hskip1.9em dropout\_p=\textit{run\_additional\_params}['dropout\_p'],
-			\State \hskip1.9em activation\_function=\textit{run\_additional\_params}['activation\_function'],
-			\State \hskip1.9em normalization\_function=\textit{run\_additional\_params}['normalization\_function'])
+			\State \hskip1.9em layer\_sizes=\textit{run\_params}['layer\_sizes'],
+			\State \hskip1.9em dropout\_p=\textit{run\_params}['dropout\_p'],
+			\State \hskip1.9em activation\_function=\textit{run\_params}['activation\_function'],
+			\State \hskip1.9em normalization\_function=\textit{run\_params}['normalization\_function'])
 			\State
 			\State \textit{model}.\textbf{load\_state\_dict}(\textit{checkpoint\_path})
 			\State \textit{model}.\textbf{eval}()
@@ -4485,7 +4485,7 @@ The \textit{Contrastive Model} evaluation function, presented in algorithm \ref{
 Then, as shown in alg. \ref{alg:evaluateContrastiveLearningModelFunctionPt2}, the function considers the samples from the test subset of the \textit{Fresh Dataset} as anchors for the computation of the corresponding ranking and family predictions. In practice, for all the mini-batches of data from the (\textit{Fresh Dataset}) test generator, the samples' features are fed into the model to obtain the corresponding \textit{PE Embedding} representations '\textit{anchor\_pe\_embeddings}'. Next, the function cycles through all the mini-batches of data from the (\textit{Fresh Dataset}) train generator in order to obtain the rankings for the current test mini-batch considering the samples from the training subset of the \textit{Fresh Dataset} as query samples. More specifically, the function obtains the \textit{PE Embedding} representation of the training samples '\textit{query\_pe\_embeddings}' by forwarding the corresponding features through the (same) model and then computes the \textit{Euclidean} distances between the embeddings of the \textit{anchor} and \textit{query} samples. These distances are used to update a set of 3 tensors of fixed size (equal to the selected \textit{rank\_size}) called '\textit{top\_shas}', '\textit{top\_labels}' and '\textit{top\_distances}' which contain, respectively, the shas, labels and distances (to the current anchor) of the top '\textit{rank\_size}' most similar samples, per anchor, ordered by similarity.
 
 \begin{algorithm}[h!]
-	\caption{Evaluate Contrastive Learning Model function, part 2}\label{alg:evaluateContrastiveLearningModelFunctionPt2}
+	\caption{Contrastive Learning Model Evaluate function, part 2}\label{alg:evaluateContrastiveLearningModelFunctionPt2}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 			\State \Comment Continued from previous page..
@@ -4533,7 +4533,7 @@ Then, as shown in alg. \ref{alg:evaluateContrastiveLearningModelFunctionPt2}, th
 At the end of the inner cycle, as shown in algorithm \ref{alg:evaluateContrastiveLearningModelFunctionPt3}, these 3 tensors (\textit{top\_shas}, \textit{top\_labels} and \textit{top\_distances}) are used to generate the actual rankings for the anchor samples of the current test mini-batch. Thereafter, the function applies the \textbf{Distance Weighted k-NN} approach using the generated rankings to obtain the actual family predictions for the test samples of the current mini-batch. In particular, for each odd value '\textit{k}' from '\textit{knn\_k\_min}' to '\textit{knn\_k\_max}', the function gets the first \textit{k} labels from the current \textit{top\_labels} tensor, computes each nearest neighbour weight inverting its distance squared to the anchor and assigns to the current anchor the family with the highest cumulative score. Finally, the function computes the ranking scores (\textbf{MAP and MRR}) and saves to file both the produced rankings and family predictions.
 	
 \begin{algorithm}[h!]
-	\caption{Evaluate Contrastive Learning Model function, part 3}\label{alg:evaluateContrastiveLearningModelFunctionPt3}
+	\caption{Contrastive Learning Model Evaluate function, part 3}\label{alg:evaluateContrastiveLearningModelFunctionPt3}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
 				\State \Comment Continued from previous page..
@@ -4774,7 +4774,7 @@ The fact that anyone can upload samples (and reports) on Malware Bazaar is on on
 
 Furthermore, this fact also makes it difficult to assess which proposed \textbf{Family Classifier} misclassifications are actual errors and why the model made those decision - which is already extremely difficult to understand when working with Neural Networks.
 
-\section{Contrastive Learning Results}\label{sec:ContrastiveLearningResults}
+\section{Contrastive Learning Model Results}\label{sec:ContrastiveLearningModelResults}
 This section shows the performance evaluation of the different Contrastive models at the \textbf{Malware Family Prediction/Classification and Ranking} tasks. More specifically, table \ref{tab:ContrLearnAccuracyResults} presents the mean and standard deviation of the family classification accuracy obtained by evaluating the Contrastive Models based on the \textbf{Joint Embedding} and \textbf{MTJE} model implementations along with a Contrastive Model with no \textit{Transfer Learning} applied (\textbf{Contrastive Model Only}) using the k-NN algorithm with the value of '$k$' which provided the best accuracy. Figures \ref{fig:ContrLearnAccuracyTrends}, on the other hand, show the classification (mean and standard deviation) accuracy trends of the different models as the number of \textit{Nearest Neighbours} '$k$' changes. Next, table \ref{tab:ContrLearnScoresTable} presents the '\textbf{Micro}' averaged, '\textbf{Macro}' averaged and '\textbf{Weighted}' averaged multi-class classification scores of the the same models obtained using the k-NN algorithm with the value of '$k$' which provided the best accuracy. The corresponding Contrastive models' Confusion Matrixes are instead depicted in figures \ref{fig:ContrLearnJointEmbeddingConfusionMatrix}-\ref{fig:ContrLearnMtjeConfusionMatrix}-\ref{fig:ContrLearnOnlyConfusionMatrix}. Finally, table \ref{tab:ContrLearnMrrAndMapResults} shows the mean and standard deviation of the \textbf{MRR} and \textbf{MAP} scores corresponding to the produced rankings of the different Contrastive Models.
 
 \ContrLearnAccuracyResultsTable
@@ -4850,7 +4850,7 @@ This section presents an overview of the time needed to complete the experiments
 		$\sim$ 90 & $\sim$ 1018h 4m 30s \\
 		\hline
 	\end{tabular}
-	\caption[Overall Computation Time]{Overall Computation time required to complete all experiments conducted for this project.}
+	\caption[Overall Computation Time]{Approximated overall computation time required to complete all experiments conducted for this project.}
 	\label{tab:OverallComputationTime}
 \end{table}
 

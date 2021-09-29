@@ -3,15 +3,6 @@
 \bibitem{AvAtlas}
 ``Av-atlas.'' \url{https://portal.av-atlas.org/}, Accessed: 2021-07-19
 
-\bibitem{ruddALOHA}
-E.~M. Rudd, F.~N. Ducau, C.~Wild, K.~Berlin, and R.~Harang, ``Aloha: Auxiliary
-  loss optimization for hypothesis augmentation'', 2019
-
-\bibitem{DucauAMDATSE}
-F.~N. Ducau, E.~M. Rudd, T.~M. Heppner, A.~Long, and K.~Berlin, ``Automatic
-  malware description via attribute tagging and similarity embedding.'', arXiv:
-  Learning, 2019
-
 \bibitem{ReganWIM}
 J.~Regan, ``What is malware? how malware works and how to prevent it.''
   \url{https://www.avg.com/en/signal/what-is-malware}, 2019, Accessed:
@@ -22,6 +13,15 @@ A.~P. Namanya, A.~Cullen, I.~U. Awan, and J.~P. Disso, ``The world of malware:
   An overview'', 2018 IEEE 6th International Conference on Future Internet of
   Things and Cloud (FiCloud), 2018, pp.~420--427,
   \doi{10.1109/FiCloud.2018.00067}
+
+\bibitem{ruddALOHA}
+E.~M. Rudd, F.~N. Ducau, C.~Wild, K.~Berlin, and R.~Harang, ``Aloha: Auxiliary
+  loss optimization for hypothesis augmentation'', 2019
+
+\bibitem{DucauAMDATSE}
+F.~N. Ducau, E.~M. Rudd, T.~M. Heppner, A.~Long, and K.~Berlin, ``Automatic
+  malware description via attribute tagging and similarity embedding.'', arXiv:
+  Learning, 2019
 
 \bibitem{HarangSOREL20M}
 R.~Harang and E.~M. Rudd, ``Sorel-20m: A large scale benchmark dataset for

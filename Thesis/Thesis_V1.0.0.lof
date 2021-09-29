@@ -33,20 +33,20 @@
 \contentsline {figure}{\numberline {5.6}{\ignorespaces Results Computation and plotting workflow step}}{97}{figure.caption.119}%
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {6.1}{\ignorespaces \textbf {MTJE} Model architecture}}{99}{figure.caption.120}%
-\contentsline {figure}{\numberline {6.2}{\ignorespaces Training and evaluation workflow steps}}{105}{figure.caption.122}%
-\contentsline {figure}{\numberline {6.3}{\ignorespaces Model fresh evaluation workflow steps}}{105}{figure.caption.123}%
-\contentsline {figure}{\numberline {6.4}{\ignorespaces Model fresh evaluation workflow step}}{106}{figure.caption.125}%
-\contentsline {figure}{\numberline {6.5}{\ignorespaces Fresh results computation and plotting workflow step}}{109}{figure.caption.127}%
+\contentsline {figure}{\numberline {6.2}{\ignorespaces MTJE Model Training and evaluation workflow steps}}{105}{figure.caption.122}%
+\contentsline {figure}{\numberline {6.3}{\ignorespaces MTJE Model fresh evaluation workflow steps}}{105}{figure.caption.123}%
+\contentsline {figure}{\numberline {6.4}{\ignorespaces MTJE Model fresh evaluation workflow step}}{106}{figure.caption.125}%
+\contentsline {figure}{\numberline {6.5}{\ignorespaces MTJE Fresh results computation and plotting workflow step}}{109}{figure.caption.127}%
 \contentsline {figure}{\numberline {6.6}{\ignorespaces Family Classifier model architecture}}{111}{figure.caption.128}%
 \contentsline {figure}{\numberline {6.7}{\ignorespaces Malware Family Classifier Training and Evaluation workflow steps}}{114}{figure.caption.130}%
 \contentsline {figure}{\numberline {6.8}{\ignorespaces Family Classifier Training Workflow step}}{115}{figure.caption.132}%
-\contentsline {figure}{\numberline {6.9}{\ignorespaces Family Classifier Evaluate Workflow step}}{117}{figure.caption.134}%
+\contentsline {figure}{\numberline {6.9}{\ignorespaces Family Classifier Evaluation Workflow step}}{117}{figure.caption.134}%
 \contentsline {figure}{\numberline {6.10}{\ignorespaces Family Classifier Results Computation and Plotting step}}{118}{figure.caption.136}%
 \contentsline {figure}{\numberline {6.11}{\ignorespaces Contrastive Learning model architecture}}{120}{figure.caption.137}%
 \contentsline {figure}{\numberline {6.12}{\ignorespaces Contrastive Learning Online model architecture}}{121}{figure.caption.138}%
 \contentsline {figure}{\numberline {6.13}{\ignorespaces Contrastive Model Training and Evaluation workflow steps}}{123}{figure.caption.140}%
 \contentsline {figure}{\numberline {6.14}{\ignorespaces Contrastive Model Training Workflow step}}{124}{figure.caption.142}%
-\contentsline {figure}{\numberline {6.15}{\ignorespaces Contrastive Model Evaluate Workflow step}}{129}{figure.caption.144}%
+\contentsline {figure}{\numberline {6.15}{\ignorespaces Contrastive Model Evaluation Workflow step}}{129}{figure.caption.144}%
 \contentsline {figure}{\numberline {6.16}{\ignorespaces Contrastive Model Results Computation and Plotting step}}{132}{figure.caption.146}%
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {7.1}{\ignorespaces Malware Label prediction task ALOHA (M/B only) ROC curve}}{135}{figure.caption.148}%
