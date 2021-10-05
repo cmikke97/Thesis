@@ -60,7 +60,7 @@
 \contentsline {paragraph}{Processor-Based Control Indirection}{34}{section*.46}%
 \contentsline {paragraph}{Operating System-Based Control Indirection}{34}{section*.47}%
 \contentsline {paragraph}{Subroutine Reordering}{34}{section*.48}%
-\contentsline {paragraph}{Opaque Predicated}{34}{section*.49}%
+\contentsline {paragraph}{Opaque Predicates}{34}{section*.49}%
 \contentsline {subsubsection}{Simultaneous Control-Flow and Data-Flow Obfuscation}{35}{section*.50}%
 \contentsline {paragraph}{Junk Code Insertion}{35}{section*.51}%
 \contentsline {paragraph}{Control-Flow Graph Flattening}{35}{section*.52}%
