@@ -458,14 +458,14 @@ Both malicious actors and malware analysts/investigators extensively use reversi
 \subsection{Malware analysis}
 Malware analysis is the process of extracting as much information as possible from malicious samples discovered in the wild, which usually are in the form of machine code executables (compiled executables), in order to determine their purpose and functionality (and associated threats). This process allows security teams to take a number of useful actions such as: developing effective detection techniques against the analysed malicious code, containing its damage, reversing its effects on the targeted system, developing removal tools that can delete it from infected machines (to cleanly remove a piece of malware from an infected machine it is usually not enough to delete the binary itself) and designing methods to guard systems against future infections \cite{BayerDAMC}.
 
-Initially malware analysts/researchers had to manually analyse each malware sample. This process was however rather complex, it required high expertise, and was quite time-consuming. Moreover, the number of malware samples that nowadays need to be analysed on a daily basis is of the order of hundreds. This implies that the analysis of malware samples can no longer be exclusively done manually. As such, several analysis tools have been developed in recent years to facilitate analysts in analysing malware samples.
+Initially, malware analysts/researchers had to manually analyse each malware sample. This process was however rather complex, it required high expertise, and was quite time-consuming. Moreover, the number of malware samples that nowadays need to be analysed on a daily basis is of the order of thousands. This implies that the analysis of malware samples can no longer be exclusively done manually. As such, several analysis tools have been developed in recent years to facilitate analysts in analysing malware samples.
 
 Traditionally, there are two main types of analysis: \textit{static} and \textit{dynamic}. Moreover, these two types can be, and frequently are, combined together (\textit{hybrid} analysis) in various stages of malware analysis to optimize results \cite{NamanyaTWM}.
 
 \subsubsection{Static analysis}
-\textit{Static analysis} consists of examining an executable file's code without actually executing it. Static analysis techniques usually extract peculiar features from malicious samples in order to be able to recognise them and distinguish them from benign ones. The features usually extracted are, for example, string signatures, byte-sequence n-grams, library or API calls, opcode frequency distributions, peculiar attributes found in the executable header etc. However, this approach, since it is based on signatures/features extracted from already analysed samples, is not much effective on zero-day and evolutionary malware.
+\textit{Static analysis} consists of examining the code of an executable file without actually executing it. Static analysis techniques usually extract peculiar features from malicious samples in order to be able to recognise them and distinguish them from benign ones. The features usually extracted are, for example, string signatures, byte-sequence n-grams, library or API calls, opcode frequency distributions, peculiar attributes found in the executable header etc. However, this approach, since it is based on signatures/features extracted from already analysed samples, is not much effective on zero-day and evolutionary malware.
 
-A malware analyst performing manual static analysis usually disassembles the binary first, meaning that he 'translates' the program's machine code instructions back into assembly language, generating a more human-interpretable code listing. The disassembled binary can then be subject of more advanced static analysis techniques such as control flow analysis, data flow analysis and many more. This is done in order to try understanding the program functionality and inner workings, among other useful information \cite{BayerDAMC}.
+A malware analyst performing manual static analysis usually disassembles the binary first, meaning that he "translates" the program's machine code instructions back into assembly language, generating a more human-interpretable code listing. The disassembled binary can then be subject of more advanced static analysis techniques such as control flow analysis, data flow analysis and many more. This is done in order to try understanding the program functionality and inner workings, among other useful information \cite{BayerDAMC}.
 
 Static analysis has a number of advantages with respect to dynamic analysis, such as that it is usually faster (and safer) than dynamic approaches and that it takes into account the entire program code and not just sub-parts of it. However, a general disadvantage of static analysis is that many times the information collected during this type of analysis is very simple and not always sufficient for a conclusive decision on the malicious intent of a file. It is, however, good practice to start the analysis of a suspicious executable file extracting as much information as possible through various static techniques before passing to the dynamic counterpart. The information statically extracted may in fact provide useful knowledge to better apply dynamic techniques and enhance the final results.
 
@@ -486,7 +486,7 @@ The use of clean dedicated hosts, reinstalled after each dynamic analysis run, i
 Hybrid Analysis is the combination of static and dynamic analysis. It is a technique that integrates run-time information extracted through dynamic analysis with information extracted  through static analysis in order to have a complete view of the malware's behaviour while avoiding the problems posed by anti-analysis techniques as much as possible.
 
 \subsection{Anti-reversing}
-\textit{Anti-reversing} techniques were originally meant to complicate the reverse engineering process, making it as difficult as possible for hackers or any malicious user. Attackers employing reversing methodologies can, in fact, get an insight of the logic of the code as well as hidden information by disassembling unprotected files' binaries.
+\textit{Anti-reversing} techniques were originally meant to complicate the reverse engineering process, making it as difficult as possible for hackers or any malicious user. Attackers employing reversing methodologies can, in fact, get an insight of the logic of the code as well as hidden information by disassembling the binaries of unprotected files.
 
 However, anti-reversing techniques are nowadays extensively used also by malware authors in order to make their creations difficult to analyse in an attempt to avoid, or at least postpone, detection as much as possible.
 
@@ -495,7 +495,7 @@ There exist several anti-reversing approaches, each with its own advantages and 
 In the next sections some of the more common anti-reversing techniques are discussed.
 
 \subsection{Anti-disassembly}
-\textit{Anti-disassembly} techniques use specially crafted code and/or data in a program to cause disassembly analysis tools to generate an incorrect program listing \cite{SikorskiPMA}. The attackers' usage of these techniques thus implies a time-consuming analysis for malware analysts, ultimately preventing the retrieval/reconstruction of the source code in a reasonable time. Furthermore, anti-disassembly techniques may also inhibit various automated analysis tools and heuristic-based engines which take advantage of disassembly analysis to identify or classify malware.
+\textit{Anti-disassembly} techniques use specially crafted code and/or data in a program to cause disassembly analysis tools to generate an incorrect program listing \cite{SikorskiPMA}. The use of these techniques by attackers therefore implies a time-consuming analysis for malware analysts, ultimately preventing the retrieval/reconstruction of the source code in a reasonable time. Furthermore, anti-disassembly techniques may also inhibit various automated analysis tools and heuristic-based engines which take advantage of disassembly analysis to identify or classify malware.
 
 These techniques exploit the disassemblers' inherent weaknesses and assumptions about the code being analysed, which open an opportunity for malware authors to deceive the analysis.
 
@@ -513,9 +513,9 @@ In a PE-formatted executable file, for example, the executable code is typically
 \subsubsection{Flow-Oriented Disassemblers}
 The \textit{flow-oriented} (or \textit{recursive}) disassembly strategy is more advanced than the previous one and is, in fact, the one used by most commercial disassemblers like \textit{IDA Pro} \cite{SikorskiPMA}.
 
-Differently form the linear strategy, the flow oriented one examines each instruction, builds a list of locations to disassemble (the ones reached by code) and keeps track of the code flow. This implies that, while disassembling a code section, this type of disassembler will not blindly parse the bytes immediately following the JMP instructions' ones, but it will disassemble the bytes at the jump destination addresses.
+Differently form the linear strategy, the flow oriented one examines each instruction, builds a list of locations to disassemble (the ones reached by code) and keeps track of the code flow. This implies that, while disassembling a code section, this type of disassembler will not blindly parse the bytes immediately following those of the JMP instructions, but it will disassemble the bytes at the jump destination addresses.
 
-This behaviour is more resilient and generally provides better results with respect to the linear approach, but also implies a greater complexity. In fact, while a linear disassembler has no choices to make about which instructions to disassemble at any given time, flow-oriented disassemblers have to make choices and assumptions, in particular when dealing with conditional branches and call instructions.In particular, in the case of conditional branches, the disassembler needs to follow both the false branch (most flow-oriented disassemblers will process the false branch of any conditional jump first) and the true one. In typical compiler-generated code there would be no difference in output if the disassembler processes one branch or the other first. However, in handwritten assembly and anti-disassembly code, taking one branch or the other first can often produce different disassembly listings for the same block of code, leading to problems in analysis.
+This behaviour is more resilient and generally provides better results with respect to the linear approach, but also implies a greater complexity. In fact, while a linear disassembler has no choices to make about which instructions to disassemble at any given time, flow-oriented disassemblers have to make choices and assumptions, in particular when dealing with conditional branches and call instructions. In particular, in the case of conditional branches, the disassembler needs to follow both the false branch (most flow-oriented disassemblers will process the false branch of any conditional jump first) and the true one. In typical compiler-generated code there would be no difference in output if the disassembler processes one branch or the other first. However, in handwritten assembly and anti-disassembly code, taking one branch or the other first can often produce different disassembly listings for the same block of code, leading to problems in analysis.
 
 \subsubsection{Anti-Disassembly Techniques}
 \paragraph{Jump Instructions with the Same Target}
@@ -542,10 +542,10 @@ Example:
 	loc:
 \end{lstlisting}
 
-The first instruction in the example code, \textbf{xor eax, eax}, sets the \textbf{EAX} register to zero and, consequently, it sets the zero flag. The next instruction, \textbf{jz} (jump if zero flag is set), appears to be a conditional jump but in reality is not conditional at all. In fact the the zero flag will always be set at this point in the program execution. The disassembler, however, will process the false branch first, even if in reality it would never trigger.
+The first instruction in the example code, "\textbf{xor eax, eax}", sets the \textbf{EAX} register to zero and, consequently, it sets the zero flag. The next instruction, \textbf{jz} (jump if zero flag is set), appears to be a conditional jump but in reality is not conditional at all. In fact, at this point in the program execution, the zero flag will always be set. The disassembler, however, will process the false branch first, even if in reality it would never trigger.
 
 \paragraph{Impossible Disassembly}
-The simple anti-disassembly techniques mentioned above are frequently coupled with the use of a, so called, \textit{rogue byte}. A \textit{rogue byte} is a data byte, which is not part of the program logic flow, strategically placed after a conditional \textit{jump} instruction in order to trick the disassembler. The byte inserted usually is the opcode for a multi-byte instruction, therefore disassembling it prevents the real following instruction from being properly disassembled \cite{SikorskiPMA}.
+The simple anti-disassembly techniques mentioned above are frequently coupled with the use of a, so called, \textit{rogue byte}. A \textit{rogue byte} is a data byte, which is not part of the program logic flow, strategically placed after a conditional \textit{jump} instruction in order to trick the disassembler. The byte inserted usually is the opcode for a multi-byte instruction, therefore disassembling it prevents the real following instructions from being properly disassembled \cite{SikorskiPMA}.
 
 In all these cases, however, a reverse engineer is able to properly disassemble the code with the use of interactive disassemblers like IDA Pro, ignoring the \textit{rogue bytes}. However, there are some conditions in which no traditional assembly listing can accurately represent the instructions that are executed. These are exploited by the so called \textit{impossible disassembly} techniques which produce code that can be disassembled only by using a vastly different representation of the code than what is provided by currently available disassemblers.
 
@@ -561,9 +561,9 @@ Example:
 	48		DEC EAX
 \end{lstlisting}
 
-In this simple example the first instruction is a 2-byte \textit{jmp -1} instruction (\textbf{EB FF}). Its target is its own second byte. At run time this causes no errors because the \textbf{FF} byte is the first byte of the next instruction \textit{inc eax} (\textbf{FF C0}). However, when disassembling, if the disassembler interprets the \textbf{FF} byte as part of the \textit{jmp} instruction, it won't be able to interpret it also as the beginning of the \textit{inc eax} instruction.
+In this simple example the first instruction is a 2-byte "\textit{jmp -1}" instruction (\textbf{EB FF}). Its target is its own second byte. At run time this causes no errors because the \textbf{FF} byte is the first byte of the next instruction \textit{inc eax} (\textbf{FF C0}). However, when disassembling, if the disassembler interprets the \textbf{FF} byte as part of the \textit{jmp} instruction, it won't be able to interpret it also as the beginning of the \textit{inc eax} instruction.
 
-This 4-byte example code increments the \textbf{EAX} register, and then decrements it, therefore it is essentially a complex \textbf{NOP} sequence. Being a simple, and small, sequence it could easily be inserted at any location in a program's code in order to fool disassemblers. However this sequence is also easily recognisable by reverse engineers and substituted with \textbf{NOP} instructions using IDA Pro or other instruments and/or scripts or forced to be interpreted as data bytes and therefore skipped by the disassembler.
+This 4-byte example code increments the \textbf{EAX} register, and then decrements it, therefore it is essentially a complex \textbf{NOP} sequence. Being a simple and small sequence it could easily be inserted at any location in a program code in order to fool disassemblers. However this sequence is also easily recognisable by reverse engineers and substituted with \textbf{NOP} instructions using IDA Pro or other instruments and/or scripts or forced to be interpreted as data bytes and therefore skipped by the disassembler.
 
 However this was only a simple example sequence. More complex and ingenious sequences can be made to fool disassemblers while being harder to detect.
 
@@ -575,7 +575,7 @@ Control-flow analysis can however be easily defeated by malware authors by emplo
 \paragraph{The Function Pointer Problem}
 Function pointers are a common programming idiom present in widely adopted programming languages such as \textbf{C}, while being extensively used in the background in object oriented languages like \textbf{C++} and \textbf{Java} \cite{SikorskiPMA}.
 
-As opposed to referencing a data value, a function pointer points to executable code within memory. Dereferencing the function pointer yields the referenced function, which can be invoked and passed arguments to as in a normal function call. Such invocation is also known as an 'indirect' call,  since, doing so, the function is indirectly invoked through a variable instead of directly through a fixed identifier or address. In assembly code this corresponds to a \textit{call} instruction with a function pointer as argument.
+As opposed to referencing a data value, a function pointer points to executable code within memory. Dereferencing the function pointer yields the referenced function, which can be invoked and passed arguments to as in a normal function call. Such invocation is also known as an "indirect" call, since, doing so, the function is indirectly invoked through a variable instead of directly through a fixed identifier or address. In assembly code this corresponds to a \textit{call} instruction with a function pointer as argument.
 
 Function pointers, however, greatly reduce the information that can be automatically extracted by disassemblers about the program control flow. Moreover, if function pointers are used in specially crafted, or non-standard code, the resulting executable can be difficult to reverse-engineer without the use of dynamic analysis techniques.
 
@@ -593,7 +593,7 @@ The \textit{retn} instruction is therefore typically used to return from a funct
 \paragraph{Misusing Structured Exception Handlers}\label{MisusingStructuredExceptionHandlers}
 Another powerful anti-disassembly (and anti-debugging) technique works by exploiting the Structured Exception Handling (\textbf{SEH}) mechanism, which is extensively used by \textit{C++} and other programming languages since it provides programs a way to smartly handle error conditions \cite{SikorskiPMA}.
 
-Exceptions can be triggered for various reasons: for example when dividing by zero or accessing an invalid memory region. Moreover, software exception can also be raised by the code itself by calling the \textit{RaiseException} function. When an exception is raised it makes its way through the \textbf{SEH} chain, which is a list of functions specifically designed to handle exceptions, until it is caught by one exception handler in the chain. Each function in the list can either handle the exception (a.k.a. \textit{catch} it) or pass it to the next handler in the list. \textit{Unhandled exceptions} are the ones that make their way to the last handler. The last exception handler is the code responsible for triggering the 'unhandled exception' message to the user. 
+Exceptions can be triggered for various reasons: for example when dividing by zero or accessing an invalid memory region. Moreover, software exceptions can also be raised by the code itself by calling the \textit{RaiseException} function. When an exception is raised it makes its way through the \textbf{SEH} chain, which is a list of functions specifically designed to handle exceptions, until it is caught by one exception handler in the chain. Each function in the list can either handle the exception (a.k.a. \textit{catch} it) or pass it to the next handler in the list. \textit{Unhandled exceptions} are the ones that make their way to the last handler. The last exception handler is the code responsible for triggering the "unhandled exception" message to the user. 
 
 Exception handling is used in almost all programs and exceptions happen regularly in most processes (and are handled silently). A malicious actor could, however, exploit this mechanism to achieve covert flow control by adding his own specially crafted handler on top of the \textbf{SEH} chain.
 
@@ -609,7 +609,7 @@ In Windows OS various techniques can be used to detect if a process is being run
 \paragraph{Using the Windows API}
 One of the simplest ways to know if a debugger is attached to a process is by using Windows API functions. Inside the Windows API there are, in fact, functions that were specifically designed to detect debuggers; moreover some functions that were originally created with other purposes can also be used for performing debugger detection \cite{SikorskiPMA}.
 
-Malware analysts can counter this technique by manually modifying the malware code during execution, in particular the API function result flag, after the call to make sure the desired path is taken, or by straight up removing/skipping the API function call.
+Malware analysts can counter this technique by manually modifying the malware code during execution - in particular the API function result flag - after the call to make sure the desired path is taken, or by straight up removing/skipping the API function call.
 
 Here are some examples of common Windows API functions used for \textit{anti-debugging} purposes:
 \begin{itemize}
@@ -617,10 +617,10 @@ Here are some examples of common Windows API functions used for \textit{anti-deb
 	This is the simplest API function that can be used for detecting a debugger. It determines whether the \textbf{current} process is being debugged by a user-mode debugger. It does so by getting the value of the field \textit{IsDebugged} from the Process Environment Block (\textbf{PEB}) structure. In particular this functions returns zero if the process is not running within a debugger context and a non-zero value otherwise.
 	
 	\item \textbf{CheckRemoteDebuggerPresent}
-	This API function is similar to the previously described one (\textit{IsDebuggerPresent}) but it checks for a 'remote' debugger on the specified process. The term 'remote' in the name CheckRemoteDebuggerPresent does not imply that the debugger necessarily resides on a different machine; instead, it indicates that the debugger resides in a separate and parallel process. This function takes a process handle as argument, and checks if that process has a debugger attached. It can however be used also to check the current process by passing its handle.
+	This API function is similar to the previously described one (\textit{IsDebuggerPresent}) but it checks for a "remote" debugger on the specified process. The term "remote" in the name CheckRemoteDebuggerPresent does not imply that the debugger necessarily resides on a different machine; instead, it indicates that the debugger resides in a separate and parallel process. This function takes a process handle as argument, and checks if that process has a debugger attached. It can however be used also to check the current process by passing its handle.
 	
 	\item \textbf{NtQueryInformationProcess}
-	This function can retrieve different kinds of information from a process. The first argument for this function is the process handle, the second one is the ProcessInformationClass parameter which specifies the information to retrieve. When using the value \textit{ProcessDebugPort} for this parameter, for example, the function returns a zero if the process is not being debugged; otherwise a non-zero value representing the debugger port number is returned.
+	This function can retrieve different kinds of information from a process. The first argument for this function is the process handle, the second one is the ProcessInformationClass parameter which specifies the information to retrieve. When using the value \textit{ProcessDebugPort} for this parameter, for example, the function returns a zero if the process is not being debugged; otherwise it returns a non-zero value representing the debugger port number.
 	
 	\item \textbf{OutputDebugString}
 	This function, originally designed to simply send a string to a debugger for display, can also be used to detect the presence of a debugger. In fact, in there is no debugger attached, the function will internally set the last-error code. In a few lines of code it is thus possible to know if a debugger is present or not:
@@ -652,7 +652,7 @@ Malware authors usually don't simply take advantage of the Windows API functions
 
 \begin{itemize}
 	\item \textbf{Checking the BeingDebugged Flag}
-	The Windows PEB structure contains all user-mode parameters associated with a process, including the process's environment data such as environment variables, addresses in memory and debugger status, among other things.
+	The Windows PEB structure contains all user-mode parameters associated with a process, including the process environment data such as environment variables, addresses in memory and debugger status, among other things.
 	
 	A malicious program can explicitly check the \textit{BeingDebugged} flag within the PEB structure to understand if a debugger is attached to its process (it is zero if no debugger is present).
 	
@@ -678,7 +678,7 @@ Malware authors usually don't simply take advantage of the Windows API functions
 \end{itemize}
 
 \paragraph{Checking for System Residue}
-Debugging tools typically leave some traces of their presence on the system. Malicious programs can therefore be designed to search for these traces in order to determine when it is being analysed. For example, malware can search for references to debuggers in the registry keys \cite{SikorskiPMA}. Moreover, malware can also be designed to search through the system for files and directories commonly related to debuggers, such as debugger program executables. Finally, malwares can also detect debugger residues in live memory, by viewing the current process listing or, more commonly, by performing a \textit{FindWindow} in search for a debugger.
+Debugging tools typically leave some traces of their presence on the system. Malicious programs can therefore be designed to search for these traces in order to determine when they are being analysed. For example, malware can search for references to debuggers in the registry keys \cite{SikorskiPMA}. Moreover, malware can also be designed to search through the system for files and directories commonly related to debuggers, such as debugger program executables. Finally, malwares can also detect debugger residues in live memory, by viewing the current process listing or, more commonly, by performing a \textit{FindWindow} in search for a debugger.
 
 \subsubsection{Identifying Debugger Behaviour}
 Debuggers are very useful to malware analysts because they can be used to set breakpoints in the code or even to single-step through a process running code to ease the reverse-engineering process. These operations, however, modify the process code and are therefore easily detectable \cite{SikorskiPMA}.
@@ -689,20 +689,20 @@ A common anti-debugging technique exploited by malware authors consists in makin
 Malware analysts can counter this technique exploiting hardware breakpoints instead of software ones.
 
 \paragraph{Performing Code Checksums}
-Another anti-debugging technique consists in calculating the checksum (cyclic redundancy check (CRC) or MD5 checksum) of a section of the process' own code. This has the same net effects as scanning the code for software interrupts \cite{SikorskiPMA}.
+Another anti-debugging technique consists in calculating the checksum (cyclic redundancy check (CRC) or MD5 checksum) of a section of the process code. This has the same net effects as scanning the code for software interrupts \cite{SikorskiPMA}.
 
-Again this technique can be countered by using hardware breakpoints instead of software ones, or by modifying the program's control flow at runtime with a debugger.
+Again this technique can be countered by using hardware breakpoints instead of software ones, or by modifying the program control flow at runtime with a debugger.
 
 \paragraph{Timing Checks}
 One of the most widespread techniques for debugger detection is to perform \textit{timing checks}. Processes, in fact, tend to run substantially slower when executed within a debugger context. Moreover analysts usually run programs in single steps in order to better understand the code behaviour; this in turn greatly increases execution time \cite{SikorskiPMA}.
 
-Using timing checks it is possible to detect a debugger in different ways:
+Using timing checks it is possible to detect a debugger in the following ways:
 \begin{enumerate}
 	\item Recording one timestamp before and another after the execution of some operations and then comparing them. If the lag is greater than a specified threshold then a debugger is probably being used.
 	\item Recording 2 timestamps, one before and the other after raising an exception. If the current process is being debugged then the exception will be handled by the debugger itself more slowly than normal. Moreover, by default, debuggers ask for human intervention when an exception occurs, thus causing huge delays.
 \end{enumerate}
 
-Typically, the timestamps are recorded using directives such as the \textit{rdtsc} Instruction and the \textit{QueryPerformanceCounter} and \textit{GetTickCount} windows API functions. In particular, the \textit{rdtsc} instruction and the \textit{GetTickCounter} return the number of ticks/milliseconds that have elapsed since the last system reboot while the \textit{QueryPerformanceCounter} queries a high-resolution counter which stores counts of activities performed by the processor. These functions, when used as described above, allow malwares to detect the presence of debuggers.
+Typically, the timestamps are recorded using directives such as the \textit{rdtsc} instruction and the \textit{QueryPerformanceCounter} and \textit{GetTickCount} windows API functions. In particular, the \textit{rdtsc} instruction and the \textit{GetTickCount} function return the number of ticks/milliseconds that have elapsed since the last system reboot while the \textit{QueryPerformanceCounter} queries a high-resolution counter which stores counts of activities performed by the processor. These functions, when used as described above, allow malwares to detect the presence of debuggers.
 
 The use of timing checks for anti-debugging purposes can be discovered by malware analysts either during debugging or while performing static analysis by identifying specific sequences of instructions. Moreover, these timing checks more frequently detect debuggers when the analyst is single-stepping though the code or setting a breakpoint between the two time related instruction calls. This implies that, to counter this technique, malware analysts can avoid setting breakpoints and single-stepping in the protected code regions, or alternatively modify the result of the timestamps comparison as needed.
 
@@ -717,7 +717,7 @@ Here are some examples of anti-virtual machine techniques applied to detect VMwa
 	\item \textbf{Checking for Processes Indicating a VM}.
 	When a \textit{VMware} virtual machine is running and \textit{VMware tools} is installed, three VMware-related processes can be found in the system process listing: \textit{VMwareService.exe}, \textit{VMwareTray.exe} and \textit{VMwareUser.exe}. A malicious software can therefore easily detect if VMware is being run searching through the process listing for the \textit{VMware} string.
 	
-	\item \textbf{Checking for Existence of Files Indicating a VM}.
+	\item \textbf{Checking for Files Indicating a VM}.
 	The VMware default installation path usually also contains artefacts. Searching for the string \textit{VMware} in such location may reveal the use of a virtualized environment.
 	
 	\item \textbf{Checking for Registry Keys}.
@@ -735,7 +735,7 @@ The \textit{virtual machine monitor program}, which monitors the virtual machine
 However, those specific instructions are not typically used within a program unless it is specifically performing VMware detection, because they are useless when executed in user mode. Therefore, avoiding this type of anti-VM technique can be as easy as patching the malicious code to prevent it calling these instructions.
 
 \subsection{Packers and unpacking}
-Packing programs, commonly known as \textit{packers}, are software programs that take an \textit{executable file} or \textit{dynamic link library (DLL)}, compresses and/or encrypts its contents and then packs it into a new executable file \cite{SikorskiPMA}.
+Packing programs, commonly known as \textit{packers}, are software programs that take an \textit{executable file} or \textit{dynamic link library (DLL)}, compress and/or encrypt its contents and then pack it into a new executable file \cite{SikorskiPMA}.
 
 When packers are used on malicious programs, the malicious code appearance is changed as a consequence of the applied compression and/or encryption. The packing of files thus hinders basic static analysis and simple malware detection techniques. Moreover, a packer specifically designed to make the file difficult to analyse may even employ anti-reverse-engineering techniques, such as anti-disassembly, anti-debugging and/or anti-VM on the resulting compressed version; on top of that some packers, using randomization, are also able to generate different variants of a single file every time it is packed \cite{LiPRTCMP}.
 
@@ -748,7 +748,7 @@ Packed files usually contain two basic components:
 	\item An unpacking stub able to dynamically recover the original executable file at runtime.
 \end{itemize}
 
-When the packed file is executed, the unpacking stub is loaded by the OS and begins unpacking the original executable code in memory. When the unpacking process is completed the control flow is transferred, with a \textit{jmp}, \textit{call} or the more stealthy \textit{retn} instruction (also referred to as '\textit{tail jump})', to the original file entry point (OEP). This implies that someone attempting to perform static analysis on the packed program, would actually analyse the unpacking stub and not the original code.
+When the packed file is executed, the unpacking stub is loaded by the OS and begins unpacking the original executable code in memory. When the unpacking process is completed the control flow is transferred, with a \textit{jmp}, \textit{call} or the more stealthy \textit{retn} instruction (also referred to as "\textit{tail jump}"), to the original file entry point (OEP). This implies that someone attempting to perform static analysis on the packed program, would actually analyse the unpacking stub and not the original code.
 
 \subsubsection{Packer types}
 Commercial and custom made packers can be divided in several levels of complexity depending on the packing techniques used and the additional features they have. The authors of \cite{PedreroDPI} identified 6 main types of packers with increasing complexity. Packer types from 1 to 5 allow, sooner or later at runtime, to have a complete view over the original (unpacked) malicious code, meaning that the unpacker stub unpacks all the code at once. However, what makes them differ is the amount and complexity of the encryption (and obfuscation) methodologies used during packing. On the other hand, type 6 packers unpack only a slice of code at a time in memory, never revealing the whole original code altogether. This implies that malware analysts need to take several memory dumps, instead of just one, if they want to get the complete unpacked code.
@@ -828,7 +828,7 @@ For example, the listing \ref{code:ConstantUnfoldingBefore}, after \textit{Const
 The previously described technique is, however, easily defeated by simply applying the standard compiler's \textit{constant folding} optimization. This is possible because both the data encoding and decoding functions ($f(x)=x-6341B86h$ and $f_{-1}(x)=x+6341B86h$ respectively) were present in the code one after the other. To prevent this flaw, \textit{fully Homomorphic} (operation-preserving) mappings can be employed, together with the application of some operations on the encoded data before decoding it back. This technique is however still not widely used because the automatic tools that apply it are still too inefficient \cite{DangPRE}.
 
 \paragraph{Dead Code Insertion}
-\textit{Dead code elimination} is another common compiler optimization technique. Its objective is to remove program statements/expressions that nave no real effects on the program operation and final results \cite{DangPRE}.
+\textit{Dead code elimination} is another common compiler optimization technique. Its objective is to remove program statements/expressions that have no real effects on the program operation and final results \cite{DangPRE}.
 
 For example, the listing \ref{code:DeadCodeEliminationBefore}, using \textit{dead code elimination} would become \ref{code:DeadCodeEliminationAfter}.
 \begin{lstlisting}[caption={Dead code elimination, before}, label=code:DeadCodeEliminationBefore, language=C, style=mystyle]
