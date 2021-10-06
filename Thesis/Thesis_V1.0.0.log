@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.9.11)  6 OCT 2021 19:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.9.11)  6 OCT 2021 19:52
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -896,14 +896,14 @@ Package pdftex.def Info: ./images/elk_cloner_example.png  used on input line 26
 [9
 
  <./images/elk_cloner_example.png>]
-<./images/av_atlas_report_total_amount_new.png, id=485, 579.66562pt x 316.18124
+<./images/av_atlas_report_total_amount_new.png, id=484, 579.66562pt x 316.18124
 pt>
 File: ./images/av_atlas_report_total_amount_new.png Graphic file (type png)
 <use ./images/av_atlas_report_total_amount_new.png>
 Package pdftex.def Info: ./images/av_atlas_report_total_amount_new.png  used on
  input line 274.
 (pdftex.def)             Requested size: 422.50232pt x 230.45819pt.
-<./images/av_atlas_report_total_amount.png, id=486, 579.66562pt x 315.42844pt>
+<./images/av_atlas_report_total_amount.png, id=485, 579.66562pt x 315.42844pt>
 File: ./images/av_atlas_report_total_amount.png Graphic file (type png)
 <use ./images/av_atlas_report_total_amount.png>
 Package pdftex.def Info: ./images/av_atlas_report_total_amount.png  used on inp
@@ -911,7 +911,7 @@ ut line 280.
 (pdftex.def)             Requested size: 422.50232pt x 229.90948pt.
  [10 <./images/av_atlas_report_total_amount_new.png> <./images/av_atlas_report_
 total_amount.png>]
-<./images/framework_lifecycle.png, id=496, 390.9807pt x 65.043pt>
+<./images/framework_lifecycle.png, id=495, 390.9807pt x 65.043pt>
 File: ./images/framework_lifecycle.png Graphic file (type png)
 <use ./images/framework_lifecycle.png>
 Package pdftex.def Info: ./images/framework_lifecycle.png  used on input line 2
@@ -4084,7 +4084,7 @@ Package rerunfilecheck Info: File `Thesis_V1.0.0.out' has not changed.
 Here is how much of TeX's memory you used:
  23351 strings out of 478927
  427608 string characters out of 2846373
- 1161554 words of memory out of 3000000
+ 1161550 words of memory out of 3000000
  39841 multiletter control sequences out of 15000+600000
  418434 words of font info for 81 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -4126,7 +4126,7 @@ OPIUNET/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb
 amsfonts/cm/cmtt10.pfb><C:/Users/michele.INFOPIUNET/AppData/Local/Programs/MiKT
 eX/fonts/type1/public/amsfonts/cm/cmtt8.pfb><C:/Users/michele.INFOPIUNET/AppDat
 a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Thesis_V1.0.0.pdf (179 pages, 8203655 bytes).
+Output written on Thesis_V1.0.0.pdf (179 pages, 8203525 bytes).
 PDF statistics:
  2998 PDF objects out of 3580 (max. 8388607)
  931 named destinations out of 1000 (max. 500000)
