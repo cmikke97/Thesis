@@ -1072,12 +1072,12 @@ Generally, \textit{integrity checkers}, use hashing functions like the \textit{m
 	\item The digests database needs to be stored securely and there has to be an offline (and safe) backup, otherwise there would be a single point of failure.
 \end{itemize}
 
-\textit{Integrity checking} can be considered as an important tool for detecting any system modifications, but it is more an incident recovery method rather than a malware intrusion/infection prevention method.
+\textit{Integrity checking} can be considered as an important tool for detecting any system modification, but it is more an incident recovery method rather than a malware intrusion/infection prevention method.
 
 \section{Signature-based Detection}
 \textit{Signature-based} detection is the simplest and most widely used method in commercial anti-virus software (together with \textit{heuristic-based} techniques) but is becoming less and less effective as the number of malware variants and second generation malwares increases \cite{NguyenSPVD}.
 
-\textit{Signature-based} detection relies on \textit{signatures} - specific unique byte code sequences/strings extracted from malware samples - to detect the presence of malicious files in a system. \textit{Signatures} are typically created using static analysis techniques and are selected to be long enough to uniquely characterize a specific malware family with respect to benign programs (and other malware families). The \textit{signatures}, which are crated by malware experts from a significant number of already identified malware samples, are saved in a \textit{signature database} and deployed in anti-malware tools. These tools in turn scan the files in the target systems and consider as malicious any file that matches one of the known signatures \cite{NamanyaTWM}. This implies that the database of signatures must be maintained and frequently updated, especially whenever new malware variants are identified and new signatures are generated in order to detect them.
+\textit{Signature-based} detection relies on \textit{signatures} - specific unique byte code sequences/strings extracted from malware samples - to detect the presence of malicious files in a system. \textit{Signatures} are typically created using static analysis techniques and are selected to be long enough to uniquely characterize a specific malware family with respect to benign programs (and other malware families). The \textit{signatures}, which are created by malware experts from a significant number of already identified malware samples, are saved in a \textit{signature database} and deployed in anti-malware tools. These tools in turn scan the files in the target systems and consider as malicious any file that matches one of the known signatures \cite{NamanyaTWM}. This implies that the database of signatures must be maintained and frequently updated, especially whenever new malware variants are identified and new signatures are generated in order to detect them.
 
 Some \textit{signature-based} algorithms require an exact match between the signature of the analysed sample and one of the known signatures, others instead make use of \textit{wildcard} characters to detect slight variations allowing them to detect even some second generation (evolving) malwares.
 
@@ -1303,7 +1303,7 @@ Inside the \textit{Conditions} section, among other things, it is possible to:
 	
 	Examples:
 	\begin{itemize}
-		\item The rule in listing \ref{code:YaraAt} fires if the '\textit{a}' string is located at offset 100 and '\textit{b}' at offset 200 of the running process.
+		\item The rule in listing \ref{code:YaraAt} fires if the \textbf{\textit{a}} string is located at offset 100 and \textbf{\textit{b}} at offset 200 of the running process.
 		
 		\begin{lstlisting}[caption={YARA At example}, label=code:YaraAt, language=YARA, style=mystyle]
 	rule AtExample
@@ -1317,7 +1317,7 @@ Inside the \textit{Conditions} section, among other things, it is possible to:
 	}
 		\end{lstlisting}
 		
-		\item The rule in listing \ref{code:YaraIn} is triggered if the '\textit{a}' and '\textit{b}' strings are found in memory locations between \textit{0} and \textit{100} and between \textit{100} and \textit{filesize}, respectively, of the running process main memory.
+		\item The rule in listing \ref{code:YaraIn} is triggered if the \textbf{\textit{a}} and \textbf{\textit{b}} strings are found in memory locations between \textit{0} and \textit{100} and between \textit{100} and \textit{filesize}, respectively, of the running process main memory.
 		
 		\begin{lstlisting}[caption={YARA In example}, label=code:YaraIn, language=YARA, style=mystyle]
 	rule InExample
@@ -1361,11 +1361,11 @@ Inside the \textit{Conditions} section, among other things, it is possible to:
 \end{itemize}
 
 \paragraph{Additional modules}
-\textit{YARA}'s core functionality can be extended through the use of modules. Some modules like the \textit{PE module} and the \textit{Cuckoo module} are officially distributed with YARA, however additional ones can also be created. Here are mentioned some useful (in this document context) Yara modules:
+The core functionality of \textit{YARA} can be extended through the use of modules. Some modules like the \textit{PE module} and the \textit{Cuckoo module} are officially distributed with YARA, however additional ones can also be created. Here are mentioned some useful (in this context) Yara modules:
 
 \begin{itemize}
 	\item \textbf{YARA with PE}
-	Starting with version 3.0, YARA can parse Portable Executable (PE) files \cite{NinjaYSEWDM}. For example, the rule in listing \ref{code:YaraPE} will check for the string "abc", will parse the PE file and look for "\textit{CreateProcess}" and "\textit{httpsendrequest}" function names in the import sections '\textit{Kernel32.dll}' and '\textit{wininet.dll}', respectively.
+	Starting with version 3.0, YARA can parse Portable Executable (PE) files \cite{NinjaYSEWDM}. For example, the rule in listing \ref{code:YaraPE} will check for the string "abc", will parse the PE file and look for "\textit{CreateProcess}" and "\textit{httpsendrequest}" function names in the import sections named '\textit{Kernel32.dll}' and '\textit{wininet.dll}', respectively.
 	
 	\begin{lstlisting}[caption={YARA with PE example}, label=code:YaraPE, language=YARA, style=mystyle]
 	Import "PE"
@@ -1405,7 +1405,7 @@ Inside the \textit{Conditions} section, among other things, it is possible to:
 	\end{itemize}
 	
 	\item \textbf{\textit{Limitations}}:
-	\textit{Yara rules}, however, have also some limitations. Here are some of the most notable ones \cite{NaikEAGYRETE}:
+	\textit{Yara rules}, however, also have some limitations. Here are some of the most notable ones \cite{NaikEAGYRETE}:
 	\begin{itemize}
 		\item \textit{Yara rules} are commonly written based on \textit{IoC} (\textit{Indicator of Compromise}) strings, however, malware authors can easily obfuscate, replace or encrypt these \textit{IoC} strings in their creations in order to evade detection. This could make these rules less effective.
 		
@@ -1421,7 +1421,7 @@ Inside the \textit{Conditions} section, among other things, it is possible to:
 There are various automatic \textit{Yara rules} generator tools available. In the following the most notable ones will be briefly described:
 
 \paragraph{\textit{YarGen} Tool}
-\textit{YarGen} \textit{python-based} tool exploits some smart techniques, namely fuzzy regular expressions, Naive Bayes classifier and Gibberish Detector, to generate \textit{Yara rules}. 
+The \textit{python-based} tool called \textit{YarGen} exploits some smart techniques, namely fuzzy regular expressions, Naive Bayes classifier and Gibberish Detector, to generate \textit{Yara rules}. 
 
 The produced rules include features (strings and opcodes) common to malware samples that don't match with the provided goodware databases. A predefined number of features (generally up to 20 strings) are selected, based on their potential utility and a number of heuristics, to be combined and used by the rule in order to maintain a reasonable operation speed.
 
@@ -1489,9 +1489,9 @@ The generated \textit{Yara rules} contain only strings (opcodes are not supporte
 \paragraph{\textit{Yabin} Tool}
 This is another \textit{python-based} tool, developed by the \textit{Alien Vault Open Threat Exchange} (\textit{OTX}) community, for the automatic generation of \textit{Yara rules}.
 
-In this case \textit{Yara rules} are created by finding rare functions in specific malware samples or families. Functions are recognised by checking specific bytes sequences called \textit{function prologues}, which define the start of the code of a function. For example, the byte sequence '\textit{55 8B EC}' usually specifies the start of a function in programs compiled by Microsoft Visual Studio.
+In this case \textit{Yara rules} are created by finding rare functions in specific malware samples or families. Functions are recognised by checking specific byte sequences called \textit{function prologues}, which define the start of the code of a function. For example, the byte sequence '\textit{55 8B EC}' usually specifies the start of a function in programs compiled by Microsoft Visual Studio.
 
-The generated \textit{Yara rules} include those strings common to malware samples that don't match with the provided whitelist of commonly used library functions. Such whitelist was obtained from 100 GB of non-malicious software in order to exclude common library functions. The produced \textit{Yara rules} contain a list of hexadecimal strings to be compared against suspicious files looking for similarities in their byte-sequences \cite{NaikEAGYRETE}.
+The generated \textit{Yara rules} include strings common to malware samples that don't match with the provided whitelist of commonly used library functions. Such whitelist was obtained from 100 GB of non-malicious software in order to exclude common library functions. The produced \textit{Yara rules} contain a list of hexadecimal strings to be compared against suspicious files looking for similarities in their byte-sequences \cite{NaikEAGYRETE}.
 
 \begin{enumerate}
 	\item \textit{Yabin} tool \textit{advantages}:
@@ -1562,15 +1562,15 @@ To build a good Yara rule, in fact, one needs to know:
 \end{enumerate}
 
 \section{Semantic Based Detection}
-\textit{Semantic-based} malware detection aims at identifying malware by deducing the analysed code logic and comparing it to a database of already known malicious logic patterns. This technique, differently from signature-based detection which looks at the code syntactic properties, tracks the semantics of the program code instructions. This implies that \textit{semantic-based} detection approaches are capable of overcoming obfuscation attempts and are even able of detecting unknown malware variants \cite{NamanyaTWM}.
+\textit{Semantic-based} malware detection aims at identifying malware by deducing the analysed code logic and comparing it to a database of already known malicious logic patterns. This technique, differently from signature-based detection which looks at the code syntactic properties, tracks the semantics of the program code instructions. This implies that \textit{semantic-based} detection approaches are capable of overcoming some obfuscation attempts and may even be able to detect unknown malware variants \cite{NamanyaTWM}.
 
 \section{Behavioural Based Detection}
-\textit{Behavioural-based} malware detection consists in the use of behavioural patterns for the identification of malicious software. This is done by dynamically analysing malware samples and extracting specific system/application behaviours and activities in order to form a '\textit{behavioural signature}' of a malware strain. New samples are then analysed in the same way and classified as malicious if their behavioural pattern is similar to the \textit{behavioural signature} of a known malware \cite{NamanyaTWM}.
+\textit{Behavioural-based} malware detection consists in the use of behavioural patterns for the identification of malicious software. This is done by dynamically analysing malware samples and extracting specific system/application behaviours and activities in order to form a "\textit{behavioural signature}" of a malware strain. New samples are then analysed in the same way and classified as malicious if their behavioural pattern is similar to the \textit{behavioural signature} of a known malware \cite{NamanyaTWM}.
 
-\textit{Behavioural-based} detection is for the most part immune to obfuscation attempts. However, it's applicability is limited since it is based on the time consuming dynamic analysis and on the challenging task of determining the unsafe activities/behaviours to consider within the target environment.
+\textit{Behavioural-based} detection is for the most part immune to obfuscation attempts. However, its applicability is limited since it is based on the time consuming dynamic analysis and on the challenging task of determining the unsafe activities/behaviours to consider within the target environment.
 
 \section{Heuristics-based Detection}
-As opposed to traditional \textit{signature-base} detection methods which identify malware by looking in the code for specific bytes/strings, \textit{heuristic-based} detection uses rules and/or algorithms to search for commands or instructions not commonly found in harmless applications, thus indicating possible malicious intents \cite{MiaoUHSS}.
+As opposed to traditional \textit{signature-base} detection methods which identify malware by examining code for specific bytes/strings, \textit{heuristic-based} detection uses rules and/or algorithms to search for commands or instructions not commonly found in harmless applications, thus indicating possible malicious intents \cite{MiaoUHSS}.
 
 \textit{Heuristic-based} anti-malware tools may exploit different scanning techniques such as:
 \begin{itemize}
@@ -1581,7 +1581,7 @@ As opposed to traditional \textit{signature-base} detection methods which identi
 	\item \textit{Genetic signature detection}: this technique is designed to spot different malware variations within the same family using previous malware definitions \cite{ForcepointWHA}.
 \end{itemize}
 
-\textit{Heuristic} analysis is a more effective technique than the signature-based approach for the detection of unknown malware, particularly for encrypted and polymorphic variants \cite{Sharma_2014}. Nowadays it can be found in most mainstream antivirus solutions in the market, combined with signature-based scanners in order to improve detection rate while reducing false alarms \cite{NamanyaTWM}.
+\textit{Heuristic} analysis is a more effective technique than the signature-based approach for the detection of unknown malware, particularly for encrypted and polymorphic variants \cite{Sharma_2014}. Nowadays it can be found in most mainstream antivirus solutions in the market, combined with signature-based scanners in order to improve the detection rate while reducing false alarms \cite{NamanyaTWM}.
 
 \section{Machine Learning}\label{sec:previousMethods}
 In recent years, the rapid proliferation and increased sophistication of malicious software, coupled with the rising popularity of machine learning techniques in many fields, led to the adoption of more general ML-based approaches to malware detection in addition to the use of manually generated signatures and heuristics \cite{DucauAMDATSE}.
@@ -1624,14 +1624,14 @@ The following recent static ML-based malware detection methods will be described
 \end{itemize}
 
 \subsection{ALOHA: Auxiliary Loss Optimization for Hypothesis Augmentation}
-In a recent work called \textbf{ALOHA: Auxiliary Loss Optimization for Hypothesis Augmentation}, \cite{ruddALOHA}, Rudd et al. observed that, although ML-based malware detection is frequently framed as a binary classification task (using a simple binary cross-entropy loss function), there are often a number of other sources of contextual metadata for each input sample available at training time, beyond just aggregate malicious/benign labels. Such metadata might include malicious/benign labels from multiple sources (e.g. from various security vendors), malware family information, temporal information, counts of affected endpoints, and associated tags. However, this metadata is, in many cases, not available at deployment time, making it difficult to include it as input features. The authors thus proposed exploiting the metadata collected from threat intelligence feeds as auxiliary targets in a multi-target learning approach. Simultaneously optimizing classifier parameters for multiple targets (labels) while training a model may, in fact, have a regularizing effect leading to better generalization, particularly if the auxiliary targets are related to the main target of interest.
+In a recent work called \textbf{ALOHA: Auxiliary Loss Optimization for Hypothesis Augmentation}, \cite{ruddALOHA}, Rudd et al. observed that, although ML-based malware detection is frequently framed as a binary classification task (using a simple binary cross-entropy loss function), there are often a number of other sources of contextual metadata for each input sample available at training time, beyond just aggregate malicious/benign labels. Such metadata might include malicious/benign labels from multiple sources (e.g. from various security vendors), malware family information, temporal information, counts of affected endpoints, and associated tags. However, this metadata is, in many cases, not available at deployment time, making it difficult to include it as input features. The authors thus proposed to leverage the metadata collected from threat intelligence feeds as auxiliary targets in a multi-target learning approach. Simultaneously optimizing the classifier parameters for multiple targets (labels) while training a model may, in fact, have a regularizing effect leading to better generalization, particularly if the auxiliary targets are related to the main target of interest.
 
 In practice, in their work \cite{ruddALOHA} the authors fit a deep neural network with multiple additional targets derived from metadata in a threat intelligence feed for Portable Executable (PE) malware and benignware. The additional losses include a multi-source malicious/benign loss, a count loss on multi-source detections, and a semantic malware attribute tag loss.
 
 \subsubsection{Inner Workings}
-The model presented in \cite{ruddALOHA} (fig. \ref{fig:ALOHA_model}) is composed of a base feed-forward neural network consisting of 5 blocks, each composed of Dropout, a dense layer, batch normalization, and an exponential linear unit (ELU) activation, with 1024, 768, 512, 512, and 512 hidden units respectively. This base topology applies the function $f(\cdot)$ to the input feature vector \textbf{x} (of size 1024 in this case) to produce an intermediate 512 dimensional representation of the input file $\textbf{h} = f(\textbf{x})$. An additional block for each output of the model, consisting of one or more dense layers and activation functions, is then appended on top of the base net. This composition of the base topology and the target-specific 'heads' is denoted as $f_{target}(\textbf{x})$.
+The model presented in \cite{ruddALOHA} (fig. \ref{fig:ALOHA_model}) is composed of a base feed-forward neural network consisting of 5 blocks, each composed of Dropout, a dense layer, batch normalization, and an exponential linear unit (ELU) activation, with 1024, 768, 512, 512, and 512 hidden units respectively. This base topology applies the function $f(\cdot)$ to the input feature vector \textbf{x} (of size 1024 in this case) to produce an intermediate 512 dimensional representation of the input file $\textbf{h} = f(\textbf{x})$. An additional block for each output of the model, consisting of one or more dense layers and activation functions, is then appended on top of the base net. This composition of the base topology and the target-specific "heads" is denoted as $f_{target}(\textbf{x})$.
 
-The output for the main malware/benign prediction task - $f_{mal}(\textbf{x})$ - is always present (it constitutes the baseline model) and consists of a single dense layer followed by a sigmoid activation function on top of the base shared network. On top of that one or more auxiliary outputs are added with similar structure as described above: one fully connected layer (two for the \textit{tag} prediction task) with a task-specific activation function. Finally, multi-task losses are produced by computing the sum, across all tasks, of the per-task loss multiplied by a task-specific weight (1.0 for the malware/benign task and 0.1 for all other tasks) \cite{ruddALOHA}.
+The output for the main malicious/benign label prediction task - $f_{mal}(\textbf{x})$ - is always present (it constitutes the baseline model) and consists of a single dense layer followed by a sigmoid activation function on top of the base shared network. On top of that are added one or more auxiliary outputs with a similar structure to the one described above: one fully connected layer (two for the \textit{tag} prediction task) with a task-specific activation function. Finally, the multi-task loss is produced by computing the sum, across all tasks, of the per-task losses multiplied by the task-specific weights (1.0 for the malicious/benign label prediction task and 0.1 for all other tasks) \cite{ruddALOHA}.
 
 \begin{figure}[h]
 	\centering
@@ -1641,18 +1641,18 @@ The output for the main malware/benign prediction task - $f_{mal}(\textbf{x})$ -
 \end{figure}
 
 \paragraph{Malware Loss}\label{par:MalwareLoss}
-The task of predicting if a given binary file, represented by its features $\textbf{x}^{(i)}$, is malicious or benign is optimized by minimizing the binary cross-entropy loss between the malicious/benign output label of the network $\hat{y}^{(i)} = f_{mal}(\textbf{x}^{(i)})$ and the malicious ground truth label $y^{(i)}$. This results in the following loss for a dataset with \textit{M} samples:
+The task of predicting if a given binary file, represented by its features $\textbf{x}^{(i)}$, is malicious or benign is optimized by minimizing the binary cross-entropy loss between the malicious/benign output label of the network $\hat{y}^{(i)} = f_{mal}(\textbf{x}^{(i)})$ and the ground truth label $y^{(i)}$. This results in the following loss for a dataset with \textit{M} samples:
 \begin{equation} \label{eq:alohaMalwareLoss}
 	\begin{split}
-		L_{mal}(X,Y) & = \frac{1}{M} \sum_{i=1}^{M} l_{mal} (f_{mal}(\textbf{x}^{(i)}), y^{(i)}) \\ & = -\frac{1}{M} \sum_{i=1}^{M} y^{(i)} \log(\hat{y}^{(i)}) + (1-y^{(i)}) \log(1-\hat{y}^{(i)}).
+		L_{mal}(X,Y) & = \frac{1}{M} \sum_{i=1}^{M} l_{mal} (f_{mal}(\textbf{x}^{(i)}), y^{(i)}) \\ & = -\frac{1}{M} \sum_{i=1}^{M} y^{(i)} \log(\hat{y}^{(i)}) + (1-y^{(i)}) \log(1-\hat{y}^{(i)})
 	\end{split}
 \end{equation}
 A "1-/5+" criterion was used for labelling a given file as malicious or benign \cite{ruddALOHA}.
 
 \paragraph{Vendor Count Loss}\label{par:VendorCountLoss}
-The first additional target the authors of \cite{ruddALOHA} used is the count of 'malicious' reports for a given sample from the vendor aggregation service. This is based on the assumption that the more a sample gets reported by vendors, the more likely it is to be malicious. To model count data, the authors used the Poisson noise model parametrized by the parameter $\mu$, where $\mu$ is the mean and variance of the Poisson distribution. The probability of an observation of $y$ counts is therefore:
+The first additional target used by the authors of \cite{ruddALOHA} is the count of malicious reports for a given sample from the vendor aggregation service. This is based on the assumption that the more a sample gets reported by different vendors, the more likely it is to be malicious. To model count data, the authors used the Poisson noise model parametrized by the parameter $\mu$, where $\mu$ is the mean and variance of the Poisson distribution. The probability of an observation of $y$ counts is therefore:
 \begin{equation} \label{eq:alohaPoisson}
-	P(y|\mu) = \mu^y e^{-\mu}/y!.
+	P(y|\mu) = \mu^y e^{-\mu}/y!
 \end{equation}
 
 The model is then trained to \textit{estimate} $\mu$ for each sample $\textbf{x}^{(i)}$ such that the likelihood of $y^{(i)}|\mu^{(i)}$ is maximized (or, equivalently, the negative log-likelihood is minimized). The output of the model vendor count head, for sample \textit{i}, is denoted as $f_{cnt}(\textbf{x}^{(i)})$. Thereafter, an activation function $a(\cdot)$, which maps $f_{cnt}(\textbf{x}^{(i)})$ to the non-negative real numbers, is used, so the final approximation for parameter $\mu$ is: $\mu^{(i)} = a(f_{cnt}(\textbf{x}^{(i)}))$. In particular, the activation function used in \cite{ruddALOHA} is an exponential linear unit activation (ELU).
@@ -1660,7 +1660,7 @@ The model is then trained to \textit{estimate} $\mu$ for each sample $\textbf{x}
 Letting $y^{(i)}$ denote the actual number of vendors that deemed sample $\textbf{x}^{(i)}$ malicious, the corresponding negative log-likelihood loss over the dataset is:
 \begin{equation} \label{eq:alohaVendorCountLoss}
 	\begin{split}
-		L_p(X,Y) & = \frac{1}{M} \sum_{i=1}^{M} l_p (a(f_{cnt}(\textbf{x}^{(i)})), y^{(i)}) \\ & = \frac{1}{M} \sum_{i=1}^{M} \mu^{(i)} - y^{(i)} \log(\mu^{(i)}) + \log(y^{(i)}!),
+		L_p(X,Y) & = \frac{1}{M} \sum_{i=1}^{M} l_p (a(f_{cnt}(\textbf{x}^{(i)})), y^{(i)}) \\ & = \frac{1}{M} \sum_{i=1}^{M} \mu^{(i)} - y^{(i)} \log(\mu^{(i)}) + \log(y^{(i)}!)
 	\end{split}
 \end{equation}
 which is referred to in \cite{ruddALOHA} as the \textit{Poisson} or \textit{vendor count} loss. In practice, the term $\log(y^{(i)}!)$ is ignored when minimizing this function loss since it does not depend on the network parameters.
@@ -1669,7 +1669,7 @@ which is referred to in \cite{ruddALOHA} as the \textit{Poisson} or \textit{vend
 The authors of \cite{ruddALOHA} identified a subset $\mathcal{V} = \{v_1, ..., v_V\}$ of $9$ vendors that each produced a result for (nearly) every sample in their data. Each vendor result was added as additional target by adding an extra fully connected layer per vendor followed by a sigmoid activation function to the end of the shared baseline architecture. A per-vendor binary cross-entropy loss was then employed during training. The aggregate \textit{vendors} loss $L_{vdr}$ for the $V = 9$ selected vendors is simply the sum of the individual vendor losses:
 \begin{equation} \label{eq:alohaPerVendorMalwareLoss}
 	\begin{split}
-		L_{vdr}(X,Y) & = \frac{1}{M} \sum_{i = 1}^{M} \sum_{j = 1}^{V} l_{vdr}(f_{vdr_j}(\textbf{x}^{(i)}), y_{v_j}^{(i)}) \\ & = - \frac{1}{M} \sum_{i = 1}^{M} \sum_{j = 1}^{V} y_{v_j}^{(i)} \log(\hat{y}_{v_j}^{(i)}) + (1 - y_{v_j}^{(i)}) \log{(1 - \hat{y}_{v_j}^{(i)})},
+		L_{vdr}(X,Y) & = \frac{1}{M} \sum_{i = 1}^{M} \sum_{j = 1}^{V} l_{vdr}(f_{vdr_j}(\textbf{x}^{(i)}), y_{v_j}^{(i)}) \\ & = - \frac{1}{M} \sum_{i = 1}^{M} \sum_{j = 1}^{V} y_{v_j}^{(i)} \log(\hat{y}_{v_j}^{(i)}) + (1 - y_{v_j}^{(i)}) \log{(1 - \hat{y}_{v_j}^{(i)})}
 	\end{split}
 \end{equation}
 where $l_{vdr}$ is the per-sample binary cross-entropy function and $f_{vdr_j}(\textbf{x}^{(i)}) = \hat{y}_{v_j}^{(i)}$ is the output of the network that is trained to predict the label $y_{v_j}^{(i)}$ assigned by vendor $j$ to input sample $\textbf{x}^{(i)}$ \cite{ruddALOHA}.
@@ -1682,15 +1682,15 @@ These tags were created by parsing individual vendor detection names, using a se
 The tag prediction task was then defined as a multi-label binary classification, since zero or more tags from the set of possible tags $\mathcal{T} = \{t_1, ..., t_T\}$ can be present at the same time for a given sample. This was implemented as a \textit{multi-headed} architecture: two additional layers per tag were added to the end of the shared baseline architecture, a fully connected layer of size 512-to-256, followed by a fully connected layer of size 256-to-1, followed by a sigmoid activation function. Each of the possible $T=11$ tags had its own binary cross-entropy loss term. Finally, the aggregate tag loss was computed as the sum of the individual tag losses \cite{ruddALOHA}. For the dataset with $M$ samples the loss thus was:
 \begin{equation} \label{eq:alohaMalwareTagLoss}
 	\begin{split}
-		L_{tag}(X,Y) & = \frac{1}{M} \sum_{i = 1}^{M} \sum_{j = 1}^{T} l_{tag}(f_{tag_j}(\textbf{x}^{(i)}), y_{t_j}^{(i)}) \\ & = - \frac{1}{M} \sum_{i = 1}^{M} \sum_{j = 1}^{T} y_{t_j}^{(i)} \log(\hat{y}_{t_j}^{(i)}) + (1 - y_{t_j}^{(i)}) \log(1 - \hat{y}_{t_j}^{(i)}),
+		L_{tag}(X,Y) & = \frac{1}{M} \sum_{i = 1}^{M} \sum_{j = 1}^{T} l_{tag}(f_{tag_j}(\textbf{x}^{(i)}), y_{t_j}^{(i)}) \\ & = - \frac{1}{M} \sum_{i = 1}^{M} \sum_{j = 1}^{T} y_{t_j}^{(i)} \log(\hat{y}_{t_j}^{(i)}) + (1 - y_{t_j}^{(i)}) \log(1 - \hat{y}_{t_j}^{(i)})
 	\end{split}
 \end{equation}
-where $y_{t_j}^{(i)}$ indicates if sample $i$ is annotated with tag $j$, and $\hat{y}_{t_j}^{(i)} = f_{tag_j}(\textbf{x}^{(i)})$ is the prediction of the network for that value.
+where $y_{t_j}^{(i)}$ indicates whether sample $i$ is annotated with tag $j$, and $\hat{y}_{t_j}^{(i)} = f_{tag_j}(\textbf{x}^{(i)})$ is the prediction of the network for that value.
 
 \paragraph{Final Loss}\label{par:alohaFinalLoss}
-Finally, in \cite{ruddALOHA} each model used a loss weight of 1.0 on the aggregate malicious/benign loss and 0.1 on each auxiliary loss. Therefore, when adding $K$ targets to the main loss, the final loss that gets back-propagated through the model was:
+Finally, in \cite{ruddALOHA} each model used a loss weight of 1.0 on the aggregate malicious/benign loss and 0.1 on each auxiliary loss. Therefore, when adding the $K$ targets to the main loss, the final loss that gets back-propagated through the model was:
 \begin{equation} \label{eq:alohaFinalLoss}
-	L(X,Y) = L_{mal}(X,Y) + 0.1 \sum_{k=1}^{K} L_k(X,Y).
+	L(X,Y) = L_{mal}(X,Y) + 0.1 \sum_{k=1}^{K} L_k(X,Y)
 \end{equation}
 
 \subsection{Automatic Malware Description via Attribute Tagging and Similarity Embedding}
@@ -1700,7 +1700,7 @@ Machine learning detection methods, which have the potential to identify even ne
 
 The authors of \cite{DucauAMDATSE} therefore proposed the use of SMART (Semantic Malware Attribute Relevance Tagging) tags, which are human interpretable, high level descriptions of the capabilities of a given malware sample, to approach malicious software description. These SMART tags, which were derived by leveraging the underlying knowledge encoded in detection names from different anti-malware vendors in the industry, are non-exclusive, meaning that one malware family can be associated with multiple tags and a given tag can be associated with multiple malware families. In \cite{DucauAMDATSE}, the authors defined a set of malicious tags $\mathcal{T}$, with $|\mathcal{T}| = 11$ different tags (or descriptive dimensions) of interest that they then used to describe malicious PE files: \textit{adware}, \textit{crypto-miner}, \textit{downloader}, \textit{dropper}, \textit{file-infector}, \textit{flooder}, \textit{installer}, \textit{packed}, \textit{ransomware}, \textit{spyware} and \textit{worm}.
 
-These tags were then used to train a Joint Embedding neural network to learn a low dimensional Euclidean representation (embedding) space in which malware samples with similar characteristics are close to each other, having access only to the files' static binary representations; this in turn is used at test/deployment time for automatically predicting tags for new (unseen) files in real time. The representation of a malware sample in the embedding space can therefore be taught also as an implicit 'signature' describing its capabilities.
+These tags were then used to train a Joint Embedding neural network to learn a low dimensional Euclidean representation (embedding) space in which malware samples with similar characteristics are close to each other, having access only to the static binary representation of files; this in turn is used at test/deployment time for automatically predicting tags for new (unseen) files in real time. The representation of a malware sample in the embedding space can therefore be taught also as an implicit "signature" describing its capabilities.
 
 \paragraph{Multi-Label Classification}
 The authors of \cite{DucauAMDATSE} applied multi-label classification in order to perform semantic attribute tagging. The most trivial way of implementing a multi-label classification model is by learning one classifier per-label. This approach, however, is far from being efficient since the single per-tag classifiers are independently optimized. In this scenario, it is more common to use a single classifier with multiple outputs (multi-label learning) and multiple target losses which are combined and jointly optimized during training (multi-objective loss). This approach yields a more compact representation while also improving classification performance with respect to using independent classifiers. In \cite{DucauAMDATSE}, the authors used a multi-label deep neural network as baseline architecture.
@@ -1718,10 +1718,12 @@ The labelling process consisted of the three main stages presented in figure \re
 	\label{fig:Tag_Distillation}
 \end{figure}
 
-The token extraction phase consisted of normalizing and parsing the multiple detection names and converting them in sets of sub-strings. In a similar way to what the malware labelling tool AVClass, which was proposed by Marcos et al. in \cite{MarcosAVclass}, does, the token-to-tag mapping stage uses rules created from expert knowledge by a group of malware analysts, that associate relevant tokens with the set of tags of interest. Finally, this mapping is extended by mining statistical relationships between tokens to improve tagging stability and coverage.
+The token extraction phase consisted of normalizing and parsing the multiple detection names and converting them in sets of sub-strings. In a similar way to what is done by the malware labelling tool AVClass, which was proposed by Marcos et al. in \cite{MarcosAVclass}, the token-to-tag mapping stage uses rules created from expert knowledge by a group of malware analysts, that associate relevant tokens with the set of tags of interest. Finally, this mapping is extended by mining statistical relationships between tokens to improve tagging stability and coverage.
 
 \paragraph{Tags Prediction - Inner Workings}\label{par:tagPredictionImplementation}
-In \cite{DucauAMDATSE}, in order to predict, in a multi-label classification manner, zero or more tags per sample from the set of $T$ possible tags $\mathcal{T} = \{t_1, t_2, ..., t_T\}$, the authors proposed two different neural network architectures, represented in \ref{fig:Multi_Head_model} and \ref{fig:Joint_Embedding_model}, which they referred to as \textit{Multi-Head} and \textit{Joint Embedding} nets.
+In \cite{DucauAMDATSE}, in order to predict - in a multi-label classification manner - zero or more tags per sample from the set of $T$ possible tags $\mathcal{T} = \{t_1, t_2, ..., t_T\}$, the authors proposed two different neural network architectures, represented in \ref{fig:Multi_Head_model} and \ref{fig:Joint_Embedding_model}, which they referred to as \textit{Multi-Head} and \textit{Joint Embedding} nets.
+
+In particular, the \textit{Multi-Head} net (fig. \ref{fig:Multi_Head_model}) consisted of a base topology common to the prediction of all tags, and one output head per tag. The shared base topology, which can be thought of a feature extraction (or embedding) network that transforms the input features $\textbf{x}$ into a low dimensional hidden vector $\textbf{h}$, consisted of an input feed-forward layer of output size 2048, followed by a batch normalization layer, an ELU non-linearity and three blocks, each composed by dropout, a linear layer, batch normalization and ELU of output sizes 512, 128, and 32 respectively. Each head, on the other hand, is a binary classifier that predicts the presence or absence of each tag. This is implemented as a single linear layer composed of the same type of basic blocks as in the main base architecture, but with output size 11 (the number of tags being predicted) and a sigmoid non-linearity instead of the ELU activation function to compute the predicted probability for each label. The binary cross-entropy losses between each head output and the corresponding ground truth tags are computed and then added together to form the final loss.
 
 \begin{figure}[h]
 	\centering
@@ -1730,8 +1732,6 @@ In \cite{DucauAMDATSE}, in order to predict, in a multi-label classification man
 	\label{fig:Multi_Head_model}
 \end{figure}
 
-In particular, the \textit{Multi-Head} (fig. \ref{fig:Multi_Head_model}) consisted of a base topology common to the prediction of all tags, and one output head per tag. The shared base topology, which can be thought of a feature extraction (or embedding) network that transforms the input features $\textbf{x}$ into a low dimensional hidden vector $\textbf{h}$, consisted of an input feed-forward layer of output size 2048, followed by a batch normalization layer, an ELU non-linearity and three blocks, each composed by dropout, a linear layer, batch normalization and ELU of output sizes 512, 128, and 32 respectively. Each head, on the other hand, is a binary classifier that predicts the presence or absence of each tag and it consists of a linear layer (the same for each head) composed of the same type of basic blocks as in the main base architecture, but with output size 11 (the number of tags being predicted) and a sigmoid non-linearity instead of the ELU to compute the predicted probability for each label. The binary cross-entropy losses between each head output and the corresponding ground truth tags are computed and then added together to form the final loss.
-
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=\textwidth]{./images/Joint_Embedding.png}
@@ -1739,30 +1739,30 @@ In particular, the \textit{Multi-Head} (fig. \ref{fig:Multi_Head_model}) consist
 	\label{fig:Joint_Embedding_model}
 \end{figure}
 
-The \textit{Joint Embedding} model (fig. \ref{fig:Joint_Embedding_model}), instead, was designed to map both the labels (malware tags) and the binary file features $\textbf{x}$ to vectors in a joint Euclidean latent-space in such a way that, for a given similarity function, the transformations of semantically similar labels are close to each other, and the embedding of a binary file should be close to that of its associated labels in the same space. In practice, the \textit{Joint Embedding} model consisted on a PE \textit{embedding} network, a \textit{tag embedding} matrix $\textbf{E}$, and a \textit{prediction layer}.
+The \textit{Joint Embedding} model (fig. \ref{fig:Joint_Embedding_model}), instead, was designed to map both the labels (malware tags) and the binary file features $\textbf{x}$ to vectors in a joint Euclidean latent-space in such a way that, for a given similarity function, the transformations of semantically similar labels are close to each other, and the embedding of a binary file should be close to that of its associated labels in the same space. In practice, the \textit{Joint Embedding} model consisted of a PE \textit{embedding} network, a \textit{tag embedding} matrix $\textbf{E}$, and a \textit{prediction layer}.
 
 The PE embedding network, using the same base topology as the Multi-Head model, learns a non-linear function $\phi_\theta(\cdot)$, with parameters $\theta$, that maps the input binary representation of the PE executable file $\textbf{x} \in \mathbb{R}^d$ into a vector $\textbf{h} \in \mathbb{R}^D$ in low dimensional Euclidean space (with $D=32$),
 \begin{equation} \label{eq:jointEmbeddingPEEmbedding}
-	\phi_\theta(\textbf{x}) : \mathbb{R}^d \rightarrow \mathbb{R}^D.
+	\phi_\theta(\textbf{x}) : \mathbb{R}^d \rightarrow \mathbb{R}^D
 \end{equation}
 
 The tag embedding matrix $\textbf{E} \in \mathbb{R}^{T \times D}$ of learnable parameters learns a mapping from a tag $t_n \in \mathcal{T} = \{t_1, ..., t_T\}$, to a distributed representation $\textbf{e} \in \mathbb{R}^D$ in the joint embedding space (with $D=32$).
 \begin{equation} \label{eq:jointEmbeddingTagEmbedding}
-	\phi_E(t) : \{t_1, ..., t_T\} \rightarrow \mathbb{R}^D.
+	\phi_E(t) : \{t_1, ..., t_T\} \rightarrow \mathbb{R}^D
 \end{equation}
-In practice, the embedding vector for the tag $t_n$ is simply the $n$-th row of the tag embedding matrix, i.e. $\phi_E(t_n) = \textbf{E}_n$.
+In practice, the embedding vector for tag $t_n$ is simply the $n$-th row of the tag embedding matrix, i.e. $\phi_E(t_n) = \textbf{E}_n$.
 
-Finally, the prediction layer compares both tag and sample embeddings ($\textbf{e}$ and $\textbf{h}$ respectively) and produces a similarity score. This is later run through a sigmoid non-linearity to estimate the probability that sample $\textbf{x}$ is associated with tag $t$ for each $t \in \mathcal{T}$. In the final model implementation presented in \cite{DucauAMDATSE}, the similarity score used was the dot product between the embedding vectors. The output of the network $f_n(\textbf{x} | \theta, \textbf{E})$ then was,
+Finally, the prediction layer compares both tag and sample embeddings ($\textbf{e}$ and $\textbf{h}$ respectively) and produces a similarity score. This is later run through a sigmoid non-linearity to estimate the probability that sample $\textbf{x}$ is associated with tag $t$ for each $t \in \mathcal{T}$. In the final model implementation presented in \cite{DucauAMDATSE}, the similarity score used was the dot product between the embedding vectors. The output of the network $f_n(\textbf{x} | \theta, \textbf{E})$ therefore was,
 \begin{equation}
 	\begin{split} \label{eq:jointEmbeddingProbability}
-		\hat{y}_n = f_n(\textbf{x} | \theta, \textbf{E}) & = \sigma(\langle\phi_E(n), \phi_\theta(\textbf{x})\rangle) \\ & = \sigma(\langle\textbf{E}_n, \textbf{h}\rangle),
+		\hat{y}_n = f_n(\textbf{x} | \theta, \textbf{E}) & = \sigma(\langle\phi_E(n), \phi_\theta(\textbf{x})\rangle) \\ & = \sigma(\langle\textbf{E}_n, \textbf{h}\rangle)
 	\end{split}
 \end{equation}
 where $\sigma$ is the sigmoid activation function, and $\hat{y}_n$ is the probability estimated by the model of tag $t_n$ being a descriptor for $\textbf{x}$.
 
 Furthermore, the authors of \cite{DucauAMDATSE} constrained the embedding vectors for the tags such that:
 \begin{equation}
-	||\textbf{E}_n||_2 \leq C, n = 1, ..., T,
+	||\textbf{E}_n||_2 \leq C, n = 1, ..., T
 \end{equation}
 with $C$ equal to 1, which has a regularizing effect.
 
@@ -1774,12 +1774,12 @@ During training, the parameters of both embedding functions $\phi_\theta(\cdot)$
 \end{equation}
 where $t_n^{(i)} = 1$ if sample $i$ is labelled with tag $t_n$ or zero otherwise, and $\hat{y}_n^{(i)}$ is the probability predicted by the network of that tag being associated with the $i$-th sample.
 
-Finally, at test/deployment time, in order to get a vector of tag similarities for a given sample $\textbf{x}$ with PE embedding vector $\textbf{h}$, the matrix of tag embeddings $\textbf{E} \in \mathbb{R}^{T \times D}$ is multiplied (dot product) by $\textbf{h} \in \mathbb{R}^D$; the output is then scaled to obtain a prediction vector $\hat{\textbf{y}} = \sigma(\textbf{E} \cdot \textbf{h}) \in \mathbb{R}^T$, where $\sigma$ is the element-wise sigmoid function for transforming the similarity values into a valid probability. Each element in $\hat{\textbf{y}}$ is then the predicted probability for each tag.
+Finally, at test/deployment time, in order to get a vector of tag similarities for a given sample $\textbf{x}$ with PE embedding vector $\textbf{h}$, the matrix of tag embeddings $\textbf{E} \in \mathbb{R}^{T \times D}$ is multiplied (dot product) by $\textbf{h} \in \mathbb{R}^D$; the output is then scaled to obtain a prediction vector $\hat{\textbf{y}} = \sigma(\textbf{E} \cdot \textbf{h}) \in \mathbb{R}^T$, where $\sigma$ is the element-wise sigmoid function which transforms the similarity values into valid probabilities. Each element in $\hat{\textbf{y}}$ is then the predicted probability for each tag.
 
 \subparagraph{Evaluation of Tagging Algorithms}
 The performance evaluation of tagging algorithms can be done along two orthogonal dimensions: \textit{per-tag} or \textit{per-sample}. The former aims at quantifying the tagging algorithm performance at identifying each tag, while the latter focuses on evaluating the tagging algorithm performance for a given sample, across all tags.
 
-One suitable way to evaluate the \textit{per-tag} performance of a model is by measuring the \textit{Area Under the Receiver Operating Characteristic} curve (\textit{AUC-ROC}, or simply \textit{AUC}) for each of the tags being predicted. A \textit{ROC} curve is created by plotting the \textit{True Positive Rate} (\textit{TPR}) against the \textit{False Positive Rate} (\textit{FPR}). Furthermore, given the binary True/False nature of the target value for the $n$-th tag of a given sample ($t_n \in \{0, 1\}$), the typical binary classification evaluation metrics such as 'Accuracy' (eq. \ref{eq:accuracyEq}), 'Precision' (eq. \ref{eq:precisionEq}), 'Recall' (eq. \ref{eq:recallEq}), and 'F-score' (eq. \ref{eq:fBetaScoreEq}) can also be computed. However, in order to compute these metrics, the output probability prediction needs to be binarized first. This can be done by simply choosing a threshold, independently for each tag, so that the \textit{FPR} on the validation set is, for example, $0.01$ and then using the resulting 0/1 predictions. The equations of the mentioned binary cross-entropy statistics are:
+One suitable way to evaluate the \textit{per-tag} performance of a model is by measuring the \textit{Area Under the Receiver Operating Characteristic} curve (\textit{AUC-ROC}, or simply \textit{AUC}) for each of the tags being predicted. A \textit{ROC} curve is created by plotting the \textit{True Positive Rate} (\textit{TPR}) against the \textit{False Positive Rate} (\textit{FPR}). Furthermore, given the binary True/False nature of the target value for the $n$-th tag of a given sample ($t_n \in \{0, 1\}$), the typical binary classification evaluation metrics such as "Accuracy" (eq. \ref{eq:accuracyEq}), "Precision" (eq. \ref{eq:precisionEq}), "Recall" (eq. \ref{eq:recallEq}), and "F-score" (eq. \ref{eq:fBetaScoreEq}) can also be computed. However, in order to compute these metrics, the output probability prediction needs to be binarized first. This can be done by simply choosing a threshold, independently for each tag, so that the \textit{FPR} on the validation set is, for example, $0.01$ and then using the resulting 0/1 predictions. The equations of the mentioned binary cross-entropy statistics are:
 \begin{equation} \label{eq:accuracyEq}
 	accuracy = \frac{TP + TN}{TP + FP + TN + FN}
 \end{equation}
@@ -1801,20 +1801,20 @@ On the other hand, the \textit{Mean Jaccard} similarity (eq. \ref{eq:meanJaccard
 \begin{equation}\label{eq:meanPerSampleAccuracy}
 	\textrm{Mean per-sample accuracy} = \frac{1}{M} \sum_{i=1}^{M} \mathbb{I}(\textbf{y}^{(i)} = \hat{\textbf{y}}^{(i)})
 \end{equation}
-where $T^{(i)}$ is the set of tags associated with sample $i$, $\hat{T}^{(i)}$ is the set of tags predicted for the same sample after binarizing the predictions, $\textbf{y} \in \{0, 1\}^T$ is the binary target vector for a PE file (where $\textbf{y}_n$ indicates whether the $n$-th tag applies to the file), $\hat{\textbf{y}}$ is the binarized prediction vector from a given tagging model and $\mathbb{I}$ is the indicator function which is 1 if the condition in the argument is true, 0 otherwise.
+where $T^{(i)}$ is the set of tags associated with sample $i$, $\hat{T}^{(i)}$ is the set of tags predicted for the same sample after binarizing the predictions, $\textbf{y} \in \{0, 1\}^T$ is the binary target vector for a PE file (where $\textbf{y}_n$ indicates whether the $n$-th tag applies to the file), $\hat{\textbf{y}}$ is the binarized prediction vector from a given tagging model and $\mathbb{I}(condition)$ is the indicator function which is 1 if the condition in the argument is true, 0 otherwise.
 
 \subsection{Learning from Context: Exploiting and Interpreting File Path Information for Better Malware Detection}\label{sec:learningFromContext}
 Recent static portable executable (PE) malware detection techniques, including \cite{ruddALOHA}, typically employ ML-Sec classifiers designed to work with a single numerical feature vector, derived from each file, as input, having as output one or more target labels/tasks. However, as noted by Kyadige et al. in \cite{KyadigeLFCEIFPIBMD}, there is still much unused orthogonal information that could be exploited regarding the sample files, such as the file paths. The authors in \cite{KyadigeLFCEIFPIBMD} thus proposed utilizing the static source of contextual information represented by PE file paths as auxiliary data to the classifier in order to augment static ML detectors. File paths, which are already commonly used by malware analysts to correct and investigate detection errors, are available statically with very little overhead, and can seamlessly be integrated into a multi-view static ML detector.
 
 File paths are not inherently malicious or benign; however, given that many malware strains use specifically crafted file paths to perpetrate their malicious intents (a file path may in fact be chosen to increase the odds of the malware being executed, to avoid disk scans, or to hide from the user's view), they provide much instrumental information that can be used to enhance the overall detection.
 
-In \cite{KyadigeLFCEIFPIBMD}, the authors thus proposed the use of a \textit{multi-view} neural network which combines, as input, information about the PE file content, via feature vectors, with information about how likely it is to see such file in a specific location, through file paths, and outputs a detection score.
+In \cite{KyadigeLFCEIFPIBMD}, the authors thus proposed the use of a \textit{multi-view} neural network which combines, in input, information about the PE file content - via feature vectors - with information about how likely it is to see such file in a specific location - through file paths - and outputs a detection score.
 
 To compare their results, they actually focused their experiments on three models:
 \begin{itemize}
 	\item A baseline file-content-only PE model, which takes only the PE features as input and outputs a malware confidence score.
 	
-	\item Another baseline file-path-only FP model, which takes only the file's paths as input and outputs a malware confidence score.
+	\item Another baseline file-path-only FP model, which takes only the file paths as input and outputs a malware confidence score.
 	
 	\item Their proposed multi-view PE file-content + contextual file-path (PE + FP) model, which takes both the PE file content features and file paths as inputs, and also outputs a malware confidence score.
 \end{itemize}
@@ -1830,14 +1830,20 @@ As features for the content of the PE files, they used floating point 1024-dimen
 	
 	\item A 256-dimensional (16x16) 2D logarithmically scaled string length/hash histogram.
 	
-	\item A 256-dimensional bin of hashes of metadata from the PE header, including PE metadata, including imports, exports, etc.
+	\item A 256-dimensional bin of hashes of metadata from the PE header, including PE metadata, imports, exports, etc.
 	
 	\item A 256-dimensional (16x16) byte standard deviation/entropy histogram.
 \end{enumerate}
-In total, they represented each sample as two feature vectors: A PE-content feature vector of 1024 dimensions and a contextual file-path feature vector of 100 dimensions \cite{KyadigeLFCEIFPIBMD}.
+In total, they represented each sample as two feature vectors: A PE-content feature vector of size 1024 and a contextual file-path feature vector of size 100 \cite{KyadigeLFCEIFPIBMD}.
 
 \paragraph{Inner Workings}
-The model proposed in \cite{KyadigeLFCEIFPIBMD} (fig. \ref{fig:PE_plus_FP_model}) has two inputs, the 1024 element PE-content feature vector, $\textbf{x}_{PE}$, and the 100 element file-path integer vector, $\textbf{x}_{FP}$. The two distinct inputs are fed to two different base sub-networks, each composed by a series of layers with input-specific parameters: $\theta_{PE}$ for the PE content part and $\theta_{FP}$ for the file-path part. The two sets of parameters ($\theta_{PE}$ and $\theta_{FP}$) are jointly optimized during training. The outputs of these base sub-networks are then concatenated and passed through a series of final hidden layers - a joint output sub-network with parameters $\theta_{O}$ terminating with a final dense layer followed by a sigmoid activation function. The final sigmoid activation is used to have as output a detection score between 0 (benign) and 1 (malicious). However, the threshold for determining if a samples is malicious or benign can be set anywhere along the $[0.0, 1.0]$ range according to false positive rate (FPR) and detection rate (TPR) trade-offs for the application at hand - a reasonable threshold is typically at or below $10^{-3}$ FPR.
+The model proposed in \cite{KyadigeLFCEIFPIBMD} (fig. \ref{fig:PE_plus_FP_model}) has two inputs, the 1024 element PE-content feature vector, $\textbf{x}_{PE}$, and the 100 element file-path integer vector, $\textbf{x}_{FP}$. The two distinct inputs are fed to two different base sub-networks, each composed by a series of layers with input-specific parameters: $\theta_{PE}$ for the PE content part and $\theta_{FP}$ for the file-path part. The two sets of parameters ($\theta_{PE}$ and $\theta_{FP}$) are jointly optimized during training. The outputs of these base sub-networks are then concatenated and passed through a series of final hidden layers - a joint output sub-network with parameters $\theta_{O}$ terminating with a final dense layer followed by a sigmoid activation function. The final sigmoid activation is used to have as output a detection score between 0 (benign) and 1 (malicious). However, the threshold for determining if a sample is malicious or benign can be set anywhere along the $[0.0, 1.0]$ range according to false positive rate (FPR) and detection rate (TPR) trade-offs for the application at hand - a reasonable threshold is typically at or below $10^{-3}$ FPR.
+
+The PE base sub-network (with parameters $\theta_{PE}$) passes its input $\textbf{x}_{PE}$ through a series of 5 blocks with sizes 1024, 768, 512, 512, and 512, each consisting of four layers: a Fully Connected layer, a Normalization layer, a Dropout layer with dropout probability of 0.05, and a Rectified Linear Unit (ReLU) activation function.
+
+The FP base sub-network (with parameters $\theta_{FP}$), on the other hand, passes $\textbf{x}_{FP}$ first into an Embedding layer that converts the integer input vector into a $(100, 32)$ embedding. This embedding is then fed into 4 parallel convolution blocks with filters of size 2, 3, 4 and 5 respectively, each composed by a 1-D convolution layer with 128 filters, a Layer Normalization layer and a 1-D sum layer to flatten the output to a vector. The flattened outputs of these convolution blocks are then concatenated and serve as input to two dense blocks similar to those found in the PE input arm.
+
+Finally, the outputs from the two base sub-networks are then concatenated and passed into the joint output path with parameters $\theta_{O}$. This output sub-network is composed by dense blocks (same form as in the PE input arm) of layer sizes 512, 256 and 128. Finally, a single fully-connected layer is employed to project the 128-D output from the previous blocks into a 1-D output, followed by a sigmoid activation function that provides the final output score of the model.
 
 \begin{figure}[h]
 	\centering
@@ -1846,13 +1852,7 @@ The model proposed in \cite{KyadigeLFCEIFPIBMD} (fig. \ref{fig:PE_plus_FP_model}
 	\label{fig:PE_plus_FP_model}
 \end{figure}
 
-The PE base sub-network (with parameters $\theta_{PE}$) passes its input $\textbf{x}_{PE}$ through a series of 5 blocks with sizes 1024, 768, 512, 512, and 512, each consisting of four layers: a Fully Connected layer, a Normalization layer, a Dropout layer with dropout probability of 0.05, and a Rectified Linear Unit (ReLU) activation function.
-
-The FP base sub-network (with parameters $\theta_{FP}$), on the other hand, passes $\textbf{x}_{FP}$ first into an Embedding layer that converts the integer input vector into a $(100, 32)$ embedding. This embedding is then fed into 4 parallel convolution blocks with filters of size 2, 3, 4 and 5 respectively, each composed by a 1-D convolution layer with 128 filters, a Layer Normalization layer and a 1-D sum layer to flatten the output to a vector. The flattened outputs of these convolution blocks are then concatenated and serve as input to two dense blocks similar to those found in the PE input arm.
-
-Finally, the outputs from the two base sub-networks are then concatenated and passed into the joint output path with parameters $\theta_{O}$. This output sub-network is composed by dense blocks (same form as in the PE input arm) of layer sizes 512, 256 and 128. Finally, a single fully-connected layer is employed to project the 128-D output from the previous blocks into a 1-D output, followed by a sigmoid activation function that provides the final output score of the model.
-
-The PE-only model can be easily derived from the PE+FP model removing the FP arm, taking input $\textbf{x}_{PE}$ and fitting parameters $\theta_{PE}$ and $\theta_{O}$. Similarly, the FP-only model can be constructed by using the PE+FP model but without the PE sub-network, taking input $\textbf{x}_{FP}$ and fitting parameters $\theta_{FP}$ and $\theta_{O}$. Obviously the first layer of the output sub-network needs to be modified to match the output from the previous layer.
+The PE-only model can be easily derived from the PE+FP model by removing the FP arm, taking only $\textbf{x}_{PE}$ as input and fitting parameters $\theta_{PE}$ and $\theta_{O}$. Similarly, the FP-only model can be constructed by using the PE+FP model but without the PE sub-network, taking only $\textbf{x}_{FP}$ as input and fitting parameters $\theta_{FP}$ and $\theta_{O}$. Obviously the first layer of the output sub-network needs to be modified to match the output from the previous layer.
 
 In \cite{KyadigeLFCEIFPIBMD}, the authors fit all models using a binary cross entropy loss function. Therefore, denoting the output of the model as $f(\textbf{x}; \theta)$, where $\textbf{x}$ is the model input, $\theta$ are the model parameters and $y \in \{0,1\}$ are the ground truth labels, the loss is:
 \begin{equation} \label{eq:LearningFromContextLoss}
@@ -1863,10 +1863,10 @@ During training, the equation is optimized for $\hat{\theta}$: the optimal set o
 \begin{equation} \label{eq:LearningFromContextParameters}
 	\hat{\theta} =  \argmax_{\theta} \sum_{i = 1}^{M} L(\textbf{x}^{(i)}, y_i; \theta),
 \end{equation}
-where $M$ is the number of samples in the dataset, and $y_i$ and $\textbf{x}^{(i)}$ are the label and the feature vector of the \textit{i}th training sample respectively \cite{KyadigeLFCEIFPIBMD}.
+where $y_i$ and $\textbf{x}^{(i)}$ are the label and feature vector of the \textit{i}th training sample, respectively, and $M$ is the number of samples in the dataset \cite{KyadigeLFCEIFPIBMD}.
 
 \section{Malware Normalization}
-In order to improve the detection rate of existing anti-malware techniques also against malware produced by advanced packers and toolkits, code \textit{normalization} techniques can be exploited. These techniques consist of a \textit{normalizer} which accepts obfuscated code as input and tries to eliminate obfuscation producing as output the normalized executable. After \textit{normalization}, the usual signature-based techniques can be applied on the normalized sample \cite{Sharma_2014}.
+In order to improve the detection rate of existing anti-malware techniques against malware produced by advanced packers and toolkits, code \textit{normalization} techniques can be exploited. These techniques generally consist of a \textit{normalizer} which accepts obfuscated code as input and tries to eliminate obfuscation producing as output the normalized executable. After \textit{normalization}, the usual signature-based techniques can be applied on the normalized sample \cite{Sharma_2014}.
 
 \chapter{Workflow and Datasets used}
 \begin{figure}[H]

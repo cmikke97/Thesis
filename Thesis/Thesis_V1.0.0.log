@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.9.11)  5 OCT 2021 20:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.9.11)  6 OCT 2021 12:48
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -971,33 +971,25 @@ File: ./images/Tag_Distillation.png Graphic file (type png)
 Package pdftex.def Info: ./images/Tag_Distillation.png  used on input line 1716
 .
 (pdftex.def)             Requested size: 338.00314pt x 43.72516pt.
-<./images/Multi_Head.png, id=1339, 456.0237pt x 191.5155pt>
+ [55 <./images/Tag_Distillation.png>]
+<./images/Multi_Head.png, id=1353, 456.0237pt x 191.5155pt>
 File: ./images/Multi_Head.png Graphic file (type png)
 <use ./images/Multi_Head.png>
-Package pdftex.def Info: ./images/Multi_Head.png  used on input line 1728.
+Package pdftex.def Info: ./images/Multi_Head.png  used on input line 1730.
 (pdftex.def)             Requested size: 422.50232pt x 177.4442pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[55 <./images/Tag_Distillation.png>]
 <./images/Joint_Embedding.png, id=1354, 412.6617pt x 244.2726pt>
 File: ./images/Joint_Embedding.png Graphic file (type png)
 <use ./images/Joint_Embedding.png>
 Package pdftex.def Info: ./images/Joint_Embedding.png  used on input line 1737.
 
 (pdftex.def)             Requested size: 422.50232pt x 250.09776pt.
- [56 <./images/Multi_Head.png> <./images/Joint_Embedding.png>] [57] [58]
-<./images/PE_plus_FP.png, id=1400, 549.9747pt x 375.804pt>
+ [56 <./images/Multi_Head.png> <./images/Joint_Embedding.png>] [57] [58] [59]
+<./images/PE_plus_FP.png, id=1412, 549.9747pt x 375.804pt>
 File: ./images/PE_plus_FP.png Graphic file (type png)
 <use ./images/PE_plus_FP.png>
-Package pdftex.def Info: ./images/PE_plus_FP.png  used on input line 1844.
+Package pdftex.def Info: ./images/PE_plus_FP.png  used on input line 1850.
 (pdftex.def)             Requested size: 422.50232pt x 288.69907pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[59] [60 <./images/PE_plus_FP.png>] [61] [62
+ [60 <./images/PE_plus_FP.png>] [61] [62
 
 ]
 Chapter 4.
@@ -4141,7 +4133,7 @@ OPIUNET/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb
 amsfonts/cm/cmtt10.pfb><C:/Users/michele.INFOPIUNET/AppData/Local/Programs/MiKT
 eX/fonts/type1/public/amsfonts/cm/cmtt8.pfb><C:/Users/michele.INFOPIUNET/AppDat
 a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Thesis_V1.0.0.pdf (179 pages, 8203440 bytes).
+Output written on Thesis_V1.0.0.pdf (179 pages, 8203486 bytes).
 PDF statistics:
  2998 PDF objects out of 3580 (max. 8388607)
  931 named destinations out of 1000 (max. 500000)
