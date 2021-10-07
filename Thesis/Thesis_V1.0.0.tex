@@ -3537,7 +3537,7 @@ As previously mentioned in section \ref{sec:alohaAndJointEmbeddingTrainAndEvalua
 
 As previously mentioned, both the \textbf{\textit{MTJE}} model and the \textbf{\textit{Joint Embedding}} model implementations are also evaluated on the \textit{f-way} malware family classification and family ranking tasks. In particular the function presented in algorithm \ref{alg:evaluateFreshFunction} (\textbf{Evaluate fresh function}) is used to produce both the mentioned evaluation results. More specifically, it calls the following two functions in succession: \textbf{\textit{EvaluateFreshScores}} and \textbf{\textit{EvaluateFreshRankings}}.
 
-\subsubsection{Model Evaluation on f-way Malware Family Classification/Family Ranking tasks}
+\subsubsection{Model Evaluation on f-way Malware Family Classification/Ranking tasks}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{./images/workflow_fresh_eval.png}
@@ -3545,7 +3545,7 @@ As previously mentioned, both the \textbf{\textit{MTJE}} model and the \textbf{\
 	\label{fig:workflow_fresh_eval}
 \end{figure}
 
-\begin{algorithm}[h!]
+\begin{algorithm}[H]
 	\caption{Evaluate Fresh Scores function}\label{alg:evaluateFreshScoresFunction}
 	\begin{algorithmic}[1]
 			\Function{EvaluateFreshScores}{\textit{ds\_path}, \textit{checkpoint\_path}, \textit{net\_type}, \textit{n\_queries}, \textit{min\_anchors}, \textit{max\_anchors}, \textit{n\_evaluations}, \textit{batch\_size}}
@@ -3563,7 +3563,7 @@ As previously mentioned, both the \textbf{\textit{MTJE}} model and the \textbf{\
 			\State \textit{model}.\textbf{eval}()
 			\State \textit{generator} $\gets$ \textbf{get\_generator}(\textit{ds\_path}, \textit{batch\_size}, return\_shas=True, shuffle=True)
 			\State \textit{predictions} $\gets$ \{\}
-			\ForAll{\textit{k}, \textit{n\_anchors} $\in$ \textbf{enumerate}(\textbf{range}(\textit{min\_anchors}, \textit{max\_anchors} $+ 1$))}
+			\ForAll{\textit{n\_anchors} $\in$ \textbf{range}(\textit{min\_anchors}, \textit{max\_anchors} $+ 1$)}
 				\State \textit{predictions}[\textit{n\_anchors}] $\gets$ [ ]
 				\State
 				\ForAll{\textit{j} $\in$ \textbf{range}(\textit{n\_evaluations})}
@@ -3572,7 +3572,6 @@ As previously mentioned, both the \textbf{\textit{MTJE}} model and the \textbf{\
 					\State \textit{similarity\_scores} $\gets$\textit{model}.\textbf{GetSimilarity}(\textit{queries}['embeddings'], 
 					\State \hskip18.4em \textit{anchors}['embeddings'])['similarity']
 					\State \textit{predictions}[\textit{n\_anchors}].\textbf{append}(\{
-					\State \hskip1.9em 'families': [\textbf{label\_to\_sig}(\textit{lab}) $\forall$ \textit{lab} $\in$ \textbf{range}(\textit{n\_families})],
 					\State \hskip1.9em 'shas': \textit{queries}['shas'],
 					\State \hskip1.9em 'labels': \textit{queries}['labels'],
 					\State \hskip1.9em 'predictions': \textit{anchors}['labels'][\textbf{argmax}(\textit{similarity\_scores})],
@@ -3587,7 +3586,7 @@ As previously mentioned, both the \textbf{\textit{MTJE}} model and the \textbf{\
 	\end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}[h!]
+\begin{algorithm}[H]
 	\caption{Evaluate Fresh Rankings function}\label{alg:evaluateFreshRankingsFunction}
 	\begin{algorithmic}[1]
 			\Function{EvaluateFreshRankings}{\textit{ds\_path}, \textit{checkpoint\_path}, \textit{net\_type}, \textit{n\_query\_samples}, \textit{n\_evaluations}, \textit{batch\_size}}
@@ -3604,7 +3603,7 @@ As previously mentioned, both the \textbf{\textit{MTJE}} model and the \textbf{\
 			\State \textit{model}.\textbf{load\_state\_dict}(\textit{checkpoint\_path})
 			\State \textit{model}.\textbf{eval}()
 			\State \textit{generator} $\gets$ \textit{get\_generator}(\textit{ds\_path}, \textit{batch\_size}, return\_shas=True, shuffle=True)
-			\State \textit{ranking\_scores} $\gets$ {'MRR': [ ], 'MAP': [ ]}
+			\State \textit{ranking\_scores} $\gets$ \{'MRR': [ ], 'MAP': [ ]\}
 			\State \textit{global\_ranks\_to\_save} $\gets$ None
 			\ForAll{\textit{j} $\in$ \textbf{range}(\textit{n\_evaluations})}
 				\State \textit{queries} $\gets$ \textbf{GetSamples}(\textit{model}, \textit{generator}, \textit{n\_families}, \textit{n\_query\_samples})
@@ -3632,32 +3631,34 @@ As previously mentioned, both the \textbf{\textit{MTJE}} model and the \textbf{\
 				\State \hskip1.9em \textit{ranking\_scores}, \textit{global\_ranks\_to\_save}, \textit{rank\_per\_query})
 				\EndFor
 			\State
+			\State \textbf{log}(\textit{ranking\_scores})
 			\State \textbf{save\_to\_file}(\textit{global\_ranks\_to\_save})
 		\EndFunction
 	\end{algorithmic}
 \end{algorithm}
 
-The \textbf{\textit{EvaluateFreshScores}} function, shown in alg. \ref{alg:evaluateFreshScoresFunction}, begins by importing the '\textit{Net}' class corresponding to the chosen \textit{net\_type} and then instantiates it by providing the needed arguments (such as the \textit{feature\_dimension}, the \textit{embedding\_dimension}, the \textit{layer\_sizes}, etc.). Next, the function loads the model checkpoint state parameters corresponding to the selected training run, it sets the model into \textit{evaluation} mode and instantiates the fresh dataset generator (dataloader). After these preliminary steps, for all the values of '\textit{n\_anchors}' between '\textit{min\_anchors}' and '\textit{max\_anchors}' (included), the function performs '\textit{n\_evaluations}' evaluations recording the model predictions, which will be later used to compute the corresponding accuracy (and other statistics) results. In particular, for each evaluation '\textit{n\_anchors}' anchor samples and '\textit{n\_queries}' query samples, per-family, are randomly selected (without overlaps) from the fresh dataset using the \textbf{GetSamples} function and the similarity scores between their embeddings are computed by using the model's \textbf{GetSimilarity} function. Finally, the function produces and saves to file the family predictions, by getting, for each query sample, the family label of the most similar anchor sample in the previously computed similarity score matrix. Moreover, the function also computes the per-sample family label probabilities by retrieving the similarity score corresponding to the most similar anchor sample, for each family, and subsequently applying the \textit{Softmax} function to the resulting list of family scores.
+The \textbf{\textit{EvaluateFreshScores}} function, shown in alg. \ref{alg:evaluateFreshScoresFunction}, begins by importing the \textit{Net} class corresponding to the chosen \textit{net\_type} and then instantiates it by providing the needed arguments (such as the \textit{feature\_dimension}, the \textit{embedding\_dimension}, the \textit{layer\_sizes}, etc.). Next, the function loads the model checkpoint state parameters corresponding to the selected training run, it sets the model into \textit{evaluation} mode and instantiates the fresh dataset generator (dataloader). After these preliminary steps, for all the values of '\textit{n\_anchors}' between '\textit{min\_anchors}' and '\textit{max\_anchors}' (included), the function performs '\textit{n\_evaluations}' evaluations recording the model predictions, which will be later used to compute the corresponding accuracy (and other statistics) results. In particular, for each evaluation '\textit{n\_anchors}' anchors and '\textit{n\_queries}' query samples, per-family, are randomly selected (without overlaps) from the fresh dataset using the \textbf{GetSamples} function and the similarity scores between their embeddings are computed by using the model \textbf{GetSimilarity} function. Finally, the function produces and saves to file the family predictions, by getting, for each query sample, the family label of the most similar anchor sample in the previously computed similarity score matrix. Moreover, the function also computes the per-sample family label probabilities by retrieving the similarity score corresponding to the most similar anchor sample, for each family, and subsequently applying the \textit{Softmax} function to the resulting list of family scores.
 
-The \textbf{\textit{EvaluateFreshRankings}} function, presented in algorithm \ref{alg:evaluateFreshRankingsFunction}, again begins by importing the selected \textit{Net} class. It then instantiate the model with the needed parameters, loads the selected checkpoint state parameters, sets the model to \textit{evaluation} mode and defines the fresh dataset generator (dataloader). Next, for '\textit{n\_evaluations}' times, the function randomly selects '\textit{n\_query\_samples}' query samples, per family, from the previously defined fresh dataset \textit{generator}. The function then cycles through all the mini-batches of data from the fresh dataset generator and gets the samples embeddings by feeding the model with their numerical feature vectors. Then, in order to generate the family rankings, the function computes the similarity scores between the \textbf{query} samples' embeddings and the mini-batch embeddings (which may contain also the \textbf{query} sample latent representation) by using the model's \textit{GetSimilarity} function. Next, for each \textbf{query} sample the function generates one ranking by ordering the samples' \textit{shas}, \textit{family labels} and \textit{family names} by their similarity with the current \textbf{query} sample (excluding the current \textbf{query} sample from the ranking). Finally, the function uses the \textbf{ComputeRankingScores} function, presented in alg. \ref{alg:computeRankingScoresFunction}, to compute the \textit{MRR} and \textit{MAP} scores and save a bunch of interesting rankings, namely the ones which produced the maximum and minimum RR (reciprocal rank) and AP (average precision), for the current evaluation. The overall mean and standard deviation of both ranking scores are computed and saved at the end of the cycle.
+The \textbf{\textit{EvaluateFreshRankings}} function, presented in algorithm \ref{alg:evaluateFreshRankingsFunction}, again begins by importing the selected \textit{Net} class. It then instantiates the model with the needed parameters, loads the selected checkpoint state parameters, sets the model to \textit{evaluation} mode and defines the fresh dataset generator (dataloader). Next, for '\textit{n\_evaluations}' times, the function randomly selects '\textit{n\_query\_samples}' query samples, per family, from the previously defined fresh dataset \textit{generator}. The function then cycles through all the mini-batches of data from the fresh dataset generator and gets the samples embeddings by feeding the model with their numerical feature vectors. Then, in order to generate the family rankings, the function computes the similarity scores between the \textbf{query} embeddings and the mini-batch embeddings (which may contain also the \textbf{query} sample latent representation) by using the model \textit{GetSimilarity} function. Next, for each \textbf{query} sample the function generates one ranking by ordering the samples \textit{shas}, \textit{family labels} and \textit{family names} by their similarity with the current \textbf{query} sample (excluding the current \textbf{query} sample from the ranking). Finally, the function uses the \textbf{ComputeRankingScores} function, presented in alg. \ref{alg:computeRankingScoresFunction}, to compute the \textit{MRR} and \textit{MAP} scores and save a bunch of interesting rankings, namely the ones which produced the maximum and minimum RR (reciprocal rank) and AP (average precision), for the current evaluation. The overall mean and standard deviation of both ranking scores are computed and saved at the end of the cycle.
 
 \begin{algorithm}[h!]
 	\caption{Compute Ranking Scores function}\label{alg:computeRankingScoresFunction}
 	\begin{algorithmic}[1]
-		\Function{ComputeRankingScores}{\textit{ranking\_scores}, \textit{global\_ranks\_to\_save}, \textit{rank\_per\_query}}
-		\State \textit{rs} $\gets$ \textbf{binarize}(\textit{rank\_per\_query})
-		\State \textbf{log}(\textbf{mean\_reciprocal\_rank}(\textit{rs}))
-		\State \textbf{log}(\textbf{mean\_average\_precision}(\textit{rs}))
-		\State
-		\State \textit{queries\_indexes} $\gets$ \{
-		\State \hskip1.9em 'max\_rr': \textbf{max\_reciprocal\_rank\_index}(\textit{rs}),
-		\State \hskip1.9em 'min\_rr': \textbf{min\_reciprocal\_rank\_index}(\textit{rs}),
-		\State \hskip1.9em 'max\_ap': \textbf{max\_average\_precision\_index}(\textit{rs}),
-		\State \hskip1.9em 'min\_ap': \textbf{min\_average\_precision\_index}(\textit{rs})
-		\State \}
-		\State
-		\State \textit{ranks\_to\_save} $\gets$ \{\textit{key}: \textit{rank\_per\_query}[\textit{index}] $\forall$ \textit{key}, \textit{index} $\in$ \textit{queries\_indexes}.\textbf{items}()\}
-		\State \textbf{return} \textit{ranking\_scores}, \textit{global\_ranks\_to\_save}, \textit{rank\_per\_query}
+			\Function{ComputeRankingScores}{\textit{ranking\_scores}, \textit{global\_ranks\_to\_save}, \textit{rank\_per\_query}}
+			\State \textit{rs} $\gets$ \textbf{binarize}(\textit{rank\_per\_query})
+			\State \textit{ranking\_scores}['MRR'].\textbf{append}(\textbf{mean\_reciprocal\_rank}(\textit{rs}))
+			\State \textit{ranking\_scores}['MAP'].\textbf{append}(\textbf{mean\_average\_precision}(\textit{rs}))
+			\State
+			\State \textit{queries\_indexes} $\gets$ \{
+			\State \hskip1.9em 'max\_rr': \textbf{max\_reciprocal\_rank\_index}(\textit{rs}),
+			\State \hskip1.9em 'min\_rr': \textbf{min\_reciprocal\_rank\_index}(\textit{rs}),
+			\State \hskip1.9em 'max\_ap': \textbf{max\_average\_precision\_index}(\textit{rs}),
+			\State \hskip1.9em 'min\_ap': \textbf{min\_average\_precision\_index}(\textit{rs})
+			\State \}
+			\State
+			\State \textit{ranks\_to\_save} $\gets$ \{\textit{key}: \textit{rank\_per\_query}[\textit{index}] $\forall$ \textit{key}, \textit{index} $\in$ \textit{queries\_indexes}.\textbf{items}()\}
+			\State \textit{global\_ranks\_to\_save}.\textbf{append\_if\_relevant}(ranks\_to\_save)
+			\State \textbf{return} \textit{ranking\_scores}, \textit{global\_ranks\_to\_save}, \textit{rank\_per\_query}
 		\EndFunction
 	\end{algorithmic}
 \end{algorithm}
@@ -3665,52 +3666,52 @@ The \textbf{\textit{EvaluateFreshRankings}} function, presented in algorithm \re
 \begin{algorithm}[h!]
 	\caption{Get Samples function}\label{alg:getSamplesFunction}
 	\begin{algorithmic}[1]
-		\Function{GetSamples}{\textit{model}, \textit{generator}, \textit{n\_families}, \textit{n\_samples\_to\_get}, \textit{other}}
-		\State \textit{samples} $\gets$ None
-		\State \textit{samples\_families} $\gets$ [0 $\forall$ \_ $\in$ \textbf{range}(\textit{n\_families})]
-		\State
-		\ForAll{\textit{shas}, \textit{features}, \textit{labels} $\in$ \textit{generator}}
-		\If{\textit{other} \textbf{is not} None}
-		\State \textit{indices} $\gets$ [\textit{i} $\forall$ \textit{i}, \textit{sha} $\in$\ \textbf{enumerate}(\textit{shas}) \textbf{if} \textit{sha} \textbf{not in} \textit{other}['shas']]
-		\State \textit{shas} $\gets$ [\textit{shas}[\textit{i}] $\forall$ \textit{i} $\in$ \textit{indices}]
-		\State \textit{features} $\gets$ \textit{features}[\textit{indices}]
-		\State \textit{labels} $\gets$ \textit{labels}[\textit{indices}]
-		\EndIf
-		\State
-		\State \textit{embeddings} $\gets$ \textit{model}.\textbf{GetEmbedding}(\textit{features})['embedding']
-		\ForAll{\textit{n} $\in$ \textbf{range}(\textit{n\_families})}
-		\If{\textit{samples\_families}[\textit{n}] $\ge$ \textit{n\_samples\_to\_get}}
-		\textbf{continue}
-		\EndIf
-		\State
-		\State \textit{indices} $\gets$ [\textit{i} $\forall$ \textit{i}, \textit{label} $\in$ \textbf{enumerate}(\textit{labels}) \textbf{if} \textit{label} = \textit{n}]
-		\State \textit{indices} $\gets$ \textit{indices[:\textit{n\_samples\_to\_get}]} \textbf{if} \textbf{len}(\textit{indices}) $>$ \textit{n\_samples\_to\_get} \textbf{else} \textit{indices}
-		\If{\textit{samples} \textbf{is} None}
-		\State \textit{samples} $\gets$ \{'shas': [\textit{indices}],
-		\State \hskip5.6em 'labels': \textit{labels}[\textit{indices}],
-		\State \hskip5.6em 'features': \textit{features}[\textit{indices}],
-		\State \hskip5.6em 'embeddings': \textit{embeddings}[\textit{indices}]\}
-		\Else
-		\State \textit{samples}['shas'].\textbf{extend}(\textit{shas}[\textit{indices}])
-		\State \textit{samples}['labels'].\textbf{extend}(\textit{labels}[\textit{indices}])
-		\State \textit{samples}['features'].\textbf{extend}(\textit{features}[\textit{indices}])
-		\State \textit{samples}['embeddings'].\textbf{extend}(\textit{embeddings}[\textit{indices}])
-		\EndIf
-		\State
-		\State \textit{samples\_families}[\textit{n}] $\gets$ \textit{samples\_families}[\textit{n}] + \textbf{len}(\textit{indices})
-		\EndFor
-		\State
-		\If{\textbf{all}(\textit{n} $ge$ \textit{n\_samples\_to\_get} $\forall$ \textit{n} $\in$ \textit{samples\_families})}
-		\textbf{break}
-		\EndIf
-		\EndFor
-		\State
-		\State \textbf{return} \textit{samples}
+			\Function{GetSamples}{\textit{model}, \textit{generator}, \textit{n\_families}, \textit{n\_samples\_to\_get}, \textit{other}}
+			\State \textit{samples} $\gets$ None
+			\State \textit{samples\_families} $\gets$ [0 $\forall$ \_ $\in$ \textbf{range}(\textit{n\_families})]
+			\State
+			\ForAll{\textit{shas}, \textit{features}, \textit{labels} $\in$ \textit{generator}}
+				\If{\textit{other} \textbf{is not} None}
+					\State \textit{indices} $\gets$ [\textit{i} $\forall$ \textit{i}, \textit{sha} $\in$\ \textbf{enumerate}(\textit{shas}) \textbf{if} \textit{sha} \textbf{not in} \textit{other}['shas']]
+					\State \textit{shas} $\gets$ [\textit{shas}[\textit{i}] $\forall$ \textit{i} $\in$ \textit{indices}]
+					\State \textit{features} $\gets$ \textit{features}[\textit{indices}]
+					\State \textit{labels} $\gets$ \textit{labels}[\textit{indices}]
+				\EndIf
+				\State
+				\State \textit{embeddings} $\gets$ \textit{model}.\textbf{GetEmbedding}(\textit{features})['embedding']
+				\ForAll{\textit{n} $\in$ \textbf{range}(\textit{n\_families})}
+					\If{\textit{samples\_families}[\textit{n}] $\ge$ \textit{n\_samples\_to\_get}}
+						\textbf{continue}
+					\EndIf
+					\State
+					\State \textit{indices} $\gets$ [\textit{i} $\forall$ \textit{i}, \textit{label} $\in$ \textbf{enumerate}(\textit{labels}) \textbf{if} \textit{label} = \textit{n}]
+					\State \textit{indices} $\gets$ \textit{indices}[:\textit{n\_samples\_to\_get}] \textbf{if} \textbf{len}(\textit{indices}) $>$ \textit{n\_samples\_to\_get} \textbf{else} \textit{indices}
+					\If{\textit{samples} \textbf{is} None}
+						\State \textit{samples} $\gets$ \{'shas': \textit{shas}[\textit{indices}],
+						\State \hskip5.6em 'labels': \textit{labels}[\textit{indices}],
+						\State \hskip5.6em 'features': \textit{features}[\textit{indices}],
+						\State \hskip5.6em 'embeddings': \textit{embeddings}[\textit{indices}]\}
+					\Else
+						\State \textit{samples}['shas'].\textbf{extend}(\textit{shas}[\textit{indices}])
+						\State \textit{samples}['labels'].\textbf{extend}(\textit{labels}[\textit{indices}])
+						\State \textit{samples}['features'].\textbf{extend}(\textit{features}[\textit{indices}])
+						\State \textit{samples}['embeddings'].\textbf{extend}(\textit{embeddings}[\textit{indices}])
+					\EndIf
+					\State
+					\State \textit{samples\_families}[\textit{n}] $\gets$ \textit{samples\_families}[\textit{n}] + \textbf{len}(\textit{indices})
+				\EndFor
+				\State
+					\If{\textbf{all}(\textit{n} $\ge$ \textit{n\_samples\_to\_get} $\forall$ \textit{n} $\in$ \textit{samples\_families})}
+					\textbf{break}
+				\EndIf
+			\EndFor
+			\State
+			\State \textbf{return} \textit{samples}
 		\EndFunction
 	\end{algorithmic}
 \end{algorithm}
 
-The \textbf{GetSamples} function (alg. \ref{alg:getSamplesFunction}), used by functions \textit{EvaluateFreshScores} and \textit{EvaluateFreshRankings} and presented in alg. \ref{alg:getSamplesFunction} selects '\textit{n\_samples\_to\_get}' samples for each of the '\textit{n\_families}' families from the provided \textit{generator} (fresh dataset) excluding samples present in the '\textit{other}' set (if provided). In order to do this, the function cycles through the provided \textit{generator} and gets the \textit{shas}, \textit{labels}, \textit{features} and \textit{embedding} of the samples not in the '\textit{other}' set and then selects, for each family, as many samples as possible until all families have exactly '\textit{n\_samples\_to\_get}' samples.
+The \textbf{GetSamples} function, used by functions \textit{EvaluateFreshScores} and \textit{EvaluateFreshRankings} and presented in alg. \ref{alg:getSamplesFunction} selects '\textit{n\_samples\_to\_get}' samples for each of the '\textit{n\_families}' families from the provided \textit{generator} (fresh dataset) excluding samples present in the '\textit{other}' set (if provided). In order to do this, the function cycles through the provided \textit{generator} and gets the \textit{shas}, \textit{labels}, \textit{features} and \textit{embedding} of the samples not in the '\textit{other}' set and then selects, for each family, as many samples as possible until all families have exactly '\textit{n\_samples\_to\_get}' samples.
 
 \vspace{-0.4cm}
 \subsubsection{Fresh Results Computation and Plotting}
@@ -3723,7 +3724,7 @@ The \textbf{GetSamples} function (alg. \ref{alg:getSamplesFunction}), used by fu
 \end{figure}
 \vspace{-0.3cm}
 
-The actual binary cross entropy statistics trends for the \textit{f-way} malware family classification task (\textit{Accuracy}, \textit{Recall}, \textit{precision} etc..) and the resulting \textit{AUC-ROC} score trends are computed, plotted and saved to file by a distinct set of functions which are not presented in this document given that they simply implement and apply the corresponding mathematical formulas.
+The actual trends of the binary cross entropy statistics for the \textit{f-way} malware family classification task (\textit{Accuracy}, \textit{Recall}, \textit{precision} etc..) and the resulting \textit{AUC-ROC} scores are computed, plotted and saved to file by a distinct set of functions which are not presented in this document given that they simply implement and apply the corresponding mathematical formulas.
 
 \section{Malware Family Classifier}
 Given the \textbf{MTJE} model relatively poor results in the Malware Family Classification task (which it was never trained for), the next step was the development of a \textbf{Malware Family Classifier} specifically trained (and tested) on the fresh dataset (which contains information about the malware family each sample belongs to) for such task. However, this dataset, which contains $10.000$ samples divided in $7.000$ training, $1.000$ validation and $2.000$ test samples, is arguably too small to produce a general enough model able to reliably predict the family label for each malware sample without overfitting on the training sub-split. This problem was therefore tackled with the aid of \textbf{transfer learning}.
