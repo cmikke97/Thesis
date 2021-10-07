@@ -3296,24 +3296,24 @@ If the \textbf{MTJE} model performs well enough on the malware family \textit{pr
 
 The \textbf{MTJE} model implementation (fig. \ref{fig:MTJE_Model}) consists of 3 main topologies: the \textit{Shared Model Base} sub-network, the \textit{Tag Embedding} and the multiple parallel \textit{Output Heads}.
 
-The model \textit{shared base} topology is composed of 5 sequential dense blocks of output sizes 1024, 768, 512, 512 and 512 respectively. These dense blocks have the same form as those used in the \textit{ALOHA} and \textit{Joint Embedding} model implementations described above (in \ref{sec:alohaModelImplementation} and \ref{sec:jointEmbeddingModelImplementation} respectively): in particular a linear layer with dropout is used, followed by batch normalization and ReLU activation function. Again at network definition it is possible to dynamically set the parameters for this base topology such as the exact number of layers, the linear layer's sizes, the dropout probability $p_d$, the normalization function and the non-linear activation function used. This \textit{shared base} topology transforms a given input sample feature vector $\textbf{x}$ (of size 2381) into its intermediate representation $h$ of size 512 which is then used as input to the parallel output heads. 
+The model \textit{shared base} topology is composed of 5 sequential dense blocks of output sizes 1024, 768, 512, 512 and 512 respectively. These dense blocks have the same form as those used in the \textit{ALOHA} and \textit{Joint Embedding} model implementations described above (in \ref{sec:alohaModelImplementation} and \ref{sec:jointEmbeddingModelImplementation} respectively): in particular a linear layer with dropout is used, followed by batch normalization and ReLU activation function. Again, at network definition it is possible to dynamically set the parameters for this base topology such as the exact size and number of linear layers, the dropout probability $p_d$, the normalization function and the non-linear activation function used. This \textit{shared base} topology transforms a given input sample feature vector $\textbf{x}$ (of size 2381) into its intermediate representation $h$ of size 512 which is then used as input to the parallel output heads. 
 
-The \textit{Tag Embedding} matrix $\textbf{E} \in \mathbb{R}^{T \times 32}$, which maps the tags to their corresponding representation in the Joint Embedding space, is the same as the one used in the \textit{Joint Embedding} model implementation (\ref{sec:jointEmbeddingModelImplementation}) and is therefore also equal to the one used in the original implementation described in \cite{DucauAMDATSE}. This matrix is used as second input for the \textit{Prediction Layer} of the tag output head.
+The \textit{Tag Embedding} matrix $\textbf{E} \in \mathbb{R}^{T \times 32}$, which maps the tags to their corresponding representation in the Joint Embedding space, is the same as the one used in the \textit{Joint Embedding} model implementation (\ref{sec:jointEmbeddingModelImplementation}) and is therefore also equal to the one used in the original implementation described in \cite{DucauAMDATSE}. This matrix is used as second input for the \textit{Prediction Layer} of the tags prediction output head.
 
-Similarly to the \textit{ALOHA} model implementation (\ref{sec:alohaModelImplementation}), this model uses multiple parallel \textit{output heads}, each relative to a different task, whose values are jointly optimized during training by back-propagating the gradients computed from an aggregate loss. In particular, the tasks used in this case are: the \textit{Malicious/Benign label} prediction task (optional), the \textit{Vendor Count} estimation task (optional) and the \textit{SMART Tag} prediction task based on the similarity between samples' and tags' embeddings. The first two output heads (the \textit{Malicious/Benign label} prediction head and the \textit{Vendor Count} estimation head) are the same ones used in the \textit{ALOHA} model implementation (\ref{sec:alohaModelImplementation}) and can optionally be turned on or off at network definition.
+Similarly to the \textit{ALOHA} model implementation (\ref{sec:alohaModelImplementation}), this model uses multiple parallel \textit{output heads}, each relative to a different task, whose parameters are jointly optimized during training by back-propagating the gradients computed from an aggregate loss. In particular, the tasks used in this case are: the \textit{Malicious/Benign label} prediction task (optional), the \textit{Vendor Count} estimation task (optional) and the \textit{SMART Tags} prediction task. The first two output heads (the \textit{Malicious/Benign label} prediction head and the \textit{Vendor Count} estimation head) are the same as those used in the \textit{ALOHA} model implementation (\ref{sec:alohaModelImplementation}) and can optionally be turned on or off at network definition.
 
-In particular, the \textit{Malicious/Benign} label prediction head is composed of a single dense layer followed by the \textit{sigmoid} non-linearity. The loss between the output of the malware/benign head $f_{mal}(x)$ and the ground truth label $y_{mal}$ is computed using the binary cross-entropy loss function.
+In particular, the \textit{Malicious/Benign} label prediction head is composed of a single dense layer followed by the \textit{sigmoid} non-linearity. The loss between the output of the malicious/benign label prediction head $f_{mal}(x)$ and the ground truth label $y_{mal}$ is computed using the binary cross-entropy loss function.
 
 The \textit{Vendor Count} prediction head, instead, consists of a single linear layer, followed by the ReLU non-linearity, whose parameters are updated in order to optimize the negative log-likelihood loss, as described in \ref{par:VendorCountLoss} (and \cite{ruddALOHA}), between the predicted and the ground truth count value.
 
-The \textit{Tag} prediction head, on the other hand, is always on and consists of the same components used in the \textit{Joint Embedding} model implementation (\ref{sec:jointEmbeddingModelImplementation}): the linear layer which maps each sample intermediate representation $h$ to its \textit{PE Embedding} in the \textbf{Joint Embedding space} and the \textit{Prediction Layer}, which produces a similarity score matrix between samples' and tags' embeddings. The resulting matrix is then run through a \textit{sigmoid} non-linearity (by value) to produce the tags probabilities for sample $\textbf{x}$. The similarity function used in this model can be chosen to be one of the following at network definition: \textit{dot product} (\ref{eq:DotProduct}), \textit{cosine similarity} (\ref{eq:CosineSimilarity}) or one of the \textit{inverse Euclidean distances} (\textit{exp} (\ref{eq:EuclideanExpSimilarity}), \textit{inv} (\ref{eq:EuclideanInvSimilarity}) or \textit{inv\_pow} (\ref{eq:EuclideanInvPowSimilarity})). The loss for the \textit{Tag prediction head} is computed as the sum over all tags of the individual cross entropy losses between the predicted tags and the ground truth labels, as described in \ref{par:tagPredictionImplementation} (and \cite{DucauAMDATSE}).
+The \textit{Tag} prediction head, on the other hand, is always on and consists of the same components used in the \textit{Joint Embedding} model implementation (\ref{sec:jointEmbeddingModelImplementation}): the linear layer which maps each sample intermediate representation $\textbf{h}$ to its \textit{PE Embedding} in the \textbf{Joint Embedding space} and the \textit{Prediction Layer}, which produces a similarity score matrix between sample and tag embeddings. The resulting matrix is then run through a \textit{sigmoid} non-linearity (by value) to produce the tags probabilities for sample $\textbf{x}$. The similarity function used in this model can be chosen from one of the following at network definition: \textit{dot product} (\ref{eq:DotProduct}), \textit{cosine similarity} (\ref{eq:CosineSimilarity}) or one of the \textit{inverse Euclidean distances} (\textit{exp} (\ref{eq:EuclideanExpSimilarity}), \textit{inv} (\ref{eq:EuclideanInvSimilarity}) or \textit{inv\_pow} (\ref{eq:EuclideanInvPowSimilarity})). The loss for the \textit{Tag prediction head} is computed as the sum over all tags of the individual cross entropy losses between the predicted tags and the ground truth labels, as described in \ref{par:tagPredictionImplementation} (and \cite{DucauAMDATSE}).
 
-Finally the individual head losses are aggregated together by computing their weighted sum. Different weights can be assigned to the distinct heads in order to tune their importance in the final loss term, in turn affecting how the model's parameters are updated during back-propagation.
+Finally the individual head losses are aggregated together by computing their weighted sum. Different weights can be assigned to the distinct heads in order to tune their importance in the final loss term, in turn affecting how the model parameters are updated during back-propagation.
 
 \subsubsection{Net Definition}
-As presented by algorithm \ref{alg:mtjeModelNetInit} (\textbf{\textit{MTJE} model init function}), the \textbf{\textit{MTJE}} model is initialized first by defining the \textit{model shared topology} (\textit{model\_base}) as a sequence of blocks composed each of a linear layer, a Normalization layer, an activation function and dropout, exactly as previously done for the \textbf{\textit{ALOHA}} and \textbf{\textit{Joint Embedding}} model implementations. Next, similarly to the \textbf{\textit{Joint Embedding}} implementation, the \textit{pe\_embedding} topology and the \textit{tags\_embedding} matrix are defined: the first as a single linear layer with output size equal to the \textit{embedding\_dimension} ($=32$), followed by a Normalization layer and an activation function, and the latter as an embedding matrix of size (\textit{n\_tags}, \textit{embedding\_dimension}). The most important novelty compared to the \textbf{\textit{Joint Embedding}} model is the presence of also the \textit{Malicious/Benign} label and \textit{Vendor Count} prediction heads from the \textbf{\textit{ALOHA}} model implementation. In particular, the \textit{Malicious/Benign} (\textit{malware\_head}) is defined as a linear layer of output size 1 immediately followed by a \textit{sigmoid} non linearity. The \textit{Vendor Count} head (\textit{count\_head}), on the other hand, is set to be a simple linear layer trailed by the \textit{ReLU} non-linearity.
+As presented by algorithm \ref{alg:mtjeModelNetInit} (\textbf{\textit{MTJE} model, \textit{Init} function}), the \textbf{\textit{MTJE}} model is initialized first by defining the \textit{model shared topology} (\textit{model\_base}) as a sequence of blocks composed each of a linear layer, a Normalization layer, an activation function and dropout, exactly as previously done for the \textbf{\textit{ALOHA}} and \textbf{\textit{Joint Embedding}} model implementations. Next, similarly to the \textbf{\textit{Joint Embedding}} implementation, the \textit{pe\_embedding} topology and the \textit{tags\_embedding} matrix are defined: the first as a single linear layer with output size equal to the \textit{embedding\_dimension} ($=32$), followed by a Normalization layer and an activation function, and the latter as an embedding matrix of size (\textit{n\_tags}, \textit{embedding\_dimension}). The most important novelty compared to the \textbf{\textit{Joint Embedding}} model is the presence of also the \textit{Malicious/Benign} label and \textit{Vendor Count} prediction heads from the \textbf{\textit{ALOHA}} model implementation. In particular, the \textit{Malicious/Benign} head (\textit{malware\_head}) is defined as a linear layer of output size 1 immediately followed by a \textit{sigmoid} non-linearity. The \textit{Vendor Count} head (\textit{count\_head}), on the other hand, is set to be a simple linear layer trailed by the \textit{ReLU} non-linearity.
 
-\begin{algorithm}[h!]
+\begin{algorithm}[H]
 	\caption{MTJE Model Net class, Init function}\label{alg:mtjeModelNetInit}
 	\begin{algorithmic}[1]
 		\Class{Net}
@@ -3360,7 +3360,7 @@ As presented by algorithm \ref{alg:mtjeModelNetInit} (\textbf{\textit{MTJE} mode
 	\end{algorithmic}
 \end{algorithm}
 
-The input data (PE files' numerical feature vectors) is forwarded through the model as shown in alg. \ref{alg:mtjeModelNetForwardDotProduct} (\textbf{\textit{MTJE} model forward function (with \textit{dot product})}). In particular, it first passes through the model base topology (\textit{model\_base}) to produce an intermediate representation \textit{base\_out} which is then forwarded to the various parallel output heads. The \textit{malware label prediction head} and the \textit{vendor count prediction head}, if enabled, produce the corresponding predictions given as input the transient latent representation \textit{base\_out}. On the other hand, for the \textit{tags prediction} topology, the intermediate representation \textit{base\_out} is fed into the \textit{pe\_embedding} sub-net producing the latent representation of the input data samples in the joint embedding space (PE embedding). The tag similarity scores are then computed by applying the dot product (via a simple matrix multiplication) between the PE embedding and the tags embedding matrix (\textit{tags\_embedding}). Finally, the tags probability predictions are produced by applying the \textit{sigmoid} activation function on the previously computed similarity scores.
+The input data (numerical feature vectors of PE files) is forwarded through the model as shown in alg. \ref{alg:mtjeModelNetForwardDotProduct} (\textbf{\textit{MTJE} model, \textit{Forward} function (with \textit{dot product})}). In particular, it first passes through the model base topology (\textit{model\_base}) to produce an intermediate representation \textit{base\_out} which is then forwarded to the various parallel output heads. The \textit{malware label prediction head} and the \textit{vendor count prediction head}, if enabled, produce the corresponding predictions given as input the transient latent representation \textit{base\_out}. On the other hand, for the \textit{tags prediction} topology, the intermediate representation \textit{base\_out} is fed into the \textit{pe\_embedding} sub-net producing the latent representation of the input data samples in the joint embedding space (PE embedding). The tag similarity scores are then computed by applying the dot product (via a simple matrix multiplication) between the PE embedding and the tags embedding matrix (\textit{tags\_embedding}). Finally, the tags probability predictions are produced by applying the \textit{sigmoid} activation function on the previously computed similarity scores.
 
 \begin{algorithm}[h!]
 	\caption{MTJE Model Net class, Forward function (with \textit{Dot Product})}\label{alg:mtjeModelNetForwardDotProduct}
@@ -3379,7 +3379,7 @@ The input data (PE files' numerical feature vectors) is forwarded through the mo
 		\EndIf
 		\State
 		\State \textit{pe\_embedding} $\gets$ \textit{self}.\textit{pe\_embedding}(\textit{base\_out})
-		\State \textit{tags\_embedding} $\gets$ \textit{self}.\textit{tags\_embedding}((\textbf{Dataset}.\textit{encoded\_tags}))
+		\State \textit{tags\_embedding} $\gets$ \textit{self}.\textit{tags\_embedding}(\textbf{Dataset}.\textit{encoded\_tags})
 		\State \textit{rv}['similarity'] $\gets$ \textbf{torch.matmul}(\textit{pe\_embedding}, \textit{tags\_embedding}.\textbf{T})
 		\State \textit{rv}['probability'] $\gets$ \textit{self}.\textit{sigmoid}(\textit{similarity\_scores})
 		\State
@@ -3422,77 +3422,77 @@ The input data (PE files' numerical feature vectors) is forwarded through the mo
 	\end{algorithmic}
 \end{algorithm}
 
-If, however, the user chooses to try a different similarity function other than the \textbf{\textit{dot product}}, two alternatives are available: the \textbf{\textit{cosine similarity}} or the \textbf{\textit{inverted pairwise euclidean distance}}. In particular both the \textbf{\textit{MTJE} model forward function (with \textit{cosine similarity})}, shown in alg. \ref{alg:mtjeModelNetForwardCosine}, and the \textbf{\textit{MTJE} model forward function (with \textit{inverted pairwise Euclidean (IPE) distance})}, shown in alg. \ref{alg:mtjeModelNetForwardPairwiseDistance}, are for the most part identical to the original forward function but for the computation of the similarity scores. The \textit{cosine similarity} version of this function, in fact, computes the similarity scores as the cosine similarities between the PE files' and tags' embeddings, which are values in the range $[-1,1]$, normalized to the $[0,1]$ interval. On the other hand, the \textit{inverted pairwise Euclidean distance} version computes those scores as the euclidean distances between the two embeddings, inverted through the \textbf{\textit{DistanceToSimilarity}} function already mentioned in sec. \ref{sec:jointEmbeddingNetDefinitionCode}. Again, similarly to what was done in the \textit{Joint Embedding} model implementation, in both cases the final tag probabilities coincide with the computed similarity scores.
+If, however, the user chooses to try a different similarity function other than the \textbf{\textit{dot product}}, two alternatives are available: the \textbf{\textit{cosine similarity}} or the \textbf{\textit{inverted pairwise euclidean (IPE) distance}}. In particular both the \textbf{\textit{MTJE} model \textit{Forward} function (with \textit{cosine similarity})}, shown in alg. \ref{alg:mtjeModelNetForwardCosine}, and the \textbf{\textit{MTJE} model \textit{Forward} function (with \textit{inverted pairwise Euclidean (IPE) distance})}, shown in alg. \ref{alg:mtjeModelNetForwardPairwiseDistance}, are for the most part identical to the original forward function but for the computation of the similarity scores. The version of this function that uses the \textit{cosine similarity}, in fact, computes the similarity scores as the cosine similarities between the sample and tag embeddings, which are values in the range $[-1,1]$, normalizing them to the $[0,1]$ interval. On the other hand, the version which uses the \textit{inverted pairwise Euclidean distance} computes those scores as the euclidean distances between the two embeddings, inverted using the \textbf{\textit{DistanceToSimilarity}} function already mentioned in sec. \ref{sec:jointEmbeddingNetDefinitionCode}. Again, similarly to what was done in the \textit{Joint Embedding} model implementation, in both cases the final tag probabilities coincide with the computed similarity scores.
 
-The \textbf{MTJE} model implementation uses exactly the same \textbf{\textit{GetEmbedding}} and \textbf{\textit{GetSimilarity}} functions as the ones used in the \textbf{\textit{Joint Embedding}} model implementation, shown in alg. \ref{alg:jointEmbeddingNetGetEmbedding}. Again, these functions are particularly useful when performing evaluations on the learned embedding.
+The \textbf{MTJE} model implementation uses exactly the same \textbf{\textit{GetEmbedding}} and \textbf{\textit{GetSimilarity}} functions as those used in the \textbf{\textit{Joint Embedding}} model implementation, shown in alg. \ref{alg:jointEmbeddingNetGetEmbedding}. Again, these functions are particularly useful when performing evaluations on the learned embedding.
 
 \begin{algorithm}[h!]
 	\caption{MTJE Model Net class, Compute Loss function}\label{alg:mtjeModelNetComputeLoss}
 	\begin{algorithmic}[1]
 		\algrestore{bkbreak}
-		\Function{ComputeLoss}{\textit{predictions}, \textit{labels}, \textit{loss\_wts}}
-		\If{\textit{loss\_wts} \textbf{is} None}
-		\State \textit{loss\_wts} $\gets$ \{'malware': 1.0, 'count': 0.1, 'tags': 1.0\}
-		\EndIf
-		\State \textit{loss\_dict} $\gets$ \{'total': 0.\}
-		\State
-		\If{'malware' $\in$ \textit{labels}}
-		\State \textit{malware\_loss} $\gets$ \textbf{Binary\_cross\_entropy}(\textit{predictions}['malware'], \textit{labels}['malware'])
-		\If{'malware' $\in$ \textit{loss\_wts}}
-		\State \textit{weight} $\gets$ \textit{loss\_wts}['malware']
-		\Else
-		\State \textit{weight} $\gets$ 1.0
-		\EndIf
-		\State
-		\State \textit{loss\_dict}['malware'] $\gets$ \textit{malware\_loss}
-		\State \textit{loss\_dict}['total'] $\gets$ \textit{loss\_dict}['total'] $+$ \textit{malware\_loss} $\times$ \textit{weight}
-		\EndIf
-		\State			
-		\If{'count' $\in$ \textit{labels}}
-		\State \textit{count\_loss} $\gets$ \textbf{PoissonNLLLoss}(\textit{predictions}['count'], \textit{labels}['count'])
-		\If{'count' $\in$ \textit{loss\_wts}}				
-		\State \textit{weight} $\gets$ \textit{loss\_wts}['count']
-		\Else
-		\State \textit{weight} $\gets$ 1.0
-		\EndIf
-		\State				
-		\State \textit{loss\_dict}['count'] $\gets$ \textit{count\_loss}				
-		\State \textit{loss\_dict}['total'] $\gets$ \textit{loss\_dict}['total'] $+$ \textit{count\_loss} $\times$ \textit{weight}
-		\EndIf
-		\State			
-		\If{'tags' $\in$ \textit{labels}}
-		\State \textit{similarity\_loss} $\gets$ \textbf{Binary\_cross\_entropy}(\textit{predictions}['probability'], \textit{labels}['tags'],
-		\State \hskip1.9em reduction='none').\textbf{sum}(dim=1).\textbf{mean}(dim=0)
-		\If{'tags' $\in$ \textit{loss\_wts}}
-		\State \textit{weight} $\gets$ \textit{loss\_wts}['tags']
-		\Else
-		\State \textit{weight} $\gets$ 1.0
-		\EndIf
-		\State				
-		\State \textit{loss\_dict}['jointEmbedding'] $\gets$ \textit{similarity\_loss}
-		\State \textit{loss\_dict}['total'] $\gets$ \textit{loss\_dict}['total'] $+$ \textit{similarity\_loss} $\times$ \textit{weight}
-		\EndIf
-		\State
-		\State \textbf{return} \textit{loss\_dict}
-		\EndFunction
+			\Function{ComputeLoss}{\textit{predictions}, \textit{labels}, \textit{loss\_wts}}
+				\If{\textit{loss\_wts} \textbf{is} None}
+					\State \textit{loss\_wts} $\gets$ \{'malware': 1.0, 'count': 0.1, 'tags': 1.0\}
+				\EndIf
+				\State \textit{loss\_dict} $\gets$ \{'total': 0.\}
+				\State
+				\If{'malware' $\in$ \textit{labels}}
+					\State \textit{malware\_loss} $\gets$ \textbf{Binary\_cross\_entropy}(\textit{predictions}['malware'], \textit{labels}['malware'])
+					\If{'malware' $\in$ \textit{loss\_wts}}
+						\State \textit{weight} $\gets$ \textit{loss\_wts}['malware']
+						\Else
+						\State \textit{weight} $\gets$ 1.0
+					\EndIf
+					\State
+					\State \textit{loss\_dict}['malware'] $\gets$ \textit{malware\_loss}
+					\State \textit{loss\_dict}['total'] $\gets$ \textit{loss\_dict}['total'] $+$ \textit{malware\_loss} $\times$ \textit{weight}
+				\EndIf
+				\State			
+				\If{'count' $\in$ \textit{labels}}
+					\State \textit{count\_loss} $\gets$ \textbf{PoissonNLLLoss}(\textit{predictions}['count'], \textit{labels}['count'])
+					\If{'count' $\in$ \textit{loss\_wts}}				
+						\State \textit{weight} $\gets$ \textit{loss\_wts}['count']
+						\Else
+						\State \textit{weight} $\gets$ 1.0
+					\EndIf
+					\State				
+					\State \textit{loss\_dict}['count'] $\gets$ \textit{count\_loss}				
+					\State \textit{loss\_dict}['total'] $\gets$ \textit{loss\_dict}['total'] $+$ \textit{count\_loss} $\times$ \textit{weight}
+				\EndIf
+				\State			
+				\If{'tags' $\in$ \textit{labels}}
+					\State \textit{similarity\_loss} $\gets$ \textbf{Binary\_cross\_entropy}(\textit{predictions}['probability'], \textit{labels}['tags'],
+					\State \hskip1.9em reduction='none').\textbf{sum}(dim=1).\textbf{mean}(dim=0)
+					\If{'tags' $\in$ \textit{loss\_wts}}
+						\State \textit{weight} $\gets$ \textit{loss\_wts}['tags']
+						\Else
+						\State \textit{weight} $\gets$ 1.0
+					\EndIf
+					\State
+					\State \textit{loss\_dict}['jointEmbedding'] $\gets$ \textit{similarity\_loss}
+					\State \textit{loss\_dict}['total'] $\gets$ \textit{loss\_dict}['total'] $+$ \textit{similarity\_loss} $\times$ \textit{weight}
+				\EndIf
+				\State
+				\State \textbf{return} \textit{loss\_dict}
+			\EndFunction
 		\EndClass
 	\end{algorithmic}
 \end{algorithm}
 
-Finally, algorithm \ref{alg:mtjeModelNetComputeLoss} (\textbf{\textit{MTJE} model compute loss function}) describes how the \textbf{MTJE} model loss computation is implemented in \textit{Python}/\textit{Pytorch} code. In particular the final total loss corresponds to the weighted sum of the losses from each enabled output head. The weights used in this computation can be defined by the user at network definition. Both the \textit{Malicious/Benign} label prediction loss and the \textit{Vendor Count} prediction loss computations were taken from the \textbf{\textit{ALOHA}} model implementation. Therefore the first is implemented as the \textbf{binary cross entropy loss} between the predicted malware label and the respective ground truth label, the latter instead corresponds to the \textbf{Negative Log Likelihood with Poisson distribution} between the predicted count and the ground truth value. On the other hand, the \textit{Tags} prediction loss computation is taken from the \textbf{\textit{Joint Embedding}} model implementation and is therefore the per-sample mean of all tag losses, each of which is computed as the \textbf{binary cross entropy} loss between the predicted tag probability and the ground truth tag.
+Finally, algorithm \ref{alg:mtjeModelNetComputeLoss} (\textbf{\textit{MTJE} model, \textit{ComputeLoss} function}) describes how the \textbf{MTJE} model loss computation is implemented in \textit{Python}/\textit{Pytorch} code. In particular the final total loss corresponds to the weighted sum of the losses from each enabled output head. The weights used in this computation can be defined by the user at network definition. The loss computation code regarding the \textit{Malicious/Benign} label prediction and the \textit{Vendor Count} prediction heads was taken from the \textbf{\textit{ALOHA}} model implementation. The first loss is thus implemented as the \textbf{binary cross entropy loss} between the predicted malware label and the respective ground truth label, the latter instead corresponds to the \textbf{Negative Log Likelihood with Poisson distribution} between the predicted count and the ground truth value. On the other hand, the \textit{Tags} prediction loss computation is taken from the \textbf{\textit{Joint Embedding}} model implementation and is therefore the mean of the per-sample sum of all tag losses, each of which is computed as the \textbf{binary cross entropy} loss between the predicted tag probability and the ground truth tag.
 
 \subsection{Experiments}
-The proposed \textbf{MTJE} model was trained multiple times for 10 \textit{epochs} on the first $6M$ training and $1.153.846$ validation samples of the pre-processed Sorel20M dataset (loaded with generator \textit{\textbf{alt3}}) with both the optional output heads (\textit{Malicious/Benign} label prediction and \textit{Vendor Count} prediction) on, changing the network hyper-parameters like the number of layers, layers dimensions (number of hidden units per layer), normalization function, activation function and dropout value for the base topology. Other hyper-parameters that were iteratively changed were the used optimizer (\textbf{Adam} or \textbf{SGD}), learning rate (LR), momentum, weight decay, loss weights and the similarity score function used (chosen between the \textit{dot product}, the \textit{cosine similarity} and one of the \textit{inverted Euclidean Distances}: \textit{exp}, \textit{inv} or \textit{inv\_pow}).
+The proposed \textbf{MTJE} model was trained multiple times for 10 \textit{epochs} on the first $6M$ training and $1.153.846$ validation samples of the pre-processed Sorel20M dataset (loaded with generator \textit{\textbf{alt3}}) with both the optional output heads (\textit{Malicious/Benign} label prediction and \textit{Vendor Count} prediction) on. Each run the model was trained with different network hyper-parameters like the size (number of hidden units per layer) and number of layers, normalization function, activation function and dropout value for the base topology. Other hyper-parameters that were iteratively changed were the used optimizer (\textbf{Adam} or \textbf{SGD}), learning rate (LR), momentum, weight decay, loss weights and the similarity score function used (chosen between the \textit{dot product}, the \textit{cosine similarity} and one of the \textit{inverted Euclidean Distances}: \textit{exp}, \textit{inv} or \textit{inv\_pow}).
 
 Then, for the evaluation of the resulting model the first $1.846.154$ test samples of the Sorel20M pre-processed dataset were used to asses the model \textit{TPR}, \textit{accuracy}, \textit{recall}, \textit{precision}, \textit{f1 score}, \textit{Jaccard similarity}, and \textit{mean-per-sample accuracy} at different \textit{FPRs} of interest (particularly at $FPR=1\%$) for the tags and malicious/benign label prediction task, as well as the corresponding ROC curves and AUC scores.
 
-Moreover, this model learned samples' representation (embedding), together with the \textit{Joint Embedding} model implementation one, was also tested on the fresh dataset, which contains $10.000$ malicious samples belonging to $10$ different malware families to asses its performance in the malware family classification and ranking tasks with respect to the mentioned previous method. The malware families represented by the fresh dataset were chosen among the most wide-spread PE malware families present in Italy at the time of writing (as reported by \cite{CERTAGID}) for which \textit{Malware Bazaar} \cite{MalwareBazaar} provided at least $1.000$ samples.
+Moreover, this model learned representation (embedding) of PE samples, together with the \textit{Joint Embedding} model one, was also tested on the \textbf{Fresh Dataset} - which contains $10.000$ malicious samples belonging to $10$ different malware families - to asses its performance in the malware family classification and ranking tasks with respect to the mentioned previous methods. The malware families represented by the fresh dataset were chosen among the most wide-spread PE malware families present in Italy at the time of writing (as reported by \cite{CERTAGID}) for which \textit{Malware Bazaar} \cite{MalwareBazaar} provided at least $1.000$ samples.
 
-In particular, the learned representation was first evaluated on the task of \textit{f-way} family classification via nearest neighbour search as previously described in \ref{par:fWayFamilyClassificationEvaluation} by randomly sampling $k$ ($\in [1, 10]$) anchor samples and $q$ ($=23$) query samples, per-family, and assigning to the $(f \times q = 230)$ query samples the same class as their closest anchor sample in feature space. The sampling process (for both anchors and query samples), classification and evaluation was repeated 15 times per value of $k$ to obtain uncertainty estimates for the results. The trends of some binary cross entropy statistics like \textit{accuracy}, \textit{precision}, \textit{recall} and \textit{f1-score} were computed along with the ROC-AUC score trends and some confusion matrixes.
+In particular, the learned representation was first evaluated on the task of \textit{f-way} family classification via nearest neighbour search as previously described in \ref{par:fWayFamilyClassificationEvaluation} by randomly sampling $k$ ($\in [1, 10]$) anchor samples and $q$ ($=23$) query samples, per-family, and assigning to the $(f \times q = 230)$ query samples the same class as their closest anchor in embedding space. The sampling (for both anchors and query samples), classification and evaluation processes were repeated 15 times per value of $k$ to obtain uncertainty estimates for the results. The trends of some binary cross entropy statistics like \textit{accuracy}, \textit{precision}, \textit{recall} and \textit{f1-score} were computed along with the ROC-AUC score trends and some confusion matrixes.
 
-Then, the learned embedding was evaluated on the malware family ranking task (as described in \ref{par:FamilyRankingEvaluation}) by randomly selecting \textit{\textbf{q}} (100) query samples from the fresh dataset and computing, for each of them, the ranking of the other $n_{samples} - 1 = 9.999$, ordering them by similarity. Then, given the resulting rankings, the \textbf{MAP} and \textbf{MRR} scores were calculated.
+Then, the learned embedding was evaluated on the malware family ranking task (as described in \ref{par:FamilyRankingEvaluation}) by randomly selecting \textit{\textbf{q}} ($= 100$) query samples from the \textit{Fresh Dataset} and computing, for each of them, the ranking of the other $n_{samples} - 1 = 9.999$, ordering them by similarity. Then, given the resulting rankings, the \textbf{MAP} and \textbf{MRR} scores were calculated.
 
-The final \textbf{MTJE} model architecture consisted of 5 layers of sizes 1024, 768, 512, 512, 512 respectively (keeping them consistent to the \textit{ALOHA} and \textit{Joint Embedding} model implementation in order to be able to compare their results), with dropout probability $p_d=5\%$, \textit{Batch} normalization, \textbf{ReLU} activation function and the \textit{dot product} as similarity score function. The training was carried out with a learning rate $LR=10^{-3}$, \textbf{Adam} optimizer, no momentum nor weight decay, and loss weights set to 1.0 for the malicious/benign head, 0.1 for the count head and 1.0 for the SMART tag (joint embedding) head.
+The final \textbf{MTJE} model architecture consisted of 5 layers of sizes 1024, 768, 512, 512, and 512, respectively (keeping them consistent to the \textit{ALOHA} and \textit{Joint Embedding} model implementations in order to be able to compare their results), with dropout probability $p_d=5\%$, \textit{Batch} normalization, \textbf{ReLU} activation function and the \textit{dot product} as similarity score function. The training was carried out with a learning rate $LR=10^{-3}$, \textbf{Adam} optimizer, no momentum nor weight decay, and loss weights set to 1.0 for the malicious/benign head, 0.1 for the count head and 1.0 for the SMART tag (joint embedding) head.
 
 The \textbf{MTJE} model evaluation results are reported in chapter \ref{chap:results}.
 
@@ -3507,7 +3507,7 @@ The \textbf{MTJE} model evaluation results are reported in chapter \ref{chap:res
 \end{figure}
 \vspace{-0.2cm}
 
-As previously mentioned in section \ref{sec:alohaAndJointEmbeddingTrainAndEvaluate}, the \textbf{\textit{MTJE}} model training and evaluation procedures are the same as the ones used for the \textbf{\textit{ALOHA}} and \textbf{\textit{Joint Embedding}} model implementations. In particular, the training procedure is presented in alg. \ref{alg:trainNetworkFunction}, while the model evaluation is shown in alg. \ref{alg:evaluateNetworkFunction}.
+As previously mentioned in section \ref{sec:alohaAndJointEmbeddingTrainAndEvaluate}, the \textbf{\textit{MTJE}} model training and evaluation procedures are the same as those used for the \textbf{\textit{ALOHA}} and \textbf{\textit{Joint Embedding}} model implementations. In particular, the training procedure is presented in alg. \ref{alg:trainNetworkFunction}, while the model evaluation is shown in alg. \ref{alg:evaluateNetworkFunction}.
 
 \vspace{-0.2cm}
 \subsection{Evaluate Fresh algorithm}
@@ -3535,7 +3535,7 @@ As previously mentioned in section \ref{sec:alohaAndJointEmbeddingTrainAndEvalua
 	\end{algorithmic}
 \end{algorithm}
 
-As previously mentioned, both the \textbf{\textit{MTJE}} model and the \textbf{\textit{Joint Embedding}} model implementations are also evaluated on the \textit{f-way} malware family classification and family ranking tasks. In particular the function presented in algorithm \ref{alg:evaluateFreshFunction} (\textbf{Evaluate fresh function}) is used to produce both the mentioned evaluation results. More specifically, it calls the following two functions in succession: \textbf{\textit{EvaluateFreshScores}} and \textbf{\textit{EvaluateFreshScores}}.
+As previously mentioned, both the \textbf{\textit{MTJE}} model and the \textbf{\textit{Joint Embedding}} model implementations are also evaluated on the \textit{f-way} malware family classification and family ranking tasks. In particular the function presented in algorithm \ref{alg:evaluateFreshFunction} (\textbf{Evaluate fresh function}) is used to produce both the mentioned evaluation results. More specifically, it calls the following two functions in succession: \textbf{\textit{EvaluateFreshScores}} and \textbf{\textit{EvaluateFreshRankings}}.
 
 \subsubsection{Model Evaluation on f-way Malware Family Classification/Family Ranking tasks}
 \begin{figure}[H]
