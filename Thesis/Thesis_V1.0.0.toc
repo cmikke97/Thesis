@@ -174,8 +174,8 @@
 \contentsline {subsection}{\numberline {7.1.2}Comments}{140}{subsection.7.1.2}%
 \contentsline {section}{\numberline {7.2}Malware Description via SMART tags results}{141}{section.7.2}%
 \contentsline {subsection}{\numberline {7.2.1}Mean per-sample tagging scores}{144}{subsection.7.2.1}%
-\contentsline {subsection}{\numberline {7.2.2}Comments}{144}{subsection.7.2.2}%
-\contentsline {section}{\numberline {7.3}Family Prediction and Ranking Evaluation}{145}{section.7.3}%
+\contentsline {subsection}{\numberline {7.2.2}Comments}{145}{subsection.7.2.2}%
+\contentsline {section}{\numberline {7.3}Family Prediction and Ranking Results}{145}{section.7.3}%
 \contentsline {subsection}{\numberline {7.3.1}Example rankings}{149}{subsection.7.3.1}%
 \contentsline {subsection}{\numberline {7.3.2}Comments}{152}{subsection.7.3.2}%
 \contentsline {section}{\numberline {7.4}Family Classification Results}{153}{section.7.4}%
