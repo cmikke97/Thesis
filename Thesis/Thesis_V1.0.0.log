@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.9.11)  9 OCT 2021 13:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.9.11)  9 OCT 2021 15:50
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -4060,7 +4060,7 @@ Package rerunfilecheck Info: File `Thesis_V1.0.0.out' has not changed.
 Here is how much of TeX's memory you used:
  23349 strings out of 478927
  427556 string characters out of 2846373
- 1161767 words of memory out of 3000000
+ 1161764 words of memory out of 3000000
  39839 multiletter control sequences out of 15000+600000
  418434 words of font info for 81 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -4102,7 +4102,7 @@ OPIUNET/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb
 amsfonts/cm/cmtt10.pfb><C:/Users/michele.INFOPIUNET/AppData/Local/Programs/MiKT
 eX/fonts/type1/public/amsfonts/cm/cmtt8.pfb><C:/Users/michele.INFOPIUNET/AppDat
 a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Thesis_V1.0.0.pdf (179 pages, 8204047 bytes).
+Output written on Thesis_V1.0.0.pdf (179 pages, 8204091 bytes).
 PDF statistics:
  2998 PDF objects out of 3580 (max. 8388607)
  931 named destinations out of 1000 (max. 500000)
