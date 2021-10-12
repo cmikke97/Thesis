@@ -9,7 +9,7 @@
 %
 \documentclass[pdfa% formato PDF/A, obbligatorio per l'archiviazione delle tesi di Polito
 ,cucitura%lascia margine per la rilegatura
-,twoside% per stampa fronte-retro (fortemente consigliato per tesi voluminose, opzionale per le altre)
+%,twoside% per stampa fronte-retro (fortemente consigliato per tesi voluminose, opzionale per le altre)
 %,12pt% font più grande (12pt) rispetto a quello normalmente usato (11pt)
 ]{toptesi}
 %
@@ -19,9 +19,9 @@
     bookmarksopen,
     pdfstartview={FitH},
     colorlinks,
-    linkcolor={black},
-    citecolor={black},
-    urlcolor={black}
+    linkcolor={blue},
+    citecolor={red},
+    urlcolor={blue}
   }
 % \documentclass[11pt,twoside,oldstyle,autoretitolo,classica,greek]{toptesi}
 % \usepackage[or]{teubner}
@@ -295,9 +295,9 @@ The proposed framework life cycle can be conceptually divided in four phases (as
 	\label{fig:frameworkLifecycle}
 \end{figure}
 
-This thesis focuses on the first three phases previously mentioned. In particular, it concentrates on defining, training and evaluating the best model architecture possible for the tasks at hand. However, some code optimization challenges resulting from the slowness of the code in the instance used for the experiments meant that it could be possible to train the model only with the first half of the samples of the Sorel20M dataset in a reasonable time, with some approximations on the samples dispersion when random sampling them from the dataset. This led to slightly worse performance than what is theoretically possible with the current architecture using the whole dataset. Nevertheless, the deployment of the proposed \textbf{MTJE} model on a real-world scenario is theoretically possible with the current final architecture, although it would be better to train the model on the whole Sorel20M dataset on a better instance first in order to see its true potential.
+This thesis focuses on the first three phases previously mentioned. In particular, it concentrates on defining, training and evaluating the best model architecture possible for the tasks at hand. However, some code optimization challenges resulting from the slowness of the code in the instance used for the experiments meant that it could be possible to train the model only with the first half of the samples of the Sorel20M dataset in a reasonable time, with some approximations on the samples dispersion when random sampling them from the dataset. This resulted in slightly worse performance than might be expected using the current architecture with the entire dataset. Nevertheless, the deployment of the proposed \textbf{MTJE} model on a real-world scenario is theoretically possible with the current final architecture, although it would be better to train the model on the whole Sorel20M dataset on a better instance first in order to see its true potential.
 
-At a later moment, the proposed framework was extended with the addition of a \textbf{Malware Family Classifier} model head defined on top of the proposed \textbf{MTJE} model base topology in order to improve its relatively poor results in the \textbf{Malware family prediction/classification} task. This new model was then specifically trained (and tested) for such purpose using the training and test subsets of the relatively small \textbf{fresh dataset}, which contain the information about the malware family each sample belongs to. However, instead of training the newly defined architecture from scratch on such small dataset at the risk of overfitting, the technique called \textbf{Transfer Learning} was used by transferring the knowledge (the learned model parameters) from a previous \textbf{MTJE} model training run on the large Sorel20M dataset onto the new model base topology (the one shared with the \textbf{MTJE} model architecture), before training. Then, during the training procedure some of the imported parameters were '\textit{fine-tuned}' while the ones corresponding to the newly added Family Classifier head were learned from scratch.
+At a later moment, the proposed framework was extended with the addition of a \textbf{Malware Family Classifier} model head defined on top of the proposed \textbf{MTJE} model base topology in order to improve its relatively poor results in the \textbf{Malware family prediction/classification} task. This new model was then specifically trained (and tested) for such purpose using the training and test subsets of the relatively small \textbf{fresh dataset}, which contain the information about the malware family each sample belongs to. However, instead of training the newly defined architecture from scratch on such small dataset at the risk of overfitting, the technique called \textbf{Transfer Learning} was used by transferring the knowledge (the learned model parameters) from a previous \textbf{MTJE} model training run on the large Sorel20M dataset onto the new model base topology (the one shared with the \textbf{MTJE} model architecture), before training. Then, during the training procedure, some of the imported parameters were '\textit{fine-tuned}' while the ones corresponding to the newly added Family Classifier head were learned from scratch.
 
 However, this new \textbf{Family Classifier} model could not be used to produce family rankings nor to query samples based on their similarity to some anchor, which are very useful tasks in the field of Information Security since they allow to quickly obtain samples similar to the currently analysed one, facilitating its study. Moreover this model was also limited to working only with a fixed number of predefined families. Therefore, in order to overcome such limitations a new model - referred to as \textbf{Contrastive model} in this document - was introduced consisting of a \textit{Siamese Network} which refined, in a contrastive learning setting, the implicit representation of PE files (\textit{PE Embeddings}) learned by a previous \textbf{MTJE} model training run on the Sorel20M dataset (with the aid of \textit{Transfer Learning}) using samples from the training subset of the \textit{fresh dataset} with the \textbf{Online Triplet Loss} function. The final PE Embeddings can, in fact, be used to address both the family prediction/classification - applying the distance weighted k-NN (k Nearest Neighbours) algorithm in the resulting embedding space - and ranking tasks and to query samples based on their similarity in the Embedding space.
 

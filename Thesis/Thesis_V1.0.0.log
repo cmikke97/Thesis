@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.9.11)  11 OCT 2021 11:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.9.11)  12 OCT 2021 15:37
 entering extended mode
 **./Thesis_V1.0.0.tex
 (Thesis_V1.0.0.tex
@@ -880,48 +880,45 @@ Overfull \hbox (6.3109pt too wide) in paragraph at lines 240--241
 \tf@toc=\write5
 \openout5 = `Thesis_V1.0.0.toc'.
 
- [7] [8
-
-
-
-
-]
+ [7]
 Chapter 1.
-<./images/elk_cloner_example.png, id=465, 501.875pt x 221.82875pt>
+<./images/elk_cloner_example.png, id=461, 501.875pt x 221.82875pt>
 File: ./images/elk_cloner_example.png Graphic file (type png)
 <use ./images/elk_cloner_example.png>
 Package pdftex.def Info: ./images/elk_cloner_example.png  used on input line 26
 4.
 (pdftex.def)             Requested size: 253.50397pt x 112.05139pt.
-[9
+[8
+
+
 
  <./images/elk_cloner_example.png>]
-<./images/av_atlas_report_total_amount_new.png, id=484, 579.66562pt x 316.18124
+<./images/av_atlas_report_total_amount_new.png, id=480, 579.66562pt x 316.18124
 pt>
 File: ./images/av_atlas_report_total_amount_new.png Graphic file (type png)
 <use ./images/av_atlas_report_total_amount_new.png>
 Package pdftex.def Info: ./images/av_atlas_report_total_amount_new.png  used on
  input line 274.
 (pdftex.def)             Requested size: 422.50232pt x 230.45819pt.
-<./images/av_atlas_report_total_amount.png, id=485, 579.66562pt x 315.42844pt>
+<./images/av_atlas_report_total_amount.png, id=481, 579.66562pt x 315.42844pt>
 File: ./images/av_atlas_report_total_amount.png Graphic file (type png)
 <use ./images/av_atlas_report_total_amount.png>
 Package pdftex.def Info: ./images/av_atlas_report_total_amount.png  used on inp
 ut line 280.
 (pdftex.def)             Requested size: 422.50232pt x 229.90948pt.
- [10 <./images/av_atlas_report_total_amount_new.png> <./images/av_atlas_report_
-total_amount.png>]
-<./images/framework_lifecycle.png, id=495, 390.9807pt x 65.043pt>
+ [9 <./images/av_atlas_report_total_amount_new.png> <./images/av_atlas_report_t
+otal_amount.png>]
+<./images/framework_lifecycle.png, id=491, 390.9807pt x 65.043pt>
 File: ./images/framework_lifecycle.png Graphic file (type png)
 <use ./images/framework_lifecycle.png>
 Package pdftex.def Info: ./images/framework_lifecycle.png  used on input line 2
 93.
 (pdftex.def)             Requested size: 380.2495pt x 63.25935pt.
- [11 <./images/framework_lifecycle.png>] [12]
+ [10 <./images/framework_lifecycle.png>] [11]
 Chapter 2.
-[13
+[12
 
-] [14] [15] [16] [17] [18] [19] [20] [21]
+] [13] [14] [15] [16] [17] [18] [19] [20]
 (C:\Users\michele.INFOPIUNET\AppData\Local\Programs\MiKTeX\tex/latex/listings\l
 stlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
@@ -936,7 +933,7 @@ File: lstlang3.sty 2020/03/24 1.8d listings language file
 )
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
 nput line 525.
- [22] [23] [24]
+ [21] [22] [23]
 (C:\Users\michele.INFOPIUNET\AppData\Local\Programs\MiKTeX\tex/latex/listings\l
 stlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
@@ -944,12 +941,10 @@ File: lstlang1.sty 2020/03/24 1.8d listings language file
 (C:\Users\michele.INFOPIUNET\AppData\Local\Programs\MiKTeX\tex/latex/listings\l
 stmisc.sty
 File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
-) [25] [26] [27] [28] [29] [30] [31] [32] [33] [34] [35] [36]
-[37] [38
-
-]
+) [24] [25] [26] [27] [28] [29] [30] [31] [32] [33] [34] [35]
+[36]
 Chapter 3.
-[39
+[37
 
 ]
 LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 
@@ -958,55 +953,53 @@ LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line
 (C:\Users\michele.INFOPIUNET\AppData\Local\Programs\MiKTeX\tex/latex/base\ts1cm
 tt.fd
 File: ts1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
-) [40] [41] [42] [43] [44] [45] [46] [47] [48] [49] [50] [51]
-<./images/ALOHA.png, id=1286, 530.4618pt x 336.0555pt>
+) [38] [39] [40] [41] [42] [43] [44] [45] [46] [47] [48] [49]
+<./images/ALOHA.png, id=1278, 530.4618pt x 336.0555pt>
 File: ./images/ALOHA.png Graphic file (type png)
 <use ./images/ALOHA.png>
 Package pdftex.def Info: ./images/ALOHA.png  used on input line 1638.
 (pdftex.def)             Requested size: 422.50232pt x 267.67049pt.
- [52 <./images/ALOHA.png>] [53] [54]
-<./images/Tag_Distillation.png, id=1334, 290.5254pt x 37.5804pt>
+ [50 <./images/ALOHA.png>] [51] [52]
+<./images/Tag_Distillation.png, id=1326, 290.5254pt x 37.5804pt>
 File: ./images/Tag_Distillation.png Graphic file (type png)
 <use ./images/Tag_Distillation.png>
 Package pdftex.def Info: ./images/Tag_Distillation.png  used on input line 1716
 .
 (pdftex.def)             Requested size: 338.00314pt x 43.72516pt.
- [55 <./images/Tag_Distillation.png>]
-<./images/Multi_Head.png, id=1353, 456.0237pt x 191.5155pt>
+ [53 <./images/Tag_Distillation.png>]
+<./images/Multi_Head.png, id=1344, 456.0237pt x 191.5155pt>
 File: ./images/Multi_Head.png Graphic file (type png)
 <use ./images/Multi_Head.png>
 Package pdftex.def Info: ./images/Multi_Head.png  used on input line 1730.
 (pdftex.def)             Requested size: 422.50232pt x 177.4442pt.
-<./images/Joint_Embedding.png, id=1354, 412.6617pt x 244.2726pt>
+<./images/Joint_Embedding.png, id=1345, 412.6617pt x 244.2726pt>
 File: ./images/Joint_Embedding.png Graphic file (type png)
 <use ./images/Joint_Embedding.png>
 Package pdftex.def Info: ./images/Joint_Embedding.png  used on input line 1737.
 
 (pdftex.def)             Requested size: 422.50232pt x 250.09776pt.
- [56 <./images/Multi_Head.png> <./images/Joint_Embedding.png>] [57] [58] [59]
-<./images/PE_plus_FP.png, id=1412, 549.9747pt x 375.804pt>
+ [54 <./images/Multi_Head.png> <./images/Joint_Embedding.png>] [55] [56] [57]
+<./images/PE_plus_FP.png, id=1404, 549.9747pt x 375.804pt>
 File: ./images/PE_plus_FP.png Graphic file (type png)
 <use ./images/PE_plus_FP.png>
 Package pdftex.def Info: ./images/PE_plus_FP.png  used on input line 1850.
 (pdftex.def)             Requested size: 422.50232pt x 288.69907pt.
- [60 <./images/PE_plus_FP.png>] [61] [62
-
-]
+ [58 <./images/PE_plus_FP.png>] [59]
 Chapter 4.
-<./images/workflow.png, id=1432, 502.9992pt x 174.1707pt>
+<./images/workflow.png, id=1419, 502.9992pt x 174.1707pt>
 File: ./images/workflow.png Graphic file (type png)
 <use ./images/workflow.png>
 Package pdftex.def Info: ./images/workflow.png  used on input line 1874.
 (pdftex.def)             Requested size: 422.50232pt x 146.30504pt.
-<./images/workflow_sorel.png, id=1435, 502.9992pt x 174.1707pt>
+<./images/workflow_sorel.png, id=1422, 502.9992pt x 174.1707pt>
 File: ./images/workflow_sorel.png Graphic file (type png)
 <use ./images/workflow_sorel.png>
 Package pdftex.def Info: ./images/workflow_sorel.png  used on input line 1892.
 (pdftex.def)             Requested size: 422.50232pt x 146.30504pt.
-[63
+[60
 
- <./images/workflow.png>] [64 <./images/workflow_sorel.png>] [65]
-<./images/Portable_Executable_32_bit_Structure.png, id=1463, 2991.175pt x 4228.
+ <./images/workflow.png>] [61 <./images/workflow_sorel.png>] [62]
+<./images/Portable_Executable_32_bit_Structure.png, id=1451, 2991.175pt x 4228.
 79875pt>
 File: ./images/Portable_Executable_32_bit_Structure.png Graphic file (type png)
 
@@ -1018,7 +1011,7 @@ d on input line 1957.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[66] [67 <./images/Portable_Executable_32_bit_Structure.png>] [68]
+[63] [64 <./images/Portable_Executable_32_bit_Structure.png>] [65]
 LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 2
 029.
 
@@ -1029,7 +1022,7 @@ File: omscmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2029.
 
- [69]
+ [66]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
 put line 2062.
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
@@ -1039,6 +1032,26 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[67]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[68] [69]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
@@ -1058,82 +1071,62 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[71] [72]
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[73]
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[74]
+[71]
 Underfull \vbox (badness 5741) has occurred while \output is active []
 
- [75]
+ [72]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [76]
-[77]
-<./images/speeds_heatmap.png, id=1577, 722.7pt x 650.43pt>
+ [73]
+[74]
+<./images/speeds_heatmap.png, id=1565, 722.7pt x 650.43pt>
 File: ./images/speeds_heatmap.png Graphic file (type png)
 <use ./images/speeds_heatmap.png>
 Package pdftex.def Info: ./images/speeds_heatmap.png  used on input line 2441.
 (pdftex.def)             Requested size: 418.2796pt x 376.45567pt.
- [78 <./images/speeds_heatmap.png>]
-<./images/times_heatmap.png, id=1587, 722.7pt x 650.43pt>
+ [75 <./images/speeds_heatmap.png>]
+<./images/times_heatmap.png, id=1575, 722.7pt x 650.43pt>
 File: ./images/times_heatmap.png Graphic file (type png)
 <use ./images/times_heatmap.png>
 Package pdftex.def Info: ./images/times_heatmap.png  used on input line 2455.
 (pdftex.def)             Requested size: 418.2796pt x 376.45567pt.
-<./images/workflow_fresh_dataset.png, id=1588, 502.9992pt x 174.1707pt>
+<./images/workflow_fresh_dataset.png, id=1576, 502.9992pt x 174.1707pt>
 File: ./images/workflow_fresh_dataset.png Graphic file (type png)
 <use ./images/workflow_fresh_dataset.png>
 Package pdftex.def Info: ./images/workflow_fresh_dataset.png  used on input lin
 e 2467.
 (pdftex.def)             Requested size: 422.50232pt x 146.30504pt.
- [79 <./images/times_heatmap.png> <./images/workflow_fresh_dataset.png>] [80]
+ [76 <./images/times_heatmap.png> <./images/workflow_fresh_dataset.png>] [77]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[81]
+[78]
 
-LaTeX Warning: Text page 82 contains only floats.
+LaTeX Warning: Text page 79 contains only floats.
 
 
 Overfull \vbox (3.1115pt too high) has occurred while \output is active []
 
 
-[82]
-<./images/workflow_base_fresh_dataset.png, id=1630, 502.9992pt x 174.1707pt>
+[79]
+<./images/workflow_base_fresh_dataset.png, id=1618, 502.9992pt x 174.1707pt>
 File: ./images/workflow_base_fresh_dataset.png Graphic file (type png)
 <use ./images/workflow_base_fresh_dataset.png>
 Package pdftex.def Info: ./images/workflow_base_fresh_dataset.png  used on inpu
 t line 2643.
 (pdftex.def)             Requested size: 422.50232pt x 146.30504pt.
- [83 <./images/workflow_base_fresh_dataset.png>]
-<./images/workflow_family_classifier.png, id=1642, 502.9992pt x 174.1707pt>
+ [80 <./images/workflow_base_fresh_dataset.png>]
+<./images/workflow_family_classifier.png, id=1630, 502.9992pt x 174.1707pt>
 File: ./images/workflow_family_classifier.png Graphic file (type png)
 <use ./images/workflow_family_classifier.png>
 Package pdftex.def Info: ./images/workflow_family_classifier.png  used on input
  line 2693.
 (pdftex.def)             Requested size: 422.50232pt x 146.30504pt.
- [84]
-<./images/workflow_contrastive_model.png, id=1652, 502.9992pt x 174.1707pt>
+ [81]
+<./images/workflow_contrastive_model.png, id=1640, 502.9992pt x 174.1707pt>
 File: ./images/workflow_contrastive_model.png Graphic file (type png)
 <use ./images/workflow_contrastive_model.png>
 Package pdftex.def Info: ./images/workflow_contrastive_model.png  used on input
@@ -1142,16 +1135,16 @@ Package pdftex.def Info: ./images/workflow_contrastive_model.png  used on input
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [85 <./images/workflow_family_classifier.png>] [86 <./images/workflow_contrast
+ [82 <./images/workflow_family_classifier.png>] [83 <./images/workflow_contrast
 ive_model.png>]
 Chapter 5.
-<./images/ALOHA_Implementation.png, id=1679, 530.4618pt x 234.1548pt>
+<./images/ALOHA_Implementation.png, id=1666, 530.4618pt x 234.1548pt>
 File: ./images/ALOHA_Implementation.png Graphic file (type png)
 <use ./images/ALOHA_Implementation.png>
 Package pdftex.def Info: ./images/ALOHA_Implementation.png  used on input line 
 2744.
 (pdftex.def)             Requested size: 422.50232pt x 186.50589pt.
-[87
+[84
 
  <./images/ALOHA_Implementation.png>]
 Underfull \hbox (badness 3019) in paragraph at lines 2766--2767
@@ -1168,30 +1161,30 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[88]
+[85]
 
-LaTeX Warning: Text page 89 contains only floats.
+LaTeX Warning: Text page 86 contains only floats.
 
 
 Overfull \vbox (2.55594pt too high) has occurred while \output is active []
 
 
-[89] [90]
-<./images/Joint_Embedding_Implementation.png, id=1721, 481.3182pt x 257.2812pt>
+[86] [87]
+<./images/Joint_Embedding_Implementation.png, id=1709, 481.3182pt x 257.2812pt>
 
 File: ./images/Joint_Embedding_Implementation.png Graphic file (type png)
 <use ./images/Joint_Embedding_Implementation.png>
 Package pdftex.def Info: ./images/Joint_Embedding_Implementation.png  used on i
 nput line 2894.
 (pdftex.def)             Requested size: 422.50232pt x 225.84285pt.
- [91 <./images/Joint_Embedding_Implementation.png>]
+ [88 <./images/Joint_Embedding_Implementation.png>]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[92] [93] [94] [95]
+[89] [90] [91] [92]
 Overfull \hbox (19.59752pt too wide) in paragraph at lines 3128--3129
 []  \OT1/cmr/m/it/10 pre-dic-tions\OT1/cmr/m/n/10 ['probability'], \OT1/cmr/m/i
 t/10 la-bels\OT1/cmr/m/n/10 ['tags'], re-duc-tion='none').\OT1/cmr/bx/n/10 sum\
@@ -1205,14 +1198,14 @@ Package pdftex.def Info: ./images/workflow_sorel.png  used on input line 3153.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [96]
-<./images/workflow_train.png, id=1796, 502.9992pt x 174.1707pt>
+ [93]
+<./images/workflow_train.png, id=1784, 502.9992pt x 174.1707pt>
 File: ./images/workflow_train.png Graphic file (type png)
 <use ./images/workflow_train.png>
 Package pdftex.def Info: ./images/workflow_train.png  used on input line 3163.
 (pdftex.def)             Requested size: 422.50232pt x 146.30504pt.
 
-[97 <./images/workflow_train.png>]
+[94 <./images/workflow_train.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 3173--3174
 []\OT1/cmr/bx/n/10 func-tion \OT1/cmr/m/sc/10 Train-Net-work\OT1/cmr/m/n/10 (\O
 T1/cmr/m/it/10 ds[]path\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 net[]type\OT1/cmr/m/n
@@ -1220,7 +1213,7 @@ T1/cmr/m/it/10 ds[]path\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 net[]type\OT1/cmr/m/n
 OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 epochs\OT1/cmr/m/n/10 ,
  []
 
-<./images/workflow_eval.png, id=1808, 502.9992pt x 174.1707pt>
+<./images/workflow_eval.png, id=1795, 502.9992pt x 174.1707pt>
 File: ./images/workflow_eval.png Graphic file (type png)
 <use ./images/workflow_eval.png>
 Package pdftex.def Info: ./images/workflow_eval.png  used on input line 3228.
@@ -1228,8 +1221,8 @@ Package pdftex.def Info: ./images/workflow_eval.png  used on input line 3228.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [98]
-<./images/workflow_results.png, id=1814, 502.9992pt x 174.1707pt>
+ [95]
+<./images/workflow_results.png, id=1801, 502.9992pt x 174.1707pt>
 File: ./images/workflow_results.png Graphic file (type png)
 <use ./images/workflow_results.png>
 Package pdftex.def Info: ./images/workflow_results.png  used on input line 3268
@@ -1238,17 +1231,17 @@ Package pdftex.def Info: ./images/workflow_results.png  used on input line 3268
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [99 <./images/workflow_eval.png>] [100 <./images/workflow_results.png>]
+ [96 <./images/workflow_eval.png>] [97 <./images/workflow_results.png>]
 Chapter 6.
-[101
+[98
 
 ]
-<./images/MTJE_Model.png, id=1833, 570.2103pt x 297.7524pt>
+<./images/MTJE_Model.png, id=1821, 570.2103pt x 297.7524pt>
 File: ./images/MTJE_Model.png Graphic file (type png)
 <use ./images/MTJE_Model.png>
 Package pdftex.def Info: ./images/MTJE_Model.png  used on input line 3292.
 (pdftex.def)             Requested size: 422.50232pt x 220.62863pt.
- [102 <./images/MTJE_Model.png>] [103]
+ [99 <./images/MTJE_Model.png>] [100]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
@@ -1261,25 +1254,25 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 Underfull \vbox (badness 1308) has occurred while \output is active []
 
- [104]
-[105] [106]
+ [101]
+[102] [103]
 File: ./images/workflow_sorel.png Graphic file (type png)
 <use ./images/workflow_sorel.png>
 Package pdftex.def Info: ./images/workflow_sorel.png  used on input line 3504.
 (pdftex.def)             Requested size: 422.50232pt x 146.30504pt.
- [107]
+ [104]
 File: ./images/workflow_base_fresh_dataset.png Graphic file (type png)
 <use ./images/workflow_base_fresh_dataset.png>
 Package pdftex.def Info: ./images/workflow_base_fresh_dataset.png  used on inpu
 t line 3517.
 (pdftex.def)             Requested size: 422.50232pt x 146.30504pt.
-<./images/workflow_fresh_eval.png, id=1901, 502.9992pt x 174.1707pt>
+<./images/workflow_fresh_eval.png, id=1888, 502.9992pt x 174.1707pt>
 File: ./images/workflow_fresh_eval.png Graphic file (type png)
 <use ./images/workflow_fresh_eval.png>
 Package pdftex.def Info: ./images/workflow_fresh_eval.png  used on input line 3
 543.
 (pdftex.def)             Requested size: 422.50232pt x 146.30504pt.
- [108]
+ [105]
 Underfull \hbox (badness 10000) in paragraph at lines 3551--3552
 []\OT1/cmr/bx/n/10 func-tion \OT1/cmr/m/sc/10 Eval-u-ate-Fresh-Scores\OT1/cmr/m
 /n/10 (\OT1/cmr/m/it/10 ds[]path\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 check-point[
@@ -1290,11 +1283,11 @@ t/10 n[]queries\OT1/cmr/m/n/10 ,
 
 Underfull \vbox (badness 1688) has occurred while \output is active []
 
- [109 <./images/workflow_fresh_eval.png>] [110]
+ [106 <./images/workflow_fresh_eval.png>] [107]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<./images/workflow_fresh_results.png, id=1927, 502.9992pt x 174.1707pt>
+<./images/workflow_fresh_results.png, id=1913, 502.9992pt x 174.1707pt>
 File: ./images/workflow_fresh_results.png Graphic file (type png)
 <use ./images/workflow_fresh_results.png>
 Package pdftex.def Info: ./images/workflow_fresh_results.png  used on input lin
@@ -1303,18 +1296,18 @@ e 3721.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [111]
+ [108]
 Overfull \vbox (10.29457pt too high) has occurred while \output is active []
 
 
-[112 <./images/workflow_fresh_results.png>] [113]
-<./images/Family_Classifier.png, id=1945, 557.2017pt x 188.6247pt>
+[109 <./images/workflow_fresh_results.png>] [110]
+<./images/Family_Classifier.png, id=1932, 557.2017pt x 188.6247pt>
 File: ./images/Family_Classifier.png Graphic file (type png)
 <use ./images/Family_Classifier.png>
 Package pdftex.def Info: ./images/Family_Classifier.png  used on input line 375
 0.
 (pdftex.def)             Requested size: 422.50232pt x 143.02814pt.
- [114 <./images/Family_Classifier.png>]
+ [111 <./images/Family_Classifier.png>]
 Underfull \hbox (badness 3492) in paragraph at lines 3776--3777
 [] \OT1/cmr/bx/n/10 func-tion \OT1/cmr/m/sc/10 Init\OT1/cmr/m/n/10 (\OT1/cmr/m/
 it/10 self\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 fam-i-lies\OT1/cmr/m/n/10 , \OT1/c
@@ -1325,17 +1318,17 @@ imension\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 layer[]sizes\OT1/cmr/m/n/10 ,
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[115]
+[112]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[116]
+[113]
 File: ./images/workflow_family_classifier.png Graphic file (type png)
 <use ./images/workflow_family_classifier.png>
 Package pdftex.def Info: ./images/workflow_family_classifier.png  used on input
  line 3887.
 (pdftex.def)             Requested size: 422.50232pt x 146.30504pt.
-<./images/workflow_family_classifier_train.png, id=1979, 502.9992pt x 174.1707p
+<./images/workflow_family_classifier_train.png, id=1965, 502.9992pt x 174.1707p
 t>
 File: ./images/workflow_family_classifier_train.png Graphic file (type png)
 <use ./images/workflow_family_classifier_train.png>
@@ -1345,7 +1338,7 @@ Package pdftex.def Info: ./images/workflow_family_classifier_train.png  used on
 
 Underfull \vbox (badness 4492) has occurred while \output is active []
 
- [117]
+ [114]
 Underfull \hbox (badness 10000) in paragraph at lines 3908--3909
 []\OT1/cmr/bx/n/10 func-tion \OT1/cmr/m/sc/10 Train-Net-work\OT1/cmr/m/n/10 (\O
 T1/cmr/m/it/10 fresh[]ds[]path\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 check-point[]p
@@ -1353,51 +1346,51 @@ ath\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 batch[]size\OT1/cmr/m/n/10 , \OT1/cmr/m/i
 t/10 epochs\OT1/cmr/m/n/10 ,
  []
 
-[118 <./images/workflow_family_classifier_train.png>]
-<./images/workflow_family_classifier_evaluate.png, id=1997, 502.9992pt x 174.17
+[115 <./images/workflow_family_classifier_train.png>]
+<./images/workflow_family_classifier_evaluate.png, id=1984, 502.9992pt x 174.17
 07pt>
 File: ./images/workflow_family_classifier_evaluate.png Graphic file (type png)
 <use ./images/workflow_family_classifier_evaluate.png>
 Package pdftex.def Info: ./images/workflow_family_classifier_evaluate.png  used
  on input line 3995.
 (pdftex.def)             Requested size: 422.50232pt x 146.30504pt.
- [119]
+ [116]
 Underfull \hbox (badness 10000) in paragraph at lines 4003--4004
 []\OT1/cmr/bx/n/10 func-tion \OT1/cmr/m/sc/10 Eval-u-ateNet-work\OT1/cmr/m/n/10
  (\OT1/cmr/m/it/10 fresh[]ds[]path\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 check-poin
 t[]path\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 batch[]size\OT1/cmr/m/n/10 ,
  []
 
-[120 <./images/workflow_family_classifier_evaluate.png>]
-<./images/workflow_family_classifier_results.png, id=2010, 502.9992pt x 174.170
+[117 <./images/workflow_family_classifier_evaluate.png>]
+<./images/workflow_family_classifier_results.png, id=1997, 502.9992pt x 174.170
 7pt>
 File: ./images/workflow_family_classifier_results.png Graphic file (type png)
 <use ./images/workflow_family_classifier_results.png>
 Package pdftex.def Info: ./images/workflow_family_classifier_results.png  used 
 on input line 4043.
 (pdftex.def)             Requested size: 422.50232pt x 146.30504pt.
- [121 <./images/workflow_family_classifier_results.png>] [122]
-<./images/Contrastive_Model.png, id=2028, 384.4764pt x 211.0284pt>
+ [118 <./images/workflow_family_classifier_results.png>] [119]
+<./images/Contrastive_Model.png, id=2014, 384.4764pt x 211.0284pt>
 File: ./images/Contrastive_Model.png Graphic file (type png)
 <use ./images/Contrastive_Model.png>
 Package pdftex.def Info: ./images/Contrastive_Model.png  used on input line 411
 7.
 (pdftex.def)             Requested size: 422.50232pt x 231.90332pt.
- [123 <./images/Contrastive_Model.png>]
-<./images/Contrastive_Model_Online.png, id=2037, 435.0654pt x 188.6247pt>
+ [120 <./images/Contrastive_Model.png>]
+<./images/Contrastive_Model_Online.png, id=2023, 435.0654pt x 188.6247pt>
 File: ./images/Contrastive_Model_Online.png Graphic file (type png)
 <use ./images/Contrastive_Model_Online.png>
 Package pdftex.def Info: ./images/Contrastive_Model_Online.png  used on input l
 ine 4126.
 (pdftex.def)             Requested size: 422.50232pt x 183.17583pt.
 
-[124 <./images/Contrastive_Model_Online.png>] [125]
+[121 <./images/Contrastive_Model_Online.png>] [122]
 File: ./images/workflow_contrastive_model.png Graphic file (type png)
 <use ./images/workflow_contrastive_model.png>
 Package pdftex.def Info: ./images/workflow_contrastive_model.png  used on input
  line 4200.
 (pdftex.def)             Requested size: 422.50232pt x 146.30504pt.
-<./images/workflow_contrastive_model_train.png, id=2059, 502.9992pt x 174.1707p
+<./images/workflow_contrastive_model_train.png, id=2046, 502.9992pt x 174.1707p
 t>
 File: ./images/workflow_contrastive_model_train.png Graphic file (type png)
 <use ./images/workflow_contrastive_model_train.png>
@@ -1407,7 +1400,7 @@ Package pdftex.def Info: ./images/workflow_contrastive_model_train.png  used on
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [126]
+ [123]
 Underfull \hbox (badness 10000) in paragraph at lines 4218--4219
 []\OT1/cmr/bx/n/10 func-tion \OT1/cmr/m/sc/10 Train-Net-work\OT1/cmr/m/n/10 (\O
 T1/cmr/m/it/10 fresh[]ds[]path\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 check-point[]p
@@ -1415,12 +1408,12 @@ ath\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 batch[]size\OT1/cmr/m/n/10 , \OT1/cmr/m/i
 t/10 epochs\OT1/cmr/m/n/10 ,
  []
 
-[127 <./images/workflow_contrastive_model_train.png>] [128]
+[124 <./images/workflow_contrastive_model_train.png>] [125]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [129]
-[130]
-<./images/workflow_contrastive_model_evaluate.png, id=2102, 502.9992pt x 174.17
+ [126]
+[127]
+<./images/workflow_contrastive_model_evaluate.png, id=2089, 502.9992pt x 174.17
 07pt>
 File: ./images/workflow_contrastive_model_evaluate.png Graphic file (type png)
 <use ./images/workflow_contrastive_model_evaluate.png>
@@ -1430,7 +1423,7 @@ Package pdftex.def Info: ./images/workflow_contrastive_model_evaluate.png  used
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [131]
+ [128]
 Overfull \hbox (1.98828pt too wide) in paragraph at lines 4447--4448
 \OT1/cmr/m/n/10 The \OT1/cmr/m/it/10 Con-trastive Model \OT1/cmr/m/n/10 eval-u-
 a-tion func-tion, pre-sented in al-go-rithm [][]62[][]-[][]63[][]-[][]64[][] (\
@@ -1452,17 +1445,15 @@ id[]split[]proportion\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 test[]split[]proportion
  knn[]k[]min\OT1/cmr/m/n/10 ,
  []
 
-[132 <./images/workflow_contrastive_model_evaluate.png>] [133] [134]
-<./images/workflow_contrastive_model_results.png, id=2130, 502.9992pt x 174.170
+[129 <./images/workflow_contrastive_model_evaluate.png>] [130] [131]
+<./images/workflow_contrastive_model_results.png, id=2116, 502.9992pt x 174.170
 7pt>
 File: ./images/workflow_contrastive_model_results.png Graphic file (type png)
 <use ./images/workflow_contrastive_model_results.png>
 Package pdftex.def Info: ./images/workflow_contrastive_model_results.png  used 
 on input line 4579.
 (pdftex.def)             Requested size: 422.50232pt x 146.30504pt.
- [135 <./images/workflow_contrastive_model_results.png>] [136
-
-]
+ [132 <./images/workflow_contrastive_model_results.png>]
 Chapter 7.
 
 Overfull \hbox (0.22159pt too wide) in alignment at lines 4603--4603
@@ -1864,10 +1855,10 @@ Overfull \hbox (0.22159pt too wide) in alignment at lines 4603--4603
  [] [] [] [] [] [] 
  []
 
-[137
+[133
 
 ]
-<./results/malware_roc_alohaMB.png, id=2165, 867.24pt x 867.24pt>
+<./results/malware_roc_alohaMB.png, id=2148, 867.24pt x 867.24pt>
 File: ./results/malware_roc_alohaMB.png Graphic file (type png)
 <use ./results/malware_roc_alohaMB.png>
 Package pdftex.def Info: ./results/malware_roc_alohaMB.png  used on input line 
@@ -1876,21 +1867,21 @@ Package pdftex.def Info: ./results/malware_roc_alohaMB.png  used on input line
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [138]
-<./results/malware_roc_aloha.png, id=2170, 867.24pt x 867.24pt>
+ [134]
+<./results/malware_roc_aloha.png, id=2153, 867.24pt x 867.24pt>
 File: ./results/malware_roc_aloha.png Graphic file (type png)
 <use ./results/malware_roc_aloha.png>
 Package pdftex.def Info: ./results/malware_roc_aloha.png  used on input line 46
 07.
 (pdftex.def)             Requested size: 295.75032pt x 295.74431pt.
-<./results/malware_roc_mtje.png, id=2171, 867.24pt x 867.24pt>
+<./results/malware_roc_mtje.png, id=2154, 867.24pt x 867.24pt>
 File: ./results/malware_roc_mtje.png Graphic file (type png)
 <use ./results/malware_roc_mtje.png>
 Package pdftex.def Info: ./results/malware_roc_mtje.png  used on input line 460
 9.
 (pdftex.def)             Requested size: 295.75032pt x 295.74431pt.
 
-[139 <./results/malware_roc_alohaMB.png> <./results/malware_roc_aloha.png>]
+[135 <./results/malware_roc_alohaMB.png> <./results/malware_roc_aloha.png>]
 Overfull \hbox (2.11845pt too wide) in paragraph at lines 4616--4616
  []|\OT1/cmr/m/n/10 0.959$\OMS/cmsy/m/n/10 $\OT1/cmr/m/n/10 0.003| 
  []
@@ -1965,7 +1956,7 @@ Overfull \hbox (2.12003pt too wide) in paragraph at lines 4616--4616
  []|[]| 
  []
 
-[140 <./results/malware_roc_mtje.png>]
+[136 <./results/malware_roc_mtje.png>]
 Overfull \hbox (0.22159pt too wide) in alignment at lines 4641--4641
  [] [] [] [] [] [] 
  []
@@ -2815,30 +2806,30 @@ Overfull \hbox (0.22159pt too wide) in alignment at lines 4641--4641
  [] [] [] [] [] [] 
  []
 
-[141]
+[137]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [142]
-<./results/all_mean_roc_aloha.png, id=2210, 867.24pt x 867.24pt>
+ [138]
+<./results/all_mean_roc_aloha.png, id=2192, 867.24pt x 867.24pt>
 File: ./results/all_mean_roc_aloha.png Graphic file (type png)
 <use ./results/all_mean_roc_aloha.png>
 Package pdftex.def Info: ./results/all_mean_roc_aloha.png  used on input line 4
 643.
 (pdftex.def)             Requested size: 295.75032pt x 295.74431pt.
-<./results/all_mean_roc_jointEmbedding.png, id=2211, 867.24pt x 867.24pt>
+<./results/all_mean_roc_jointEmbedding.png, id=2193, 867.24pt x 867.24pt>
 File: ./results/all_mean_roc_jointEmbedding.png Graphic file (type png)
 <use ./results/all_mean_roc_jointEmbedding.png>
 Package pdftex.def Info: ./results/all_mean_roc_jointEmbedding.png  used on inp
 ut line 4645.
 (pdftex.def)             Requested size: 295.75032pt x 295.74431pt.
-<./results/all_mean_roc_mtje.png, id=2212, 867.24pt x 867.24pt>
+<./results/all_mean_roc_mtje.png, id=2194, 867.24pt x 867.24pt>
 File: ./results/all_mean_roc_mtje.png Graphic file (type png)
 <use ./results/all_mean_roc_mtje.png>
 Package pdftex.def Info: ./results/all_mean_roc_mtje.png  used on input line 46
 47.
 (pdftex.def)             Requested size: 295.75032pt x 295.74431pt.
 
-[143 <./results/all_mean_roc_aloha.png> <./results/all_mean_roc_jointEmbedding.
+[139 <./results/all_mean_roc_aloha.png> <./results/all_mean_roc_jointEmbedding.
 png>]
 Overfull \hbox (2.12003pt too wide) in paragraph at lines 4653--4653
  []|[]| 
@@ -2992,47 +2983,47 @@ Overfull \hbox (2.11845pt too wide) in paragraph at lines 4653--4653
 
 Underfull \vbox (badness 3942) has occurred while \output is active []
 
- [144 <./results/all_mean_roc_mtje.png>]
-<./results/accuracy_trends.png, id=2238, 867.24pt x 867.24pt>
+ [140 <./results/all_mean_roc_mtje.png>]
+<./results/accuracy_trends.png, id=2221, 867.24pt x 867.24pt>
 File: ./results/accuracy_trends.png Graphic file (type png)
 <use ./results/accuracy_trends.png>
 Package pdftex.def Info: ./results/accuracy_trends.png  used on input line 4672
 .
 (pdftex.def)             Requested size: 295.75032pt x 295.74431pt.
- [145]
-<./results/auc_roc_micro_trends.png, id=2250, 867.24pt x 867.24pt>
+ [141]
+<./results/auc_roc_micro_trends.png, id=2232, 867.24pt x 867.24pt>
 File: ./results/auc_roc_micro_trends.png Graphic file (type png)
 <use ./results/auc_roc_micro_trends.png>
 Package pdftex.def Info: ./results/auc_roc_micro_trends.png  used on input line
  4674.
 (pdftex.def)             Requested size: 295.75032pt x 295.74431pt.
-<./results/auc_roc_macro_trends.png, id=2251, 867.24pt x 867.24pt>
+<./results/auc_roc_macro_trends.png, id=2233, 867.24pt x 867.24pt>
 File: ./results/auc_roc_macro_trends.png Graphic file (type png)
 <use ./results/auc_roc_macro_trends.png>
 Package pdftex.def Info: ./results/auc_roc_macro_trends.png  used on input line
  4676.
 (pdftex.def)             Requested size: 295.75032pt x 295.74431pt.
- [146 <./results/accuracy_trends.png> <./results/auc_roc_micro_trends.png>]
-<./results/conf_matrix_max_acc_alohaMB.png, id=2258, 867.24pt x 867.24pt>
+ [142 <./results/accuracy_trends.png> <./results/auc_roc_micro_trends.png>]
+<./results/conf_matrix_max_acc_alohaMB.png, id=2240, 867.24pt x 867.24pt>
 File: ./results/conf_matrix_max_acc_alohaMB.png Graphic file (type png)
 <use ./results/conf_matrix_max_acc_alohaMB.png>
 Package pdftex.def Info: ./results/conf_matrix_max_acc_alohaMB.png  used on inp
 ut line 4680.
 (pdftex.def)             Requested size: 200.69118pt x 200.69167pt.
-<./results/conf_matrix_max_acc_aloha.png, id=2259, 867.24pt x 867.24pt>
+<./results/conf_matrix_max_acc_aloha.png, id=2241, 867.24pt x 867.24pt>
 File: ./results/conf_matrix_max_acc_aloha.png Graphic file (type png)
 <use ./results/conf_matrix_max_acc_aloha.png>
 Package pdftex.def Info: ./results/conf_matrix_max_acc_aloha.png  used on input
  line 4680.
 (pdftex.def)             Requested size: 200.69118pt x 200.69167pt.
-<./results/conf_matrix_max_acc_jointEmbedding.png, id=2260, 867.24pt x 867.24pt
+<./results/conf_matrix_max_acc_jointEmbedding.png, id=2242, 867.24pt x 867.24pt
 >
 File: ./results/conf_matrix_max_acc_jointEmbedding.png Graphic file (type png)
 <use ./results/conf_matrix_max_acc_jointEmbedding.png>
 Package pdftex.def Info: ./results/conf_matrix_max_acc_jointEmbedding.png  used
  on input line 4680.
 (pdftex.def)             Requested size: 200.69118pt x 200.69167pt.
-<./results/conf_matrix_max_acc_mtje.png, id=2261, 867.24pt x 867.24pt>
+<./results/conf_matrix_max_acc_mtje.png, id=2243, 867.24pt x 867.24pt>
 File: ./results/conf_matrix_max_acc_mtje.png Graphic file (type png)
 <use ./results/conf_matrix_max_acc_mtje.png>
 Package pdftex.def Info: ./results/conf_matrix_max_acc_mtje.png  used on input 
@@ -3041,19 +3032,19 @@ line 4680.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [147 <./results/auc_roc_macro_trends.png>] [148 <./results/conf_matrix_max_acc
+ [143 <./results/auc_roc_macro_trends.png>] [144 <./results/conf_matrix_max_acc
 _alohaMB.png> <./results/conf_matrix_max_acc_aloha.png> <./results/conf_matrix_
 max_acc_jointEmbedding.png> <./results/conf_matrix_max_acc_mtje.png>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [149]
+ [145]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [150]
+ [146]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [151]
-[152]
+ [147]
+[148]
 Overfull \hbox (2.80562pt too wide) in paragraph at lines 4708--4708
 \OT1/cmr/m/n/10 Similarity|  
  []
@@ -3091,8 +3082,8 @@ Overfull \hbox (3.84474pt too wide) in paragraph at lines 4708--4708
 
 Underfull \vbox (badness 1540) has occurred while \output is active []
 
- [153]
-<./results/family_classifier_confusion_matrix_jointEmbedding.png, id=2325, 867.
+ [149]
+<./results/family_classifier_confusion_matrix_jointEmbedding.png, id=2307, 867.
 24pt x 867.24pt>
 File: ./results/family_classifier_confusion_matrix_jointEmbedding.png Graphic f
 ile (type png)
@@ -3103,8 +3094,8 @@ dding.png  used on input line 4710.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [154]
-<./results/family_classifier_confusion_matrix_mtje.png, id=2330, 867.24pt x 867
+ [150]
+<./results/family_classifier_confusion_matrix_mtje.png, id=2312, 867.24pt x 867
 .24pt>
 File: ./results/family_classifier_confusion_matrix_mtje.png Graphic file (type 
 png)
@@ -3112,7 +3103,7 @@ png)
 Package pdftex.def Info: ./results/family_classifier_confusion_matrix_mtje.png 
  used on input line 4712.
 (pdftex.def)             Requested size: 295.75032pt x 295.74431pt.
-<./results/family_classifier_confusion_matrix_familyClassifierOnly.png, id=2331
+<./results/family_classifier_confusion_matrix_familyClassifierOnly.png, id=2313
 , 867.24pt x 867.24pt>
 File: ./results/family_classifier_confusion_matrix_familyClassifierOnly.png Gra
 phic file (type png)
@@ -3123,10 +3114,10 @@ ssifierOnly.png  used on input line 4714.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [155 <./results/family_classifier_confusion_matrix_jointEmbedding.png> <./resu
-lts/family_classifier_confusion_matrix_mtje.png>] [156 <./results/family_classi
-fier_confusion_matrix_familyClassifierOnly.png>] [157] [158]
-<./results/joint_embedding_contr_learn_accuracy.png, id=2384, 867.24pt x 867.24
+ [151 <./results/family_classifier_confusion_matrix_jointEmbedding.png> <./resu
+lts/family_classifier_confusion_matrix_mtje.png>] [152 <./results/family_classi
+fier_confusion_matrix_familyClassifierOnly.png>] [153] [154]
+<./results/joint_embedding_contr_learn_accuracy.png, id=2366, 867.24pt x 867.24
 pt>
 File: ./results/joint_embedding_contr_learn_accuracy.png Graphic file (type png
 )
@@ -3134,13 +3125,13 @@ File: ./results/joint_embedding_contr_learn_accuracy.png Graphic file (type png
 Package pdftex.def Info: ./results/joint_embedding_contr_learn_accuracy.png  us
 ed on input line 4787.
 (pdftex.def)             Requested size: 200.69118pt x 200.69167pt.
-<./results/mtje_contr_learn_accuracy.png, id=2385, 867.24pt x 867.24pt>
+<./results/mtje_contr_learn_accuracy.png, id=2367, 867.24pt x 867.24pt>
 File: ./results/mtje_contr_learn_accuracy.png Graphic file (type png)
 <use ./results/mtje_contr_learn_accuracy.png>
 Package pdftex.def Info: ./results/mtje_contr_learn_accuracy.png  used on input
  line 4787.
 (pdftex.def)             Requested size: 200.69118pt x 200.69167pt.
-<./results/contrastive_model_only_contr_learn_accuracy.png, id=2386, 867.24pt x
+<./results/contrastive_model_only_contr_learn_accuracy.png, id=2368, 867.24pt x
  867.24pt>
 File: ./results/contrastive_model_only_contr_learn_accuracy.png Graphic file (t
 ype png)
@@ -3151,7 +3142,7 @@ png  used on input line 4787.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [159]
+ [155]
 Overfull \hbox (2.80562pt too wide) in paragraph at lines 4789--4789
 \OT1/cmr/m/n/10 Similarity|  
  []
@@ -3179,10 +3170,10 @@ Overfull \hbox (3.84474pt too wide) in paragraph at lines 4789--4789
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [160 <./results/joint_embedding_contr_learn_accuracy.png> <./results/mtje_cont
+ [156 <./results/joint_embedding_contr_learn_accuracy.png> <./results/mtje_cont
 r_learn_accuracy.png> <./results/contrastive_model_only_contr_learn_accuracy.pn
 g>]
-<./results/joint_embedding_contr_learn_9-nn_confusion_matrix.png, id=2405, 867.
+<./results/joint_embedding_contr_learn_9-nn_confusion_matrix.png, id=2387, 867.
 24pt x 867.24pt>
 File: ./results/joint_embedding_contr_learn_9-nn_confusion_matrix.png Graphic f
 ile (type png)
@@ -3190,7 +3181,7 @@ ile (type png)
 Package pdftex.def Info: ./results/joint_embedding_contr_learn_9-nn_confusion_m
 atrix.png  used on input line 4791.
 (pdftex.def)             Requested size: 295.75032pt x 295.74431pt.
-<./results/mtje_contr_learn_5-nn_confusion_matrix.png, id=2406, 867.24pt x 867.
+<./results/mtje_contr_learn_5-nn_confusion_matrix.png, id=2388, 867.24pt x 867.
 24pt>
 File: ./results/mtje_contr_learn_5-nn_confusion_matrix.png Graphic file (type p
 ng)
@@ -3199,9 +3190,9 @@ Package pdftex.def Info: ./results/mtje_contr_learn_5-nn_confusion_matrix.png
 used on input line 4793.
 (pdftex.def)             Requested size: 295.75032pt x 295.74431pt.
 
-[161 <./results/joint_embedding_contr_learn_9-nn_confusion_matrix.png>]
-<./results/contrastive_model_only_contr_learn_11-nn_confusion_matrix.png, id=24
-12, 867.24pt x 867.24pt>
+[157 <./results/joint_embedding_contr_learn_9-nn_confusion_matrix.png>]
+<./results/contrastive_model_only_contr_learn_11-nn_confusion_matrix.png, id=23
+95, 867.24pt x 867.24pt>
 File: ./results/contrastive_model_only_contr_learn_11-nn_confusion_matrix.png G
 raphic file (type png)
 <use ./results/contrastive_model_only_contr_learn_11-nn_confusion_matrix.png>
@@ -3211,7 +3202,7 @@ fusion_matrix.png  used on input line 4795.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [162 <./results/mtje_contr_learn_5-nn_confusion_matrix.png> <./results/contras
+ [158 <./results/mtje_contr_learn_5-nn_confusion_matrix.png> <./results/contras
 tive_model_only_contr_learn_11-nn_confusion_matrix.png>]
 Overfull \hbox (12.9247pt too wide) in paragraph at lines 4802--4802
  []|\OT1/cmr/m/n/10 Label| 
@@ -3575,7 +3566,7 @@ Overfull \hbox (1.75874pt too wide) in paragraph at lines 4804--4804
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [163]
+ [159]
 Overfull \hbox (12.9247pt too wide) in paragraph at lines 4806--4806
  []|\OT1/cmr/m/n/10 Label| 
  []
@@ -3925,15 +3916,11 @@ Overfull \hbox (4.813pt too wide) in paragraph at lines 4808--4808
  []|\OT1/cmr/m/n/10 7eba4d..| 
  []
 
-[164] [165] [166] [167] [168
-
-]
+[160] [161] [162] [163]
 Chapter 8.
-[169
+[164
 
-] [170] (Thesis_V1.0.0.bbl [171] [172
-
-]
+] [165] (Thesis_V1.0.0.bbl [166]
 Underfull \hbox (badness 1242) in paragraph at lines 31--33
 []\OT1/cmr/m/n/10 R. Sharp, ``An in-tro-duc-tion to mal-ware.'' [][]$\OT1/cmtt/
 m/n/10 https : / / orbit . dtu . dk / en / publications /
@@ -3999,7 +3986,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 89--91
  https : / / owasp . org / www-[]community /
  []
 
-[173
+[167
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 168--170
@@ -4019,7 +4006,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 194--197
 ext = YARA % 20is % 20a % 20tool %
  []
 
-[174]
+[168]
 Underfull \hbox (badness 1371) in paragraph at lines 209--212
 []\OT1/cmr/m/n/10 Forcepoint, ``What is heuris-tic anal-y-sis?.'' [][]$\OT1/cmt
 t/m/n/10 https : / / www . forcepoint . com / cyber-[]edu /
@@ -4037,19 +4024,17 @@ Underfull \hbox (badness 6204) in paragraph at lines 294--297
 alpedia . caad . fkie . fraunhofer . de / details / win .
  []
 
-) [175] [176
-
-] (Thesis_V1.0.0.lof [177
+) [169] (Thesis_V1.0.0.lof [170
 
 ])
 \tf@lof=\write6
 \openout6 = `Thesis_V1.0.0.lof'.
 
- [178] (Thesis_V1.0.0.lot)
+ [171] (Thesis_V1.0.0.lot)
 \tf@lot=\write7
 \openout7 = `Thesis_V1.0.0.lot'.
 
- [179
+ [172
 
 
 ]
@@ -4058,11 +4043,11 @@ Package rerunfilecheck Info: File `Thesis_V1.0.0.out' has not changed.
 (rerunfilecheck)             Checksum: 1EEB51BFE3E0672AED3C86F0C3F897AF;14336.
  ) 
 Here is how much of TeX's memory you used:
- 23349 strings out of 478927
- 427556 string characters out of 2846373
- 1161718 words of memory out of 3000000
- 39839 multiletter control sequences out of 15000+600000
- 418434 words of font info for 81 fonts, out of 8000000 for 9000
+ 23334 strings out of 478927
+ 427377 string characters out of 2846373
+ 1161428 words of memory out of 3000000
+ 39834 multiletter control sequences out of 15000+600000
+ 418075 words of font info for 80 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  138i,17n,136p,2814b,2560s stack positions out of 5000i,500n,10000p,200000b,80000s
  <C:\Users\michele.INFOPIUNET\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/e
@@ -4075,36 +4060,35 @@ lic/amsfonts/cm/cmbx5.pfb><C:/Users/michele.INFOPIUNET/AppData/Local/Programs/M
 iKTeX/fonts/type1/public/amsfonts/cm/cmbx7.pfb><C:/Users/michele.INFOPIUNET/App
 Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Users/m
 ichele.INFOPIUNET/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
-cmbxsl10.pfb><C:/Users/michele.INFOPIUNET/AppData/Local/Programs/MiKTeX/fonts/t
-ype1/public/amsfonts/cm/cmbxti10.pfb><C:/Users/michele.INFOPIUNET/AppData/Local
-/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/michele.I
-NFOPIUNET/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.p
-fb><C:/Users/michele.INFOPIUNET/AppData/Local/Programs/MiKTeX/fonts/type1/publi
-c/amsfonts/cm/cmmi10.pfb><C:/Users/michele.INFOPIUNET/AppData/Local/Programs/Mi
-KTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/michele.INFOPIUNET/AppD
-ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/mi
-chele.INFOPIUNET/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
-mr10.pfb><C:/Users/michele.INFOPIUNET/AppData/Local/Programs/MiKTeX/fonts/type1
-/public/amsfonts/cm/cmr12.pfb><C:/Users/michele.INFOPIUNET/AppData/Local/Progra
-ms/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/michele.INFOPIUNET
-/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/User
-s/michele.INFOPIUNET/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
-cm/cmr7.pfb><C:/Users/michele.INFOPIUNET/AppData/Local/Programs/MiKTeX/fonts/ty
-pe1/public/amsfonts/cm/cmr8.pfb><C:/Users/michele.INFOPIUNET/AppData/Local/Prog
-rams/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/michele.INFOPIUNE
-T/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsl8.pfb><C:/Us
-ers/michele.INFOPIUNET/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfont
-s/cm/cmsy10.pfb><C:/Users/michele.INFOPIUNET/AppData/Local/Programs/MiKTeX/font
-s/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/michele.INFOPIUNET/AppData/Local
-/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/michele.INF
-OPIUNET/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb
+cmbxti10.pfb><C:/Users/michele.INFOPIUNET/AppData/Local/Programs/MiKTeX/fonts/t
+ype1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/michele.INFOPIUNET/AppData/Local/
+Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/michele.INF
+OPIUNET/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb
 ><C:/Users/michele.INFOPIUNET/AppData/Local/Programs/MiKTeX/fonts/type1/public/
-amsfonts/cm/cmtt10.pfb><C:/Users/michele.INFOPIUNET/AppData/Local/Programs/MiKT
-eX/fonts/type1/public/amsfonts/cm/cmtt8.pfb><C:/Users/michele.INFOPIUNET/AppDat
-a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Thesis_V1.0.0.pdf (179 pages, 8202395 bytes).
+amsfonts/cm/cmmi5.pfb><C:/Users/michele.INFOPIUNET/AppData/Local/Programs/MiKTe
+X/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/michele.INFOPIUNET/AppData
+/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/miche
+le.INFOPIUNET/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr1
+2.pfb><C:/Users/michele.INFOPIUNET/AppData/Local/Programs/MiKTeX/fonts/type1/pu
+blic/amsfonts/cm/cmr17.pfb><C:/Users/michele.INFOPIUNET/AppData/Local/Programs/
+MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/michele.INFOPIUNET/App
+Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/mi
+chele.INFOPIUNET/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
+mr8.pfb><C:/Users/michele.INFOPIUNET/AppData/Local/Programs/MiKTeX/fonts/type1/
+public/amsfonts/cm/cmr9.pfb><C:/Users/michele.INFOPIUNET/AppData/Local/Programs
+/MiKTeX/fonts/type1/public/amsfonts/cm/cmsl8.pfb><C:/Users/michele.INFOPIUNET/A
+ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/User
+s/michele.INFOPIUNET/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
+cm/cmsy5.pfb><C:/Users/michele.INFOPIUNET/AppData/Local/Programs/MiKTeX/fonts/t
+ype1/public/amsfonts/cm/cmsy7.pfb><C:/Users/michele.INFOPIUNET/AppData/Local/Pr
+ograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/michele.INFOP
+IUNET/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><
+C:/Users/michele.INFOPIUNET/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
+sfonts/cm/cmtt8.pfb><C:/Users/michele.INFOPIUNET/AppData/Local/Programs/MiKTeX/
+fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on Thesis_V1.0.0.pdf (172 pages, 8186544 bytes).
 PDF statistics:
- 2998 PDF objects out of 3580 (max. 8388607)
- 931 named destinations out of 1000 (max. 500000)
+ 2962 PDF objects out of 2984 (max. 8388607)
+ 924 named destinations out of 1000 (max. 500000)
  947 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -3,67 +3,67 @@
 \babel@toc {italian}{}\relax 
 \babel@toc {english}{}\relax 
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {1.1}{\ignorespaces Poem displayed by Elk Cloner virus}}{9}{figure.caption.1}%
-\contentsline {figure}{\numberline {1.2}{\ignorespaces AV Atlas - Total Amount of New Malware and PUA}}{10}{figure.caption.2}%
-\contentsline {figure}{\numberline {1.3}{\ignorespaces AV Atlas - Total Amount of Malware and PUA}}{10}{figure.caption.3}%
-\contentsline {figure}{\numberline {1.4}{\ignorespaces Proposed Framework Life Cycle}}{11}{figure.caption.4}%
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Poem displayed by Elk Cloner virus}}{8}{figure.caption.1}%
+\contentsline {figure}{\numberline {1.2}{\ignorespaces AV Atlas - Total Amount of New Malware and PUA}}{9}{figure.caption.2}%
+\contentsline {figure}{\numberline {1.3}{\ignorespaces AV Atlas - Total Amount of Malware and PUA}}{9}{figure.caption.3}%
+\contentsline {figure}{\numberline {1.4}{\ignorespaces Proposed Framework Life Cycle}}{10}{figure.caption.4}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces ALOHA model architecture}}{52}{figure.caption.73}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Tag Distillation Process}}{55}{figure.caption.81}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Multi Head model architecture}}{56}{figure.caption.83}%
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Joint Embedding model architecture}}{56}{figure.caption.84}%
-\contentsline {figure}{\numberline {3.5}{\ignorespaces PE + FP model architecture}}{60}{figure.caption.88}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces ALOHA model architecture}}{50}{figure.caption.73}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Tag Distillation Process}}{53}{figure.caption.81}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Multi Head model architecture}}{54}{figure.caption.83}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Joint Embedding model architecture}}{54}{figure.caption.84}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces PE + FP model architecture}}{58}{figure.caption.88}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Workflow}}{63}{figure.caption.89}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Sorel20M workflow steps}}{64}{figure.caption.90}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces PE file structure}}{67}{figure.caption.93}%
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Generator alt.3 speed heatmap}}{78}{figure.caption.104}%
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Generator alt.3 elapsed times heatmap}}{79}{figure.caption.105}%
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Fresh dataset workflow steps}}{79}{figure.caption.106}%
-\contentsline {figure}{\numberline {4.7}{\ignorespaces Model Fresh evaluation workflow steps}}{83}{figure.caption.107}%
-\contentsline {figure}{\numberline {4.8}{\ignorespaces Family Classifier training and evaluation workflow steps}}{85}{figure.caption.110}%
-\contentsline {figure}{\numberline {4.9}{\ignorespaces Contrastive Model training and evaluation workflow steps}}{86}{figure.caption.111}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Workflow}}{60}{figure.caption.89}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Sorel20M workflow steps}}{61}{figure.caption.90}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces PE file structure}}{64}{figure.caption.93}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Generator alt.3 speed heatmap}}{75}{figure.caption.104}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Generator alt.3 elapsed times heatmap}}{76}{figure.caption.105}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Fresh dataset workflow steps}}{76}{figure.caption.106}%
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Model Fresh evaluation workflow steps}}{80}{figure.caption.107}%
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Family Classifier training and evaluation workflow steps}}{82}{figure.caption.110}%
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Contrastive Model training and evaluation workflow steps}}{83}{figure.caption.111}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces ALOHA model implementation architecture}}{87}{figure.caption.112}%
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Joint Embedding model implementation architecture}}{91}{figure.caption.114}%
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Training and evaluation workflow steps}}{97}{figure.caption.116}%
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Training workflow step}}{97}{figure.caption.117}%
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Evaluation workflow step}}{99}{figure.caption.118}%
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Results Computation and plotting workflow step}}{100}{figure.caption.119}%
+\contentsline {figure}{\numberline {5.1}{\ignorespaces ALOHA model implementation architecture}}{84}{figure.caption.112}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Joint Embedding model implementation architecture}}{88}{figure.caption.114}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Training and evaluation workflow steps}}{94}{figure.caption.116}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Training workflow step}}{94}{figure.caption.117}%
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Evaluation workflow step}}{96}{figure.caption.118}%
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Results Computation and plotting workflow step}}{97}{figure.caption.119}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces MTJE Model architecture}}{102}{figure.caption.120}%
-\contentsline {figure}{\numberline {6.2}{\ignorespaces MTJE Model Training and evaluation workflow steps}}{108}{figure.caption.122}%
-\contentsline {figure}{\numberline {6.3}{\ignorespaces MTJE Model fresh evaluation workflow steps}}{108}{figure.caption.123}%
-\contentsline {figure}{\numberline {6.4}{\ignorespaces MTJE Model fresh evaluation workflow step}}{109}{figure.caption.125}%
-\contentsline {figure}{\numberline {6.5}{\ignorespaces MTJE Fresh results computation and plotting workflow step}}{112}{figure.caption.127}%
-\contentsline {figure}{\numberline {6.6}{\ignorespaces Family Classifier model architecture}}{114}{figure.caption.128}%
-\contentsline {figure}{\numberline {6.7}{\ignorespaces Malware Family Classifier Training and Evaluation workflow steps}}{117}{figure.caption.130}%
-\contentsline {figure}{\numberline {6.8}{\ignorespaces Family Classifier Training Workflow step}}{118}{figure.caption.132}%
-\contentsline {figure}{\numberline {6.9}{\ignorespaces Family Classifier Evaluation Workflow step}}{120}{figure.caption.134}%
-\contentsline {figure}{\numberline {6.10}{\ignorespaces Family Classifier Results Computation and Plotting step}}{121}{figure.caption.136}%
-\contentsline {figure}{\numberline {6.11}{\ignorespaces Contrastive Learning model architecture}}{123}{figure.caption.137}%
-\contentsline {figure}{\numberline {6.12}{\ignorespaces Contrastive Learning Online model architecture}}{124}{figure.caption.138}%
-\contentsline {figure}{\numberline {6.13}{\ignorespaces Contrastive Model Training and Evaluation workflow steps}}{126}{figure.caption.140}%
-\contentsline {figure}{\numberline {6.14}{\ignorespaces Contrastive Model Training Workflow step}}{127}{figure.caption.142}%
-\contentsline {figure}{\numberline {6.15}{\ignorespaces Contrastive Model Evaluation Workflow step}}{132}{figure.caption.144}%
-\contentsline {figure}{\numberline {6.16}{\ignorespaces Contrastive Model Results Computation and Plotting step}}{135}{figure.caption.146}%
+\contentsline {figure}{\numberline {6.1}{\ignorespaces MTJE Model architecture}}{99}{figure.caption.120}%
+\contentsline {figure}{\numberline {6.2}{\ignorespaces MTJE Model Training and evaluation workflow steps}}{105}{figure.caption.122}%
+\contentsline {figure}{\numberline {6.3}{\ignorespaces MTJE Model fresh evaluation workflow steps}}{105}{figure.caption.123}%
+\contentsline {figure}{\numberline {6.4}{\ignorespaces MTJE Model fresh evaluation workflow step}}{106}{figure.caption.125}%
+\contentsline {figure}{\numberline {6.5}{\ignorespaces MTJE Fresh results computation and plotting workflow step}}{109}{figure.caption.127}%
+\contentsline {figure}{\numberline {6.6}{\ignorespaces Family Classifier model architecture}}{111}{figure.caption.128}%
+\contentsline {figure}{\numberline {6.7}{\ignorespaces Malware Family Classifier Training and Evaluation workflow steps}}{114}{figure.caption.130}%
+\contentsline {figure}{\numberline {6.8}{\ignorespaces Family Classifier Training Workflow step}}{115}{figure.caption.132}%
+\contentsline {figure}{\numberline {6.9}{\ignorespaces Family Classifier Evaluation Workflow step}}{117}{figure.caption.134}%
+\contentsline {figure}{\numberline {6.10}{\ignorespaces Family Classifier Results Computation and Plotting step}}{118}{figure.caption.136}%
+\contentsline {figure}{\numberline {6.11}{\ignorespaces Contrastive Learning model architecture}}{120}{figure.caption.137}%
+\contentsline {figure}{\numberline {6.12}{\ignorespaces Contrastive Learning Online model architecture}}{121}{figure.caption.138}%
+\contentsline {figure}{\numberline {6.13}{\ignorespaces Contrastive Model Training and Evaluation workflow steps}}{123}{figure.caption.140}%
+\contentsline {figure}{\numberline {6.14}{\ignorespaces Contrastive Model Training Workflow step}}{124}{figure.caption.142}%
+\contentsline {figure}{\numberline {6.15}{\ignorespaces Contrastive Model Evaluation Workflow step}}{129}{figure.caption.144}%
+\contentsline {figure}{\numberline {6.16}{\ignorespaces Contrastive Model Results Computation and Plotting step}}{132}{figure.caption.146}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {7.1}{\ignorespaces Malware Label prediction task ALOHA (M/B only) ROC curve}}{139}{figure.caption.148}%
-\contentsline {figure}{\numberline {7.2}{\ignorespaces Malware Label prediction task ALOHA ROC curve}}{139}{figure.caption.149}%
-\contentsline {figure}{\numberline {7.3}{\ignorespaces Malware Label prediction task MTJE Model ROC curve}}{140}{figure.caption.150}%
-\contentsline {figure}{\numberline {7.4}{\ignorespaces Tags prediction task ALOHA mean ROC curve}}{143}{figure.caption.152}%
-\contentsline {figure}{\numberline {7.5}{\ignorespaces Tags prediction task Joint Embedding mean ROC curve}}{143}{figure.caption.153}%
-\contentsline {figure}{\numberline {7.6}{\ignorespaces Tags prediction task MTJE Model mean ROC curve}}{144}{figure.caption.154}%
-\contentsline {figure}{\numberline {7.7}{\ignorespaces Family Prediction Accuracy Trends}}{146}{figure.caption.156}%
-\contentsline {figure}{\numberline {7.8}{\ignorespaces Family Prediction AUC-ROC (Micro) Trends}}{146}{figure.caption.157}%
-\contentsline {figure}{\numberline {7.9}{\ignorespaces Family Prediction AUC-ROC (Macro) Trends}}{147}{figure.caption.158}%
-\contentsline {figure}{\numberline {7.10}{\ignorespaces Family Prediction Confusion Matrixes (Max Accuracy)}}{148}{figure.caption.160}%
-\contentsline {figure}{\numberline {7.11}{\ignorespaces Family Classifier Joint Embedding Confusion Matrix}}{155}{figure.caption.168}%
-\contentsline {figure}{\numberline {7.12}{\ignorespaces Family Classifier MTJE Model Confusion Matrix}}{155}{figure.caption.169}%
-\contentsline {figure}{\numberline {7.13}{\ignorespaces Family Classifier Only Joint Embedding Confusion Matrix}}{156}{figure.caption.170}%
-\contentsline {figure}{\numberline {7.14}{\ignorespaces Contrastive Model Accuracy Trends}}{160}{figure.caption.172}%
-\contentsline {figure}{\numberline {7.15}{\ignorespaces Contrastive Model based on Joint Embedding Confusion Matrix}}{161}{figure.caption.174}%
-\contentsline {figure}{\numberline {7.16}{\ignorespaces Contrastive Model based on MTJE Model Confusion Matrix}}{162}{figure.caption.175}%
-\contentsline {figure}{\numberline {7.17}{\ignorespaces Contrastive Model Only Joint Embedding Confusion Matrix}}{162}{figure.caption.176}%
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Malware Label prediction task ALOHA (M/B only) ROC curve}}{135}{figure.caption.148}%
+\contentsline {figure}{\numberline {7.2}{\ignorespaces Malware Label prediction task ALOHA ROC curve}}{135}{figure.caption.149}%
+\contentsline {figure}{\numberline {7.3}{\ignorespaces Malware Label prediction task MTJE Model ROC curve}}{136}{figure.caption.150}%
+\contentsline {figure}{\numberline {7.4}{\ignorespaces Tags prediction task ALOHA mean ROC curve}}{139}{figure.caption.152}%
+\contentsline {figure}{\numberline {7.5}{\ignorespaces Tags prediction task Joint Embedding mean ROC curve}}{139}{figure.caption.153}%
+\contentsline {figure}{\numberline {7.6}{\ignorespaces Tags prediction task MTJE Model mean ROC curve}}{140}{figure.caption.154}%
+\contentsline {figure}{\numberline {7.7}{\ignorespaces Family Prediction Accuracy Trends}}{142}{figure.caption.156}%
+\contentsline {figure}{\numberline {7.8}{\ignorespaces Family Prediction AUC-ROC (Micro) Trends}}{142}{figure.caption.157}%
+\contentsline {figure}{\numberline {7.9}{\ignorespaces Family Prediction AUC-ROC (Macro) Trends}}{143}{figure.caption.158}%
+\contentsline {figure}{\numberline {7.10}{\ignorespaces Family Prediction Confusion Matrixes (Max Accuracy)}}{144}{figure.caption.160}%
+\contentsline {figure}{\numberline {7.11}{\ignorespaces Family Classifier Joint Embedding Confusion Matrix}}{151}{figure.caption.168}%
+\contentsline {figure}{\numberline {7.12}{\ignorespaces Family Classifier MTJE Model Confusion Matrix}}{151}{figure.caption.169}%
+\contentsline {figure}{\numberline {7.13}{\ignorespaces Family Classifier Only Joint Embedding Confusion Matrix}}{152}{figure.caption.170}%
+\contentsline {figure}{\numberline {7.14}{\ignorespaces Contrastive Model Accuracy Trends}}{156}{figure.caption.172}%
+\contentsline {figure}{\numberline {7.15}{\ignorespaces Contrastive Model based on Joint Embedding Confusion Matrix}}{157}{figure.caption.174}%
+\contentsline {figure}{\numberline {7.16}{\ignorespaces Contrastive Model based on MTJE Model Confusion Matrix}}{158}{figure.caption.175}%
+\contentsline {figure}{\numberline {7.17}{\ignorespaces Contrastive Model Only Joint Embedding Confusion Matrix}}{158}{figure.caption.176}%
 \addvspace {10\p@ }
