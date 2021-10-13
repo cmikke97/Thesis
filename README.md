@@ -35,7 +35,7 @@ The current implementation of the <b>MTJE</b> model provided very good results i
 
 Copyright 2021 Crepaldi Michele
 
-Developed as a thesis project at the TORSEC research group of the Polytechnic of Turin (Italy) under the supervision of professor Antonio Lioy and engineer Andrea Atzeni and with the support of engineer Andrea Marcelli.
+Produced as a thesis project at the TORSEC research group of the Polytechnic of Turin (Italy) under the supervision of professor Antonio Lioy and engineer Andrea Atzeni and with the support of engineer Andrea Marcelli.
 
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
